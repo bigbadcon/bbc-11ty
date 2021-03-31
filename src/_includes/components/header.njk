@@ -40,12 +40,12 @@
           </div>
 
           <nav :class="{'flex': open, 'hidden': !open}"
-            class="flex-col flex-grow hidden pb-4 md:pb-0 md:flex md:justify-end md:flex-row md:space-x-base">
+            class="flex-col flex-grow hidden pb-4 md:pb-0 md:flex md:justify-end md:flex-row md:space-x-sm">
             {% for item in navigation %}
             {% if item.subnav %}
               <div @click.away="open = false" class="relative" x-data="{ open: false }">
                 <button @click="open = !open"
-                  class="flex flex-row items-center w-full p-2xs text-left md:w-auto md:inline md:mt-0">
+                  class="flex flex-row items-center w-full py-2xs px-xs text-left md:w-auto md:inline md:mt-0 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-4 rounded">
                   <span>{{ item.title }}</span>
                   <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}"
                     class="hidden text-primary-4 lg:inline w-4 h-4 mt-1 transition-transform duration-200 transform md:-mt-1">
