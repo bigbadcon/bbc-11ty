@@ -1,21 +1,11 @@
 {
-  "name": "11ty-tailwind-jit-starter",
+  "name": "bbc-11ty",
   "version": "0.0.2",
-  "description": "An 11ty starter to help you enjoy Tailwind Just-In-Time CSS",
+  "description": "Big Bad Con 11ty site",
   "author": {
-    "name": "Katie Kodes",
-    "url": "https://katiekodes.com"
+    "name": "Colin Fahrion",
+    "url": "https://colinaut.com"
   },
-  "contributors": [
-    {
-      "name": "Darrik Moberg",
-      "url": "https://www.darrik.dev/"
-    },
-    {
-      "name": "Mike Allanson",
-      "url": "https://www.mikeallanson.com/"
-    }
-  ],
   "main": ".eleventy.js",
   "repository": {
     "type": "git",
@@ -36,9 +26,7 @@
     "postcss": "latest",
     "postcss-cli": "latest",
     "sass": "latest",
-    "tailwindcss": "latest"
-  },
-  "devDependencies": {
+    "tailwindcss": "latest",
     "@tailwindcss/typography": "^0.4.0",
     "axios": "^0.21.1"
   }
