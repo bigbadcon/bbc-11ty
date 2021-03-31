@@ -1,4 +1,15 @@
-# 11ty - Tailwind "JIT" _(Just In Time)_ CSS starter
+# Big Bad Con 11ty
+
+
+Uses 11ty - Tailwind "JIT" _(Just In Time)_ CSS starter
+
+## TODO
+
+TODO: update README
+TODO: add 404 page
+TODO: make mobile nav better
+TODO: add svg icons for links
+TODO: hook up Forestry
 
 The nifty thing about this [Tailwind "JIT"](https://github.com/tailwindlabs/tailwindcss-jit) starter for Eleventy is that you can see your changes take effect while you type into your templates, making it much easier to ask yourself, "How would it look if I changed `mx-2` to `mx-4`?" when you're totally new to Tailwind and can't imagine it all from memory.
 
