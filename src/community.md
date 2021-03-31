@@ -4,8 +4,53 @@ title: 'Community Standards'
 
 ---
 
-Excepteur irure elit aute ad sint commodo elit incididunt exercitation voluptate dolor elit sit reprehenderit. Voluptate ipsum elit minim dolore est id anim aute cupidatat occaecat enim. Velit irure in esse deserunt reprehenderit enim tempor veniam Lorem.
+Greetings, this is Sean Nittner, host of Big Bad Con. I love going to conventions and sharing in a hobby with all of my best friends. I want everyone to have as much fun as I do at Big Bad Con, and feel safe, comfortable, and welcome. To make that happen, we’ve written these Community Standards. If there is only one thing you take away, it should be this: **make those around you happy to be around you!**
 
-Elit anim consequat Lorem commodo do. Laboris elit nulla aliquip in labore. Sint eu cupidatat id ipsum minim deserunt sint proident sunt tempor. Ea nisi ea Lorem ea nisi exercitation eu velit elit pariatur minim veniam mollit non. Sunt laborum eu proident veniam excepteur adipisicing ullamco. Mollit consequat dolore mollit adipisicing.
+## Big Bad Con Community Standards
 
-Aute exercitation voluptate ea cupidatat culpa aliquip elit. Pariatur tempor non quis magna. Deserunt ex elit ea adipisicing magna nisi. Nisi Lorem dolor labore reprehenderit et et aliqua labore mollit Lorem nisi consectetur Lorem ut. Quis in do laboris do exercitation. Excepteur ut culpa dolore deserunt eu minim nostrud id voluptate. Exercitation laboris cupidatat et fugiat deserunt et anim.
+We want you to have the best time you possibly can at Big Bad Con. However, if having that fun comes at the cost of someone else’s safety, happiness, or comfort, you must stop. Period.
+
+Big Bad Con has zero tolerance for harassment of any kind. If you witness or are targeted by harassment, contact any of the convention staff and it will be dealt with directly.
+
+### This includes, but is not limited to:
+
+* stalking
+* intimidation
+* offensive verbal comments
+* physical assault and/or battery
+* harassing or non-consensual photography or recording
+* sustained disruption of games, workshops, or other events
+* bathroom policing
+* inappropriate physical contact
+* unwelcome physical attention
+
+### In relation to, but not limited to:
+
+* race
+* color
+* national origin or citizenship
+* gender identity or presentation
+* sexual orientation
+* immigration status
+* age
+* body size
+* disability
+* appearance
+* religion
+* pregnancy
+
+**To report an incident**, email [report@bigbadcon.com](mailto:report@bigbadcon.com), call or text [(510) 646-0073](tel:5106460073), or speak to any staff member. Include as much detail as you feel comfortable disclosing so we can address the situation immediately and thoroughly. If you’re still in the area where the incident took place and it’s safe to stay where you are, a staff member will meet you there.
+
+Anyone can report harassment. If someone’s behavior has made you uncomfortable, or if you witness the same happening to someone else, you should immediately contact BBC staff or a volunteer. You may also come to BBC’s registration desk.
+
+### Failure to adhere to the community standards may result in:
+
+1. Mediation by Big Bad Con staff.
+2. Verbal warnings.
+3. Turning the individual over to hotel staff.
+4. Revocation of badge and ejection from Big Bad Con. No refunds will be offered.
+5. Contacting local law enforcement.
+
+Our policy applies to **EVERYONE** at the convention. Exhibitors, attendees, GMs, speakers, guests, staff, and volunteers are all subject to our anti-harassment policy and will be held to the same standards and disciplinary action.
+
+If you are the target of harassment, we will work with you to provide necessary support. We will contact local law enforcement, provide escort, offer a safe place or otherwise assist those experiencing harassment to make sure they feel safe for the rest of BBC. If you are in immediate physical danger, get to safety and contact law enforcement FIRST.

@@ -11,6 +11,10 @@
             {
                 "title": "FAQ",
                 "url": "/faq"
+            },
+            {
+                "title": "Community Standards",
+                "url": "/community"
             }
         ]
     },

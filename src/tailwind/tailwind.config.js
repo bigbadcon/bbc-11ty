@@ -58,10 +58,13 @@ module.exports = {
             },
             h2: {
               color: 'var(--header)',
-              fontFamily: 'var(--serif)'
+              fontFamily: 'var(--serif)',
+              fontSize: '1.875rem'
             },
             h3: {
               color: 'var(--subheader)',
+              fontFamily: 'var(--serif)',
+              fontSize: '1.75rem'
             },
             a:{
               color: 'var(--highlight)',
