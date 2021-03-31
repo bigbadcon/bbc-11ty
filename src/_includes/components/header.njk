@@ -20,10 +20,10 @@
       <div class="text-body">
         <div x-data="{ open: false }"
           class="flex flex-col md:items-center md:justify-between md:flex-row ">
-          <div class="flex flex-row items-center justify-between py-base space-x-base">
-            <div class="w-56 grid grid-cols-1">
+          <div class="flex flex-row items-center justify-between py-base space-x-sm md:space-x-base">
+            <div class="w-40 sm:w-42 md:w-56 grid grid-cols-1">
               <a href="/" class="block md:mt-sm">{% include 'components/logo.njk' %}</a>
-              <div class="font-serif text-highlight text-xl sm:text-2xl text-center">{{site.eventDate}}</div>
+              <div class="font-serif text-highlight text-base sm:text-lg md:text-2xl text-center">{{site.eventDate}}</div>
             </div>
             <div>{% include 'components/light_dark_switch.njk' %}</div>
 
