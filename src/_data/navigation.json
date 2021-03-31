@@ -1,0 +1,64 @@
+[{
+        "title": "Attend",
+        "subnav": [{
+                "title": "Buy a Badge",
+                "url": "/badge"
+            },
+            {
+                "title": "Hotel",
+                "url": "/hotel"
+            },
+            {
+                "title": "FAQ",
+                "url": "/faq"
+            }
+        ]
+    },
+    {
+        "title": "Volunteer",
+        "subnav": [{
+            "title": "Run An Event",
+            "url": "/run-an-event"
+        },
+        {
+            "title": "Run Games On Demand",
+            "url": "/run-games-on-demand"
+        },
+        {
+            "title": "Join The Rangers",
+            "url": "/join-the-rangers"
+        }
+    ]
+    },
+    {
+        "title": "Events",
+        "subnav": [{
+            "title": "Scheduled Events",
+            "url": "/events"
+        },
+        {
+            "title": "Drop In Events",
+            "url": "/drop-in"
+        },
+        {
+            "title": "Play To Win",
+            "url": "/play-to-win"
+        }
+    ]
+    },
+    {
+        "title": "Dealers",
+        "subnav": [{
+            "title": "Dealers Room",
+            "url": "/dealers"
+        },
+        {
+            "title": "Small Press Showcase",
+            "url": "/small-press"
+        }]
+    },
+    {
+        "title": "Blog",
+        "url": "/blog"
+    }
+]

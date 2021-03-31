@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en" class="min-h-screen">
+{% include 'layouts/html_head.njk' %}
+
+<body class="min-h-screen">
+  <div class="page-wrapper grid min-h-screen">
+    <div class="header-wrapper">
+      {% block header %}{% endblock %}
+    </div>
+    <div class="content-wrapper bg-gradient-to-b from-main-gradient-top to-main-gradient-bottom pb-lg">
+    <div style="-webkit-mask: url(/static/images/underbrush.svg) repeat-x; mask: url(/static/images/underbrush.svg) repeat-x;" class="underbrush h-10 bg-primary"></div>
+      {% block content %}{% endblock %}
+    </div>
+  </div>
+  {% include 'components/footer.njk' %}
+
+</body>
+
+</html>

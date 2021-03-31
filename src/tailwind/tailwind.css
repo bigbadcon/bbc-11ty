@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* -------------------------------------------------------------------------- */
+/*                               Color Variables                              */
+/* -------------------------------------------------------------------------- */
+
+:root, .light {
+  /* ---------------------------- Base Light Theme ---------------------------- */
+  --primary: #e1eac4;
+  --primary-2: #c4d0a0;
+  --primary-3: #94a268;
+  --primary-4: #849357;
+  --secondary: #843232;
+  --highlight: #e85900;
+  --highlight-2: #FF6200;
+  --card: rgba(255, 255, 255, 0.6);
+  --body: #313a3c;
+  --header: var(--highlight);
+  --subheader: #304a3b;
+  --menu-icon: #6f693f;
+  --sky: #baedff;
+  --mountain: #83a0ad;
+  --sunmoon: #fff965;
+  --tree: #86815f;
+  --tree-2: #aca57e;
+  --main-gradient-top: #AFCFDD;
+  --main-gradient-bottom: #E4EFF2;
+}
+
+/* ------------------------------- Dark Theme ------------------------------- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary: #171b30;
+    --primary-2: #122436;
+    --primary-3: #142F40;
+    --primary-4: #254152;
+    --secondary: #ffd800;
+    --highlight: #ffb233;
+    --highlight-2: #ffb233;
+    --card: rgba(70, 59, 89, 0.6);
+    --body: #d5e3ed;
+    --header: var(--highlight);
+    --subheader: #bdcfd5;
+    --menu-icon: #bdcfd5;
+    --sky: #97A0BF;
+    --mountain: #7F84A5;
+    --sunmoon: #F5F9FF;
+    --tree: #282A3F;
+    --tree-2: #4F536C;
+    --main-gradient-top: #274555;
+    --main-gradient-bottom: #161246;
+  }
+}
+.dark {
+  --primary: #171b30;
+  --primary-2: #122436;
+  --primary-3: #142F40;
+  --primary-4: #254152;
+  --secondary: #ffd800;
+  --highlight: #ffb233;
+  --highlight-2: #ffb233;
+  --card: rgba(70, 59, 89, 0.6);
+  --body: #d5e3ed;
+  --header: var(--highlight);
+  --subheader: #bdcfd5;
+  --menu-icon: #bdcfd5;
+  --sky: #97A0BF;
+  --mountain: #7F84A5;
+  --sunmoon: #F5F9FF;
+  --tree: #282A3F;
+  --tree-2: #4F536C;
+  --main-gradient-top: #274555;
+  --main-gradient-bottom: #161246;
+}
+
+:root {
+  /* ------------------------------- Typography ------------------------------- */
+
+  --sans: 'Open Sans', 'Hevetica', 'sans-serif';
+  --serif: 'Rokkitt', 'serif';
+
+  /* :root font size */
+  font-size: clamp(calc(1 * 1rem), calc(calc(1 * 1rem) + (1.25 - 1) * ((100vw - calc(48 * 1rem)) / (120 - 48))), calc(1.25 * 1rem));
+  /* Safari Resize fix */
+  min-height: 0vw;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                Other Styles                                */
+/* -------------------------------------------------------------------------- */
+
+.bbc-logo path {
+  fill: var(--secondary);
+}
+
+.page-wrapper {
+  grid-template-rows: min-content auto;
+}
+
+.switch input[type="checkbox"]:checked ~ .thumb {
+  @apply transform translate-x-full;
+}
+
+.switch input[type="checkbox"]:checked ~ .track {
+  @apply transform transition-colors;
+}
+
+.switch input[type="checkbox"]:disabled ~ .track {
+  @apply bg-gray-500;
+}
+
+.switch input[type="checkbox"]:disabled ~ .thumb {
+  @apply bg-gray-100 border-gray-500;
+}
+
+.switch input[type="checkbox"]:focus + .track,
+.switch input[type="checkbox"]:active + .track {
+  /* @apply shadow-outline; */
+}
