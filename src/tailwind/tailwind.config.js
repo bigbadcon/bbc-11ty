@@ -54,17 +54,20 @@ module.exports = {
             color: 'var(--body)',
             h1: {
               color: 'var(--header)',
-              fontFamily: 'var(--serif)'
+              fontFamily: 'var(--serif)',
+              lineHeight: '1.20'
             },
             h2: {
               color: 'var(--header)',
               fontFamily: 'var(--serif)',
-              fontSize: '1.875rem'
+              fontSize: '1.875rem',
+              lineHeight: '1.10'
             },
             h3: {
               color: 'var(--subheader)',
               fontFamily: 'var(--serif)',
-              fontSize: '1.75rem'
+              fontSize: '1.75rem',
+              lineHeight: '1.05'
             },
             a:{
               color: 'var(--highlight)',
@@ -72,6 +75,12 @@ module.exports = {
               '&:hover': {
                 color: 'var(--body)'
               }
+            },
+            strong: {
+              color: 'inherit'
+            },
+            'ul > li::before': {
+                backgroundColor: 'var(--secondary)'
             }
           }
         }
