@@ -209,6 +209,8 @@ Sean’s passion is bringing people together to play games, explore identity, bu
 Twitter: [**@seannittner**](https://twitter.com/seannittner)  
 Website: [**seannittner.com**](http://www.seannittner.com/)
 
+***
+
 # Staff Emeritus
 
 ## Elsa S. Henry
