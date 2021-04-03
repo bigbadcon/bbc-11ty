@@ -1,10 +1,11 @@
 ---
 layout: layouts/page.njk
 title: Small Press Showcase
-description: ''
+description: 'Big Bad Con: Small Press Showcase is a space for self publishers, small
+  press, crafters, and artists to vend their creative works!'
 
 ---
-the Small Press Showcase is a space for self publishers, small press, crafters, and artists to vend their games, art, and creative works. Open the same hours as the [**Dealer’s Room**](/dealers), the Small Press Showcase is free to any vendor already attending the con.
+The Small Press Showcase is a space for self publishers, small press, crafters, and artists to vend their games, art, and creative works. Open the same hours as the [**Dealer’s Room**](/dealers), the Small Press Showcase is free to any vendor already attending the con.
 
 ## How it works:
 
