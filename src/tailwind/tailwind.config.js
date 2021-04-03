@@ -62,13 +62,17 @@ module.exports = {
               color: 'var(--header)',
               fontFamily: 'var(--serif)',
               fontSize: '1.875rem',
-              lineHeight: '1.10'
+              lineHeight: '1.10',
+              marginBottom: '0.5em',
+              marginTop: '1.4em'
             },
             h3: {
               color: 'var(--subheader)',
               fontFamily: 'var(--serif)',
               fontSize: '1.75rem',
-              lineHeight: '1.05'
+              lineHeight: '1.05',
+              marginBottom: '0.5em',
+              marginTop: '1.4em'
             },
             a:{
               color: 'var(--highlight)',
