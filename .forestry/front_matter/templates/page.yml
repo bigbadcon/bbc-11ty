@@ -12,6 +12,7 @@ fields:
   name: description
   label: description
 pages:
+- src/badge.md
 - src/community.md
 - src/dealers.md
 - src/drop-in.md
