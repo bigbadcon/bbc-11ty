@@ -1,9 +1,9 @@
 ---
-layout: 'layouts/page.njk'
-title: 'Community Standards'
+layout: layouts/page.njk
+title: Community Standards
+description: ''
 
 ---
-
 Greetings, this is Sean Nittner, host of Big Bad Con. I love going to conventions and sharing in a hobby with all of my best friends. I want everyone to have as much fun as I do at Big Bad Con, and feel safe, comfortable, and welcome. To make that happen, we’ve written these Community Standards. If there is only one thing you take away, it should be this: **make those around you happy to be around you!**
 
 ## Big Bad Con Community Standards
