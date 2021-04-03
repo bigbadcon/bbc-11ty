@@ -12,6 +12,7 @@ fields:
   name: description
   label: description
 pages:
+- src/drop-in.md
 - src/events.md
 - src/games-on-demand.md
 - src/hotel.md
