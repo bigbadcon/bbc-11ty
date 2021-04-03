@@ -56,7 +56,10 @@ module.exports = {
             h1: {
               color: 'var(--header)',
               fontFamily: 'var(--serif)',
-              lineHeight: '1.20'
+              fontSize: '3rem',
+              lineHeight: '1.20',
+              marginBottom: '0.5em',
+              marginTop: '1.4em',
             },
             h2: {
               color: 'var(--header)',
