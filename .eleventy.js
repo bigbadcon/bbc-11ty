@@ -24,6 +24,13 @@ module.exports = (eleventyConfig) => {
   // Tell Eleventy to watch this CSS file so it can live-update changes into the browser for us
   eleventyConfig.addWatchTarget("./dist/tailwindoutlive.css");
 
+  // SVG Sprite Shortcode
+  eleventyConfig.addShortcode("iconLink", function(link, title, icon = "star") {
+    return `<a href="${link}" class="icon-link"><svg class="icon-link__icon">
+      <use xlink:href="/static/images/icons.svg#${icon}"></use>
+    </svg><span class="icon-link__title">${title}</span></a>`
+  });
+
   // Clarify which folder is for input and which folder is for output
   return {
     dir: {

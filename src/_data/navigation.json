@@ -2,19 +2,23 @@
         "title": "Attend",
         "subnav": [{
                 "title": "Buy a Badge",
-                "url": "/badge"
+                "url": "/badge",
+                "icon": "badge"
             },
             {
                 "title": "Hotel",
-                "url": "/hotel"
+                "url": "/hotel",
+                "icon": "hotel"
             },
             {
                 "title": "FAQ",
-                "url": "/faq"
+                "url": "/faq",
+                "icon": "faq"
             },
             {
                 "title": "Community Standards",
-                "url": "/community"
+                "url": "/community",
+                "icon": "scroll"
             }
         ]
     },
@@ -22,15 +26,18 @@
         "title": "Volunteer",
         "subnav": [{
             "title": "Run An Event",
-            "url": "/run-an-event"
+            "url": "/run-an-event",
+            "icon": "calendar-star"
         },
         {
             "title": "Run Games On Demand",
-            "url": "/run-games-on-demand"
+            "url": "/run-games-on-demand",
+            "icon": "dice"
         },
         {
             "title": "Join The Rangers",
-            "url": "/join-the-rangers"
+            "url": "/join-the-rangers",
+            "icon": "paw"
         }
     ]
     },
@@ -38,15 +45,18 @@
         "title": "Events",
         "subnav": [{
             "title": "Scheduled Events",
-            "url": "/events"
+            "url": "/events",
+            "icon": "calendar-clock"
         },
         {
             "title": "Drop In Events",
-            "url": "/drop-in"
+            "url": "/drop-in",
+            "icon": "parachute"
         },
         {
             "title": "Play To Win",
-            "url": "/play-to-win"
+            "url": "/play-to-win",
+            "icon": "trophy"
         }
     ]
     },
@@ -54,15 +64,18 @@
         "title": "Dealers",
         "subnav": [{
             "title": "Dealers Room",
-            "url": "/dealers"
+            "url": "/dealers",
+            "icon": "price-tag"
         },
         {
             "title": "Small Press Showcase",
-            "url": "/small-press"
+            "url": "/small-press",
+            "icon": "book"
         }]
     },
     {
         "title": "Blog",
-        "url": "/blog"
+        "url": "/blog",
+        "icon": "star"
     }
 ]

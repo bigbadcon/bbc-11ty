@@ -18,6 +18,7 @@ const colors = {
   'highlight-2': 'var(--highlight-2)',
   'sky': 'var(--sky)',
   'body': 'var(--body)',
+  'body-highlight': 'var(--body-highlight)',
   'header': 'var(--header)',
   'subheader': 'var(--subheader)',
   'card': 'var(--card)',
@@ -85,6 +86,9 @@ module.exports = {
           }
         }
       }
+    },
+    fill: {
+      highlight: 'var(--fill-highlight)'
     },
     maxWidth: {
       'hero': '120ch',

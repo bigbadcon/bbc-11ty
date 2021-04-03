@@ -48,10 +48,11 @@
                   x-transition:leave-start="transform opacity-100 scale-100"
                   x-transition:leave-end="transform opacity-0 scale-95"
                   class="md:absolute right-0 w-56 mt-2 origin-top-right z-20">
-                  <div class="px-base md:py-sm md:bg-main-gradient-top ring-2 ring-primary md:rounded-md md:shadow-lg mb-base">
+                  <div class="px-base md:py-base md:bg-main-gradient-top ring-2 ring-primary md:rounded-md md:shadow-lg mb-base">
                     <div class="grid grid-cols-1 gap-1 md:gap-2">
                     {% for link in item.subnav %}
-                      <a href="{{link.url}}" class="block">{{link.title}}</a>
+                      {# <a href="{{link.url}}" class="block">{{link.title}}</a> #}
+                      {% iconLink link.url, link.title, link.icon %}
                     {% endfor %}
                     </div>
                   </div>

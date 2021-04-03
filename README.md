@@ -8,7 +8,7 @@ Uses 11ty - Tailwind "JIT" _(Just In Time)_ CSS starter
 TODO: update README
 TODO: add 404 page
 TODO: make mobile nav better
-TODO: add svg icons for links
+TODO: add svg icons for links. Use 11ty filter and node script to build the sprite
 TODO: hook up Forestry
 TODO: create favicon
 TODO: change bullet color for prose

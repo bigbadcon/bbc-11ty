@@ -17,17 +17,21 @@
     "dev": "NODE_ENV=development npx eleventy --watch --serve",
     "develop": "npx eleventy --watch --serve",
     "now-build": "npm run build",
-    "debug": "DEBUG=* npx eleventy"
+    "debug": "DEBUG=* npx eleventy",
+    "svgs": "npx svg-sprite-generate -d src/assets/svgs -o src/static/images/icons.svg"
   },
   "dependencies": {
     "@11ty/eleventy": "latest",
     "@tailwindcss/jit": "latest",
+    "@tailwindcss/typography": "^0.4.0",
     "autoprefixer": "latest",
+    "axios": "^0.21.1",
     "postcss": "latest",
     "postcss-cli": "latest",
     "sass": "latest",
-    "tailwindcss": "latest",
-    "@tailwindcss/typography": "^0.4.0",
-    "axios": "^0.21.1"
+    "tailwindcss": "latest"
+  },
+  "devDependencies": {
+    "svg-sprite-generator": "^0.0.7"
   }
 }

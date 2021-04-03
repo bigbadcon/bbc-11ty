@@ -17,6 +17,7 @@
   --highlight-2: #FF6200;
   --card: rgba(255, 255, 255, 0.6);
   --body: #313a3c;
+  --body-highlight: #003312;
   --header: var(--highlight);
   --subheader: #304a3b;
   --menu-icon: #6f693f;
@@ -27,6 +28,7 @@
   --tree-2: #aca57e;
   --main-gradient-top: #AFCFDD;
   --main-gradient-bottom: #E4EFF2;
+  --fill-highlight: url(#highlight-gradient) var(--highlight);
 }
 
 /* ------------------------------- Dark Theme ------------------------------- */
@@ -41,6 +43,7 @@
     --highlight-2: #ffb233;
     --card: rgba(70, 59, 89, 0.6);
     --body: #d5e3ed;
+    --body-highlight: #fff;
     --header: var(--highlight);
     --subheader: #bdcfd5;
     --menu-icon: #bdcfd5;
@@ -50,7 +53,7 @@
     --tree: #282A3F;
     --tree-2: #4F536C;
     --main-gradient-top: #274555;
-    --main-gradient-bottom: #161246;
+    --main-gradient-bottom: #1E1C3F;
   }
 }
 .dark {
@@ -63,6 +66,7 @@
   --highlight-2: #ffb233;
   --card: rgba(70, 59, 89, 0.6);
   --body: #d5e3ed;
+  --body-highlight: #fff;
   --header: var(--highlight);
   --subheader: #dddddd;
   --menu-icon: #bdcfd5;
@@ -72,7 +76,7 @@
   --tree: #282A3F;
   --tree-2: #4F536C;
   --main-gradient-top: #274555;
-  --main-gradient-bottom: #161246;
+  --main-gradient-bottom: #1E1C3F;
 }
 
 :root {
@@ -99,6 +103,8 @@
   grid-template-rows: min-content auto;
 }
 
+/* -------------------------- Light Dark Switch ----------------------------- */
+
 .switch input[type="checkbox"]:checked ~ .thumb {
   @apply transform translate-x-full;
 }
@@ -118,4 +124,20 @@
 .switch input[type="checkbox"]:focus + .track,
 .switch input[type="checkbox"]:active + .track {
   /* @apply shadow-outline; */
+}
+
+/* --------------------------- Icon Link Shortcode -------------------------- */
+.icon-link {
+  @apply flex items-center space-x-sm mb-xs;
+  text-decoration: none !important;
+}
+.icon-link:hover {
+  text-decoration: underline !important;
+}
+.icon-link__icon {
+  @apply w-7 h-7 fill-highlight flex-shrink-0;
+}
+.icon-link__title {
+  @apply text-body-highlight font-serif leading-none;
+  font-size: 1.3em;
 }

@@ -6,6 +6,6 @@ tags: cards
 
 Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
 
-- [Run An Event](/run-an-event)
-- [Run Games On Demand](/run-games-on-demand)
-- [Join The Rangers](/join-the-rangers)
+{% iconLink "/run-an-event", "Run An Event", "calendar-star" %}
+{% iconLink "/games-on-demand", "Run Games On Demand", "dice" %}
+{% iconLink "/rangers", "Join The Rangers", "paw" %}

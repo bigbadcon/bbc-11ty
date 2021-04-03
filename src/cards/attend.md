@@ -7,6 +7,6 @@ description: Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do ei
 
 Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
 
-- [Buy a Badge](/badge)
-- [Hotel](/hotel)
-- [FAQ](/faq)
+{% iconLink "/badge", "Buy A Badge", "badge" %}
+{% iconLink "/hotel", "Hotel", "hotel" %}
+{% iconLink "/faq", "FAQ", "faq" %}
