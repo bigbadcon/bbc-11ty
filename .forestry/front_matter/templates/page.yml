@@ -13,4 +13,5 @@ fields:
   label: description
 pages:
 - src/events.md
+- src/games-on-demand.md
 - src/small-press.md
