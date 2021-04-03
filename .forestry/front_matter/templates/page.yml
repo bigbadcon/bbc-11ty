@@ -11,3 +11,5 @@ fields:
 - type: textarea
   name: description
   label: description
+pages:
+- src/small-press.md
