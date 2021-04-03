@@ -209,30 +209,42 @@ Sean’s passion is bringing people together to play games, explore identity, bu
 Twitter: [**@seannittner**](https://twitter.com/seannittner)  
 Website: [**seannittner.com**](http://www.seannittner.com/)
 
-## Staff Emeritus
+# Staff Emeritus
+
+## Elsa S. Henry
 
 Elsa S. Henry (she/her) is a one eyed Scandinavian horror writer & game designer living in New Jersey with two cats, a husband and a hound dog. She is the creator of Feminist Sonar & Feminist Sonar Live, where she has become a well known disability advocate. Her work in the game design world includes Dead Scare, Wraith 20th Anniversary edition, Dracula Dossier, and Fate Accessible. She was an Industry Insider at Gen Con 2015, is the Community Manager for Storium.com, and does disability access coordination for all the Double Exposure Cons.
 
 Twitter : [**@snarkbat**](https://twitter.com/snarkbat)  
 Website: [**Feminist Sonar**](http://feministsonar.com/)
 
+## Jory Bowers
+
 Jory (she/her) does a lot of things, including technical theater, roller derby, and blues dancing.
 
 Twitter: [**@JoryBowers**](https://twitter.com/JoryBowers)
+
+## Devon Apple
 
 Devon (he/him) is a gamer, web developer, and former literature scholar. A member of [**Dreams of Deirdre**](http://www.dreamsofdeirdre.org/), a Bay Area LARP troupe, Devon has written or contributed to LARPs set in the Forgotten Realms, Dresden Files, Star Wars, and many other established or new settings. He also enjoys malachite, comedy, tacos, and music parodies.
 
 Twitter: [**@devonapple**](https://twitter.com/devonapple)  
 Website: [**www.greentides.com**](http://www.greentides.com/)
 
+## Mickey Schulz
+
 Mickey Schulz (she/her) is a Geek Blogger with (lots) more than 10 years experience running SF/F conventions and games. She blogs at [**GeekGirlsRule.net**](https://geekgirlsrule.net/) about gaming, comics, movies, TV and books, from a feminist perspective. She has also taught Safer Sex classes for people re-entering the dating scene. She lives in the Seattle area with several fish, three cats, two housemates, one dog, and one husband. She is a firm believer in the Oxford Comma.
 
 Twitter: [**@GeekGirlsRule**](https://twitter.com/GeekGirlsRule)  
 Website: [**Geek Girls Rule!**](https://geekgirlsrule.net/)
 
+## Orion
+
 Orion (they/them) is a queer Black non-binary game designer from the SF Bay Area. Their goal is to uplift marginalized voices in the ttrpg community and beyond. Currently, they are working to expand and enhance the scholarship program.
 
 Twitter: [**@DungeonCommandr**](https://twitter.com/DungeonCommandr)
+
+## Aven McConnaughey
 
 Aven (e/em/eir) is a game designer that currently resides in the Midwest with eir two cats and one husband. E piloted the Advocate Program in 2018, hoping to create a resource that supports attendees whenever they have to engage with the safety processes available at Big Bad Con. Eir other pursuits include amateur carpentry, improv, and seeing how many game systems e can use to run a single campaign. You can find Aven’s work in [**Behind the Masc**](https://briebeau.itch.io/behind-the-masc), [**The Imposters**](https://www.drivethrurpg.com/product/215094/The-Imposters), and the [**Tragedies of Middle School**](https://www.9thlevel.com/tradegies).
 
