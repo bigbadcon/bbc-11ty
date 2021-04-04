@@ -50,6 +50,7 @@ fields:
     required: false
   label: website url
 pages:
+- src/staff/brian-vo.md
 - src/staff/colin-fahrion.md
 - src/staff/jenn-martin.md
 - src/staff/jeremy-tidwell.md
