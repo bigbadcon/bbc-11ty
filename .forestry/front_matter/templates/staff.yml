@@ -31,6 +31,16 @@ fields:
   config:
     required: true
   description: "(they/them), (she/her), (he/him), etc."
+- name: order
+  type: number
+  label: order
+  default: 0
+  required: true
+  config:
+    min: 
+    max: 
+    step: 
+  description: Add an order number to sort staff cards. Negative numbers allowed.
 - name: image
   type: file
   config:
