@@ -3,7 +3,7 @@ tags: staff-emeritus
 title: Aven McConnaughey
 position: Advocate Ranger Captain
 gender: "(e/em/eir)"
-image: ''
+image: "/images/ylzjlhjx_400x400.jpg"
 twitter: transistence
 website_name: transistence.itch.io
 website_url: http://transistence.itch.io/
