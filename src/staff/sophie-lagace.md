@@ -4,7 +4,7 @@ title: Sophie Lagacé
 position: Events Coordinator
 gender: "(she/her)"
 image: "/images/img_0376.jpg"
-twitter: "@MechanteAnemone"
+twitter: MechanteAnemone
 website_name: The Reef
 website_url: https://mechanteanemone.wordpress.com/
 
