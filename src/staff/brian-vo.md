@@ -4,7 +4,7 @@ title: Brian Vo
 position: Little Red Baskets Coordinator
 gender: "(he/him)"
 image: "/images/brian-vo.png"
-twitter: "@Brivo"
+twitter: Brivo
 website_name: acookandageek.com
 website_url: https://acookandageek.com
 
