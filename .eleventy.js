@@ -12,34 +12,14 @@ module.exports = (eleventyConfig) => {
   //   strict_filters: true,
   // });
 
-  // Staff sorted alphabetically
+  // Staff sorted by order number and then alphabetically
   eleventyConfig.addCollection("staffABC", function(collectionApi) {
-    return collectionApi.getFilteredByTag("staff").sort(function(a,b) {
-      var nameA = a.template.parsed.name; // ignore upper and lowercase
-      var nameB = b.template.parsed.name; // ignore upper and lowercase
-      if (nameA < nameB) {
-        return -1; //nameA comes first
-      }
-      if (nameA > nameB) {
-        return 1; // nameB comes first
-      }
-      return 0;
-    });
+    return collectionApi.getFilteredByTag("staff").sort((a,b) =>  a.template.frontMatter.data.order - b.template.frontMatter.data.order || a.template.fileSlugStr.localeCompare(b.template.fileSlugStr));
   });
 
-  // Staff sorted alphabetically
+  // Staff Emeritus sorted by order number and then alphabetically
   eleventyConfig.addCollection("staffEmeritusABC", function(collectionApi) {
-    return collectionApi.getFilteredByTag("staff-emeritus").sort(function(a,b) {
-      var nameA = a.template.parsed.name; // ignore upper and lowercase
-      var nameB = b.template.parsed.name; // ignore upper and lowercase
-      if (nameA < nameB) {
-        return -1; //nameA comes first
-      }
-      if (nameA > nameB) {
-        return 1; // nameB comes first
-      }
-      return 0;
-    });
+    return collectionApi.getFilteredByTag("staff-emeritus").sort((a,b) =>  a.template.frontMatter.data.order - b.template.frontMatter.data.order || a.template.fileSlugStr.localeCompare(b.template.fileSlugStr));
   });
 
   // Pass "static" things straight through from "src" to "dist"
