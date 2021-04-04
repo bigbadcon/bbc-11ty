@@ -3,7 +3,7 @@ tags: staff
 title: Jenn Martin
 position: Larp Coordinator
 gender: "(she/her)"
-image: ''
+image: images/jenn-martin_1-1024x1024.jpg
 twitter: "@tenpenjenn"
 website_name: the.kinematic.cafe
 website_url: http://the.kinematic.cafe/jenn-martin/
