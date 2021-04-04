@@ -13,7 +13,7 @@
   <section class="max-w-content mx-auto p-base">
     {% for post in collections.blog | reverse %}
     <article><a href="{{ post.url }}">
-        <h2 class="text-header text-4xl font-serif leading-none">{{post.data.title}}</h2>
+        <h2 class="text-header text-3xl font-serif leading-none tracking-tight">{{post.data.title}}</h2>
         <div class="text-body text-sm">{{post.data.date}}</div>
         <div class="mt-base">
           <div class="prose">{{ post.data.excerpt }}</div>
