@@ -1,0 +1,7 @@
+---
+title: "Under Construction"
+tags: blog
+date: "2010-08-26"
+---
+
+Hey everyone... currently working on the site so please have patience if things look a little weird for the next few hours... thanks!
