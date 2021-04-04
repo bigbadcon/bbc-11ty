@@ -7,6 +7,8 @@ twitter: seannittner
 website: http://www.seannittner.com
 image: "/images/sean-nittner-bio-pic-967x1024.jpg"
 position: Steward
+website_name: seannittner.com
+website_url: http://www.seannittner.com/
 
 ---
 Sean (he/him) is a system administrator, event coordinator, twitch streamer, podcaster, project manager, and fundraiser. He started gaming at age 12 and he’s never stopped.
