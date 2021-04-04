@@ -6,16 +6,30 @@ fields:
   name: title
   label: Name
   description: <em>Your chosen name (also used as the doc "title")</em>
+  config:
+    required: true
 - type: text
   name: position
   label: Position Title
+- name: tags
+  type: select
+  default: []
+  config:
+    required: true
+    options:
+    - staff
+    - staff-emeritus
+    source:
+      type: simple
+      section: 
+      file: 
+      path: 
+  label: tags
 - type: text
   name: gender
   label: gender
-- type: text
-  name: tags
-  label: tags
-  default: staff
+  config:
+    required: true
 - name: image
   type: file
   config:
@@ -24,21 +38,16 @@ fields:
 - type: text
   name: twitter
   label: twitter
-- name: website
-  type: field_group
-  config: {}
-  fields:
-  - name: website_name
-    type: text
-    config:
-      required: false
-    label: website name
-  - name: website_url
-    type: text
-    config:
-      required: false
-    label: website url
-  label: website
+- name: website_name
+  type: text
+  config:
+    required: false
+  label: website name
+- name: website_url
+  type: text
+  config:
+    required: false
+  label: website url
 pages:
 - src/staff/colin-fahrion.md
 - src/staff/sean-nittner.md
