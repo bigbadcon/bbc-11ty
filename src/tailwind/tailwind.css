@@ -41,7 +41,7 @@
     --secondary: #ffd800;
     --highlight: #ffb53b;
     --highlight-2: #ff7f00;
-    --card: rgba(70, 59, 89, 0.6);
+    --card: rgba(16, 52, 55, 0.58);
     --body: #d5e3ed;
     --body-highlight: #fff;
     --header: var(--highlight);
@@ -64,7 +64,7 @@
   --secondary: #ffd800;
   --highlight: #ffb53b;
   --highlight-2: #ff7f00;
-  --card: rgba(70, 59, 89, 0.6);
+  --card: rgba(16, 52, 55, 0.58);
   --body: #d5e3ed;
   --body-highlight: #fff;
   --header: var(--highlight);
@@ -128,14 +128,14 @@
 
 /* --------------------------- Icon Link Shortcode -------------------------- */
 .icon-link {
-  @apply flex items-center space-x-sm mb-xs;
+  @apply flex items-center space-x-sm mb-sm;
   text-decoration: none !important;
 }
 .icon-link:hover {
   text-decoration: underline !important;
 }
 .icon-link__icon {
-  @apply w-7 h-7 fill-highlight flex-shrink-0;
+  @apply w-6 h-6 fill-highlight flex-shrink-0;
 }
 .icon-link__title {
   @apply text-body-highlight font-serif leading-none;
