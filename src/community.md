@@ -4,53 +4,24 @@ title: Community Standards
 description: ''
 
 ---
-Greetings, this is Sean Nittner, host of Big Bad Con. I love going to conventions and sharing in a hobby with all of my best friends. I want everyone to have as much fun as I do at Big Bad Con, and feel safe, comfortable, and welcome. To make that happen, we’ve written these Community Standards. If there is only one thing you take away, it should be this: **make those around you happy to be around you!**
+At Big Bad Con, we foster a community that welcomes marginalized genders, queer folks, people of color, and people with disabilities. We actively work to make the con as physically, socially, and financially accessible as possible, and to cultivate a culture of **respect**, **support**, and **kindness**.
 
-## Big Bad Con Community Standards
+## **Respect**
 
-We want you to have the best time you possibly can at Big Bad Con. However, if having that fun comes at the cost of someone else’s safety, happiness, or comfort, you must stop. Period.
+* **We value people over the game.** _We learn and use people's pronouns. We honor the use of safety and calibration tools._
+* **We look for enthusiastic consent_._** _We ask before taking someone’s picture or giving a hug. We apologize and change our behavior when we transgress._
+* **We care about health and well-being**. _We wash our hands, cover our coughs and sneezes, and avoid contact when sick._
 
-Big Bad Con has zero tolerance for harassment of any kind. If you witness or are targeted by harassment, contact any of the convention staff and it will be dealt with directly.
+### **Support**
 
-### This includes, but is not limited to:
+* **We celebrate new players.** _We take time to teach rules, invite questions, and offer help in-game._
+* **_We hold space for one another._** _We keep pathways clear, communicate with patience, and create opportunities for everyone to participate._
+* **_We invest in our community._** _Donations made at the Fireside Chat go to our scholarship fund, which helps marginalized folks attend the con._
 
-* stalking
-* intimidation
-* offensive verbal comments
-* physical assault and/or battery
-* harassing or non-consensual photography or recording
-* sustained disruption of games, workshops, or other events
-* bathroom policing
-* inappropriate physical contact
-* unwelcome physical attention
+### **Kindness**
 
-### In relation to, but not limited to:
+* **We welcome folks to the table. _We pull up a chair. We invite others into our conversations and catch them up._**
+* **We practice compassion.** _We’re mindful of our effect on others. We honor boundaries and use them to inform our choices._
+* **We’re good to ourselves.** _We watch out to get enough sleep, food, and water. We take breaks when we need them._
 
-* race
-* color
-* national origin or citizenship
-* gender identity or presentation
-* sexual orientation
-* immigration status
-* age
-* body size
-* disability
-* appearance
-* religion
-* pregnancy
-
-**To report an incident**, email [report@bigbadcon.com](mailto:report@bigbadcon.com), call or text [(510) 646-0073](tel:5106460073), or speak to any staff member. Include as much detail as you feel comfortable disclosing so we can address the situation immediately and thoroughly. If you’re still in the area where the incident took place and it’s safe to stay where you are, a staff member will meet you there.
-
-Anyone can report harassment. If someone’s behavior has made you uncomfortable, or if you witness the same happening to someone else, you should immediately contact BBC staff or a volunteer. You may also come to BBC’s registration desk.
-
-### Failure to adhere to the community standards may result in:
-
-1. Mediation by Big Bad Con staff.
-2. Verbal warnings.
-3. Turning the individual over to hotel staff.
-4. Revocation of badge and ejection from Big Bad Con. No refunds will be offered.
-5. Contacting local law enforcement.
-
-Our policy applies to **EVERYONE** at the convention. Exhibitors, attendees, GMs, speakers, guests, staff, and volunteers are all subject to our anti-harassment policy and will be held to the same standards and disciplinary action.
-
-If you are the target of harassment, we will work with you to provide necessary support. We will contact local law enforcement, provide escort, offer a safe place or otherwise assist those experiencing harassment to make sure they feel safe for the rest of BBC. If you are in immediate physical danger, get to safety and contact law enforcement FIRST.
+If you find a place where we are falling short, please let us know. This is ongoing work, and we’re committed to improve year after year.
