@@ -7,6 +7,7 @@ image: "/images/img_0376.jpg"
 twitter: MechanteAnemone
 website_name: The Reef
 website_url: https://mechanteanemone.wordpress.com/
+order: 0
 
 ---
 Sophie Lagacé has been gaming for so long that she thinks of THAC0 as “that new-fangled acronym.” She likes playing, game-mastering, organizing, reviewing, tinkering with, and writing about tabletop games, especially role-playing games.
