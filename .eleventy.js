@@ -14,6 +14,7 @@ module.exports = (eleventyConfig) => {
 
   // Pass "static" things straight through from "src" to "dist"
   eleventyConfig.addPassthroughCopy("./src/static/");
+  eleventyConfig.addPassthroughCopy("./images/");
 
   // Tailwind stuff
   eleventyConfig.addShortcode("version", function () {

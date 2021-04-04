@@ -5,7 +5,7 @@ gender: "(he/him)"
 tags: staff
 twitter: seannittner
 website: http://www.seannittner.com
-image: "/uploads/sean-nittner-bio-pic-967x1024.jpg"
+image: "/images/sean-nittner-bio-pic-967x1024.jpg"
 position: Steward
 
 ---
