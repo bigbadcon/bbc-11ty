@@ -10,7 +10,7 @@ Take heart! If you come to Big Bad Con this year, you won’t face the [duck kni
 
 ## Elsa Sjunneson-Henry
 
-![Elsa Sjunneson-Henry](images/elsa-sjunneson-henry.gif)Elsa is a disability advocate and game designer living in New Jersey. She’s the assistant editrix for [Fireside Fiction](https://twitter.com/FiresideFiction), writes on disability and intersectional feminism at [Feminist Sonar,](http://feministsonar.com/) and her nonfiction work can be found in Dragon+ and The Analog Games Journal. She was an Industry Insider at GenCon 2014, and will be at Guest of Honor at [OrcaCon 2017](http://www.orcacon.org/). In her spare time she wanders the streets of Hell's Kitchen with her cane in hand. She can be found at @snarkbat on Twitter.
+![Elsa Sjunneson-Henry](/images/elsa-sjunneson-henry.gif)Elsa is a disability advocate and game designer living in New Jersey. She’s the assistant editrix for [Fireside Fiction](https://twitter.com/FiresideFiction), writes on disability and intersectional feminism at [Feminist Sonar,](http://feministsonar.com/) and her nonfiction work can be found in Dragon+ and The Analog Games Journal. She was an Industry Insider at GenCon 2014, and will be at Guest of Honor at [OrcaCon 2017](http://www.orcacon.org/). In her spare time she wanders the streets of Hell's Kitchen with her cane in hand. She can be found at @snarkbat on Twitter.
 
 ### Elsa will be hosting:
 
@@ -22,7 +22,7 @@ Take heart! If you come to Big Bad Con this year, you won’t face the [duck kni
 
 ## Donna “Danicia” Prior
 
-![Donna Prior](images/donna-prior.gif)Donna is the Sparkly Princess of Social Media & Community Management in the video game industry. She is the Events Manager for [Green Ronin Publishing](http://greenronin.com/) and the Executive Director of [OrcaCon](http://www.orcacon.org/), the Inclusive Analog Games Convention in Everett, WA.
+![Donna Prior](/images/donna-prior.gif)Donna is the Sparkly Princess of Social Media & Community Management in the video game industry. She is the Events Manager for [Green Ronin Publishing](http://greenronin.com/) and the Executive Director of [OrcaCon](http://www.orcacon.org/), the Inclusive Analog Games Convention in Everett, WA.
 
 Donna is on the Community Management Advisory Board at the [Game Developers Conference](http://www.gdconf.com/). She has spoken about building communities, diversity, harassment, and accessibility at the Game Developers Conference, PAX / PAXDev, Gen Con, Mensa Annual Gathering, NorWesCon, and is the Community Manager Conference in Leipzig, Germany.
 
@@ -37,7 +37,7 @@ Donna is a gamer and a beer geek, often combining both hobbies while teaching ne
 
 ## Tanya Depass
 
-![Tanya Depass](images/tanya-depass.gif)Tanya is a long time gamer, fangirl, fan-ficcer and spawn point of the [#INeedDiverseGames](https://twitter.com/search?q=%23INeedDiverseGames&src=savs) hashtag. She enjoys talking, reading and writing about gaming diversity, feminism, race & racism, and fandom as a way of life and many other topics. She often streams on [twitch.tv/cypheroftyr](https://www.twitch.tv/cypheroftyr) and podcasts over at Fresh Out of Tokens with David Reeves. You can find her on twitter as [@cypheroftyr](https://twitter.com/cypheroftyr) and [on Facebook here](https://www.facebook.com/Tanya-DePass-406650336198339/). You can [contact her via this handy link](https://cypheroftyr.com/interview-and-speaking-requests/). #DiversifyYourPanels y’all.
+![Tanya Depass](/images/tanya-depass.gif)Tanya is a long time gamer, fangirl, fan-ficcer and spawn point of the [#INeedDiverseGames](https://twitter.com/search?q=%23INeedDiverseGames&src=savs) hashtag. She enjoys talking, reading and writing about gaming diversity, feminism, race & racism, and fandom as a way of life and many other topics. She often streams on [twitch.tv/cypheroftyr](https://www.twitch.tv/cypheroftyr) and podcasts over at Fresh Out of Tokens with David Reeves. You can find her on twitter as [@cypheroftyr](https://twitter.com/cypheroftyr) and [on Facebook here](https://www.facebook.com/Tanya-DePass-406650336198339/). You can [contact her via this handy link](https://cypheroftyr.com/interview-and-speaking-requests/). #DiversifyYourPanels y’all.
 
 ### Tanya will be hosting:
 
@@ -47,7 +47,7 @@ Donna is a gamer and a beer geek, often combining both hobbies while teaching ne
 
 ## Jason Morningstar
 
-![Jason Morningstar](images/jason-morningstar.gif)Jason Morningstar is a game designer and information technology professional who lives in Durham, North Carolina, USA. Best known for his game [Fiasco](http://bullypulpitgames.com/games/fiasco/), which earned him his second Diana Jones Award for Gaming Excellence, Jason’s game design credits include [The Shab Al-Hiri Roach](http://bullypulpitgames.com/games/roach/), [Grey Ranks](http://bullypulpitgames.com/games/grey-ranks/), [Durance](http://bullypulpitgames.com/games/durance/), [Night Witches](http://bullypulpitgames.com/games/night-witches/), and many other games.
+![Jason Morningstar](/images/jason-morningstar.gif)Jason Morningstar is a game designer and information technology professional who lives in Durham, North Carolina, USA. Best known for his game [Fiasco](http://bullypulpitgames.com/games/fiasco/), which earned him his second Diana Jones Award for Gaming Excellence, Jason’s game design credits include [The Shab Al-Hiri Roach](http://bullypulpitgames.com/games/roach/), [Grey Ranks](http://bullypulpitgames.com/games/grey-ranks/), [Durance](http://bullypulpitgames.com/games/durance/), [Night Witches](http://bullypulpitgames.com/games/night-witches/), and many other games.
 
 Beyond roleplaying, Jason consults on the use of games for teaching and learning in medical education, most recently with the University of Michigan, University of North Carolina at Chapel Hill, Kaiser-Permanente Health Care, and the Innovation Learning Network.
 
@@ -62,7 +62,7 @@ Jason has written extensively on game-related topics. His article “Beyond the 
 
 ## James Mendez Hodes
 
-![James Mendez Hodes](images/james-hodes.gif)James lives in a tiny Harlem apartment full of house centipedes and stuffed animals. He works full-time as a RPG writer, but also GMs professionally for children and then makes fun of them on the Internet. His interests include hip hop (including a [hip hop translation of Homer’s Iliad](https://www.patreon.com/user?u=157348)), West African religion, Asian classics, and martial arts. Catch James on twitter at @LulaVampiro.
+![James Mendez Hodes](/images/james-hodes.gif)James lives in a tiny Harlem apartment full of house centipedes and stuffed animals. He works full-time as a RPG writer, but also GMs professionally for children and then makes fun of them on the Internet. His interests include hip hop (including a [hip hop translation of Homer’s Iliad](https://www.patreon.com/user?u=157348)), West African religion, Asian classics, and martial arts. Catch James on twitter at @LulaVampiro.
 
 James will be hosting:
 
@@ -71,7 +71,7 @@ James will be hosting:
 
 ## Aaron Vanek
 
-![Aaron Vanek](images/arron-vanek.gif)Aaron Vanek has been creating and participating in live action role playing and tabletop role-playing for more than 30 years. He is the editor-in-chief of [_Larp World Magazine_](http://drivethrurpg.com/product/176553/LARP-WORLD-MAGAZINE--Winter-2016) (published by Joseph Valenti), co-creator of the global [Larp Census](http://larpcensus.org/) (with Ryan paddy), co-editor (with Sarah Lynne Bowman) of the 2012 and 2013 [Wyrd Con Companion Books](http://www.wyrdcon.com/2014/05/the-wyrd-con-companion-book/), and has designed interactive experiences for the Girl Scouts of America, the West Hollywood Book Fair, the Paul Biane Library, Sanrio, Inc., UCLA Game Lab, and the San Diego Public Library, most recently an ARG for their [First Folio Exhibition](http://www.firstfoliosandiego2016.org/index.html).
+![Aaron Vanek](/images/arron-vanek.gif)Aaron Vanek has been creating and participating in live action role playing and tabletop role-playing for more than 30 years. He is the editor-in-chief of [_Larp World Magazine_](http://drivethrurpg.com/product/176553/LARP-WORLD-MAGAZINE--Winter-2016) (published by Joseph Valenti), co-creator of the global [Larp Census](http://larpcensus.org/) (with Ryan paddy), co-editor (with Sarah Lynne Bowman) of the 2012 and 2013 [Wyrd Con Companion Books](http://www.wyrdcon.com/2014/05/the-wyrd-con-companion-book/), and has designed interactive experiences for the Girl Scouts of America, the West Hollywood Book Fair, the Paul Biane Library, Sanrio, Inc., UCLA Game Lab, and the San Diego Public Library, most recently an ARG for their [First Folio Exhibition](http://www.firstfoliosandiego2016.org/index.html).
 
 He was a keynote speaker at the first Living Games Conference in New York City and will present at the 2016 [Games for Change](http://www.gamesforchange.org/) festival, both times concerning educational larps. He has created or co-created 17 edu-larps for four schools in Los Angeles and consulted with Texas State University about their nursing simulation program. He teaches analog game design to junior high students at a private Jewish academy.
 
@@ -84,7 +84,7 @@ He was a keynote speaker at the first Living Games Conference in New York City a
 
 ## Jessica Price
 
-![Jessica Price](images/jessica-price.gif)Jessica Price has worked in video games, alternate reality games/transmedia entertainment, and tabletop roleplaying games as a writer, editor, game designer and producer on everything from MMOs to Xbox titles to games involving a lot of dice. After helping create the Kinect launch portfolio as a writer/editor at Microsoft Studios, she moved to Paizo Publishing, where she is the project manager for the [Pathfinder Roleplaying Game](http://paizo.com/pathfinderRPG). Jessica can be found on twitter at [@Delafina777](https://twitter.com/Delafina777).
+![Jessica Price](/images/jessica-price.gif)Jessica Price has worked in video games, alternate reality games/transmedia entertainment, and tabletop roleplaying games as a writer, editor, game designer and producer on everything from MMOs to Xbox titles to games involving a lot of dice. After helping create the Kinect launch portfolio as a writer/editor at Microsoft Studios, she moved to Paizo Publishing, where she is the project manager for the [Pathfinder Roleplaying Game](http://paizo.com/pathfinderRPG). Jessica can be found on twitter at [@Delafina777](https://twitter.com/Delafina777).
 
 ### Jessica will be hosting:
 
@@ -96,7 +96,7 @@ He was a keynote speaker at the first Living Games Conference in New York City a
 
 ## Barbara Ng (Banana Chan)
 
-![Barbara Ng](images/barbara-ng.gif)Banana Chan is a live action role playing game designer and videographer originally from Ontario, Canada. She is one half of the gaming events/merchandising company/YouTube channel [Game and a Curry](https://www.youtube.com/channel/UC7Pld67nynSfDMM8n9xcBeg). She is the writer and co-host of the large-scale larp, '[The Hades Holiday Party](https://www.youtube.com/watch?v=wCZA6fyPyII)' in New York, but prefers writing smaller, weirder larps that are too obscure to function. She currently lives in New York, where she creates videos, writes games on the subway and eats lasagna.
+![Barbara Ng](/images/barbara-ng.gif)Banana Chan is a live action role playing game designer and videographer originally from Ontario, Canada. She is one half of the gaming events/merchandising company/YouTube channel [Game and a Curry](https://www.youtube.com/channel/UC7Pld67nynSfDMM8n9xcBeg). She is the writer and co-host of the large-scale larp, '[The Hades Holiday Party](https://www.youtube.com/watch?v=wCZA6fyPyII)' in New York, but prefers writing smaller, weirder larps that are too obscure to function. She currently lives in New York, where she creates videos, writes games on the subway and eats lasagna.
 
 ### Barbara will be hosting:
 

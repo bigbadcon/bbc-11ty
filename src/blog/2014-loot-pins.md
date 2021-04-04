@@ -6,7 +6,7 @@ categories:
   - "the-making-of"
 ---
 
-[![Pins_01!](images/Pins_01-225x300.jpg)](http://www.bigbadcon.com/wp-content/uploads/2014/10/Pins_01.jpg)Pins! Yes, The Wolf loves his pins! Can you blame him. They have shiny all over the front and secret sharp point bits in the back! Here's the list of this year's pins _and_ how you get them!
+[![Pins_01!](/images/Pins_01-225x300.jpg)](http://www.bigbadcon.com/wp-content/uploads/2014/10/Pins_01.jpg)Pins! Yes, The Wolf loves his pins! Can you blame him. They have shiny all over the front and secret sharp point bits in the back! Here's the list of this year's pins _and_ how you get them!
 
 **Welcome To Big Bad Con** - You get one just for showing up and having fun!
 

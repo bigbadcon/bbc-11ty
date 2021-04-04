@@ -7,7 +7,7 @@ categories:
 coverImage: "bbc2015-247.jpg"
 ---
 
-![bbc2015-247](images/bbc2015-247-300x200.jpg)
+![bbc2015-247](/images/bbc2015-247-300x200.jpg)
 
 Hello gamers! Big Bad Con 2017 is on for October 13-15!
 

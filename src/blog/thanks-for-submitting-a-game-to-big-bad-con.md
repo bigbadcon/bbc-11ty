@@ -6,7 +6,7 @@ categories:
   - "the-making-of"
 ---
 
-![Volunteer](images/homepage-image2-300x200.jpg)The Wolf and his pack will be reviewing all the games individually and getting back to you soon.
+![Volunteer](/images/homepage-image2-300x200.jpg)The Wolf and his pack will be reviewing all the games individually and getting back to you soon.
 
 ### Our thanks to you!
 

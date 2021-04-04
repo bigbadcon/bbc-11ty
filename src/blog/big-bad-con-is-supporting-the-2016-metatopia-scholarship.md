@@ -7,7 +7,7 @@ categories:
 coverImage: "IGDN.jpg"
 ---
 
-![IGDN](images/IGDN-300x300.jpg)Big Bad Con is proud to be partnering with the [Indie Game Developer Network](http://www.igdnonline.com/) and their [2016 Metatopia Scholarship](http://www.igdnonline.com/apply-for-the-2016-igdn-metatopia-scholarship/)!
+![IGDN](/images/IGDN-300x300.jpg)Big Bad Con is proud to be partnering with the [Indie Game Developer Network](http://www.igdnonline.com/) and their [2016 Metatopia Scholarship](http://www.igdnonline.com/apply-for-the-2016-igdn-metatopia-scholarship/)!
 
 This scholarship is part of IGDN’s mission to support a robust community of diverse game designers. They will be sending some of these talented individuals to [Metatopia, The Game Design Festival](http://www.dexposure.com/m2016.html), November 3-6, 2016. Big Bad Con’s contributions will directly fund a qualifying applicant from the Bay Area.
 

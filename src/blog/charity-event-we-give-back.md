@@ -16,7 +16,7 @@ So far we've raised:
 
 - [2019: $1,000](https://www.bigbadcon.com/2019-ella-baker-center-donation/)
 
-[![Doctors Without Borders](images/msf-logo-header.jpg "Doctors Without Borders")](http://www.doctorswithoutborders.org) [Doctors Without Borders](http://www.doctorswithoutborders.org/)/Médecins Sans Frontières (MSF) is an international medical humanitarian organization working in nearly 70 countries to assist people whose survival is threatened by violence, neglect, or catastrophe. In 1999, MSF received the Nobel Peace Prize.
+[![Doctors Without Borders](/images/msf-logo-header.jpg "Doctors Without Borders")](http://www.doctorswithoutborders.org) [Doctors Without Borders](http://www.doctorswithoutborders.org/)/Médecins Sans Frontières (MSF) is an international medical humanitarian organization working in nearly 70 countries to assist people whose survival is threatened by violence, neglect, or catastrophe. In 1999, MSF received the Nobel Peace Prize.
 
 So far we've raised:
 
@@ -30,7 +30,7 @@ So far we've raised:
 - [2012: $1,010](https://www.bigbadcon.com/giving-twice-as-much-at-big-bad-con-2011/)
 - [2011: $505](https://www.bigbadcon.com/doing-good/)
 
-[![Food Bank of Contra Costa Country and Solano](images/FBCCS-Logo-sm.png)](https://www.foodbankccs.org) Attendees can drop off non-perishable foods at the registration desk for the [Food Bank of Contra Costa & Solano](https://www.foodbankccs.org). The Food Bank distributes food directly to people in need through several programs and provides food to more than 190,000 people every month. At the Food Bank's request, we now emphasize monetary contributions rather than food donations, but if you still wish to bring non-perishable food to donate, here is their [shopping list](https://www.bigbadcon.com/wp-content/uploads/2017/10/Food-Drive-Shopping-List.pdf) of most needed items.
+[![Food Bank of Contra Costa Country and Solano](/images/FBCCS-Logo-sm.png)](https://www.foodbankccs.org) Attendees can drop off non-perishable foods at the registration desk for the [Food Bank of Contra Costa & Solano](https://www.foodbankccs.org). The Food Bank distributes food directly to people in need through several programs and provides food to more than 190,000 people every month. At the Food Bank's request, we now emphasize monetary contributions rather than food donations, but if you still wish to bring non-perishable food to donate, here is their [shopping list](https://www.bigbadcon.com/wp-content/uploads/2017/10/Food-Drive-Shopping-List.pdf) of most needed items.
 
 So far we've raised or collected:
 

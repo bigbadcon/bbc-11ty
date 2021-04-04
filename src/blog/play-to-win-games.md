@@ -6,7 +6,7 @@ categories:
   - "the-making-of"
 ---
 
-![logo-envoy](images/logo-envoy-300x112.png)Thanks to the wonderful folks from [Envoy](http://www.dexposure.com/envoy/) and the generous contributions for game manufacturers, this year Big Bad Con will return with the Play-To-Win program! And it will be Bigger and Badder than before!
+![logo-envoy](/images/logo-envoy-300x112.png)Thanks to the wonderful folks from [Envoy](http://www.dexposure.com/envoy/) and the generous contributions for game manufacturers, this year Big Bad Con will return with the Play-To-Win program! And it will be Bigger and Badder than before!
 
 ### Rules
 
@@ -22,4 +22,4 @@ The Play-to-Win game drawings will take place and winners' names will be posted 
 
 It's too soon to say for sure which games will be available, but we'll update the list as the event draws near!
 
-![IMG_2709](images/IMG_2709.jpg)
+![IMG_2709](/images/IMG_2709.jpg)

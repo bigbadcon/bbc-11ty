@@ -7,7 +7,7 @@ categories:
 coverImage: "Red-Portrait-game-reg-opens.jpg"
 ---
 
-_![Red-Portrait-game-reg-opens](images/Red-Portrait-game-reg-opens.jpg)_
+_![Red-Portrait-game-reg-opens](/images/Red-Portrait-game-reg-opens.jpg)_
 
 _Big Bad Con games are approaching. Signal's clean. Range, twenty meters._ 
 
@@ -29,7 +29,7 @@ _Nine meters. Seven. Six… That can't be! That's inside the room!_
 
 We are so excited to open games registration. There is such an amazing list of games and events this year. We want to thank all of our donors for supporting our kickstarter. We also want to thank this year’s generous sponsors [Bully Pulpit Games](http://bullypulpitgames.com/) and [Evil Hat](https://www.evilhat.com/home/) for helping support Big Bad Con 2017!
 
-![BPG_EHP_Logos](images/BPG_EHP_Logos.png)
+![BPG_EHP_Logos](/images/BPG_EHP_Logos.png)
 
 ## Game Schedule is now live!
 

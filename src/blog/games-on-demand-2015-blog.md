@@ -10,7 +10,7 @@ categories:
 
 | System | GM | Length | Players | Format |
 | --- | --- | --- | --- | --- |
-| Basic Roleplaying | Ben Monroe | 4 | 6 | [![games-on-demand](images/games-on-demand.jpg)](http://www.bigbadcon.com/wp-content/uploads/2012/06/games-on-demand.jpg) |
+| Basic Roleplaying | Ben Monroe | 4 | 6 | [![games-on-demand](/images/games-on-demand.jpg)](http://www.bigbadcon.com/wp-content/uploads/2012/06/games-on-demand.jpg) |
 | MagicWorld | Ben Monroe | 4 | 6 |
 | MonsterHearts | Kelley Vanda | 4 | 5 |
 | Golden Sky Stories | Kelley Vanda | 4 | 5 |

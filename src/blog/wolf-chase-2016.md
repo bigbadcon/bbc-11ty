@@ -17,4 +17,4 @@ Can’t make the run but want to support the runners? Want to help doctors save 
 
 | Running Course | Walking Course |
 | --- | --- |
-| ![Screen Shot 2016-08-23 at 5.36.22 PM](images/Screen-Shot-2016-08-23-at-5.36.22-PM-1024x687.png) | ![Screen Shot 2016-08-25 at 3.28.36 PM](images/Screen-Shot-2016-08-25-at-3.28.36-PM.png) |
+| ![Screen Shot 2016-08-23 at 5.36.22 PM](/images/Screen-Shot-2016-08-23-at-5.36.22-PM-1024x687.png) | ![Screen Shot 2016-08-25 at 3.28.36 PM](/images/Screen-Shot-2016-08-25-at-3.28.36-PM.png) |

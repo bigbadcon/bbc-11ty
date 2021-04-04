@@ -10,7 +10,7 @@ The Wolf is putting on his stethoscope to do some good in the world.  He feels 
 
 As of today it is official, Big Bad Con is a charity event.  Here are are the charities it will support, and how!
 
-[![Doctors Without Borders](images/msf-logo-header.jpg "Doctors Without Borders")](http://www.bigbadcon.com/wp-content/uploads/2011/05/msf-logo-header.jpg) Poceeds from the convention will go to [Doctors Without Borders](http://www.doctorswithoutborders.org/).  Doctors Without Borders/Médecins Sans Frontières (MSF) is an international medical humanitarian organization working in nearly 70 countries to assist people whose survival is threatened by violence, neglect, or catastrophe.  In 1999, MSF received the Nobel Peace Prize.
+[![Doctors Without Borders](/images/msf-logo-header.jpg "Doctors Without Borders")](http://www.bigbadcon.com/wp-content/uploads/2011/05/msf-logo-header.jpg) Poceeds from the convention will go to [Doctors Without Borders](http://www.doctorswithoutborders.org/).  Doctors Without Borders/Médecins Sans Frontières (MSF) is an international medical humanitarian organization working in nearly 70 countries to assist people whose survival is threatened by violence, neglect, or catastrophe.  In 1999, MSF received the Nobel Peace Prize.
 
 So, if you pay to attend Big Bad Con, you get to game AND help people in need. You are an action hero!
 

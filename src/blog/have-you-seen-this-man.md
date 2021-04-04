@@ -6,4 +6,4 @@ categories:
   - "the-making-of"
 ---
 
-[![MILEUXSECURITY](images/MILEUXSECURITY-1024x742.png)](http://www.bigbadcon.com/wp-content/uploads/2014/08/MILEUXSECURITY.png)
+[![MILEUXSECURITY](/images/MILEUXSECURITY-1024x742.png)](http://www.bigbadcon.com/wp-content/uploads/2014/08/MILEUXSECURITY.png)

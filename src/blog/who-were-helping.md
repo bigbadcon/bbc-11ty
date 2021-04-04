@@ -8,4 +8,4 @@ The Wolf is very pleased with all the support Big Bad Con has received. Not only
 
 Below is a PDF flier. Link it, email it, and let gamers know. When you come to Big Bad Con and you're not just having a great weekend of gaming, you're saving lives!
 
-[![Big Bad Con - Supporting Doctors Without Borders](images/MSF-Event-Flier-Indonesia1-791x1024.jpg "Big Bad Con - Supporting Doctors Without Borders")](http://www.bigbadcon.com/wp-content/uploads/2011/09/MSF-Event-Flier-Indonesia1.pdf)
+[![Big Bad Con - Supporting Doctors Without Borders](/images/MSF-Event-Flier-Indonesia1-791x1024.jpg "Big Bad Con - Supporting Doctors Without Borders")](http://www.bigbadcon.com/wp-content/uploads/2011/09/MSF-Event-Flier-Indonesia1.pdf)

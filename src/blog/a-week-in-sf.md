@@ -7,7 +7,7 @@ categories:
 coverImage: "Sf_twinpeaks_sunset_crop.jpg"
 ---
 
-[![Sf_twinpeaks_sunset](images/Sf_twinpeaks_sunset.jpg)](http://www.bigbadcon.com/wp-content/uploads/2017/05/Sf_twinpeaks_sunset.jpg)
+[![Sf_twinpeaks_sunset](/images/Sf_twinpeaks_sunset.jpg)](http://www.bigbadcon.com/wp-content/uploads/2017/05/Sf_twinpeaks_sunset.jpg)
 
 Come hang out in the Bay Area the week before Big Bad Con! We’re organizing activities in San Francisco and East Bay from Tuesday, October 10th through Thursday the 12th.
 

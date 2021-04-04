@@ -8,7 +8,7 @@ categories:
 
 Carl Rigney, GM extraordinaire, as per his usual incredibly generous game schedule, is running **FIVE GAMES AT BIG BAD CON!**
 
-[![one does not simply carl rigney](images/one-does-not-simply-carl-rigney.png)](http://www.bigbadcon.com/wp-content/uploads/2012/06/one-does-not-simply-carl-rigney.png)
+[![one does not simply carl rigney](/images/one-does-not-simply-carl-rigney.png)](http://www.bigbadcon.com/wp-content/uploads/2012/06/one-does-not-simply-carl-rigney.png)
 
 [A Butterfly's Dream of Freedom](http://www.bigbadcon.com/events/a-butterflys-dream-of-freedom/ "A Butterfly's Dream of Freedom") Tenra Bansho Zero
 

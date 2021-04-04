@@ -6,7 +6,7 @@ categories:
   - "the-making-of"
 ---
 
-![Doctors Without Borders](images/msf-logo-header.jpg)**1\. Donations raised for Doctors Without Borders**. Much as I keep costs low and raise additional income (dealers room, sponsoring from Evil Hat, t-shirt sales, Crowdrise fundraising for the Wolf Chase), the con only raised about **$500** last year. While I planned to split the proceeds between DWB and seed money for the next year's con, the amount was less than I hoped, so I gave the full amount to DWB.
+![Doctors Without Borders](/images/msf-logo-header.jpg)**1\. Donations raised for Doctors Without Borders**. Much as I keep costs low and raise additional income (dealers room, sponsoring from Evil Hat, t-shirt sales, Crowdrise fundraising for the Wolf Chase), the con only raised about **$500** last year. While I planned to split the proceeds between DWB and seed money for the next year's con, the amount was less than I hoped, so I gave the full amount to DWB.
 
 **2\. Game sign-ups.** When sign-ups first open, the web host simply cannot handle the traffic. I've used WordPress optimization techniques and moved the site onto a virtual private server, but those improvements weren’t adequate. Moving to a dedicated server would be costly, and bite into issue #1 above.
 

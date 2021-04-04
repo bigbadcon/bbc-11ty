@@ -13,4 +13,4 @@ Each curated mystery box is full of hand-picked or hand-crafted items from some 
 
 In addition, [Evil Hat Productions](http://www.evilhat.com/home/) is including a signed copy of War of Ashes in **EVERY** box we send out!
 
-![gift-layout-photo](images/gift-layout-photo-864x1024.jpg)
+![gift-layout-photo](/images/gift-layout-photo-864x1024.jpg)

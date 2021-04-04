@@ -7,7 +7,7 @@ categories:
   - "hotel-info"
 ---
 
-[![Red_narrow](images/Red_narrow-158x300.png)](https://www.bigbadcon.com/wp-content/uploads/2017/10/Red_narrow.png)Interested in Big Bad Con and have questions? Here's the place to get answers. Of note, we also have a lot of resources at the bottom of the page in the FAQ section, and if you ever have questions or concerns, please feel free to contact us with the contact form that is down there as well. Now, onto the information!
+[![Red_narrow](/images/Red_narrow-158x300.png)](https://www.bigbadcon.com/wp-content/uploads/2017/10/Red_narrow.png)Interested in Big Bad Con and have questions? Here's the place to get answers. Of note, we also have a lot of resources at the bottom of the page in the FAQ section, and if you ever have questions or concerns, please feel free to contact us with the contact form that is down there as well. Now, onto the information!
 
 ### Who can attend Big Bad Con?
 
@@ -75,7 +75,7 @@ Our options are plentiful. If you haven't already signed up for events, or if yo
 
 We'll have maps up on the wall and in the program, but it never hurts to get familiar with the layout in advance.
 
-[![Marriott Floor-Plan-Master](images/Marriott-Floor-Plan-Master-907x1024.jpg)](https://www.bigbadcon.com/wp-content/uploads/2017/10/Marriott-Floor-Plan-Master.jpg)
+[![Marriott Floor-Plan-Master](/images/Marriott-Floor-Plan-Master-907x1024.jpg)](https://www.bigbadcon.com/wp-content/uploads/2017/10/Marriott-Floor-Plan-Master.jpg)
 
 The large board rooms host large larps, panels, the dealers room, special events, and board games. The private game rooms (highlighted in yellow) host RPGs and some small larps!
 

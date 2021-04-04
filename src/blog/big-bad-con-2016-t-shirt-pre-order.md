@@ -7,7 +7,7 @@ categories:
 coverImage: "Big-Bad-Con-2016-T-Shirt.jpg"
 ---
 
-![Big Bad Con 2016 T-Shirt](images/Big-Bad-Con-2016-T-Shirt-277x300.jpg)Thanks to the wonderful folk at [Heart of the Deernicorn](http://heartofthedeernicorn.com/), we have t-shirts for 2016! [Ross Cowman](https://twitter.com/RossCowman) proposed many custom designs, and the final one was [selected online by you](https://twitter.com/bigbadcon/status/783393808914362369)!
+![Big Bad Con 2016 T-Shirt](/images/Big-Bad-Con-2016-T-Shirt-277x300.jpg)Thanks to the wonderful folk at [Heart of the Deernicorn](http://heartofthedeernicorn.com/), we have t-shirts for 2016! [Ross Cowman](https://twitter.com/RossCowman) proposed many custom designs, and the final one was [selected online by you](https://twitter.com/bigbadcon/status/783393808914362369)!
 
 The shirts are $20 each and printed on American Apparel tees (sizes SM-XL) and Jerzees tees (sizes 2XL-4XL) using a non-toxic water based ink, which will fade gradually rather than crack or split over time.
 

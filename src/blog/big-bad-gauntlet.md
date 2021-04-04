@@ -6,7 +6,7 @@ categories:
   - "events"
 ---
 
-[![Big Bad Gauntlet_02](images/Big-Bad-Gauntlet_02-300x200.jpg)](http://www.bigbadcon.com/wp-content/uploads/2015/08/Big-Bad-Gauntlet_02.jpg)This year, in place of the previous Big Bad GM competition, we are debuting a new event -- The Big Bad Gauntlet. BBG is a new co-op game structure that pits both the players and the GMs against a single adversary.
+[![Big Bad Gauntlet_02](/images/Big-Bad-Gauntlet_02-300x200.jpg)](http://www.bigbadcon.com/wp-content/uploads/2015/08/Big-Bad-Gauntlet_02.jpg)This year, in place of the previous Big Bad GM competition, we are debuting a new event -- The Big Bad Gauntlet. BBG is a new co-op game structure that pits both the players and the GMs against a single adversary.
 
 Instead of the GMs running separate games in competition against one another for a single winning title as BBGM has done, Big Bad Gauntlet creates a larger framework that includes all of the GMs and their players at the tables, and sets the GMs up to lead their games in the same world in parallel, or possibly even covertly collaboratively, with one another.
 

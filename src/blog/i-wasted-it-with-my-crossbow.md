@@ -4,7 +4,7 @@ tags: blog
 date: "2011-08-29"
 ---
 
-![Gazebo Tragedy](images/Gazebo_Tragedy.jpg "Gazebo Tragedy")Sad, sad, is the tale of the Gazebo.
+![Gazebo Tragedy](/images/Gazebo_Tragedy.jpg "Gazebo Tragedy")Sad, sad, is the tale of the Gazebo.
 
 The Wolf huffed and he puffed and he tried to blow the Gazebo down. Six hours later and with much mockery from Gramdma and the Three Pigs, all he got out of it was this pin.
 

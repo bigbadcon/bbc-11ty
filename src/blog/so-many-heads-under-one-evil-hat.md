@@ -6,7 +6,7 @@ categories:
   - "the-making-of"
 ---
 
-[![evilhat-wolf](images/evilhat-wolf.jpg)](http://www.bigbadcon.com/wp-content/uploads/2014/10/evilhat-wolf.jpg)Three years running Bad has welcomed Evil... and this year we rolled out the red carpet.
+[![evilhat-wolf](/images/evilhat-wolf.jpg)](http://www.bigbadcon.com/wp-content/uploads/2014/10/evilhat-wolf.jpg)Three years running Bad has welcomed Evil... and this year we rolled out the red carpet.
 
 For every Evil Hatter out there you will be happy to know that Evil Hat's presence at Big Bad Con will be greater than ever before.
 

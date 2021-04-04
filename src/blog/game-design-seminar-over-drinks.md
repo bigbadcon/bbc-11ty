@@ -4,7 +4,7 @@ tags: blog
 date: "2011-08-26"
 ---
 
-![Ryan Macklin and Leonard Balsera from Evil Hat](images/Lenny_Ryan.jpg "Ryan Macklin and Leonard Balsera from Evil Hat")**When:** Saturday, 10pm on. **Where**: The hotel bar. **Who:** Leonard Balsera & Ryan Macklin from Evil Hat Productions **Length:** As long as the bar's open. Maybe longer.
+![Ryan Macklin and Leonard Balsera from Evil Hat](/images/Lenny_Ryan.jpg "Ryan Macklin and Leonard Balsera from Evil Hat")**When:** Saturday, 10pm on. **Where**: The hotel bar. **Who:** Leonard Balsera & Ryan Macklin from Evil Hat Productions **Length:** As long as the bar's open. Maybe longer.
 
 Lenny and Ryan are known for enjoy the finer things in life: making role-playing games, and drinking tasty cocktails. They invite you to hang out with them and talk about game design & publishing, an informal Q&A from these two award-winning Fate developers.
 

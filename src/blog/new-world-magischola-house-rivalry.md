@@ -7,7 +7,7 @@ categories:
 coverImage: "soledad.png"
 ---
 
-[![soledad long](images/soledad-long.png)](https://www.bigbadcon.com/wp-content/uploads/2017/09/soledad-long.png)[New World Magischola](https://magischola.com/) is four-day, three-night premiere wizarding larp on the East Coast. The universe of Magimundi is packed full of wizards, mages, magical creatures, and unique traditions.
+[![soledad long](/images/soledad-long.png)](https://www.bigbadcon.com/wp-content/uploads/2017/09/soledad-long.png)[New World Magischola](https://magischola.com/) is four-day, three-night premiere wizarding larp on the East Coast. The universe of Magimundi is packed full of wizards, mages, magical creatures, and unique traditions.
 
 How can Little Red and The Wolf get a chance to play in this magical world? Glad you asked...
 

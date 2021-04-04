@@ -6,7 +6,7 @@ categories:
   - "the-making-of"
 ---
 
-[![improv_for_gamers_level_1](images/improv_for_gamers_level_1-300x109.jpg)](http://www.bigbadcon.com/events/improv-for-gamers/)Improv for Gamers, led by Karen Twevles and Mia Blankensop just had an awesome workshop on the 7/13. Because of this, they are even more exited than before about offering the workshop again at Big Bad Con!
+[![improv_for_gamers_level_1](/images/improv_for_gamers_level_1-300x109.jpg)](http://www.bigbadcon.com/events/improv-for-gamers/)Improv for Gamers, led by Karen Twevles and Mia Blankensop just had an awesome workshop on the 7/13. Because of this, they are even more exited than before about offering the workshop again at Big Bad Con!
 
 **Here's some of the feedback from the 7/13 event:** "Thanks to you and everyone making Improv for Gamers Workshop happen! It was a great time." - _Colin F._
 

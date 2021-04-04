@@ -6,7 +6,7 @@ categories:
   - "hotel-info"
 ---
 
-[![Grandma's House](images/62608_1-300x198.jpg "Oakland Airport Hilton")](http://www.bigbadcon.com/wp-content/uploads/2012/02/62608_1.jpg)Hey all, rooms are now available for Big Bad Con!
+[![Grandma's House](/images/62608_1-300x198.jpg "Oakland Airport Hilton")](http://www.bigbadcon.com/wp-content/uploads/2012/02/62608_1.jpg)Hey all, rooms are now available for Big Bad Con!
 
 [Book now!](http://www.hilton.com/en/hi/groups/personalized/O/OAKHIHH-BBC-20121005/index.jhtml?WT.mc_id=POG)
 

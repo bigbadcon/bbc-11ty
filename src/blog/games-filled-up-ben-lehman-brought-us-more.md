@@ -6,7 +6,7 @@ categories:
   - "the-making-of"
 ---
 
-[![5522733-edible-snail-on-the-white-background](images/5522733-edible-snail-on-the-white-background-300x300.jpg)](http://www.bigbadcon.com/wp-content/uploads/2013/09/5522733-edible-snail-on-the-white-background.jpg)Big Bad has tons of great games on the roster... and boy did they go fast. Never fear, we continue to add awesome games as we see demand. Monte Lin offered us more Monsterhearts. Joe Mcdaldno gave us Apocalypse World and Ribbon drive. Now Ben Lehman has arrived and he's rivaling Carl Rigney for most games run at the con! Here's what he's offering:
+[![5522733-edible-snail-on-the-white-background](/images/5522733-edible-snail-on-the-white-background-300x300.jpg)](http://www.bigbadcon.com/wp-content/uploads/2013/09/5522733-edible-snail-on-the-white-background.jpg)Big Bad has tons of great games on the roster... and boy did they go fast. Never fear, we continue to add awesome games as we see demand. Monte Lin offered us more Monsterhearts. Joe Mcdaldno gave us Apocalypse World and Ribbon drive. Now Ben Lehman has arrived and he's rivaling Carl Rigney for most games run at the con! Here's what he's offering:
 
 [Blossoms in Winter - Playtest](http://www.bigbadcon.com/events/blossoms-in-winter/ "Blossoms in Winter - Playtest") - A game about the tumultuous relationship of two students at the elite Meihua Girl’s Academy in Taipei
 

@@ -6,7 +6,7 @@ categories:
   - "the-making-of"
 ---
 
-[![extra-life-logo](images/extra-life-logo.jpg)](http://www.bigbadcon.com/wp-content/uploads/2014/10/extra-life-logo.jpg)You're coming to Big Bad Con! Awesome. Here are some important Con 101 reminders:
+[![extra-life-logo](/images/extra-life-logo.jpg)](http://www.bigbadcon.com/wp-content/uploads/2014/10/extra-life-logo.jpg)You're coming to Big Bad Con! Awesome. Here are some important Con 101 reminders:
 
 ### Before you head out
 

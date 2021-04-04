@@ -6,7 +6,7 @@ categories:
   - "the-making-of"
 ---
 
-[![BBC_ACCFB_Collection_2015](images/BBC_ACCFB_Collection_2015-1024x791.jpg)](http://www.bigbadcon.com/wp-content/uploads/2015/11/BBC_ACCFB_Collection_2015.jpg)
+[![BBC_ACCFB_Collection_2015](/images/BBC_ACCFB_Collection_2015-1024x791.jpg)](http://www.bigbadcon.com/wp-content/uploads/2015/11/BBC_ACCFB_Collection_2015.jpg)
 
 **406 pounds of food donated to the Alameda County Community Food Bank!**
 

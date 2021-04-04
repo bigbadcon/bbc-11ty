@@ -6,7 +6,7 @@ categories:
   - "the-making-of"
 ---
 
-[![evil_hat](images/evil_hat.jpg)](http://www.bigbadcon.com/wp-content/uploads/2012/07/evil_hat.jpg)Welcome back Evil Hat, meet Big Bad Con 2013!
+[![evil_hat](/images/evil_hat.jpg)](http://www.bigbadcon.com/wp-content/uploads/2012/07/evil_hat.jpg)Welcome back Evil Hat, meet Big Bad Con 2013!
 
 For every Evil Hatter out there you will be happy to know that Evil Hat's presence at Big Bad Con will be greater than ever before.
 

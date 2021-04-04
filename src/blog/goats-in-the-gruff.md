@@ -10,4 +10,4 @@ The Goats Gruff are proud to tromp all the way from the Black Forest to meet you
 
 **Orders have been placed**. A limited selection of t-shirts will be available at the con.
 
-![BBC_Shirt_Mockup_01](images/BBC_Shirt_Mockup_01.jpg)
+![BBC_Shirt_Mockup_01](/images/BBC_Shirt_Mockup_01.jpg)

@@ -6,7 +6,7 @@ categories:
   - "events"
 ---
 
-![Mike Bogan](images/n785693698_1318408_7797-300x225.jpg "Mike Bogan")Mike Bogan, the GM who brought you “Between a Heavenly and a Hellish Place” (In Nomine – 2006), “In the Aching Night (Promethean – 2007), “Go Ask Alice” (Wushu – 2008), “The Good, the Bad and the Godly” (Scion – 2009), “The Lovecraft Files” (Edge of Midnight – 2010), and "Ashes to Ashes" (FATE - 2011) now presents his newest gaming venture:
+![Mike Bogan](/images/n785693698_1318408_7797-300x225.jpg "Mike Bogan")Mike Bogan, the GM who brought you “Between a Heavenly and a Hellish Place” (In Nomine – 2006), “In the Aching Night (Promethean – 2007), “Go Ask Alice” (Wushu – 2008), “The Good, the Bad and the Godly” (Scion – 2009), “The Lovecraft Files” (Edge of Midnight – 2010), and "Ashes to Ashes" (FATE - 2011) now presents his newest gaming venture:
 
 ### Four-Eyed Demon
 

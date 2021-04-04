@@ -7,7 +7,7 @@ categories:
 coverImage: "GamesOnDemandWhiteBoard.png"
 ---
 
-[![games on demand banner1](images/games-on-demand-banner1.jpg)](http://www.bigbadcon.com/wp-content/uploads/2012/09/games-on-demand-banner1.jpg)Games on Demand is an awesome addition to Big Bad Con. To make sure we're all playing nice at Grandma's house though, The Wolf is going to layout some guidelines here:
+[![games on demand banner1](/images/games-on-demand-banner1.jpg)](http://www.bigbadcon.com/wp-content/uploads/2012/09/games-on-demand-banner1.jpg)Games on Demand is an awesome addition to Big Bad Con. To make sure we're all playing nice at Grandma's house though, The Wolf is going to layout some guidelines here:
 
 ### For Players
 

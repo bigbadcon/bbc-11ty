@@ -18,7 +18,7 @@ Our four Big Bad GM contestants were picked due by the players last year for the
 
 As the winner of the GM Throwdown at [EndGame](http://www.endgameoakland.com/) in Oakland, Mike has already claimed one trophy and he's coming to Big Bad to take another!
 
-Mike was a contender in Big Bad GM last year and the crowd loved him so much they brought him back again. Maybe this time he can take the title! [![Matt Steele](images/matt.jpg "Matt Steele")](../wp-content/uploads/2011/02/matt.jpg)**Matt Steele** Born in a bear cave. Sleeps in a grave. A trans-dimensional drifter. Seussian word-smithing rifter. Heavily favors the darkness of night. Add a hint of humor - keeping it light. 30+ years as a killer Game Master. Perpetually acting as an agent of Disaster. Bringin' the awesome to Big Bad Con. For Big Bad GM - it's Game On!
+Mike was a contender in Big Bad GM last year and the crowd loved him so much they brought him back again. Maybe this time he can take the title! [![Matt Steele](/images/matt.jpg "Matt Steele")](../wp-content/uploads/2011/02/matt.jpg)**Matt Steele** Born in a bear cave. Sleeps in a grave. A trans-dimensional drifter. Seussian word-smithing rifter. Heavily favors the darkness of night. Add a hint of humor - keeping it light. 30+ years as a killer Game Master. Perpetually acting as an agent of Disaster. Bringin' the awesome to Big Bad Con. For Big Bad GM - it's Game On!
 
 Follow [@TerrorRabbit](http://twitter.com/#%21/TerrorRabbit) or see his mad creations at [terrorrabbit.com](http://terrorrabbit.com/)
 

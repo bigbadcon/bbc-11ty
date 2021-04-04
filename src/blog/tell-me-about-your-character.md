@@ -6,7 +6,7 @@ categories:
   - "events"
 ---
 
-\[caption id="attachment\_4568" align="alignright" width="200"\][![Tell Me About Your Character: Nathan Black at the booth](images/TMAYC_booth-200x300.jpg)](https://www.bigbadcon.com/wp-content/uploads/2017/09/TMAYC_booth.jpg) Tell Me About Your Character: Nathan Black at the booth\[/caption\]
+\[caption id="attachment\_4568" align="alignright" width="200"\][![Tell Me About Your Character: Nathan Black at the booth](/images/TMAYC_booth-200x300.jpg)](https://www.bigbadcon.com/wp-content/uploads/2017/09/TMAYC_booth.jpg) Tell Me About Your Character: Nathan Black at the booth\[/caption\]
 
 Borrowing a wonderful idea from the fine folks at [Double Exposure](http://www.dexposure.com/home.html), Big Bad Con will once again have a "Tell Me About Your Character" booth to raise money for [Doctors Without Borders/MSF](http://www.doctorswithoutborders.org/).
 

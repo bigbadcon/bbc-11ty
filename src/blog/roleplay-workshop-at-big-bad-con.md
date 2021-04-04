@@ -6,7 +6,7 @@ categories:
   - "the-making-of"
 ---
 
-[![Logo-2016-09-06](images/Logo-2016-09-06-232x300.png)](https://www.bigbadcon.com/wp-content/uploads/formidable/Logo-2016-09-06.png)Last year Becky and Steve ran a few games for us, which were awesome. This year they are coming back and running a full track of events! But this is just the tip of the iceberg, Roleplay Workshop offers great games and classes all year long:
+[![Logo-2016-09-06](/images/Logo-2016-09-06-232x300.png)](https://www.bigbadcon.com/wp-content/uploads/formidable/Logo-2016-09-06.png)Last year Becky and Steve ran a few games for us, which were awesome. This year they are coming back and running a full track of events! But this is just the tip of the iceberg, Roleplay Workshop offers great games and classes all year long:
 
 ### Workshops by The Roleplay Workshop
 

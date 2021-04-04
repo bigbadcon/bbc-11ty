@@ -25,6 +25,6 @@ Also the hotel has throw in a few extras:
 
 ### Updated layout
 
-\[caption id="attachment\_2333" align="alignnone" width="640"\][![Gaming spaces highlighted in yellow.](images/Floor-Plan-Hotel-Layout-Updated-981x1024.jpg)](http://www.bigbadcon.com/wp-content/uploads/2015/08/Floor-Plan-Hotel-Layout-Updated.jpg) Gaming spaces highlighted in yellow\[/caption\]
+\[caption id="attachment\_2333" align="alignnone" width="640"\][![Gaming spaces highlighted in yellow.](/images/Floor-Plan-Hotel-Layout-Updated-981x1024.jpg)](http://www.bigbadcon.com/wp-content/uploads/2015/08/Floor-Plan-Hotel-Layout-Updated.jpg) Gaming spaces highlighted in yellow\[/caption\]
 
 Building 5 will still be used for Games on Demand, LARPs, open gaming, and other large events!

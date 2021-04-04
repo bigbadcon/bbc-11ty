@@ -6,7 +6,7 @@ categories:
   - "the-making-of"
 ---
 
-[![header_email](images/header_email.png)](http://www.bigbadcon.com/wp-content/uploads/2014/11/header_email.png)
+[![header_email](/images/header_email.png)](http://www.bigbadcon.com/wp-content/uploads/2014/11/header_email.png)
 
 # Donation Confirmation
 
