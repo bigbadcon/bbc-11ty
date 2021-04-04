@@ -24,3 +24,5 @@ fields:
 - type: text
   name: image
   label: image
+pages:
+- src/staff/sean-nittner.md
