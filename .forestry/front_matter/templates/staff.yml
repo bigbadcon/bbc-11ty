@@ -25,4 +25,5 @@ fields:
   name: image
   label: image
 pages:
+- src/staff/colin-fahrion.md
 - src/staff/sean-nittner.md
