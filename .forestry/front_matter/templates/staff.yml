@@ -40,7 +40,8 @@ fields:
     min: 
     max: 
     step: 
-  description: Add an order number to sort staff cards. Negative numbers allowed.
+  description: Order number to sort staff cards. Lower number ranks higher on the
+    page.
 - name: image
   type: file
   config:
