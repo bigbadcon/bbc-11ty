@@ -12,13 +12,13 @@ At Big Bad Con, we foster a community that welcomes marginalized genders, queer 
 * **We look for enthusiastic consent_._** _We ask before taking someone’s picture or giving a hug. We apologize and change our behavior when we transgress._
 * **We care about health and well-being**. _We wash our hands, cover our coughs and sneezes, and avoid contact when sick._
 
-### **Support**
+## **Support**
 
 * **We celebrate new players.** _We take time to teach rules, invite questions, and offer help in-game._
 * **_We hold space for one another._** _We keep pathways clear, communicate with patience, and create opportunities for everyone to participate._
 * **_We invest in our community._** _Donations made at the Fireside Chat go to our scholarship fund, which helps marginalized folks attend the con._
 
-### **Kindness**
+## **Kindness**
 
 * **We welcome folks to the table. _We pull up a chair. We invite others into our conversations and catch them up._**
 * **We practice compassion.** _We’re mindful of our effect on others. We honor boundaries and use them to inform our choices._
