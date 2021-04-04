@@ -1,0 +1,25 @@
+---
+label: Staff
+hide_body: false
+fields:
+- type: text
+  name: name
+  label: name
+- type: text
+  name: title
+  label: title
+- type: text
+  name: gender
+  label: gender
+- type: text
+  name: tags
+  label: tags
+- type: text
+  name: twitter
+  label: twitter
+- type: text
+  name: website
+  label: website
+- type: text
+  name: image
+  label: image
