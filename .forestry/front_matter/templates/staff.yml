@@ -5,6 +5,7 @@ fields:
 - type: text
   name: title
   label: Name
+  description: <em>Chosen name (used as main document "title")</em>
 - type: text
   name: position
   label: Position Title
