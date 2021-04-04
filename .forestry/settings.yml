@@ -19,7 +19,7 @@ sections:
   label: Pages
   create: documents
   match: "*.md"
-upload_dir: src/uploads
+upload_dir: images
 public_path: images
 front_matter_path: ''
 use_front_matter_path: false
