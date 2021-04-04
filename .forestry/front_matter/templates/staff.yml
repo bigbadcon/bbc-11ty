@@ -15,17 +15,30 @@ fields:
 - type: text
   name: tags
   label: tags
-- type: text
-  name: twitter
-  label: twitter
-- type: text
-  name: website
-  label: website
+  default: staff
 - name: image
   type: file
   config:
     maxSize: 64
   label: image
+- type: text
+  name: twitter
+  label: twitter
+- name: website
+  type: field_group
+  config: {}
+  fields:
+  - name: website_name
+    type: text
+    config:
+      required: false
+    label: website name
+  - name: website_url
+    type: text
+    config:
+      required: false
+    label: website url
+  label: website
 pages:
 - src/staff/colin-fahrion.md
 - src/staff/sean-nittner.md
