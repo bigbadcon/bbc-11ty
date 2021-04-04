@@ -30,6 +30,7 @@ fields:
   label: gender
   config:
     required: true
+  description: "(they/them), (she/her), (he/him), etc."
 - name: image
   type: file
   config:
@@ -37,7 +38,7 @@ fields:
   label: image
 - type: text
   name: twitter
-  label: twitter
+  label: twitter handle
 - name: website_name
   type: text
   config:
