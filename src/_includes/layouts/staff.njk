@@ -1,0 +1,23 @@
+{% extends 'layouts/base.njk' %}
+
+{% block header %}
+    {% include 'components/header.njk' %}
+{% endblock %}
+
+{% block content %}
+    <main id="content">
+      <div class="max-w-content mx-auto p-base">
+        <h1 class="font-serif text-4xl md:text-5xl text-header font-bold mb-base leading-9">{{title}}</h1>
+        <div class="prose">{{ content | safe }}</div>
+      </div>
+      <section class="max-w-content mx-auto p-base">
+        {%- for person in collections.staff -%}
+          <article class="mb-md">
+            <h2 class="text-header text-4xl font-serif">{{ person.data.name }}</h2>
+            <h3 class="text-subheader text-3xl font-serif">{{ person.data.title }}</h3>
+            <div class="prose">{{ person.templateContent | safe }}</div>
+          </article>
+        {%- endfor -%}
+      </section>
+    </main>
+{% endblock %}
