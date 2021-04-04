@@ -39,6 +39,7 @@ fields:
 - type: text
   name: twitter
   label: twitter handle
+  description: handle without the @ symbol
 - name: website_name
   type: text
   config:
