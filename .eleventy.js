@@ -27,6 +27,21 @@ module.exports = (eleventyConfig) => {
     });
   });
 
+  // Staff sorted alphabetically
+  eleventyConfig.addCollection("staffEmeritusABC", function(collectionApi) {
+    return collectionApi.getFilteredByTag("staff-emeritus").sort(function(a,b) {
+      var nameA = a.template.parsed.name; // ignore upper and lowercase
+      var nameB = b.template.parsed.name; // ignore upper and lowercase
+      if (nameA < nameB) {
+        return -1; //nameA comes first
+      }
+      if (nameA > nameB) {
+        return 1; // nameB comes first
+      }
+      return 0;
+    });
+  });
+
   // Pass "static" things straight through from "src" to "dist"
   eleventyConfig.addPassthroughCopy("./src/static/");
   eleventyConfig.addPassthroughCopy("./images/");
