@@ -11,6 +11,8 @@ fields:
 - type: text
   name: tags
   label: tags
+  default: cards
+  hidden: true
 - name: status
   type: select
   default: draft
