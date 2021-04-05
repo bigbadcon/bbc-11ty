@@ -27,3 +27,6 @@ fields:
       file: 
       path: 
   label: status
+pages:
+- src/footer/hotel.md
+- src/footer/social.md

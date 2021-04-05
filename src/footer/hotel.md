@@ -1,10 +1,10 @@
 ---
 title: Hotel
 tags: footer
-order: 0
+order: 
 status: published
----
 
+---
 Hyatt Regency SFO\
 1333 Old Bayshore Hwy\
 Burlingame, CA 94010\
