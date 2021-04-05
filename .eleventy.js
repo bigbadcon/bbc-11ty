@@ -60,7 +60,8 @@ module.exports = (eleventyConfig) => {
     return today.getFullYear();
   });
 
-  // Tailwind stuff
+  // This is added to the css to force it to reload
+  // TODO: Set this up to remove on production
   eleventyConfig.addShortcode("version", function () {
     return String(Date.now());
   });
