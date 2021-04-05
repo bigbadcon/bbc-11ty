@@ -11,6 +11,7 @@ TODO: add excerpt for blog and convert date to readable
 TODO: add pagination to blog page
 TODO: QA image links in blog posts
 TODO: Either remap blog posts permalinks to base or do a redirect to blog or don't care
+TODO: add Wolf to footer
 
 
 The nifty thing about this [Tailwind "JIT"](https://github.com/tailwindlabs/tailwindcss-jit) starter for Eleventy is that you can see your changes take effect while you type into your templates, making it much easier to ask yourself, "How would it look if I changed `mx-2` to `mx-4`?" when you're totally new to Tailwind and can't imagine it all from memory.

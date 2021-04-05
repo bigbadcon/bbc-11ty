@@ -14,11 +14,6 @@
                 "title": "FAQ",
                 "url": "/faq",
                 "icon": "faq"
-            },
-            {
-                "title": "Community Standards",
-                "url": "/community",
-                "icon": "scroll"
             }
         ]
     },
@@ -65,13 +60,33 @@
         "subnav": [{
             "title": "Dealers Room",
             "url": "/dealers",
-            "icon": "price-tag"
+            "icon": "price-tags"
         },
         {
             "title": "Small Press Showcase",
             "url": "/small-press",
             "icon": "book"
         }]
+    },
+    {
+        "title": "Community",
+        "subnav": [
+            {
+                "title": "Community Standards",
+                "url": "/community",
+                "icon": "scroll"
+            },
+            {
+                "title": "Anti-Harassment Policy",
+                "url": "/anti-harassment-policy",
+                "icon": "shield"
+            },
+            {
+                "title": "Discord",
+                "url": "/discord",
+                "icon": "discord"
+            }
+        ]
     },
     {
         "title": "Blog",

@@ -1,0 +1,39 @@
+---
+title: Big Bad Blog
+description: News about Big Bad Con
+layout: layouts/plain.njk
+pagination:
+  data: collections.blog
+  size: 10
+  reverse: true
+  alias: blog
+---
+
+<section class="space-y-md">
+{% for post in pagination.items %}
+    <article>
+        <a href="{{ post.url }}" class="hover:underline"><h2 class="text-subheader text-3xl font-serif leading-none tracking-tight">{{post.data.title}}</h2></a>
+        <div class="text-xs text-secondary font-bold">{{post.data.date | formatDate }}</div>
+        <div class="mt-base">
+          <div class="prose">{% excerpt post %}</div>
+        </div>
+    </article>
+{% endfor %}
+</section>
+<nav aria-labelledby="my-pagination" class="bg-primary p-sm rounded-md shadow mt-lg">
+  <h2 id="my-pagination" class="font-bold uppercase text-2xs text-subheader">Pagination</h2>
+  <ol class="flex justify-between items-center">
+    {%- for pageEntry in pagination.pages %}
+        <li><a class="pagination-link text-highlight hover:underline" href="{{ pagination.hrefs[ loop.index0 ] }}"{% if page.url == pagination.hrefs[ loop.index0 ] %} aria-current="page"{% endif %}>{{ loop.index }}</a></li>
+    {%- endfor %}
+  </ol>
+</nav>
+<style>
+    .pagination-link[aria-current="page"] {
+        font-weight: 700;
+        color: var(--subheader);
+    }
+    article img, article table {
+        display: none;
+    }
+</style>

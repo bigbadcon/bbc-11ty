@@ -27,6 +27,8 @@
     "@tailwindcss/typography": "^0.4.0",
     "autoprefixer": "latest",
     "axios": "^0.21.1",
+    "date-fns": "^2.19.0",
+    "eleventy-plugin-blog-tools": "^0.3.1",
     "postcss": "latest",
     "postcss-cli": "latest",
     "sass": "latest",

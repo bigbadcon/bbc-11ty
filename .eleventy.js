@@ -1,5 +1,9 @@
 // Per 11ty from scratch, we have to have a module.exports definition
 
+const blogTools = require("eleventy-plugin-blog-tools");
+const parse = require('date-fns/parse')
+const format = require('date-fns/format')
+
 module.exports = (eleventyConfig) => {
   // See if this helps with things that do not refresh
   module.exports = function (eleventyConfig) {
@@ -11,6 +15,8 @@ module.exports = (eleventyConfig) => {
   //   dynamicPartials: true,
   //   strict_filters: true,
   // });
+
+  eleventyConfig.addPlugin(blogTools);
 
   // Staff sorted by order number and then alphabetically
   eleventyConfig.addCollection("staffABC", function(collectionApi) {
@@ -25,6 +31,11 @@ module.exports = (eleventyConfig) => {
   // Pass "static" things straight through from "src" to "dist"
   eleventyConfig.addPassthroughCopy("./src/static/");
   eleventyConfig.addPassthroughCopy("./images/");
+
+  eleventyConfig.addFilter( "formatDate", function (val) {
+    const parsedDate = parse(val, "yyyy-MM-dd", new Date())
+    return format(parsedDate, "MMM do, yyyy");
+  })
 
   // Tailwind stuff
   eleventyConfig.addShortcode("version", function () {

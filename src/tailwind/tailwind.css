@@ -128,7 +128,7 @@
 
 /* --------------------------- Icon Link Shortcode -------------------------- */
 .icon-link {
-  @apply flex items-center space-x-sm mb-sm;
+  @apply flex items-center space-x-sm mb-sm text-highlight;
   text-decoration: none !important;
 }
 .icon-link:hover {

@@ -5,6 +5,8 @@ dependencies:
   '@tailwindcss/typography': 0.4.0_tailwindcss@2.0.4
   autoprefixer: 10.2.5_postcss@8.2.9
   axios: 0.21.1
+  date-fns: 2.19.0
+  eleventy-plugin-blog-tools: 0.3.1
   postcss: 8.2.9
   postcss-cli: 8.3.1_postcss@8.2.9
   sass: 1.32.8
@@ -794,6 +796,12 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==
+  /date-fns/2.19.0:
+    dev: false
+    engines:
+      node: '>=0.11'
+    resolution:
+      integrity: sha512-X3bf2iTPgCAQp9wvjOQytnf5vO5rESYRXlPIVcgSbtT5OTScPcsf9eZU+B/YIkKAtYr5WeCii58BgATrNitlWg==
   /date-time/0.1.1:
     dev: false
     engines:
@@ -987,6 +995,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-BqddgxNPrcWnbDdJw7SzXVzPmp+oiyjVrc7tkQVaznPGSS9SKZatw6qxoP857M+HbOyyqJQwYQtsuFIMSTNSZA==
+  /eleventy-plugin-blog-tools/0.3.1:
+    dev: false
+    resolution:
+      integrity: sha512-61kHmfpm1kWeJB+3wfKkECtJmQp3gHJzISGH9/oM5Z13zLbS1zIA16iFBB3WaqcNzTuxATXZ7FXS2mRG0PVX0g==
   /emitter-mixin/0.0.3:
     dev: false
     resolution:
@@ -3314,6 +3326,8 @@ specifiers:
   '@tailwindcss/typography': ^0.4.0
   autoprefixer: latest
   axios: ^0.21.1
+  date-fns: ^2.19.0
+  eleventy-plugin-blog-tools: ^0.3.1
   postcss: latest
   postcss-cli: latest
   sass: latest
