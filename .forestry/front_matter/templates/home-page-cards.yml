@@ -11,3 +11,17 @@ fields:
 - type: text
   name: tags
   label: tags
+- name: status
+  type: select
+  default: draft
+  config:
+    required: false
+    options:
+    - published
+    - draft
+    source:
+      type: simple
+      section: 
+      file: 
+      path: 
+  label: status
