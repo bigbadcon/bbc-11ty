@@ -3,7 +3,7 @@ title: Wolf Chase 2016!
 tags:
 - blog
 status: published
-date: 2016-10-13
+date: 2016-10-13T07:00:00Z
 categories:
 - events
 coverImage: Screen-Shot-2016-08-23-at-5.36.22-PM.png
