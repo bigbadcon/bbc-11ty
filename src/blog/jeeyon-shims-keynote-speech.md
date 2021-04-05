@@ -1,13 +1,15 @@
 ---
-title: "Jeeyon Shim's Keynote Speech"
+title: Jeeyon Shim's Keynote Speech
 tags: blog
 status: published
-date: "2019-10-18"
-categories: 
-  - "the-making-of"
----
+date: 2019-10-18
+categories:
+- the-making-of
 
-**[![](/images/2019-10-10-18.07.18-250x300.jpg)](https://www.bigbadcon.com/wp-content/uploads/2019/10/2019-10-10-18.07.18.jpg)On Thursday evening, the welcoming the welcoming ceremonies kicked off and Jeeyon Shim gave this beautiful keynote speech.**
+---
+[**![](/images/2019-10-10-18.07.18-250x300.jpg)**](https://www.bigbadcon.com/wp-content/uploads/2019/10/2019-10-10-18.07.18.jpg)
+
+_On Thursday evening, the welcoming the welcoming ceremonies kicked off and Jeeyon Shim gave this beautiful keynote speech._
 
 For those of you who don’t know me, my name is Jeeyon Shim. I write games. I also teach as an outdoor educator, my main focus being traditional survival skills and stewardship, and I primarily teach children. I will be speaking to you about my feelings on stewardship, courage, and joy, and the vital place these values have here in our community and beyond it.
 
