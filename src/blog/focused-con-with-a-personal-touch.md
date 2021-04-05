@@ -1,13 +1,13 @@
 ---
-title: "Focused Con with a Personal Touch"
+title: Focused Con with a Personal Touch
 tags: blog
 status: published
-date: "2012-06-25"
-categories: 
-  - "the-making-of"
----
+date: 2012-06-25
+categories:
+- the-making-of
 
-<iframe width="640" height="360" src="http://www.youtube.com/embed/FxVEdui_fE4" frameborder="0" allowfullscreen></iframe>
+---
+<iframe width="640" height="360" src="https://www.youtube.com/embed/FxVEdui_fE4" frameborder="0" allowfullscreen></iframe>
 
 There is a real advantage to Big Bad Con being small. At this size (under 300 guests) I can personally oversee every part of it from start to finish. Is my dedication to the con obsessive-compulsive? Well, yes, it probably is. Here is how you reap the benefits:
 
