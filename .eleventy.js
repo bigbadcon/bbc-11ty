@@ -1,8 +1,12 @@
 // Per 11ty from scratch, we have to have a module.exports definition
 
 const blogTools = require("eleventy-plugin-blog-tools");
-const parse = require('date-fns/parse')
-const format = require('date-fns/format')
+const format = require('date-fns/format');
+
+// Function to sort by order frontmatter field then by fileSlug alphabetically
+function sortByOrder(a,b) {
+  return a.template.frontMatter.data.order - b.template.frontMatter.data.order || a.template.fileSlugStr.localeCompare(b.template.fileSlugStr)
+}
 
 module.exports = (eleventyConfig) => {
   // See if this helps with things that do not refresh
@@ -19,13 +23,23 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addPlugin(blogTools);
 
   // Staff sorted by order number and then alphabetically
-  eleventyConfig.addCollection("staffABC", function(collectionApi) {
-    return collectionApi.getFilteredByTag("staff").sort((a,b) =>  a.template.frontMatter.data.order - b.template.frontMatter.data.order || a.template.fileSlugStr.localeCompare(b.template.fileSlugStr));
+  eleventyConfig.addCollection("staff123ABC", function(collectionApi) {
+    return collectionApi.getFilteredByTag("staff").sort((a,b) => sortByOrder(a,b));
   });
 
   // Staff Emeritus sorted by order number and then alphabetically
-  eleventyConfig.addCollection("staffEmeritusABC", function(collectionApi) {
-    return collectionApi.getFilteredByTag("staff-emeritus").sort((a,b) =>  a.template.frontMatter.data.order - b.template.frontMatter.data.order || a.template.fileSlugStr.localeCompare(b.template.fileSlugStr));
+  eleventyConfig.addCollection("staffEmeritus123ABC", function(collectionApi) {
+    return collectionApi.getFilteredByTag("staff-emeritus").sort((a,b) => sortByOrder(a,b));
+  });
+
+  // Home Page Cards published and sorted by order number and then alphabetically
+   eleventyConfig.addCollection("cards123ABC", function(collectionApi) {
+    return collectionApi.getFilteredByTag("cards").filter(c => c.template.frontMatter.data.status === "published").sort((a,b) => sortByOrder(a,b));
+  });
+
+  // Home Page Cards published and sorted by order number and then alphabetically
+  eleventyConfig.addCollection("footer123ABC", function(collectionApi) {
+    return collectionApi.getFilteredByTag("footer").filter(c => c.template.frontMatter.data.status === "published").sort((a,b) => sortByOrder(a,b));
   });
 
   // Pass "static" things straight through from "src" to "dist"

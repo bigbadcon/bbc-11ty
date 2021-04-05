@@ -1,6 +1,7 @@
 dependencies:
   '@11ty/eleventy': 0.12.1
   '@tailwindcss/aspect-ratio': 0.2.0
+  '@tailwindcss/forms': 0.3.2_tailwindcss@2.0.4
   '@tailwindcss/jit': 0.1.18_postcss@8.2.9+tailwindcss@2.0.4
   '@tailwindcss/typography': 0.4.0_tailwindcss@2.0.4
   autoprefixer: 10.2.5_postcss@8.2.9
@@ -126,6 +127,15 @@ packages:
     dev: false
     resolution:
       integrity: sha512-v5LyHkwXj/4lI74B06zUrmWEdmSqS43+jw717pkt3fAXqb7ALwu77A8t7j+Bej+ZbdlIIqNMYheGN7wSGV1A6w==
+  /@tailwindcss/forms/0.3.2_tailwindcss@2.0.4:
+    dependencies:
+      mini-svg-data-uri: 1.2.3
+      tailwindcss: 2.0.4_0bca15301caac8bc71ea0ad94045571f
+    dev: false
+    peerDependencies:
+      tailwindcss: '>=2.0.0'
+    resolution:
+      integrity: sha512-aj2/rJsGb2whAZ/BQWHWWQRSbhH0r/l1ozOByiv+ZNjBD84GMvb5dhAyfpeasFky+EJrAwX5eaqft8NQMZFWvA==
   /@tailwindcss/jit/0.1.18_postcss@8.2.9+tailwindcss@2.0.4:
     dependencies:
       chokidar: 3.5.1
@@ -1979,6 +1989,10 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-KI1+qOZu5DcW6wayYHSzR/tXKCDC5Om4s1z2QJjDULzLcmf3DvzS7oluY4HCTrc+9FiKmWUgeNLg7W3uIQvxtQ==
+  /mini-svg-data-uri/1.2.3:
+    dev: false
+    resolution:
+      integrity: sha512-zd6KCAyXgmq6FV1mR10oKXYtvmA9vRoB6xPSTUJTbFApCtkefDnYueVR1gkof3KcdLZo1Y8mjF2DFmQMIxsHNQ==
   /minimatch/3.0.4:
     dependencies:
       brace-expansion: 1.1.11
@@ -3322,6 +3336,7 @@ packages:
 specifiers:
   '@11ty/eleventy': latest
   '@tailwindcss/aspect-ratio': ^0.2.0
+  '@tailwindcss/forms': ^0.3.2
   '@tailwindcss/jit': latest
   '@tailwindcss/typography': ^0.4.0
   autoprefixer: latest

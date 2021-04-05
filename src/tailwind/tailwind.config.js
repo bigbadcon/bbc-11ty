@@ -92,6 +92,9 @@ module.exports = {
             }
           }
         }
+      },
+      height: {
+        'footer-mobile': '36rem',
       }
     },
     fill: {
@@ -109,5 +112,6 @@ module.exports = {
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/forms'),
   ],
 };

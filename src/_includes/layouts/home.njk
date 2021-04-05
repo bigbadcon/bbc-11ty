@@ -22,13 +22,11 @@
 <main id="content">
     <div class="max-w-hero mx-auto px-base py-base">
         <ul class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {% for card in collections.cards %}
-            {% if card.data.status === 'published' %}
+            {% for card in collections.cards123ABC %}
                 <li class="bg-card rounded px-base py-sm shadow-md">
                     <h2 class="text-header font-serif text-3xl">{{ card.data.title }}</h2>
                     <div class="prose">{{ card.templateContent | safe }}</div>
                 </li>
-            {% endif %}
             {% endfor %}
         </ul>
     </div>

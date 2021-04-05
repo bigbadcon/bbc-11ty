@@ -11,7 +11,7 @@
         <div class="prose">{{ content | safe }}</div>
       </div>
       <section class="max-w-content mx-auto p-base">
-        {%- for person in collections.staffABC -%}
+        {% for person in collections.staff123ABC %}
           <article class="mb-lg shadow rounded-xl bg-card ">
             <header class="grid sm:grid-cols-3 bg-gradient-to-br from-primary to-primary-2 p-base rounded-t-xl gap-6 relative z-10">
               <div>
@@ -34,12 +34,12 @@
               <div class="prose ">{{ person.templateContent | safe }}</div>
             </div>
           </article>
-        {%- endfor -%}
+        {% endfor %}
       </section>
-      {% if collections.staffEmeritusABC %}
+      {% if collections.staffEmeritus123ABC %}
       <section class="max-w-content mx-auto p-base">
         <h1 class="text-header leading-none text-5xl font-serif mb-md">Staff Emeritus</h1>
-        {%- for person in collections.staffEmeritusABC -%}
+        {% for person in collections.staffEmeritus123ABC %}
           <article class="mb-lg shadow rounded-xl bg-card ">
             <header class="grid sm:grid-cols-3 bg-gradient-to-br from-primary to-primary-2 p-base rounded-t-xl gap-6 relative z-10">
               <div>
@@ -62,7 +62,7 @@
               <div class="prose ">{{ person.templateContent | safe }}</div>
             </div>
           </article>
-        {%- endfor -%}
+        {% endfor %}
       </section>
       {% endif %}
     </main>
