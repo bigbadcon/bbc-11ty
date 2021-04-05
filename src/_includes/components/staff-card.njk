@@ -10,7 +10,7 @@
             <h2 class="space-x-xs mb-2xs"><span class="text-header text-4xl font-serif">{{ person.data.title }}</span> <span class="text-body font-bold">{{person.data.gender}}</span></h2>
             <h3 class="text-subheader text-3xl font-serif leading-none mb-base">{{ person.data.position }}</h3>
             {% if person.data.twitter %}
-                {% iconLink "http://twitter.com/" + person.data.twitter, "@" + person.data.twitter, "twitter" %}
+                {% iconLink "https://twitter.com/" + person.data.twitter, "@" + person.data.twitter, "twitter" %}
             {% endif %}
             {% if person.data.website_url %}
                 {% iconLink person.data.website_url, person.data.website_name, "website" %}
