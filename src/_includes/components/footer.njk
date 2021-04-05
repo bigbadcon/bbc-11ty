@@ -1,12 +1,14 @@
-<div class="spacer h-footer-mobile max-h-screen md:h-64"></div>
-<div class="bg-gradient-to-br from-primary to-primary-2 fixed bottom-0 z-0 w-full h-footer-mobile max-h-screen md:h-64">
-    <div class="max-w-hero mx-auto text-body px-base py-md flex flex-col md:flex-row justify-end md:justify-between space-y-sm md:space-y-0 md:space-x-base">
-        {% for card in collections.footer123ABC %}
-                <div class="">
-                    <h2 class="text-header font-serif text-2xl">{{ card.data.title }}</h2>
-                    <div class="prose leading-snug text-sm">{{ card.templateContent | safe }}</div>
-                </div>
-        {% endfor %}
+<div x-data="{height: 0}" x-init="height = $refs.footer.offsetHeight" x-on:resize.window="height = $refs.footer.offsetHeight">
+    {# TODO: add no javascript fallback #}
+    <div :style="`height: ${height}px`" ></div>
+    <div x-ref="footer" class="bg-gradient-to-br from-primary to-primary-2 fixed bottom-0 z-0 w-full">
+        <div class="max-w-hero mx-auto text-body px-base py-md flex flex-col md:flex-row justify-end md:justify-between space-y-base md:space-y-0 md:space-x-base">
+            {% for card in collections.footer123ABC %}
+                    <div class="">
+                        <h2 class="text-header font-serif text-2xl md:mb-xs">{{ card.data.title }}</h2>
+                        <div class="prose leading-snug text-sm">{{ card.templateContent | safe }}</div>
+                    </div>
+            {% endfor %}
+        </div>
     </div>
-    <div class="max-w-hero mx-auto text-body px-base py-base text-center text-sm">Copyright &copy; {{ helpers.currentYear() }} Big Bad Con</div>
 </div>
