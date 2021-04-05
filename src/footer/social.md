@@ -6,4 +6,4 @@ status: published
 ---
 
 {% iconLink "https://twitter.com/bigbadcon", "@bigbadcon", "twitter" %}
-{% iconLink "/discord", "Discord", "discord" %}
+{% iconLink "/discord", "Join Our Discord", "discord" %}

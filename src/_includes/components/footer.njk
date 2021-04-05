@@ -1,14 +1,17 @@
-<div x-data="{height: 0}" x-init="height = $refs.footer.offsetHeight" x-on:resize.window="height = $refs.footer.offsetHeight">
+<div x-data="{height: 300}" x-init="setTimeout(() => { height = $refs.footer.offsetHeight }, 200); " x-on:resize.window.debounce="height = $refs.footer.offsetHeight" >
     {# TODO: add no javascript fallback #}
-    <div :style="`height: ${height}px`" ></div>
+    <div style="height: 300px" :style="`height: ${height}px`" ></div>
     <div x-ref="footer" class="bg-gradient-to-br from-primary to-primary-2 fixed bottom-0 z-0 w-full">
-        <div class="max-w-hero mx-auto text-body px-base py-md flex flex-col md:flex-row justify-end md:justify-between space-y-base md:space-y-0 md:space-x-base">
+        <div class="relative max-w-hero mx-auto text-body px-base pt-md flex flex-col md:flex-row justify-end md:justify-between space-y-sm md:space-y-0 md:space-x-base">
             {% for card in collections.footer123ABC %}
-                    <div class="">
-                        <h2 class="text-header font-serif text-2xl md:mb-xs">{{ card.data.title }}</h2>
-                        <div class="prose leading-snug text-sm">{{ card.templateContent | safe }}</div>
-                    </div>
+                <div class="relative z-10 pb-base">
+                    <h2 class="text-header font-serif text-2xl md:mb-2xs">{{ card.data.title }}</h2>
+                    <div class="prose leading-snug text-sm">{{ card.templateContent | safe }}</div>
+                </div>
             {% endfor %}
+            <div class="w-1/2 md:w-1/4 align-self-end">
+                {% include "components/wolf.njk" %}
+            </div>
         </div>
     </div>
 </div>
