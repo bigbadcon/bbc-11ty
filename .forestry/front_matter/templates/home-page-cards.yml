@@ -26,5 +26,6 @@ fields:
       path: 
   label: status
 pages:
+- src/cards/attend.md
 - src/cards/events.md
 - src/cards/volunteer.md
