@@ -5,6 +5,8 @@ status: published
 date: 2019-10-18
 categories:
 - the-making-of
+excerpt: On Thursday evening, the welcoming the welcoming ceremonies kicked off and
+  Jeeyon Shim gave this beautiful keynote speech.
 
 ---
 [**![](/images/2019-10-10-18.07.18-250x300.jpg)**](https://www.bigbadcon.com/wp-content/uploads/2019/10/2019-10-10-18.07.18.jpg)
