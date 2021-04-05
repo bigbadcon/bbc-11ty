@@ -1,5 +1,6 @@
 ---
 tags: staff
+status: published
 title: Jeremy Tidwell
 position: Application Developer
 gender: "(he/him)"

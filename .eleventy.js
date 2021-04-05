@@ -22,14 +22,19 @@ module.exports = (eleventyConfig) => {
 
   eleventyConfig.addPlugin(blogTools);
 
+   // Staff sorted by order number and then alphabetically
+   eleventyConfig.addCollection("blogPublished", function(collectionApi) {
+    return collectionApi.getFilteredByTag("blog").filter(c => c.template.frontMatter.data.status === "published");
+  });
+
   // Staff sorted by order number and then alphabetically
   eleventyConfig.addCollection("staff123ABC", function(collectionApi) {
-    return collectionApi.getFilteredByTag("staff").sort((a,b) => sortByOrder(a,b));
+    return collectionApi.getFilteredByTag("staff").filter(c => c.template.frontMatter.data.status === "published").sort((a,b) => sortByOrder(a,b));
   });
 
   // Staff Emeritus sorted by order number and then alphabetically
   eleventyConfig.addCollection("staffEmeritus123ABC", function(collectionApi) {
-    return collectionApi.getFilteredByTag("staff-emeritus").sort((a,b) => sortByOrder(a,b));
+    return collectionApi.getFilteredByTag("staff-emeritus").filter(c => c.template.frontMatter.data.status === "published").sort((a,b) => sortByOrder(a,b));
   });
 
   // Home Page Cards published and sorted by order number and then alphabetically
@@ -47,7 +52,13 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addPassthroughCopy("./images/");
 
   // Format date for posts
-  eleventyConfig.addFilter( "formatDate", (val) => format(val, "MMM do, yyyy"))
+  eleventyConfig.addFilter( "formatDate", (val) => format(val, "MMM do, yyyy"));
+
+  // Current Year
+  eleventyConfig.addShortcode("currentYear", function () {
+    const today = new Date();
+    return today.getFullYear();
+  });
 
   // Tailwind stuff
   eleventyConfig.addShortcode("version", function () {

@@ -2,6 +2,7 @@
 title: Sean Nittner
 gender: "(he/him)"
 tags: staff
+status: published
 twitter: seannittner
 website: http://www.seannittner.com
 image: "/images/sean-nittner-bio-pic-967x1024.jpg"
