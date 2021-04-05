@@ -2,8 +2,9 @@
 tags: footer
 order: 10
 status: published
----
+title: ''
 
+---
 Illustrations by [Eden Parkinson](https://www.eden-eventide.art)\
 Website by [Colin Fahrion](http://colinaut.com)
 

@@ -28,5 +28,6 @@ fields:
       path: 
   label: status
 pages:
+- src/footer/attribution.md
 - src/footer/hotel.md
 - src/footer/social.md
