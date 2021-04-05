@@ -7,8 +7,6 @@ categories:
 - the-making-of
 
 ---
-div.padded { padding-top: 0px; padding-right: 50px; padding-bottom: 0px; padding-left: 0px; }
-
 <iframe src="https://www.indiegogo.com/project/198936/widget" frameborder="0" scrolling="no" align="right" width="224px" height="429px"></iframe>
 
 Joe Mcdaldno makes games (_Ribbon Drive, Perfect Unrevised, Monsterhearts_) that are [Buried without Ceremony](http://buriedwithoutceremony.com/). Jackson Tegu makes games (_Silver and White, Slammin', Kaleidoscope, Tower of Hats_) that are [Photographs of Lightning](http://www.photographsoflightning.com/). Together, they will have a special place at Big Bad Con: The **Buried without Lightning** Room!

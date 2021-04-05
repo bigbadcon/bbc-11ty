@@ -1,13 +1,13 @@
 ---
-title: "All the con you want - None of the stress."
+title: All the con you want - None of the stress.
 tags: blog
 status: published
-date: "2012-06-26"
-categories: 
-  - "the-making-of"
----
+date: 2012-06-26
+categories:
+- the-making-of
 
-<iframe src="http://www.youtube.com/embed/YEONFDf-eKo" frameborder="0" width="560" height="315"></iframe>
+---
+<iframe src="https://www.youtube.com/embed/YEONFDf-eKo" frameborder="0" width="560" height="315"></iframe>
 
 Big Bad Con wants you to come and game all weekend without having to worry about what games you’ll get into. To make this happen The Wolf has installed and online sign up system. Starting September 1st (over a month before the con), you can register for games online.
 
