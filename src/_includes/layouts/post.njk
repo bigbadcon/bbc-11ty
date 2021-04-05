@@ -10,11 +10,11 @@
         <h1 class="font-serif text-4xl md:text-5xl text-header font-bold mb-base leading-none">{{title}}</h1>
         <div class="prose">{{ content | safe }}</div>
         {# Pagination #}
-        <div class="bg-primary p-sm rounded-md shadow mt-lg flex items-center justify-between">
+        <div class="bg-primary p-sm rounded-md shadow mt-lg flex items-center justify-between text-sm flex-wrap">
           {% set previousPost = collections.blog | getPreviousCollectionItem(page) %}
           {% set nextPost = collections.blog | getNextCollectionItem(page) %}
-          {% if previousPost %}<a href="{{ previousPost.url }}" class="text-highlight justify-self-start flex items-center hover:underline">{% include 'components/arrow-left.njk' %}<span class="text-body-highlight">{{ previousPost.data.title }}</span></a>{% endif %}
-          {% if nextPost %}<a href="{{ nextPost.url }}" class="text-highlight justify-self-end flex items-center hover:underline"><span class="text-body-highlight">{{ nextPost.data.title }}</span>{% include 'components/arrow-right.njk' %}</a>{% endif %}
+          <div class="justify-self-start">{% if nextPost %}<a href="{{ nextPost.url }}" class="text-highlight flex items-center hover:underline">{% include 'components/arrow-left.njk' %}<span class="text-body-highlight">{{ nextPost.data.title }}</span></a>{% endif %}</div>
+          <div class="justify-self-end">{% if previousPost %}<a href="{{ previousPost.url }}" class="text-highlight flex items-center hover:underline"><span class="text-body-highlight">{{ previousPost.data.title }}</span>{% include 'components/arrow-right.njk' %}</a>{% endif %}</div>
         </div>
       </div>
     </main>

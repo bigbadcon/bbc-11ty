@@ -95,10 +95,10 @@ module.exports = {
       },
       height: {
         'footer-mobile': '36rem',
-      }
-    },
-    fill: {
-      highlight: 'var(--fill-highlight)'
+      },
+      fill: {
+        highlight: 'var(--fill-highlight)'
+      },
     },
     maxWidth: {
       'hero': '120ch',

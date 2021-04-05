@@ -5,11 +5,11 @@
       <div class="text-body">
         <div x-data="{ open: false }"
           class="flex flex-col md:items-center md:justify-between md:flex-row ">
-          <div class="flex flex-row items-center justify-between py-base space-x-sm md:space-x-base">
+          <div class="flex flex-row items-center justify-between py-base space-x-base md:space-x-lg">
           {# Branding Logo Area with event date #}
-            <div class="w-40 sm:w-42 lg:w-56 grid grid-cols-1">
+            <div class="w-36 sm:w-42 lg:w-56 grid grid-cols-1">
               <a href="/" class="block md:mt-sm">{% include 'components/logo.njk' %}</a>
-              <div class="font-serif text-highlight text-base sm:text-lg lg:text-2xl text-center">{{site.eventDate}}</div>
+              <div class="font-serif text-highlight text-base sm:text-md lg:text-2xl text-center">{{site.eventDate}}</div>
             </div>
             {# Light Dark Switch #}
             <div>{% include 'components/light-dark-switch.njk' %}</div>
