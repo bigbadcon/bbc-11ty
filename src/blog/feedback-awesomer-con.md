@@ -1,13 +1,13 @@
 ---
-title: "Feedback = Awesome(r) Con"
+title: Feedback = Awesome(r) Con
 tags: blog
 status: published
-date: "2012-06-25"
-categories: 
-  - "the-making-of"
----
+date: 2012-06-25
+categories:
+- the-making-of
 
-<iframe width="560" height="315" align="center" src="http://www.youtube.com/embed/dpabOVQVR6I" frameborder="0" allowfullscreen></iframe>
+---
+<iframe width="560" height="315" align="center" src="https://www.youtube.com/embed/dpabOVQVR6I" frameborder="0" allowfullscreen></iframe>
 
 Last year Big Bad Con over 200 player feedback forms to find out how we could improve the con. Once collected the data was aggregated into a spreadsheet to find out where the con was rocking, and where it was wrecking.
 
