@@ -8,9 +8,22 @@ fields:
 - type: text
   name: tags
   label: tags
+  hidden: true
+  default: footer
 - type: number
   name: order
   label: order
-- type: text
-  name: status
+- name: status
+  type: select
+  default: draft
+  config:
+    required: true
+    options:
+    - draft
+    - published
+    source:
+      type: simple
+      section: 
+      file: 
+      path: 
   label: status
