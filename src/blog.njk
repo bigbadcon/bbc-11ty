@@ -12,8 +12,8 @@ pagination:
 <section class="space-y-md">
 {% for post in pagination.items %}
     <article>
-        <a href="{{ post.url }}" class="hover:underline"><h2 class="text-subheader text-3xl font-serif leading-none tracking-tight">{{post.data.title}}</h2></a>
-        <div class="text-xs text-secondary font-bold">{{post.data.date | formatDate }}</div>
+        <a href="{{ post.url }}" class="hover:underline text-subheader hover:text-highlight"><h2 class="text-3xl text-subheader font-serif leading-none tracking-tight">{{post.data.title}}</h2></a>
+        <div class="text-xs text-secondary font-bold">{{post.date | formatDate }}</div>
         <div class="mt-base">
           <div class="prose">{% excerpt post %}</div>
         </div>

@@ -32,10 +32,8 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addPassthroughCopy("./src/static/");
   eleventyConfig.addPassthroughCopy("./images/");
 
-  eleventyConfig.addFilter( "formatDate", function (val) {
-    const parsedDate = parse(val, "yyyy-MM-dd", new Date())
-    return format(parsedDate, "MMM do, yyyy");
-  })
+  // Format date for posts
+  eleventyConfig.addFilter( "formatDate", (val) => format(val, "MMM do, yyyy"))
 
   // Tailwind stuff
   eleventyConfig.addShortcode("version", function () {

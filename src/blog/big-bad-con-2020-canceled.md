@@ -8,8 +8,6 @@ categories:
 ---
 ![Ranger Emmett, ready for BBC 2021](/images/Emmett-Volunteer-225x300.jpg) 
 
-**Ranger Emmett, ready for BBC 2021**
-
 This is not the post we wanted to make about Big Bad Con 2020. We wanted to talk about our Kickstarter stretch goal guests, the Babble on Equity Project, and all the amazing events we have planned. COVID-19 however, changed all of that.
 
 So, probably not surprising anyone, we’ve decided to cancel Big Bad Con 2020.
