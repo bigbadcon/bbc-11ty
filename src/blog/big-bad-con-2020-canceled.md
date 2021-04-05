@@ -1,7 +1,7 @@
 ---
 title: Big Bad Con 2020 Canceled
 tags: blog
-date: 2020-04-28
+date: 2020-04-28T07:00:00Z
 categories:
 - the-making-of
 
