@@ -1,7 +1,7 @@
 ---
 status: draft
 title: Support Our Kickstarter
-order: 
+order: 0
 tags: card
 
 ---
