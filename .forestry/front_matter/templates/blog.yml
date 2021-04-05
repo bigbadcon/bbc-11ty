@@ -1,16 +1,29 @@
 ---
-label: blog
+label: Blog
 hide_body: false
 fields:
 - type: text
   name: title
   label: title
-- type: text
-  name: status
-  label: status
+  config:
+    required: true
 - type: datetime
   name: date
   label: date
+- name: status
+  type: select
+  default: draft
+  config:
+    required: true
+    options:
+    - draft
+    - published
+    source:
+      type: simple
+      section: 
+      file: 
+      path: 
+  label: status
 - name: tags
   type: tag_list
   default: []
@@ -25,5 +38,10 @@ fields:
       format: markdown
   label: excerpt
   description: Short excerpt displayed on Blog list page
+- name: coverImage
+  type: file
+  config:
+    maxSize: 64
+  label: cover image
 pages:
 - src/blog/wolf-den-under-construction.md
