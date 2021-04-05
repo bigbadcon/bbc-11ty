@@ -1,12 +1,15 @@
 ---
-title: "2019 Doctors Without Borders Donation"
+title: 2019 Doctors Without Borders Donation
 tags: blog
 status: published
-date: "2019-12-02"
-categories: 
-  - "the-making-of"
----
+date: 2019-12-02
+categories:
+- the-making-of
+excerpt: Thank you for supporting Doctors Without Borders/Médecins Sans Frontières
+  (MSF). Your generosity gives us the financial independence we need to provide emergency
+  medical care to men, women, and children in more than 60 countries around the world.
 
+---
 [![](/images/header_email.png)](http://www.doctorswithoutborders.org/)
 
  
