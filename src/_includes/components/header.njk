@@ -1,6 +1,5 @@
 <header role="banner" class="bg-primary ">
   <!-- component -->
-  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
   <div class="max-w-hero mx-auto px-base">
     <div class="">
       <div class="text-body">
@@ -8,11 +7,12 @@
           class="flex flex-col md:items-center md:justify-between md:flex-row ">
           <div class="flex flex-row items-center justify-between py-base space-x-sm md:space-x-base">
           {# Branding Logo Area with event date #}
-            <div class="w-40 sm:w-42 md:w-56 grid grid-cols-1">
+            <div class="w-40 sm:w-42 lg:w-56 grid grid-cols-1">
               <a href="/" class="block md:mt-sm">{% include 'components/logo.njk' %}</a>
-              <div class="font-serif text-highlight text-base sm:text-lg md:text-2xl text-center">{{site.eventDate}}</div>
+              <div class="font-serif text-highlight text-base sm:text-lg lg:text-2xl text-center">{{site.eventDate}}</div>
             </div>
-            <div>{% include 'components/light_dark_switch.njk' %}</div>
+            {# Light Dark Switch #}
+            <div>{% include 'components/light-dark-switch.njk' %}</div>
             {# Mobile Menu Button #}
             <button class="rounded-lg md:hidden focus:outline-none focus:shadow-outline" @click="open = !open">
               <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
@@ -26,7 +26,7 @@
               <span class="sr-only">Menu</span>
             </button>
           </div>
-          {# Main Nave #}
+          {# Main Nav #}
           <nav :class="{'flex': open, 'hidden': !open}"
             class="flex-col flex-grow hidden pb-4 md:pb-0 md:flex md:justify-end md:flex-row md:space-x-sm xl:space-x-base space-y-xs md:space-y-0">
             {% for item in navigation %}
