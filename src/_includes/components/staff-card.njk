@@ -1,0 +1,24 @@
+{% macro card(person) %}
+    <article class="mb-lg shadow rounded-xl bg-card ">
+        <header class="grid sm:grid-cols-3 bg-gradient-to-br from-primary to-primary-2 p-base rounded-t-xl gap-6 relative z-10">
+            <div>
+            <figure class="aspect-w-1 aspect-h-1" style="clip-path: circle(50% at 50% 50%);" >
+                <img class="w-full h-full object-cover object-center block rounded-md "  src="{{person.data.image}}" alt="image of {{ person.data.name }}">
+            </figure>
+            </div>
+            <div class="sm:col-span-2">
+            <h2 class="space-x-xs mb-2xs"><span class="text-header text-4xl font-serif">{{ person.data.title }}</span> <span class="text-body font-bold">{{person.data.gender}}</span></h2>
+            <h3 class="text-subheader text-3xl font-serif leading-none mb-base">{{ person.data.position }}</h3>
+            {% if person.data.twitter %}
+                {% iconLink "http://twitter.com/" + person.data.twitter, "@" + person.data.twitter, "twitter" %}
+            {% endif %}
+            {% if person.data.website_url %}
+                {% iconLink person.data.website_url, person.data.website_name, "website" %}
+            {% endif %}
+            </div>
+        </header>
+        <div class="py-base px-base">
+            <div class="prose ">{{ person.templateContent | safe }}</div>
+        </div>
+    </article>
+{% endmacro %}
