@@ -6,11 +6,22 @@ fields:
   name: title
   label: title
 - type: text
-  name: tags
-  label: tags
-- type: text
   name: status
   label: status
 - type: datetime
   name: date
   label: date
+- name: tags
+  type: tag_list
+  default: []
+  label: tags
+- name: excerpt
+  type: textarea
+  default: ''
+  config:
+    required: false
+    wysiwyg: false
+    schema:
+      format: markdown
+  label: excerpt
+  description: Short excerpt displayed on Blog list page
