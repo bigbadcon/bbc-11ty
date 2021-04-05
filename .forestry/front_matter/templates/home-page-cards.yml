@@ -25,3 +25,6 @@ fields:
       file: 
       path: 
   label: status
+pages:
+- src/cards/events.md
+- src/cards/volunteer.md
