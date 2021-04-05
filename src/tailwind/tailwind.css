@@ -134,8 +134,18 @@
 .icon-link:hover {
   text-decoration: underline !important;
 }
-.icon-link__icon {
+.icon-link__icon,
+.light .icon-link__icon {
   @apply w-6 h-6 fill-highlight flex-shrink-0;
+  filter: drop-shadow(0 0.1rem 0.1rem rgba(230, 255, 230, 0.4))
+}
+@media (prefers-color-scheme: dark) {
+  .icon-link__icon {
+    filter: drop-shadow(0 0.1rem 0.1rem rgba(0, 0, 50, 0.4))
+  }
+}
+.dark .icon-link__icon {
+  filter: drop-shadow(0 0.1rem 0.1rem rgba(0, 0, 50, 0.4))
 }
 .icon-link__title {
   @apply text-body-highlight font-serif leading-none;
