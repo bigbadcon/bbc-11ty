@@ -2,13 +2,15 @@
 title: Big Bad Con 2020 Canceled
 tags: blog
 status: published
-date: 2020-04-28T07:00:00Z
+date: 2020-04-28T07:00:00.000+00:00
 categories:
 - the-making-of
+coverImage: "/images/Emmett-Volunteer.jpg"
+excerpt: This is not the post we wanted to make about Big Bad Con 2020. We wanted
+  to talk about our Kickstarter stretch goal guests, the Babble on Equity Project,
+  and all the amazing events we have planned. COVID-19 however, changed all of that.
 
 ---
-![Ranger Emmett, ready for BBC 2021](/images/Emmett-Volunteer-225x300.jpg) 
-
 This is not the post we wanted to make about Big Bad Con 2020. We wanted to talk about our Kickstarter stretch goal guests, the Babble on Equity Project, and all the amazing events we have planned. COVID-19 however, changed all of that.
 
 So, probably not surprising anyone, we’ve decided to cancel Big Bad Con 2020.
