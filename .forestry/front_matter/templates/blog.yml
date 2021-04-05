@@ -1,0 +1,16 @@
+---
+label: blog
+hide_body: false
+fields:
+- type: text
+  name: title
+  label: title
+- type: text
+  name: tags
+  label: tags
+- type: text
+  name: status
+  label: status
+- type: datetime
+  name: date
+  label: date
