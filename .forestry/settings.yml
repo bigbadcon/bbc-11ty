@@ -9,21 +9,29 @@ sections:
   label: Footer
   create: documents
   match: "**/*.md"
+  templates:
+  - footer
 - type: directory
   path: src/blog
   label: Blog
   create: documents
   match: "**/*.md"
+  templates:
+  - blog
 - type: directory
   path: src/staff
   label: Staff
   create: documents
   match: "**/*.md"
+  templates:
+  - staff
 - type: directory
   path: src/cards
   label: Home Page Cards
   create: documents
   match: "**/*.md"
+  templates:
+  - home-page-cards
 - type: directory
   path: src
   label: Pages
