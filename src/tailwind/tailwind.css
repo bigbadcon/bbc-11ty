@@ -18,7 +18,7 @@
   --card: rgba(255, 255, 255, 0.6);
   --body: #313a3c;
   --body-highlight: #003312;
-  --header: var(--highlight);
+  --header: var(--secondary);
   --subheader: #304a3b;
   --menu-icon: #6f693f;
   --sky: #baedff;
@@ -44,7 +44,7 @@
     --card: rgba(16, 52, 55, 0.58);
     --body: #d5e3ed;
     --body-highlight: #fff;
-    --header: var(--highlight);
+    --header: var(--secondary);
     --subheader: #bdcfd5;
     --menu-icon: #bdcfd5;
     --sky: #97A0BF;
@@ -67,7 +67,7 @@
   --card: rgba(16, 52, 55, 0.58);
   --body: #d5e3ed;
   --body-highlight: #fff;
-  --header: var(--highlight);
+  --header: var(--secondary);
   --subheader: #dddddd;
   --menu-icon: #bdcfd5;
   --sky: #97A0BF;
