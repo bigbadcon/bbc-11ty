@@ -1,6 +1,7 @@
 ---
 title: "Big Bad News - Gazebo signed!"
 tags: blog
+status: published
 date: "2010-08-28"
 ---
 

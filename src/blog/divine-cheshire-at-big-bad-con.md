@@ -1,6 +1,7 @@
 ---
 title: "Divine Cheshire at Big Bad Con"
 tags: blog
+status: published
 date: "2013-10-03"
 categories: 
   - "the-making-of"

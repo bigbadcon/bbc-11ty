@@ -1,6 +1,7 @@
 ---
 title: "Planning for the Power Outage"
 tags: blog
+status: published
 date: "2019-10-09"
 categories: 
   - "the-making-of"

@@ -1,6 +1,7 @@
 ---
 title: "The Doctor is In"
 tags: blog
+status: published
 date: "2014-10-02"
 categories: 
   - "the-making-of"

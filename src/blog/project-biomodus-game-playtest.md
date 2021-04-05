@@ -1,6 +1,7 @@
 ---
 title: "Project Biomodus game playtest"
 tags: blog
+status: published
 date: "2016-09-07"
 categories: 
   - "events"

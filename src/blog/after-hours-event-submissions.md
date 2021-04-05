@@ -1,6 +1,7 @@
 ---
 title: "After Hours Event Submissions"
 tags: blog
+status: published
 date: "2015-08-15"
 categories: 
   - "the-making-of"

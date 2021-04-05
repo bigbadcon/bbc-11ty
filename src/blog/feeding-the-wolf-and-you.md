@@ -1,6 +1,7 @@
 ---
 title: "Feeding the Wolf - And you!"
 tags: blog
+status: published
 date: "2014-08-10"
 categories: 
   - "the-making-of"

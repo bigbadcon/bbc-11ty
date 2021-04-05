@@ -1,6 +1,7 @@
 ---
 title: "What time should The Wolf expect you?"
 tags: blog
+status: published
 date: "2011-08-17"
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: "Play to Win Games"
 tags: blog
+status: published
 date: "2016-09-15"
 categories: 
   - "the-making-of"

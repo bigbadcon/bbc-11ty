@@ -1,6 +1,7 @@
 ---
 title: "Tell Me About Your Character"
 tags: blog
+status: published
 date: "2014-08-06"
 categories: 
   - "events"

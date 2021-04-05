@@ -1,6 +1,7 @@
 ---
 title: "T-shirts here and gone!"
 tags: blog
+status: published
 date: "2011-11-04"
 ---
 

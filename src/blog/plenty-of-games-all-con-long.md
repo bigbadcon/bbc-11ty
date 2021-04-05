@@ -1,6 +1,7 @@
 ---
 title: "Plenty of Games - All con long"
 tags: blog
+status: published
 date: "2013-09-12"
 categories: 
   - "the-making-of"

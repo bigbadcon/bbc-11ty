@@ -1,6 +1,7 @@
 ---
 title: "Improv for Gamers is Back!"
 tags: blog
+status: published
 date: "2013-07-19"
 categories: 
   - "the-making-of"

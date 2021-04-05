@@ -1,6 +1,7 @@
 ---
 title: "We Give Back"
 tags: blog
+status: published
 date: "2012-06-24"
 categories: 
   - "the-making-of"

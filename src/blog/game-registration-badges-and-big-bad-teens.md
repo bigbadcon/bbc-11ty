@@ -1,6 +1,7 @@
 ---
 title: "Game Registration, Badges, and Big Bad Teens"
 tags: blog
+status: published
 date: "2016-08-30"
 categories: 
   - "the-making-of"

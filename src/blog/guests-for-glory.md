@@ -1,6 +1,7 @@
 ---
 title: "Guests for Glory"
 tags: blog
+status: published
 date: "2016-08-18"
 categories: 
   - "events"

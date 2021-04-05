@@ -1,6 +1,7 @@
 ---
 title: "Race to Adventure!"
 tags: blog
+status: published
 date: "2011-09-07"
 categories: 
   - "events"

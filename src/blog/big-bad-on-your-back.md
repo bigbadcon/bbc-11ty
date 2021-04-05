@@ -1,6 +1,7 @@
 ---
 title: "Big Bad on Your Back!"
 tags: blog
+status: published
 date: "2011-09-16"
 ---
 

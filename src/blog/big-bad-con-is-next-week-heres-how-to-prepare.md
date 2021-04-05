@@ -1,6 +1,7 @@
 ---
 title: "Big Bad Con is next week - here's how to prepare!"
 tags: blog
+status: published
 date: "2018-10-04"
 categories: 
   - "the-making-of"

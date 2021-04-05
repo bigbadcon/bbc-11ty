@@ -1,6 +1,7 @@
 ---
 title: "The Future of Gaming"
 tags: blog
+status: published
 date: "2016-03-16"
 categories: 
   - "the-making-of"

@@ -1,6 +1,7 @@
 ---
 title: "The Hotel Hunt is on!"
 tags: blog
+status: published
 date: "2015-03-10"
 categories: 
   - "hotel-info"

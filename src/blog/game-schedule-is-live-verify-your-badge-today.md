@@ -1,6 +1,7 @@
 ---
 title: "Game schedule is live - Verify your badge today!"
 tags: blog
+status: published
 date: "2017-09-09"
 categories: 
   - "events"

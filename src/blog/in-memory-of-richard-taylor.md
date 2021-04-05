@@ -1,6 +1,7 @@
 ---
 title: "In memory of Richard Taylor"
 tags: blog
+status: published
 date: "2015-09-18"
 categories: 
   - "the-making-of"

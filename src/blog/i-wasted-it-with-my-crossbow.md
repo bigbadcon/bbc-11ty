@@ -1,6 +1,7 @@
 ---
 title: "I wasted it with my crossbow"
 tags: blog
+status: published
 date: "2011-08-29"
 ---
 

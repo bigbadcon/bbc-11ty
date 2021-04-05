@@ -1,6 +1,7 @@
 ---
 title: "Sign ups - Limited availability"
 tags: blog
+status: published
 date: "2015-09-22"
 categories: 
   - "the-making-of"

@@ -1,6 +1,7 @@
 ---
 title: "Big Bad Threads with art by Jabari Weathers"
 tags: blog
+status: published
 date: "2019-07-12"
 categories: 
   - "the-making-of"

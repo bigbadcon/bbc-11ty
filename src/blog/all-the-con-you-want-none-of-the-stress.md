@@ -1,6 +1,7 @@
 ---
 title: "All the con you want - None of the stress."
 tags: blog
+status: published
 date: "2012-06-26"
 categories: 
   - "the-making-of"

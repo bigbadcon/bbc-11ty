@@ -1,6 +1,7 @@
 ---
 title: "Wolf Chase 2016!"
 tags: blog
+status: published
 date: "2016-10-13"
 categories: 
   - "events"

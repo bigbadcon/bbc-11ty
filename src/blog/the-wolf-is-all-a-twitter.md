@@ -1,6 +1,7 @@
 ---
 title: "The Wolf is all a twitter"
 tags: blog
+status: published
 date: "2013-03-08"
 categories: 
   - "the-making-of"

@@ -1,6 +1,7 @@
 ---
 title: "Last chance to order Big Bad Con T-shirts"
 tags: blog
+status: published
 date: "2011-10-11"
 ---
 

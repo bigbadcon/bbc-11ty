@@ -1,6 +1,7 @@
 ---
 title: "Big Bad Con 101: Everything you need to know!"
 tags: blog
+status: published
 date: "2014-10-15"
 categories: 
   - "the-making-of"

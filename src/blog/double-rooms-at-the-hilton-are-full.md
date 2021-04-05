@@ -1,6 +1,7 @@
 ---
 title: "Double Rooms at the Hilton are still available!"
 tags: blog
+status: published
 date: "2012-09-17"
 categories: 
   - "hotel-info"

@@ -1,6 +1,7 @@
 ---
 title: "New World Magischola House Rivalry"
 tags: blog
+status: published
 date: "2017-09-20"
 categories: 
   - "the-making-of"

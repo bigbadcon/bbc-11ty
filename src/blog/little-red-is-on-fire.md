@@ -1,6 +1,7 @@
 ---
 title: "Little Red is on Fire!"
 tags: blog
+status: published
 date: "2012-06-07"
 categories: 
   - "events"

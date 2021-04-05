@@ -1,6 +1,7 @@
 ---
 title: "Idea - More Private Rooms if GMs buy badges"
 tags: blog
+status: published
 date: "2014-05-27"
 categories: 
   - "the-making-of"

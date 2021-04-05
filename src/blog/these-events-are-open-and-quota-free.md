@@ -1,6 +1,7 @@
 ---
 title: "These events are open and quota free!"
 tags: blog
+status: published
 date: "2015-09-15"
 categories: 
   - "the-making-of"

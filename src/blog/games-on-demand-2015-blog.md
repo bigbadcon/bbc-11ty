@@ -1,6 +1,7 @@
 ---
 title: "Games on Demand 2015"
 tags: blog
+status: published
 date: "2015-07-14"
 categories: 
   - "events"

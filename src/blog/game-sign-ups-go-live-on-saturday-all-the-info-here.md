@@ -1,6 +1,7 @@
 ---
 title: "Game sign ups go live on Saturday - all the info here!"
 tags: blog
+status: published
 date: "2017-09-14"
 categories: 
   - "the-making-of"

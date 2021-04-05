@@ -1,6 +1,7 @@
 ---
 title: "How do you search for games?"
 tags: blog
+status: published
 date: "2011-09-21"
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: "Archive of past events"
 tags: blog
+status: published
 date: "2019-01-21"
 categories: 
   - "events"

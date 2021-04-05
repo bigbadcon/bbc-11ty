@@ -1,6 +1,7 @@
 ---
 title: "The Wolf enters Game Chef 2010"
 tags: blog
+status: published
 date: "2010-09-20"
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: "Wolf Den Under Construction"
 tags: blog
+status: published
 date: "2015-08-07"
 categories: 
   - "hotel-info"

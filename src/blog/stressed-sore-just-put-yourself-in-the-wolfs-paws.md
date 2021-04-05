@@ -1,6 +1,7 @@
 ---
 title: "Stressed? Sore? Just put yourself in The Wolf's paws"
 tags: blog
+status: published
 date: "2011-10-01"
 ---
 

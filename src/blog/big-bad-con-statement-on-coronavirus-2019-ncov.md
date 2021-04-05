@@ -1,6 +1,7 @@
 ---
 title: "Big Bad Con Statement on Coronavirus (COVID-19)"
 tags: blog
+status: published
 date: 2020-03-10
 categories: 
   - "the-making-of"

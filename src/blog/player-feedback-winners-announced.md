@@ -1,6 +1,7 @@
 ---
 title: "Player feedback winners announced!"
 tags: blog
+status: published
 date: "2011-10-17"
 ---
 

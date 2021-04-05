@@ -1,6 +1,7 @@
 ---
 title: "Feedback from 2012!"
 tags: blog
+status: published
 date: "2012-10-18"
 categories: 
   - "the-making-of"

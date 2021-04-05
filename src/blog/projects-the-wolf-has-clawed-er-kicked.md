@@ -1,6 +1,7 @@
 ---
 title: "Projects The Wolf has clawed... er kicked!"
 tags: blog
+status: published
 date: "2012-07-27"
 categories: 
   - "the-making-of"

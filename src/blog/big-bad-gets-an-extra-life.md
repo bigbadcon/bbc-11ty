@@ -1,6 +1,7 @@
 ---
 title: "Big Bad gets an Extra Life!"
 tags: blog
+status: published
 date: "2014-10-08"
 categories: 
   - "the-making-of"

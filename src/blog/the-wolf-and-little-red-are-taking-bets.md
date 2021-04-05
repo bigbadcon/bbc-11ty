@@ -1,6 +1,7 @@
 ---
 title: "The Wolf and Little Red are taking bets"
 tags: blog
+status: published
 date: "2012-10-03"
 categories: 
   - "events"

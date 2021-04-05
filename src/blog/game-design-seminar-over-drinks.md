@@ -1,6 +1,7 @@
 ---
 title: "Game Design Seminar Over Drinks"
 tags: blog
+status: published
 date: "2011-08-26"
 ---
 

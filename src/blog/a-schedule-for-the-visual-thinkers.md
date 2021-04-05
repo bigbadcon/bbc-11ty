@@ -1,6 +1,7 @@
 ---
 title: "A schedule for the Visual Thinkers"
 tags: blog
+status: published
 date: "2011-09-17"
 ---
 

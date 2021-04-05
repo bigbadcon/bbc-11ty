@@ -1,6 +1,7 @@
 ---
 title: "Big Bad Con 2018 Metatopia Scholarship"
 tags: blog
+status: published
 date: "2018-10-29"
 categories: 
   - "the-making-of"

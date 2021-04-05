@@ -1,6 +1,7 @@
 ---
 title: "Buried without Lighting"
 tags: blog
+status: published
 date: "2012-08-08"
 categories: 
   - "the-making-of"

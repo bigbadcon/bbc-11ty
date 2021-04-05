@@ -1,6 +1,7 @@
 ---
 title: "Polling for interest in D&D and Pathfinder"
 tags: blog
+status: published
 date: "2012-07-30"
 categories: 
   - "the-making-of"

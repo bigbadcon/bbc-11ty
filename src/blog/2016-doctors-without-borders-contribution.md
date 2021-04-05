@@ -1,6 +1,7 @@
 ---
 title: "2016 Doctors Without Borders Contribution"
 tags: blog
+status: published
 date: "2016-11-03"
 categories: 
   - "the-making-of"

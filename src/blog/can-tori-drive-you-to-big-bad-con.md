@@ -1,6 +1,7 @@
 ---
 title: "Can Tori drive you to Big Bad Con?"
 tags: blog
+status: published
 date: "2012-08-16"
 categories: 
   - "the-making-of"

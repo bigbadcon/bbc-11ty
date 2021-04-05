@@ -1,6 +1,7 @@
 ---
 title: "Big Bad News: Seminars and... weddings?"
 tags: blog
+status: published
 date: "2010-08-30"
 categories: 
   - "events"

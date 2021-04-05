@@ -1,6 +1,7 @@
 ---
 title: "The wolf in the flesh? No, in the FUR!"
 tags: blog
+status: published
 date: "2011-09-30"
 ---
 

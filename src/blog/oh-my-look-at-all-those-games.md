@@ -1,6 +1,7 @@
 ---
 title: "Oh my look at all those games!"
 tags: blog
+status: published
 date: "2016-08-03"
 categories: 
   - "events"

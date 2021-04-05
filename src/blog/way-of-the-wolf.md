@@ -1,6 +1,7 @@
 ---
 title: "Way of The Wolf"
 tags: blog
+status: published
 date: "2011-05-18"
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: "A Week in SF"
 tags: blog
+status: published
 date: "2017-05-08"
 categories: 
   - "the-making-of"

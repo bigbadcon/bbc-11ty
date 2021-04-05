@@ -1,6 +1,7 @@
 ---
 title: "Big Bad Con game schedule is up - Verify your badge today!"
 tags: blog
+status: published
 date: "2015-08-21"
 ---
 

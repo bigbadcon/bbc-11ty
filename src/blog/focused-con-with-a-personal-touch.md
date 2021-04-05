@@ -1,6 +1,7 @@
 ---
 title: "Focused Con with a Personal Touch"
 tags: blog
+status: published
 date: "2012-06-25"
 categories: 
   - "the-making-of"

@@ -1,6 +1,7 @@
 ---
 title: "Imperial Academy Dropouts Live"
 tags: blog
+status: published
 date: "2011-09-13"
 categories: 
   - "events"

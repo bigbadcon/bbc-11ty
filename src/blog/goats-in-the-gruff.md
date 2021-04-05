@@ -1,6 +1,7 @@
 ---
 title: "Goats in the Gruff!"
 tags: blog
+status: published
 date: "2013-08-30"
 categories: 
   - "the-making-of"

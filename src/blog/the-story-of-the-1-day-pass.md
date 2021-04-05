@@ -1,6 +1,7 @@
 ---
 title: "A Taste of The Wolf"
 tags: blog
+status: published
 date: "2011-09-19"
 categories: 
   - "events"

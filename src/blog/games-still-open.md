@@ -1,6 +1,7 @@
 ---
 title: "Games still open!"
 tags: blog
+status: published
 date: "2014-10-05"
 categories: 
   - "the-making-of"

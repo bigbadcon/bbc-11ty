@@ -1,6 +1,7 @@
 ---
 title: "Testimonials - 2011 Rocked!"
 tags: blog
+status: published
 date: "2012-06-22"
 categories: 
   - "the-making-of"

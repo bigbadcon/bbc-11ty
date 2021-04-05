@@ -1,6 +1,7 @@
 ---
 title: "BigBadCon's Big Bad Event: \"Gazebo Deathmatch\""
 tags: blog
+status: published
 date: "2011-01-06"
 categories: 
   - "events"

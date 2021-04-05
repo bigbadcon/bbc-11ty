@@ -1,6 +1,7 @@
 ---
 title: "Bay Area Beware"
 tags: blog
+status: published
 date: "2012-08-01"
 categories: 
   - "events"

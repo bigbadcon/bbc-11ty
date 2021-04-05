@@ -1,6 +1,7 @@
 ---
 title: "After Hours Game on Demand Submisison"
 tags: blog
+status: published
 date: "2013-09-07"
 categories: 
   - "events"

@@ -1,6 +1,7 @@
 ---
 title: "Looking for Replacement GMs"
 tags: blog
+status: published
 date: "2017-10-12"
 categories: 
   - "events"

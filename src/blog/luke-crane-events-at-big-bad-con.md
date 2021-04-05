@@ -1,6 +1,7 @@
 ---
 title: "Luke Crane events at Big Bad Con"
 tags: blog
+status: published
 date: "2012-07-30"
 categories: 
   - "events"

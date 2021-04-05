@@ -1,6 +1,7 @@
 ---
 title: "Big Bad Con 2017 is on!"
 tags: blog
+status: published
 date: "2017-04-20"
 categories: 
   - "events"

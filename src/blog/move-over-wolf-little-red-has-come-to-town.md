@@ -1,6 +1,7 @@
 ---
 title: "Move over Wolf, Little Red has come to town!"
 tags: blog
+status: published
 date: "2012-02-29"
 categories: 
   - "the-making-of"

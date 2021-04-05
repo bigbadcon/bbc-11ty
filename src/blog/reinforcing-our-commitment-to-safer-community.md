@@ -1,6 +1,7 @@
 ---
 title: "Reinforcing Our Commitment to Safer Community"
 tags: blog
+status: published
 date: "2019-02-12"
 categories: 
   - "the-making-of"

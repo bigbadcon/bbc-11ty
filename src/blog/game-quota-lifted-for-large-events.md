@@ -1,6 +1,7 @@
 ---
 title: "Game quota lifted for large events"
 tags: blog
+status: published
 date: "2015-09-14"
 categories: 
   - "the-making-of"

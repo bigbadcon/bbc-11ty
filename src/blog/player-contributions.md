@@ -1,6 +1,7 @@
 ---
 title: "Player Contributions"
 tags: blog
+status: published
 date: "2016-03-17"
 categories: 
   - "the-making-of"

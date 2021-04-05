@@ -1,6 +1,7 @@
 ---
 title: "How does this all work?"
 tags: blog
+status: published
 date: "2017-10-02"
 categories: 
   - "faq"

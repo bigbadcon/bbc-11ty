@@ -1,6 +1,7 @@
 ---
 title: "Babble On Equity Project"
 tags: blog
+status: published
 date: "2019-04-30"
 categories: 
   - "the-making-of"

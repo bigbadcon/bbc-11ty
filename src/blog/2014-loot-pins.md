@@ -1,6 +1,7 @@
 ---
 title: "2014 Loot! - Pins!"
 tags: blog
+status: published
 date: "2014-10-03"
 categories: 
   - "the-making-of"

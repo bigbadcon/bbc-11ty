@@ -1,6 +1,7 @@
 ---
 title: "Big Bad Con threads have arrived!"
 tags: blog
+status: published
 date: "2012-07-31"
 categories: 
   - "the-making-of"

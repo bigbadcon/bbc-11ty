@@ -1,6 +1,7 @@
 ---
 title: "Thanks for submitting a game to Big Bad Con!"
 tags: blog
+status: published
 date: "2011-06-01"
 categories: 
   - "the-making-of"

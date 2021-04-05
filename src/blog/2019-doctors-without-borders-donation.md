@@ -1,6 +1,7 @@
 ---
 title: "2019 Doctors Without Borders Donation"
 tags: blog
+status: published
 date: "2019-12-02"
 categories: 
   - "the-making-of"

@@ -1,6 +1,7 @@
 ---
 title: "Age Policy"
 tags: blog
+status: published
 date: "2012-08-24"
 categories: 
   - "the-making-of"

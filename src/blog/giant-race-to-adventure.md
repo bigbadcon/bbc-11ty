@@ -1,6 +1,7 @@
 ---
 title: "GIANT Race to Adventure!"
 tags: blog
+status: published
 date: "2012-09-13"
 categories: 
   - "events"

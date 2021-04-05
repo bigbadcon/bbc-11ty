@@ -1,6 +1,7 @@
 ---
 title: "What kind of awesome is YOUR game? Tag it!"
 tags: blog
+status: published
 date: "2013-07-10"
 categories: 
   - "the-making-of"

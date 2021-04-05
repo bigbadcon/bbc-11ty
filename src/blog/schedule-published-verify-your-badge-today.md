@@ -1,6 +1,7 @@
 ---
 title: "Schedule Published - Verify your Badge today!"
 tags: blog
+status: published
 date: "2019-08-27"
 categories: 
   - "events"
