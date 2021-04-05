@@ -37,7 +37,8 @@ fields:
     schema:
       format: markdown
   label: excerpt
-  description: Short excerpt displayed on Blog list page
+  description: Short excerpt displayed on Blog list page. <em>If empty, it will use
+    the first paragraph of the content</em>
 - name: coverImage
   type: file
   config:
