@@ -44,4 +44,5 @@ fields:
     maxSize: 64
   label: cover image
 pages:
+- src/blog/wolf-chase-2016.md
 - src/blog/wolf-den-under-construction.md
