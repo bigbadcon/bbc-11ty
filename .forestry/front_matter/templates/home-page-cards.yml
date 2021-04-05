@@ -1,0 +1,13 @@
+---
+label: Home Page Cards
+hide_body: false
+fields:
+- type: text
+  name: title
+  label: title
+- type: number
+  name: order
+  label: order
+- type: text
+  name: tags
+  label: tags
