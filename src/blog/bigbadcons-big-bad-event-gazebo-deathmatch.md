@@ -1,21 +1,15 @@
 ---
-title: "BigBadCon's Big Bad Event: \"Gazebo Deathmatch\""
+title: 'BigBadCon''s Big Bad Event: "Gazebo Deathmatch"'
 tags: blog
 status: published
-date: "2011-01-06"
-categories: 
-  - "events"
----
+date: 2011-01-06
+categories:
+- events
 
+---
 We are very excited to announce BigBadCon's Big Bad Event: "Gazebo Deathmatch."
 
-A terrible and mighty [Gazebo](http://www.duke.edu/web/DRAGO/humor/gazebo.html) lairs on the grounds of the Oakland Airport Hilton, terrifying in its silent mockery of all life (seen here from covert satellite surveillance):
-
-![Many Bothans died to bring this Goggle satellite image. Stupid Bothans.](http://pics.livejournal.com/devonapple/pic/0003p3yq "Many Bothans died to bring this Goggle satellite image. Stupid Bothans.")
-
-Although it is surely madness to draw swords against it, yet does The Wolf issue this challenge: dare to face the Gazebo, and great prizes will be yours.
-
-![It looks quiet and serene now... but just you wait...](http://pics.livejournal.com/devonapple/pic/0003qdgg "It looks quiet and serene now... but just you wait...")
+A terrible and mighty [Gazebo](http://www.duke.edu/web/DRAGO/humor/gazebo.html) lairs on the grounds of the Oakland Airport Hilton, terrifying in its silent mockery of all life.
 
 _"Gazebo, this is the day you die. Charge!!!!!!"  -Victim #145_
 
@@ -23,7 +17,11 @@ What we seek are groups to stage a Gamer-versus-Gazebo Deathmatch, a mock assau
 
 We would like groups to submit written proposals and scripts to me before the convention (deadline TBA), and we will schedule them for a time Saturday night when no games are in session (such that the entire con can bear witness to your epic and entertaining defeat).
 
-We have a few guidelines for your sketch: •    Proposed scripts should be five to ten minutes in length. •    Do not include weapons in your sketch (we’re not doing boffer here). •    Please avoid profanity, though geek profanity is certainly welcome.
+We have a few guidelines for your sketch:
+
+* Proposed scripts should be five to ten minutes in length.
+* Do not include weapons in your sketch (we’re not doing boffer here). 
+* Please avoid profanity, though geek profanity is certainly welcome.
 
 The winners, chosen by cheers from the crowd, will be crowned the “Gazebo’s Most Challenging Meal,” awarded with Big Bad Achievements (read "cheap pins that you can wave around that nobody else at the con will get"), accolades from the audience, ribald jests from competitors, and beautiful men and women swooning before their magnificence. Note: Big Bad con will not actually provide any swooning men or women, but we will certainly encourage it.
 
