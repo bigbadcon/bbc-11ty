@@ -25,3 +25,5 @@ fields:
       format: markdown
   label: excerpt
   description: Short excerpt displayed on Blog list page
+pages:
+- src/blog/wolf-den-under-construction.md
