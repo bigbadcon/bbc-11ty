@@ -1,0 +1,16 @@
+---
+label: Footer
+hide_body: false
+fields:
+- type: text
+  name: title
+  label: title
+- type: text
+  name: tags
+  label: tags
+- type: number
+  name: order
+  label: order
+- type: text
+  name: status
+  label: status
