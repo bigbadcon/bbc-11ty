@@ -33,10 +33,10 @@
     "postcss": "latest",
     "postcss-cli": "latest",
     "sass": "latest",
-    "tailwindcss": "latest"
+    "tailwindcss": "latest",
+    "@11ty/eleventy-plugin-rss": "^1.1.1"
   },
   "devDependencies": {
-    "@11ty/eleventy-plugin-rss": "^1.1.1",
     "svg-sprite-generator": "^0.0.7"
   }
 }
