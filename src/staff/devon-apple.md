@@ -1,5 +1,5 @@
 ---
-tags: staff
+tags: staff-emeritus
 order: 0
 title: Devon Apple
 position: Volunteer Coordinator
