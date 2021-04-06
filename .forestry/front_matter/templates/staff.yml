@@ -63,6 +63,7 @@ fields:
   label: website url
 pages:
 - src/staff/adrienne-mueller.md
+- src/staff/andy-munich.md
 - src/staff/anne-faye.md
 - src/staff/ash-cheshire.md
 - src/staff/aven-mcconnaughey.md
