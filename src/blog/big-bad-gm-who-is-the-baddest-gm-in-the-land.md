@@ -1,7 +1,7 @@
 ---
 title: "Big Bad GM - Who is the Biggest, Baddest GM in the Land?"
 tags: blog
-status: published
+published: true
 date: "2011-02-08"
 categories: 
   - "events"

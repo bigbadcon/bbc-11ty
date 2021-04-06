@@ -1,7 +1,7 @@
 ---
 title: "Nine more private rooms - Thanks to you!"
 tags: blog
-status: published
+published: true
 date: "2014-07-21"
 categories: 
   - "the-making-of"

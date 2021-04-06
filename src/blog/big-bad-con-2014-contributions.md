@@ -1,7 +1,7 @@
 ---
 title: "Big Bad Con 2014 Contributions!"
 tags: blog
-status: published
+published: true
 date: "2014-11-24"
 categories: 
   - "the-making-of"

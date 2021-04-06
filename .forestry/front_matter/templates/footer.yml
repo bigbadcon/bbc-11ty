@@ -13,20 +13,10 @@ fields:
 - type: number
   name: order
   label: order
-- name: status
-  type: select
-  default: draft
-  config:
-    required: true
-    options:
-    - draft
-    - published
-    source:
-      type: simple
-      section: 
-      file: 
-      path: 
-  label: status
+- name: published
+  type: boolean
+  label: published
+  default: false
 pages:
 - src/footer/attribution.md
 - src/footer/hotel.md

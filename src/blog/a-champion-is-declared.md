@@ -1,7 +1,7 @@
 ---
 title: "A Champion is Declared"
 tags: blog
-status: published
+published: true
 date: "2011-05-10"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Big Bad Con 2020 - On the road again!"
 tags: blog
-status: published
+published: true
 date: "2020-02-26"
 categories: 
   - "hotel-info"

@@ -1,7 +1,7 @@
 ---
 title: "Big Bad Threads - Available for a limited pre-order!"
 tags: blog
-status: published
+published: true
 date: "2017-09-25"
 categories: 
   - "the-making-of"

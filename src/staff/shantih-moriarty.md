@@ -1,5 +1,6 @@
 ---
 tags: staff
+published: true
 order: 0
 title: Shantih Moriarty
 position: Board Game Ranger Captain

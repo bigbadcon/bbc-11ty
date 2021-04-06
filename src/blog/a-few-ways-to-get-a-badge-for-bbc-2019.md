@@ -1,7 +1,7 @@
 ---
 title: "A few ways to get a badge for BBC 2019"
 tags: blog
-status: published
+published: true
 date: "2019-09-09"
 categories: 
   - "the-making-of"

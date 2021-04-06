@@ -1,5 +1,6 @@
 ---
 tags: staff
+published: true
 order: 0
 title: Ash Cheshire
 position: Baba Yaga Gift Box Curator

@@ -1,7 +1,7 @@
 ---
 title: "Big Bad Con 2011...in review"
 tags: blog
-status: published
+published: true
 date: "2011-11-09"
 categories: 
   - "the-making-of"

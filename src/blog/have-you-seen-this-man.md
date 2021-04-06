@@ -1,7 +1,7 @@
 ---
 title: "Have you seen this man?"
 tags: blog
-status: published
+published: true
 date: "2014-08-20"
 categories: 
   - "the-making-of"

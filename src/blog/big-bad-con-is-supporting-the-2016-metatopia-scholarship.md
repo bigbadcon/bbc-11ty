@@ -1,7 +1,7 @@
 ---
 title: "Big Bad Con is supporting the 2016 Metatopia Scholarship!"
 tags: blog
-status: published
+published: true
 date: "2016-09-28"
 categories: 
   - "the-making-of"

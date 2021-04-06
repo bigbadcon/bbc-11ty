@@ -1,7 +1,7 @@
 ---
 title: "\"Tell me MORE about your character!\""
 tags: blog
-status: published
+published: true
 date: "2017-06-17"
 categories: 
   - "events"

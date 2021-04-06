@@ -1,7 +1,7 @@
 ---
 title: "2015 Feedback closed. Awards granted!"
 tags: blog
-status: published
+published: true
 date: "2015-11-13"
 categories: 
   - "the-making-of"

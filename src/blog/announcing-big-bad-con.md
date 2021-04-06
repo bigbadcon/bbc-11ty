@@ -1,7 +1,7 @@
 ---
 title: "Announcing Big Bad Con"
 tags: blog
-status: published
+published: true
 date: "2010-08-08"
 categories: 
   - "events"

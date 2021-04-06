@@ -2,7 +2,7 @@
 title: Colin Fahrion
 gender: "(he/him)"
 tags: staff
-status: published
+published: true
 twitter: colinaut
 website: http://colinaut.com
 image: "/images/37304880_10156299746000491_4517727746197028864_n.jpg"

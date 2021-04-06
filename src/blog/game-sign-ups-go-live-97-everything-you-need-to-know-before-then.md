@@ -1,7 +1,7 @@
 ---
 title: "Game sign ups go live 9/7 - Everything you need to know before then!"
 tags: blog
-status: published
+published: true
 date: "2013-08-31"
 categories: 
   - "the-making-of"

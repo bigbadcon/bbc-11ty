@@ -1,7 +1,7 @@
 ---
 title: "480 Pounds of Goodness!"
 tags: blog
-status: published
+published: true
 date: "2012-10-17"
 categories: 
   - "the-making-of"

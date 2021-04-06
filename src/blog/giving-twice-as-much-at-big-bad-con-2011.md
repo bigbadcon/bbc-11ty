@@ -1,7 +1,7 @@
 ---
 title: "Giving twice as much at Big Bad Con 2011!"
 tags: blog
-status: published
+published: true
 date: "2012-10-11"
 categories: 
   - "the-making-of"

@@ -1,7 +1,7 @@
 ---
 title: "Baba Yaga's Gift Boxes are in the mail!"
 tags: blog
-status: published
+published: true
 date: "2016-08-24"
 categories: 
   - "the-making-of"

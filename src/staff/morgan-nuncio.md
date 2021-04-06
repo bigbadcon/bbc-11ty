@@ -1,5 +1,6 @@
 ---
 tags: staff
+published: true
 order: 0
 title: Morgan Nuncio
 position: Reg Desk Ranger Captain

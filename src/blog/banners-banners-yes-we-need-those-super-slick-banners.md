@@ -1,7 +1,7 @@
 ---
 title: "Banners? Banners? Yes we need those super-slick Banners!"
 tags: blog
-status: published
+published: true
 date: "2012-09-21"
 categories: 
   - "the-making-of"

@@ -1,7 +1,7 @@
 ---
 title: "Big Bad Eats - Making them better!"
 tags: blog
-status: published
+published: true
 date: "2013-09-12"
 categories: 
   - "the-making-of"

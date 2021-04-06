@@ -1,7 +1,7 @@
 ---
 title: "POC Programming at Big Bad Con"
 tags: blog
-status: published
+published: true
 date: "2020-12-11"
 categories: 
   - "events"

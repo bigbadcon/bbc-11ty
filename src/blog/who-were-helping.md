@@ -1,7 +1,7 @@
 ---
 title: "Who are we helping?"
 tags: blog
-status: published
+published: true
 date: "2011-09-22"
 ---
 

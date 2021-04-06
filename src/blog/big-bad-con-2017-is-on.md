@@ -1,7 +1,7 @@
 ---
 title: Big Bad Con 2017 is on!
 tags: blog
-status: published
+published: true
 date: 2017-04-20
 categories:
 - events

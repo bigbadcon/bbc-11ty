@@ -2,7 +2,7 @@
 title: Wolf Den Under Construction
 tags:
 - blog
-status: published
+published: true
 date: 2015-08-07
 categories:
 - hotel-info

@@ -1,13 +1,14 @@
 ---
 tags: staff
+published: true
 order: 0
 title: Anne Faye
 position: Accessibility & Communications Editor
 gender: "(she/her)"
 image: ''
-twitter: ktwelves
-website_name: karentwelves.com
-website_url: https://karentwelves.com/
+twitter: feyandstrange
+website_name: 
+website_url: 
 
 ---
-Karen Twelves (she/her) is a gamer, editor, linguist, and improvisational actor and instructor. She regularly teaches [**Improv for Gamers**](http://www.improvforgamers.com/) in the Bay Area and beyond, and at conventions can usually be found GMing at [**Games on Demand**](http://www.indiegamesondemand.org/). Her book [**_Improv for Gamers_**](https://www.evilhat.com/home/improv-for-gamers/) was released in 2018.
+Anne Faye is a pronoun-flexible wheelchair user and poly-nerd from San Francisco. Missions include “helping conventions be more disability-inclusive”, “disaster preparedness”, “gaming”, “science fiction”, and “eating all the cheese”

@@ -2,7 +2,7 @@
 title: Hotel
 tags: footer
 order: 
-status: published
+published: true
 
 ---
 Hyatt Regency SFO\

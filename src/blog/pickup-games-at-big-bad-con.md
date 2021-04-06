@@ -1,7 +1,7 @@
 ---
 title: "Pickup Games at Big Bad Con"
 tags: blog
-status: published
+published: true
 date: "2011-08-16"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: 2019 Food Bank of Contra Costa and Solano County
 tags: blog
-status: published
+published: true
 date: 2019-12-02
 categories:
 - the-making-of

@@ -1,5 +1,6 @@
 ---
 tags: staff
+published: true
 order: 0
 title: Heather Rose
 position: Games on Demand Ranger Captain

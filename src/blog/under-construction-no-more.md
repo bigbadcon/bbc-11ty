@@ -1,7 +1,7 @@
 ---
 title: "Under Construction - No More!"
 tags: blog
-status: published
+published: true
 date: "2010-08-28"
 categories: 
   - "the-making-of"

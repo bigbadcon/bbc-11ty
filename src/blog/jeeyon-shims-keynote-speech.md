@@ -1,7 +1,7 @@
 ---
 title: Jeeyon Shim's Keynote Speech
 tags: blog
-status: published
+published: true
 date: 2019-10-18
 categories:
 - the-making-of

@@ -1,7 +1,7 @@
 ---
 title: "Big Bad World"
 tags: blog
-status: published
+published: true
 date: "2016-10-28"
 categories: 
   - "the-making-of"

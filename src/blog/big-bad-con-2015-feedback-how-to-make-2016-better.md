@@ -1,7 +1,7 @@
 ---
 title: "Big Bad Con 2015 Feedback - How to make 2016 better!"
 tags: blog
-status: published
+published: true
 date: "2016-03-18"
 categories: 
   - "the-making-of"

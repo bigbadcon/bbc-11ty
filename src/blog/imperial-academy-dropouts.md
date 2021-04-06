@@ -1,7 +1,7 @@
 ---
 title: "Imperial Academy Dropouts"
 tags: blog
-status: published
+published: true
 date: "2011-08-22"
 categories: 
   - "events"

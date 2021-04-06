@@ -1,7 +1,7 @@
 ---
 title: "Approved Vendor Information"
 tags: blog
-status: published
+published: true
 date: "2012-08-26"
 categories: 
   - "the-making-of"

@@ -1,7 +1,7 @@
 ---
 title: "Big Bad Online!"
 tags: blog
-status: published
+published: true
 date: "2016-08-15"
 categories: 
   - "events"

@@ -1,7 +1,7 @@
 ---
 title: "Improv for Gamers"
 tags: blog
-status: published
+published: true
 date: "2012-02-13"
 categories: 
   - "events"

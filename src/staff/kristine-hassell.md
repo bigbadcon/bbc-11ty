@@ -1,5 +1,6 @@
 ---
 tags: staff
+published: true
 order: 0
 title: Kristine Hassell
 position: Social Media & Community Coordinator

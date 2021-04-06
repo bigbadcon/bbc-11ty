@@ -1,7 +1,7 @@
 ---
 title: Our GMs - The Best of The Best
 tags: blog
-status: published
+published: true
 date: 2012-06-25
 categories:
 - the-making-of

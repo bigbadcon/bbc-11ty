@@ -1,7 +1,7 @@
 ---
 title: "Programs, programs. Get your programs"
 tags: blog
-status: published
+published: true
 date: "2012-10-01"
 categories: 
   - "the-making-of"

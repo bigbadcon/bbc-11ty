@@ -1,7 +1,7 @@
 ---
 tags: footer
 order: 10
-status: published
+published: true
 title: ''
 
 ---

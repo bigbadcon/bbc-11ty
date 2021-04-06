@@ -1,7 +1,7 @@
 ---
 title: "Table assignments are done!"
 tags: blog
-status: published
+published: true
 date: "2011-09-23"
 ---
 

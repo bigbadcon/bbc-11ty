@@ -1,7 +1,7 @@
 ---
 title: "Big Bad Game Jam 2020"
 tags: blog
-status: published
+published: true
 date: "2020-02-14"
 categories: 
   - "the-making-of"

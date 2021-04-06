@@ -1,7 +1,7 @@
 ---
 title: "Going Beyond the Code of Conduct"
 tags: blog
-status: published
+published: true
 date: "2018-08-17"
 categories: 
   - "the-making-of"

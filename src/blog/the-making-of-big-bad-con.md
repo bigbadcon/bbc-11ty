@@ -1,7 +1,7 @@
 ---
 title: "The Making of Big Bad Con"
 tags: blog
-status: published
+published: true
 date: "2010-08-19"
 categories: 
   - "the-making-of"

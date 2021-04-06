@@ -1,7 +1,7 @@
 ---
 title: "Big Bad Con 101: Little Red's Must Have List!"
 tags: blog
-status: published
+published: true
 date: "2012-09-25"
 categories: 
   - "faq"

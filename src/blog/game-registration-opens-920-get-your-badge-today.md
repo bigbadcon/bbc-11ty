@@ -1,7 +1,7 @@
 ---
 title: "Game registration for Big Bad Con 2014 opens 9/20 - Get your badge today!"
 tags: blog
-status: published
+published: true
 date: "2014-09-14"
 categories: 
   - "the-making-of"

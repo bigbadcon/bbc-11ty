@@ -1,5 +1,6 @@
 ---
 tags: staff-emeritus
+published: true
 order: 0
 title: Mickey Schulz
 position: Panel Coordinator

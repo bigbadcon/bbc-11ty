@@ -1,7 +1,7 @@
 ---
 title: "Big Bad Outreach in July"
 tags: blog
-status: published
+published: true
 date: "2018-07-26"
 categories: 
   - "the-making-of"

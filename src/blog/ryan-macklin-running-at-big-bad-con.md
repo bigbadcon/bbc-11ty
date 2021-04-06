@@ -1,7 +1,7 @@
 ---
 title: "Ryan Macklin running at Big Bad Con"
 tags: blog
-status: published
+published: true
 date: "2012-06-26"
 categories: 
   - "the-making-of"

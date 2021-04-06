@@ -1,7 +1,7 @@
 ---
 title: "Games On Demand Badges - Courtesy Bully Pulpit"
 tags: blog
-status: published
+published: true
 date: "2013-07-29"
 categories: 
   - "the-making-of"

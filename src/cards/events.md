@@ -1,7 +1,7 @@
 ---
 title: Events
 tags: cards
-status: published
+published: true
 order: 
 
 ---

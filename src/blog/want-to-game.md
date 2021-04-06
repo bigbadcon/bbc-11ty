@@ -1,7 +1,7 @@
 ---
 title: "\"Want to game?\""
 tags: blog
-status: published
+published: true
 date: "2010-09-26"
 ---
 

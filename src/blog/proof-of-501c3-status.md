@@ -1,7 +1,7 @@
 ---
 title: "Proof of 501(c)(3) Status"
 tags: blog
-status: published
+published: true
 date: "2018-06-23"
 categories: 
   - "the-making-of"

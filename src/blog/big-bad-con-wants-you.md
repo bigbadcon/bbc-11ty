@@ -1,7 +1,7 @@
 ---
 title: "Big Bad Con wants You!"
 tags: blog
-status: published
+published: true
 date: "2011-07-06"
 categories: 
   - "events"

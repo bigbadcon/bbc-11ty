@@ -1,7 +1,7 @@
 ---
 title: "Games on Demand at Big Bad Con"
 tags: blog
-status: published
+published: true
 date: "2012-09-25"
 categories: 
   - "events"

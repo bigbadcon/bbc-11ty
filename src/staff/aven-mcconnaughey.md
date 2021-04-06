@@ -1,6 +1,6 @@
 ---
 tags: staff-emeritus
-status: published
+published: true
 title: Aven McConnaughey
 position: Advocate Ranger Captain
 gender: "(e/em/eir)"

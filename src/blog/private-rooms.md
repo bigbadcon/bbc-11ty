@@ -1,7 +1,7 @@
 ---
 title: "Private rooms at Big Bad Con!"
 tags: blog
-status: published
+published: true
 date: "2012-02-08"
 ---
 

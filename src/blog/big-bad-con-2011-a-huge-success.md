@@ -1,7 +1,7 @@
 ---
 title: "Big Bad Con 2011 - A Huge Success"
 tags: blog
-status: published
+published: true
 date: "2011-10-10"
 ---
 

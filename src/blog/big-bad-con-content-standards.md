@@ -1,7 +1,7 @@
 ---
 title: "Big Bad Con Content Standards"
 tags: blog
-status: published
+published: true
 date: "2011-10-05"
 ---
 

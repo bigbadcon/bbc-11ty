@@ -1,7 +1,7 @@
 ---
 title: "The Baddest Judges in Town"
 tags: blog
-status: published
+published: true
 date: "2011-08-10"
 categories: 
   - "events"

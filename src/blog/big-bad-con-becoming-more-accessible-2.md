@@ -1,7 +1,7 @@
 ---
 title: "Big Bad Con - Becoming More Accessible"
 tags: blog
-status: published
+published: true
 date: "2015-09-25"
 categories: 
   - "the-making-of"

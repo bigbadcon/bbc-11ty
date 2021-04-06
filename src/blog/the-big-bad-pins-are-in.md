@@ -1,7 +1,7 @@
 ---
 title: "The Big Bad Pins... Are In!"
 tags: blog
-status: published
+published: true
 date: "2011-09-21"
 ---
 

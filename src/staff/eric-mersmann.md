@@ -1,5 +1,6 @@
 ---
 tags: staff
+published: true
 order: 0
 title: Eric Mersmann
 position: Kickstarter Coordinator & Hotel Liaison

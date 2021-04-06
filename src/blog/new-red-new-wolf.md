@@ -1,7 +1,7 @@
 ---
 title: "New Red! New Wolf!"
 tags: blog
-status: published
+published: true
 date: "2017-08-06"
 categories: 
   - "the-making-of"

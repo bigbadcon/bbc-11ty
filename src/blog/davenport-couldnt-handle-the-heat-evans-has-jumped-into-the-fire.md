@@ -1,7 +1,7 @@
 ---
 title: "This Just-in: A new contender has entered the ring!"
 tags: blog
-status: published
+published: true
 date: "2011-09-27"
 ---
 

@@ -1,5 +1,6 @@
 ---
 tags: staff-emeritus
+published: true
 order: 0
 title: Jory Bowers
 position: Games on Demand Coordinator

@@ -1,7 +1,7 @@
 ---
 title: Big Bad Dates
 tags: blog
-status: published
+published: true
 date: 2012-09-07
 categories:
 - the-making-of

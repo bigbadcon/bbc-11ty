@@ -1,7 +1,7 @@
 ---
 title: "Big Bad Con 2016 T-Shirt Pre-order"
 tags: blog
-status: published
+published: true
 date: "2016-10-07"
 categories: 
   - "the-making-of"

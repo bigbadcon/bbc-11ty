@@ -1,7 +1,7 @@
 ---
 title: "2015 - More good than we've ever done before!"
 tags: blog
-status: published
+published: true
 date: "2015-11-05"
 categories: 
   - "the-making-of"

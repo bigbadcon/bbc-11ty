@@ -1,7 +1,7 @@
 ---
 title: "Big Bad News: Gazebo Deathmatch, Food and Filming"
 tags: blog
-status: published
+published: true
 date: "2010-09-22"
 ---
 

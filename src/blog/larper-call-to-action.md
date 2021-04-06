@@ -1,7 +1,7 @@
 ---
 title: "LARPer call to action!"
 tags: blog
-status: published
+published: true
 date: "2011-09-29"
 ---
 

@@ -27,27 +27,27 @@ module.exports = (eleventyConfig) => {
 
    // Staff sorted by order number and then alphabetically
    eleventyConfig.addCollection("blogPublished", function(collectionApi) {
-    return collectionApi.getFilteredByTag("blog").filter(c => c.template.frontMatter.data.status === "published");
+    return collectionApi.getFilteredByTag("blog").filter(c => c.template.frontMatter.data.published === true);
   });
 
   // Staff sorted by order number and then alphabetically
   eleventyConfig.addCollection("staff123ABC", function(collectionApi) {
-    return collectionApi.getFilteredByTag("staff").filter(c => c.template.frontMatter.data.status === "published").sort((a,b) => sortByOrder(a,b));
+    return collectionApi.getFilteredByTag("staff").filter(c => c.template.frontMatter.data.published === true).sort((a,b) => sortByOrder(a,b));
   });
 
   // Staff Emeritus sorted by order number and then alphabetically
   eleventyConfig.addCollection("staffEmeritus123ABC", function(collectionApi) {
-    return collectionApi.getFilteredByTag("staff-emeritus").filter(c => c.template.frontMatter.data.status === "published").sort((a,b) => sortByOrder(a,b));
+    return collectionApi.getFilteredByTag("staff-emeritus").filter(c => c.template.frontMatter.data.published === true).sort((a,b) => sortByOrder(a,b));
   });
 
   // Home Page Cards published and sorted by order number and then alphabetically
    eleventyConfig.addCollection("cards123ABC", function(collectionApi) {
-    return collectionApi.getFilteredByTag("cards").filter(c => c.template.frontMatter.data.status === "published").sort((a,b) => sortByOrder(a,b));
+    return collectionApi.getFilteredByTag("cards").filter(c => c.template.frontMatter.data.published === true).sort((a,b) => sortByOrder(a,b));
   });
 
   // Home Page Cards published and sorted by order number and then alphabetically
   eleventyConfig.addCollection("footer123ABC", function(collectionApi) {
-    return collectionApi.getFilteredByTag("footer").filter(c => c.template.frontMatter.data.status === "published").sort((a,b) => sortByOrder(a,b));
+    return collectionApi.getFilteredByTag("footer").filter(c => c.template.frontMatter.data.published === true).sort((a,b) => sortByOrder(a,b));
   });
 
   // Pass "static" things straight through from "src" to "dist"

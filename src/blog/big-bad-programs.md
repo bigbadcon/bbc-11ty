@@ -1,7 +1,7 @@
 ---
 title: "Big Bad Programs"
 tags: blog
-status: published
+published: true
 date: "2013-10-02"
 categories: 
   - "events"

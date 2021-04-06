@@ -1,7 +1,7 @@
 ---
 title: "That's Dr. Wolf to you"
 tags: blog
-status: published
+published: true
 date: "2011-05-25"
 categories: 
   - "faq"

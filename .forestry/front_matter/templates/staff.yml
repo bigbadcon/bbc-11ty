@@ -25,6 +25,10 @@ fields:
       file: 
       path: 
   label: tags
+- name: published
+  type: boolean
+  label: published
+  default: false
 - type: text
   name: gender
   label: gender
@@ -61,10 +65,6 @@ fields:
   config:
     required: false
   label: website url
-- name: published
-  type: boolean
-  label: published
-  default: false
 pages:
 - src/staff/adrienne-mueller.md
 - src/staff/andy-munich.md

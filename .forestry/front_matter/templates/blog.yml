@@ -10,20 +10,10 @@ fields:
 - type: datetime
   name: date
   label: date
-- name: status
-  type: select
-  default: draft
-  config:
-    required: true
-    options:
-    - draft
-    - published
-    source:
-      type: simple
-      section: 
-      file: 
-      path: 
-  label: status
+- name: published
+  type: boolean
+  label: published
+  default: false
 - name: tags
   type: tag_list
   default: []

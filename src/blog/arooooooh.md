@@ -1,7 +1,7 @@
 ---
 title: "Arooooooh - T-shirts!"
 tags: blog
-status: published
+published: true
 date: "2014-10-11"
 categories: 
   - "the-making-of"

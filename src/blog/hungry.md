@@ -1,7 +1,7 @@
 ---
 title: "Hungry?"
 tags: blog
-status: published
+published: true
 date: "2010-09-08"
 categories: 
   - "hotel-info"

@@ -1,7 +1,7 @@
 ---
 title: "375 Pounds!"
 tags: blog
-status: published
+published: true
 date: "2016-10-26"
 categories: 
   - "the-making-of"

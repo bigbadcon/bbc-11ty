@@ -1,7 +1,7 @@
 ---
 title: "Friend and Foes Kickstarter Launch Party!"
 tags: blog
-status: published
+published: true
 date: "2014-10-07"
 categories: 
   - "events"

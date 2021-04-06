@@ -1,7 +1,7 @@
 ---
 title: "Big Bad Con 101: What you need to know before heading out."
 tags: blog
-status: published
+published: true
 date: "2011-10-06"
 ---
 

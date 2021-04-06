@@ -1,7 +1,7 @@
 ---
 title: "Safety and Calibration tools"
 tags: blog
-status: published
+published: true
 date: "2016-03-17"
 categories: 
   - "the-making-of"

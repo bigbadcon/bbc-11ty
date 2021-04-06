@@ -1,7 +1,7 @@
 ---
 title: Big Bad GM - The Biggest, Baddest GMs in the Land
 tags: blog
-status: published
+published: true
 date: 2012-06-25
 categories:
 - the-making-of

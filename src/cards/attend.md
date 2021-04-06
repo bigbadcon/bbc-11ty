@@ -4,7 +4,7 @@ order: 1
 tags: cards
 description: Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusmod
   tempor incididunt ut labore.
-status: published
+published: true
 
 ---
 Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.

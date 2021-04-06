@@ -1,7 +1,7 @@
 ---
 title: "Badges sold out"
 tags: blog
-status: published
+published: true
 date: "2019-09-08"
 categories: 
   - "the-making-of"

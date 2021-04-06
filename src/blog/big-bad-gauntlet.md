@@ -1,7 +1,7 @@
 ---
 title: "Big Bad Gauntlet"
 tags: blog
-status: published
+published: true
 date: "2015-08-29"
 categories: 
   - "events"

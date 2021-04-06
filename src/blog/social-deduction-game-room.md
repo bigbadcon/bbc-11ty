@@ -1,7 +1,7 @@
 ---
 title: "Social Deduction Game Room"
 tags: blog
-status: published
+published: true
 date: "2016-09-15"
 categories: 
   - "the-making-of"

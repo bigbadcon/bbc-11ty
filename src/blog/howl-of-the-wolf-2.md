@@ -1,7 +1,7 @@
 ---
 title: "Howl of The Wolf"
 tags: blog
-status: published
+published: true
 date: "2012-05-04"
 categories: 
   - "events"

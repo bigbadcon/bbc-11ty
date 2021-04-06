@@ -1,7 +1,7 @@
 ---
 title: "Want a little Dungeon in your World?"
 tags: blog
-status: published
+published: true
 date: "2014-09-12"
 categories: 
   - "events"

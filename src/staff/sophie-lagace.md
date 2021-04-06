@@ -1,6 +1,6 @@
 ---
 tags: staff
-status: published
+published: true
 title: Sophie Lagacé
 position: Events Coordinator
 gender: "(she/her)"

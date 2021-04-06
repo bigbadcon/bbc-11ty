@@ -1,7 +1,7 @@
 ---
 title: "The Wolf: In the Pixel"
 tags: blog
-status: published
+published: true
 date: "2010-08-21"
 ---
 

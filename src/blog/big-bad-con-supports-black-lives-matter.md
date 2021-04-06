@@ -1,7 +1,7 @@
 ---
 title: "Big Bad Con Supports Black Lives Matter"
 tags: blog
-status: published
+published: true
 date: "2020-06-11"
 ---
 

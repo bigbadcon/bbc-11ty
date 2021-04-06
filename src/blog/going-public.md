@@ -1,7 +1,7 @@
 ---
 title: "Going Public!"
 tags: blog
-status: published
+published: true
 date: "2010-08-12"
 ---
 

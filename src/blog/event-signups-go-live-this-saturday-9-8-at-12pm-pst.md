@@ -1,7 +1,7 @@
 ---
 title: "Event signups go live this Saturday 9/8 at 12PM PST!"
 tags: blog
-status: published
+published: true
 date: "2018-09-06"
 categories: 
   - "the-making-of"

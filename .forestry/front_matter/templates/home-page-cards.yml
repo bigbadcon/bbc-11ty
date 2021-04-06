@@ -14,20 +14,10 @@ fields:
   label: tags
   default: cards
   hidden: true
-- name: status
-  type: select
-  default: draft
-  config:
-    required: false
-    options:
-    - published
-    - draft
-    source:
-      type: simple
-      section: 
-      file: 
-      path: 
-  label: status
+- name: published
+  type: boolean
+  label: published
+  default: false
 pages:
 - src/cards/attend.md
 - src/cards/events.md

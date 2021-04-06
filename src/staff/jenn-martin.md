@@ -1,6 +1,6 @@
 ---
 tags: staff
-status: published
+published: true
 title: Jenn Martin
 position: Larp Coordinator
 gender: "(she/her)"

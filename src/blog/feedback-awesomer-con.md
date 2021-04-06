@@ -1,7 +1,7 @@
 ---
 title: Feedback = Awesome(r) Con
 tags: blog
-status: published
+published: true
 date: 2012-06-25
 categories:
 - the-making-of

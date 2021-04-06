@@ -1,7 +1,7 @@
 ---
 title: "Media Room at Big Bad Con"
 tags: blog
-status: published
+published: true
 date: "2019-07-09"
 categories: 
   - "events"

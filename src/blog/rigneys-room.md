@@ -1,7 +1,7 @@
 ---
 title: "Rigney's Room"
 tags: blog
-status: published
+published: true
 date: "2012-06-30"
 categories: 
   - "events"

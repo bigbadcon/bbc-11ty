@@ -1,7 +1,7 @@
 ---
 title: "Big Bad Con 2015 - Hall of Heroes"
 tags: blog
-status: published
+published: true
 date: "2015-10-20"
 categories: 
   - "the-making-of"

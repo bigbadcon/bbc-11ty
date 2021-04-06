@@ -1,7 +1,7 @@
 ---
 title: 2017 Doctors Without Borders Contribution
 tags: blog
-status: published
+published: true
 date: 2018-05-30
 categories:
 - the-making-of

@@ -1,7 +1,7 @@
 ---
 title: "Everything you need to know to sign up for events!"
 tags: blog
-status: published
+published: true
 date: "2016-09-09"
 categories: 
   - "events"

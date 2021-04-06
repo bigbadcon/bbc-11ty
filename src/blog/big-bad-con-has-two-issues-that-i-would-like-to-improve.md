@@ -1,7 +1,7 @@
 ---
 title: "Big Bad Con has two issues that I would like to improve!"
 tags: blog
-status: published
+published: true
 date: "2014-03-14"
 categories: 
   - "the-making-of"
