@@ -1,11 +1,11 @@
 ---
 tags: staff
 published: true
-order: 0
+order: 
 title: E.T.
 position: Games on Demand Coordinator
 gender: "(they/them)"
-image: ''
+image: "/images/et.png"
 twitter: ''
 website_name: ''
 website_url: ''
