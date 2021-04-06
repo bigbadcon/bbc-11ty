@@ -1,5 +1,6 @@
 [{
         "title": "Attend",
+        "id": "attend",
         "subnav": [{
                 "title": "Buy a Badge",
                 "url": "/badge",
@@ -19,6 +20,7 @@
     },
     {
         "title": "Volunteer",
+        "id": "volunteer",
         "subnav": [{
             "title": "Run An Event",
             "url": "/run-an-event",
@@ -38,6 +40,7 @@
     },
     {
         "title": "Events",
+        "id": "events",
         "subnav": [{
             "title": "Scheduled Events",
             "url": "/events",
@@ -57,6 +60,7 @@
     },
     {
         "title": "Dealers",
+        "id": "dealers",
         "subnav": [{
             "title": "Dealers Room",
             "url": "/dealers",
@@ -70,6 +74,7 @@
     },
     {
         "title": "Community",
+        "id": "community",
         "subnav": [
             {
                 "title": "Community Standards",
@@ -90,6 +95,7 @@
     },
     {
         "title": "Blog",
+        "id": "blog",
         "url": "/blog",
         "icon": "star"
     }
