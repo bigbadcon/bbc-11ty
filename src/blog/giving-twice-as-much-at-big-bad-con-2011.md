@@ -13,4 +13,38 @@ This year The Wolf and Little Red are proud to say we doubled that!
 
 **$1010 donated to Doctors without Borders** in the combined contributions of Big Bad Con's attendees and [Duane O'Brien's](https://twitter.com/ATerribleIdea "A Terrible Idea") Crowdrise [fundraiser](http://www.crowdrise.com/RunFromTheWolf/ "Run from The Wolf")
 
-<table width="750" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="#ffffff"><tbody><tr><td bgcolor="#000000" width="240"><a href="http://www.doctorswithoutborders.org/" target="_blank"><img src="images/logomain.gif" alt="" width="240" height="87" border="0"></a></td></tr><tr><td><h1>Donation Confirmation</h1>Thank you for supporting Doctors Without Borders/Médecins Sans Frontières (MSF). Your generosity gives us the financial independence we need to provide emergency medical care to men, women, and children in nearly 70 countries around the world.<div><div></div>Sean&nbsp;Nittner Big Bad Con <a href="mailto:seannittner@gmail.com" target="_blank">seannittner@gmail.com</a><h3>Big Bad Con 2012 Contribution</h3><table width="626" border="0" cellspacing="0" cellpadding="0"><tbody><tr><td>One-time Gift:</td><td align="right" width="126">$880.00</td></tr><tr><td>Run from The Wolf Crowdrise Contribution:</td><td align="right" width="126">$130.00</td></tr><tr><td><strong>Total:</strong></td><td align="right" width="126"><strong>$1010.00</strong></td></tr></tbody></table></div>Your gift to Doctors Without Borders USA, Inc. (Federal Tax ID #13-3433452) is tax-deductible in the United States to the extent allowable by law. You will receive a thank you letter by mail, which will serve as your legal receipt.<div></div>If you have a question about your donation, please&nbsp;<a href="http://www.doctorswithoutborders.org/donate/faq/" target="_blank">click here</a>&nbsp;for a list of answers to Frequently Asked Questions. You may also contact Donor Services at (212) 763-5779 or at&nbsp;<a href="mailto:donations@doctorswithoutborders.org" target="_blank">donations@<wbr>doctorswithoutborders.org</a><div></div>To read our Commitment to our Supporters ­ a statement of our commitment to independent, needs-based programs, financial transparency, and effective and cost-efficient fundraising ­ please&nbsp;<a href="http://www.doctorswithoutborders.org/donate/donorcommitment.cfm" target="_blank">click here</a>.<div></div>As a supporter we encourage you to stay connected with Doctors Without Borders online:<ul><li>Learn more about our work by visiting our&nbsp;<a href="http://www.doctorswithoutborders.org/" target="_blank">Website</a></li><li>Become a fan on&nbsp;<a href="http://www.facebook.com/msf.english" target="_blank">Facebook</a></li><li>Follow us on&nbsp;<a href="http://www.twitter.com/msf_usa" target="_blank">Twitter</a></li><li>Subscribe to our weekly&nbsp;<a href="http://www.doctorswithoutborders.org/podcast/" target="_blank">Podcast</a></li><li>Watch our latest videos on&nbsp;<a href="http://www.youtube.com/msf" target="_blank">YouTube</a></li></ul>Thank you, again, for your donation to Doctors Without Borders/Médecins Sans Frontières (MSF). We are truly grateful for your support of our programs.<div></div>The U.S. section of Doctors Without Borders/Médecins Sans Frontières (MSF) is an international independent medical humanitarian organization that delivers emergency aid to people affected by armed conflict, epidemics, natural and man-made disasters, and exclusion from health care. ©2010 MSF All rights reserv</td></tr></tbody></table>
+## Donation Confirmation
+
+Thank you for supporting Doctors Without Borders/Médecins Sans Frontières (MSF). Your generosity gives us the financial independence we need to provide emergency medical care to men, women, and children in nearly 70 countries around the world.
+
+Sean Nittner, Big Bad Con <a href="mailto:seannittner@gmail.com" target="_blank">seannittner@gmail.com
+
+### Big Bad Con 2012 Contribution
+
+One-time Gift: $880.000
+
+Run from The Wolf Crowdrise Contribution: $130.00<
+
+Total: $1010.00<
+
+Your gift to Doctors Without Borders USA, Inc. (Federal Tax ID #13-3433452) is tax-deductible in the United States to the extent allowable by law. You will receive a thank you letter by mail, which will serve as your legal receipt.
+
+If you have a question about your donation, please <a href="http://www.doctorswithoutborders.org/donate/faq/" target="_blank">click here</a> for a list of answers to Frequently Asked Questions. You may also contact Donor Services at (212) 763-5779 or at <a href="mailto:donations@doctorswithoutborders.org" target="_blank">donations@<wbr>doctorswithoutborders.org</a>
+
+To read our Commitment to our Supporters ­ a statement of our commitment to independent, needs-based programs, financial transparency, and effective and cost-efficient fundraising ­ please <a href="http://www.doctorswithoutborders.org/donate/donorcommitment.cfm" target="_blank">click here</a>.
+
+As a supporter we encourage you to stay connected with Doctors Without Borders online:
+
+Learn more about our work by visiting our <a href="http://www.doctorswithoutborders.org/" target="_blank">Website</a>
+
+Become a fan on <a href="http://www.facebook.com/msf.english" target="_blank">Facebook</a>
+
+Follow us on <a href="http://www.twitter.com/msf_usa" target="_blank">Twitter</a>
+
+Subscribe to our weekly <a href="http://www.doctorswithoutborders.org/podcast/" target="_blank">Podcast</a>
+
+Watch our latest videos on <a href="http://www.youtube.com/msf" target="_blank">YouTube</a>
+
+Thank you, again, for your donation to Doctors Without Borders/Médecins Sans Frontières (MSF). We are truly grateful for your support of our programs.
+
+The U.S. section of Doctors Without Borders/Médecins Sans Frontières (MSF) is an international independent medical humanitarian organization that delivers emergency aid to people affected by armed conflict, epidemics, natural and man-made disasters, and exclusion from health care. ©2010 MSF All rights reserved

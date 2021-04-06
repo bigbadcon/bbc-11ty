@@ -5,9 +5,8 @@ status: published
 date: "2014-11-24"
 categories: 
   - "the-making-of"
+excerpt: "Donation Confirmation: Thank you for supporting Doctors Without Borders/Médecins Sans Frontières (MSF). Your generosity gives us the financial independence we need to provide emergency medical care to men, women, and children in nearly 70 countries around the world."
 ---
-
-[![header_email](/images/header_email.png)](http://www.bigbadcon.com/wp-content/uploads/2014/11/header_email.png)
 
 # Donation Confirmation
 
@@ -15,7 +14,11 @@ Thank you for supporting Doctors Without Borders/Médecins Sans Frontières (MSF
 
 Sean Nittner Big Bad Con
 
-<table border="0" width="626" cellspacing="0" cellpadding="0"><tbody><tr><td>One-time Gift: Big Bad Con 2014 Proceeds</td><td align="right" width="126">$500.00</td></tr><tr><td>Crowdrise: <a href="https://www.crowdrise.com/wolfchase2014/" target="_blank">Wolf Chase 2014</a> Contribution</td><td align="right">$810.00</td></tr><tr><td>Total&nbsp;Gift:</td><td align="right">$1310.00</td></tr></tbody></table>
+One-time Gift: Big Bad Con 2014 Proceeds $500.00
+
+Crowdrise: Wolf Chase 2014 Contribution $810.00
+
+Total Gift: $1310.00
 
 Your gift to Doctors Without Borders USA, Inc. (Federal Tax ID #13-3433452) is tax-deductible in the United States to the extent allowable by law. You will receive a thank you letter by mail, which will serve as your legal receipt.
 

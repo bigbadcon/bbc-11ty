@@ -13,15 +13,17 @@ excerpt: 'Donation Confirmation: Thank you for supporting Doctors Without Border
 ---
 [![](/images/header_email.png)](http://www.doctorswithoutborders.org/)
 
- 
-
 # Donation Confirmation
 
 Thank you for supporting Doctors Without Borders/Médecins Sans Frontières (MSF). Your generosity gives us the financial independence we need to provide emergency medical care to men, women, and children in more than 60 countries around the world.
 
 Sean Nittner Big Bad Con, Inc.
 
-<table border="0" width="626" cellspacing="0" cellpadding="0"><tbody><tr><td><a href="https://www.crowdrise.com/o/en/team/wolf-chase-2017/ericfattig">Wolf Chase 2017 Crowdrise Donation</a>:</td><td align="right" width="126">$700.00</td></tr><tr><td>One-time Gift:</td><td align="right" width="126">$1,300.00</td></tr><tr><td>Total:</td><td align="right">$2,000.00</td></tr></tbody></table>
+Wolf Chase 2017 Crowdrise Donation: $700.00
+
+One-time Gift: $1,300.00
+
+Total: $2,000.00
 
 Doctors Without Borders has not provided in whole or part any goods or services to the above-named donor in return for this donation. Doctors Without Borders is a qualified tax-exempt 501(c)(3) organization. EIN: 13-3433452. You will receive an official printed acknowledgement/tax receipt via postal mail approximately 3-4 weeks from the date of your gift.
 

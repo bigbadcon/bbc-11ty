@@ -52,30 +52,3 @@ Payment must be made by 9/15/2019 to secure your booth.
 
 Exhibitors are granted two free badges to attend the con. Additional badges can be purchased normally [here](https://www.bigbadcon.com/sign-up/).
 
-### Contact Information
-
-Sean Nittner - Steward
-
-- seannittner@gmail.com
-- 530-304-6293
-- @seannittner on twitter
-
-Sophie Lagacé - Event Coordiantor
-
-- mechante.anemone@gmail.com
-- 650-201-5586
-- @MechanteAnemone on twitter
-
-Eric Fattig - Reg Desk Team Captain
-
-- the.viscount@gmail.com
-- 707-863-2585
-- @TheFattig on twitter
-
-### Vendor Booth - $200
-
- 
-
-<table><tbody><tr><td><input type="hidden" name="on0" value="Vendor Name">Vendor Name</td></tr><tr><td><input type="text" name="os0" maxlength="200"></td></tr><tr><td><input type="hidden" name="on1" value="Contact Email">Contact Email</td></tr><tr><td><input type="text" name="os1" maxlength="200"></td></tr></tbody></table>
-
- ![](/images/pixel.gif)
