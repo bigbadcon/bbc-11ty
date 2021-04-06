@@ -1,7 +1,7 @@
 ---
 tags: staff-emeritus
 order: 0
-title: Elsa S. Henry
+title: Elsa Sjunneson Henry
 position: Accessibility Consultant
 gender: "(she/her)"
 image: "/images/jgixgxpx_400x400.jpg"
