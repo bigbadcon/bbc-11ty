@@ -4,13 +4,17 @@ auto_deploy: false
 admin_path: 
 webhook_url: 
 sections:
+- type: document
+  path: src/_data/navigation.json
+  label: Navigation
+  match: "**/*"
 - type: directory
-  path: src/footer
-  label: Footer
+  path: src
+  label: Pages
   create: documents
-  match: "**/*.md"
+  match: "*.md"
   templates:
-  - footer
+  - page
 - type: directory
   path: src/blog
   label: Blog
@@ -33,12 +37,12 @@ sections:
   templates:
   - home-page-cards
 - type: directory
-  path: src
-  label: Pages
+  path: src/footer
+  label: Footer
   create: documents
-  match: "*.md"
+  match: "**/*.md"
   templates:
-  - page
+  - footer
 upload_dir: images
 public_path: "/images"
 front_matter_path: ''
