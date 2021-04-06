@@ -1,12 +1,16 @@
 ---
-title: "2017 Doctors Without Borders Contribution"
+title: 2017 Doctors Without Borders Contribution
 tags: blog
 status: published
-date: "2018-05-30"
-categories: 
-  - "the-making-of"
----
+date: 2018-05-30
+categories:
+- the-making-of
+excerpt: 'Donation Confirmation: Thank you for supporting Doctors Without Borders/Médecins
+  Sans Frontières (MSF). Your generosity gives us the financial independence we need
+  to provide emergency medical care to men, women, and children in more than 60 countries
+  around the world.'
 
+---
 [![](/images/header_email.png)](http://www.doctorswithoutborders.org/)
 
  
