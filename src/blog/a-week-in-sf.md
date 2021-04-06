@@ -1,13 +1,16 @@
 ---
-title: "A Week in SF"
+title: A Week in SF
 tags: blog
 status: published
-date: "2017-05-08"
-categories: 
-  - "the-making-of"
-coverImage: "Sf_twinpeaks_sunset_crop.jpg"
----
+date: 2017-05-08
+categories:
+- the-making-of
+coverImage: Sf_twinpeaks_sunset_crop.jpg
+excerpt: Come hang out in the Bay Area the week before Big Bad Con! We’re organizing
+  activities in San Francisco and East Bay from Tuesday, October 10th through Thursday
+  the 12th.
 
+---
 [![Sf_twinpeaks_sunset](/images/Sf_twinpeaks_sunset.jpg)](http://www.bigbadcon.com/wp-content/uploads/2017/05/Sf_twinpeaks_sunset.jpg)
 
 Come hang out in the Bay Area the week before Big Bad Con! We’re organizing activities in San Francisco and East Bay from Tuesday, October 10th through Thursday the 12th.
