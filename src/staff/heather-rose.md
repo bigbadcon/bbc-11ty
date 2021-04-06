@@ -4,7 +4,7 @@ order: 0
 title: Heather Rose
 position: Games on Demand Ranger Captain
 gender: "(she/her)"
-image: ''
+image: "/images/eupul9yvoaug2nt.jpeg"
 twitter: DandySprat
 website_name: Quilts by Heather Rose
 website_url: https://www.facebook.com/QuiltsByHeatherRose/
