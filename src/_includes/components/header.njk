@@ -35,7 +35,7 @@
               <div @click.away="open = false" class="relative" x-data="{ open: false }">
               {# TODO: add Aria tags #}
                 <button @click="open = !open"
-                  class="flex flex-row items-center w-full text-left rounded cursor-pointer py-2xs px-2xs md:w-auto md:inline md:mt-0 focus:outline-none focus:ring-2 focus:ring-primary-4">
+                  class="flex flex-row items-center w-full text-left rounded cursor-pointer py-2xs md:w-auto md:inline md:mt-0 focus:outline-none focus:ring-2 focus:ring-primary-4">
                   <span class="font-bold md:font-normal">{{ item.title }}</span>
                   {# subnav down angle caret svg #}
                   <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" 
@@ -63,7 +63,7 @@
               </div>
               {% else %}
               {# Primany Link without subpanel #}
-              <a href="{{item.url}}" class="flex flex-row items-center w-full text-left rounded py-2xs px-xs md:w-auto md:inline md:mt-0 md:ml-4 focus:outline-none focus:ring-2 focus:ring-primary-4"><span class="font-bold md:font-normal">{{item.title}}</span></a>
+              <a href="{{item.url}}" class="flex flex-row items-center w-full text-left rounded py-2xs md:w-auto md:inline md:mt-0 md:ml-4 focus:outline-none focus:ring-2 focus:ring-primary-4"><span class="font-bold md:font-normal">{{item.title}}</span></a>
               {% endif %}
 
             {% endfor %}
