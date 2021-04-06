@@ -1,0 +1,9 @@
+---
+title: redirect
+permalink: "/_redirects"
+eleventyExcludeFromCollections: true
+---
+
+{% for post in collections.blogPublished %}
+/{{post.fileSlug}} /blog/{{post.fileSlug}}
+{% endfor %}
