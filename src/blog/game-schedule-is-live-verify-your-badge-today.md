@@ -1,13 +1,15 @@
 ---
-title: "Game schedule is live - Verify your badge today!"
+title: Game schedule is live - Verify your badge today!
 tags: blog
 status: published
-date: "2017-09-09"
-categories: 
-  - "events"
-coverImage: "Red-Portrait-game-reg-opens.jpg"
----
+date: 2017-09-09
+categories:
+- events
+coverImage: Red-Portrait-game-reg-opens.jpg
+excerpt: Big Bad Con games are approaching. Signal's clean. Range, twenty meters.
+  Fifteen meters…
 
+---
 _![Red-Portrait-game-reg-opens](/images/Red-Portrait-game-reg-opens.jpg)_
 
 _Big Bad Con games are approaching. Signal's clean. Range, twenty meters._ 
