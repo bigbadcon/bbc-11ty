@@ -1,13 +1,16 @@
 ---
-title: "Big Bad Con 2017 is on!"
+title: Big Bad Con 2017 is on!
 tags: blog
 status: published
-date: "2017-04-20"
-categories: 
-  - "events"
-coverImage: "bbc2015-247.jpg"
----
+date: 2017-04-20
+categories:
+- events
+coverImage: bbc2015-247.jpg
+excerpt: Hello gamers! Big Bad Con 2017 is on for October 13-15! I don’t know about
+  you but l’m excited to pull my dice, my pencils, and my index cards out for another
+  Big Bad Con!
 
+---
 ![bbc2015-247](/images/bbc2015-247-300x200.jpg)
 
 Hello gamers! Big Bad Con 2017 is on for October 13-15!
