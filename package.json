@@ -36,6 +36,7 @@
     "tailwindcss": "latest"
   },
   "devDependencies": {
+    "@11ty/eleventy-plugin-rss": "^1.1.1",
     "svg-sprite-generator": "^0.0.7"
   }
 }

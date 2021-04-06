@@ -2,6 +2,7 @@
 
 const blogTools = require("eleventy-plugin-blog-tools");
 const format = require('date-fns/format');
+const pluginRss = require("@11ty/eleventy-plugin-rss");
 
 // Function to sort by order frontmatter field then by fileSlug alphabetically
 function sortByOrder(a,b) {
@@ -21,6 +22,8 @@ module.exports = (eleventyConfig) => {
   // });
 
   eleventyConfig.addPlugin(blogTools);
+  eleventyConfig.addPlugin(pluginRss);
+  eleventyConfig.addLiquidFilter("dateToRfc3339", pluginRss.dateRfc3339);
 
    // Staff sorted by order number and then alphabetically
    eleventyConfig.addCollection("blogPublished", function(collectionApi) {
