@@ -5,7 +5,7 @@ order: 0
 title: Karen Twelves
 position: Marketing & Communications
 gender: "(she/her)"
-image: ''
+image: "/images/hxh84kju_400x400.jpg"
 twitter: ktwelves
 website_name: karentwelves.com
 website_url: https://karentwelves.com/
