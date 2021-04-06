@@ -62,6 +62,7 @@ fields:
     required: false
   label: website url
 pages:
+- src/staff/ash-cheshire.md
 - src/staff/aven-mcconnaughey.md
 - src/staff/brian-vo.md
 - src/staff/colin-fahrion.md
