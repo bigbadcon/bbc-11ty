@@ -36,24 +36,4 @@ I want to get an idea from both players and GMs if this change is something you 
 
 \*_Every_ time I see game fill up quickly, I immediately start looking for GMs to run extra sessions of those games. So even if GMs do fill up a game, I'll work on getting another one on the schedule.
 
-Please let me know:
-
-Do you normally GM games at cons?
-
-<table><tbody><tr><td><input class="ss-q-radio" id="group_1285257382_1" role="radio" type="radio" name="entry.1285257382" value="Yes"></td><td>Yes</td><td><input class="ss-q-radio" id="group_1285257382_2" role="radio" type="radio" name="entry.1285257382" value="No"></td><td>No</td></tr></tbody></table>
-
-Are you in favor of GMs paying for badges and getting early sign ups?
-
-<table id="entry_254592758" border="0" cellspacing="0" cellpadding="5"><tbody><tr><td class="ss-scalenumbers"></td><td class="ss-scalenumbers" style="text-align: center;"><label class="ss-scalenumber" for="group_254592758_1">1</label></td><td class="ss-scalenumbers" style="text-align: center;"><label class="ss-scalenumber" for="group_254592758_2">2</label></td><td class="ss-scalenumbers" style="text-align: center;"><label class="ss-scalenumber" for="group_254592758_3">3</label></td><td class="ss-scalenumbers" style="text-align: center;"><label class="ss-scalenumber" for="group_254592758_4">4</label></td><td class="ss-scalenumbers" style="text-align: center;"><label class="ss-scalenumber" for="group_254592758_5">5</label></td><td class="ss-scalenumbers"></td></tr><tr role="radiogroup"><td class="ss-scalerow ss-leftlabel"><div class="aria-todo">This is a terrible idea.</div></td><td class="ss-scalerow"><div class="ss-scalerow-fieldcell"><input class="ss-q-radio" id="group_254592758_1" role="radio" type="radio" name="entry.254592758" value="1"></div></td><td class="ss-scalerow"><div class="ss-scalerow-fieldcell"><input class="ss-q-radio" id="group_254592758_2" role="radio" type="radio" name="entry.254592758" value="2"></div></td><td class="ss-scalerow"><div class="ss-scalerow-fieldcell"><input class="ss-q-radio" id="group_254592758_3" role="radio" type="radio" name="entry.254592758" value="3"></div></td><td class="ss-scalerow"><div class="ss-scalerow-fieldcell"><input class="ss-q-radio" id="group_254592758_4" role="radio" type="radio" name="entry.254592758" value="4"></div></td><td class="ss-scalerow"><div class="ss-scalerow-fieldcell"><input class="ss-q-radio" id="group_254592758_5" role="radio" type="radio" name="entry.254592758" value="5"></div></td><td class="ss-scalerow ss-rightlabel">This is brilliant!</td></tr></tbody></table>
-
-Comments: Please let me know your thoughts on this
-
-Optional: Your Name
-
-(if you'd like me to contact you)
-
-Optional: Your email address
-
-(if you'd like me to contact you)
-
-<table id="navigation-table"><tbody><tr><td class="ss-form-entry goog-inline-block" dir="ltr" id="navigation-buttons"><input id="ss-submit" type="submit" name="submit" value="Submit"></td></tr></tbody></table>
+Please let me know.

@@ -17,12 +17,6 @@ If you'd like to book for 1-day, use the Buy Now button below. For a 3-day pass 
 
 1-day pass - $25
 
- 
-
-<table><tbody><tr><td><input type="hidden" name="on0" value="Date Attending">Date Attending</td></tr><tr><td><select name="os0"><option value="Friday">Friday </option><option value="Saturday">Saturday </option><option value="Sunday">Sunday</option></select></td></tr><tr><td><input type="hidden" name="on1" value="Name">Name</td></tr><tr><td><input type="text" name="os1" maxlength="200"></td></tr></tbody></table>
-
- ![](/images/pixel.gif)
-
-\*All participants of Big Bad Con must be 18 years or older.
+All participants of Big Bad Con must be 18 years or older.
 
 This price is good until 10/1/2012 AND lets you sign up for games in advance online!

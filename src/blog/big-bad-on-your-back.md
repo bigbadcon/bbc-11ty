@@ -16,9 +16,3 @@ Ink Monkey Graphics has produced a work of art...three works of art! And they ca
 ### Want to wear Big Bad
 
 Orders for Big Bad Con T-shirts will be taken until the con itself and shipped out two weeks after the con is finished.
-
- 
-
-<table><tbody><tr><td><input type="hidden" name="on0" value="Size">Size</td></tr><tr><td><select name="os0"><option value="XS">XS $20.00</option> <option value="S">S $20.00</option> <option value="M">M $20.00</option> <option value="LG">LG $20.00</option> <option value="XL">XL $20.00</option> <option value="XXL">XXL $22.00</option> <option value="XXXL">XXXL $24.00</option> <option value="XXXXL">XXXXL $26.00</option></select></td></tr><tr><td><input type="hidden" name="on1" value="Color">Color</td></tr><tr><td><select name="os1"><option value="Black">Black </option><option value="Burgundy">Burgundy </option><option value="Charcoal">Charcoal</option></select></td></tr><tr><td><input type="hidden" name="on2" value="Cut">Cut</td></tr><tr><td><select name="os2"><option value="Men's">Men's </option><option value="Women's">Women's</option></select></td></tr></tbody></table>
-
-  ![](/images/pixel.gif)

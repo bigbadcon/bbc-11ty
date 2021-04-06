@@ -26,8 +26,5 @@ After crunching some numbers, we realized that if GMs bought their badges, the�
 
 ### If you GM, would it be worth it to pay for your badge to get more private rooms?
 
-<table><tbody><tr><td><input id="group_1786203132_1" class="ss-q-radio" name="entry.1786203132" type="radio" value="Yes"></td><td>Yes</td><td><input id="group_1786203132_2" class="ss-q-radio" name="entry.1786203132" type="radio" value="No"></td><td>No</td></tr></tbody></table>
-
 Comments: Please let me know your thoughts on this
 
-<table id="navigation-table"><tbody><tr><td id="navigation-buttons" class="ss-form-entry goog-inline-block" dir="ltr"><input id="ss-submit" name="submit" type="submit" value="Submit"></td></tr></tbody></table>
