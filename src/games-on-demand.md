@@ -4,9 +4,7 @@ title: Run Games On Demand
 description: ''
 
 ---
-Don't have any games scheduled but want to play something? Stop by the Big Bad Games On Demand! Games start every two hours (with a break around 1PM and 6PM).
-
-Check the [listing](/games-on-demand-2019/) of all GMs for this year and the games they are offering, and the [GoD schedule](https://www.bigbadcon.com/events/tags/gamesondemand/).
+Games on Demand is full of wonderful GMs who run a whole host of games, with sing ups starting just before each slot!
 
 ### How It Works
 
