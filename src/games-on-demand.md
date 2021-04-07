@@ -4,7 +4,7 @@ title: Run Games On Demand
 description: ''
 
 ---
-Games on Demand is full of wonderful GMs who run a whole host of games, with sing ups starting just before each slot!
+Games on Demand is our home for a host of wonderful games that you can sign up for just before they start!
 
 ### How It Works
 
