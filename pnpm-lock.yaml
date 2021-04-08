@@ -1,8 +1,8 @@
 dependencies:
   '@11ty/eleventy': 0.12.1
+  '@11ty/eleventy-plugin-rss': 1.1.1_@11ty+eleventy@0.12.1
   '@tailwindcss/aspect-ratio': 0.2.0
   '@tailwindcss/forms': 0.3.2_tailwindcss@2.1.1
-  '@tailwindcss/jit': 0.1.18_postcss@8.2.9+tailwindcss@2.1.1
   '@tailwindcss/typography': 0.4.0_tailwindcss@2.1.1
   autoprefixer: 10.2.5_postcss@8.2.9
   axios: 0.21.1
@@ -10,10 +10,8 @@ dependencies:
   eleventy-plugin-blog-tools: 0.3.1
   postcss: 8.2.9
   postcss-cli: 8.3.1_postcss@8.2.9
-  sass: 1.32.8
   tailwindcss: 2.1.1_0bca15301caac8bc71ea0ad94045571f
 devDependencies:
-  '@11ty/eleventy-plugin-rss': 1.1.1_@11ty+eleventy@0.12.1
   svg-sprite-generator: 0.0.7
 lockfileVersion: 5.2
 packages:
@@ -27,7 +25,7 @@ packages:
       debug: 4.3.1
       posthtml: 0.15.1
       posthtml-urls: 1.0.0
-    dev: true
+    dev: false
     peerDependencies:
       '@11ty/eleventy': '>=0.11.0'
     resolution:
@@ -148,25 +146,6 @@ packages:
       tailwindcss: '>=2.0.0'
     resolution:
       integrity: sha512-aj2/rJsGb2whAZ/BQWHWWQRSbhH0r/l1ozOByiv+ZNjBD84GMvb5dhAyfpeasFky+EJrAwX5eaqft8NQMZFWvA==
-  /@tailwindcss/jit/0.1.18_postcss@8.2.9+tailwindcss@2.1.1:
-    dependencies:
-      chokidar: 3.5.1
-      dlv: 1.1.3
-      fast-glob: 3.2.5
-      lodash.topath: 4.5.2
-      normalize-path: 3.0.0
-      object-hash: 2.1.1
-      parse-glob: 3.0.4
-      postcss: 8.2.9
-      postcss-selector-parser: 6.0.4
-      quick-lru: 5.1.1
-      tailwindcss: 2.1.1_0bca15301caac8bc71ea0ad94045571f
-    dev: false
-    peerDependencies:
-      postcss: ^8.2.6
-      tailwindcss: ^2.0.3
-    resolution:
-      integrity: sha512-WNSEiwbggtO9n6+ok2fFdYmhqY20oqLmB82H23nY8P5WzijZbIshojoY3s/OvPD7cmvzkweZ6LLKGWuDS1/vLA==
   /@tailwindcss/typography/0.4.0_tailwindcss@2.1.1:
     dependencies:
       lodash.castarray: 4.4.0
@@ -270,10 +249,10 @@ packages:
     resolution:
       integrity: sha512-zbB9rCJAT1rbjiVDb2hqKFHNYLxgtk8NURxZ3IZwD3F6NtxbXZQCnnSi1Lkx+IDohdPlFp222wVALIheZJQSEg==
   /any-promise/0.1.0:
-    dev: true
+    dev: false
     resolution:
       integrity: sha1-gwtoCqflbzNFHUsEnzvYBESY7ic=
-  /anymatch/3.1.1:
+  /anymatch/3.1.2:
     dependencies:
       normalize-path: 3.0.0
       picomatch: 2.2.2
@@ -281,7 +260,7 @@ packages:
     engines:
       node: '>= 8'
     resolution:
-      integrity: sha512-mM8522psRCqzV+6LhomX5wgp25YVibjh8Wj23I5RPkPppSVSjyKD2A2mBJmWGa+KN7f2D6LNh9jkBCeyLktzjg==
+      integrity: sha512-P43ePfOAIupkguHUycrc4qJ9kz8ZiuOUijaETwX7THt0Y/GNK7v0aa8rY816xWjZ7rJdA5XdMcpVFTKMq+RvWg==
   /argparse/1.0.10:
     dependencies:
       sprintf-js: 1.0.3
@@ -402,10 +381,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-MasayLEpNjRj41s+u2n038+6eUc=
-  /balanced-match/1.0.0:
+  /balanced-match/1.0.2:
     dev: false
     resolution:
-      integrity: sha1-ibTRmasr7kneFk6gK4nORi1xt2c=
+      integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
   /base64-arraybuffer/0.1.4:
     dev: false
     engines:
@@ -438,7 +417,7 @@ packages:
       integrity: sha1-aN/1++YMUes3cl6p4+0xDcwed24=
   /brace-expansion/1.1.11:
     dependencies:
-      balanced-match: 1.0.0
+      balanced-match: 1.0.2
       concat-map: 0.0.1
     dev: false
     resolution:
@@ -517,7 +496,7 @@ packages:
     dependencies:
       caniuse-lite: 1.0.30001207
       colorette: 1.2.2
-      electron-to-chromium: 1.3.708
+      electron-to-chromium: 1.3.710
       escalade: 3.1.1
       node-releases: 1.1.71
     dev: false
@@ -630,7 +609,7 @@ packages:
       integrity: sha1-dy5wFfLuKZZQltcepBdbdas1SSU=
   /chokidar/3.5.1:
     dependencies:
-      anymatch: 3.1.1
+      anymatch: 3.1.2
       braces: 3.0.2
       glob-parent: 5.1.2
       is-binary-path: 2.1.0
@@ -856,6 +835,7 @@ packages:
   /debug/4.3.1:
     dependencies:
       ms: 2.1.2
+    dev: false
     engines:
       node: '>=6.0'
     peerDependencies:
@@ -961,7 +941,7 @@ packages:
       domelementtype: 2.2.0
       domhandler: 4.1.0
       entities: 2.2.0
-    dev: true
+    dev: false
     resolution:
       integrity: sha512-n6kZFH/KlCrqs/1GHMOd5i2fd/beQHuehKdWvNNffbGHTr/almdhuVvTVFb3V7fglz+nC50fFusu3lY33h12pA==
   /domelementtype/1.3.1:
@@ -969,7 +949,7 @@ packages:
     resolution:
       integrity: sha512-BSKB+TSpMpFI/HOxCNr1O8aMOTZ8hT3pM3GQ0w/mWRmkhEDSFJkkyzz4XQsBV44BChwGkrDfMyjVD0eA2aFV3w==
   /domelementtype/2.2.0:
-    dev: true
+    dev: false
     resolution:
       integrity: sha512-DtBMo82pv1dFtUmHyr48beiuq792Sxohr+8Hm9zoxklYPfa6n0Z3Byjj2IV7bmr2IyqClnqEQhfgHJJ5QF0R5A==
   /domhandler/2.3.0:
@@ -981,7 +961,7 @@ packages:
   /domhandler/3.3.0:
     dependencies:
       domelementtype: 2.2.0
-    dev: true
+    dev: false
     engines:
       node: '>= 4'
     resolution:
@@ -989,7 +969,7 @@ packages:
   /domhandler/4.1.0:
     dependencies:
       domelementtype: 2.2.0
-    dev: true
+    dev: false
     engines:
       node: '>= 4'
     resolution:
@@ -1012,7 +992,7 @@ packages:
       dom-serializer: 1.2.0
       domelementtype: 2.2.0
       domhandler: 4.1.0
-    dev: true
+    dev: false
     resolution:
       integrity: sha512-hO1XwHMGAthA/1KL7c83oip/6UWo3FlUNIuWiWKltoiQ5oCOiqths8KknvY2jpOohUoUgnwa/+Rm7UpwpSbY/Q==
   /easy-extender/2.3.4:
@@ -1052,10 +1032,10 @@ packages:
     requiresBuild: true
     resolution:
       integrity: sha512-7vmuyh5+kuUyJKePhQfRQBhXV5Ce+RnaeeQArKu1EAMpL3WbgMt5WG6uQZpEVvYSSsxMXRKOewtDk9RaTKXRlA==
-  /electron-to-chromium/1.3.708:
+  /electron-to-chromium/1.3.710:
     dev: false
     resolution:
-      integrity: sha512-+A8ggYZ5riOLMcVAuzHx6bforaPzaiLnW1QOMD2SlMYQVi7QQTyQ/WrlZoebIH9ikmgr+tLJGpNITFFCUiQcPw==
+      integrity: sha512-b3r0E2o4yc7mNmBeJviejF1rEx49PUBi+2NPa7jHEX3arkAXnVgLhR0YmV8oi6/Qf3HH2a8xzQmCjHNH0IpXWQ==
   /eleventy-plugin-blog-tools/0.3.1:
     dev: false
     resolution:
@@ -1126,7 +1106,7 @@ packages:
     resolution:
       integrity: sha512-MyoZ0jgnLvB2X3Lg5HqpFmn1kybDiIfEQmKzTb5apr51Rb+T3KdmMiqa70T+bhGnyv7bQ6WMj2QMHpGMmlrUYQ==
   /entities/2.2.0:
-    dev: true
+    dev: false
     resolution:
       integrity: sha512-p92if5Nz619I0w+akJrLZH0MX0Pb5DX39XOwQTtXSdQQOaYH03S1uIQp4mhOZtAXrxq4ViO67YTiLBo2638o9A==
   /errno/0.1.8:
@@ -1502,11 +1482,11 @@ packages:
       domhandler: 3.3.0
       domutils: 2.5.1
       entities: 2.2.0
-    dev: true
+    dev: false
     resolution:
       integrity: sha512-vKZZra6CSe9qsJzh0BjBGXo8dvzNsq/oGvsjfRdOrrryfeD9UOBEEQdeoqCRmKZchF5h2zOBMQ6YuQ0uRUmdbQ==
   /http-equiv-refresh/1.0.0:
-    dev: true
+    dev: false
     engines:
       node: '>= 0.10'
     resolution:
@@ -1899,7 +1879,7 @@ packages:
     resolution:
       integrity: sha512-m1xSB10Ncu22NR3X0xdaqu/GvP1xadDCFYGqGgd6me8DAWjyA68BKE5DHJmSxw1CGsWPsX+Hj2v/87J2w/LvMQ==
   /list-to-array/1.1.0:
-    dev: true
+    dev: false
     resolution:
       integrity: sha1-yn3/ZAYGQzysdcvoRGrNhksVv28=
   /localtunnel/2.0.1:
@@ -2110,6 +2090,7 @@ packages:
     resolution:
       integrity: sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g=
   /ms/2.1.2:
+    dev: false
     resolution:
       integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
   /ms/2.1.3:
@@ -2313,7 +2294,7 @@ packages:
     resolution:
       integrity: sha1-3T+iXtbC78e93hKtm0bBY6opIk4=
   /parse-srcset/1.0.2:
-    dev: true
+    dev: false
     resolution:
       integrity: sha1-8r0iH2zJcKk42IVWq8WJyqqiveE=
   /parseqs/0.0.6:
@@ -2531,13 +2512,13 @@ packages:
   /posthtml-parser/0.6.0:
     dependencies:
       htmlparser2: 5.0.1
-    dev: true
+    dev: false
     engines:
       node: '>=10.0.0'
     resolution:
       integrity: sha512-5ffwKQNgtVHdhZniWxu+1ryvaZv5l25HPLUV6W5xy5nYVWMXtvjtwRnbSpfbKFvbyl7XI+d4AqkjmonkREqnXA==
   /posthtml-render/1.3.1:
-    dev: true
+    dev: false
     engines:
       node: '>=10'
     resolution:
@@ -2548,7 +2529,7 @@ packages:
       list-to-array: 1.1.0
       parse-srcset: 1.0.2
       promise-each: 2.2.0
-    dev: true
+    dev: false
     engines:
       node: '>= 4'
     resolution:
@@ -2557,7 +2538,7 @@ packages:
     dependencies:
       posthtml-parser: 0.6.0
       posthtml-render: 1.3.1
-    dev: true
+    dev: false
     engines:
       node: '>=10.0.0'
     resolution:
@@ -2590,7 +2571,7 @@ packages:
   /promise-each/2.2.0:
     dependencies:
       any-promise: 0.1.0
-    dev: true
+    dev: false
     resolution:
       integrity: sha1-M1MXTv8mlEgQN+BOAfd6oPttG2A=
   /promise/7.3.1:
@@ -2868,15 +2849,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
-  /sass/1.32.8:
-    dependencies:
-      chokidar: 3.5.1
-    dev: false
-    engines:
-      node: '>=8.9.0'
-    hasBin: true
-    resolution:
-      integrity: sha512-Sl6mIeGpzjIUZqvKnKETfMf0iDAswD9TNlv13A7aAF3XZlRPMq4VvJWBC2N2DXbp94MQVdNSFG6LfF/iOXrPHQ==
   /section-matter/1.0.0:
     dependencies:
       extend-shallow: 2.0.1
@@ -3382,16 +3354,16 @@ packages:
       node: '>=0.4'
     resolution:
       integrity: sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==
-  /y18n/4.0.1:
+  /y18n/4.0.3:
     dev: false
     resolution:
-      integrity: sha512-wNcy4NvjMYL8gogWWYAO7ZFWFfHcbdbE57tZO8e4cbpj8tfUcwrwqSl3ad8HxpYWCdXcJUCeKKZS62Av1affwQ==
-  /y18n/5.0.6:
+      integrity: sha512-JKhqTOwSrqNA1NY5lSztJ1GrBiUodLMmIZuLiDaMRJ+itFd+ABVE8XBjOvIWL+rSqNDC74LCSFmlb/U4UZ4hJQ==
+  /y18n/5.0.8:
     dev: false
     engines:
       node: '>=10'
     resolution:
-      integrity: sha512-PlVX4Y0lDTN6E2V4ES2tEdyvXkeKzxa8c/vo0pxPr/TqbztddTP0yn7zZylIyiAuxerqj0Q5GhpJ1YJCP8LaZQ==
+      integrity: sha512-0pfFzegeDWJHJIAmTLRP2DwHjdF5s7jo9tuztdQxAhINCdvS+3nGINqPd00AphqJR/0LhANUS6/+7SCb98YOfA==
   /yallist/2.1.2:
     dev: false
     resolution:
@@ -3432,7 +3404,7 @@ packages:
       set-blocking: 2.0.0
       string-width: 4.2.2
       which-module: 2.0.0
-      y18n: 4.0.1
+      y18n: 4.0.3
       yargs-parser: 18.1.3
     dev: false
     engines:
@@ -3446,7 +3418,7 @@ packages:
       get-caller-file: 2.0.5
       require-directory: 2.1.1
       string-width: 4.2.2
-      y18n: 5.0.6
+      y18n: 5.0.8
       yargs-parser: 20.2.7
     dev: false
     engines:
@@ -3462,7 +3434,6 @@ specifiers:
   '@11ty/eleventy-plugin-rss': ^1.1.1
   '@tailwindcss/aspect-ratio': ^0.2.0
   '@tailwindcss/forms': ^0.3.2
-  '@tailwindcss/jit': latest
   '@tailwindcss/typography': ^0.4.0
   autoprefixer: latest
   axios: ^0.21.1
@@ -3470,6 +3441,5 @@ specifiers:
   eleventy-plugin-blog-tools: ^0.3.1
   postcss: latest
   postcss-cli: latest
-  sass: latest
   svg-sprite-generator: ^0.0.7
   tailwindcss: latest

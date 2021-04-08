@@ -3,15 +3,15 @@
 {% block header %}
 {% include 'components/header.njk' %}
 <section class="bg-primary">
-    <div class="grid md:grid-cols-3 max-w-hero mx-auto px-base">
+    <div class="grid mx-auto md:grid-cols-3 max-w-hero px-base">
         <div class="md:pt-lg">
             <div class="prose">
                 {{ content | safe }}
             </div>
         </div>
-        <div class="md:col-span-2 row-start-1 md:row-start-auto relative">
+        <div class="relative row-start-1 md:col-span-2 md:row-start-auto">
             {% include 'components/forest.njk' %}
-            <div class="absolute bottom-2 right-2 w-1/2">{% include 'components/red.njk' %}</div>
+            <div class="absolute w-1/2 bottom-2 right-2">{% include 'components/red.njk' %}</div>
         </div>
     </div>
 </section>
@@ -20,11 +20,11 @@
 {% block content %}
 
 <main id="content">
-    <div class="max-w-hero mx-auto px-base py-base">
-        <ul class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+    <div class="mx-auto max-w-hero px-base py-base">
+        <ul class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
             {% for card in collections.cards123ABC %}
-                <li class="bg-card rounded px-base py-sm shadow-md">
-                    <h2 class="text-header font-serif text-3xl">{{ card.data.title }}</h2>
+                <li class="rounded shadow-md bg-card px-base py-sm">
+                    <h2 class="font-serif text-3xl text-header">{{ card.data.title }}</h2>
                     <div class="prose">{{ card.templateContent | safe }}</div>
                 </li>
             {% endfor %}

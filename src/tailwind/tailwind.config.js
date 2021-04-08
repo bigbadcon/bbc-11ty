@@ -28,6 +28,7 @@ const colors = {
 }
 
 module.exports = {
+  mode: 'jit',
   purge: {
     content: [
       "./dist/**/*.html",

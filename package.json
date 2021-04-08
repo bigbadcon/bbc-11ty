@@ -14,7 +14,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "eleventy",
-    "dev": "NODE_ENV=development eleventy --watch --serve",
+    "dev": "NODE_ENV=development eleventy --serve",
     "develop": "eleventy --serve",
     "now-build": "npm run build",
     "debug": "DEBUG=* eleventy",
@@ -22,9 +22,9 @@
   },
   "dependencies": {
     "@11ty/eleventy": "latest",
+    "@11ty/eleventy-plugin-rss": "^1.1.1",
     "@tailwindcss/aspect-ratio": "^0.2.0",
     "@tailwindcss/forms": "^0.3.2",
-    "@tailwindcss/jit": "latest",
     "@tailwindcss/typography": "^0.4.0",
     "autoprefixer": "latest",
     "axios": "^0.21.1",
@@ -32,9 +32,7 @@
     "eleventy-plugin-blog-tools": "^0.3.1",
     "postcss": "latest",
     "postcss-cli": "latest",
-    "sass": "latest",
-    "tailwindcss": "latest",
-    "@11ty/eleventy-plugin-rss": "^1.1.1"
+    "tailwindcss": "latest"
   },
   "devDependencies": {
     "svg-sprite-generator": "^0.0.7"
