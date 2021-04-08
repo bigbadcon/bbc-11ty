@@ -42,7 +42,6 @@ sections:
 - type: document
   path: package.json
   label: Scripts
-  match: "**/*"
 upload_dir: images
 public_path: "/images"
 front_matter_path: ''
