@@ -13,11 +13,11 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx eleventy",
-    "dev": "NODE_ENV=development npx eleventy --watch --serve",
-    "develop": "npx eleventy --watch --serve",
+    "build": "eleventy",
+    "dev": "NODE_ENV=development eleventy --watch --serve",
+    "develop": "eleventy --watch --serve",
     "now-build": "npm run build",
-    "debug": "DEBUG=* npx eleventy",
+    "debug": "DEBUG=* eleventy",
     "svgs": "npx svg-sprite-generate -d src/assets/svgs -o src/static/images/icons.svg"
   },
   "dependencies": {
