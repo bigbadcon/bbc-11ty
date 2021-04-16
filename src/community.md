@@ -20,7 +20,7 @@ At Big Bad Con, we foster a community that welcomes marginalized genders, queer 
 
 ## **Kindness**
 
-* **We welcome folks to the table. _We pull up a chair. We invite others into our conversations and catch them up._**
+* **We welcome folks to the table.** _We pull up a chair. We invite others into our conversations and catch them up._
 * **We practice compassion.** _We’re mindful of our effect on others. We honor boundaries and use them to inform our choices._
 * **We’re good to ourselves.** _We watch out to get enough sleep, food, and water. We take breaks when we need them._
 
