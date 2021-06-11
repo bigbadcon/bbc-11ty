@@ -1,5 +1,5 @@
 const scale = {
-  xxs: '0.236rem',
+  '2xs': '0.236rem',
   xs: '0.382rem',
   sm: '0.618rem',
   base: '1rem',
@@ -25,6 +25,8 @@ const colors = {
   'menu-icon': 'var(--menu-icon)',
   'main-gradient-top': 'var(--main-gradient-top)',
   'main-gradient-bottom': 'var(--main-gradient-bottom)',
+  form: 'var(--bg-form)',
+  hr: 'var(--hr)',
 }
 
 module.exports = {
@@ -43,9 +45,7 @@ module.exports = {
   theme: {
     darkMode: 'class',
     extend: {
-      margin: scale,
-      padding: scale,
-      space: scale,
+      spacing: scale,
       colors: colors,
       fontSize: {
         '2xs': '0.6rem'
@@ -90,7 +90,13 @@ module.exports = {
             },
             'ul > li::before': {
                 backgroundColor: 'var(--secondary)'
-            }
+            },
+            hr: {
+              borderColor: 'var(--hr)',
+              borderTopWidth: '4px',
+              marginTop: '1rem',
+              marginBottom: '1.618rem',
+            },
           }
         }
       },

@@ -1,0 +1,626 @@
+[{
+    "id": 193,
+    "name": "All Ages",
+    "slug": "all-ages",
+    "type": "event-categories"
+}, {
+    "id": 10,
+    "name": "Board/Card Game",
+    "slug": "board-game",
+    "type": "event-categories"
+}, {
+    "id": 198,
+    "name": "Demo",
+    "slug": "demo",
+    "type": "event-categories"
+}, {
+    "id": 9,
+    "name": "LARP",
+    "slug": "larp",
+    "type": "event-categories"
+}, {
+    "id": 202,
+    "name": "Media",
+    "slug": "media",
+    "type": "event-categories"
+}, {
+    "id": 154,
+    "name": "Panel",
+    "slug": "panel",
+    "type": "event-categories"
+}, {
+    "id": 157,
+    "name": "Playtest",
+    "slug": "playtest",
+    "type": "event-categories"
+}, {
+    "id": 8,
+    "name": "RPG",
+    "slug": "rpg",
+    "type": "event-categories"
+}, {
+    "id": 11,
+    "name": "Seminar",
+    "slug": "seminar",
+    "type": "event-categories"
+}, {
+    "id": 194,
+    "name": "Teens",
+    "slug": "teens",
+    "type": "event-categories"
+}, {
+    "id": 201,
+    "name": "Vending",
+    "slug": "vending",
+    "type": "event-categories"
+}, {
+    "id": 200,
+    "name": "Volunteer Shift",
+    "slug": "volunteer-shift",
+    "type": "event-categories"
+}, {
+    "id": 12,
+    "name": "Workshop",
+    "slug": "workshop",
+    "type": "event-categories"
+}, {
+    "id": 180,
+    "name": "a warm hug from a loved one",
+    "slug": "a-warm-hug-from-a-loved-one",
+    "type": "event-tags"
+}, {
+    "id": 168,
+    "name": "Adult",
+    "slug": "adult",
+    "type": "event-tags"
+}, {
+    "id": 87,
+    "name": "Adult themes",
+    "slug": "adult-themes",
+    "type": "event-tags"
+}, {
+    "id": 55,
+    "name": "Adventure",
+    "slug": "adventure",
+    "type": "event-tags"
+}, {
+    "id": 171,
+    "name": "Aliens",
+    "slug": "aliens",
+    "type": "event-tags"
+}, {
+    "id": 85,
+    "name": "All ages",
+    "slug": "all-ages",
+    "type": "event-tags"
+}, {
+    "id": 73,
+    "name": "Alternate History",
+    "slug": "alternate-history",
+    "type": "event-tags"
+}, {
+    "id": 176,
+    "name": "anime",
+    "slug": "anime",
+    "type": "event-tags"
+}, {
+    "id": 97,
+    "name": "Apocalypse-Powered",
+    "slug": "apocalypse-powered",
+    "type": "event-tags"
+}, {
+    "id": 76,
+    "name": "Apocalyptic",
+    "slug": "apocalyptic",
+    "type": "event-tags"
+}, {
+    "id": 105,
+    "name": "Archer",
+    "slug": "archer",
+    "type": "event-tags"
+}, {
+    "id": 186,
+    "name": "Australia",
+    "slug": "australia",
+    "type": "event-tags"
+}, {
+    "id": 110,
+    "name": "bang!",
+    "slug": "bang",
+    "type": "event-tags"
+}, {
+    "id": 169,
+    "name": "Beginners",
+    "slug": "beginners",
+    "type": "event-tags"
+}, {
+    "id": 184,
+    "name": "Bilby",
+    "slug": "bilby",
+    "type": "event-tags"
+}, {
+    "id": 124,
+    "name": "burning wheel",
+    "slug": "burning-wheel",
+    "type": "event-tags"
+}, {
+    "id": 118,
+    "name": "Character Investment",
+    "slug": "character-investment",
+    "type": "event-tags"
+}, {
+    "id": 127,
+    "name": "classic adventure",
+    "slug": "classic-adventure",
+    "type": "event-tags"
+}, {
+    "id": 66,
+    "name": "Collaborative",
+    "slug": "collaborative",
+    "type": "event-tags"
+}, {
+    "id": 101,
+    "name": "Collaborative Everything",
+    "slug": "collaborative-everything",
+    "type": "event-tags"
+}, {
+    "id": 109,
+    "name": "Collaborative Storytelling",
+    "slug": "collaborative-storytelling",
+    "type": "event-tags"
+}, {
+    "id": 62,
+    "name": "Combat",
+    "slug": "combat",
+    "type": "event-tags"
+}, {
+    "id": 80,
+    "name": "Comical",
+    "slug": "comical",
+    "type": "event-tags"
+}, {
+    "id": 93,
+    "name": "Conspiracy",
+    "slug": "conspiracy",
+    "type": "event-tags"
+}, {
+    "id": 175,
+    "name": "Cute",
+    "slug": "cute",
+    "type": "event-tags"
+}, {
+    "id": 156,
+    "name": "Cyberpunk",
+    "slug": "cyberpunk",
+    "type": "event-tags"
+}, {
+    "id": 82,
+    "name": "Dark",
+    "slug": "dark",
+    "type": "event-tags"
+}, {
+    "id": 199,
+    "name": "Demo",
+    "slug": "demo",
+    "type": "event-tags"
+}, {
+    "id": 185,
+    "name": "Desert",
+    "slug": "desert",
+    "type": "event-tags"
+}, {
+    "id": 59,
+    "name": "Drama",
+    "slug": "drama",
+    "type": "event-tags"
+}, {
+    "id": 129,
+    "name": "Dungeon Crawl",
+    "slug": "dungeon-crawl",
+    "type": "event-tags"
+}, {
+    "id": 123,
+    "name": "dwarves",
+    "slug": "dwarves",
+    "type": "event-tags"
+}, {
+    "id": 122,
+    "name": "elves",
+    "slug": "elves",
+    "type": "event-tags"
+}, {
+    "id": 83,
+    "name": "Emotional",
+    "slug": "emotional",
+    "type": "event-tags"
+}, {
+    "id": 117,
+    "name": "Emotional Complexity",
+    "slug": "emotional-complexity",
+    "type": "event-tags"
+}, {
+    "id": 77,
+    "name": "Espionage",
+    "slug": "espionage",
+    "type": "event-tags"
+}, {
+    "id": 56,
+    "name": "Exploration",
+    "slug": "exploration",
+    "type": "event-tags"
+}, {
+    "id": 103,
+    "name": "Explosions",
+    "slug": "explosions",
+    "type": "event-tags"
+}, {
+    "id": 71,
+    "name": "Fantasy",
+    "slug": "fantasy",
+    "type": "event-tags"
+}, {
+    "id": 188,
+    "name": "Freeform",
+    "slug": "freeform",
+    "type": "event-tags"
+}, {
+    "id": 132,
+    "name": "Games On Demand",
+    "slug": "gamesondemand",
+    "type": "event-tags"
+}, {
+    "id": 67,
+    "name": "GM-less",
+    "slug": "gm-less",
+    "type": "event-tags"
+}, {
+    "id": 160,
+    "name": "GMing Advice",
+    "slug": "gming-advice",
+    "type": "event-tags"
+}, {
+    "id": 189,
+    "name": "Golden Cobras",
+    "slug": "golden-cobras",
+    "type": "event-tags"
+}, {
+    "id": 91,
+    "name": "Gore",
+    "slug": "gore",
+    "type": "event-tags"
+}, {
+    "id": 90,
+    "name": "Graphic Violence",
+    "slug": "graphic-violence",
+    "type": "event-tags"
+}, {
+    "id": 115,
+    "name": "Gritty",
+    "slug": "gritty",
+    "type": "event-tags"
+}, {
+    "id": 178,
+    "name": "heart-wearming",
+    "slug": "heart-wearming",
+    "type": "event-tags"
+}, {
+    "id": 61,
+    "name": "Hijinx",
+    "slug": "hijinx",
+    "type": "event-tags"
+}, {
+    "id": 165,
+    "name": "historical",
+    "slug": "historical",
+    "type": "event-tags"
+}, {
+    "id": 69,
+    "name": "Horror",
+    "slug": "horror",
+    "type": "event-tags"
+}, {
+    "id": 191,
+    "name": "Improv",
+    "slug": "improv",
+    "type": "event-tags"
+}, {
+    "id": 116,
+    "name": "Intense",
+    "slug": "intense",
+    "type": "event-tags"
+}, {
+    "id": 58,
+    "name": "Intrigue",
+    "slug": "intrigue",
+    "type": "event-tags"
+}, {
+    "id": 57,
+    "name": "Investigation",
+    "slug": "investigation",
+    "type": "event-tags"
+}, {
+    "id": 114,
+    "name": "It's the apocalypse - with ponies",
+    "slug": "its-the-apocalypse-with-ponies",
+    "type": "event-tags"
+}, {
+    "id": 112,
+    "name": "kaplowie!",
+    "slug": "kaplowie",
+    "type": "event-tags"
+}, {
+    "id": 177,
+    "name": "kawaii",
+    "slug": "kawaii",
+    "type": "event-tags"
+}, {
+    "id": 106,
+    "name": "Lana",
+    "slug": "lana",
+    "type": "event-tags"
+}, {
+    "id": 181,
+    "name": "LGBTQ themes",
+    "slug": "lgbtq-themes",
+    "type": "event-tags"
+}, {
+    "id": 81,
+    "name": "Light",
+    "slug": "light",
+    "type": "event-tags"
+}, {
+    "id": 159,
+    "name": "Literature",
+    "slug": "literature",
+    "type": "event-tags"
+}, {
+    "id": 133,
+    "name": "Melancholy",
+    "slug": "melancholy",
+    "type": "event-tags"
+}, {
+    "id": 78,
+    "name": "Military",
+    "slug": "military",
+    "type": "event-tags"
+}, {
+    "id": 72,
+    "name": "Modern",
+    "slug": "modern",
+    "type": "event-tags"
+}, {
+    "id": 125,
+    "name": "mouse guard",
+    "slug": "mouse-guard",
+    "type": "event-tags"
+}, {
+    "id": 96,
+    "name": "Move Engine",
+    "slug": "move-engine",
+    "type": "event-tags"
+}, {
+    "id": 95,
+    "name": "Music Subculture",
+    "slug": "music-subculture",
+    "type": "event-tags"
+}, {
+    "id": 102,
+    "name": "Mutant",
+    "slug": "mutant",
+    "type": "event-tags"
+}, {
+    "id": 167,
+    "name": "Mystery",
+    "slug": "mystery",
+    "type": "event-tags"
+}, {
+    "id": 99,
+    "name": "Narrative",
+    "slug": "narrative",
+    "type": "event-tags"
+}, {
+    "id": 170,
+    "name": "New Players",
+    "slug": "new-players",
+    "type": "event-tags"
+}, {
+    "id": 119,
+    "name": "Nihilistic",
+    "slug": "nihilistic",
+    "type": "event-tags"
+}, {
+    "id": 75,
+    "name": "Noir",
+    "slug": "noir",
+    "type": "event-tags"
+}, {
+    "id": 179,
+    "name": "nonviolent",
+    "slug": "nonviolent",
+    "type": "event-tags"
+}, {
+    "id": 126,
+    "name": "old school",
+    "slug": "old-school",
+    "type": "event-tags"
+}, {
+    "id": 172,
+    "name": "Open",
+    "slug": "open",
+    "type": "event-tags"
+}, {
+    "id": 195,
+    "name": "Parsely",
+    "slug": "parsely",
+    "type": "event-tags"
+}, {
+    "id": 166,
+    "name": "Pathfinder",
+    "slug": "pathfinder",
+    "type": "event-tags"
+}, {
+    "id": 190,
+    "name": "PbtA",
+    "slug": "pbta",
+    "type": "event-tags"
+}, {
+    "id": 86,
+    "name": "PG-13",
+    "slug": "pg-13",
+    "type": "event-tags"
+}, {
+    "id": 64,
+    "name": "Play to find out",
+    "slug": "play-to-find-out",
+    "type": "event-tags"
+}, {
+    "id": 161,
+    "name": "Player Advice",
+    "slug": "player-advice",
+    "type": "event-tags"
+}, {
+    "id": 65,
+    "name": "Player antagonism",
+    "slug": "player-antagonism",
+    "type": "event-tags"
+}, {
+    "id": 92,
+    "name": "Potentially triggering*",
+    "slug": "potentially-triggering",
+    "type": "event-tags"
+}, {
+    "id": 104,
+    "name": "Powers",
+    "slug": "powers",
+    "type": "event-tags"
+}, {
+    "id": 88,
+    "name": "Provocative",
+    "slug": "provocative",
+    "type": "event-tags"
+}, {
+    "id": 74,
+    "name": "Pulp",
+    "slug": "pulp",
+    "type": "event-tags"
+}, {
+    "id": 173,
+    "name": "Quick to learn",
+    "slug": "quick-to-learn",
+    "type": "event-tags"
+}, {
+    "id": 100,
+    "name": "Quirky",
+    "slug": "quirky",
+    "type": "event-tags"
+}, {
+    "id": 183,
+    "name": "Rabbit",
+    "slug": "rabbit",
+    "type": "event-tags"
+}, {
+    "id": 60,
+    "name": "Romance",
+    "slug": "romance",
+    "type": "event-tags"
+}, {
+    "id": 68,
+    "name": "Rotating authority",
+    "slug": "rotating-authority",
+    "type": "event-tags"
+}, {
+    "id": 163,
+    "name": "Safety Tools",
+    "slug": "safety-tools",
+    "type": "event-tags"
+}, {
+    "id": 70,
+    "name": "Sci-Fi",
+    "slug": "sci-fi",
+    "type": "event-tags"
+}, {
+    "id": 108,
+    "name": "Secret Agent",
+    "slug": "secret-agent",
+    "type": "event-tags"
+}, {
+    "id": 79,
+    "name": "Serious",
+    "slug": "serious",
+    "type": "event-tags"
+}, {
+    "id": 89,
+    "name": "Sex and Sexuality",
+    "slug": "sex-and-sexuality",
+    "type": "event-tags"
+}, {
+    "id": 187,
+    "name": "Silly",
+    "slug": "silly",
+    "type": "event-tags"
+}, {
+    "id": 174,
+    "name": "slapstick",
+    "slug": "slapstick",
+    "type": "event-tags"
+}, {
+    "id": 162,
+    "name": "Social Contracts",
+    "slug": "social-contracts",
+    "type": "event-tags"
+}, {
+    "id": 158,
+    "name": "Social Justice",
+    "slug": "social-justice",
+    "type": "event-tags"
+}, {
+    "id": 120,
+    "name": "Super Powers",
+    "slug": "super-powers",
+    "type": "event-tags"
+}, {
+    "id": 113,
+    "name": "steampunk",
+    "slug": "steampunk",
+    "type": "event-tags"
+}, {
+    "id": 63,
+    "name": "Strong storyline",
+    "slug": "strong-storyline",
+    "type": "event-tags"
+}, {
+    "id": 120,
+    "name": "Super Powers",
+    "slug": "super-powers",
+    "type": "event-tags"
+}, {
+    "id": 84,
+    "name": "Suspenseful",
+    "slug": "suspenseful",
+    "type": "event-tags"
+}, {
+    "id": 155,
+    "name": "tragic horror",
+    "slug": "tragic-horror",
+    "type": "event-tags"
+}, {
+    "id": 131,
+    "name": "Vikings",
+    "slug": "vikings",
+    "type": "event-tags"
+}, {
+    "id": 94,
+    "name": "WWII",
+    "slug": "wwii",
+    "type": "event-tags"
+}, {
+    "id": 98,
+    "name": "X-Men",
+    "slug": "x-men",
+    "type": "event-tags"
+}, {
+    "id": 111,
+    "name": "zoom!",
+    "slug": "zoom",
+    "type": "event-tags"
+}]

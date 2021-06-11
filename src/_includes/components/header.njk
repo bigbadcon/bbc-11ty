@@ -6,7 +6,7 @@
         <div x-data="{ open: false }"
           class="flex flex-col md:items-center md:justify-between md:flex-row ">
           <div class="flex flex-row items-center justify-between py-base space-x-base md:space-x-lg">
-          {# Branding Logo Area with event date #}
+            {# Branding Logo Area with event date #}
             <div class="grid grid-cols-1 w-36 sm:w-42 lg:w-56">
               <a href="/" class="block md:mt-sm">{% include 'components/logo.njk' %}</a>
               <div class="font-serif text-base text-center text-highlight sm:text-md lg:text-2xl">{{site.eventDate}}</div>
@@ -31,24 +31,25 @@
             class="flex-col flex-grow hidden pb-4 md:pb-0 md:flex md:justify-end md:flex-row md:space-x-sm xl:space-x-base space-y-xs md:space-y-0" aria-labelledby="mobile-menu">
             {# Nav for loop using navigation.json #}
             {% for item in navigation %}
-            {% if item.subnav %}
-            {# Primary Button with subnav #}
-              <div @click.away="open = false" @keydown.window.escape="open = false" class="relative" x-data="{ open: false }">
-              {# TODO: add Aria tags #}
-                <button @click="open = !open"
+              {% if item.subnav %}
+                {# Primary Button with subnav #}
+                <div @click.away="open = false" @keydown.window.escape="open = false" class="relative" x-data="{ open: false }">
+                  {# TODO: add Aria tags #}
+                  <button @click="open = !open"
                   class="flex flex-row items-center w-full text-left rounded cursor-pointer py-2xs md:w-auto md:inline md:mt-0 focus:outline-none focus:ring-2 focus:ring-primary-4"
                   aria-haspopup="true"
                   :aria-expanded="open"
                   id="{{ item.id }}">
-                  <span class="font-bold md:font-normal">{{ item.title }}</span>
-                  {# subnav down angle caret svg #}
-                  <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" 
+                    <span class="font-bold md:font-normal">{{ item.title }}</span>
+                    {# subnav down angle caret svg #}
+                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" 
                     :class="{'rotate-180': open, 'rotate-0': !open}"
                     class="w-4 h-4 mt-1 transition-transform duration-200 transform ml-xs lg:ml-0 md:hidden text-primary-4 lg:inline md:mt-[-0.1rem]">
-                  <path fill="var(--menu-icon)" d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"></path></svg>
-                </button>
-                {# Sub Nav Panel #}
-                <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                      <path fill="var(--menu-icon)" d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"></path>
+                    </svg>
+                  </button>
+                  {# Sub Nav Panel #}
+                  <div x-cloak x-show="open" x-transition:enter="transition ease-out duration-100"
                   x-transition:enter-start="transform opacity-0 scale-95"
                   x-transition:enter-end="transform opacity-100 scale-100"
                   x-transition:leave="transition ease-in duration-75"
@@ -56,19 +57,22 @@
                   x-transition:leave-end="transform opacity-0 scale-95"
                   class="right-0 z-20 mt-2 origin-top-right md:w-56 md:absolute" 
                   aria-labelledby="{{ item.id }}">
-                  <div class="md:px-base md:py-base md:bg-main-gradient-top ring-2 ring-primary md:rounded-md md:shadow-lg mb-xs">
-                    <div class="grid grid-cols-1 gap-1 md:gap-2">
-                    {% for link in item.subnav %}
-                      {# <a href="{{link.url}}" class="block">{{link.title}}</a> #}
-                      {% iconLink link.url, link.title, link.icon %}
-                    {% endfor %}
+                    <div class="md:px-base md:py-base md:bg-main-gradient-top ring-2 ring-primary md:rounded-md md:shadow-lg mb-xs">
+                      <div class="grid grid-cols-1 gap-1 md:gap-2">
+                        {% for link in item.subnav %}
+                          {# <a href="{{link.url}}" class="block">{{link.title}}</a> #}
+                          {% iconLink link.url,
+                          link.title,
+                          link.icon %}
+                        {% endfor %}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
               {% else %}
-              {# Primany Link without subpanel #}
-              <a href="{{item.url}}" class="flex flex-row items-center w-full text-left rounded py-2xs md:w-auto md:inline md:mt-0 md:ml-4 focus:outline-none focus:ring-2 focus:ring-primary-4"><span class="font-bold md:font-normal">{{item.title}}</span></a>
+                {# Primany Link without subpanel #}
+                <a href="{{item.url}}" class="flex flex-row items-center w-full text-left rounded py-2xs md:w-auto md:inline md:mt-0 md:ml-4 focus:outline-none focus:ring-2 focus:ring-primary-4">
+                  <span class="font-bold md:font-normal">{{item.title}}</span></a>
               {% endif %}
 
             {% endfor %}

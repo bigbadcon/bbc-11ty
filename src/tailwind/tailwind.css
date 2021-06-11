@@ -28,6 +28,8 @@
   --tree-2: #aca57e;
   --main-gradient-top: #AFCFDD;
   --main-gradient-bottom: #E4EFF2;
+  --bg-form: #fcf8f3;
+  --hr: #6E897C;
   --fill-highlight: url(#highlight-gradient) var(--highlight);
 }
 
@@ -54,6 +56,8 @@
     --tree-2: #4F536C;
     --main-gradient-top: #274555;
     --main-gradient-bottom: #1E1C3F;
+    --bg-form: #2f2d31;
+    --hr: #6C89A6;
   }
 }
 .dark {
@@ -77,6 +81,8 @@
   --tree-2: #4F536C;
   --main-gradient-top: #274555;
   --main-gradient-bottom: #1E1C3F;
+  --bg-form: #2f2d31;
+  --hr: #6C89A6;
 }
 
 :root {
@@ -85,12 +91,59 @@
   --sans: 'Open Sans', 'Hevetica', 'sans-serif';
   --serif: 'Rokkitt', 'serif';
 
-  /* :root font size */
-  font-size: clamp(calc(1 * 1rem), calc(calc(1 * 1rem) + (1.25 - 1) * ((100vw - calc(48 * 1rem)) / (120 - 48))), calc(1.25 * 1rem));
+  /* Fluid font size from Utopia */
+  font-size: clamp(1rem, 0.9rem + 0.49vw, 1.25rem);
   /* Safari Resize fix */
-  min-height: 0vw;
+  min-height: 1vw;
 }
 
+/* -------------------------------------------------------------------------- */
+/*                                    Forms                                   */
+/* -------------------------------------------------------------------------- */
+
+input[type="text"], input[type="password"] {
+  @apply px-4 py-2 border rounded-md bg-form border-body mb-sm text-body focus:ring-highlight focus:border-highlight;
+}
+
+label {
+  @apply block font-bold text-body mb-2xs;
+}
+
+select {
+  @apply rounded mb-base bg-form text-body border-body focus:ring-highlight focus:border-highlight;
+}
+
+button[type="submit"] {
+  @apply font-bold uppercase transition-colors duration-200 rounded shadow text-form bg-highlight hover:bg-highlight-2 py-xs px-base;
+}
+
+textarea {
+  @apply w-full px-4 py-2 border rounded-md border-body bg-form mb-sm text-body focus:ring-highlight focus:border-highlight;
+}
+
+fieldset {
+  @apply border-t-4 border-solid border-hr pt-base my-md;
+}
+
+legend {
+  @apply font-serif text-3xl font-bold pr-base text-header;
+}
+
+input[type="checkbox"] {
+  @apply rounded mr-xs;
+}
+
+input[type="checkbox"] ~ label {
+  @apply inline-block font-normal m-0;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                  Alpine JS                                 */
+/* -------------------------------------------------------------------------- */
+
+x-cloak {
+  display: none !important;
+}
 /* -------------------------------------------------------------------------- */
 /*                                Other Styles                                */
 /* -------------------------------------------------------------------------- */
