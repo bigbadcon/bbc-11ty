@@ -70,9 +70,10 @@
                     <header class="prose">
                         <h2>Submit Your Event</h2>
                     </header>
-
+                    {# TODO: Get Submit working. Make sure to zero out everything on submit #}
                     <form action="post" class="mt-base" x-data="runAnEventData()">
-                        <input id="email" name="email" type="hidden" value=""/>
+                        <input id="email" name="email" type="hidden" :value="$store.auth.user.email" x-init="event.email = $store.auth.user.email"/>
+                        {# TODO: do we need to add a bunk date to it? #}
                         {# Personal Info #}
                         <fieldset>
                             <legend>Personal Info</legend>
@@ -119,315 +120,328 @@
                             </div>
                             <div>
                                 <label for="eventName">Event Name</label>
-                                <input id="eventName" name="eventName" type="text" value=""/>
+                                <input id="eventName" name="eventName" type="text" value="" x-model="event.eventName"/>
                             </div>
                             <div>
                                 <label for="system">System</label>
-                                <input id="system" name="system" type="text" value=""/>
+                                <input id="system" name="system" type="text" value="" x-model="system"/>
                             </div>
                             <div x-show="isGame()">
                                 <label for="playtest">Is this a playtest?</label>
-                                <select id="playtest" name="playtest">
-                                    <option disabled selected>
+                                <select id="playtest" name="playtest" x-model="event.system"/>
+                                <option disabled selected>
                                         -- Choose One --
                                     </option>
-                                    <option>No</option>
-                                    <option>Yes</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="eventDescription">Description</label>
-                                <textarea cols="30" id="eventDescription" name="eventDescription" rows="3" x-model="event.eventDescription"></textarea>
-                            </div>
-                            <div>
-                                <label for="otherInfo">Other info we should know (this will not go in the program)</label>
-                                <textarea cols="30" id="otherInfo" name="otherInfo" rows="3"></textarea>
-                            </div>
-                            <div>
-                                {# TODO: get image upload working #}
-                                <label for="imageUpload">Image Upload</label>
-                                <input id="imageUpload" name="imageUpload" type="text" value=""/>
-                            </div>
-                        </fieldset>
-                        {# Scheduling Info #}
-                        <fieldset x-show="event.format && event.eventDescription">
-                            <legend>Scheduling Info</legend>
-                            <div>
-                                <label for="runMultiple">Run this event</label>
-                                <select id="runMultiple" name="runMultiple">
-                                    <option disabled selected>
+                                <option>No</option>
+                                <option>Yes</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="eventDescription">Description</label>
+                            <textarea cols="30" id="eventDescription" name="eventDescription" rows="3" x-model="event.eventDescription"></textarea>
+                        </div>
+                        <div>
+                            <label for="otherInfo">Other info we should know (this will not go in the program)</label>
+                            <textarea cols="30" id="otherInfo" name="otherInfo" rows="3" x-model="event.otherInfo"></textarea>
+                        </div>
+                        <div>
+                            {# TODO: get image upload working #}
+                            <label for="imageUpload">Image Upload</label>
+                            <input id="imageUpload" name="imageUpload" type="text" value="" x-model="event.imageUpload"/>
+                        </div>
+                    </fieldset>
+                    {# Scheduling Info #}
+                    <fieldset x-show="event.format && event.eventDescription">
+                        <legend>Scheduling Info</legend>
+                        <div>
+                            <label for="runMultiple">Run this event</label>
+                            <select id="runMultiple" name="runMultiple" x-model="event.runMultiple">
+                                <option disabled selected>
                                         -- Choose One --
                                     </option>
-                                    <option>Once</option>
-                                    <option>Twice</option>
-                                    <option>I want to run this 3 times! Whoa!</option>
-                                </select>
-                            </div>
-                            <div x-show="event.format === 'Board/Card Game'">
-                                <label for="tableRequested">Board game table size requested</label>
-                                <select id="tableRequested" name="tableRequested">
-                                    <option disabled selected>
+                                <option>Once</option>
+                                <option>Twice</option>
+                                <option>I want to run this 3 times! Whoa!</option>
+                            </select>
+                        </div>
+                        <div x-show="event.format === 'Board/Card Game'">
+                            <label for="tableRequested">Board game table size requested</label>
+                            <select id="tableRequested" name="tableRequested" x-model="event.tableRequested">
+                                <option disabled selected>
                                         -- Choose One --
                                     </option>
-                                    <option>Long</option>
-                                    <option>Round</option>
-                                    <option>Other</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="privateRoom">Request private room</label>
-                                <select id="privateRoom" name="privateRoom">
-                                    <option disabled selected>
+                                <option>Long</option>
+                                <option>Round</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="privateRoom">Request private room</label>
+                            <select id="privateRoom" name="privateRoom" x-model="event.privateRoom">
+                                <option disabled selected>
                                         -- Choose One --
                                     </option>
-                                    <option>No</option>
-                                    <option>Yes</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="mediaEquipment">Request media room</label>
-                                <select id="mediaRoom" name="mediaRoom">
-                                    <option disabled selected>
+                                <option>No</option>
+                                <option>Yes</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="mediaEquipment">Request media room</label>
+                            <select id="mediaRoom" name="mediaRoom" x-model="event.mediaRoom">
+                                <option disabled selected>
                                         -- Choose One --
                                     </option>
-                                    <option>No</option>
-                                    <option>If Available</option>
-                                    <option>Yes</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="mediaEquipment">Media equipment</label>
-                                <select id="mediaEquipment" name="mediaEquipment" x-model="event.mediaEquipment">
-                                    <option :disabled="event.mediaEquipment" selected>
+                                <option>No</option>
+                                <option>If Available</option>
+                                <option>Yes</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="mediaEquipment">Media equipment</label>
+                            <select id="mediaEquipment" name="mediaEquipment" x-model="event.mediaEquipment">
+                                <option :disabled="event.mediaEquipment" selected>
                                         -- Choose One --
                                     </option>
-                                    <option>I have my own</option>
-                                    <option>Equipment requested</option>
-                                </select>
-                            </div>
-                            <div x-show="event.mediaEquipment === 'Equipment requested'">
-                                <label for="mediaEquipmentRequested">Media equipment requested</label>
-                                <input id="mediaEquipmentRequested" name="mediaEquipmentRequested" type="text" value=""/>
-                            </div>
-                            <div>
-                                <label for="length">Length</label>
-                                <select id="length" name="length" x-model="event.length">
-                                    <option :disabled="event.length" selected>
+                                <option>I have my own</option>
+                                <option>Equipment requested</option>
+                            </select>
+                        </div>
+                        <div x-show="event.mediaEquipment === 'Equipment requested'">
+                            <label for="mediaEquipmentRequested">Media equipment requested</label>
+                            <input id="mediaEquipmentRequested" name="mediaEquipmentRequested" type="text" value="" x-model="event.mediaEquipmentRequested"/>
+                        </div>
+                        <div>
+                            <label for="length">Length</label>
+                            <select id="length" name="length" x-model="event.length">
+                                <option :disabled="event.length" selected>
                                         -- Choose One --
                                     </option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>4</option>
-                                    <option>6</option>
-                                    <option>8</option>
-                                </select>
-                            </div>
-                            <div x-show="event.length && event.length !== '0'">
-                                <label for="length">Schedule Preferences</label>
-                                <template x-for="(time, i) in scheduleTimes[event.length]">
-                                    <div class="flex items-center">
-                                        <input type="checkbox" name="schedulePref" :id="'time' + i" value="time">
-                                        <label :for="'time' + i" x-text="time"></label>
-                                    </div>
-                                </template>
-                            </div>
-                        </fieldset>
-                        {# Player Info #}
-                        <fieldset x-show="event.length !== '0'">
-                            <legend>Player/Attendee Info</legend>
-                            <div x-show="event.yourAge === '18+'">
-                                <label for="playerAge">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>4</option>
+                                <option>6</option>
+                                <option>8</option>
+                            </select>
+                        </div>
+                        {# TODO: get checkbox collection working #}
+                        <div x-show="event.length && event.length !== '0'">
+                            <label for="length">Schedule Preferences</label>
+                            <template x-for="(time, i) in scheduleTimes[event.length]">
+                                <div class="flex items-center">
+                                    <input type="checkbox" name="schedulePref" :id="'time' + i" value="time">
+                                    <label :for="'time' + i" x-text="time"></label>
+                                </div>
+                            </template>
+                        </div>
+                    </fieldset>
+                    {# Player Info #}
+                    <fieldset x-show="event.length !== '0'">
+                        <legend>Player/Attendee Info</legend>
+                        <div x-show="event.yourAge === '18+'">
+                            <label for="playerAge">
                                     Player/Attendee Age
                                 </label>
-                                <select id="playerAge" name="playerAge" x-model="event.playerAge">
-                                    <option :disabled="event.playerAge" selected>
+                            <select id="playerAge" name="playerAge" x-model="event.playerAge">
+                                <option :disabled="event.playerAge" selected>
                                         -- Choose One --
                                     </option>
-                                    <option>13+</option>
-                                    <option>18+</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="minPlayers">Minimum players/attendees</label>
-                                <input id="minPlayers" name="minPlayers" type="text" value=""/>
-                            </div>
-                            <div>
-                                <label for="maxPlayers">Maximum players/attendees</label>
-                                <input id="maxPlayers" name="maxPlayers" type="text" value=""/>
-                            </div>
-                            <div x-show="event.format === formatId('RPG') || event.format === formatId('LARP')">
-                                <label for="characters">
+                                <option>13+</option>
+                                <option>18+</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="minPlayers">Minimum players/attendees</label>
+                            <input id="minPlayers" name="minPlayers" type="text" value="" x-model="event.minPlayers"/>
+                        </div>
+                        <div>
+                            <label for="maxPlayers">Maximum players/attendees</label>
+                            <input id="maxPlayers" name="maxPlayers" type="text" value="" x-model="event.maxPlayers"/>
+                        </div>
+                        <div x-show="event.format === formatId('RPG') || event.format === formatId('LARP')">
+                            <label for="characters">
                                     Characters
                                 </label>
-                                <select id="characters" name="characters" x-model="event.characters">
-                                    <option :disabled="event.characters" selected>
+                            <select id="characters" name="characters" x-model="event.characters">
+                                <option :disabled="event.characters" selected>
                                         -- Choose One --
                                     </option>
-                                    <option>Provided</option>
-                                    <option>Created at the table</option>
-                                </select>
-                            </div>
-                        </fieldset>
-                        {# Content Advisory & Safety Tools #}
-                        <fieldset x-show="isGame() && event.length !== '0' && event.playerAge">
-                            <legend>Content Advisory &amp; Safety Tools</legend>
-                            <div x-show="event.playerAge === '13+'" class="prose mb-base">
-                                <p class="font-bold">Event designed for players/attendees aged 13+</p>
-                            </div>
-                            <div x-show="event.playerAge === '18+'">
-                                <label for="contentAdvisory">
+                                <option>Provided</option>
+                                <option>Created at the table</option>
+                            </select>
+                        </div>
+                    </fieldset>
+                    {# Content Advisory & Safety Tools #}
+                    <fieldset x-show="isGame() && event.length !== '0' && event.playerAge">
+                        <legend>Content Advisory &amp; Safety Tools</legend>
+                        <div x-show="event.playerAge === '13+'" class="prose mb-base">
+                            <p class="font-bold">Event designed for players/attendees aged 13+</p>
+                        </div>
+                        <div x-show="event.playerAge === '18+'">
+                            <label for="contentAdvisory">
                                     Content Advisory
                                 </label>
-                                <select id="contentAdvisory" name="contentAdvisory" x-model="event.contentAdvisory">
-                                    <option :disabled="event.contentAdvisory" selected>
+                            <select id="contentAdvisory" name="contentAdvisory" x-model="event.contentAdvisory">
+                                <option :disabled="event.contentAdvisory" selected>
                                         -- Choose One --
                                     </option>
-                                    <template x-for="type in contentAdvisory">
-                                        <option :value="type.id" x-text="type.name"></option>
-                                    </template>
-                                </select>
-                            </div>
-                            <div x-show="event.playerAge === '18+'">
-                                <label for="triggerWarnings">Potential trigger warnings</label>
-                                <input id="triggerWarnings" name="triggerWarnings" type="text" value=""/>
-                            </div>
-                            <div>
-                                <label for="safetyTools">
+                                <template x-for="type in contentAdvisory">
+                                    <option :value="type.id" x-text="type.name"></option>
+                                </template>
+                            </select>
+                        </div>
+                        <div x-show="event.playerAge === '18+'">
+                            <label for="triggerWarnings">Potential trigger warnings</label>
+                            <input id="triggerWarnings" name="triggerWarnings" type="text" value="" x-model="event.triggerWarnings"/>
+                        </div>
+                        <div>
+                            <label for="safetyTools">
                                     Safety Tools
                                 </label>
-                                <select id="safetyTools" name="safetyTools" x-model="event.safetyTools">
-                                    <option :disabled="event.safetyTools" selected>
+                            <select id="safetyTools" name="safetyTools" x-model="event.safetyTools">
+                                <option :disabled="event.safetyTools" selected>
                                         -- Choose One --
                                     </option>
-                                    <template x-for="type in safetyTools">
-                                        <option :value="type" x-text="type"></option>
-                                    </template>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="otherSafety">Other Safety Warnings</label>
-                                <input id="otherSafety" name="otherSafety" type="text" value=""/>
-                            </div>
-                        </fieldset>
-                        {# Additional Info #}
-                        <fieldset x-show="isGame() && event.length !== '0' && event.playerAge">
-                            <legend>Additional Info</legend>
-                            <div x-show="event.format === formatId('Panel')">
-                                <label for="panelTopic">Schedule Preferences</label>
-                                <template x-for="(type, i) in panelTopic">
+                                <template x-for="type in safetyTools">
+                                    <option :value="type" x-text="type"></option>
+                                </template>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="otherSafety">Other Safety Warnings</label>
+                            <input id="otherSafety" name="otherSafety" type="text" value="" x-model="event.otherSafety"/>
+                        </div>
+                    </fieldset>
+                    {# Additional Info #}
+                    <fieldset x-show="isGame() && event.length !== '0' && event.playerAge">
+                        <legend>Additional Info</legend>
+                        <div x-show="event.format === formatId('Panel')">
+                            <label for="panelTopic">Schedule Preferences</label>
+                            <template x-for="(type, i) in panelTopic">
+                                <div class="flex items-center">
+                                    <input type="checkbox" name="panelTopic" :id="'panelTopic' + i" :value="type.id">
+                                    <label :for="'panelTopic' + i" x-text="type.name"></label>
+                                </div>
+                            </template>
+                        </div>
+                        <div x-show="isGame()">
+                            <label for="gameFocus">Game Focus</label>
+                            <div class="mb-base">
+                                <template x-for="(type, i) in gameFocus">
                                     <div class="flex items-center">
-                                        <input type="checkbox" name="panelTopic" :id="'panelTopic' + i" :value="type.id">
-                                        <label :for="'panelTopic' + i" x-text="type.name"></label>
+                                        <input type="checkbox" name="gameFocus" :id="'gameFocus' + i" :value="type.id">
+                                        <label :for="'gameFocus' + i" x-text="type.name"></label>
                                     </div>
                                 </template>
                             </div>
-                            <div x-show="isGame()">
-                                <label for="gameFocus">Game Focus</label>
-                                <div class="mb-base">
-                                    <template x-for="(type, i) in gameFocus">
-                                        <div class="flex items-center">
-                                            <input type="checkbox" name="gameFocus" :id="'gameFocus' + i" :value="type.id">
-                                            <label :for="'gameFocus' + i" x-text="type.name"></label>
-                                        </div>
-                                    </template>
-                                </div>
+                        </div>
+                        <div x-show="isGame()">
+                            <label for="playerContributions">Player Contributions</label>
+                            <div class="mb-base">
+                                <template x-for="(type, i) in playerContributions">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" name="playerContributions" :id="'playerContributions' + i" :value="type.id">
+                                        <label :for="'playerContributions' + i" x-text="type.name"></label>
+                                    </div>
+                                </template>
                             </div>
-                            <div x-show="isGame()">
-                                <label for="playerContributions">Player Contributions</label>
-                                <div class="mb-base">
-                                    <template x-for="(type, i) in playerContributions">
-                                        <div class="flex items-center">
-                                            <input type="checkbox" name="playerContributions" :id="'playerContributions' + i" :value="type.id">
-                                            <label :for="'playerContributions' + i" x-text="type.name"></label>
-                                        </div>
-                                    </template>
-                                </div>
+                        </div>
+                        <div x-show="isGame()">
+                            <label for="gameGenre">Player Contributions</label>
+                            <div class="mb-base">
+                                <template x-for="(type, i) in gameGenre">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" name="gameGenre" :id="'gameGenre' + i" :value="type.id">
+                                        <label :for="'gameGenre' + i" x-text="type.name"></label>
+                                    </div>
+                                </template>
                             </div>
-                            <div x-show="isGame()">
-                                <label for="gameGenre">Player Contributions</label>
-                                <div class="mb-base">
-                                    <template x-for="(type, i) in gameGenre">
-                                        <div class="flex items-center">
-                                            <input type="checkbox" name="gameGenre" :id="'gameGenre' + i" :value="type.id">
-                                            <label :for="'gameGenre' + i" x-text="type.name"></label>
-                                        </div>
-                                    </template>
-                                </div>
+                        </div>
+                        <div x-show="isGame()">
+                            <label for="gameMood">Player Contributions</label>
+                            <div class="mb-base">
+                                <template x-for="(type, i) in gameMood">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" name="gameMood" :id="'gameMood' + i" :value="type.id">
+                                        <label :for="'gameMood' + i" x-text="type.name"></label>
+                                    </div>
+                                </template>
                             </div>
-                            <div x-show="isGame()">
-                                <label for="gameMood">Player Contributions</label>
-                                <div class="mb-base">
-                                    <template x-for="(type, i) in gameMood">
-                                        <div class="flex items-center">
-                                            <input type="checkbox" name="gameMood" :id="'gameMood' + i" :value="type.id">
-                                            <label :for="'gameMood' + i" x-text="type.name"></label>
-                                        </div>
-                                    </template>
-                                </div>
-                            </div>
-                            <div x-show="isGame()">
-                                <label for="otherDescriptors">Other Descriptors</label>
-                                <input id="otherDescriptors" name="otherDescriptors" type="text" value=""/>
-                            </div>
-                            <div>
-                                <label for="additionalGMs">List any additional GMs/facilitators</label>
-                                <textarea cols="30" id="additionalGMs" name="additionalGMs" rows="3"></textarea>
-                            </div>
-                            <div>
-                                <label for="additionalRequirements">List any additional requirements</label>
-                                <textarea cols="30" id="additionalRequirements" name="additionalRequirements" rows="3"></textarea>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
-                {# END Submit Form #}
-            </section>
-        </div>
-    </main>
+                        </div>
+                        <div x-show="isGame()">
+                            <label for="otherDescriptors">Other Descriptors</label>
+                            <input id="otherDescriptors" name="otherDescriptors" type="text" value="" x-model="event.otherDescriptors"/>
+                        </div>
+                        <div>
+                            <label for="additionalGMs">List any additional GMs/facilitators</label>
+                            <textarea cols="30" id="additionalGMs" name="additionalGMs" rows="3" x-model="event.additionalGMs"></textarea>
+                        </div>
+                        <div>
+                            <label for="additionalRequirements">List any additional requirements</label>
+                            <textarea cols="30" id="additionalRequirements" name="additionalRequirements" rows="3" x-model="event.additionalRequirements"></textarea>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            {# END Submit Form #}
+        </section>
+    </div>
+</main>
 {% endblock %}
 
 {% block pagebottom %}
 
-    <style>
-        .flipper {
-            width: 20rem;
-            height: 20rem;
-            perspective: 600px;
-            margin: 0 auto;
-        }
-        .flip-content {
-            width: 100%;
-            height: 100%;
-            transition: transform 0.4s;
-            transform-style: preserve-3d;
-        }
-        .flip-back,
-        .flip-front {
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            color: #fff;
-        }
-        .flip-back {
-            transform: rotateY(180deg);
-        }
-        .flipper-flipped .flip-content {
-            transform: rotateY(180deg);
-            transition: transform 0.3s;
-        }
-    </style>
+<style>
+    .flipper {
+        width: 20rem;
+        height: 20rem;
+        perspective: 600px;
+        margin: 0 auto;
+    }
+    .flip-content {
+        width: 100%;
+        height: 100%;
+        transition: transform 0.4s;
+        transform-style: preserve-3d;
+    }
+    .flip-back,
+    .flip-front {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        color: #fff;
+    }
+    .flip-back {
+        transform: rotateY(180deg);
+    }
+    .flipper-flipped .flip-content {
+        transform: rotateY(180deg);
+        transition: transform 0.3s;
+    }
+</style>
 
-    <script type="text/javascript">
+<script type="text/javascript">
 
-        function runAnEventData() {
-            return {
-                event: {
-                    length: '0'
-                },
-                times1hr: [
-                    "Caterday morning (between 9AM-1PM)",
+    function runAnEventData() {
+        return {
+            event: {
+                length: '0'
+            },
+            times1hr: [
+                "Caterday morning (between 9AM-1PM)",
+                "Friday afternoon (between 2PM-6PM)",
+                "Friday night (between 8PM-Midnight)",
+                "Saturday morning (between 9AM-1PM)",
+                "Saturday afternoon (between 2PM-6PM)",
+                "Saturday night (between 8PM-Midnight)",
+                "Sunday morning (between 9AM-1PM)",
+                "Sunday afternoon (between 2PM-6PM)"
+            ],
+            scheduleTimes: {
+                "0": [],
+                "1": [
+                    "Friday morning (between 9AM-1PM)",
                     "Friday afternoon (between 2PM-6PM)",
                     "Friday night (between 8PM-Midnight)",
                     "Saturday morning (between 9AM-1PM)",
@@ -436,394 +450,382 @@
                     "Sunday morning (between 9AM-1PM)",
                     "Sunday afternoon (between 2PM-6PM)"
                 ],
-                scheduleTimes: {
-                    "0": [],
-                    "1": [
-                        "Friday morning (between 9AM-1PM)",
-                        "Friday afternoon (between 2PM-6PM)",
-                        "Friday night (between 8PM-Midnight)",
-                        "Saturday morning (between 9AM-1PM)",
-                        "Saturday afternoon (between 2PM-6PM)",
-                        "Saturday night (between 8PM-Midnight)",
-                        "Sunday morning (between 9AM-1PM)",
-                        "Sunday afternoon (between 2PM-6PM)"
-                    ],
-                    "2": [
-                        "Friday 9AM-11AM",
-                        "Friday 11AM-1PM",
-                        "Friday 2PM-4PM",
-                        "Friday 4PM-6PM",
-                        "Friday 8PM-10PM",
-                        "Friday 10PM-Midnight",
-                        "Saturday 9AM-11AM",
-                        "Saturday 11AM-1PM",
-                        "Saturday 2PM-4PM",
-                        "Saturday 4PM-6PM",
-                        "Saturday 8PM-10PM",
-                        "Saturday 8PM-Midnight",
-                        "Sunday 9AM-11AM",
-                        "Sunday 11AM-1PM",
-                        "Sunday 2PM-4PM",
-                        "Sunday 4PM-6PM"
-                    ],
-                    "4": [
-                        "Friday 9AM-1PM",
-                        "Friday 2PM-6PM",
-                        "Friday 8PM-Midnight",
-                        "Saturday 9AM-1PM",
-                        "Saturday 2PM-6PM",
-                        "Saturday 8PM-Midnight",
-                        "Sunday 9AM-1PM",
-                        "Sunday 2PM-6PM"
-                    ],
-                    "6": [
-                        "Friday 10AM-4PM",
-                        "Friday 6PM-Midnight",
-                        "Saturday 10AM-4PM",
-                        "Saturday 6PM-Midnight",
-                        "Sunday 9AM-3PM",
-                        "Sunday 2PM-8PM"
-                    ],
-                    "8": ["Friday 10AM-6PM", "Friday 2PM-10PM", "Saturday 10AM-6PM", "Saturday 2PM-10PM", "Sunday 10AM-6PM"]
-                },
-                findName(array, name) {
-                    return array.find(e => e.name === name)
-                },
-                formatId(name) {
-                    return this
-                        .format
-                        .find(e => e.name === name)
-                        .id
-                        .toString()
-                },
-                isGame() {
-                    return this.event.format === "8" || this.event.format === "9" || this.event.format === "10"
-                },
-                format: [
-                    {
-                        "id": 10,
-                        "name": "Board/Card Game",
-                        "slug": "board-game",
-                        "type": "event-categories"
-                    }, {
-                        "id": 9,
-                        "name": "LARP",
-                        "slug": "larp",
-                        "type": "event-categories"
-                    }, {
-                        "id": 202,
-                        "name": "Media",
-                        "slug": "media",
-                        "type": "event-categories"
-                    }, {
-                        "id": 154,
-                        "name": "Panel",
-                        "slug": "panel",
-                        "type": "event-categories"
-                    }, {
-                        "id": 8,
-                        "name": "RPG",
-                        "slug": "rpg",
-                        "type": "event-categories"
-                    }, {
-                        "id": 11,
-                        "name": "Seminar",
-                        "slug": "seminar",
-                        "type": "event-categories"
-                    }
+                "2": [
+                    "Friday 9AM-11AM",
+                    "Friday 11AM-1PM",
+                    "Friday 2PM-4PM",
+                    "Friday 4PM-6PM",
+                    "Friday 8PM-10PM",
+                    "Friday 10PM-Midnight",
+                    "Saturday 9AM-11AM",
+                    "Saturday 11AM-1PM",
+                    "Saturday 2PM-4PM",
+                    "Saturday 4PM-6PM",
+                    "Saturday 8PM-10PM",
+                    "Saturday 8PM-Midnight",
+                    "Sunday 9AM-11AM",
+                    "Sunday 11AM-1PM",
+                    "Sunday 2PM-4PM",
+                    "Sunday 4PM-6PM"
                 ],
-                panelTopic: [
-                    {
-                        "id": 160,
-                        "name": "GMing Advice",
-                        "slug": "gming-advice",
-                        "type": "event-tags"
-                    }, {
-                        "id": 159,
-                        "name": "Literature",
-                        "slug": "literature",
-                        "type": "event-tags"
-                    }, {
-                        "id": 161,
-                        "name": "Player Advice",
-                        "slug": "player-advice",
-                        "type": "event-tags"
-                    }, {
-                        "id": 163,
-                        "name": "Safety Tools",
-                        "slug": "safety-tools",
-                        "type": "event-tags"
-                    }, {
-                        "id": 162,
-                        "name": "Social Contracts",
-                        "slug": "social-contracts",
-                        "type": "event-tags"
-                    }, {
-                        "id": 158,
-                        "name": "Social Justice",
-                        "slug": "social-justice",
-                        "type": "event-tags"
-                    }
+                "4": [
+                    "Friday 9AM-1PM",
+                    "Friday 2PM-6PM",
+                    "Friday 8PM-Midnight",
+                    "Saturday 9AM-1PM",
+                    "Saturday 2PM-6PM",
+                    "Saturday 8PM-Midnight",
+                    "Sunday 9AM-1PM",
+                    "Sunday 2PM-6PM"
                 ],
-                gameFocus: [
-                    {
-                        "id": 55,
-                        "name": "Adventure",
-                        "slug": "adventure",
-                        "type": "event-tags"
-                    }, {
-                        "id": 62,
-                        "name": "Combat",
-                        "slug": "combat",
-                        "type": "event-tags"
-                    }, {
-                        "id": 59,
-                        "name": "Drama",
-                        "slug": "drama",
-                        "type": "event-tags"
-                    }, {
-                        "id": 56,
-                        "name": "Exploration",
-                        "slug": "exploration",
-                        "type": "event-tags"
-                    }, {
-                        "id": 61,
-                        "name": "Hijinx",
-                        "slug": "hijinx",
-                        "type": "event-tags"
-                    }, {
-                        "id": 191,
-                        "name": "Improv",
-                        "slug": "improv",
-                        "type": "event-tags"
-                    }, {
-                        "id": 58,
-                        "name": "Intrigue",
-                        "slug": "intrigue",
-                        "type": "event-tags"
-                    }, {
-                        "id": 57,
-                        "name": "Investigation",
-                        "slug": "investigation",
-                        "type": "event-tags"
-                    }, {
-                        "id": 181,
-                        "name": "LGBTQ themes",
-                        "slug": "lgbtq-themes",
-                        "type": "event-tags"
-                    }, {
-                        "id": 167,
-                        "name": "Mystery",
-                        "slug": "mystery",
-                        "type": "event-tags"
-                    }, {
-                        "id": 60,
-                        "name": "Romance",
-                        "slug": "romance",
-                        "type": "event-tags"
-                    }
+                "6": [
+                    "Friday 10AM-4PM",
+                    "Friday 6PM-Midnight",
+                    "Saturday 10AM-4PM",
+                    "Saturday 6PM-Midnight",
+                    "Sunday 9AM-3PM",
+                    "Sunday 2PM-8PM"
                 ],
-                playerContributions: [
-                    {
-                        "id": 66,
-                        "name": "Collaborative",
-                        "slug": "collaborative",
-                        "type": "event-tags"
-                    }, {
-                        "id": 188,
-                        "name": "Freeform",
-                        "slug": "freeform",
-                        "type": "event-tags"
-                    }, {
-                        "id": 67,
-                        "name": "GM-less",
-                        "slug": "gm-less",
-                        "type": "event-tags"
-                    }, {
-                        "id": 64,
-                        "name": "Play to find out",
-                        "slug": "play-to-find-out",
-                        "type": "event-tags"
-                    }, {
-                        "id": 65,
-                        "name": "Player antagonism",
-                        "slug": "player-antagonism",
-                        "type": "event-tags"
-                    }, {
-                        "id": 68,
-                        "name": "Rotating authority",
-                        "slug": "rotating-authority",
-                        "type": "event-tags"
-                    }, {
-                        "id": 63,
-                        "name": "Strong storyline",
-                        "slug": "strong-storyline",
-                        "type": "event-tags"
-                    }
-                ],
-                gameGenre: [
-                    {
-                        "id": 171,
-                        "name": "Aliens",
-                        "slug": "aliens",
-                        "type": "event-tags"
-                    }, {
-                        "id": 73,
-                        "name": "Alternate History",
-                        "slug": "alternate-history",
-                        "type": "event-tags"
-                    }, {
-                        "id": 76,
-                        "name": "Apocalyptic",
-                        "slug": "apocalyptic",
-                        "type": "event-tags"
-                    }, {
-                        "id": 156,
-                        "name": "Cyberpunk",
-                        "slug": "cyberpunk",
-                        "type": "event-tags"
-                    }, {
-                        "id": 77,
-                        "name": "Espionage",
-                        "slug": "espionage",
-                        "type": "event-tags"
-                    }, {
-                        "id": 71,
-                        "name": "Fantasy",
-                        "slug": "fantasy",
-                        "type": "event-tags"
-                    }, {
-                        "id": 69,
-                        "name": "Horror",
-                        "slug": "horror",
-                        "type": "event-tags"
-                    }, {
-                        "id": 78,
-                        "name": "Military",
-                        "slug": "military",
-                        "type": "event-tags"
-                    }, {
-                        "id": 72,
-                        "name": "Modern",
-                        "slug": "modern",
-                        "type": "event-tags"
-                    }, {
-                        "id": 167,
-                        "name": "Mystery",
-                        "slug": "mystery",
-                        "type": "event-tags"
-                    }, {
-                        "id": 75,
-                        "name": "Noir",
-                        "slug": "noir",
-                        "type": "event-tags"
-                    }, {
-                        "id": 74,
-                        "name": "Pulp",
-                        "slug": "pulp",
-                        "type": "event-tags"
-                    }, {
-                        "id": 70,
-                        "name": "Sci-Fi",
-                        "slug": "sci-fi",
-                        "type": "event-tags"
-                    }, {
-                        "id": 120,
-                        "name": "Super Powers",
-                        "slug": "super-powers",
-                        "type": "event-tags"
-                    }, {
-                        "id": 120,
-                        "name": "Super Powers",
-                        "slug": "super-powers",
-                        "type": "event-tags"
-                    }
-                ],
-                gameMood: [
-                    {
-                        "id": 80,
-                        "name": "Comical",
-                        "slug": "comical",
-                        "type": "event-tags"
-                    }, {
-                        "id": 175,
-                        "name": "Cute",
-                        "slug": "cute",
-                        "type": "event-tags"
-                    }, {
-                        "id": 82,
-                        "name": "Dark",
-                        "slug": "dark",
-                        "type": "event-tags"
-                    }, {
-                        "id": 83,
-                        "name": "Emotional",
-                        "slug": "emotional",
-                        "type": "event-tags"
-                    }, {
-                        "id": 81,
-                        "name": "Light",
-                        "slug": "light",
-                        "type": "event-tags"
-                    }, {
-                        "id": 133,
-                        "name": "Melancholy",
-                        "slug": "melancholy",
-                        "type": "event-tags"
-                    }, {
-                        "id": 79,
-                        "name": "Serious",
-                        "slug": "serious",
-                        "type": "event-tags"
-                    }, {
-                        "id": 187,
-                        "name": "Silly",
-                        "slug": "silly",
-                        "type": "event-tags"
-                    }, {
-                        "id": 84,
-                        "name": "Suspenseful",
-                        "slug": "suspenseful",
-                        "type": "event-tags"
-                    }
-                ],
-                contentAdvisory: [
-                    {
-                        "id": 1000000,
-                        "name": "No Content Advisory"
-                    }, {
-                        "id": 91,
-                        "name": "Gore",
-                        "slug": "gore",
-                        "type": "event-tags"
-                    }, {
-                        "id": 90,
-                        "name": "Graphic Violence",
-                        "slug": "graphic-violence",
-                        "type": "event-tags"
-                    }, {
-                        "id": 88,
-                        "name": "Provocative",
-                        "slug": "provocative",
-                        "type": "event-tags"
-                    }, {
-                        "id": 89,
-                        "name": "Sex and Sexuality",
-                        "slug": "sex-and-sexuality",
-                        "type": "event-tags"
-                    }
-                ],
-                safetyTools: [
-                    'X-card',
-                    'Lines/Veils',
-                    'Cut/Brake',
-                    'Open Door Policy',
-                    'Script Change',
-                    'Other'
-                ]
+                "8": ["Friday 10AM-6PM", "Friday 2PM-10PM", "Saturday 10AM-6PM", "Saturday 2PM-10PM", "Sunday 10AM-6PM"]
+            },
+            findName(array, name) {
+                return array.find(e => e.name === name)
+            },
+            formatId(name) {
+                return this
+                    .format
+                    .find(e => e.name === name)
+                    .id
+                    .toString()
+            },
+            isGame() {
+                return this.event.format === "8" || this.event.format === "9" || this.event.format === "10"
+            },
+            format: [
+                {
+                    "id": 10,
+                    "name": "Board/Card Game",
+                    "slug": "board-game",
+                    "type": "event-categories"
+                }, {
+                    "id": 9,
+                    "name": "LARP",
+                    "slug": "larp",
+                    "type": "event-categories"
+                }, {
+                    "id": 202,
+                    "name": "Media",
+                    "slug": "media",
+                    "type": "event-categories"
+                }, {
+                    "id": 154,
+                    "name": "Panel",
+                    "slug": "panel",
+                    "type": "event-categories"
+                }, {
+                    "id": 8,
+                    "name": "RPG",
+                    "slug": "rpg",
+                    "type": "event-categories"
+                }, {
+                    "id": 11,
+                    "name": "Seminar",
+                    "slug": "seminar",
+                    "type": "event-categories"
+                }
+            ],
+            panelTopic: [
+                {
+                    "id": 160,
+                    "name": "GMing Advice",
+                    "slug": "gming-advice",
+                    "type": "event-tags"
+                }, {
+                    "id": 159,
+                    "name": "Literature",
+                    "slug": "literature",
+                    "type": "event-tags"
+                }, {
+                    "id": 161,
+                    "name": "Player Advice",
+                    "slug": "player-advice",
+                    "type": "event-tags"
+                }, {
+                    "id": 163,
+                    "name": "Safety Tools",
+                    "slug": "safety-tools",
+                    "type": "event-tags"
+                }, {
+                    "id": 162,
+                    "name": "Social Contracts",
+                    "slug": "social-contracts",
+                    "type": "event-tags"
+                }, {
+                    "id": 158,
+                    "name": "Social Justice",
+                    "slug": "social-justice",
+                    "type": "event-tags"
+                }
+            ],
+            gameFocus: [
+                {
+                    "id": 55,
+                    "name": "Adventure",
+                    "slug": "adventure",
+                    "type": "event-tags"
+                }, {
+                    "id": 62,
+                    "name": "Combat",
+                    "slug": "combat",
+                    "type": "event-tags"
+                }, {
+                    "id": 59,
+                    "name": "Drama",
+                    "slug": "drama",
+                    "type": "event-tags"
+                }, {
+                    "id": 56,
+                    "name": "Exploration",
+                    "slug": "exploration",
+                    "type": "event-tags"
+                }, {
+                    "id": 61,
+                    "name": "Hijinx",
+                    "slug": "hijinx",
+                    "type": "event-tags"
+                }, {
+                    "id": 191,
+                    "name": "Improv",
+                    "slug": "improv",
+                    "type": "event-tags"
+                }, {
+                    "id": 58,
+                    "name": "Intrigue",
+                    "slug": "intrigue",
+                    "type": "event-tags"
+                }, {
+                    "id": 57,
+                    "name": "Investigation",
+                    "slug": "investigation",
+                    "type": "event-tags"
+                }, {
+                    "id": 181,
+                    "name": "LGBTQ themes",
+                    "slug": "lgbtq-themes",
+                    "type": "event-tags"
+                }, {
+                    "id": 167,
+                    "name": "Mystery",
+                    "slug": "mystery",
+                    "type": "event-tags"
+                }, {
+                    "id": 60,
+                    "name": "Romance",
+                    "slug": "romance",
+                    "type": "event-tags"
+                }
+            ],
+            playerContributions: [
+                {
+                    "id": 66,
+                    "name": "Collaborative",
+                    "slug": "collaborative",
+                    "type": "event-tags"
+                }, {
+                    "id": 188,
+                    "name": "Freeform",
+                    "slug": "freeform",
+                    "type": "event-tags"
+                }, {
+                    "id": 67,
+                    "name": "GM-less",
+                    "slug": "gm-less",
+                    "type": "event-tags"
+                }, {
+                    "id": 64,
+                    "name": "Play to find out",
+                    "slug": "play-to-find-out",
+                    "type": "event-tags"
+                }, {
+                    "id": 65,
+                    "name": "Player antagonism",
+                    "slug": "player-antagonism",
+                    "type": "event-tags"
+                }, {
+                    "id": 68,
+                    "name": "Rotating authority",
+                    "slug": "rotating-authority",
+                    "type": "event-tags"
+                }, {
+                    "id": 63,
+                    "name": "Strong storyline",
+                    "slug": "strong-storyline",
+                    "type": "event-tags"
+                }
+            ],
+            gameGenre: [
+                {
+                    "id": 171,
+                    "name": "Aliens",
+                    "slug": "aliens",
+                    "type": "event-tags"
+                }, {
+                    "id": 73,
+                    "name": "Alternate History",
+                    "slug": "alternate-history",
+                    "type": "event-tags"
+                }, {
+                    "id": 76,
+                    "name": "Apocalyptic",
+                    "slug": "apocalyptic",
+                    "type": "event-tags"
+                }, {
+                    "id": 156,
+                    "name": "Cyberpunk",
+                    "slug": "cyberpunk",
+                    "type": "event-tags"
+                }, {
+                    "id": 77,
+                    "name": "Espionage",
+                    "slug": "espionage",
+                    "type": "event-tags"
+                }, {
+                    "id": 71,
+                    "name": "Fantasy",
+                    "slug": "fantasy",
+                    "type": "event-tags"
+                }, {
+                    "id": 69,
+                    "name": "Horror",
+                    "slug": "horror",
+                    "type": "event-tags"
+                }, {
+                    "id": 78,
+                    "name": "Military",
+                    "slug": "military",
+                    "type": "event-tags"
+                }, {
+                    "id": 72,
+                    "name": "Modern",
+                    "slug": "modern",
+                    "type": "event-tags"
+                }, {
+                    "id": 167,
+                    "name": "Mystery",
+                    "slug": "mystery",
+                    "type": "event-tags"
+                }, {
+                    "id": 75,
+                    "name": "Noir",
+                    "slug": "noir",
+                    "type": "event-tags"
+                }, {
+                    "id": 74,
+                    "name": "Pulp",
+                    "slug": "pulp",
+                    "type": "event-tags"
+                }, {
+                    "id": 70,
+                    "name": "Sci-Fi",
+                    "slug": "sci-fi",
+                    "type": "event-tags"
+                }, {
+                    "id": 120,
+                    "name": "Super Powers",
+                    "slug": "super-powers",
+                    "type": "event-tags"
+                }, {
+                    "id": 120,
+                    "name": "Super Powers",
+                    "slug": "super-powers",
+                    "type": "event-tags"
+                }
+            ],
+            gameMood: [
+                {
+                    "id": 80,
+                    "name": "Comical",
+                    "slug": "comical",
+                    "type": "event-tags"
+                }, {
+                    "id": 175,
+                    "name": "Cute",
+                    "slug": "cute",
+                    "type": "event-tags"
+                }, {
+                    "id": 82,
+                    "name": "Dark",
+                    "slug": "dark",
+                    "type": "event-tags"
+                }, {
+                    "id": 83,
+                    "name": "Emotional",
+                    "slug": "emotional",
+                    "type": "event-tags"
+                }, {
+                    "id": 81,
+                    "name": "Light",
+                    "slug": "light",
+                    "type": "event-tags"
+                }, {
+                    "id": 133,
+                    "name": "Melancholy",
+                    "slug": "melancholy",
+                    "type": "event-tags"
+                }, {
+                    "id": 79,
+                    "name": "Serious",
+                    "slug": "serious",
+                    "type": "event-tags"
+                }, {
+                    "id": 187,
+                    "name": "Silly",
+                    "slug": "silly",
+                    "type": "event-tags"
+                }, {
+                    "id": 84,
+                    "name": "Suspenseful",
+                    "slug": "suspenseful",
+                    "type": "event-tags"
+                }
+            ],
+            contentAdvisory: [
+                {
+                    "id": 1000000,
+                    "name": "No Content Advisory"
+                }, {
+                    "id": 91,
+                    "name": "Gore",
+                    "slug": "gore",
+                    "type": "event-tags"
+                }, {
+                    "id": 90,
+                    "name": "Graphic Violence",
+                    "slug": "graphic-violence",
+                    "type": "event-tags"
+                }, {
+                    "id": 88,
+                    "name": "Provocative",
+                    "slug": "provocative",
+                    "type": "event-tags"
+                }, {
+                    "id": 89,
+                    "name": "Sex and Sexuality",
+                    "slug": "sex-and-sexuality",
+                    "type": "event-tags"
+                }
+            ],
+            safetyTools: [
+                'X-card',
+                'Lines/Veils',
+                'Cut/Brake',
+                'Open Door Policy',
+                'Script Change',
+                'Other'
+            ]
 
-            }
         }
-    </script>
+    }
+</script>
 
 {% endblock %}
