@@ -124,12 +124,12 @@
                             </div>
                             <div>
                                 <label for="system">System</label>
-                                <input id="system" name="system" type="text" value="" x-model="system"/>
+                                <input id="system" name="system" type="text" value="" x-model="event.system"/>
                             </div>
                             <div x-show="isGame()">
                                 <label for="playtest">Is this a playtest?</label>
                                 <select id="playtest" name="playtest" x-model="event.system"/>
-                                <option disabled selected>
+                                <option :disabled="event.system" selected>
                                         -- Choose One --
                                     </option>
                                 <option>No</option>
@@ -156,7 +156,7 @@
                         <div>
                             <label for="runMultiple">Run this event</label>
                             <select id="runMultiple" name="runMultiple" x-model="event.runMultiple">
-                                <option disabled selected>
+                                <option :disabled="event.runMultiple" selected>
                                         -- Choose One --
                                     </option>
                                 <option>Once</option>
@@ -167,7 +167,7 @@
                         <div x-show="event.format === 'Board/Card Game'">
                             <label for="tableRequested">Board game table size requested</label>
                             <select id="tableRequested" name="tableRequested" x-model="event.tableRequested">
-                                <option disabled selected>
+                                <option :disabled="event.tableRequested" selected>
                                         -- Choose One --
                                     </option>
                                 <option>Long</option>
@@ -178,7 +178,7 @@
                         <div>
                             <label for="privateRoom">Request private room</label>
                             <select id="privateRoom" name="privateRoom" x-model="event.privateRoom">
-                                <option disabled selected>
+                                <option :disabled="event.privateRoom" selected>
                                         -- Choose One --
                                     </option>
                                 <option>No</option>
@@ -188,7 +188,7 @@
                         <div>
                             <label for="mediaEquipment">Request media room</label>
                             <select id="mediaRoom" name="mediaRoom" x-model="event.mediaRoom">
-                                <option disabled selected>
+                                <option :disabled="event.mediaRoom" selected>
                                         -- Choose One --
                                     </option>
                                 <option>No</option>
@@ -223,12 +223,11 @@
                                 <option>8</option>
                             </select>
                         </div>
-                        {# TODO: get checkbox collection working #}
                         <div x-show="event.length && event.length !== '0'">
                             <label for="length">Schedule Preferences</label>
                             <template x-for="(time, i) in scheduleTimes[event.length]">
                                 <div class="flex items-center">
-                                    <input type="checkbox" name="schedulePref" :id="'time' + i" value="time">
+                                    <input type="checkbox" name="schedulePref" :id="'time' + i" :value="time" @change="setCheckboxArray($el,'schedulePref')">
                                     <label :for="'time' + i" x-text="time"></label>
                                 </div>
                             </template>
@@ -315,10 +314,10 @@
                     <fieldset x-show="isGame() && event.length !== '0' && event.playerAge">
                         <legend>Additional Info</legend>
                         <div x-show="event.format === formatId('Panel')">
-                            <label for="panelTopic">Schedule Preferences</label>
+                            <label for="panelTopic">Panel Topic</label>
                             <template x-for="(type, i) in panelTopic">
                                 <div class="flex items-center">
-                                    <input type="checkbox" name="panelTopic" :id="'panelTopic' + i" :value="type.id">
+                                    <input type="checkbox" name="panelTopic" :id="'panelTopic' + i" :value="type.id" @change="setCheckboxArray($el,'panelTopic')">
                                     <label :for="'panelTopic' + i" x-text="type.name"></label>
                                 </div>
                             </template>
@@ -339,7 +338,7 @@
                             <div class="mb-base">
                                 <template x-for="(type, i) in playerContributions">
                                     <div class="flex items-center">
-                                        <input type="checkbox" name="playerContributions" :id="'playerContributions' + i" :value="type.id">
+                                        <input type="checkbox" name="playerContributions" :id="'playerContributions' + i" :value="type.id" @change="setCheckboxArray($el,'playerContributions')">
                                         <label :for="'playerContributions' + i" x-text="type.name"></label>
                                     </div>
                                 </template>
@@ -350,7 +349,7 @@
                             <div class="mb-base">
                                 <template x-for="(type, i) in gameGenre">
                                     <div class="flex items-center">
-                                        <input type="checkbox" name="gameGenre" :id="'gameGenre' + i" :value="type.id">
+                                        <input type="checkbox" name="gameGenre" :id="'gameGenre' + i" :value="type.id" @change="setCheckboxArray($el,'gameGenre')">
                                         <label :for="'gameGenre' + i" x-text="type.name"></label>
                                     </div>
                                 </template>
@@ -361,7 +360,7 @@
                             <div class="mb-base">
                                 <template x-for="(type, i) in gameMood">
                                     <div class="flex items-center">
-                                        <input type="checkbox" name="gameMood" :id="'gameMood' + i" :value="type.id">
+                                        <input type="checkbox" name="gameMood" :id="'gameMood' + i" :value="type.id" @change="setCheckboxArray($el,'gameMood')">
                                         <label :for="'gameMood' + i" x-text="type.name"></label>
                                     </div>
                                 </template>
@@ -427,6 +426,19 @@
         return {
             event: {
                 length: '0'
+            },
+            setCheckboxArray(el, arrayName) {
+                this.event[arrayName] = this.event[arrayName] || [];
+                if (el.checked) {
+                    this.event[arrayName] = [
+                        ...this.event[arrayName],
+                        el.value
+                    ]
+                } else {
+                    this.event[arrayName] = this
+                        .event[arrayName]
+                        .filter(item => item !== el.value)
+                }
             },
             times1hr: [
                 "Caterday morning (between 9AM-1PM)",
