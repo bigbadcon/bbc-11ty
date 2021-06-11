@@ -16,6 +16,40 @@ function slugify(text) {
 }
 
 /* -------------------------------------------------------------------------- */
+/*                        LocalStorage Helper Functions                       */
+/* -------------------------------------------------------------------------- */
+
+function setLSWithExpiry(key, value, ttl) {
+  const now = new Date()
+
+  // `item` is an object which contains the original value
+  // as well as the time when it's supposed to expire (now + time in milliseconds)
+  const item = {
+    value: value,
+    expiry: now.getTime() + ttl,
+  }
+  localStorage.setItem(key, JSON.stringify(item))
+}
+
+function getLSWithExpiry(key) {
+  const itemStr = localStorage.getItem(key)
+  // if the item doesn't exist, return null
+  if (!itemStr) {
+    return null
+  }
+  const item = JSON.parse(itemStr)
+  const now = new Date()
+  // compare the expiry time of the item with the current time
+  if (now.getTime() > item.expiry) {
+    // If the item is expired, delete the item from storage
+    // and return null
+    localStorage.removeItem(key)
+    return null
+  }
+  return item.value
+}
+
+/* -------------------------------------------------------------------------- */
 /*                                    Auth                                    */
 /* -------------------------------------------------------------------------- */
 
@@ -26,34 +60,61 @@ function alertMsg(msg = 'error') {
 
 const apiUrl = "https://bigbadcon.com:8091/apidev/"
 
-function authData() {
-    return {
-        async submitLogin() {
-            const data = {
-                username: this.username,
-                password: this.password
-            }
-            console.log(apiUrl + "login", data);
-            try {
-              const res = await axios.post(apiUrl + "login", data)
-              if (res.status === 200 && res.headers.authorization) {
-                // loginUser(res.headers.authorization)
-                alertMsg(`login successful ${res.headers.authorization}`)
-              } else {
-                alertMsg(`login failed, status: ${res.status}`)
-              }
-            } catch (err) {
-              alertMsg(`login failed, error: ${err}`)
-            }
-        },
-        username: "",
-        password: ""
+async function fetchUserData(token) {
+  try {
+    const config = { headers: { Authorization: token } }
+    const res = await axios.get(apiUrl + 'users/me', config)
+    if (res.status === 200) {
+      // console.log('get user', res)
+      return res.data
+    } else {
+      alertMsg(`get user data failed, status: ${res.status}`)
     }
+  } catch (err) {
+    alertMsg(`get user data failed, error: ${err}`)
+  }
 }
 
-function registerData() {
-    return {
-        username: "",
-        email: ""
-    }
-}
+
+/* -------------------------------------------------------------------------- */
+/*                                Alpine Store                                */
+/* -------------------------------------------------------------------------- */
+
+document.addEventListener('alpine:initializing', () => {
+  const lsToken = getLSWithExpiry('authToken') || null
+  const lsUser = getLSWithExpiry('user') || null
+
+  Alpine.store('auth', {
+      token: lsToken,
+      isAuth: (lsToken),
+      user: lsUser,
+      async submitLogin(data) {
+        // data is formatted as {username: 'username', password: 'password'}
+        try {
+          const res = await axios.post(apiUrl + "login", data)
+          if (res.status === 200 && res.headers.authorization) {
+            this.token = res.headers.authorization;
+            this.isAuth = true;
+            setLSWithExpiry('authToken', res.headers.authorization, 86400000)
+            alertMsg(`login successful`)
+            getUserData(res.headers.authorization)
+          } else {
+            alertMsg(`login failed, status: ${res.status}`)
+          }
+        } catch (err) {
+          alertMsg(`login failed, error: ${err}`)
+        }
+      },
+      logout() {
+        this.isAuth = false;
+        this.user = false;
+        this.token = null;
+      },
+      async getUserData() {
+        if (this.user) return this.user
+        if (!this.token) return false;
+        this.user = await fetchUserData(this.token)
+        return this.user
+      }
+  })
+})

@@ -9,9 +9,9 @@
         <div class="mx-auto max-w-content p-base">
             <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
             <div class="prose">{{ content | safe }}</div>
-            <section class="my-base" x-data="{ isAuth: false, user: {} }">
+            <section class="my-base">
                 {# START Auth: only show if not logged in #}
-                <div x-cloak x-show="!isAuth">
+                <div x-cloak x-show="!$store.auth.isAuth">
                     <div class="prose mb-base">
                         <p>
                             <em>You must have an account and be logged in to submit an event.</em>
@@ -20,7 +20,7 @@
                     <div x-data="{ isFlipped: false }" :class="{'flipper-flipped': isFlipped}" class="flipper">
                         <div class="flip-content">
                             <div class="flip-front">
-                                <form action="post" class="text-center rounded-md shadow p-base bg-primary" x-data="authData()" @submit.prevent="submitLogin()">
+                                <form action="post" class="text-center rounded-md shadow p-base bg-primary" x-data="{username:'',password:''}" @submit.prevent="!$store.auth.submitLogin({username: username, password: password})">
                                     <h2 class="font-serif text-3xl font-extrabold text-secondary">Login</h2>
                                     <div class="py-base text-body">
                                         <label for="username">User Name</label>
@@ -36,7 +36,7 @@
                                 </form>
                             </div>
                             <div class="flip-back">
-                                <form action="post" class="text-center rounded-md shadow p-base bg-primary" x-data="registerData()">
+                                <form action="post" class="text-center rounded-md shadow p-base bg-primary" x-data="{username:'',email:''}">
                                     <h2 class="font-serif text-3xl font-extrabold text-secondary">Register</h2>
                                     <div class="py-base text-body">
                                         <label for="username">User Name</label>
@@ -56,7 +56,7 @@
                 </div>
                 {# END Auth #}
                 {# START Submit Form: only show if logged in #}
-                <div x-cloak x-show="isAuth">
+                <div x-cloak x-show="$store.auth.isAuth">
                     <header class="prose">
                         <h2>Submit Your Event</h2>
                     </header>
