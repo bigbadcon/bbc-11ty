@@ -100,6 +100,7 @@ document.addEventListener('alpine:initializing', () => {
             setLSWithExpiry('authToken', res.headers.authorization, 86400000)
             alertMsg(`login successful`)
             this.user = await fetchUserData(res.headers.authorization)
+            alertMsg(`fetch user data successful for ${this.user.userNicename}`)
             setLSWithExpiry('user', this.user, 86400000);
           } else {
             alertMsg(`login failed, status: ${res.status}`)

@@ -20,7 +20,7 @@
                     <div x-data="{ isFlipped: false }" :class="{'flipper-flipped': isFlipped}" class="flipper">
                         <div class="flip-content">
                             <div class="flip-front">
-                                <form action="post" class="text-center rounded-md shadow p-base bg-primary" x-data="{username:'',password:''}" @submit.prevent="!$store.auth.submitLogin({username: username, password: password})">
+                                <form action="post" class="text-center rounded-md shadow p-base bg-primary" x-data="{username:'',password:''}" @submit.prevent="!$store.auth.submitLogin({username: username, password: password}); username = ''; password = '';">
                                     <h2 class="font-serif text-3xl font-extrabold text-secondary">Login</h2>
                                     <div class="py-base text-body">
                                         <label for="username">User Name</label>
@@ -55,9 +55,10 @@
                     </div>
                 </div>
                 {# END Auth #}
+                {# TODO: add loading spinner for if auth works but user data has not yet downloaded yet #}
 
                 {# START Submit Form: only show if logged in #}
-                <div x-cloak x-show="$store.auth.isAuth">
+                <div x-cloak x-show="$store.auth.isAuth && $store.auth.user">
                     <div x-cloak x-init="$store.auth.getUserData()" class="flex justify-between rounded-md shadow p-base bg-primary mb-base">
                         <div>
                             <p class="text-lg font-semibold text-body">Welcome <span x-text="$store.auth.user.displayName"></span> (<span x-text="$store.auth.user.userNicename"></span>)!</p>
@@ -268,7 +269,7 @@
                             </div>
                         </fieldset>
                         {# Content Advisory & Safety Tools #}
-                        <fieldset x-show="isGame() && event.playerAge">
+                        <fieldset x-show="isGame() && event.length !== '0' && event.playerAge">
                             <legend>Content Advisory &amp; Safety Tools</legend>
                             <div x-show="event.playerAge === '13+'" class="prose mb-base">
                                 <p class="font-bold">Event designed for players/attendees aged 13+</p>
@@ -309,7 +310,7 @@
                             </div>
                         </fieldset>
                         {# Additional Info #}
-                        <fieldset x-show="isGame() && event.playerAge">
+                        <fieldset x-show="isGame() && event.length !== '0' && event.playerAge">
                             <legend>Additional Info</legend>
                             <div x-show="event.format === formatId('Panel')">
                                 <label for="panelTopic">Schedule Preferences</label>
