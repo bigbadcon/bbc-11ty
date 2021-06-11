@@ -113,7 +113,7 @@ select {
   @apply rounded mb-base bg-form text-body border-body focus:ring-highlight focus:border-highlight;
 }
 
-button[type="submit"] {
+button[type="submit"], .button {
   @apply font-bold uppercase transition-colors duration-200 rounded shadow text-form bg-highlight hover:bg-highlight-2 py-xs px-base;
 }
 

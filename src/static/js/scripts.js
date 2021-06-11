@@ -69,9 +69,11 @@ async function fetchUserData(token) {
       return res.data
     } else {
       alertMsg(`get user data failed, status: ${res.status}`)
+      return false;
     }
   } catch (err) {
     alertMsg(`get user data failed, error: ${err}`)
+    return false;
   }
 }
 
@@ -97,7 +99,8 @@ document.addEventListener('alpine:initializing', () => {
             this.isAuth = true;
             setLSWithExpiry('authToken', res.headers.authorization, 86400000)
             alertMsg(`login successful`)
-            getUserData(res.headers.authorization)
+            this.user = await fetchUserData(res.headers.authorization)
+            setLSWithExpiry('user', this.user, 86400000);
           } else {
             alertMsg(`login failed, status: ${res.status}`)
           }
@@ -109,12 +112,16 @@ document.addEventListener('alpine:initializing', () => {
         this.isAuth = false;
         this.user = false;
         this.token = null;
+        localStorage.removeItem('authToken')
+        localStorage.removeItem('user')
       },
       async getUserData() {
-        if (this.user) return this.user
         if (!this.token) return false;
-        this.user = await fetchUserData(this.token)
-        return this.user
+        if (!this.user) {
+          this.user = await fetchUserData(this.token);
+          setLSWithExpiry('user', this.user, 86400000);
+        }
+        return this.user;
       }
   })
 })

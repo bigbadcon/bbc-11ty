@@ -55,35 +55,45 @@
                     </div>
                 </div>
                 {# END Auth #}
+
                 {# START Submit Form: only show if logged in #}
                 <div x-cloak x-show="$store.auth.isAuth">
+                    <div x-cloak x-init="$store.auth.getUserData()" class="flex justify-between rounded-md shadow p-base bg-primary mb-base">
+                        <div>
+                            <p class="text-lg font-semibold text-body">Welcome <span x-text="$store.auth.user.displayName"></span> (<span x-text="$store.auth.user.userNicename"></span>)!</p>
+                        </div>
+                        <div>
+                            <button class="button" @click="$store.auth.logout()">Logout</button>
+                        </div>
+                    </div>
                     <header class="prose">
                         <h2>Submit Your Event</h2>
                     </header>
+
                     <form action="post" class="mt-base" x-data="runAnEventData()">
                         <input id="email" name="email" type="hidden" value=""/>
                         {# Personal Info #}
                         <fieldset>
                             <legend>Personal Info</legend>
-                            <div>
+                            {# <div>
                                 <label for="firstName">First Name</label>
                                 <input id="firstName" name="firstName" type="text"/>
                             </div>
                             <div>
                                 <label for="lastName">Last Name</label>
                                 <input id="lastName" name="lastName" type="text"/>
-                            </div>
+                            </div> #}
                             <div>
-                                <label for="lastName">Public Name</label>
+                                <label for="lastName">Public Badge Name</label>
                                 <p class="text-xs mb-sm text-body">We encourage attendees to list their first and last names. However, if for privacy reasons you would like to use another name, enter it here.</p>
-                                <input id="publicName" name="publicName" type="text" value=""/>
+                                <input id="publicName" name="publicName" type="text" value="" x-init="event.publicName = $store.auth.user.displayName" x-model="event.publicName"/>
                             </div>
                             <div>
                                 <label for="yourAge">
                                     Your age as of
                                     <span>{{site.eventDate}}</span>
                                 </label>
-                                <select id="yourAge" name="yourAge" x-model="event.yourAge" x-effect="if (event.yourAge === '13+') event.playerAge === '13+'">
+                                <select id="yourAge" name="yourAge" x-model="event.yourAge" @change="if (event.yourAge === '13+') event.playerAge = '13+'">
                                     <option :disabled="event.yourAge" selected>
                                         -- Choose One --
                                     </option>
@@ -114,7 +124,7 @@
                                 <label for="system">System</label>
                                 <input id="system" name="system" type="text" value=""/>
                             </div>
-                            <div>
+                            <div x-show="isGame()">
                                 <label for="playtest">Is this a playtest?</label>
                                 <select id="playtest" name="playtest">
                                     <option disabled selected>
@@ -126,7 +136,7 @@
                             </div>
                             <div>
                                 <label for="eventDescription">Description</label>
-                                <textarea cols="30" id="eventDescription" name="eventDescription" rows="3"></textarea>
+                                <textarea cols="30" id="eventDescription" name="eventDescription" rows="3" x-model="event.eventDescription"></textarea>
                             </div>
                             <div>
                                 <label for="otherInfo">Other info we should know (this will not go in the program)</label>
@@ -139,7 +149,7 @@
                             </div>
                         </fieldset>
                         {# Scheduling Info #}
-                        <fieldset x-show="event.format">
+                        <fieldset x-show="event.format && event.eventDescription">
                             <legend>Scheduling Info</legend>
                             <div>
                                 <label for="runMultiple">Run this event</label>
@@ -222,7 +232,7 @@
                             </div>
                         </fieldset>
                         {# Player Info #}
-                        <fieldset x-show="event.format">
+                        <fieldset x-show="event.length !== '0'">
                             <legend>Player/Attendee Info</legend>
                             <div x-show="event.yourAge === '18+'">
                                 <label for="playerAge">
@@ -282,14 +292,14 @@
                             </div>
                             <div>
                                 <label for="safetyTools">
-                                    Content Advisory
+                                    Safety Tools
                                 </label>
                                 <select id="safetyTools" name="safetyTools" x-model="event.safetyTools">
                                     <option :disabled="event.safetyTools" selected>
                                         -- Choose One --
                                     </option>
                                     <template x-for="type in safetyTools">
-                                        <option :value="type.id" x-text="type.name"></option>
+                                        <option :value="type" x-text="type"></option>
                                     </template>
                                 </select>
                             </div>
@@ -299,52 +309,60 @@
                             </div>
                         </fieldset>
                         {# Additional Info #}
-                        <fieldset x-show="event.format">
+                        <fieldset x-show="isGame() && event.playerAge">
                             <legend>Additional Info</legend>
                             <div x-show="event.format === formatId('Panel')">
                                 <label for="panelTopic">Schedule Preferences</label>
                                 <template x-for="(type, i) in panelTopic">
                                     <div class="flex items-center">
-                                        <input type="checkbox" name="panelTopic" :id="'panelTopic' + i" value="type">
-                                        <label :for="'panelTopic' + i" x-text="type"></label>
+                                        <input type="checkbox" name="panelTopic" :id="'panelTopic' + i" :value="type.id">
+                                        <label :for="'panelTopic' + i" x-text="type.name"></label>
                                     </div>
                                 </template>
                             </div>
                             <div x-show="isGame()">
                                 <label for="gameFocus">Game Focus</label>
-                                <template x-for="(type, i) in gameFocus">
-                                    <div class="flex items-center">
-                                        <input type="checkbox" name="gameFocus" :id="'gameFocus' + i" value="type">
-                                        <label :for="'gameFocus' + i" x-text="type"></label>
-                                    </div>
-                                </template>
+                                <div class="mb-base">
+                                    <template x-for="(type, i) in gameFocus">
+                                        <div class="flex items-center">
+                                            <input type="checkbox" name="gameFocus" :id="'gameFocus' + i" :value="type.id">
+                                            <label :for="'gameFocus' + i" x-text="type.name"></label>
+                                        </div>
+                                    </template>
+                                </div>
                             </div>
                             <div x-show="isGame()">
                                 <label for="playerContributions">Player Contributions</label>
-                                <template x-for="(type, i) in playerContributions">
-                                    <div class="flex items-center">
-                                        <input type="checkbox" name="playerContributions" :id="'playerContributions' + i" value="type">
-                                        <label :for="'playerContributions' + i" x-text="type"></label>
-                                    </div>
-                                </template>
+                                <div class="mb-base">
+                                    <template x-for="(type, i) in playerContributions">
+                                        <div class="flex items-center">
+                                            <input type="checkbox" name="playerContributions" :id="'playerContributions' + i" :value="type.id">
+                                            <label :for="'playerContributions' + i" x-text="type.name"></label>
+                                        </div>
+                                    </template>
+                                </div>
                             </div>
                             <div x-show="isGame()">
                                 <label for="gameGenre">Player Contributions</label>
-                                <template x-for="(type, i) in gameGenre">
-                                    <div class="flex items-center">
-                                        <input type="checkbox" name="gameGenre" :id="'gameGenre' + i" value="type">
-                                        <label :for="'gameGenre' + i" x-text="type"></label>
-                                    </div>
-                                </template>
+                                <div class="mb-base">
+                                    <template x-for="(type, i) in gameGenre">
+                                        <div class="flex items-center">
+                                            <input type="checkbox" name="gameGenre" :id="'gameGenre' + i" :value="type.id">
+                                            <label :for="'gameGenre' + i" x-text="type.name"></label>
+                                        </div>
+                                    </template>
+                                </div>
                             </div>
                             <div x-show="isGame()">
                                 <label for="gameMood">Player Contributions</label>
-                                <template x-for="(type, i) in gameMood">
-                                    <div class="flex items-center">
-                                        <input type="checkbox" name="gameMood" :id="'gameMood' + i" value="type">
-                                        <label :for="'gameMood' + i" x-text="type"></label>
-                                    </div>
-                                </template>
+                                <div class="mb-base">
+                                    <template x-for="(type, i) in gameMood">
+                                        <div class="flex items-center">
+                                            <input type="checkbox" name="gameMood" :id="'gameMood' + i" :value="type.id">
+                                            <label :for="'gameMood' + i" x-text="type.name"></label>
+                                        </div>
+                                    </template>
+                                </div>
                             </div>
                             <div x-show="isGame()">
                                 <label for="otherDescriptors">Other Descriptors</label>
@@ -768,7 +786,7 @@
                         "type": "event-tags"
                     }
                 ],
-                contentAvisory: [
+                contentAdvisory: [
                     {
                         "id": 1000000,
                         "name": "No Content Advisory"
