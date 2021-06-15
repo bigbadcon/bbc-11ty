@@ -60,23 +60,9 @@ function alertMsg(msg = 'error') {
 
 const apiUrl = "https://bigbadcon.com:8091/apidev/"
 
-async function fetchUserData(token) {
-  try {
-    const config = { headers: { Authorization: token } }
-    const res = await axios.get(apiUrl + 'users/me', config)
-    if (res.status === 200) {
-      // console.log('get user', res)
-      return res.data
-    } else {
-      alertMsg(`get user data failed, status: ${res.status}`)
-      return false;
-    }
-  } catch (err) {
-    alertMsg(`get user data failed, error: ${err}`)
-    return false;
-  }
-}
 
+
+// TODO: fix can't find variable AXIOS. Maybe just switch to fetch
 
 /* -------------------------------------------------------------------------- */
 /*                                Alpine Store                                */
@@ -97,11 +83,9 @@ document.addEventListener('alpine:initializing', () => {
           if (res.status === 200 && res.headers.authorization) {
             this.token = res.headers.authorization;
             this.isAuth = true;
-            setLSWithExpiry('authToken', res.headers.authorization, 86400000)
-            alertMsg(`login successful`)
-            this.user = await fetchUserData(res.headers.authorization)
-            alertMsg(`fetch user data successful for ${this.user.userNicename}`)
-            setLSWithExpiry('user', this.user, 86400000);
+            setLSWithExpiry('authToken', this.token, 86400000)
+            alertMsg(`login successful`);
+            this.getUserData(this.token);
           } else {
             alertMsg(`login failed, status: ${res.status}`)
           }
@@ -116,13 +100,22 @@ document.addEventListener('alpine:initializing', () => {
         localStorage.removeItem('authToken')
         localStorage.removeItem('user')
       },
-      async getUserData() {
-        if (!this.token) return false;
-        if (!this.user) {
-          this.user = await fetchUserData(this.token);
-          setLSWithExpiry('user', this.user, 86400000);
+      async getUserData(token) {
+        token = token || this.token;
+        try {
+          const config = { headers: { Authorization: token } }
+          const res = await axios.get(apiUrl + 'users/me', config)
+          if (res.status === 200) {
+            alertMsg(`user data fetched`)
+            this.user = res.data
+            alertMsg(`fetch user data successful for ${res.data.userNicename}`)
+            setLSWithExpiry('user', res.data, 86400000);
+          } else {
+            alertMsg(`get user data failed, status: ${res.status}`)
+          }
+        } catch (err) {
+          alertMsg(`get user data failed, error: ${err}`)
         }
-        return this.user;
       }
   })
 })

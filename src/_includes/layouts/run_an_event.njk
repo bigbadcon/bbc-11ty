@@ -1,4 +1,6 @@
 {% extends 'layouts/base.njk' %}
+{% from 'components/form-macros.njk' import input %}
+{% from 'components/form-macros.njk' import textarea %}
 
 {% block header %}
     {% include 'components/header.njk' %}
@@ -58,6 +60,7 @@
                 {# TODO: add loading spinner for if auth works but user data has not yet downloaded yet #}
 
                 {# START Submit Form: only show if logged in #}
+                {# TODO: fix the $store.auth.user not an object issues #}
                 <div x-cloak x-show="$store.auth.isAuth && $store.auth.user">
                     <div x-cloak x-init="$store.auth.getUserData()" class="flex justify-between rounded-md shadow p-base bg-primary mb-base">
                         <div>
@@ -72,21 +75,13 @@
                     </header>
                     {# TODO: Get Submit working. Make sure to zero out everything on submit #}
                     <form action="post" class="mt-base" x-data="runAnEventData()">
-                        <input id="email" name="email" type="hidden" :value="$store.auth.user.email" x-init="event.email = $store.auth.user.email"/>
                         {# TODO: do we need to add a bunk date to it? #}
                         {# Personal Info #}
                         <fieldset>
                             <legend>Personal Info</legend>
-                            {# <div>
-                                <label for="firstName">First Name</label>
-                                <input id="firstName" name="firstName" type="text"/>
-                            </div>
+                            {# TODO: fix that this loads before it gets user data and so does not update #}
                             <div>
-                                <label for="lastName">Last Name</label>
-                                <input id="lastName" name="lastName" type="text"/>
-                            </div> #}
-                            <div>
-                                <label for="lastName">Public Badge Name</label>
+                                <label for="publicName">Public Badge Name</label>
                                 <p class="text-xs mb-sm text-body">We encourage attendees to list their first and last names. However, if for privacy reasons you would like to use another name, enter it here.</p>
                                 <input id="publicName" name="publicName" type="text" value="" x-init="event.publicName = $store.auth.user.displayName" x-model="event.publicName"/>
                             </div>
@@ -118,14 +113,8 @@
                                     </template>
                                 </select>
                             </div>
-                            <div>
-                                <label for="eventName">Event Name</label>
-                                <input id="eventName" name="eventName" type="text" value="" x-model="event.eventName"/>
-                            </div>
-                            <div>
-                                <label for="system">System</label>
-                                <input id="system" name="system" type="text" value="" x-model="event.system"/>
-                            </div>
+                            {{ input("eventName", "Event Name") }}
+                            {{ input("system", "System") }}
                             <div x-show="isGame()">
                                 <label for="playtest">Is this a playtest?</label>
                                 <select id="playtest" name="playtest" x-model="event.system"/>
@@ -136,14 +125,8 @@
                                 <option>Yes</option>
                             </select>
                         </div>
-                        <div>
-                            <label for="eventDescription">Description</label>
-                            <textarea cols="30" id="eventDescription" name="eventDescription" rows="3" x-model="event.eventDescription"></textarea>
-                        </div>
-                        <div>
-                            <label for="otherInfo">Other info we should know (this will not go in the program)</label>
-                            <textarea cols="30" id="otherInfo" name="otherInfo" rows="3" x-model="event.otherInfo"></textarea>
-                        </div>
+                        {{ textarea("eventDescription","Description")}}
+                        {{ textarea("otherInfo","Other info we should know (this will not go in the program)")}}
                         <div>
                             {# TODO: get image upload working #}
                             <label for="imageUpload">Image Upload</label>
@@ -159,20 +142,22 @@
                                 <option :disabled="event.runMultiple" selected>
                                         -- Choose One --
                                     </option>
-                                <option>Once</option>
-                                <option>Twice</option>
-                                <option>I want to run this 3 times! Whoa!</option>
+                                <option value="1">Once</option>
+                                <option value="2">Twice</option>
+                                <option value="3">I want to run this 3 times! Whoa!</option>
+                                <option value="4">I want to run this 4 times! Yow!!!</option>
                             </select>
                         </div>
+                        {# Add icon picture? #}
                         <div x-show="event.format === 'Board/Card Game'">
-                            <label for="tableRequested">Board game table size requested</label>
-                            <select id="tableRequested" name="tableRequested" x-model="event.tableRequested">
-                                <option :disabled="event.tableRequested" selected>
+                            <label for="tableType">Board game table type requested</label>
+                            <select id="tableType" name="tableType" x-model="event.tableType">
+                                <option :disabled="event.tableType" selected>
                                         -- Choose One --
                                     </option>
                                 <option>Long</option>
                                 <option>Round</option>
-                                <option>Other</option>
+                                <option>Either</option>
                             </select>
                         </div>
                         <div>
@@ -192,7 +177,6 @@
                                         -- Choose One --
                                     </option>
                                 <option>No</option>
-                                <option>If Available</option>
                                 <option>Yes</option>
                             </select>
                         </div>
@@ -275,6 +259,8 @@
                         <div x-show="event.playerAge === '13+'" class="prose mb-base">
                             <p class="font-bold">Event designed for players/attendees aged 13+</p>
                         </div>
+                        {# Break out to Maturity level and other stuff #}
+                        {# No Content Advisory vs Adult themes. Then add new list which is meta #}
                         <div x-show="event.playerAge === '18+'">
                             <label for="contentAdvisory">
                                     Content Advisory
@@ -292,6 +278,8 @@
                             <label for="triggerWarnings">Potential trigger warnings</label>
                             <input id="triggerWarnings" name="triggerWarnings" type="text" value="" x-model="event.triggerWarnings"/>
                         </div>
+                        {# Concatinate this and other as a string #}
+                        {# TODO: change this to checkboxes #}
                         <div>
                             <label for="safetyTools">
                                     Safety Tools
@@ -305,7 +293,8 @@
                                 </template>
                             </select>
                         </div>
-                        <div>
+                        {# TODO: make sure this x-show works (or just show it all the time) #}
+                        <div x-show="event.safetyTools === 'other'">
                             <label for="otherSafety">Other Safety Warnings</label>
                             <input id="otherSafety" name="otherSafety" type="text" value="" x-model="event.otherSafety"/>
                         </div>
@@ -366,15 +355,8 @@
                                 </template>
                             </div>
                         </div>
-                        <div x-show="isGame()">
-                            <label for="otherDescriptors">Other Descriptors</label>
-                            <input id="otherDescriptors" name="otherDescriptors" type="text" value="" x-model="event.otherDescriptors"/>
-                        </div>
-                        <div>
-                            <label for="additionalGMs">List any additional GMs/facilitators</label>
-                            <textarea cols="30" id="additionalGMs" name="additionalGMs" rows="3" x-model="event.additionalGMs"></textarea>
-                        </div>
-                        <div>
+                        {{ textarea("additionalGMs","List any additional GMs/facilitators")}}
+                        <div x-show="event.format === '9'">
                             <label for="additionalRequirements">List any additional requirements</label>
                             <textarea cols="30" id="additionalRequirements" name="additionalRequirements" rows="3" x-model="event.additionalRequirements"></textarea>
                         </div>
