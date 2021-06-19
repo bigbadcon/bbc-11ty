@@ -9,7 +9,7 @@
             {# Branding Logo Area with event date #}
             <div class="grid grid-cols-1 w-36 sm:w-42 lg:w-56">
               <a href="/" class="block md:mt-sm">{% include 'components/logo.njk' %}</a>
-              <div class="font-serif text-base text-center text-highlight sm:text-md lg:text-2xl">{{site.eventDate}}</div>
+              <div class="font-serif text-base text-center text-highlight sm:text-md lg:text-2xl">{{sitemeta.eventDate}}</div>
             </div>
             {# Light Dark Switch #}
             <div>{% include 'components/light-dark-switch.njk' %}</div>
@@ -55,10 +55,10 @@
                   x-transition:leave="transition ease-in duration-75"
                   x-transition:leave-start="transform opacity-100 scale-100"
                   x-transition:leave-end="transform opacity-0 scale-95"
-                  class="right-0 z-20 mt-2 origin-top-right md:w-56 md:absolute" 
+                  class="right-0 z-20 mt-2 origin-top-right md:w-56 md:absolute"
                   aria-labelledby="{{ item.id }}">
                     <div class="md:px-base md:py-base md:bg-main-gradient-top ring-2 ring-primary md:rounded-md md:shadow-lg mb-xs">
-                      <div class="grid grid-cols-1 gap-1 md:gap-2">
+                      <div class="grid grid-cols-1 gap-sm md:gap-base">
                         {% for link in item.subnav %}
                           {# <a href="{{link.url}}" class="block">{{link.title}}</a> #}
                           {% iconLink link.url,

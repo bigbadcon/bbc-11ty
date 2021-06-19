@@ -1,35 +1,50 @@
 {% extends 'layouts/base.njk' %}
 
 {% block header %}
-{% include 'components/header.njk' %}
-<section class="bg-primary">
-    <div class="grid mx-auto md:grid-cols-3 max-w-hero px-base">
-        <div class="md:pt-lg">
-            <div class="prose">
-                {{ content | safe }}
+    {% include 'components/header.njk' %}
+    <section class="bg-primary">
+        <div class="grid mx-auto md:grid-cols-3 max-w-hero px-base">
+            <div class="md:pt-lg">
+                <div class="prose">
+                    {{ content | safe }}
+                </div>
+            </div>
+            <div class="relative row-start-1 md:col-span-2 md:row-start-auto">
+                {% include 'components/forest.njk' %}
+                <div class="absolute w-1/2 bottom-2 right-2">{% include 'components/red.njk' %}</div>
             </div>
         </div>
-        <div class="relative row-start-1 md:col-span-2 md:row-start-auto">
-            {% include 'components/forest.njk' %}
-            <div class="absolute w-1/2 bottom-2 right-2">{% include 'components/red.njk' %}</div>
-        </div>
-    </div>
-</section>
+    </section>
 {% endblock %}
 
 {% block content %}
 
-<main id="content">
-    <div class="mx-auto max-w-hero px-base py-base">
-        <ul class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-            {% for card in collections.cards123ABC %}
-                <li class="rounded shadow-md bg-card px-base py-sm">
-                    <h2 class="font-serif text-3xl text-header">{{ card.data.title }}</h2>
-                    <div class="prose">{{ card.templateContent | safe }}</div>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
-</main>
+    <main id="content">
+        <section class="mx-auto max-w-hero px-base py-base">
+            <ul class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+                {% for card in collections.cards123ABC %}
+                    <li class="rounded shadow-md bg-card px-base pt-sm pb-base">
+                        <h2 class="font-serif text-3xl text-header">{{ card.data.title }}</h2>
+                        <div class="prose">{{ card.templateContent | safe }}</div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+        <section class="mx-auto max-w-hero px-base py-base">
+            <ul class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+                {% for card in collections.bigcards %}
+                    <li class="grid grid-cols-3 overflow-hidden rounded shadow-md sm:col-span-2 md:col-span-3 bg-card">
+                        <figure class="aspect-w-2 aspect-h-1">
+                            <img src="/static/images/2019bbc-9548.jpg" class="object-cover object-center" alt="Big Bad Con 2019 attendees playing a game">
+                        </figure>
+                        <div class="col-span-2 px-md pt-base pb-md">
+                            <h2 class="font-serif text-3xl text-header">{{ card.data.title }}</h2>
+                            <div class="prose">{{ card.templateContent | safe }}</div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    </main>
 
 {% endblock %}

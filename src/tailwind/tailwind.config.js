@@ -54,6 +54,7 @@ module.exports = {
         DEFAULT: {
           css: {
             color: 'var(--body)',
+            lineHeight: '1.45',
             h1: {
               color: 'var(--header)',
               fontFamily: 'var(--serif)',
@@ -75,6 +76,14 @@ module.exports = {
               fontFamily: 'var(--serif)',
               fontSize: '1.75rem',
               lineHeight: '1.05',
+              marginBottom: '0.5em',
+              marginTop: '1.4em'
+            },
+            h4: {
+              color: 'var(--subheader)',
+              fontFamily: 'var(--serif)',
+              fontSize: '1.60rem',
+              lineHeight: '1.00',
               marginBottom: '0.5em',
               marginTop: '1.4em'
             },

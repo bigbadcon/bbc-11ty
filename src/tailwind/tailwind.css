@@ -181,7 +181,7 @@ input[type="checkbox"] ~ label {
 
 /* --------------------------- Icon Link Shortcode -------------------------- */
 .icon-link {
-  @apply flex items-center space-x-sm mb-sm text-highlight;
+  @apply flex items-center space-x-sm text-highlight;
   text-decoration: none !important;
 }
 .icon-link:hover {

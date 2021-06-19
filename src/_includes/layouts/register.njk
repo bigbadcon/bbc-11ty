@@ -1,0 +1,116 @@
+{% extends 'layouts/base.njk' %}
+{% from 'components/form-macros.njk' import input %}
+{% from 'components/form-macros.njk' import textarea %}
+
+{% block header %}
+    {% include 'components/header.njk' %}
+{% endblock %}
+
+{% block content %}
+    <main id="content">
+        <div class="mx-auto max-w-content p-base">
+            <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
+            <div class="prose">{{ content | safe }}</div>
+            <section class="my-base">
+                {# START Auth: only show if not logged in #}
+                <div x-cloak x-show="!$store.auth.isAuth">
+                    <div class="prose mb-base">
+                        <p>
+                            <em>You must have an account and be logged in to register for Big Bad Online.</em>
+                        </p>
+                    </div>
+                    <div x-data="{ isFlipped: false }" :class="{'flipper-flipped': isFlipped}" class="flipper">
+                        <div class="flip-content">
+                            <div class="flip-front">
+                                <form action="post" class="text-center rounded-md shadow p-base bg-primary" x-data="{username:'',password:''}" @submit.prevent="!$store.auth.submitLogin({username: username, password: password}); username = ''; password = '';">
+                                    <h2 class="font-serif text-3xl font-extrabold text-secondary">Login</h2>
+                                    <div class="py-base text-body">
+                                        <label for="username">User Name</label>
+                                        <input id="username" name="username" required type="text" x-model="username" value=""/>
+                                        <label for="password">Password</label>
+                                        <input id="password" name="password" required type="password" x-model="password" value=""/>
+                                    </div>
+                                    <button class="font-bold uppercase transition-colors duration-200 rounded shadow text-form bg-highlight hover:bg-highlight-2 py-xs px-base" type="submit">Login</button>
+                                    <p class="text-sm text-body mt-base">
+                                        If you do not have a login you can
+                                        <button @click="isFlipped=!isFlipped" class="font-bold text-highlight" type="button">Register For an Account</button>
+                                    </p>
+                                </form>
+                            </div>
+                            <div class="flip-back">
+                                <form action="post" class="text-center rounded-md shadow p-base bg-primary" x-data="{username:'',email:''}">
+                                    <h2 class="font-serif text-3xl font-extrabold text-secondary">Register</h2>
+                                    <div class="py-base text-body">
+                                        <label for="username">User Name</label>
+                                        <input id="reg-username" name="username" required type="text" x-model="username" value=""/>
+                                        <label for="email">Email</label>
+                                        <input id="email" name="email" required type="email" x-model="email" value=""/>
+                                    </div>
+                                    <button class="font-bold uppercase transition-colors duration-200 rounded shadow text-form bg-highlight hover:bg-highlight-2 py-xs px-base" type="submit">Register</button>
+                                    <p class="text-sm text-body mt-base">
+                                        If you have a login, you can
+                                        <button @click="isFlipped=!isFlipped" class="font-bold text-highlight" type="button">Login Here</button>
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {# END Auth #}
+                {# TODO: add loading spinner for if auth works but user data has not yet downloaded yet #}
+
+                {# START Submit Form: only show if logged in #}
+                {# TODO: fix the $store.auth.user not an object issues #}
+                <div x-cloak x-show="$store.auth.isAuth && $store.auth.user">
+                    <div x-cloak x-init="$store.auth.getUserData()" class="flex justify-between rounded-md shadow p-base bg-primary mb-base">
+                        <div>
+                            <p class="text-lg font-semibold text-body">Welcome <span x-text="$store.auth.user.displayName"></span> (<span x-text="$store.auth.user.userNicename"></span>)!</p>
+                        </div>
+                        <div>
+                            <button class="button" @click="$store.auth.logout()">Logout</button>
+                        </div>
+                    </div>
+                    <header class="prose">
+                        <h2>Register</h2>
+                    </header>
+                </div>
+                {# END Submit Form #}
+            </section>
+        </div>
+    </main>
+{% endblock %}
+
+{% block pagebottom %}
+
+    <style>
+        .flipper {
+            width: 20rem;
+            height: 20rem;
+            perspective: 600px;
+            margin: 0 auto;
+        }
+        .flip-content {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.4s;
+            transform-style: preserve-3d;
+        }
+        .flip-back,
+        .flip-front {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            color: #fff;
+        }
+        .flip-back {
+            transform: rotateY(180deg);
+        }
+        .flipper-flipped .flip-content {
+            transform: rotateY(180deg);
+            transition: transform 0.3s;
+        }
+    </style>
+
+{% endblock %}

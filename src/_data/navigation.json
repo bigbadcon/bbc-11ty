@@ -2,14 +2,14 @@
         "title": "Attend",
         "id": "attend",
         "subnav": [{
-                "title": "Buy a Badge",
-                "url": "/badge",
+                "title": "Register",
+                "url": "/register",
                 "icon": "badge"
             },
             {
-                "title": "Hotel",
-                "url": "/hotel",
-                "icon": "hotel"
+                "title": "Events",
+                "url": "/events",
+                "icon": "calendar-clock"
             },
             {
                 "title": "FAQ",
@@ -21,16 +21,7 @@
     {
         "title": "Volunteer",
         "id": "volunteer",
-        "subnav": [{
-            "title": "Run An Event",
-            "url": "/run-an-event",
-            "icon": "calendar-star"
-        },
-        {
-            "title": "Run Games On Demand",
-            "url": "/games-on-demand",
-            "icon": "dice"
-        },
+        "subnav": [
         {
             "title": "Join The Rangers",
             "url": "/join-the-rangers",
@@ -39,46 +30,12 @@
     ]
     },
     {
-        "title": "Events",
-        "id": "events",
-        "subnav": [{
-            "title": "Scheduled Events",
-            "url": "/events",
-            "icon": "calendar-clock"
-        },
-        {
-            "title": "Drop In Events",
-            "url": "/drop-in",
-            "icon": "parachute"
-        },
-        {
-            "title": "Play To Win",
-            "url": "/play-to-win",
-            "icon": "trophy"
-        }
-    ]
-    },
-    {
-        "title": "Dealers",
-        "id": "dealers",
-        "subnav": [{
-            "title": "Dealers Room",
-            "url": "/dealers",
-            "icon": "price-tags"
-        },
-        {
-            "title": "Small Press Showcase",
-            "url": "/small-press",
-            "icon": "book"
-        }]
-    },
-    {
         "title": "Community",
         "id": "community",
         "subnav": [
             {
                 "title": "Community Standards",
-                "url": "/community",
+                "url": "/community-standards",
                 "icon": "scroll"
             },
             {
@@ -87,8 +44,8 @@
                 "icon": "shield"
             },
             {
-                "title": "Discord",
-                "url": "/discord",
+                "title": "Community Discord",
+                "url": "/community-discord",
                 "icon": "discord"
             }
         ]
