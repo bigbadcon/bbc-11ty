@@ -201,6 +201,11 @@ input[type="checkbox"] ~ label {
   filter: drop-shadow(0 0.1rem 0.1rem rgba(0, 0, 50, 0.4))
 }
 .icon-link__title {
-  @apply text-body-highlight font-serif leading-none;
+  @apply text-body-highlight font-serif;
   font-size: 1.3em;
+  line-height: 0.9;
+}
+/* Needed for cards on homepage */
+.prose p .icon-link {
+  margin: -.4em 0 0
 }

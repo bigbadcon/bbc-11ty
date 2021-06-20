@@ -1,13 +1,10 @@
 ---
-title: Attend 2021
+title: How to Attend
 order: -1
 tags: cards
-description: Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusmod
-  tempor incididunt ut labore.
 published: true
-
 ---
-Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
+We will be launching a fundraiser and opening registration for Big Bad Online in August. Follow us on [twitter](https://twitter.com/bigbadcon) or join our mailing list by [creating an account](/register).
 
 {% iconLink "/register", "Register", "badge" %}
 

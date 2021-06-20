@@ -5,6 +5,6 @@ tags: cards
 published: true
 
 ---
-Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
+We are looking for volunteers to help as online greeters for the Discord and presentation moderators on Twitch. Join the Big Bad Rangers!
 
 {% iconLink "/rangers", "Join The Rangers", "paw" %}

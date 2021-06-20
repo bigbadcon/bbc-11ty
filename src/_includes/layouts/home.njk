@@ -30,14 +30,16 @@
                 {% endfor %}
             </ul>
         </section>
+        {# Big full width cards with images #}
+        {# TODO: add images to markdown frontmatter #}
         <section class="mx-auto max-w-hero px-base py-base">
             <ul class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
                 {% for card in collections.bigcards %}
-                    <li class="grid grid-cols-3 overflow-hidden rounded shadow-md sm:col-span-2 md:col-span-3 bg-card">
+                    <li class="grid overflow-hidden rounded shadow-md md:grid-cols-3 sm:col-span-2 md:col-span-3 bg-card">
                         <figure class="aspect-w-2 aspect-h-1">
-                            <img src="/static/images/2019bbc-9548.jpg" class="object-cover object-center" alt="Big Bad Con 2019 attendees playing a game">
+                            <img src="{{card.data.image}}" class="object-cover object-center" alt="{{card.data.alt}}">
                         </figure>
-                        <div class="col-span-2 px-md pt-base pb-md">
+                        <div class="md:col-span-2 px-md pt-base pb-md">
                             <h2 class="font-serif text-3xl text-header">{{ card.data.title }}</h2>
                             <div class="prose">{{ card.templateContent | safe }}</div>
                         </div>
