@@ -23,4 +23,4 @@ Attendees will take place on our special Big Bad Online 2021 Discord and will in
 * Text-only hangout
 * Small video chat rooms
 
-[Suggest a Panel or Seminar you'd like to see](#)
+[Suggest a Panel or Seminar you'd like to see](/suggest-an-event)
