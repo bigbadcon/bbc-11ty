@@ -32,10 +32,10 @@
     "eleventy-plugin-blog-tools": "^0.3.1",
     "postcss": "latest",
     "postcss-cli": "latest",
-    "tailwindcss": "latest"
+    "tailwindcss": "latest",
+    "cross-env": "^7.0.3"
   },
   "devDependencies": {
-    "cross-env": "^7.0.3",
     "svg-sprite-generator": "^0.0.7"
   }
 }
