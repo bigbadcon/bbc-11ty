@@ -1,0 +1,32 @@
+{% extends 'layouts/base.njk' %}
+
+{% block header %}
+    {% include 'components/header.njk' %}
+{% endblock %}
+
+{% block content %}
+    <main id="content">
+        <div class="mx-auto max-w-content p-base">
+            <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
+            <div class="prose">{{ content | safe }}</div>
+            <section class="mt-md">
+                <h2 class="font-serif text-3xl font-bold leading-none md:text-4xl text-header mb-base">Events List</h2>
+                <table class="text-sm text-body">
+                    {% for row in eventsheet %}
+                        <tr class="border-b border-solid border-subheader">
+                            {% if loop.first %}
+                                {% for cell in row %}
+                                    <th class="font-bold text-left text-subheader p-sm">{{cell}}</th>
+                                {% endfor %}
+                            {% else %}
+                                {% for cell in row %}
+                                    <td class="p-sm">{{cell}}</td>
+                                {% endfor %}
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </table>
+            </section>
+        </div>
+    </main>
+{% endblock %}

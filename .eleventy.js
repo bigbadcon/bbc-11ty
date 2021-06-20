@@ -10,16 +10,14 @@ function sortByOrder(a,b) {
 }
 
 module.exports = (eleventyConfig) => {
+
+  // A useful way to reference the context we are runing eleventy in
+  let env = process.env.ELEVENTY_ENV;
+
   // See if this helps with things that do not refresh
   module.exports = function (eleventyConfig) {
     eleventyConfig.setUseGitIgnore(false);
   };
-
-  // Make Liquid capable of rendering "partials"
-  // eleventyConfig.setLiquidOptions({
-  //   dynamicPartials: true,
-  //   strict_filters: true,
-  // });
 
   eleventyConfig.addPlugin(blogTools);
   eleventyConfig.addPlugin(pluginRss);

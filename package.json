@@ -13,15 +13,15 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "eleventy",
-    "dev": "NODE_ENV=development eleventy --serve",
+    "build": "cross-env ELEVENTY_ENV=prod eleventy",
+    "dev": "cross-env ELEVENTY_ENV=dev eleventy --serve",
     "develop": "eleventy --serve",
-    "now-build": "npm run build",
     "debug": "DEBUG=* eleventy",
     "svgs": "npx svg-sprite-generate -d src/assets/svgs -o src/static/images/icons.svg"
   },
   "dependencies": {
     "@11ty/eleventy": "latest",
+    "@11ty/eleventy-cache-assets": "^2.2.1",
     "@11ty/eleventy-plugin-rss": "^1.1.1",
     "@tailwindcss/aspect-ratio": "^0.2.0",
     "@tailwindcss/forms": "^0.3.2",
@@ -35,6 +35,7 @@
     "tailwindcss": "latest"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "svg-sprite-generator": "^0.0.7"
   }
 }
