@@ -1,5 +1,4 @@
 ---
-tags: footer
 order: 10
 published: true
 title: ''
