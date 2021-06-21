@@ -53,16 +53,12 @@ function getLSWithExpiry(key) {
 /*                                    Auth                                    */
 /* -------------------------------------------------------------------------- */
 
+// Note apiBaseUrl is coming from the html_head allowing it to switch between dev and prod versions
+
 function alertMsg(msg = 'error') {
     // TODO add onscreen toast message for failed login
     console.log(msg)
 }
-
-const apiUrl = "https://bigbadcon.com:8091/apidev/"
-
-
-
-// TODO: fix can't find variable AXIOS. Maybe just switch to fetch
 
 /* -------------------------------------------------------------------------- */
 /*                                Alpine Store                                */
@@ -79,7 +75,7 @@ document.addEventListener('alpine:initializing', () => {
       async submitLogin(data) {
         // data is formatted as {username: 'username', password: 'password'}
         try {
-          const res = await axios.post(apiUrl + "login", data)
+          const res = await axios.post(apiBaseUrl + "login", data)
           if (res.status === 200 && res.headers.authorization) {
             this.token = res.headers.authorization;
             this.isAuth = true;
@@ -104,7 +100,7 @@ document.addEventListener('alpine:initializing', () => {
         token = token || this.token;
         try {
           const config = { headers: { Authorization: token } }
-          const res = await axios.get(apiUrl + 'users/me', config)
+          const res = await axios.get(apiBaseUrl + 'users/me', config)
           if (res.status === 200) {
             alertMsg(`user data fetched`)
             this.user = res.data

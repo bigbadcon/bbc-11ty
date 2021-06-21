@@ -11,7 +11,7 @@ function sortByOrder(a,b) {
 
 module.exports = (eleventyConfig) => {
 
-  // A useful way to reference the context we are runing eleventy in
+  // Register if running in dev or prod
   let env = process.env.ELEVENTY_ENV;
 
   // See if this helps with things that do not refresh
@@ -61,8 +61,16 @@ module.exports = (eleventyConfig) => {
     return today.getFullYear();
   });
 
+  // apiBaseUrl Shortcode
+  // TODO: fix this to proper prod api link once the CORS is sorted for the file version
+  eleventyConfig.addShortcode("apiBaseUrl", function () {
+    if (env === "dev") return "https://bigbadcon.com:8091/apidev/"
+    if (env === "prod") return "https://bigbadcon.com:8091/apidev/"
+  });
+
   // This is added to the css to force it to reload
   // TODO: Set this up to remove on production
+  // TODO: do we need this?
   eleventyConfig.addShortcode("version", function () {
     return String(Date.now());
   });
