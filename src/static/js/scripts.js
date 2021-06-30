@@ -68,9 +68,9 @@ function alertMsg(msg = 'error') {
 document.addEventListener('alpine:initializing', () => {
   const lsToken = getLSWithExpiry('authToken') || null
   const defaultUser = { displayName: null, userNicename: null }
-  console.log("🚀 ~ file: scripts.js ~ line 71 ~ document.addEventListener ~ lsToken", lsToken)
+  // console.log("🚀 ~ file: scripts.js ~ line 71 ~ document.addEventListener ~ lsToken", lsToken)
   const lsUser = getLSWithExpiry('user') || defaultUser
-  console.log("🚀 ~ file: scripts.js ~ line 73 ~ document.addEventListener ~ lsUser", lsUser)
+  // console.log("🚀 ~ file: scripts.js ~ line 73 ~ document.addEventListener ~ lsUser", lsUser)
 
   Alpine.store('theme', {
     theme: "auto",
