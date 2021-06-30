@@ -18,4 +18,8 @@
 /dist/
 /dist/**
 
+.cache
+/.cache
+/.cache/**
+
 valsby.sh

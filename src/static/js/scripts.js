@@ -68,6 +68,18 @@ document.addEventListener('alpine:initializing', () => {
   const lsToken = getLSWithExpiry('authToken') || null
   const lsUser = getLSWithExpiry('user') || null
 
+  Alpine.store('theme', {
+    theme: "auto",
+    setTheme(theme) {
+      this.theme = theme
+      window.localStorage.setItem('darkmode',theme)
+    },
+    getTheme() {
+      const theme = window.localStorage.getItem('darkmode')
+      if (theme) this.theme = theme
+    }
+  });
+
   Alpine.store('auth', {
       token: lsToken,
       isAuth: (lsToken),

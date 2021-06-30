@@ -21,6 +21,7 @@ module.exports = (eleventyConfig) => {
 
   eleventyConfig.addPlugin(blogTools);
   eleventyConfig.addPlugin(pluginRss);
+  // TODO: do I need this?
   eleventyConfig.addLiquidFilter("dateToRfc3339", pluginRss.dateRfc3339);
 
    // Staff sorted by order number and then alphabetically
