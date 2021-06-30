@@ -101,7 +101,7 @@
 /*                                    Forms                                   */
 /* -------------------------------------------------------------------------- */
 
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"], input[type="email"] {
   @apply px-4 py-2 border rounded-md bg-form border-body mb-sm text-body focus:ring-highlight focus:border-highlight;
 }
 
@@ -208,4 +208,38 @@ input[type="checkbox"] ~ label {
 /* Needed for cards on homepage */
 .prose p .icon-link {
   margin: -.4em 0 0
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                Auth Flipper                                */
+/* -------------------------------------------------------------------------- */
+
+
+.flipper {
+    width: 20rem;
+    height: 20rem;
+    perspective: 600px;
+    margin: 0 auto;
+}
+.flip-content {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.4s;
+    transform-style: preserve-3d;
+}
+.flip-back,
+.flip-front {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    color: #fff;
+}
+.flip-back {
+    transform: rotateY(180deg);
+}
+.flipper-flipped .flip-content {
+    transform: rotateY(180deg);
+    transition: transform 0.3s;
 }

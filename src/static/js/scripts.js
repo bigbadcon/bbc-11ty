@@ -20,6 +20,7 @@ function slugify(text) {
 /* -------------------------------------------------------------------------- */
 
 function setLSWithExpiry(key, value, ttl) {
+  ttl = ttl || 86400000 // one day
   const now = new Date()
 
   // `item` is an object which contains the original value
@@ -66,64 +67,71 @@ function alertMsg(msg = 'error') {
 
 document.addEventListener('alpine:initializing', () => {
   const lsToken = getLSWithExpiry('authToken') || null
-  const lsUser = getLSWithExpiry('user') || null
+  const defaultUser = { displayName: null, userNicename: null }
+  console.log("🚀 ~ file: scripts.js ~ line 71 ~ document.addEventListener ~ lsToken", lsToken)
+  const lsUser = getLSWithExpiry('user') || defaultUser
+  console.log("🚀 ~ file: scripts.js ~ line 73 ~ document.addEventListener ~ lsUser", lsUser)
 
   Alpine.store('theme', {
     theme: "auto",
     setTheme(theme) {
-      this.theme = theme
-      window.localStorage.setItem('darkmode',theme)
+      this.theme = theme;
+      setLSWithExpiry('theme', theme)
     },
     getTheme() {
-      const theme = window.localStorage.getItem('darkmode')
+      const theme = getLSWithExpiry('theme')
       if (theme) this.theme = theme
     }
   });
 
   Alpine.store('auth', {
-      token: lsToken,
-      isAuth: (lsToken),
-      user: lsUser,
-      async submitLogin(data) {
-        // data is formatted as {username: 'username', password: 'password'}
-        try {
-          const res = await axios.post(apiBaseUrl + "login", data)
-          if (res.status === 200 && res.headers.authorization) {
-            this.token = res.headers.authorization;
-            this.isAuth = true;
-            setLSWithExpiry('authToken', this.token, 86400000)
-            alertMsg(`login successful`);
-            this.getUserData(this.token);
-          } else {
-            alertMsg(`login failed, status: ${res.status}`)
-          }
-        } catch (err) {
-          alertMsg(`login failed, error: ${err}`)
+    isFlipped: false,
+    toggleFlip() { this.isFlipped = !this.isFlipped},
+    username: "",
+    password: "",
+    email: "",
+    token: lsToken,
+    user: lsUser,
+    async submitLogin() {
+      const data = {username: this.username, password: this.password}
+
+      try {
+        const res = await axios.post(apiBaseUrl + "login", data)
+        if (res.status === 200 && res.headers.authorization) {
+          const token = res.headers.authorization
+          this.token = token;
+          setLSWithExpiry('authToken', token)
+          alertMsg(`login successful`);
+          this.getUserData(token);
+        } else {
+          alertMsg(`login failed, status: ${res.status}`)
         }
-      },
-      logout() {
-        this.isAuth = false;
-        this.user = false;
-        this.token = null;
-        localStorage.removeItem('authToken')
-        localStorage.removeItem('user')
-      },
-      async getUserData(token) {
-        token = token || this.token;
-        try {
-          const config = { headers: { Authorization: token } }
-          const res = await axios.get(apiBaseUrl + 'users/me', config)
-          if (res.status === 200) {
-            alertMsg(`user data fetched`)
-            this.user = res.data
-            alertMsg(`fetch user data successful for ${res.data.userNicename}`)
-            setLSWithExpiry('user', res.data, 86400000);
-          } else {
-            alertMsg(`get user data failed, status: ${res.status}`)
-          }
-        } catch (err) {
-          alertMsg(`get user data failed, error: ${err}`)
-        }
+      } catch (err) {
+        alertMsg(`login failed, error: ${err}`)
       }
+    },
+    logout() {
+      console.log("logout");
+      this.user = defaultUser;
+      this.token = null;
+      localStorage.removeItem('authToken')
+      localStorage.removeItem('user')
+    },
+    async getUserData(token) {
+      token = token || this.token;
+      try {
+        const config = { headers: { Authorization: token } }
+        const res = await axios.get(apiBaseUrl + 'users/me', config)
+        if (res.status === 200) {
+          this.user = res.data
+          alertMsg(`fetch user data successful for ${res.data.userNicename}`)
+          setLSWithExpiry('user', res.data);
+        } else {
+          alertMsg(`get user data failed, status: ${res.status}`)
+        }
+      } catch (err) {
+        alertMsg(`get user data failed, error: ${err}`)
+      }
+    }
   })
 })

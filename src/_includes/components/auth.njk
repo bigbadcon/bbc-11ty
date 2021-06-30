@@ -1,41 +1,50 @@
 {# TODO: make this general to be used anywhere #}
 {# TODO: add a third card state that shows when people are logged in #}
-<div x-cloak x-show="!$store.auth.isAuth">
-    <div x-data="{ isFlipped: false }" :class="{'flipper-flipped': isFlipped}" class="flipper">
+<div x-cloak x-show="!$store.auth.token">
+    <div class="flipper" :class="{'flipper-flipped': $store.auth.isFlipped}">
         <div class="flip-content">
             <div class="flip-front">
-                <form action="post" class="text-center rounded-md shadow p-base bg-primary" x-data="{username:'',password:''}" @submit.prevent="!$store.auth.submitLogin({username: username, password: password}); username = ''; password = '';">
+                <form action="post" class="text-center rounded-md shadow p-base bg-primary" @submit.prevent="$store.auth.submitLogin()">
                     <h2 class="font-serif text-3xl font-extrabold text-secondary">Login</h2>
                     <div class="py-base text-body">
                         <label for="username">User Name</label>
-                        <input id="username" name="username" required type="text" x-model="username" value=""/>
+                        <input id="username" name="username" required type="text" x-model="$store.auth.username" value=""/>
                         <label for="password">Password</label>
-                        <input id="password" name="password" required type="password" x-model="password" value=""/>
+                        <input id="password" name="password" required type="password" x-model="$store.auth.password" value=""/>
                     </div>
                     <button class="font-bold uppercase transition-colors duration-200 rounded shadow text-form bg-highlight hover:bg-highlight-2 py-xs px-base" type="submit">Login</button>
                     <p class="flex flex-col text-sm text-body mt-base gap-xs">
                         {# TODO: get lost password working #}
                         <button class="font-bold text-highlight" type="button">Lost Your Password?</button>
-                        <button @click="isFlipped=!isFlipped" class="font-bold text-highlight" type="button">Create an Account</button>
+                        <button @click="$store.auth.toggleFlip()" class="font-bold text-highlight" type="button">Create an Account</button>
+
                     </p>
                 </form>
             </div>
             {# TODO: get register working #}
             <div class="flip-back">
-                <form action="post" class="text-center rounded-md shadow p-base bg-primary" x-data="{username:'',email:''}">
+                <form action="post" class="text-center rounded-md shadow p-base bg-primary" @submit.prevent="">
                     <h2 class="font-serif text-3xl font-extrabold text-secondary">Create an Account</h2>
                     <div class="py-base text-body">
                         <label for="username">User Name</label>
-                        <input id="reg-username" name="username" required type="text" x-model="username" value=""/>
+                        <input id="reg-username" name="username" required type="text" x-model="$store.auth.username" value=""/>
                         <label for="email">Email</label>
-                        <input id="email" name="email" required type="email" x-model="email" value=""/>
+                        <input id="email" name="email" required type="email" x-model="$store.auth.email" value=""/>
                     </div>
                     <button class="font-bold uppercase transition-colors duration-200 rounded shadow text-form bg-highlight hover:bg-highlight-2 py-xs px-base" type="submit">Register</button>
                     <p class="text-sm text-body mt-base">
-                        If you have an account, <button @click="isFlipped=!isFlipped" class="font-bold text-highlight" type="button">Login Here</button>
+                        If you have an account, <button @click="$store.auth.toggleFlip()" class="font-bold text-highlight" type="button">Login Here</button>
                     </p>
                 </form>
             </div>
         </div>
+    </div>
+</div>
+<div x-show="$store.auth.token && $store.auth.user.displayName" class="flex justify-between rounded-md shadow p-base bg-primary mb-base">
+    <div>
+        <p class="text-lg font-semibold text-body">Welcome <span x-text="$store.auth.user.displayName"></span> (<span x-text="$store.auth.user.userNicename"></span>)!</p>
+    </div>
+    <div>
+        <button class="button" @click="$store.auth.logout()">Logout</button>
     </div>
 </div>

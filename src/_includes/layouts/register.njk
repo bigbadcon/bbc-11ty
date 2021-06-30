@@ -13,56 +13,7 @@
             <div class="prose">{{ content | safe }}</div>
             <section class="my-base">
                 {% include 'components/auth.njk' %}
-                <div x-cloak x-show="$store.auth.isAuth && $store.auth.user">
-                    <div x-cloak x-init="$store.auth.getUserData()" class="flex justify-between rounded-md shadow p-base bg-primary mb-base">
-                        <div>
-                            <p class="text-lg font-semibold text-body">Welcome <span x-text="$store.auth.user.displayName"></span> (<span x-text="$store.auth.user.userNicename"></span>)!</p>
-                        </div>
-                        <div>
-                            <button class="button" @click="$store.auth.logout()">Logout</button>
-                        </div>
-                    </div>
-                    <header class="prose">
-                        <h2>Register</h2>
-                    </header>
-                </div>
-                {# END Submit Form #}
             </section>
         </div>
     </main>
-{% endblock %}
-
-{% block pagebottom %}
-
-    <style>
-        .flipper {
-            width: 20rem;
-            height: 20rem;
-            perspective: 600px;
-            margin: 0 auto;
-        }
-        .flip-content {
-            width: 100%;
-            height: 100%;
-            transition: transform 0.4s;
-            transform-style: preserve-3d;
-        }
-        .flip-back,
-        .flip-front {
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            color: #fff;
-        }
-        .flip-back {
-            transform: rotateY(180deg);
-        }
-        .flipper-flipped .flip-content {
-            transform: rotateY(180deg);
-            transition: transform 0.3s;
-        }
-    </style>
-
 {% endblock %}
