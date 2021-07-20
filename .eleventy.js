@@ -2,6 +2,8 @@
 
 const blogTools = require("eleventy-plugin-blog-tools");
 const format = require('date-fns/format');
+const parse = require('date-fns/parse');
+const isDate = require('date-fns/isDate');
 const pluginRss = require("@11ty/eleventy-plugin-rss");
 
 // Function to sort by order frontmatter field then by fileSlug alphabetically
@@ -21,8 +23,10 @@ module.exports = (eleventyConfig) => {
 
   eleventyConfig.addPlugin(blogTools);
   eleventyConfig.addPlugin(pluginRss);
-  // TODO: do I need this?
-  eleventyConfig.addLiquidFilter("dateToRfc3339", pluginRss.dateRfc3339);
+
+  /* -------------------------------------------------------------------------- */
+  /*                                 Collections                                */
+  /* -------------------------------------------------------------------------- */
 
    // Staff sorted by order number and then alphabetically
    eleventyConfig.addCollection("blogPublished", function(collectionApi) {
@@ -49,12 +53,37 @@ module.exports = (eleventyConfig) => {
     return collectionApi.getFilteredByTag("footer").filter(c => c.template.frontMatter.data.published === true).sort((a,b) => sortByOrder(a,b));
   });
 
-  // Pass "static" things straight through from "src" to "dist"
-  eleventyConfig.addPassthroughCopy("./src/static/");
-  eleventyConfig.addPassthroughCopy("./images/");
+/* -------------------------------------------------------------------------- */
+/*                                   Filters                                  */
+/* -------------------------------------------------------------------------- */
 
   // Format date for posts
   eleventyConfig.addFilter( "formatDate", (val) => format(val, "MMM do, yyyy"));
+
+  // Format date for posts
+  eleventyConfig.addFilter( "stripSeconds", (val) => val.slice(0,5));
+
+  // events data metadataArrayToObject
+  eleventyConfig.addFilter( "metadataArrayToObject", (arr) => {
+    const object = arr.reduce(function(result, item, index, array) {
+      result[item.metaKey] = item.metaValue;
+      return result;
+    }, {});
+    return object
+  });
+
+
+
+  /* -------------------------------------------------------------------------- */
+  /*                                 Shortcodes                                 */
+  /* -------------------------------------------------------------------------- */
+
+  // Format Date/Time
+  eleventyConfig.addShortcode('formatDate', function (date, dateFormat = 'MMM d, y', dateParse = "MMM do, yyyy") {
+    date = isDate(date) ? date : parse(date, dateParse, new Date())
+    date = isDate(date) ? date : new Date();
+    return format(date, dateFormat)
+  });
 
   // Current Year
   eleventyConfig.addShortcode("currentYear", function () {
@@ -69,23 +98,24 @@ module.exports = (eleventyConfig) => {
     if (env === "prod") return "https://bigbadcon.com:8091/apidev/"
   });
 
-  // This is added to the css to force it to reload
-  // TODO: Set this up to remove on production
-  // TODO: do we need this?
-  eleventyConfig.addShortcode("version", function () {
-    return String(Date.now());
-  });
-
-  // Because we're running PostCSS as a separate process, Eleventy doesn't know when styles have changed
-  // Tell Eleventy to watch this CSS file so it can live-update changes into the browser for us
-  eleventyConfig.addWatchTarget("./dist/tailwindoutlive.css");
-
   // SVG Sprite Shortcode
   eleventyConfig.addShortcode("iconLink", function(link, title, icon = "star") {
     return `<a href="${link}" class="icon-link"><svg class="icon-link__icon">
       <use xlink:href="/static/images/icons.svg#${icon}"></use>
     </svg><span class="icon-link__title">${title}</span></a>`
   });
+
+  /* -------------------------------------------------------------------------- */
+  /*                                 Build Stuff                                */
+  /* -------------------------------------------------------------------------- */
+
+  // Pass "static" things straight through from "src" to "dist"
+  eleventyConfig.addPassthroughCopy("./src/static/");
+  eleventyConfig.addPassthroughCopy("./images/");
+
+  // Because we're running PostCSS as a separate process, Eleventy doesn't know when styles have changed
+  // Tell Eleventy to watch this CSS file so it can live-update changes into the browser for us
+  eleventyConfig.addWatchTarget("./dist/tailwindoutlive.css");
 
   // Clarify which folder is for input and which folder is for output
   return {

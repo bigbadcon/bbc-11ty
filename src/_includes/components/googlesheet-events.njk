@@ -1,0 +1,18 @@
+<section class="mt-md">
+    <h2 class="font-serif text-3xl font-bold leading-none md:text-4xl text-header mb-base">Events List</h2>
+    <table class="text-sm text-body">
+        {% for row in eventsheet %}
+            <tr class="border-b border-solid border-subheader">
+                {% if loop.first %}
+                    {% for cell in row %}
+                        <th class="font-bold text-left text-subheader p-sm">{{cell}}</th>
+                    {% endfor %}
+                {% else %}
+                    {% for cell in row %}
+                        <td class="p-sm">{{cell}}</td>
+                    {% endfor %}
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+</section>

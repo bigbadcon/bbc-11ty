@@ -28,12 +28,15 @@
     "@tailwindcss/typography": "^0.4.0",
     "autoprefixer": "latest",
     "axios": "^0.21.1",
-    "date-fns": "^2.19.0",
+    "cross-env": "^7.0.3",
+    "date-fns": "^2.22.1",
     "eleventy-plugin-blog-tools": "^0.3.1",
     "postcss": "latest",
     "postcss-cli": "latest",
+    "slugify": "^1.6.0",
     "tailwindcss": "latest",
-    "cross-env": "^7.0.3"
+    "utf8": "^3.0.0",
+    "windows-1252": "^1.0.0"
   },
   "devDependencies": {
     "svg-sprite-generator": "^0.0.7"

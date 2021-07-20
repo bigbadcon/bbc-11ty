@@ -1,0 +1,32 @@
+---
+layout: layouts/plain.njk
+pagination:
+    data: events
+    size: 1
+    alias: event
+permalink: "events/{{ event.eventSlug }}/"
+eleventyComputed:
+    title: "{{event.eventName}}"
+---
+
+{# Speakers #}
+{# Time #}
+{# Time at their timezone #}
+{# Panel or seminar #}
+{# Image at what ratio? Make a Photoshop template for 1-6 speaker heads #}
+{# Look into autogen twitter cards #}
+{# Volunteer events need to be seperated from the rest #}
+{# If possible set up booking for volunteer shifts #}
+<div class="prose mb-base">
+    <p>
+        <strong>Categories:</strong>
+        {% for category in event.categories %}
+            {% if loop.last %}
+                <span>{{category.name}}</span>
+            {% else %}
+                <span>{{category.name}}</span>, 
+            {% endif %}
+        {% endfor %}
+    </p>
+</div>
+<div class="prose">{{event.postContent | safe }}</div>
