@@ -1,0 +1,19 @@
+---
+layout: layouts/plain.njk
+pagination:
+    data: eventData.volunteer
+    size: 1
+    alias: event
+permalink: "volunteer/{{ event.eventSlug }}/"
+eleventyComputed:
+    title: "{{event.eventName}}"
+---
+
+{%- from "components/auth-macros.njk" import authPanel -%}
+
+<div class="prose">{{event.postContent | safe }}</div>
+{# Event Signup / Booking #}
+<div class="mt-base">
+    <h2 class="font-serif text-2xl font-bold leading-none md:text-4xl text-header mb-base">Volunteer Signup</h2>
+    {{ authPanel() }}
+</div>

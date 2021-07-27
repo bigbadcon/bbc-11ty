@@ -8,7 +8,7 @@ permalink: "events/{{ event.eventSlug }}/"
 eleventyComputed:
     title: "{{event.eventName}}"
 ---
-
+{%- from "components/auth-macros.njk" import authPanel -%}
 {# Speakers #}
 {# Time #}
 {# Time at their timezone #}
@@ -30,3 +30,8 @@ eleventyComputed:
     </p>
 </div>
 <div class="prose">{{event.postContent | safe }}</div>
+{# Event Signup / Booking #}
+<div class="mt-base">
+    <h2 class="font-serif text-2xl font-bold leading-none md:text-4xl text-header mb-base">Event Booking</h2>
+    {{ authPanel() }}
+</div>

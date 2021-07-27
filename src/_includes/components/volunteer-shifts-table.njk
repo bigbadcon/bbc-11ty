@@ -12,7 +12,7 @@
                 {% set metadata = event.metadata | metadataArrayToObject %}
                 <tr class="">
                     <td class="py-sm pr-sm">
-                        <a href="/events/{{event.eventSlug}}" class="text-highlight">{{event.eventName | safe }}</a>
+                        <a href="/volunteer/{{event.eventSlug}}" class="text-highlight">{{event.eventName | safe }}</a>
                     </td>
                     <td class="w-24 text-center py-sm">{{ event.eventStartTime | stripSeconds }} &ndash; {{ event.eventEndTime | stripSeconds }}</td>
                 </tr>
