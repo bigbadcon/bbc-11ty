@@ -110,6 +110,9 @@ document.addEventListener('alpine:initializing', () => {
         alertMsg(`login failed, error: ${err}`)
       }
     },
+    async createAccount() {
+      
+    },
     logout() {
       console.log("logout");
       this.user = defaultUser;
