@@ -1,11 +1,11 @@
 {# TODO: make this general to be used anywhere #}
 {# TODO: add a third card state that shows when people are logged in #}
-<div x-cloak x-show="!$store.auth.token" class="w-full h-36 my-base" :class="{'flipper-flipped': $store.auth.isFlipped}" style="perspective: 2000px;">
+<div x-cloak x-show="!$store.auth.token" class="w-full h-72 sm:h-36 my-base" :class="{'flipper-flipped': $store.auth.isFlipped}" style="perspective: 2000px;">
     <div class="w-full h-full flip-content" style="transition: transform 0.5s; transform-style: preserve-3d;">
         {# Front Panel #}
         <div class="absolute w-full h-full rounded-md shadow flip-front px-base pt-sm pb-base bg-primary">
             <h2 class="font-serif text-2xl font-extrabold text-secondary">Login</h2>
-            <form action="post" class="items-end mb-sm text-body lg:flex gap-base" @submit.prevent="$store.auth.submitLogin()">
+            <form action="post" class="flex flex-col sm:items-end sm:flex-row mb-sm text-body gap-sm sm:gap-base" @submit.prevent="$store.auth.submitLogin()">
                 <div>
                     <label for="username" class="text-xs uppercase">User Name</label>
                     <input class="w-48" id="username" name="username" required type="text" x-model="$store.auth.username" value=""/>
@@ -31,7 +31,7 @@
         {# Back Panel #}
         <div class="absolute w-full h-full rounded-md shadow flip-back px-base pt-sm pb-base bg-primary">
             <h2 class="font-serif text-2xl font-extrabold text-secondary">Create an Account</h2>
-            <form action="post" class="items-end mb-sm text-body lg:flex gap-base" @submit.prevent="">
+            <form action="post" class="flex flex-col items-end sm:flex-row mb-sm text-body gap-base" @submit.prevent="">
                 <div>
                     <label for="username" class="text-xs uppercase">User Name</label>
                     <input class="w-48" id="reg-username" name="username" required type="text" x-model="$store.auth.username" value=""/>
