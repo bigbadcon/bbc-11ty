@@ -15,13 +15,14 @@
                     <td class="py-sm pr-sm">
                         <a href="/events/{{event.eventSlug}}" class="text-highlight">{{event.eventName | safe }}</a>
                     </td>
+                    <td>{{event.eventId}}</td>
                     {# <td class="py-sm pr-sm">{{metadata.System}}</td> #}
                     <td class="py-sm pr-sm">
                         {% for category in event.categories %}
                             {% if loop.last %}
                                 <span>{{category.name}}</span>
                             {% else %}
-                                <span>{{category.name}}</span>, 
+                                <span>{{category.name}}</span>,
                             {% endif %}
                         {% endfor %}
                     </td class="py-sm pr-sm">

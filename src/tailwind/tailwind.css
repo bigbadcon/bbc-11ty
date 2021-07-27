@@ -117,6 +117,10 @@ button[type="submit"], .button {
   @apply font-bold uppercase transition-colors duration-200 rounded shadow text-form bg-highlight hover:bg-highlight-2 py-xs px-base border border-highlight;
 }
 
+button:disabled {
+  @apply opacity-50 hover:bg-highlight;
+}
+
 textarea {
   @apply w-full px-4 py-2 border rounded-md border-body bg-form mb-sm text-body focus:ring-highlight focus:border-highlight;
 }

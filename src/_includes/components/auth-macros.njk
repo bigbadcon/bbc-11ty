@@ -37,6 +37,51 @@
         {# Somehow include signup info here. Might need to turn this into a macro #}
         <div>
             <button class="button" @click="$store.auth.logout()">Logout</button>
+            <button class="button" @click="$store.auth.toggleFlip()">My Events</button>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro userEventsInfo() %}
+    <div x-cloak x-show="$store.auth.token && $store.auth.user.displayName" class="">
+        <div>
+            <p class="text-lg font-semibold text-body">Welcome <span x-text="$store.auth.user.displayName"></span> (<span x-text="$store.auth.user.userNicename"></span>)!</p>
+        </div>
+        <div class="prose">
+            <ul>
+                <template x-for="event in $store.user.userEvents">
+                    <li>
+                        <span x-html="event.eventName"></span>
+                    </li>
+                </template>
+            </ul>
+        </div>
+        {# Somehow include signup info here. Might need to turn this into a macro #}
+        <div class="flex mt-xs gap-sm">
+            <button class="button" @click="$store.auth.toggleFlip()">Event Booking</button>
+            <button class="button" @click="$store.auth.logout()">Logout</button>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro eventInfo(eventId) %}
+    <div x-cloak x-show="$store.auth.token && $store.auth.user.displayName" class="">
+        <div class="text-body">
+            <h3 class="text-lg font-semibold" x-html="event.eventName"></h3>
+            <p>
+                <span>Event Owner:</span>
+                <span x-text="owner"></span>
+            </p>
+            <p>
+                <span>Spaces Open:</span>
+                <span x-text="spaces"></span> out of <span x-text="maxPlayers"></span>
+            </p>
+            <p class="flex mt-xs gap-sm">
+                <button class="button" x-show="spaces > 0 && !$store.user.isBooked({{eventId}})">Book Event</button>
+                <span x-show="spaces <= 0 && !$store.user.isBooked({{eventId}})" class="font-bold">Event is full</span>
+                <button class="button" x-show="$store.user.isBooked({{eventId}}) && $store.auth.user.displayName !== owner">Cancel Booking</span>
+                <button class="button" @click="$store.auth.toggleFlip()">My Events</button>
+            </p>
         </div>
     </div>
 {% endmacro %}
@@ -76,6 +121,29 @@
             {# Back Panel #}
             <div class="absolute w-full h-full rounded-md shadow flip-back px-base pt-sm pb-base bg-primary">
                 {{ createAccount() }}
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro eventAuthPanel(eventId) %}
+    <div 
+    class="w-full h-72 sm:h-36 my-base" 
+    :class="{'flipper-flipped': $store.auth.isFlipped}" 
+    style="perspective: 2000px;"
+    x-data="eventInfo" 
+    x-init="getEvent($store.auth.token, {{eventId}}); $store.user.getUserEvents($store.auth.token)">
+        <div class="w-full h-full flip-content" style="transition: transform 0.5s; transform-style: preserve-3d;">
+            {# Front Panel #}
+            <div class="absolute w-full h-full rounded-md shadow flip-front px-base pt-sm pb-base bg-primary">
+                {{ login() }}
+                {{ spinner() }}
+                {{ eventInfo(eventId) }}
+            </div>
+            {# Back Panel #}
+            <div class="absolute w-full h-full rounded-md shadow flip-back px-base pt-sm pb-base bg-primary">
+                {{ createAccount() }}
+                {{ userEventsInfo() }}
             </div>
         </div>
     </div>

@@ -1,14 +1,14 @@
 {% extends 'layouts/base.njk' %}
 
 {% block header %}
-    {% include 'components/header.njk' %}
+  {% include 'components/header.njk' %}
 {% endblock %}
 
 {% block content %}
-    <main id="content">
-      <div class="max-w-content mx-auto p-base">
-        <h1 class="font-serif text-4xl md:text-5xl text-header font-bold mb-base leading-none">{{title}}</h1>
-        <div class="">{{ content | safe }}</div>
-      </div>
-    </main>
+  <main id="content">
+    <div class="mx-auto max-w-content p-base">
+      <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title | safe}}</h1>
+      <div class="">{{ content | safe }}</div>
+    </div>
+  </main>
 {% endblock %}

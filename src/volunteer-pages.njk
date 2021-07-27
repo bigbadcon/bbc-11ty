@@ -9,11 +9,11 @@ eleventyComputed:
     title: "{{event.eventName}}"
 ---
 
-{%- from "components/auth-macros.njk" import authPanel -%}
+{%- from "components/auth-macros.njk" import eventAuthPanel -%}
 
 <div class="prose">{{event.postContent | safe }}</div>
 {# Event Signup / Booking #}
 <div class="mt-base">
     <h2 class="font-serif text-2xl font-bold leading-none md:text-4xl text-header mb-base">Volunteer Signup</h2>
-    {{ authPanel() }}
+    {{ eventAuthPanel(event.eventId) }}
 </div>
