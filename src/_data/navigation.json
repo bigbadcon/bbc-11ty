@@ -26,6 +26,11 @@
             "title": "Join The Rangers",
             "url": "/rangers",
             "icon": "paw"
+        },
+        {
+            "title": "Volunteer Shifts",
+            "url": "/volunteer-shifts",
+            "icon": "calendar-clock"
         }
     ]
     },

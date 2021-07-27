@@ -113,9 +113,8 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addPassthroughCopy("./src/static/");
   eleventyConfig.addPassthroughCopy("./images/");
 
-  // Because we're running PostCSS as a separate process, Eleventy doesn't know when styles have changed
-  // Tell Eleventy to watch this CSS file so it can live-update changes into the browser for us
-  eleventyConfig.addWatchTarget("./dist/tailwindoutlive.css");
+  // Watch for changes in tailwind css
+  eleventyConfig.addWatchTarget("./src/tailwind/tailwind.css");
 
   // Clarify which folder is for input and which folder is for output
   return {

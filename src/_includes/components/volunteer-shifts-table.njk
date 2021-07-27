@@ -1,30 +1,19 @@
 <section class="mt-md">
-    <h2 class="font-serif text-3xl font-bold leading-none md:text-4xl text-header mb-base">Events List</h2>
+    <h2 class="font-serif text-3xl font-bold leading-none md:text-4xl text-header mb-base">Volunteer Shift List</h2>
     <table class="w-full text-sm text-body">
         <thead>
             <tr>
                 <th class="text-left pb-sm">Event Name</th>
-                <th class="text-left pb-sm">Categories</th>
                 <th class="text-center pb-sm">Time PDT</th>
             </tr>
         </thead>
         <tbody>
-            {% for event in eventData.events %}
+            {% for event in eventData.volunteer %}
                 {% set metadata = event.metadata | metadataArrayToObject %}
                 <tr class="">
                     <td class="py-sm pr-sm">
                         <a href="/events/{{event.eventSlug}}" class="text-highlight">{{event.eventName | safe }}</a>
                     </td>
-                    {# <td class="py-sm pr-sm">{{metadata.System}}</td> #}
-                    <td class="py-sm pr-sm">
-                        {% for category in event.categories %}
-                            {% if loop.last %}
-                                <span>{{category.name}}</span>
-                            {% else %}
-                                <span>{{category.name}}</span>, 
-                            {% endif %}
-                        {% endfor %}
-                    </td class="py-sm pr-sm">
                     <td class="w-24 text-center py-sm">{{ event.eventStartTime | stripSeconds }} &ndash; {{ event.eventEndTime | stripSeconds }}</td>
                 </tr>
             {% endfor %}

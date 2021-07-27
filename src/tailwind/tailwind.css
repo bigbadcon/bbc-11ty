@@ -102,7 +102,7 @@
 /* -------------------------------------------------------------------------- */
 
 input[type="text"], input[type="password"], input[type="email"] {
-  @apply px-4 py-2 border rounded-md bg-form border-body mb-sm text-body focus:ring-highlight focus:border-highlight;
+  @apply px-sm py-xs border rounded-md bg-form border-body text-body focus:ring-highlight focus:border-highlight;
 }
 
 label {
@@ -114,7 +114,7 @@ select {
 }
 
 button[type="submit"], .button {
-  @apply font-bold uppercase transition-colors duration-200 rounded shadow text-form bg-highlight hover:bg-highlight-2 py-xs px-base;
+  @apply font-bold uppercase transition-colors duration-200 rounded shadow text-form bg-highlight hover:bg-highlight-2 py-xs px-base border border-highlight;
 }
 
 textarea {
@@ -214,27 +214,10 @@ input[type="checkbox"] ~ label {
 /*                                Auth Flipper                                */
 /* -------------------------------------------------------------------------- */
 
-
-.flipper {
-    width: 20rem;
-    height: 20rem;
-    perspective: 600px;
-    margin: 0 auto;
-}
-.flip-content {
-    width: 100%;
-    height: 100%;
-    transition: transform 0.4s;
-    transform-style: preserve-3d;
-}
 .flip-back,
 .flip-front {
-    position: absolute;
-    height: 100%;
-    width: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    color: #fff;
 }
 .flip-back {
     transform: rotateY(180deg);
