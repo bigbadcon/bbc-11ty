@@ -90,16 +90,6 @@ function metadataArrayToObject(arr) {
 document.addEventListener('alpine:init', () => {
 
   /* -------------------------------------------------------------------------- */
-  /*                            Set Global Variables                            */
-  /* -------------------------------------------------------------------------- */
-  
-  /* -------------------- Check localStorage for authToken -------------------- */
-  const globalStore = {
-    authToken: getLSWithExpiry('authToken') || null,
-    user: getLSWithExpiry('user') || { displayName: null, userNicename: null }
-  }
-
-  /* -------------------------------------------------------------------------- */
   /*                             API Fetch Functions                            */
   /* -------------------------------------------------------------------------- */
 
@@ -166,6 +156,8 @@ document.addEventListener('alpine:init', () => {
   /*                                Alpine Stores                               */
   /* -------------------------------------------------------------------------- */
 
+  /* -------------------------- Light/Dark/Auto Theme ------------------------- */
+
   Alpine.store('theme', {
     theme: "auto",
     setTheme(theme) {
@@ -179,6 +171,71 @@ document.addEventListener('alpine:init', () => {
     }
   });
 
+  /* ---------------------------- User Events Store --------------------------- */
+
+  // TODO: getUserEvents needs to be called once logged in use $watch maybe
+  Alpine.store('user', {
+    userEvents: [],
+    isBooked(id) {
+      return this.userEvents.includes(id)
+    },
+    async getUserEvents() {
+      this.userEvents = await api.getUserEvents()
+    }
+  })
+
+  /* ------------------------------- Auth Store ------------------------------- */
+
+  // TODO: add alert for failed password
+  Alpine.store('auth', {
+    async init() {
+      const token = getAuthToken()
+      this.isAuth = (typeof token === 'string')
+      this.user = getLSWithExpiry('user')
+      if (this.isAuth && !this.user) {
+        this.getUserData()
+      }
+    },
+    isFlipped: false,
+    toggleFlip() { this.isFlipped = !this.isFlipped},
+    username: "",
+    password: "",
+    email: "",
+    isAuth: false,
+    user: false,
+    async submitLogin() {
+      const token = await api.submitLogin(this.username,this.password)
+      this.username = ""
+      this.password = ""
+      if (token) {
+        setAuthToken(token)
+        this.isAuth = true
+        this.getUserData()
+      }
+    },
+    async createAccount() {
+
+    },
+    async getUserData() {
+      this.user = await api.getUserData()
+      setLSWithExpiry('user', this.user)
+    },
+    logout() {
+      console.log("logout")
+      this.isAuth = false
+      this.user = null
+      removeAuthToken()
+      localStorage.removeItem('user')
+    },
+  })
+
+  /* -------------------------------------------------------------------------- */
+  /*                            Alpine Component Data                           */
+  /* -------------------------------------------------------------------------- */
+
+  /* -------------------------- eventInfo panel data -------------------------- */
+
+  // TODO: getEvent needs to be called once logged in use $watch maybe
   Alpine.data('eventInfo', () => ({
     event: {},
     maxPlayers: null,
@@ -199,54 +256,4 @@ document.addEventListener('alpine:init', () => {
     }
   }))
 
-  Alpine.store('user', {
-    userEvents: [],
-    isBooked(id) {
-      return this.userEvents.includes(id)
-    },
-    async getUserEvents() {
-      this.userEvents = await api.getUserEvents()
-    }
-  })
-
-  Alpine.store('auth', {
-    async init() {
-      const token = getAuthToken()
-      this.isAuth = (typeof token === 'string')
-      this.user = getLSWithExpiry('user')
-      if (this.isAuth && !this.user) {
-        this.user = await api.getUserData()
-        setLSWithExpiry('user',this.user)
-      }
-    },
-    isFlipped: false,
-    toggleFlip() { this.isFlipped = !this.isFlipped},
-    username: "",
-    password: "",
-    email: "",
-    isAuth: false,
-    user: false,
-    async submitLogin() {
-      const token = await api.submitLogin(this.username,this.password)
-      if (token) {
-        setAuthToken(token)
-        this.isAuth = true
-        this.user = await api.getUserData()
-      }
-    },
-    async createAccount() {
-
-    },
-    async getUserData() {
-      this.user = await api.getUserData()
-      setLSWithExpiry('user', this.user)
-    },
-    logout() {
-      console.log("logout")
-      this.isAuth = false
-      this.user = null
-      removeAuthToken()
-      localStorage.removeItem('user')
-    },
-  })
 })

@@ -55,7 +55,6 @@
         <div>
             <p class="text-lg font-semibold text-body">Welcome <span x-text="$store.auth.user.displayName"></span> (<span x-text="$store.auth.user.userNicename"></span>)!</p>
         </div>
-        {# Somehow include signup info here. Might need to turn this into a macro #}
         <div>
             <button class="button" @click="$store.auth.logout()">Logout</button>
             <button class="button" @click="$store.auth.toggleFlip()">My Events</button>
@@ -77,10 +76,9 @@
                 </template>
             </ul>
         </div>
-        {# Somehow include signup info here. Might need to turn this into a macro #}
         <div class="flex mt-xs gap-sm">
             <button class="button" @click="$store.auth.toggleFlip()">Event Booking</button>
-            <button class="button" @click="$store.auth.logout()">Logout</button>
+            <button class="button" @click="$store.auth.logout(); $store.auth.toggleFlip()">Logout</button>
         </div>
     </div>
 {% endmacro %}
