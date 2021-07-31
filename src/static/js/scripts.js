@@ -50,17 +50,29 @@ function getLSWithExpiry(key) {
   return item.value
 }
 
+function getAuthToken() {
+  return getLSWithExpiry('authToken')
+}
+function setAuthToken(token) {
+  return setLSWithExpiry('authToken', token)
+}
+function removeAuthToken() {
+  localStorage.removeItem('authToken')
+}
+
 /* -------------------------------------------------------------------------- */
-/*                                    Auth                                    */
+/*                            Misc Functions                                  */
 /* -------------------------------------------------------------------------- */
 
 // Note apiBaseUrl is coming from the html_head allowing it to switch between dev and prod versions
 
+// TODO: make alert toast
 function alertMsg(msg = 'error') {
     // TODO add onscreen toast message for failed login
     console.log(msg)
 }
 
+/* ------------ Transform metadata from events to a keyed object ------------ */
 function metadataArrayToObject(arr) {
   const object = arr.reduce(function(result, item, index, array) {
     result[item.metaKey] = item.metaValue;
@@ -68,18 +80,91 @@ function metadataArrayToObject(arr) {
   }, {});
   return object
 }
+
 /* -------------------------------------------------------------------------- */
 /*                                Alpine Stuff                                */
 /* -------------------------------------------------------------------------- */
 
 // TODO: refactor this a bit. Need token available more globally. Also need some of the stores to have init for data
 
-document.addEventListener('alpine:initializing', () => {
-  const lsToken = getLSWithExpiry('authToken') || null
-  const defaultUser = { displayName: null, userNicename: null }
-  // console.log("🚀 ~ file: scripts.js ~ line 71 ~ document.addEventListener ~ lsToken", lsToken)
-  const lsUser = getLSWithExpiry('user') || defaultUser
-  // console.log("🚀 ~ file: scripts.js ~ line 73 ~ document.addEventListener ~ lsUser", lsUser)
+document.addEventListener('alpine:init', () => {
+
+  /* -------------------------------------------------------------------------- */
+  /*                            Set Global Variables                            */
+  /* -------------------------------------------------------------------------- */
+  
+  /* -------------------- Check localStorage for authToken -------------------- */
+  const globalStore = {
+    authToken: getLSWithExpiry('authToken') || null,
+    user: getLSWithExpiry('user') || { displayName: null, userNicename: null }
+  }
+
+  /* -------------------------------------------------------------------------- */
+  /*                             API Fetch Functions                            */
+  /* -------------------------------------------------------------------------- */
+
+  const api = {
+    getEvent: async (id) => {
+      const config = { headers: { Authorization: getAuthToken() } }
+      const params = { id: id }
+      try {
+        const res = await axios.post(apiBaseUrl + 'events/find', params, config)
+        const data = await {...res.data, metadata: metadataArrayToObject(res.data.metadata)}
+        return data
+      } catch (err) {
+        alertMsg(`get event #${id} failed, error: ${err}`)
+        return null
+      }
+    },
+    getUserEvents: async () => {
+      const config = { headers: { Authorization: getAuthToken() } }
+      try {
+        const res = await axios.get(apiBaseUrl + 'events/me', config);
+        const data = await res.data
+        // console.log("user events", data);
+        const asyncResult = await Promise.all(data.map( async eventId => {
+          const eventData = await api.getEvent(eventId)
+          return {id: eventId, eventName: eventData.eventName}
+        }))
+        return asyncResult
+      } catch (err) {
+        alertMsg(`get user events failed, error: ${err}`)
+        return null
+      }
+    },
+    getUserData: async () => {
+      // contains { displayName, userNicename }
+      try {
+        const config = { headers: { Authorization: getAuthToken() } }
+        const res = await axios.get(apiBaseUrl + 'users/me', config)
+        console.log("🚀 ~ file: scripts.js ~ line 143 ~ getUserData: ~ res", res)
+        if (res.status === 200) {
+          return res.data
+        } else {
+          alertMsg(`get user data failed, status: ${res.status}`)
+        }
+      } catch (err) {
+        alertMsg(`get user data failed, error: ${err}`)
+      }
+    },
+    submitLogin: async (username, password) => {
+      try {
+        const res = await axios.post(apiBaseUrl + "login", { username: username, password: password })
+        if (res.status === 200 && res.headers.authorization) {
+          const token = res.headers.authorization
+          return token
+        } else {
+          alertMsg(`login failed, status: ${res.status}`)
+        }
+      } catch (err) {
+        alertMsg(`login failed, error: ${err}`)
+      }
+    },
+  }
+
+  /* -------------------------------------------------------------------------- */
+  /*                                Alpine Stores                               */
+  /* -------------------------------------------------------------------------- */
 
   Alpine.store('theme', {
     theme: "auto",
@@ -99,24 +184,12 @@ document.addEventListener('alpine:initializing', () => {
     maxPlayers: null,
     spaces: null,
     owner: null,
-    async getEvent(token, id) {
-      console.log("getEvent", id);
-      if (token) {
-        const config = { headers: { Authorization: token } }
-        const params = { id: id }
-        try {
-          const res = await axios.post(apiBaseUrl + 'events/find', params, config)
-          const data = await {...res.data, metadata: metadataArrayToObject(res.data.metadata)}
-          this.event = await data
-          this.maxPlayers = parseInt(data.metadata.Players)
-          this.owner = data.eventOwner.displayName
-          this.spaces = parseInt(data.eventRsvp) - 1 + parseInt(data.metadata.Players)
-          console.log("Event Data:",data);
-        } catch (err) {
-          alertMsg(`get event #${id} failed, error: ${err}`)
-          return null
-        }
-      }
+    async getEvent(id) {
+      const data = await api.getEvent(id)
+      this.event = data
+      this.maxPlayers = parseInt(data.metadata.Players)
+      this.owner = data.eventOwner.displayName
+      this.spaces = parseInt(data.eventRsvp) - 1 + parseInt(data.metadata.Players)
     },
     async bookEvent() {
       // Get this working
@@ -131,111 +204,49 @@ document.addEventListener('alpine:initializing', () => {
     isBooked(id) {
       return this.userEvents.includes(id)
     },
-    async getUserEvents(token) {
-      if (token) {
-        const config = { headers: { Authorization: token } }
-        try {
-          const res = await axios.get(apiBaseUrl + 'events/me', config);
-          const data = await res.data
-          // console.log("user events", data);
-          const asyncResult = await Promise.all(data.map( async eventId => {
-            const eventData = await this.getEvent(token, eventId)
-            return {id: eventId, eventName: eventData.eventName}
-          }))
-          console.log(asyncResult);
-          this.userEvents = asyncResult
-        } catch (err) {
-          alertMsg(`get user events failed, error: ${err}`)
-          return null
-        }
-      }
-    },
-    async getEvent(token, id) {
-      console.log("getEvent", id);
-      if (token) {
-        const config = { headers: { Authorization: token } }
-        const params = { id: id }
-        try {
-          const res = await axios.post(apiBaseUrl + 'events/find', params, config)
-          const data = await {...res.data, metadata: metadataArrayToObject(res.data.metadata)}
-          // console.log(data);
-          return data
-        } catch (err) {
-          alertMsg(`get event #${id} failed, error: ${err}`)
-          return null
-        }
-      }
-    },
+    async getUserEvents() {
+      this.userEvents = await api.getUserEvents()
+    }
   })
 
   Alpine.store('auth', {
+    async init() {
+      const token = getAuthToken()
+      this.isAuth = (typeof token === 'string')
+      this.user = getLSWithExpiry('user')
+      if (this.isAuth && !this.user) {
+        this.user = await api.getUserData()
+        setLSWithExpiry('user',this.user)
+      }
+    },
     isFlipped: false,
     toggleFlip() { this.isFlipped = !this.isFlipped},
     username: "",
     password: "",
     email: "",
-    token: lsToken,
-    user: lsUser,
+    isAuth: false,
+    user: false,
     async submitLogin() {
-      const data = {username: this.username, password: this.password}
-
-      try {
-        const res = await axios.post(apiBaseUrl + "login", data)
-        if (res.status === 200 && res.headers.authorization) {
-          const token = res.headers.authorization
-          this.token = token;
-          setLSWithExpiry('authToken', token)
-          alertMsg(`login successful`);
-          this.getUserData(token);
-        } else {
-          alertMsg(`login failed, status: ${res.status}`)
-        }
-      } catch (err) {
-        alertMsg(`login failed, error: ${err}`)
+      const token = await api.submitLogin(this.username,this.password)
+      if (token) {
+        setAuthToken(token)
+        this.isAuth = true
+        this.user = await api.getUserData()
       }
     },
     async createAccount() {
 
     },
-    async getEvent(id) {
-      console.log("getEvent", id);
-      if (this.token) {
-        const config = { headers: { Authorization: this.token } }
-        const params = { id: id }
-        try {
-          const res = await axios.post(apiBaseUrl + 'events/find', params, config)
-          const data = await {...res.data, metadata: metadataArrayToObject(res.data.metadata)}
-          console.log(data);
-          return data
-        } catch (err) {
-          alertMsg(`get event #${id} failed, error: ${err}`)
-          return null
-        }
-      }
+    async getUserData() {
+      this.user = await api.getUserData()
+      setLSWithExpiry('user', this.user)
     },
     logout() {
-      console.log("logout");
-      this.user = defaultUser;
-      this.token = null;
-      localStorage.removeItem('authToken')
+      console.log("logout")
+      this.isAuth = false
+      this.user = null
+      removeAuthToken()
       localStorage.removeItem('user')
     },
-    async getUserData(token) {
-      token = token || this.token;
-      try {
-        const config = { headers: { Authorization: token } }
-        const res = await axios.get(apiBaseUrl + 'users/me', config)
-        if (res.status === 200) {
-          this.user = await res.data
-          console.log(res.data);
-          alertMsg(`fetch user data successful for ${res.data.userNicename}`)
-          setLSWithExpiry('user', res.data);
-        } else {
-          alertMsg(`get user data failed, status: ${res.status}`)
-        }
-      } catch (err) {
-        alertMsg(`get user data failed, error: ${err}`)
-      }
-    }
   })
 })

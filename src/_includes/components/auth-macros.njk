@@ -1,5 +1,5 @@
 {% macro login() %}
-    <div x-cloak x-show="!$store.auth.token">
+    <div x-cloak x-show="!$store.auth.isAuth">
         <h2 class="font-serif text-2xl font-extrabold text-secondary">Login</h2>
         <form action="post" class="flex flex-col sm:items-end sm:flex-row mb-sm text-body gap-sm sm:gap-base" @submit.prevent="$store.auth.submitLogin()">
             <div>
@@ -10,11 +10,9 @@
                 <label for="password" class="text-xs uppercase">Password</label>
                 <input class="w-48" id="password" name="password" required type="password" x-model="$store.auth.password" value=""/>
             </div>
-
             <div>
                 <button class="font-bold uppercase transition-colors duration-200 rounded shadow text-form bg-highlight hover:bg-highlight-2 py-xs px-base" type="submit">Login</button>
             </div>
-
         </form>
         <div class="flex justify-start text-sm text-body gap-base">
             {# TODO: get lost password working #}
@@ -25,12 +23,35 @@
     </div>
 {% endmacro %}
 
+{% macro createAccount() %}
+    {# TODO: get register working #}
+    <div x-cloak x-show="!$store.auth.isAuth">
+        <h2 class="font-serif text-2xl font-extrabold text-secondary">Create an Account</h2>
+        <form action="post" class="flex flex-col items-end sm:flex-row mb-sm text-body gap-base" @submit.prevent="">
+            <div>
+                <label for="username" class="text-xs uppercase">User Name</label>
+                <input class="w-48" id="reg-username" name="username" required type="text" x-model="$store.auth.username" value=""/>
+            </div>
+            <div>
+                <label for="email" class="text-xs uppercase">Email</label>
+                <input class="w-48" id="email" name="email" required type="email" x-model="$store.auth.email" value=""/>
+            </div>
+            <div>
+                <button class="font-bold uppercase transition-colors duration-200 rounded shadow text-form bg-highlight hover:bg-highlight-2 py-xs px-base" type="submit">Register</button>
+            </div>
+        </form>
+        <div class="text-sm text-body">
+            If you have an account, <button @click="$store.auth.toggleFlip()" class="font-bold text-highlight" type="button">Login Here</button>
+        </div>
+    </div>
+{% endmacro %}
+
 {% macro spinner() %}
-    <div x-cloak x-show="$store.auth.token && !$store.auth.user.displayName">Loading...</div>
+    <div x-cloak x-show="$store.auth.isAuth && !$store.auth.user" class="text-body">Loading...</div>
 {% endmacro %}
 
 {% macro userInfo() %}
-    <div x-cloak x-show="$store.auth.token && $store.auth.user.displayName" class="flex flex-col justify-between sm:flex-row gap-base">
+    <div x-cloak x-show="$store.auth.isAuth && $store.auth.user" class="flex flex-col justify-between sm:flex-row gap-base">
         <div>
             <p class="text-lg font-semibold text-body">Welcome <span x-text="$store.auth.user.displayName"></span> (<span x-text="$store.auth.user.userNicename"></span>)!</p>
         </div>
@@ -43,7 +64,7 @@
 {% endmacro %}
 
 {% macro userEventsInfo() %}
-    <div x-cloak x-show="$store.auth.token && $store.auth.user.displayName" class="">
+    <div x-cloak x-show="$store.auth.isAuth && $store.auth.user" class="">
         <div>
             <p class="text-lg font-semibold text-body">Welcome <span x-text="$store.auth.user.displayName"></span> (<span x-text="$store.auth.user.userNicename"></span>)!</p>
         </div>
@@ -65,7 +86,7 @@
 {% endmacro %}
 
 {% macro eventInfo(eventId) %}
-    <div x-cloak x-show="$store.auth.token && $store.auth.user.displayName" class="">
+    <div x-cloak x-show="$store.auth.isAuth && $store.auth.user" class="">
         <div class="text-body">
             <h3 class="text-lg font-semibold" x-html="event.eventName"></h3>
             <p>
@@ -86,62 +107,44 @@
     </div>
 {% endmacro %}
 
-{% macro createAccount() %}
-    {# TODO: get register working #}
-    <div x-cloak x-show="!$store.auth.token">
-        <h2 class="font-serif text-2xl font-extrabold text-secondary">Create an Account</h2>
-        <form action="post" class="flex flex-col items-end sm:flex-row mb-sm text-body gap-base" @submit.prevent="">
-            <div>
-                <label for="username" class="text-xs uppercase">User Name</label>
-                <input class="w-48" id="reg-username" name="username" required type="text" x-model="$store.auth.username" value=""/>
-            </div>
-            <div>
-                <label for="email" class="text-xs uppercase">Email</label>
-                <input class="w-48" id="email" name="email" required type="email" x-model="$store.auth.email" value=""/>
-            </div>
-            <div>
-                <button class="font-bold uppercase transition-colors duration-200 rounded shadow text-form bg-highlight hover:bg-highlight-2 py-xs px-base" type="submit">Register</button>
-            </div>
-        </form>
-        <div class="text-sm text-body">
-            If you have an account, <button @click="$store.auth.toggleFlip()" class="font-bold text-highlight" type="button">Login Here</button>
-        </div>
-    </div>
-{% endmacro %}
+{# Simple Auth Panel #}
 
 {% macro authPanel() %}
-    <div class="w-full h-72 sm:h-36 my-base" :class="{'flipper-flipped': $store.auth.isFlipped}" style="perspective: 2000px;">
-        <div class="w-full h-full flip-content" style="transition: transform 0.5s; transform-style: preserve-3d;">
+    <div 
+    class="flip-wrapper" 
+    :class="{'flip-wrapper--flipped': $store.auth.isFlipped}">
+        <div class="flip-content">
             {# Front Panel #}
-            <div class="absolute w-full h-full rounded-md shadow flip-front px-base pt-sm pb-base bg-primary">
+            <div class="flip-front">
                 {{ login() }}
                 {{ spinner() }}
                 {{ userInfo() }}
             </div>
             {# Back Panel #}
-            <div class="absolute w-full h-full rounded-md shadow flip-back px-base pt-sm pb-base bg-primary">
+            <div class="flip-back">
                 {{ createAccount() }}
             </div>
         </div>
     </div>
 {% endmacro %}
 
+{# Event Page Panel #}
+
 {% macro eventAuthPanel(eventId) %}
     <div 
-    class="w-full h-72 sm:h-36 my-base" 
-    :class="{'flipper-flipped': $store.auth.isFlipped}" 
-    style="perspective: 2000px;"
+    class="flip-wrapper" 
+    :class="{'flip-wrapper--flipped': $store.auth.isFlipped}" 
     x-data="eventInfo" 
-    x-init="getEvent($store.auth.token, {{eventId}}); $store.user.getUserEvents($store.auth.token)">
-        <div class="w-full h-full flip-content" style="transition: transform 0.5s; transform-style: preserve-3d;">
+    x-init="getEvent({{eventId}}); $store.user.getUserEvents()">
+        <div class="flip-content">
             {# Front Panel #}
-            <div class="absolute w-full h-full rounded-md shadow flip-front px-base pt-sm pb-base bg-primary">
+            <div class="flip-front">
                 {{ login() }}
                 {{ spinner() }}
                 {{ eventInfo(eventId) }}
             </div>
             {# Back Panel #}
-            <div class="absolute w-full h-full rounded-md shadow flip-back px-base pt-sm pb-base bg-primary">
+            <div class="flip-back">
                 {{ createAccount() }}
                 {{ userEventsInfo() }}
             </div>

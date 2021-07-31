@@ -218,15 +218,25 @@ input[type="checkbox"] ~ label {
 /*                                Auth Flipper                                */
 /* -------------------------------------------------------------------------- */
 
+.flip-wrapper {
+  perspective: 2000px;
+  @apply w-full h-72 sm:h-36 my-base;
+}
+.flip-content {
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+  @apply transition-transform w-full h-full;
+}
 .flip-back,
 .flip-front {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+    @apply absolute w-full h-full rounded-md shadow px-base pt-sm pb-base bg-primary;
 }
 .flip-back {
     transform: rotateY(180deg);
 }
-.flipper-flipped .flip-content {
+.flip-wrapper--flipped .flip-content {
     transform: rotateY(180deg);
     transition: transform 0.3s;
 }
