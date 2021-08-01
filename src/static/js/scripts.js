@@ -110,6 +110,7 @@ document.addEventListener('alpine:init', () => {
         const res = await axios.get(apiBaseUrl + 'events/me/favorites', config);
         const data = await res.data
         return data.map(item => { return { eventId: item.eventId } })
+        // TODO: get Jerry to change to just a list of ids?
       } catch (err) {
         alertMsg(`get user fav events failed, error: ${err}`)
         return null
@@ -192,8 +193,6 @@ document.addEventListener('alpine:init', () => {
   /* ---------------------------- Auth Store --------------------------- */
   // ALl data for logged in users
 
-  // TODO: getBookedEvents & getFavEvents needs to be called once logged in use $watch maybe
-
   // TODO: add alert for failed password
   Alpine.store('auth', {
     async init() {
@@ -242,8 +241,20 @@ document.addEventListener('alpine:init', () => {
     test(){
       console.log(this.isAuth)
     },
-    async createAccount() {
-
+    async createAccount() {},
+    async forgetPassword() {},
+    async toggleFav() {
+      // if id is faved then removeFavorite()
+      // otherwise addFavorite()
+      // getFavEvents() or reset locally
+    },
+    async bookEvent() {
+      // post bookEvent()
+      // if success getBookedEvents or just reset bookedEvents locally and localStorage
+    },
+    async cancelBooking() {
+      // post cancelBooking()
+      // if success getBookedEvents or just reset bookedEvents locally and localStorage
     },
     async getUserData() {
       const data = await api.getUserData()
