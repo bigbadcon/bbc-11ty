@@ -184,7 +184,7 @@ input[type="checkbox"] ~ label {
 }
 
 /* --------------------------- Icon Link Shortcode -------------------------- */
-.icon-link {
+.icon-link, .icon {
   @apply flex items-center space-x-sm text-highlight;
   text-decoration: none !important;
 }
@@ -193,7 +193,7 @@ input[type="checkbox"] ~ label {
 }
 .icon-link__icon,
 .light .icon-link__icon {
-  @apply w-6 h-6 fill-highlight flex-shrink-0;
+  @apply w-6 h-6 flex-shrink-0;
   filter: drop-shadow(0 0.1rem 0.1rem rgba(230, 255, 230, 0.4))
 }
 @media (prefers-color-scheme: dark) {
@@ -211,7 +211,14 @@ input[type="checkbox"] ~ label {
 }
 /* Needed for cards on homepage */
 .prose p .icon-link {
-  margin: -.4em 0 0
+  margin: -.4em 0 0;
+}
+/* Make sure favved are highlighted */
+.favved {
+  opacity: 1 !important;
+}
+.favved .icon-link__icon {
+  @apply fill-highlight;
 }
 
 /* -------------------------------------------------------------------------- */

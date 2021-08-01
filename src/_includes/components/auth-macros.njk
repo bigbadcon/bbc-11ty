@@ -17,7 +17,7 @@
         <div class="flex justify-start text-sm text-body gap-base">
             {# TODO: get lost password working #}
             {# <button class="font-bold text-highlight" type="button">Lost Your Password?</button> #}
-            <div>If you do not have an account, <button @click="$store.auth.toggleFlip()" class="font-bold text-highlight" type="button">Create an Account</button>
+            <div>If you do not have an account, <button @click="$store.panel.flip()" class="font-bold text-highlight" type="button">Create an Account</button>
             </div>
         </div>
     </div>
@@ -41,7 +41,7 @@
             </div>
         </form>
         <div class="text-sm text-body">
-            If you have an account, <button @click="$store.auth.toggleFlip()" class="font-bold text-highlight" type="button">Login Here</button>
+            If you have an account, <button @click="$store.panel.flip()" class="font-bold text-highlight" type="button">Login Here</button>
         </div>
     </div>
 {% endmacro %}
@@ -57,28 +57,28 @@
         </div>
         <div>
             <button class="button" @click="$store.auth.logout()">Logout</button>
-            <button class="button" @click="$store.auth.toggleFlip()">My Events</button>
+            <button class="button" @click="$store.panel.flip()">My Events</button>
         </div>
     </div>
 {% endmacro %}
 
 {% macro userEventsInfo() %}
-    <div x-cloak x-show="$store.auth.isAuth && $store.auth.user" class="">
-        <div>
-            <p class="text-lg font-semibold text-body">Welcome <span x-text="$store.auth.user.displayName"></span> (<span x-text="$store.auth.user.userNicename"></span>)!</p>
-        </div>
-        <div class="prose">
-            <ul>
-                <template x-for="event in $store.user.userEvents">
-                    <li>
-                        <span x-html="event.eventName"></span>
-                    </li>
-                </template>
-            </ul>
-        </div>
+    <div x-cloak x-show="$store.auth.isAuth && $store.auth.user" class="prose">
+        <h3>My Events</h3>
+        <p class="text-body">
+            {# TODO: fix this so userNicename error doesn't show if not logged in #}
+            <span x-text="$store.auth.user.displayName"></span> (<span x-text="$store.auth.user.userNicename"></span>)!
+        </p>
+        <ul>
+            <template x-for="event in $store.auth.bookedEvents">
+                <li>
+                    <span x-html="event.eventName"></span>
+                </li>
+            </template>
+        </ul>
         <div class="flex mt-xs gap-sm">
-            <button class="button" @click="$store.auth.toggleFlip()">Event Booking</button>
-            <button class="button" @click="$store.auth.logout(); $store.auth.toggleFlip()">Logout</button>
+            <button class="button" @click="$store.panel.flip()">Event Booking</button>
+            <button class="button" @click="$store.auth.logout(); $store.panel.flip()">Logout</button>
         </div>
     </div>
 {% endmacro %}
@@ -96,10 +96,10 @@
                 <span x-text="spaces"></span> out of <span x-text="maxPlayers"></span>
             </p>
             <p class="flex mt-xs gap-sm">
-                <button class="button" x-show="spaces > 0 && !$store.user.isBooked({{eventId}})">Book Event</button>
-                <span x-show="spaces <= 0 && !$store.user.isBooked({{eventId}})" class="font-bold">Event is full</span>
-                <button class="button" x-show="$store.user.isBooked({{eventId}}) && $store.auth.user.displayName !== owner">Cancel Booking</span>
-                <button class="button" @click="$store.auth.toggleFlip()">My Events</button>
+                <button class="button" x-show="spaces > 0 && !$store.auth.isBooked({{eventId}})">Book Event</button>
+                <span x-show="spaces <= 0 && !$store.auth.isBooked({{eventId}})" class="font-bold">Event is full</span>
+                <button class="button" x-show="$store.auth.isBooked({{eventId}}) && $store.auth.user.displayName !== owner">Cancel Booking</span>
+                <button class="button" @click="$store.panel.flip()">My Events</button>
             </p>
         </div>
     </div>
@@ -110,7 +110,7 @@
 {% macro authPanel() %}
     <div 
     class="flip-wrapper" 
-    :class="{'flip-wrapper--flipped': $store.auth.isFlipped}">
+    :class="$store.panel.isFlipped && 'flip-wrapper--flipped'">
         <div class="flip-content">
             {# Front Panel #}
             <div class="flip-front">
@@ -131,10 +131,10 @@
 {% macro eventAuthPanel(eventId) %}
     <div 
     class="flip-wrapper" 
-    :class="{'flip-wrapper--flipped': $store.auth.isFlipped}" 
-    x-data="eventInfo" 
-    x-init="getEvent({{eventId}}); $store.user.getUserEvents()">
-        <div class="flip-content">
+    :class="$store.panel.isFlipped && 'flip-wrapper--flipped'"
+    >
+        <div class="flip-content" x-data="eventInfo" 
+    x-init="getEvent({{eventId}}); $store.auth.getBookedEvents()">
             {# Front Panel #}
             <div class="flip-front">
                 {{ login() }}

@@ -10,7 +10,7 @@
         <tbody>
             {% for event in eventData.volunteer %}
                 {% set metadata = event.metadata | metadataArrayToObject %}
-                <tr class="">
+                <tr class="" x-data="{ eventId: {{event.eventId}} }">
                     <td class="py-sm pr-sm">
                         <a href="/volunteer/{{event.eventSlug}}" class="text-highlight">{{event.eventName | safe }}</a>
                     </td>

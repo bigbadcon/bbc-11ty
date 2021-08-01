@@ -20,6 +20,7 @@ function slugify(text) {
 /* -------------------------------------------------------------------------- */
 
 function setLSWithExpiry(key, value, ttl) {
+  console.log("🚀 ~ file: scripts.js ~ line 23 ~ setLSWithExpiry ~ value", key, value)
   ttl = ttl || 86400000 // one day
   const now = new Date()
 
@@ -55,9 +56,6 @@ function getAuthToken() {
 }
 function setAuthToken(token) {
   return setLSWithExpiry('authToken', token)
-}
-function removeAuthToken() {
-  localStorage.removeItem('authToken')
 }
 
 /* -------------------------------------------------------------------------- */
@@ -106,19 +104,31 @@ document.addEventListener('alpine:init', () => {
         return null
       }
     },
-    getUserEvents: async () => {
+    getFavEvents: async () => {
+      const config = { headers: { Authorization: getAuthToken() } }
+      try {
+        const res = await axios.get(apiBaseUrl + 'events/me/favorites', config);
+        const data = await res.data
+        return data.map(item => { return { eventId: item.eventId } })
+      } catch (err) {
+        alertMsg(`get user fav events failed, error: ${err}`)
+        return null
+      }
+    },
+    getBookedEvents: async () => {
       const config = { headers: { Authorization: getAuthToken() } }
       try {
         const res = await axios.get(apiBaseUrl + 'events/me', config);
         const data = await res.data
-        // console.log("user events", data);
+        console.log("user events", data);
         const asyncResult = await Promise.all(data.map( async eventId => {
           const eventData = await api.getEvent(eventId)
-          return {id: eventId, eventName: eventData.eventName}
+          return {eventId: eventId, eventName: eventData.eventName}
         }))
+        console.log("🚀 ~ file: scripts.js ~ line 130 ~ getBookedEvents: ~ asyncResult", asyncResult)
         return asyncResult
       } catch (err) {
-        alertMsg(`get user events failed, error: ${err}`)
+        alertMsg(`get booked events failed, error: ${err}`)
         return null
       }
     },
@@ -171,20 +181,18 @@ document.addEventListener('alpine:init', () => {
     }
   });
 
-  /* ---------------------------- User Events Store --------------------------- */
-
-  // TODO: getUserEvents needs to be called once logged in use $watch maybe
-  Alpine.store('user', {
-    userEvents: [],
-    isBooked(id) {
-      return this.userEvents.includes(id)
-    },
-    async getUserEvents() {
-      this.userEvents = await api.getUserEvents()
+  Alpine.store('panel', {
+    isFlipped: false,
+    flip() { 
+      console.log("flip panel");
+      this.isFlipped = !this.isFlipped 
     }
-  })
+  });
 
-  /* ------------------------------- Auth Store ------------------------------- */
+  /* ---------------------------- Auth Store --------------------------- */
+  // ALl data for logged in users
+
+  // TODO: getBookedEvents & getFavEvents needs to be called once logged in use $watch maybe
 
   // TODO: add alert for failed password
   Alpine.store('auth', {
@@ -192,17 +200,33 @@ document.addEventListener('alpine:init', () => {
       const token = getAuthToken()
       this.isAuth = (typeof token === 'string')
       this.user = getLSWithExpiry('user')
-      if (this.isAuth && !this.user) {
-        this.getUserData()
+      this.bookedEvents = getLSWithExpiry('bookedEvents')
+      this.favEvents = getLSWithExpiry('favEvents')
+      if (this.isAuth) {
+        if (!this.user) this.getUserData()
+        if (!this.bookedEvents) this.getBookedEvents()
+        if (!this.favEvents) this.getFavEvents()
       }
     },
-    isFlipped: false,
-    toggleFlip() { this.isFlipped = !this.isFlipped},
+    // Login stuff
     username: "",
     password: "",
     email: "",
     isAuth: false,
+    // User Data
     user: false,
+    // User Events
+    bookedEvents: [],
+    favEvents: [],
+    isBooked(id) {
+      if (this.bookedEvents) return this.bookedEvents.some( item => item.eventId === id)
+      return false
+    },
+    isFav(id) {
+      if (this.favEvents) return this.favEvents.some( item => item.eventId === id)
+      return false
+    },
+    // functions
     async submitLogin() {
       const token = await api.submitLogin(this.username,this.password)
       this.username = ""
@@ -211,21 +235,41 @@ document.addEventListener('alpine:init', () => {
         setAuthToken(token)
         this.isAuth = true
         this.getUserData()
+        this.getBookedEvents()
+        this.getFavEvents()
       }
+    },
+    test(){
+      console.log(this.isAuth)
     },
     async createAccount() {
 
     },
     async getUserData() {
-      this.user = await api.getUserData()
-      setLSWithExpiry('user', this.user)
+      const data = await api.getUserData()
+      this.user = data
+      setLSWithExpiry('user', data)
+    },
+    async getBookedEvents() {
+      const data = await api.getBookedEvents()
+      this.bookedEvents = data
+      setLSWithExpiry('bookedEvents',data)
+    },
+    async getFavEvents() {
+      const data = await api.getFavEvents()
+      this.favEvents = data
+      setLSWithExpiry('favEvents',data)
     },
     logout() {
       console.log("logout")
       this.isAuth = false
       this.user = null
-      removeAuthToken()
+      this.bookedEvents = null
+      this.favEvents = null
+      localStorage.removeItem('authToken')
       localStorage.removeItem('user')
+      localStorage.removeItem('favEvents')
+      localStorage.removeItem('bookedEvents')
     },
   })
 

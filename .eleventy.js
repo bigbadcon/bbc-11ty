@@ -99,8 +99,15 @@ module.exports = (eleventyConfig) => {
   });
 
   // SVG Sprite Shortcode
-  eleventyConfig.addShortcode("iconLink", function(link, title, icon = "star") {
-    return `<a href="${link}" class="icon-link"><svg class="icon-link__icon">
+  eleventyConfig.addShortcode("icon", function(icon = "star", fill="fill-highlight") {
+    return `<span class="icon"><svg class="icon-link__icon ${fill}">
+      <use xlink:href="/static/images/icons.svg#${icon}"></use>
+    </svg></span>`
+  });
+
+  // SVG Sprite Link Shortcode
+  eleventyConfig.addShortcode("iconLink", function(link, title, icon = "star", fill="fill-highlight") {
+    return `<a href="${link}" class="icon-link"><svg class="icon-link__icon ${fill}">
       <use xlink:href="/static/images/icons.svg#${icon}"></use>
     </svg><span class="icon-link__title">${title}</span></a>`
   });

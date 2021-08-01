@@ -113,7 +113,8 @@ module.exports = {
         'footer-mobile': '36rem',
       },
       fill: {
-        highlight: 'var(--fill-highlight)'
+        highlight: 'var(--fill-highlight)',
+        body: 'var(--body)'
       },
     },
     maxWidth: {
