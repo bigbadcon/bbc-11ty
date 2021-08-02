@@ -196,7 +196,19 @@ document.addEventListener('alpine:init', () => {
         return null
       }
     },
-    
+    cancelBooking: async (id) => {
+      const token = getAuthToken()
+      if (!token) return null
+      const config = { headers: { Authorization: token }, data: { gameId: id } }
+      try {
+        const res = await axios.delete(apiBaseUrl + 'bookings/removeMeFromGame', config)
+        const data = res.data
+        return data
+      } catch (err) {
+        alertMsg(`cancel booking failed, error: ${err}`)
+        return null
+      }
+    },
     submitLogin: async (username, password) => {
       try {
         const res = await axios.post(apiBaseUrl + "login", { username: username, password: password })
