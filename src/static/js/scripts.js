@@ -155,6 +155,33 @@ document.addEventListener('alpine:init', () => {
         alertMsg(`get user data failed, error: ${err}`)
       }
     },
+    addFav: async (id) => {
+      const token = getAuthToken()
+      if (!token) return null
+      const config = { headers: { Authorization: token } }
+      const params = { eventId: id }
+      try {
+        const res = await axios.post(apiBaseUrl + 'events/me/favorite/create', params, config)
+        const data = res.data
+        return data
+      } catch (err) {
+        alertMsg(`fav event failed, error: ${err}`)
+        return null
+      }
+    },
+    deleteFav: async (id) => {
+      const token = getAuthToken()
+      if (!token) return null
+      const config = { headers: { Authorization: token }, data: { eventId: id } }
+      try {
+        const res = await axios.delete(apiBaseUrl + 'events/me/favorite/delete', config)
+        const data = res.data
+        return data
+      } catch (err) {
+        alertMsg(`delete fav failed, error: ${err}`)
+        return null
+      }
+    },
     bookEvent: async (id) => {
       const token = getAuthToken()
       if (!token) return null
@@ -169,19 +196,7 @@ document.addEventListener('alpine:init', () => {
         return null
       }
     },
-    cancelBooking: async (id) => {
-      const token = getAuthToken()
-      if (!token) return null
-      const config = { headers: { Authorization: token }, data: { gameId: id } }
-      try {
-        const res = await axios.delete(apiBaseUrl + 'bookings/removeMeFromGame', config)
-        const data = res.data
-        return data
-      } catch (err) {
-        alertMsg(`cancel booking failed, error: ${err}`)
-        return null
-      }
-    },
+    
     submitLogin: async (username, password) => {
       try {
         const res = await axios.post(apiBaseUrl + "login", { username: username, password: password })
@@ -299,10 +314,14 @@ document.addEventListener('alpine:init', () => {
     },
     async createAccount() {},
     async forgetPassword() {},
-    async toggleFav() {
-      // if id is faved then removeFavorite()
-      // otherwise addFavorite()
-      // getFavEvents() or reset locally
+    async toggleFav(id) {
+      let data
+      if (this.isFav(id)) { data = await api.deleteFav(id) }
+      else { data = await api.addFav(id) }
+      if (data?.status === 'FAILURE') this.makeToast(data.message)
+      if (data?.status === 'SUCCESS') {
+        this.getFavEvents()
+      }
     },
     async bookEvent(id) {
       const data = await api.bookEvent(id)
