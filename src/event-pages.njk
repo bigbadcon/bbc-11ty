@@ -31,7 +31,25 @@ eleventyComputed:
 </div>
 <div class="prose">{{event.postContent | safe }}</div>
 {# Event Signup / Booking #}
-<div class="mt-base">
-    <h2 class="font-serif text-2xl font-bold leading-none md:text-4xl text-header mb-base">Event Booking</h2>
-    {{ eventAuthPanel(event.eventId) }}
+<div class="rounded-md shadow mt-base text-body p-base bg-card" x-data="eventInfo" x-init="getEvent({{event.eventId}}); $watch('$store.auth.isAuth', value => {if (value === true) getEvent({{event.eventId}})})">
+    <h2 class="-mt-1 font-serif text-2xl font-bold leading-none md:text-4xl text-header mb-sm">Event Booking</h2>
+    <div x-cloak x-show="event" class="">
+        <h3 class="text-lg font-semibold leading-none mb-xs" x-html="event?.eventName"></h3>
+        <p>
+            <span>Event Owner:</span>
+            <span x-text="owner"></span>
+        </p>
+        <p>
+            <span>Spaces Open:</span>
+            <span x-text="spaces"></span> out of <span x-text="maxPlayers"></span>
+        </p>
+        <p class="flex mt-base gap-sm">
+            <button class="button" x-show="spaces > 0 && !$store.auth.isBooked({{event.eventId}})" @click="$store.auth.bookEvent({{event.eventId}})">Book Event</button>
+            <span x-show="spaces <= 0 && !$store.auth.isBooked({{event.eventId}})" class="font-bold">Event is full</span>
+            <button class="button" x-show="$store.auth.isBooked({{event.eventId}}) && $store.auth.user.displayName !== owner" @click="$store.auth.cancelBooking({{event.eventId}})">Cancel Booking</span>
+        </p>
+    </div>
+    <div x-cloak x-show="!event">
+        You must be <button @click="$store.modal.open()" class="underline text-highlight">logged in</button> to book an event.
+    </div>
 </div>

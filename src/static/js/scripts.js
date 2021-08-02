@@ -64,7 +64,6 @@ function setAuthToken(token) {
 
 // Note apiBaseUrl is coming from the html_head allowing it to switch between dev and prod versions
 
-// TODO: make alert toast
 function alertMsg(msg = 'error') {
     // TODO add onscreen toast message for failed login
     console.log(msg)
@@ -93,7 +92,9 @@ document.addEventListener('alpine:init', () => {
 
   const api = {
     getEvent: async (id) => {
-      const config = { headers: { Authorization: getAuthToken() } }
+      const token = getAuthToken()
+      if (!token) return null
+      const config = { headers: { Authorization: token } }
       const params = { id: id }
       try {
         const res = await axios.post(apiBaseUrl + 'events/find', params, config)
@@ -105,7 +106,9 @@ document.addEventListener('alpine:init', () => {
       }
     },
     getFavEvents: async () => {
-      const config = { headers: { Authorization: getAuthToken() } }
+      const token = getAuthToken()
+      if (!token) return null
+      const config = { headers: { Authorization: token } }
       try {
         const res = await axios.get(apiBaseUrl + 'events/me/favorites', config);
         const data = await res.data
@@ -117,7 +120,9 @@ document.addEventListener('alpine:init', () => {
       }
     },
     getBookedEvents: async () => {
-      const config = { headers: { Authorization: getAuthToken() } }
+      const token = getAuthToken()
+      if (!token) return null
+      const config = { headers: { Authorization: token } }
       try {
         const res = await axios.get(apiBaseUrl + 'events/me', config);
         const data = await res.data
@@ -135,8 +140,10 @@ document.addEventListener('alpine:init', () => {
     },
     getUserData: async () => {
       // contains { displayName, userNicename }
+      const token = getAuthToken()
+      if (!token) return null
       try {
-        const config = { headers: { Authorization: getAuthToken() } }
+        const config = { headers: { Authorization: token } }
         const res = await axios.get(apiBaseUrl + 'users/me', config)
         console.log("🚀 ~ file: scripts.js ~ line 143 ~ getUserData: ~ res", res)
         if (res.status === 200) {
@@ -148,6 +155,33 @@ document.addEventListener('alpine:init', () => {
         alertMsg(`get user data failed, error: ${err}`)
       }
     },
+    bookEvent: async (id) => {
+      const token = getAuthToken()
+      if (!token) return null
+      const config = { headers: { Authorization: token } }
+      const params = { gameId: id }
+      try {
+        const res = await axios.post(apiBaseUrl + 'bookings/bookMeIntoGame', params, config)
+        const data = res.data
+        return data
+      } catch (err) {
+        alertMsg(`book event failed, error: ${err}`)
+        return null
+      }
+    },
+    cancelBooking: async (id) => {
+      const token = getAuthToken()
+      if (!token) return null
+      const config = { headers: { Authorization: token }, data: { gameId: id } }
+      try {
+        const res = await axios.delete(apiBaseUrl + 'bookings/removeMeFromGame', config)
+        const data = res.data
+        return data
+      } catch (err) {
+        alertMsg(`cancel booking failed, error: ${err}`)
+        return null
+      }
+    },
     submitLogin: async (username, password) => {
       try {
         const res = await axios.post(apiBaseUrl + "login", { username: username, password: password })
@@ -155,9 +189,11 @@ document.addEventListener('alpine:init', () => {
           const token = res.headers.authorization
           return token
         } else {
+          this.makeToast(`login failed, status: ${res.status}`)
           alertMsg(`login failed, status: ${res.status}`)
         }
       } catch (err) {
+        this.makeToast(`login failed, status: ${err}`)
         alertMsg(`login failed, error: ${err}`)
       }
     },
@@ -170,6 +206,9 @@ document.addEventListener('alpine:init', () => {
   /* -------------------------- Light/Dark/Auto Theme ------------------------- */
 
   Alpine.store('theme', {
+    init() {
+      this.getTheme()
+    },
     theme: "auto",
     setTheme(theme) {
       this.theme = theme;
@@ -182,11 +221,28 @@ document.addEventListener('alpine:init', () => {
     }
   });
 
+  // TODO: consider removing
   Alpine.store('panel', {
     isFlipped: false,
     flip() { 
       console.log("flip panel");
       this.isFlipped = !this.isFlipped 
+    }
+  });
+
+  Alpine.store('modal', {
+    isOpen: false,
+    toggle() { 
+      // console.log("toggle modal",this.isOpen);
+      this.isOpen = !this.isOpen 
+    },
+    panel: 'login',
+    open() {
+      this.panel = 'login',
+      this.isOpen = true
+    },
+    close() {
+      this.isOpen = false
     }
   });
 
@@ -248,13 +304,23 @@ document.addEventListener('alpine:init', () => {
       // otherwise addFavorite()
       // getFavEvents() or reset locally
     },
-    async bookEvent() {
-      // post bookEvent()
-      // if success getBookedEvents or just reset bookedEvents locally and localStorage
+    async bookEvent(id) {
+      const data = await api.bookEvent(id)
+      console.log("🚀 ~ file: scripts.js ~ line 294 ~ bookEvent ~ data", data)
+      if (data?.status === 'FAILURE') this.makeToast(data.message)
+      if (data?.status === 'SUCCESS') {
+        this.getBookedEvents()
+        this.makeToast("You've booked this event!")
+      }
     },
-    async cancelBooking() {
-      // post cancelBooking()
-      // if success getBookedEvents or just reset bookedEvents locally and localStorage
+    async cancelBooking(id) {
+      const data = await api.cancelBooking(id)
+      console.log("🚀 ~ file: scripts.js ~ line 294 ~ bookEvent ~ data", data)
+      if (data?.status === 'FAILURE') this.makeToast(data.message)
+      if (data?.status === 'SUCCESS') {
+        this.getBookedEvents()
+        this.makeToast("Booking canceled")
+      }
     },
     async getUserData() {
       const data = await api.getUserData()
@@ -282,6 +348,12 @@ document.addEventListener('alpine:init', () => {
       localStorage.removeItem('favEvents')
       localStorage.removeItem('bookedEvents')
     },
+    // Toast notifications
+    toast: null,
+    makeToast(notification) {
+      this.toast = notification
+      setTimeout(() => this.toast = null, 2000);
+    }
   })
 
   /* -------------------------------------------------------------------------- */
@@ -292,16 +364,20 @@ document.addEventListener('alpine:init', () => {
 
   // TODO: getEvent needs to be called once logged in use $watch maybe
   Alpine.data('eventInfo', () => ({
-    event: {},
+    event: null,
     maxPlayers: null,
     spaces: null,
     owner: null,
     async getEvent(id) {
       const data = await api.getEvent(id)
-      this.event = data
-      this.maxPlayers = parseInt(data.metadata.Players)
-      this.owner = data.eventOwner.displayName
-      this.spaces = parseInt(data.eventRsvp) - 1 + parseInt(data.metadata.Players)
+      console.log("🚀 ~ file: scripts.js ~ line 373 ~ getEvent ~ data", data)
+      if (data) {
+        this.event = data
+        this.maxPlayers = parseInt(data.metadata.Players)
+        this.owner = data.eventOwner.displayName
+        // TODO: figure out what the field for this is
+        this.spaces = parseInt(data.eventRsvp) - 1 + parseInt(data.metadata.Players)
+      }
     },
     async bookEvent() {
       // Get this working

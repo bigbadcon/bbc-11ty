@@ -38,7 +38,7 @@
                     <td class="w-24 text-center py-sm">{{ event.eventStartTime | stripSeconds }} &ndash; {{ event.eventEndTime | stripSeconds }}</td>
                     {# Booked Event Icon #}
                     <td>
-                        <span x-cloak x-show="$store.auth.isBooked({{event.eventId}})" class="flex justify-center pxl-xs">{% icon 'square-check' %}</span>
+                        <span x-cloak x-show="$store.auth.isBooked({{event.eventId}})" class="flex justify-center pl-xs">{% icon 'square-check' %}</span>
                     </td>
                     {# Fav Event Icon #}
                     <td>

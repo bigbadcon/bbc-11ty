@@ -27,6 +27,7 @@ const colors = {
   'main-gradient-bottom': 'var(--main-gradient-bottom)',
   form: 'var(--bg-form)',
   hr: 'var(--hr)',
+  backdrop: `var(--backdrop)`
 }
 
 module.exports = {
@@ -124,6 +125,11 @@ module.exports = {
     fontFamily: {
       sans: ['Open Sans', 'Hevetica', 'sans-serif'],
       serif: ['Rokkitt', 'serif']
+    }
+  },
+  variants: {
+    extend: {
+      padding: ['hover'],
     }
   },
   plugins: [

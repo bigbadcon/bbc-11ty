@@ -134,7 +134,7 @@
     :class="$store.panel.isFlipped && 'flip-wrapper--flipped'"
     >
         <div class="flip-content" x-data="eventInfo" 
-    x-init="getEvent({{eventId}}); $store.auth.getBookedEvents()">
+    x-init="getEvent({{eventId}}); $watch('$store.auth.isAuth', value => {if (value === true) getEvent({{eventId}})})">
             {# Front Panel #}
             <div class="flip-front">
                 {{ login() }}

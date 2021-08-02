@@ -1,0 +1,115 @@
+{% macro authModal() %}
+    {# Backdrop #}
+    <div x-cloak x-show="$store.modal.isOpen" x-transition 
+    class="fixed inset-0 z-40 flex items-center justify-center bg-backdrop" 
+    style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);"
+    >
+        {# Modal #}
+        <div 
+        id="authModal"
+        class="rounded-md shadow h-80 p-base bg-primary" 
+        style="max-height: 90%; max-width: 90%"
+        @click.outside="$store.modal.close()">
+            {{ login() }}
+            {{ createAccount() }}
+            {{ spinner() }}
+            {{ userInfo() }}
+        </div>
+    </div>
+{% endmacro %}
+
+{# Front Panel Content #}
+
+{# Login Panel #}
+{% macro login() %}
+    <div x-cloak x-show="!$store.auth.isAuth && $store.modal.panel === 'login'" class="flex flex-col w-64 h-full">
+        <h2 class="-mt-1 font-serif text-3xl font-extrabold leading-none text-secondary">Login</h2>
+        <form action="post" class="flex flex-col flex-grow my-sm text-body gap-base" @submit.prevent="$store.auth.submitLogin()">
+            <div>
+                <label for="username" class="text-xs uppercase">User Name</label>
+                <input class="w-full" id="username" name="username" required type="text" x-model="$store.auth.username" value=""/>
+            </div>
+            <div>
+                <label for="password" class="text-xs uppercase">Password</label>
+                <input class="w-full" id="password" name="password" required type="password" x-model="$store.auth.password" value=""/>
+            </div>
+            <div>
+                <button class="font-bold uppercase transition-colors duration-200 rounded shadow text-form bg-highlight hover:bg-highlight-2 py-xs px-base" type="submit">Login</button>
+            </div>
+        </form>
+        <div class="flex justify-start text-sm text-body gap-base">
+            {# TODO: get lost password working #}
+            {# <button class="font-bold text-highlight" type="button">Lost Your Password?</button> #}
+            <div>If you do not have an account, <br/>
+                <button @click="$store.modal.panel= 'register'" class="font-bold text-highlight" type="button">Create an Account</button>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+{# Create Account #}
+{% macro createAccount() %}
+    {# TODO: get register account function working #}
+    <div x-cloak x-show="!$store.auth.isAuth && $store.modal.panel === 'register'" class="flex flex-col w-64 h-full">
+        <h2 class="-mt-1 font-serif text-3xl font-extrabold leading-none text-secondary">Create an Account</h2>
+        <form action="post" class="flex flex-col flex-grow my-sm text-body gap-base" @submit.prevent="">
+            <div>
+                <label for="username" class="text-xs uppercase">User Name</label>
+                <input class="w-full" id="reg-username" name="username" required type="text" x-model="$store.auth.username" value=""/>
+            </div>
+            <div>
+                <label for="email" class="text-xs uppercase">Email</label>
+                <input class="w-full" id="email" name="email" required type="email" x-model="$store.auth.email" value=""/>
+            </div>
+            <div>
+                <button class="font-bold uppercase transition-colors duration-200 rounded shadow text-form bg-highlight hover:bg-highlight-2 py-xs px-base" type="submit">Register</button>
+            </div>
+        </form>
+        <div class="text-sm text-body">
+            If you have an account, <button @click="$store.modal.panel= 'login'" class="font-bold text-highlight" type="button">Login Here</button>
+        </div>
+    </div>
+{% endmacro %}
+
+{# Loading Spinner. When logging in but user info not yet loaded #}
+{% macro spinner() %}
+    <div x-cloak x-show="$store.auth.isAuth && !$store.auth.user" class="text-body">Loading...</div>
+{% endmacro %}
+
+{% macro closeBtn() %}
+    <button @click="$store.modal.close()" class="flex items-center justify-center border-2 border-solid rounded w-7 h-7 border-body bg-card hover:border-highlight">
+        <svg class="w-4 h-4 fill-body hover:fill-highlight">
+            <use xlink:href="/static/images/icons.svg#close"></use>
+        </svg>
+    </button>
+{% endmacro %}
+
+{# My Account User Info including My Events. Shown when logged in #}
+{% macro userInfo() %}
+    <div x-cloak x-show="$store.auth.isAuth && $store.auth.user" class="flex flex-col h-full">
+        {# Header #}
+        <div class="flex">
+            <h2 class="flex-grow -mt-1 font-serif text-3xl font-semibold leading-none text-header">
+                <span x-text="$store.auth.user?.displayName"></span> (<span x-text="$store.auth.user?.userNicename"></span>)
+            </h2>
+            <div>
+                {{ closeBtn() }}
+            </div>
+        </div>
+        {# My Events #}
+        <h3 class="font-serif text-2xl font-semibold text-body">My Events</h3>
+        <ul class="flex-grow overflow-y-auto text-sm text-body" x-cloak x-show="$store.auth.bookedEvents">
+            <template x-for="event in $store.auth.bookedEvents">
+                <li class="mb-xs">
+                    <span x-html="event.eventName"></span>
+                </li>
+            </template>
+        </ul>
+        {# Buttons #}
+        <div class="pt-sm">
+            <button class="button" @click="$store.auth.logout()">Logout</button>
+            {# <button class="button" @click="$store.panel.flip()">Change Password</button> #}
+            {# Change Password shoudl flip to other side with change password form #}
+        </div>
+    </div>
+{% endmacro %}

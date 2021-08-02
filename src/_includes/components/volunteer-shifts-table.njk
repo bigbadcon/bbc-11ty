@@ -5,6 +5,12 @@
             <tr>
                 <th class="text-left pb-sm">Event Name</th>
                 <th class="text-center pb-sm">Time PDT</th>
+                <th class="text-center pb-sm">
+                    <span class="flex items-center justify-center pl-xs">{% icon 'square-check', 'fill-body' %}</span>
+                </th>
+                <th class="text-center pb-sm">
+                    <span class="flex items-center justify-center pl-xs">{% icon 'star', 'fill-body' %}</span>
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -15,6 +21,14 @@
                         <a href="/volunteer/{{event.eventSlug}}" class="text-highlight">{{event.eventName | safe }}</a>
                     </td>
                     <td class="w-24 text-center py-sm">{{ event.eventStartTime | stripSeconds }} &ndash; {{ event.eventEndTime | stripSeconds }}</td>
+                    {# Booked Event Icon #}
+                    <td>
+                        <span x-cloak x-show="$store.auth.isBooked({{event.eventId}})" class="flex justify-center pl-xs">{% icon 'square-check' %}</span>
+                    </td>
+                    {# Fav Event Icon #}
+                    <td>
+                        <span x-cloak class="flex justify-center opacity-40 pl-xs hover:opacity-100" :class="$store.auth.isFav({{event.eventId}}) && 'favved'">{% icon 'star', 'fill-body' %}</span>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>

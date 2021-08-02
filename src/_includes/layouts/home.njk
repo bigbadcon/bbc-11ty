@@ -20,7 +20,8 @@
 {% block content %}
 
     <main id="content">
-        <section class="mx-auto max-w-hero px-base py-base">
+        {# Card grid #}
+        <section class="mx-auto max-w-hero p-base">
             <ul class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
                 {% for card in collections.cards123ABC %}
                     <li class="rounded shadow-md bg-card px-base pt-sm pb-base">
@@ -31,8 +32,8 @@
             </ul>
         </section>
         {# Big full width cards with images #}
-        {# TODO: add images to markdown frontmatter #}
-        <section class="mx-auto max-w-hero px-base py-base">
+        {# TODO: add 123ABC index for bigcards #}
+        <section class="mx-auto max-w-hero p-base">
             <ul class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
                 {% for card in collections.bigcards %}
                     <li class="grid overflow-hidden rounded shadow-md md:grid-cols-3 sm:col-span-2 md:col-span-3 bg-card">

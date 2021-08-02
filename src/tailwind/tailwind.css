@@ -31,6 +31,7 @@
   --bg-form: #fcf8f3;
   --hr: #6E897C;
   --fill-highlight: url(#highlight-gradient) var(--highlight);
+  --backdrop: rgba(16, 52, 55, 0.58);
 }
 
 /* ------------------------------- Dark Theme ------------------------------- */
@@ -58,6 +59,7 @@
     --main-gradient-bottom: #1E1C3F;
     --bg-form: #2f2d31;
     --hr: #6C89A6;
+    --backdrop: rgba(90, 100, 120, 0.6);
   }
 }
 .dark {
@@ -83,6 +85,7 @@
   --main-gradient-bottom: #1E1C3F;
   --bg-form: #2f2d31;
   --hr: #6C89A6;
+  --backdrop: rgba(90, 100, 120, 0.6);
 }
 
 :root {
@@ -224,11 +227,20 @@ input[type="checkbox"] ~ label {
 /* -------------------------------------------------------------------------- */
 /*                                Auth Flipper                                */
 /* -------------------------------------------------------------------------- */
-
+/* -------------------------- class for Modal Panel ------------------------- */
+.modal-wrapper {
+  perspective: 2000px;
+  width: 42rem;
+  max-width: 90%;
+  height: 14rem;
+  max-height: 90%;
+}
+/* ---------------------- class for content area Panel ---------------------- */
 .flip-wrapper {
   perspective: 2000px;
   @apply w-full h-72 sm:h-36 my-base;
 }
+/* ------------------------ Panel inner content area ------------------------ */
 .flip-content {
   transition: transform 0.5s;
   transform-style: preserve-3d;
@@ -238,7 +250,7 @@ input[type="checkbox"] ~ label {
 .flip-front {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    @apply absolute w-full h-full rounded-md shadow px-base pt-sm pb-base bg-primary;
+    @apply absolute w-full h-full rounded-md shadow p-base bg-primary;
 }
 .flip-back {
     transform: rotateY(180deg);
