@@ -224,6 +224,14 @@ input[type="checkbox"] ~ label {
   @apply fill-highlight;
 }
 
+.fill-highlight {
+  fill: var(--highlight);
+}
+
+.fill-body {
+  fill: var(--body);
+}
+
 /* -------------------------------------------------------------------------- */
 /*                                Auth Flipper                                */
 /* -------------------------------------------------------------------------- */
