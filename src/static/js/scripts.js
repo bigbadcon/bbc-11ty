@@ -65,7 +65,6 @@ function setAuthToken(token) {
 // Note apiBaseUrl is coming from the html_head allowing it to switch between dev and prod versions
 
 function alertMsg(msg = 'error') {
-    // TODO add onscreen toast message for failed login
     console.log(msg)
 }
 
@@ -78,11 +77,16 @@ function metadataArrayToObject(arr) {
   return object
 }
 
+/* --------------------- Convert windows1252 characters --------------------- */
+// TODO: do we need this? If so I will need to add these scripts to the site
+
+// const decodeText = text => {
+//   return utf8.decode(windows1252.encode(text))
+// }
+
 /* -------------------------------------------------------------------------- */
 /*                                Alpine Stuff                                */
 /* -------------------------------------------------------------------------- */
-
-// TODO: refactor this a bit. Need token available more globally. Also need some of the stores to have init for data
 
 document.addEventListener('alpine:init', () => {
 
@@ -98,7 +102,12 @@ document.addEventListener('alpine:init', () => {
       const params = { id: id }
       try {
         const res = await axios.post(apiBaseUrl + 'events/find', params, config)
-        const data = await {...res.data, metadata: metadataArrayToObject(res.data.metadata)}
+        const data = {...res.data, 
+          // Convert to keyed object
+          metadata: metadataArrayToObject(res.data.metadata),
+          // strip out status 0 which are canceled attendees
+          bookings: res.data.bookings.filter(booking => booking.bookingStatus === 1)
+        }
         return data
       } catch (err) {
         alertMsg(`get event #${id} failed, error: ${err}`)
@@ -399,6 +408,7 @@ document.addEventListener('alpine:init', () => {
     maxPlayers: null,
     spaces: null,
     owner: null,
+    gm: null,
     async getEvent(id) {
       const data = await api.getEvent(id)
       console.log("🚀 ~ file: scripts.js ~ line 373 ~ getEvent ~ data", data)
@@ -406,16 +416,10 @@ document.addEventListener('alpine:init', () => {
         this.event = data
         this.maxPlayers = parseInt(data.metadata.Players)
         this.owner = data.eventOwner.displayName
-        // TODO: figure out what the field for this is
-        this.spaces = parseInt(data.eventRsvp) - 1 + parseInt(data.metadata.Players)
+        this.gm = data.bookings.find(person => person.bookingComment === "GM").user.displayName
+        this.spaces = 1 + parseInt(data.metadata.Players) - data.bookings.length
       }
     },
-    async bookEvent() {
-      // Get this working
-    },
-    async cancelBooking() {
-      // get this working
-    }
   }))
 
 })

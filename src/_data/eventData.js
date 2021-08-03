@@ -3,11 +3,28 @@ const windows1252 = require('windows-1252');
 const utf8 = require('utf8')
 const slugify = require('slugify')
 
+/* ------------------------- Convert odd characters ------------------------- */
 const decodeText = text => {
     return utf8.decode(windows1252.encode(text))
 }
 
+/* ---------------------------- Main url for API ---------------------------- */
+// TODO: change this for production use
+
 const url = "http://www.logictwine.com:8092/events/all/public"
+
+/* -------- Convert metadata array to object to make it easier to use ------- */
+function metadataArrayToObject(arr) {
+    const object = arr.reduce(function(result, item, index, array) {
+      result[item.metaKey] = item.metaValue;
+      return result;
+    }, {});
+    return object
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                 Main Export                                */
+/* -------------------------------------------------------------------------- */
 
 module.exports = async () => {
     try {
@@ -25,7 +42,8 @@ module.exports = async () => {
             return {
                 ...entry,
                 eventName: decodeText(entry.eventName),
-                postContent: decodeText(entry.postContent)
+                postContent: decodeText(entry.postContent),
+                metadata: metadataArrayToObject(entry.metadata)
             }
         })
 

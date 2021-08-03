@@ -36,13 +36,14 @@ eleventyComputed:
     <div x-cloak x-show="event" class="">
         <h3 class="text-lg font-semibold leading-none mb-xs" x-html="event?.eventName"></h3>
         <p>
-            <span>Event Owner:</span>
-            <span x-text="owner"></span>
+            <span>GM/Facilitator:</span>
+            <span x-text="gm"></span>
         </p>
         <p>
             <span>Spaces Open:</span>
             <span x-text="spaces"></span> out of <span x-text="maxPlayers"></span>
         </p>
+        {# TODO: add list of players #}
         <p class="flex mt-base gap-sm">
             <button class="button" x-show="spaces > 0 && !$store.auth.isBooked({{event.eventId}})" @click="$store.auth.bookEvent({{event.eventId}})">Book Event</button>
             <span x-show="spaces <= 0 && !$store.auth.isBooked({{event.eventId}})" class="font-bold">Event is full</span>

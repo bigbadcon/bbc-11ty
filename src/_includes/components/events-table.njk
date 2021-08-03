@@ -17,14 +17,13 @@
         </thead>
         <tbody>
             {% for event in eventData.events %}
-                {% set metadata = event.metadata | metadataArrayToObject %}
                 <tr class="" x-data="{ eventId: {{event.eventId}} }">
                     {# Event Name #}
                     <td class="py-sm pr-sm">
                         <a href="/events/{{event.eventSlug}}" class="text-highlight">{{event.eventName | safe }}</a>
                     </td>
                     {# System #}
-                    {# <td class="py-sm pr-sm">{{metadata.System}}</td> #}
+                    {# <td class="py-sm pr-sm">{{event.metadata.System}}</td> #}
                     {# Event Categories #}
                     <td class="py-sm pr-sm">
                         {% for category in event.categories %}

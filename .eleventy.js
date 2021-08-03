@@ -44,8 +44,13 @@ module.exports = (eleventyConfig) => {
   });
 
   // Home Page Cards published and sorted by order number and then alphabetically
-   eleventyConfig.addCollection("cards123ABC", function(collectionApi) {
+  eleventyConfig.addCollection("cards123ABC", function(collectionApi) {
     return collectionApi.getFilteredByTag("cards").filter(c => c.template.frontMatter.data.published === true).sort((a,b) => sortByOrder(a,b));
+  });
+
+  // Home Page Big Cards published and sorted by order number and then alphabetically
+  eleventyConfig.addCollection("bigcards123ABC", function(collectionApi) {
+    return collectionApi.getFilteredByTag("bigcards").filter(c => c.template.frontMatter.data.published === true).sort((a,b) => sortByOrder(a,b));
   });
 
   // Home Page Cards published and sorted by order number and then alphabetically
@@ -60,19 +65,8 @@ module.exports = (eleventyConfig) => {
   // Format date for posts
   eleventyConfig.addFilter( "formatDate", (val) => format(val, "MMM do, yyyy"));
 
-  // Format date for posts
+  // Remove seconds from times
   eleventyConfig.addFilter( "stripSeconds", (val) => val.slice(0,5));
-
-  // events data metadataArrayToObject
-  eleventyConfig.addFilter( "metadataArrayToObject", (arr) => {
-    const object = arr.reduce(function(result, item, index, array) {
-      result[item.metaKey] = item.metaValue;
-      return result;
-    }, {});
-    return object
-  });
-
-
 
   /* -------------------------------------------------------------------------- */
   /*                                 Shortcodes                                 */
