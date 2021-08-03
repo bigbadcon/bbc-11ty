@@ -6,11 +6,11 @@
                 <th class="text-left pb-sm">Event</th>
                 {# <th class="text-left pb-sm">System</th> #}
                 {# <th class="text-left pb-sm">Categories</th> #}
-                <th class="text-center pb-sm">Date</th>
-                <th class="text-center pb-sm">Time PDT</th>
-                <th class="w-8 text-center pb-sm">
+                {# <th class="text-center pb-sm">Date</th> #}
+                {# <th class="text-center pb-sm">Time PDT</th> #}
+                {# <th class="w-8 text-center pb-sm">
                     <span class="flex items-center justify-end pl-xs">{% icon 'square-check', 'fill-body' %}</span>
-                </th>
+                </th> #}
                 <th class="w-8 text-center pb-sm">
                     <span class="flex items-center justify-end pl-xs">{% icon 'star', 'fill-body' %}</span>
                 </th>
@@ -39,13 +39,13 @@
                         {% endfor %}
                     </td class="py-sm pr-sm"> #}
                     {# Event Day #}
-                    <td class="w-24 text-center py-sm">{{ event.eventStartDate }}</td>
+                    {# <td class="w-24 text-center py-sm">{{ event.eventStartDate }}</td> #}
                     {# Event Time #}
-                    <td class="w-24 text-center py-sm">{{ event.eventStartTime | stripSeconds }} &ndash; {{ event.eventEndTime | stripSeconds }}</td>
+                    {# <td class="w-24 text-center py-sm">{{ event.eventStartTime | stripSeconds }} &ndash; {{ event.eventEndTime | stripSeconds }}</td> #}
                     {# Booked Event Icon #}
-                    <td>
+                    {# <td>
                         <span x-cloak x-show="$store.auth.isBooked({{event.eventId}})" class="flex justify-end pl-xs">{% icon 'square-check' %}</span>
-                    </td>
+                    </td> #}
                     {# Fav Event Icon #}
                     <td>
                         <span @click="$store.auth.toggleFav({{event.eventId}})" class="flex justify-end cursor-pointer opacity-40 hover:opacity-100" :class="$store.auth.isFav({{event.eventId}}) && 'favved'">{% icon 'star', 'fill-body' %}</span>

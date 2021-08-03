@@ -4,6 +4,7 @@
         <thead>
             <tr>
                 <th class="text-left pb-sm">Event Name</th>
+                <th class="text-center pb-sm">Date</th>
                 <th class="text-center pb-sm">Time PDT</th>
                 <th class="w-8 text-center pb-sm" x-cloak x-show="$store.auth.isAuth">
                     <span class="flex items-center justify-end">{% icon 'square-check', 'fill-body' %}</span>
@@ -16,9 +17,13 @@
         <tbody>
             {% for event in eventData.volunteer %}
                 <tr class="" x-data="{ eventId: {{event.eventId}} }">
+                    {# Event Name #}
                     <td class="py-sm pr-sm">
                         <a href="/volunteer/{{event.eventSlug}}" class="font-semibold text-highlight">{{event.eventName | safe }}</a>
                     </td>
+                    {# Event Day #}
+                    <td class="w-24 text-center py-sm">{{ event.eventStartDate }}</td>
+                    {# Event Time #}
                     <td class="w-24 text-center py-sm">{{ event.eventStartTime | stripSeconds }} &ndash; {{ event.eventEndTime | stripSeconds }}</td>
                     {# Booked Event Icon #}
                     <td x-cloak x-show="$store.auth.isAuth">
