@@ -138,7 +138,14 @@ document.addEventListener('alpine:init', () => {
         console.log("user events", data);
         const asyncResult = await Promise.all(data.map( async eventId => {
           const eventData = await api.getEvent(eventId)
-          return {eventId: eventId, eventName: eventData.eventName}
+          return {
+            eventId: eventId, 
+            eventName: eventData.eventName,
+            eventStartDate: eventData.eventStartDate,
+            eventStartTime: eventData.eventStartTime,
+            eventEndDate: eventData.eventEndDate,
+            eventEndTime: eventData.eventEndTime,
+          }
         }))
         console.log("🚀 ~ file: scripts.js ~ line 130 ~ getBookedEvents: ~ asyncResult", asyncResult)
         return asyncResult
@@ -162,6 +169,23 @@ document.addEventListener('alpine:init', () => {
         }
       } catch (err) {
         alertMsg(`get user data failed, error: ${err}`)
+      }
+    },
+    getAvailableSlots: async () => {
+      // contains { displayName, userNicename }
+      const token = getAuthToken()
+      if (!token) return null
+      try {
+        const config = { headers: { Authorization: token } }
+        const res = await axios.get(apiBaseUrl + 'bookings/myAvailableSlots', config)
+        console.log("🚀 ~ file: scripts.js ~ line 174 ~ getAvailableSlots: ~ res", res)
+        if (res.status === 200) {
+          return res.data
+        } else {
+          alertMsg(`get myAvailableSlots failed, status: ${res.status}`)
+        }
+      } catch (err) {
+        alertMsg(`get myAvailableSlots failed, error: ${err}`)
       }
     },
     addFav: async (id) => {
@@ -291,12 +315,14 @@ document.addEventListener('alpine:init', () => {
       const token = getAuthToken()
       this.isAuth = (typeof token === 'string')
       this.user = getLSWithExpiry('user')
+      this.availableSlots = getLSWithExpiry('availableSlots')
       this.bookedEvents = getLSWithExpiry('bookedEvents')
       this.favEvents = getLSWithExpiry('favEvents')
       if (this.isAuth) {
         if (!this.user) this.getUserData()
         if (!this.bookedEvents) this.getBookedEvents()
         if (!this.favEvents) this.getFavEvents()
+        if (typeof this.availableSlots !== 'number') this.getAvailableSlots()
       }
     },
     // Login stuff
@@ -307,6 +333,7 @@ document.addEventListener('alpine:init', () => {
     // User Data
     user: false,
     // User Events
+    availableSlots: null,
     bookedEvents: [],
     favEvents: [],
     isBooked(id) {
@@ -328,6 +355,7 @@ document.addEventListener('alpine:init', () => {
         this.getUserData()
         this.getBookedEvents()
         this.getFavEvents()
+        this.getAvailableSlots()
       }
     },
     test(){
@@ -367,6 +395,11 @@ document.addEventListener('alpine:init', () => {
       this.user = data
       setLSWithExpiry('user', data)
     },
+    async getAvailableSlots() {
+      const data = await api.getAvailableSlots()
+      this.availableSlots = data
+      setLSWithExpiry('availableSlots',data)
+    },
     async getBookedEvents() {
       const data = await api.getBookedEvents()
       this.bookedEvents = data
@@ -383,10 +416,12 @@ document.addEventListener('alpine:init', () => {
       this.user = null
       this.bookedEvents = null
       this.favEvents = null
+      this.availableSlots = null
       localStorage.removeItem('authToken')
       localStorage.removeItem('user')
       localStorage.removeItem('favEvents')
       localStorage.removeItem('bookedEvents')
+      localStorage.removeItem('availableSlots')
     },
     // Toast notifications
     toast: null,
@@ -406,18 +441,22 @@ document.addEventListener('alpine:init', () => {
   Alpine.data('eventInfo', () => ({
     event: null,
     maxPlayers: null,
-    spaces: null,
+    spacesOpen: null,
     owner: null,
     gm: null,
+    bookings: [], // bookings minus all GMs
     async getEvent(id) {
       const data = await api.getEvent(id)
       console.log("🚀 ~ file: scripts.js ~ line 373 ~ getEvent ~ data", data)
       if (data) {
         this.event = data
-        this.maxPlayers = parseInt(data.metadata.Players)
+        const maxPlayers = parseInt(data.metadata.Players)
+        this.maxPlayers = maxPlayers
         this.owner = data.eventOwner.displayName
-        this.gm = data.bookings.find(person => person.bookingComment === "GM").user.displayName
-        this.spaces = 1 + parseInt(data.metadata.Players) - data.bookings.length
+        this.gm = data.metadata.GM
+        const bookings = data.bookings.filter(booking => booking.bookingComment !== "GM")
+        this.bookings = bookings
+        this.spacesOpen = maxPlayers - bookings.length
       }
     },
   }))

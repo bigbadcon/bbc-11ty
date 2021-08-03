@@ -11,24 +11,35 @@ eleventyComputed:
 
 {%- from "components/auth-macros.njk" import eventAuthPanel -%}
 
+{# Description #}
 <div class="prose">{{event.postContent | safe }}</div>
+
 {# Event Signup / Booking #}
-{# Event Signup / Booking #}
-<div class="rounded-md shadow mt-base text-body p-base bg-card" x-data="eventInfo" x-init="getEvent({{event.eventId}}); $watch('$store.auth.isAuth', value => {if (value === true) getEvent({{event.eventId}})})">
+<div class="rounded-md shadow mt-md text-body p-base bg-card" x-data="eventInfo" x-init="getEvent({{event.eventId}}); $watch('$store.auth.isAuth', value => {if (value === true) getEvent({{event.eventId}})})">
     <h2 class="-mt-1 font-serif text-2xl font-bold leading-none md:text-4xl text-header mb-sm">Volunteer Signup</h2>
-    <div x-cloak x-show="event" class="">
-        <h3 class="text-lg font-semibold leading-none mb-xs" x-html="event?.eventName"></h3>
-        <p>
+    {# Event Name, spaces open, and list of players; only show if logged in and has event data #}
+    <div x-cloak x-show="event">
+        <div>
             <span>Spaces Open:</span>
-            <span x-text="spaces"></span> out of <span x-text="maxPlayers"></span>
-        </p>
-        <p class="flex mt-base gap-sm">
-            <button class="button" x-show="spaces > 0 && !$store.auth.isBooked({{event.eventId}})" @click="$store.auth.bookEvent({{event.eventId}})">Sign Up</button>
-            <span x-show="spaces <= 0 && !$store.auth.isBooked({{event.eventId}})" class="font-bold">Shift is full</span>
+            <span x-text="spacesOpen"></span> out of <span x-text="maxPlayers"></span>
+        </div>
+        <div x-cloak x-show="bookings.length > 0">
+            <h4 class="font-serif text-2xl font-semibold mt-sm">Volunteer List</h4>
+            <ul class="list-disc pl-md">
+                <template x-for="booking in bookings">
+                    <li class="mb-xs" x-text="booking?.user.displayName"></li>
+                </template>
+            </ul>
+        </div>
+        {# Booking buttons #}
+        <div class="flex mt-base gap-sm">
+            <button class="button" x-show="spacesOpen > 0 && !$store.auth.isBooked({{event.eventId}})" @click="$store.auth.bookEvent({{event.eventId}})">Signup to Volunteer</button>
+            <span x-show="spacesOpen <= 0 && !$store.auth.isBooked({{event.eventId}})" class="font-bold">Shift is full</span>
             <button class="button" x-show="$store.auth.isBooked({{event.eventId}}) && $store.auth.user.displayName !== owner" @click="$store.auth.cancelBooking({{event.eventId}})">Cancel Shift</span>
-        </p>
+        </div>
     </div>
+    {# Message for people not logged in #}
     <div x-cloak x-show="!event">
-        You must be <button @click="$store.modal.open()" class="underline text-highlight">logged in</button> to book an event.
+        You must be <button @click="$store.modal.open()" class="underline text-highlight">logged in</button> to sign up for a volunter shift.
     </div>
 </div>

@@ -86,7 +86,7 @@
 
 {# My Account User Info including My Events. Shown when logged in #}
 {% macro userInfo() %}
-    <div x-cloak x-show="$store.auth.isAuth && $store.auth.user" class="flex flex-col h-full">
+    <div x-cloak x-show="$store.auth.isAuth && $store.auth.user" class="flex flex-col h-full text-body">
         {# Header #}
         <div class="flex">
             <h2 class="flex-grow -mt-1 font-serif text-3xl font-semibold leading-none text-header gap-base">
@@ -96,15 +96,29 @@
                 {{ closeBtn() }}
             </div>
         </div>
+        {# Quota #}
+        <div class="text-sm mb-sm">
+            <strong>Quota Slots Available:</strong>
+            <span x-text="$store.auth.availableSlots"></span>
+        </div>
         {# My Events #}
-        <h3 class="font-serif text-2xl font-semibold text-body">My Events</h3>
-        <ul class="flex-grow overflow-y-auto text-sm text-body" x-cloak x-show="$store.auth.bookedEvents">
+        <h3 class="font-serif text-2xl font-semibold text-header">My Events</h3>
+        <ul class="flex-grow overflow-y-auto text-sm" x-cloak x-show="$store.auth.bookedEvents">
             <template x-for="event in $store.auth.bookedEvents">
                 <li class="mb-xs">
-                    <span x-html="event.eventName"></span>
+                    <h4>
+                        <span x-html="event.eventName"></span>
+                    </h4>
+                    <p class="text-xs opacity-80">
+                        <span x-text="event.eventStartDate"></span>
+                        <span x-text="event.eventStartTime"></span> &ndash;
+                        <span x-text="event.eventEndDate"></span>
+                        <span x-text="event.eventEndTime"></span>
+                    </p>
                 </li>
             </template>
         </ul>
+
         {# Buttons #}
         <div class="pt-sm">
             <button class="button" @click="$store.auth.logout()">Logout</button>

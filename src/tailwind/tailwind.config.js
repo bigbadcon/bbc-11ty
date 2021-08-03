@@ -86,7 +86,7 @@ module.exports = {
               fontSize: '1.60rem',
               lineHeight: '1.00',
               marginBottom: '0.5em',
-              marginTop: '1.4em'
+              marginTop: '1.2em'
             },
             a:{
               color: 'var(--highlight)',

@@ -41,7 +41,7 @@
                     </td>
                     {# Fav Event Icon #}
                     <td>
-                        <span x-cloak class="flex justify-end opacity-40 pl-xs hover:opacity-100" :class="$store.auth.isFav({{event.eventId}}) && 'favved'">{% icon 'star', 'fill-body' %}</span>
+                        <span @click="$store.auth.toggleFav({{event.eventId}})" class="flex justify-end cursor-pointer opacity-40 hover:opacity-100" :class="$store.auth.isFav({{event.eventId}}) && 'favved'">{% icon 'star', 'fill-body' %}</span>
                     </td>
                 </tr>
             {% endfor %}
