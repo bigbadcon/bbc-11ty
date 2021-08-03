@@ -3,9 +3,10 @@
     <table class="w-full text-sm text-body">
         <thead>
             <tr>
-                <th class="text-left pb-sm">Event Name</th>
+                <th class="text-left pb-sm">Event</th>
                 {# <th class="text-left pb-sm">System</th> #}
-                <th class="text-left pb-sm">Categories</th>
+                {# <th class="text-left pb-sm">Categories</th> #}
+                <th class="text-center pb-sm">Date</th>
                 <th class="text-center pb-sm">Time PDT</th>
                 <th class="w-8 text-center pb-sm">
                     <span class="flex items-center justify-end pl-xs">{% icon 'square-check', 'fill-body' %}</span>
@@ -20,12 +21,15 @@
                 <tr class="" x-data="{ eventId: {{event.eventId}} }">
                     {# Event Name #}
                     <td class="py-sm pr-sm">
-                        <a href="/events/{{event.eventSlug}}" class="text-highlight">{{event.eventName | safe }}</a>
+                        <h3>
+                            <a href="/events/{{event.eventSlug}}" class="font-semibold text-highlight">{{event.eventName | safe }}</a>
+                        </h3>
+                        <p>{{event.metadata.GM | safe}}</p>
                     </td>
                     {# System #}
                     {# <td class="py-sm pr-sm">{{event.metadata.System}}</td> #}
                     {# Event Categories #}
-                    <td class="py-sm pr-sm">
+                    {# <td class="py-sm pr-sm">
                         {% for category in event.categories %}
                             {% if loop.last %}
                                 <span>{{category.name}}</span>
@@ -33,7 +37,10 @@
                                 <span>{{category.name}}</span>,
                             {% endif %}
                         {% endfor %}
-                    </td class="py-sm pr-sm">
+                    </td class="py-sm pr-sm"> #}
+                    {# Event Day #}
+                    <td class="w-24 text-center py-sm">{{ event.eventStartDate }}</td>
+                    {# Event Time #}
                     <td class="w-24 text-center py-sm">{{ event.eventStartTime | stripSeconds }} &ndash; {{ event.eventEndTime | stripSeconds }}</td>
                     {# Booked Event Icon #}
                     <td>

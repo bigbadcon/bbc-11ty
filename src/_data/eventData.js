@@ -45,11 +45,14 @@ module.exports = async () => {
         /* ---------------- fix data if missing slug and decode text ---------------- */
         data = data.map(entry => {
             if (!entry.eventSlug || entry.eventSlug === "") entry = {...entry, eventSlug: slugify(entry.eventName,{strict: true})}
+            let metadata = metadataArrayToObject(entry.metadata)
+            metadata = {...metadata, GM: (metadata.GM) ? decodeText(metadata.GM) : null}
+ 
             return {
                 ...entry,
                 eventName: decodeText(entry.eventName),
                 postContent: decodeText(entry.postContent),
-                metadata: metadataArrayToObject(entry.metadata)
+                metadata: metadata
             }
         })
 

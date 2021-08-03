@@ -20,7 +20,7 @@ eleventyComputed:
 
 {# Categories and Facilitator/GM #}
 <div class="prose mb-base space-y-sm">
-    <div>
+    {# <div>
         <strong>Categories:</strong>
         {% for category in event.categories %}
             {% if loop.last %}
@@ -29,7 +29,7 @@ eleventyComputed:
                 <span>{{category.name}}</span>, 
             {% endif %}
         {% endfor %}
-    </div>
+    </div> #}
     <div>
         <strong>Facilitator/GM:</strong>
         <span>{{event.metadata.GM}}</span>
