@@ -6,7 +6,7 @@ pagination:
     alias: event
 permalink: "events/{{ event.eventSlug }}/"
 eleventyComputed:
-    title: "{{event.eventName}}"
+    title: "{{ event.eventName | safe }}"
 ---
 {%- from "components/auth-macros.njk" import eventAuthPanel -%}
 {# Speakers #}
@@ -29,7 +29,7 @@ eleventyComputed:
         {% endfor %}
     </p>
 </div>
-<div class="prose">{{event.postContent | safe }}</div>
+<div class="prose">{{event.postContent | nl2br | safe }}</div>
 {# Event Signup / Booking #}
 <div class="rounded-md shadow mt-base text-body p-base bg-card" x-data="eventInfo" x-init="getEvent({{event.eventId}}); $watch('$store.auth.isAuth', value => {if (value === true) getEvent({{event.eventId}})})">
     <h2 class="-mt-1 font-serif text-2xl font-bold leading-none md:text-4xl text-header mb-sm">Event Booking</h2>

@@ -16,6 +16,9 @@ module.exports = async () => {
             type: "json"
         });
 
+        /* -------------- Filter out unpublished events by eventStatus -------------- */
+        data = data.filter(entry => entry.eventStatus === 1);
+
         /* ---------------- fix data if missing slug and decode text ---------------- */
         data = data.map(entry => {
             if (!entry.eventSlug || entry.eventSlug === "") entry = {...entry, eventSlug: slugify(entry.eventName,{strict: true})}

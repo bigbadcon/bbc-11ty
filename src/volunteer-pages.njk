@@ -6,7 +6,7 @@ pagination:
     alias: event
 permalink: "volunteer/{{ event.eventSlug }}/"
 eleventyComputed:
-    title: "{{event.eventName}}"
+    title: "{{ event.eventName | safe }}"
 ---
 
 {%- from "components/auth-macros.njk" import eventAuthPanel -%}
