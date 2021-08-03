@@ -2,16 +2,22 @@ const Cache = require("@11ty/eleventy-cache-assets");
 const windows1252 = require('windows-1252');
 const utf8 = require('utf8')
 const slugify = require('slugify')
+const rootCas = require('ssl-root-cas').create();
+  
+/* ----- Inject cert to avoid the UNABLE_TO_VERIFY_LEAF_SIGNATURE error ----- */
+rootCas.addFile('certs/bigbadcon-com-chain.pem')
+require('https').globalAgent.options.ca = rootCas;
 
 /* ------------------------- Convert odd characters ------------------------- */
 const decodeText = text => {
     return utf8.decode(windows1252.encode(text))
 }
 
-/* ---------------------------- Main url for API ---------------------------- */
-// TODO: change this for production use
 
-const url = "http://www.logictwine.com:8092/events/all/public"
+/* ---------------------------- Main url for API ---------------------------- */
+// TODO: change this for production to non-dev api
+
+const url = "https://bigbadcon.com:8091/apidev/events/all/public"
 
 /* -------- Convert metadata array to object to make it easier to use ------- */
 function metadataArrayToObject(arr) {
