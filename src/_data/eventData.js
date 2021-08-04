@@ -65,6 +65,7 @@ module.exports = async () => {
         const volunteer = data.filter(entry => hasCategory(entry, "volunteer-shift"))
 
         /* ------------------------------ Sort by start time ------------------------------ */
+        // TODO Sort also alphabetically
         function timeSort(array) {
             return array.sort((a,b) => {
                 let fa = a.eventStartTime,
