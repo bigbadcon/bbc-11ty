@@ -121,7 +121,8 @@ document.addEventListener('alpine:init', () => {
       try {
         const res = await axios.get(apiBaseUrl + 'events/me/favorites', config);
         const data = await res.data
-        return data.map(item => { return { eventId: item.eventId } })
+        const simpleArray = data.map(item => item.eventId)
+        return simpleArray
         // TODO: get Jerry to change to just a list of ids?
       } catch (err) {
         alertMsg(`get user fav events failed, error: ${err}`)
@@ -341,7 +342,7 @@ document.addEventListener('alpine:init', () => {
       return false
     },
     isFav(id) {
-      if (this.favEvents) return this.favEvents.some( item => item.eventId === id)
+      if (this.favEvents) return this.favEvents.some( item => item === id)
       return false
     },
     // functions
@@ -365,8 +366,14 @@ document.addEventListener('alpine:init', () => {
     async forgetPassword() {},
     async toggleFav(id) {
       let data
-      if (this.isFav(id)) { data = await api.deleteFav(id) }
-      else { data = await api.addFav(id) }
+      if (this.isFav(id)) { 
+        this.favEvents = this.favEvents.filter(fav => fav !== id)
+        data = await api.deleteFav(id) 
+      }
+      else { 
+        this.favEvents = [...this.favEvents, id]
+        data = await api.addFav(id) 
+      }
       if (data?.status === 'FAILURE') this.makeToast(data.message)
       if (data?.status === 'SUCCESS') {
         this.getFavEvents()
