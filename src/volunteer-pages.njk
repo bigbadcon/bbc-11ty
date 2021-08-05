@@ -12,19 +12,9 @@ eleventyComputed:
 {%- from "components/auth-macros.njk" import eventAuthPanel -%}
 
 {# Date and Time #}
-<div class="prose text-body mb-base">
-    {# Event Day #}
-    <div class="">
-        <strong>Date:</strong>
-        {{ event.eventStartDate }}</div>
-    {# Event Time #}
-    <div class="">
-        <strong>Time:</strong>
-        {{ event.eventStartTime | stripSeconds }} &ndash; {{ event.eventEndTime | stripSeconds }}</div>
-</div>
+{% include 'components/event-date-time.njk'%}
 
 {# Description #}
-
 <div class="prose">{{event.postContent | safe }}</div>
 
 {# Event Signup / Booking #}

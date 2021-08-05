@@ -74,8 +74,8 @@ module.exports = async () => {
         // TODO Sort also alphabetically
         function timeSort(array) {
             return array.sort((a,b) => {
-                let fa = a.eventStartTime,
-                    fb = b.eventStartTime;
+                let fa = a.eventStartDateTime,
+                    fb = b.eventStartDateTime;
     
                 if (fa < fb) return -1;
                 if (fa > fb) return 1;

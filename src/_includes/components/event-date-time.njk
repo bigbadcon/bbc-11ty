@@ -1,0 +1,12 @@
+<div class="text-lg prose border-t-2 border-b-2 text-body mb-base space-y-xs border-hr py-sm">
+    {# Event Day #}
+    <div class="">
+        <strong>Date:</strong>
+        {{ event.eventStartDateTime | formatEventDate }}</div>
+    {# Event Time #}
+    <div class="">
+        <strong>Duration:</strong>
+        {% eventDuration event.eventStartDateTime,
+        event.eventEndDateTime %} hrs
+    </div>
+</div>

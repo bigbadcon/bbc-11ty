@@ -19,17 +19,11 @@ eleventyComputed:
 {# If possible set up booking for volunteer shifts #}
 
 {# Categories and Facilitator/GM #}
+
+{# TODO: turn this on once we have real times for panels #}
+{# {% include 'components/event-date-time.njk'%} #}
+
 <div class="prose mb-base space-y-sm">
-    {# <div>
-        <strong>Categories:</strong>
-        {% for category in event.categories %}
-            {% if loop.last %}
-                <span>{{category.name}}</span>
-            {% else %}
-                <span>{{category.name}}</span>, 
-            {% endif %}
-        {% endfor %}
-    </div> #}
     <div class="text-2xl font-semibold text-body-highlight">
         <span>{{event.metadata.GM}}</span>
     </div>

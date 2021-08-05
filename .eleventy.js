@@ -89,18 +89,15 @@ module.exports = (eleventyConfig) => {
 
   // Event duration in hours
   eleventyConfig.addShortcode( "eventDuration", (dateStart,dateEnd) => {
-    console.log("🚀 ~ file: .eleventy.js ~ line 90 ~ eleventyConfig.addShortcode ~ dateEnd", dateEnd)
-    console.log("🚀 ~ file: .eleventy.js ~ line 90 ~ eleventyConfig.addShortcode ~ dateStart", dateStart)
     // calculate hours
     let diffInMilliSeconds = Math.abs(dateEnd - dateStart) / 1000;
-    console.log("🚀 ~ file: .eleventy.js ~ line 92 ~ eleventyConfig.addShortcode ~ diffInMilliSeconds", diffInMilliSeconds)
     const hours = Math.floor(diffInMilliSeconds / 3600) % 24;
+
     diffInMilliSeconds -= hours * 3600;
     // calculate minutes
     const minutes = Math.floor(diffInMilliSeconds / 60) % 60;
     diffInMilliSeconds -= minutes * 60;
-
-    return hours
+    return hours.toString()
   });
 
   // Current Year
