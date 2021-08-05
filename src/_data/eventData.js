@@ -16,7 +16,7 @@ const decodeText = text => {
 /* ---------------------------- Main url for API ---------------------------- */
 // TODO: change this for production to non-dev api
 
-const url = "https://bigbadcon.com:8091/apidev/events/all/public"
+const url = "https://bigbadcon.com:8091/api/events/all/public"
 
 /* -------- Convert metadata array to object to make it easier to use ------- */
 function metadataArrayToObject(arr) {
@@ -39,7 +39,8 @@ module.exports = async () => {
         });
 
         /* -------------- Filter out unpublished events by eventStatus -------------- */
-        data = data.filter(entry => entry.eventStatus === 1);
+        // TODO: turn this filter on before we go live
+        // data = data.filter(entry => entry.eventStatus === 1);
 
         /* ---------------- fix data if missing slug and decode text ---------------- */
         data = data.map(entry => {
