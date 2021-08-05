@@ -1,18 +1,18 @@
-<div id="theme-toggle" class="relative" @click="if ($event.target.checked) { $store.theme.setTheme($event.target.value) }">
+<div id="theme-toggle" class="relative" @click="if ($event.target.checked) { setTheme($event.target.value) }">
   <div class="relative z-10 flex items-center h-4">
     <label class="relative flex items-center justify-end w-6 h-6 pr-sm text-body">
-      <input value="light" name="state-d" type="radio" :checked="$store.theme.theme === 'light'" class="absolute inset-0 block w-full h-full opacity-0 cursor-pointer"/>
+      <input value="light" name="state-d" type="radio" :checked="theme === 'light'" class="absolute inset-0 block w-full h-full opacity-0 cursor-pointer"/>
       <svg class="w-4 h-4 fill-current">
         <title>Light Mode</title>
         <use xlink:href="/static/images/icons.svg#sun"></use>
       </svg>
     </label>
     <label class="relative w-6 h-6">
-      <input value="auto" name="state-d" type="radio" checked :checked="$store.theme.theme === 'auto'" class="absolute inset-0 block w-full h-full opacity-0 cursor-pointer"/>
+      <input value="auto" name="state-d" type="radio" checked :checked="theme === 'auto'" class="absolute inset-0 block w-full h-full opacity-0 cursor-pointer"/>
       <span class="absolute block font-bold tracking-tight uppercase transition-opacity transform -translate-x-1/2 cursor-pointer text-2xs -top-3 left-1/2">Auto</span>
     </label>
     <label class="relative flex items-center w-6 h-6 pl-sm text-body">
-      <input value="dark" name="state-d" type="radio" :checked="$store.theme.theme === 'dark'" class="absolute inset-0 block w-full h-full opacity-0 cursor-pointer"/>
+      <input value="dark" name="state-d" type="radio" :checked="theme === 'dark'" class="absolute inset-0 block w-full h-full opacity-0 cursor-pointer"/>
       <svg class="w-4 h-4 fill-current">
         <title>Dark Mode</title>
         <use xlink:href="/static/images/icons.svg#moon"></use>

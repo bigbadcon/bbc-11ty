@@ -264,24 +264,6 @@ document.addEventListener('alpine:init', () => {
   /*                                Alpine Stores                               */
   /* -------------------------------------------------------------------------- */
 
-  /* -------------------------- Light/Dark/Auto Theme ------------------------- */
-
-  Alpine.store('theme', {
-    init() {
-      this.getTheme()
-    },
-    theme: "auto",
-    setTheme(theme) {
-      this.theme = theme;
-      setLSWithExpiry('theme', theme)
-    },
-    getTheme() {
-      const theme = getLSWithExpiry('theme')
-      if (theme) this.theme = theme
-      // console.log("theme:", this.theme);
-    }
-  });
-
   // TODO: consider removing
   Alpine.store('panel', {
     isFlipped: false,
@@ -466,6 +448,24 @@ document.addEventListener('alpine:init', () => {
         this.spacesOpen = maxPlayers - bookings.length
       }
     },
+  }))
+
+  /* ---------------------------------- Theme --------------------------------- */
+
+  Alpine.data('siteTheme', () => ({
+    init() {
+      this.getTheme()
+    },
+    theme: "auto",
+    setTheme(theme) {
+      this.theme = theme;
+      setLSWithExpiry('theme', theme)
+    },
+    getTheme() {
+      const theme = getLSWithExpiry('theme')
+      if (theme) this.theme = theme
+      // console.log("theme:", theme);
+    }
   }))
 
 })

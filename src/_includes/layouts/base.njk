@@ -4,10 +4,9 @@
 <html lang="en" class="min-h-screen" >
   {% include 'layouts/html_head.njk' %}
   <body
-  x-data
+  x-data="siteTheme"
   class="min-h-screen bg-primary"
-  :class=$store.theme.theme
-  :data-theme=$store.theme.theme
+  :class="theme"
   :style="$store.modal.isOpen && 'overflow: hidden; height: 100vh;'"
   >
     <div class="relative z-10 grid min-h-screen shadow page-wrapper">
