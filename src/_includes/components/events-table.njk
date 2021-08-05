@@ -12,7 +12,7 @@
                 {# <th class="w-8 text-center pb-sm">
                     <span class="flex items-center justify-end pl-xs">{% icon 'square-check', 'fill-body' %}</span>
                 </th> #}
-                <th class="w-8 text-center pb-sm">
+                <th class="w-8 text-center pb-sm" x-cloak x-show="$store.auth.isAuth">
                     <span class="flex items-center justify-end pl-xs">{% icon 'star', 'fill-body' %}</span>
                 </th>
             </tr>
@@ -48,7 +48,7 @@
                         <span x-cloak x-show="$store.auth.isBooked({{event.eventId}})" class="flex justify-end pl-xs">{% icon 'square-check' %}</span>
                     </td> #}
                     {# Fav Event Icon #}
-                    <td>
+                    <td x-cloak x-show="$store.auth.isAuth">
                         <span @click="$store.auth.toggleFav({{event.eventId}})" class="flex justify-end cursor-pointer opacity-40 hover:opacity-100" :class="$store.auth.isFav({{event.eventId}}) && 'favved'">{% icon 'star', 'fill-body' %}</span>
                     </td>
                 </tr>
