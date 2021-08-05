@@ -14,7 +14,6 @@ const decodeText = text => {
 }
 
 /* ---------------------------- Main url for API ---------------------------- */
-// TODO: change this for production to non-dev api
 
 const url = "https://bigbadcon.com:8091/api/events/all/public"
 

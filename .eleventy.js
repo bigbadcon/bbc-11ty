@@ -85,13 +85,6 @@ module.exports = (eleventyConfig) => {
     return today.getFullYear();
   });
 
-  // apiBaseUrl Shortcode
-  // TODO: fix this to proper prod api link once the CORS is sorted for the file version
-  eleventyConfig.addShortcode("apiBaseUrl", function () {
-    if (env === "dev") return "https://bigbadcon.com:8091/api/"
-    if (env === "prod") return "https://bigbadcon.com:8091/api/"
-  });
-
   // SVG Sprite Shortcode
   eleventyConfig.addShortcode("icon", function(icon = "star", fill="fill-highlight") {
     return `<span class="icon"><svg class="icon-link__icon ${fill}">
