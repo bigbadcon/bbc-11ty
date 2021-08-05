@@ -70,22 +70,15 @@ module.exports = async () => {
         const events = data.filter(entry => !hasCategory(entry, "volunteer-shift"))
         const volunteer = data.filter(entry => hasCategory(entry, "volunteer-shift"))
 
-        /* ------------------------------ Sort by start time ------------------------------ */
-        // TODO Sort also alphabetically
-        function timeSort(array) {
-            return array.sort((a,b) => {
-                let fa = a.eventStartDateTime,
-                    fb = b.eventStartDateTime;
-    
-                if (fa < fb) return -1;
-                if (fa > fb) return 1;
-            })
+        /* ------------------- Sort by start time& alphabetically ------------------- */
+        function eventSort(events) {
+            return events.sort((a,b) => b.eventStartDateTime - a.eventStartDateTime || a.eventName.localeCompare(b.eventName))
         }
 
         /* ------------------- Return object with events seperated ------------------ */
         return {
-            events: timeSort(events),
-            volunteer: timeSort(volunteer)
+            events: eventSort(events),
+            volunteer: eventSort(volunteer)
         }
 
     } catch(error) {
