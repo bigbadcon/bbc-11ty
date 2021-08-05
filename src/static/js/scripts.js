@@ -70,7 +70,7 @@ function alertMsg(msg = 'error') {
 
 /* ------------ Transform metadata from events to a keyed object ------------ */
 function metadataArrayToObject(arr) {
-  const object = arr.reduce(function(result, item, index, array) {
+  const object = arr.reduce(function(result, item) {
     result[item.metaKey] = item.metaValue;
     return result;
   }, {});
@@ -104,7 +104,8 @@ document.addEventListener('alpine:init', () => {
       const params = { id: id }
       try {
         const res = await axios.post(apiBaseUrl + 'events/find', params, config)
-        const eventStartDateTime = dayjs(res.data.eventStartDate + "T" + res.data.eventStartTime + "-0700").format("MMM D, YYYY h:mm a")
+        // TODO: set timezone?
+        const eventStartDateTime = dayjs(res.data.eventStartDate + "T" + res.data.eventStartTime).format("MMM D, YYYY h:mm a")
         const data = {...res.data, 
           // Convert to keyed object
           metadata: metadataArrayToObject(res.data.metadata),
@@ -143,8 +144,9 @@ document.addEventListener('alpine:init', () => {
         console.log("user events", data);
         const asyncResult = await Promise.all(data.map( async eventId => {
           const eventData = await api.getEvent(eventId)
-          const eventStartDateTime = dayjs(eventData.eventStartDate + "T" + eventData.eventStartTime + "-0700")
-          const eventEndDateTime = dayjs(eventData.eventEndDate + "T" + eventData.eventEndTime + "-0700")
+          // TODO: set timezone?
+          const eventStartDateTime = dayjs(eventData.eventStartDate + "T" + eventData.eventStartTime)
+          const eventEndDateTime = dayjs(eventData.eventEndDate + "T" + eventData.eventEndTime)
           const duration = (dateStart,dateEnd) => {
             // calculate hours
             let diffInMilliSeconds = Math.abs(dateEnd - dateStart) / 1000;

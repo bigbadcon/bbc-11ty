@@ -4,6 +4,11 @@ const utf8 = require('utf8')
 const slugify = require('slugify')
 const rootCas = require('ssl-root-cas').create();
 var dayjs = require('dayjs')
+var utc = require('dayjs/plugin/utc')
+var timezone = require('dayjs/plugin/timezone')
+dayjs.extend(utc)
+dayjs.extend(timezone)
+dayjs.tz.setDefault("America/San_Francisco")
   
 /* ----- Inject cert to avoid the UNABLE_TO_VERIFY_LEAF_SIGNATURE error ----- */
 rootCas.addFile('certs/bigbadcon-com-chain.pem')
@@ -48,8 +53,8 @@ module.exports = async () => {
             let metadata = metadataArrayToObject(entry.metadata)
             metadata = {...metadata, GM: (metadata.GM) ? decodeText(metadata.GM) : null}
 
-            const eventStartDateTime = dayjs(entry.eventStartDate + "T" + entry.eventStartTime + "-0700").toDate()
-            const eventEndDateTime = dayjs(entry.eventEndDate + "T" + entry.eventEndTime + "-0700").toDate()
+            const eventStartDateTime = dayjs(entry.eventStartDate + "T" + entry.eventStartTime).toDate()
+            const eventEndDateTime = dayjs(entry.eventEndDate + "T" + entry.eventEndTime).toDate()
  
             return {
                 ...entry,
