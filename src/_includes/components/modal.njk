@@ -88,7 +88,7 @@
 {% macro userInfo() %}
     <div x-cloak x-show="$store.auth.isAuth && $store.auth.user" class="flex flex-col h-full text-body">
         {# Header #}
-        <div class="flex">
+        <div class="flex justify-between gap-x-sm">
             <h2 class="flex-grow -mt-1 font-serif text-3xl font-semibold leading-none text-header gap-base">
                 <span x-text="$store.auth.user?.displayName"></span> (<span x-text="$store.auth.user?.userNicename"></span>)
             </h2>
@@ -97,10 +97,10 @@
             </div>
         </div>
         {# Quota #}
-        <div class="text-sm mb-sm">
+        {# <div class="text-sm mb-sm">
             <strong>Quota Slots Available:</strong>
             <span x-text="$store.auth.availableSlots"></span>
-        </div>
+        </div> #}
         {# My Events #}
         <h3 class="font-serif text-2xl font-semibold text-header">My Events</h3>
         <ul class="flex-grow overflow-y-auto text-sm" x-cloak x-show="$store.auth.bookedEvents">
