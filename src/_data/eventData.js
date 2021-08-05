@@ -71,7 +71,7 @@ module.exports = async () => {
 
         /* ------------------- Sort by start time& alphabetically ------------------- */
         function eventSort(events) {
-            return events.sort((a,b) => b.eventStartDateTime - a.eventStartDateTime || a.eventName.localeCompare(b.eventName))
+            return events.sort((a,b) => a.eventStartDateTime - b.eventStartDateTime || a.eventName.localeCompare(b.eventName))
         }
 
         /* ------------------- Return object with events seperated ------------------ */
