@@ -2,7 +2,7 @@
 title: "Little Red hangs up her hood for an Evil Hat"
 tags: blog
 published: true
-date: "2012-07-13"
+date: 2012-07-13
 categories: 
   - "the-making-of"
 coverImage: "evil_hat.jpg"

@@ -2,7 +2,7 @@
 title: "Gaming with style...and privacy!"
 tags: blog
 published: true
-date: "2012-05-14"
+date: 2012-05-14
 categories: 
   - "events"
   - "hotel-info"

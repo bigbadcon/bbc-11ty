@@ -2,7 +2,7 @@
 title: "Howl of The Wolf"
 tags: blog
 published: true
-date: "2012-05-04"
+date: 2012-05-04
 categories: 
   - "events"
   - "the-making-of"

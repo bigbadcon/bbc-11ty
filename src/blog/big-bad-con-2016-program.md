@@ -2,7 +2,7 @@
 title: "Big Bad Con 2016 Program"
 tags: blog
 published: true
-date: "2016-10-11"
+date: 2016-10-11
 categories: 
   - "the-making-of"
 coverImage: "Program-2016-Cover.jpg"

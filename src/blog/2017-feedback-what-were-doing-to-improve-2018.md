@@ -2,7 +2,7 @@
 title: "2017 Feedback - what we're doing to improve 2018!"
 tags: blog
 published: true
-date: "2018-02-22"
+date: 2018-02-22
 categories: 
   - "the-making-of"
 ---

@@ -2,7 +2,7 @@
 title: "Huffing and puffing and blowing another house down"
 tags: blog
 published: true
-date: "2012-07-24"
+date: 2012-07-24
 categories: 
   - "the-making-of"
 ---

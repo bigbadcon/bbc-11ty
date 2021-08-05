@@ -2,7 +2,7 @@
 title: "Feedback from 2012!"
 tags: blog
 published: true
-date: "2012-10-18"
+date: 2012-10-18
 categories: 
   - "the-making-of"
 coverImage: "PlayerFeedback.png"

@@ -2,7 +2,7 @@
 title: "A Champion is Declared"
 tags: blog
 published: true
-date: "2011-05-10"
+date: 2011-05-10
 ---
 
 The Wolf is bringing this update to you fashionably late.

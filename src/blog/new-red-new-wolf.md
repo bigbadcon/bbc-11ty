@@ -2,7 +2,7 @@
 title: "New Red! New Wolf!"
 tags: blog
 published: true
-date: "2017-08-06"
+date: 2017-08-06
 categories: 
   - "the-making-of"
 coverImage: "red-full-med.jpg"

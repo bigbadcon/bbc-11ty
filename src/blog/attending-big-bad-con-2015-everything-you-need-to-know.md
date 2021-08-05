@@ -2,7 +2,7 @@
 title: "Attending Big Bad Con 2015: Everything you need to know!"
 tags: blog
 published: true
-date: "2015-10-13"
+date: 2015-10-13
 categories: 
   - "hotel-info"
   - "the-making-of"

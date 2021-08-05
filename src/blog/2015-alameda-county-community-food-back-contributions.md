@@ -2,7 +2,7 @@
 title: "2015 - Alameda County Community Food Back Contributions"
 tags: blog
 published: true
-date: "2015-11-09"
+date: 2015-11-09
 categories: 
   - "the-making-of"
 ---

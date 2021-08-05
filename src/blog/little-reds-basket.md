@@ -2,7 +2,7 @@
 title: "Little Red's Basket"
 tags: blog
 published: true
-date: "2013-12-08"
+date: 2013-12-08
 categories: 
   - "the-making-of"
 ---

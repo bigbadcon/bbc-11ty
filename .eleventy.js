@@ -62,13 +62,11 @@ module.exports = (eleventyConfig) => {
 /*                                   Filters                                  */
 /* -------------------------------------------------------------------------- */
 
-  // Format date for posts
-  eleventyConfig.addFilter( "formatBlogListDate", (date) => format(date, "MMM do, yyyy"));
+  // Format date for Blog list
+  eleventyConfig.addFilter( "formatBlogDate", (date) => format(date, "MMM do, yyyy"));
 
-   // Format date for posts
-   eleventyConfig.addFilter( "formatBlogPostDate", (date) => {
-     return format(parse(date, "yyyy-MM-dd", new Date()),"MMM do, yyyy")
-  });
+  // Format date for event start
+  eleventyConfig.addFilter( "formatEventDate", (date) => format(date, "MMM do, yyyy h:mm aaa"));
 
   // Remove seconds from times
   eleventyConfig.addFilter( "stripSeconds", (val) => val.slice(0,5));
@@ -77,11 +75,32 @@ module.exports = (eleventyConfig) => {
   /*                                 Shortcodes                                 */
   /* -------------------------------------------------------------------------- */
 
-  // Format Date/Time
-  eleventyConfig.addShortcode('formatBlogDate', function (date, dateFormat = 'MMM d, y', dateParse = "MMM do, yyyy") {
-    date = isDate(date) ? date : parse(date, dateParse, new Date())
-    date = isDate(date) ? date : new Date();
-    return format(date, dateFormat)
+  // Format date for posts
+  eleventyConfig.addShortcode( "formatBlogPostDate", (date, post) => {
+    try {
+      if (!isDate(date)) { date = parse(date, "yyyy-MM-dd", new Date()) }
+      date = format(date,"MMM do, yyyy")
+    return date}
+
+    catch(e) {
+      console.error("postDate", post, date, e);
+    }
+  });
+
+  // Event duration in hours
+  eleventyConfig.addShortcode( "eventDuration", (dateStart,dateEnd) => {
+    console.log("🚀 ~ file: .eleventy.js ~ line 90 ~ eleventyConfig.addShortcode ~ dateEnd", dateEnd)
+    console.log("🚀 ~ file: .eleventy.js ~ line 90 ~ eleventyConfig.addShortcode ~ dateStart", dateStart)
+    // calculate hours
+    let diffInMilliSeconds = Math.abs(dateEnd - dateStart) / 1000;
+    console.log("🚀 ~ file: .eleventy.js ~ line 92 ~ eleventyConfig.addShortcode ~ diffInMilliSeconds", diffInMilliSeconds)
+    const hours = Math.floor(diffInMilliSeconds / 3600) % 24;
+    diffInMilliSeconds -= hours * 3600;
+    // calculate minutes
+    const minutes = Math.floor(diffInMilliSeconds / 60) % 60;
+    diffInMilliSeconds -= minutes * 60;
+
+    return hours
   });
 
   // Current Year

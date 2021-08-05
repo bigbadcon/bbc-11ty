@@ -2,7 +2,7 @@
 title: "Big Bad Con 2016 Hotel Hunt is on!"
 tags: blog
 published: true
-date: "2016-02-18"
+date: 2016-02-18
 categories: 
   - "the-making-of"
 ---

@@ -2,7 +2,7 @@
 title: "Rigney's Room"
 tags: blog
 published: true
-date: "2012-06-30"
+date: 2012-06-30
 categories: 
   - "events"
 coverImage: "one-does-not-simply-carl-rigney.png"

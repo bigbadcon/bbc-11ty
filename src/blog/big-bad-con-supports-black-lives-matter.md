@@ -2,7 +2,7 @@
 title: "Big Bad Con Supports Black Lives Matter"
 tags: blog
 published: true
-date: "2020-06-11"
+date: 2020-06-11
 ---
 
 You may have noticed that Big Bad Con has not made an official statement regarding the Black Lives Matter protests that are currently rocking the country and the world. Early on, we used our Twitter account to retweet other activists and share how people can help support the protesters. Otherwise, we have remained silent as we didn’t want to shout out in a self-serving manner with a shallow and impersonal message.

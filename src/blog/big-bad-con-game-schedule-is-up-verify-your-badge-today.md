@@ -2,7 +2,7 @@
 title: "Big Bad Con game schedule is up - Verify your badge today!"
 tags: blog
 published: true
-date: "2015-08-21"
+date: 2015-08-21
 ---
 
 We're super excited to have so many wonderful offerings this year. Over [180 scheduled events](http://www.bigbadcon.com/events/), and nearly 30 games in [Games on Demand](http://www.bigbadcon.com/games-on-demand-2015/)!

@@ -2,7 +2,7 @@
 title: "Doing Good at Big Bad - For Charity!"
 tags: blog
 published: true
-date: "2014-09-30"
+date: 2014-09-30
 categories: 
   - "the-making-of"
 ---

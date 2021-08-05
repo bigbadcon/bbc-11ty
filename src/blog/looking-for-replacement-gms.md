@@ -2,7 +2,7 @@
 title: "Looking for Replacement GMs"
 tags: blog
 published: true
-date: "2017-10-12"
+date: 2017-10-12
 categories: 
   - "events"
   - "the-making-of"

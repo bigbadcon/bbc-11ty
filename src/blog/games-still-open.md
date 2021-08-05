@@ -2,7 +2,7 @@
 title: "Games still open!"
 tags: blog
 published: true
-date: "2014-10-05"
+date: 2014-10-05
 categories: 
   - "the-making-of"
 excerpt: List of our games still open for Big Bad Con 2014

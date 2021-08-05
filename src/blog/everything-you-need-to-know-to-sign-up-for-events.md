@@ -2,7 +2,7 @@
 title: "Everything you need to know to sign up for events!"
 tags: blog
 published: true
-date: "2016-09-09"
+date: 2016-09-09
 categories: 
   - "events"
   - "the-making-of"

@@ -15,7 +15,7 @@ pagination:
       <a href="{{ post.url }}" class="hover:underline text-subheader hover:text-highlight">
         <h2 class="font-serif text-3xl leading-none tracking-tight text-subheader">{{post.data.title}}</h2>
       </a>
-      <div class="text-xs font-bold text-secondary">{{post.date | formatBlogListDate }}</div>
+      <div class="text-xs font-bold text-secondary">{{post.date | formatBlogDate }}</div>
       <div class="mt-base">
         <div class="prose">{% excerpt post %}</div>
       </div>

@@ -2,7 +2,7 @@
 title: "I wasted it with my crossbow"
 tags: blog
 published: true
-date: "2011-08-29"
+date: 2011-08-29
 ---
 
 ![Gazebo Tragedy](/images/Gazebo_Tragedy.jpg "Gazebo Tragedy")Sad, sad, is the tale of the Gazebo.

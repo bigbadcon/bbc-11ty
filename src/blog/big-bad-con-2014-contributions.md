@@ -2,7 +2,7 @@
 title: "Big Bad Con 2014 Contributions!"
 tags: blog
 published: true
-date: "2014-11-24"
+date: 2014-11-24
 categories: 
   - "the-making-of"
 excerpt: "Donation Confirmation: Thank you for supporting Doctors Without Borders/Médecins Sans Frontières (MSF). Your generosity gives us the financial independence we need to provide emergency medical care to men, women, and children in nearly 70 countries around the world."

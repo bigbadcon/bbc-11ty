@@ -2,7 +2,7 @@
 title: "LARPer call to action!"
 tags: blog
 published: true
-date: "2011-09-29"
+date: 2011-09-29
 ---
 
 This is a letter written by Greg Wirth, a LARP GM at Big Bad Con. It is a call to action for LARPers in the Bay area. Greg writes:

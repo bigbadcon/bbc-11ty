@@ -2,7 +2,7 @@
 title: "Way of The Wolf"
 tags: blog
 published: true
-date: "2011-05-18"
+date: 2011-05-18
 ---
 
 Signing up for [events](http://www.bigbadcon.com/?page_id=6) is a ways off still, but when we get there, this is how signs ups are going to go down.

@@ -2,7 +2,7 @@
 title: "Big Bad gets an Extra Life!"
 tags: blog
 published: true
-date: "2014-10-08"
+date: 2014-10-08
 categories: 
   - "the-making-of"
 ---

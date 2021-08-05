@@ -2,7 +2,7 @@
 title: "Big Bad Con - On your phone!"
 tags: blog
 published: true
-date: "2013-09-18"
+date: 2013-09-18
 categories: 
   - "the-making-of"
 ---

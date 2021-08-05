@@ -2,7 +2,7 @@
 title: "Going Public!"
 tags: blog
 published: true
-date: "2010-08-12"
+date: 2010-08-12
 ---
 
 As this is the first live post, welcome!

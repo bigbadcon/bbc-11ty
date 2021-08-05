@@ -2,7 +2,7 @@
 title: "Contract Signed! - Big Bad Con 2016 is on!"
 tags: blog
 published: true
-date: "2016-03-12"
+date: 2016-03-12
 categories: 
   - "hotel-info"
   - "the-making-of"

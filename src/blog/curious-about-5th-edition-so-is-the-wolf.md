@@ -2,7 +2,7 @@
 title: "Curious about 5th Edition? So is The Wolf!"
 tags: blog
 published: true
-date: "2014-09-12"
+date: 2014-09-12
 categories: 
   - "events"
 ---

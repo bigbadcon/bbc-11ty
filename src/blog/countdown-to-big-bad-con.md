@@ -2,7 +2,7 @@
 title: "Countdown to Big Bad Con"
 tags: blog
 published: true
-date: "2018-07-02"
+date: 2018-07-02
 categories: 
   - "the-making-of"
 ---

@@ -2,7 +2,7 @@
 title: "Big Bad Game Jam 2019"
 tags: blog
 published: true
-date: "2019-05-07"
+date: 2019-05-07
 categories: 
   - "the-making-of"
 ---

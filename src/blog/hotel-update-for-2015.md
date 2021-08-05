@@ -2,7 +2,7 @@
 title: "Hotel Update for 2015"
 tags: blog
 published: true
-date: "2015-05-18"
+date: 2015-05-18
 categories: 
   - "the-making-of"
 ---

@@ -2,7 +2,7 @@
 title: "Big Bad World"
 tags: blog
 published: true
-date: "2016-10-28"
+date: 2016-10-28
 categories: 
   - "the-making-of"
 coverImage: "Big-Bad-World-1.0.jpg"

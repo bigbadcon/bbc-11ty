@@ -2,7 +2,7 @@
 title: "Howl of The Wolf"
 tags: blog
 published: true
-date: "2011-05-11"
+date: 2011-05-11
 ---
 
 [![Howl of The Wolf Badge](/images/howl-ofthe-wolf4-no-url-forprint-300x300.png "Howl of The Wolf Badge")](http://www.bigbadcon.com/wp-content/uploads/2011/05/howl-ofthe-wolf4-no-url-forprint.png)HOOOOOOOWWWWWL

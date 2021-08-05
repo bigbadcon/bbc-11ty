@@ -2,7 +2,7 @@
 title: "Action! Science! Robots! Punching! More Science!"
 tags: blog
 published: true
-date: "2014-09-12"
+date: 2014-09-12
 categories: 
   - "events"
 ---

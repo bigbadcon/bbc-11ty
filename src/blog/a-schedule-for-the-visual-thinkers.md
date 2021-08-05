@@ -2,7 +2,7 @@
 title: "A schedule for the Visual Thinkers"
 tags: blog
 published: true
-date: "2011-09-17"
+date: 2011-09-17
 ---
 
 The Wolf isn't a big fan of long charts with lots of numbers. They make his ears twitch. What he likes is a big graph with all the games listed so he can just scratch out the ones he's not going to play in. If you like graphs too, check out these copies of the schedule:

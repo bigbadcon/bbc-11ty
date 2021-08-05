@@ -2,7 +2,7 @@
 title: "Treasure Trapped - a LARP Documentary - Screenings Soon!"
 tags: blog
 published: true
-date: "2015-06-10"
+date: 2015-06-10
 categories: 
   - "the-making-of"
 ---

@@ -2,7 +2,7 @@
 title: "Big Bad Con 2018 Planning"
 tags: blog
 published: true
-date: "2018-04-26"
+date: 2018-04-26
 categories: 
   - "the-making-of"
 ---

@@ -2,7 +2,7 @@
 title: "Bully Pulpt in the House"
 tags: blog
 published: true
-date: "2013-03-12"
+date: 2013-03-12
 categories: 
   - "the-making-of"
 ---

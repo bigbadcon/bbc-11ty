@@ -2,7 +2,7 @@
 title: "The Future of Gaming"
 tags: blog
 published: true
-date: "2016-03-16"
+date: 2016-03-16
 categories: 
   - "the-making-of"
 coverImage: "IMG_2999.jpg"

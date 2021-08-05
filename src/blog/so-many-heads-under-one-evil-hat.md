@@ -2,7 +2,7 @@
 title: "So many heads under one Evil Hat!"
 tags: blog
 published: true
-date: "2014-10-02"
+date: 2014-10-02
 categories: 
   - "the-making-of"
 ---

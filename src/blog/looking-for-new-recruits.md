@@ -2,7 +2,7 @@
 title: "Looking For New Recruits!"
 tags: blog
 published: true
-date: "2015-03-08"
+date: 2015-03-08
 categories: 
   - "the-making-of"
 ---

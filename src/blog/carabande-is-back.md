@@ -2,7 +2,7 @@
 title: "Carabande is BACK!"
 tags: blog
 published: true
-date: "2012-02-18"
+date: 2012-02-18
 categories: 
   - "events"
 ---

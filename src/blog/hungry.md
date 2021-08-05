@@ -2,7 +2,7 @@
 title: "Hungry?"
 tags: blog
 published: true
-date: "2010-09-08"
+date: 2010-09-08
 categories: 
   - "hotel-info"
 ---

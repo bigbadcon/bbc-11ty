@@ -2,7 +2,7 @@
 title: "Play to Win Games"
 tags: blog
 published: true
-date: "2016-09-15"
+date: 2016-09-15
 categories: 
   - "the-making-of"
 ---

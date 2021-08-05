@@ -2,7 +2,7 @@
 title: "Game Design Seminar Over Drinks"
 tags: blog
 published: true
-date: "2011-08-26"
+date: 2011-08-26
 ---
 
 ![Ryan Macklin and Leonard Balsera from Evil Hat](/images/Lenny_Ryan.jpg "Ryan Macklin and Leonard Balsera from Evil Hat")**When:** Saturday, 10pm on. **Where**: The hotel bar. **Who:** Leonard Balsera & Ryan Macklin from Evil Hat Productions **Length:** As long as the bar's open. Maybe longer.

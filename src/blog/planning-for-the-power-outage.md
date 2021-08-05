@@ -2,7 +2,7 @@
 title: "Planning for the Power Outage"
 tags: blog
 published: true
-date: "2019-10-09"
+date: 2019-10-09
 categories: 
   - "the-making-of"
 ---

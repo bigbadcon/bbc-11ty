@@ -2,7 +2,7 @@
 title: "Big Bad Con Game Schedule Up - Verify your badge today!"
 tags: blog
 published: true
-date: "2014-09-08"
+date: 2014-09-08
 categories: 
   - "the-making-of"
 ---

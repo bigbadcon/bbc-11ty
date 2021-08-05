@@ -2,7 +2,7 @@
 title: "Big Bad Carl"
 tags: blog
 published: true
-date: "2013-08-08"
+date: 2013-08-08
 categories: 
   - "events"
 ---

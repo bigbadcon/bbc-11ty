@@ -2,7 +2,7 @@
 title: "A new home in Walnut Creek"
 tags: blog
 published: true
-date: "2016-03-02"
+date: 2016-03-02
 categories: 
   - "hotel-info"
 ---

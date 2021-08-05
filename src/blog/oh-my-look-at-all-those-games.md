@@ -2,7 +2,7 @@
 title: "Oh my look at all those games!"
 tags: blog
 published: true
-date: "2016-08-03"
+date: 2016-08-03
 categories: 
   - "events"
 coverImage: "Whineys-29th-Birthday-096.jpg"

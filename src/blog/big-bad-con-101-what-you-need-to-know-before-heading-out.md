@@ -2,7 +2,7 @@
 title: "Big Bad Con 101: What you need to know before heading out."
 tags: blog
 published: true
-date: "2011-10-06"
+date: 2011-10-06
 ---
 
 You're coming to Big Bad Con! Awesome.

@@ -2,7 +2,7 @@
 title: "Project Biomodus game playtest"
 tags: blog
 published: true
-date: "2016-09-07"
+date: 2016-09-07
 categories: 
   - "events"
 coverImage: "33Lhurr_InkwerkColor-1-1.jpg"

@@ -2,7 +2,7 @@
 title: "Carabande, the mad cat flicking game!"
 tags: blog
 published: true
-date: "2011-09-14"
+date: 2011-09-14
 categories: 
   - "events"
 ---

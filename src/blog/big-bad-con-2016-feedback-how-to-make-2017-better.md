@@ -2,7 +2,7 @@
 title: "Big Bad Con 2016 Feedback - How to make 2017 better!"
 tags: blog
 published: true
-date: "2017-04-09"
+date: 2017-04-09
 categories: 
   - "the-making-of"
 coverImage: "Getting-around-the-Con.jpg"

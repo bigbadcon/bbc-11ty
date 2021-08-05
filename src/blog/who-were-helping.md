@@ -2,7 +2,7 @@
 title: "Who are we helping?"
 tags: blog
 published: true
-date: "2011-09-22"
+date: 2011-09-22
 ---
 
 The Wolf is very pleased with all the support Big Bad Con has received. Not only will you all make tasty meals, your contributions are helping people all over the world. Be proud of the good work you're doing and spread the word.

@@ -2,7 +2,7 @@
 title: "Babble On Equity Project"
 tags: blog
 published: true
-date: "2019-04-30"
+date: 2019-04-30
 categories: 
   - "the-making-of"
 coverImage: "boep_splash_03.png"

@@ -2,7 +2,7 @@
 title: "Private rooms at Big Bad Con!"
 tags: blog
 published: true
-date: "2012-02-08"
+date: 2012-02-08
 ---
 
 Little Red clearly has mad negotiation skills that leave The Wolf in the dust. This year belongs to Red because she brought private rooms to the table!

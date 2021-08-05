@@ -2,7 +2,7 @@
 title: "Bully Pulpit goes behind The Wolf's Back"
 tags: blog
 published: true
-date: "2011-09-13"
+date: 2011-09-13
 categories: 
   - "events"
 ---

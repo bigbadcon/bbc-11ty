@@ -2,7 +2,7 @@
 title: "Big Bad Con Content Standards"
 tags: blog
 published: true
-date: "2011-10-05"
+date: 2011-10-05
 ---
 
 Big Bad Con defines all games maturity levels based on the information supplied by the GM. Big Bad Con does not review GM scripts and cannot guarantee that GMs will always conform to the maturity they specify, though Big Bad Con does expect this of all GMs. We hope these ratings will be helpful in selecting games players are most likely to enjoy.

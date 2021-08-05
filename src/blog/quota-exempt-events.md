@@ -2,7 +2,7 @@
 title: "Quota Exempt Events"
 tags: blog
 published: true
-date: "2017-09-13"
+date: 2017-09-13
 categories: 
   - "the-making-of"
 ---

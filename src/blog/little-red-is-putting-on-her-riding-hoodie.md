@@ -2,7 +2,7 @@
 title: "Little Red is putting on her Riding Hoodie"
 tags: blog
 published: true
-date: "2012-06-27"
+date: 2012-06-27
 categories: 
   - "events"
 ---

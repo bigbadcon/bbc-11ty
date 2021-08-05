@@ -2,7 +2,7 @@
 title: "Programs, programs. Get your programs"
 tags: blog
 published: true
-date: "2012-10-01"
+date: 2012-10-01
 categories: 
   - "the-making-of"
 coverImage: "BigBadCon_Program_Page_01.jpg"

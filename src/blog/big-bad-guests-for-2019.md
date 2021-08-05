@@ -2,7 +2,7 @@
 title: "Big Bad guests for 2019"
 tags: blog
 published: true
-date: "2019-05-22"
+date: 2019-05-22
 categories: 
   - "the-making-of"
 ---

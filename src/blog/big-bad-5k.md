@@ -2,7 +2,7 @@
 title: "Big Bad 5K"
 tags: blog
 published: true
-date: "2012-09-21"
+date: 2012-09-21
 categories: 
   - "events"
 coverImage: "BigBad5K.png"

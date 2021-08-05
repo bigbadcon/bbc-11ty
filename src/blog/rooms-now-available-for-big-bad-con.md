@@ -2,7 +2,7 @@
 title: "Rooms now available for Big Bad Con!"
 tags: blog
 published: true
-date: "2012-03-01"
+date: 2012-03-01
 categories: 
   - "hotel-info"
 ---

@@ -2,7 +2,7 @@
 title: "After Hours Game Submission"
 tags: blog
 published: true
-date: "2013-01-26"
+date: 2013-01-26
 categories: 
   - "events"
 ---

@@ -2,7 +2,7 @@
 title: "Evil meets Bad!"
 tags: blog
 published: true
-date: "2013-03-01"
+date: 2013-03-01
 categories: 
   - "the-making-of"
 ---

@@ -2,7 +2,7 @@
 title: "The Wolf talking about Dates for the Con"
 tags: blog
 published: true
-date: "2010-08-21"
+date: 2010-08-21
 categories: 
   - "the-making-of"
 ---

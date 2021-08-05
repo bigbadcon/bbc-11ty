@@ -2,7 +2,7 @@
 title: "Big Bad Con 2011 - A Huge Success"
 tags: blog
 published: true
-date: "2011-10-10"
+date: 2011-10-10
 ---
 
 [![](/images/SF-003-225x300.jpg "French toast and Hot Chocolate")](http://www.bigbadcon.com/wp-content/uploads/2011/10/SF-003.jpg)Thank you everyone who made Big Bad Con such an success. There is no way it would have happened without all of you coming and making it awesome.

@@ -2,7 +2,7 @@
 title: "Roleplay Workshop at Big Bad Con"
 tags: blog
 published: true
-date: "2017-10-04"
+date: 2017-10-04
 categories: 
   - "the-making-of"
 ---

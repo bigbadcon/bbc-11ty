@@ -2,7 +2,7 @@
 title: "Polling for interest in D&D and Pathfinder"
 tags: blog
 published: true
-date: "2012-07-30"
+date: 2012-07-30
 categories: 
   - "the-making-of"
 coverImage: "Interest.png"

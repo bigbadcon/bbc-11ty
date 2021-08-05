@@ -2,7 +2,7 @@
 title: "Schedule Published - Verify your Badge today!"
 tags: blog
 published: true
-date: "2019-08-27"
+date: 2019-08-27
 categories: 
   - "events"
   - "the-making-of"

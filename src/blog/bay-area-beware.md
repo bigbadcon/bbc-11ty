@@ -2,7 +2,7 @@
 title: "Bay Area Beware"
 tags: blog
 published: true
-date: "2012-08-01"
+date: 2012-08-01
 categories: 
   - "events"
 coverImage: "baybridgelightning.jpg"

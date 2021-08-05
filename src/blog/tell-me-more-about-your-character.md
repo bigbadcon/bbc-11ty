@@ -2,7 +2,7 @@
 title: "\"Tell me MORE about your character!\""
 tags: blog
 published: true
-date: "2017-06-17"
+date: 2017-06-17
 categories: 
   - "events"
   - "the-making-of"

@@ -2,7 +2,7 @@
 title: "We Give Back"
 tags: blog
 published: true
-date: "2012-06-24"
+date: 2012-06-24
 categories: 
   - "the-making-of"
 ---

@@ -2,7 +2,7 @@
 title: "Player feedback winners announced!"
 tags: blog
 published: true
-date: "2011-10-17"
+date: 2011-10-17
 ---
 
 The Wolf received 237 Player Feedback forms. His eyes got so tired reading them all he had to borrow grandma's glasses!

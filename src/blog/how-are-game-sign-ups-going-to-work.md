@@ -2,7 +2,7 @@
 title: "How Do Game Signups Work?"
 tags: blog
 published: true
-date: "2010-08-15"
+date: 2010-08-15
 categories: 
   - "faq"
 ---

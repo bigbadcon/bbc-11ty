@@ -2,7 +2,7 @@
 title: "Big Bad Con Scholarship Fund"
 tags: blog
 published: true
-date: "2015-08-04"
+date: 2015-08-04
 categories: 
   - "the-making-of"
 ---

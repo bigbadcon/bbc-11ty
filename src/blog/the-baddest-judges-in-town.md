@@ -2,7 +2,7 @@
 title: "The Baddest Judges in Town"
 tags: blog
 published: true
-date: "2011-08-10"
+date: 2011-08-10
 categories: 
   - "events"
   - "the-making-of"

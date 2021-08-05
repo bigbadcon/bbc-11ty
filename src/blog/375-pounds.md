@@ -2,7 +2,7 @@
 title: "375 Pounds!"
 tags: blog
 published: true
-date: "2016-10-26"
+date: 2016-10-26
 categories: 
   - "the-making-of"
 coverImage: "FBCCS-Thank-you-letter.jpg"

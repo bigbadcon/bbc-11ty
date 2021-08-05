@@ -2,7 +2,7 @@
 title: "Games filled up - Ben Lehman brought us more!"
 tags: blog
 published: true
-date: "2013-09-10"
+date: 2013-09-10
 categories: 
   - "the-making-of"
 ---

@@ -2,7 +2,7 @@
 title: "Big Bad Wish List"
 tags: blog
 published: true
-date: "2010-08-24"
+date: 2010-08-24
 categories: 
   - "the-making-of"
 ---

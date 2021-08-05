@@ -2,7 +2,7 @@
 title: "Pickup Games at Big Bad Con"
 tags: blog
 published: true
-date: "2011-08-16"
+date: 2011-08-16
 ---
 
 [![Open Gaming](/images/open_gaming-232x300.jpg "Open Gaming")](http://www.bigbadcon.com/wp-content/uploads/2011/08/open_gaming.jpg)

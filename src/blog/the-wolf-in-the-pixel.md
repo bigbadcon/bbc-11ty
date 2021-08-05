@@ -2,7 +2,7 @@
 title: "The Wolf: In the Pixel"
 tags: blog
 published: true
-date: "2010-08-21"
+date: 2010-08-21
 ---
 
 Katie has sent me over some theme boards and they're amazing. We're going with some variation of the first, but they are all so great, The Wolf needs to brag. Look at his awesomeness.

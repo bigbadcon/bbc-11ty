@@ -2,7 +2,7 @@
 title: "\"Want to game?\""
 tags: blog
 published: true
-date: "2010-09-26"
+date: 2010-09-26
 ---
 
 What I believe?

@@ -2,7 +2,7 @@
 title: "This Just-in: A new contender has entered the ring!"
 tags: blog
 published: true
-date: "2011-09-27"
+date: 2011-09-27
 ---
 
 Big Bad GM Contestant Randy Davenport cannot make it to Big Bad Con. Some excuses like 2000 miles to travel or a bounty on his head are keeping him in Boston. Or maybe he just couldn't handle the pressure.  So the Big Bad Wolf was forced to call on his secret weapon, a GM that will make the other contestants tremble...

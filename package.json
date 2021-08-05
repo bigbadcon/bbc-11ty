@@ -14,7 +14,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cross-env ELEVENTY_ENV=prod eleventy",
-    "dev": "cross-env ELEVENTY_ENV=dev eleventy --serve",
+    "dev": "cross-env ELEVENTY_ENV=dev eleventy --serve --quiet",
     "develop": "eleventy --serve",
     "debug": "DEBUG=* eleventy",
     "svgs": "npx svg-sprite-generate -d src/assets/svgs -o src/static/images/icons.svg"

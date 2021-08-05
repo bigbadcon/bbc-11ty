@@ -2,7 +2,7 @@
 title: "We did it!"
 tags: blog
 published: true
-date: "2016-06-02"
+date: 2016-06-02
 categories: 
   - "the-making-of"
 ---

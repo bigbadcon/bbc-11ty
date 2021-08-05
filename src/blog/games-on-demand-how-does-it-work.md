@@ -2,7 +2,7 @@
 title: "Games on Demand at Big Bad Con"
 tags: blog
 published: true
-date: "2012-09-25"
+date: 2012-09-25
 categories: 
   - "events"
 coverImage: "GamesOnDemandWhiteBoard.png"

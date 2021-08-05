@@ -2,7 +2,7 @@
 title: "The Big Bad Pins... Are In!"
 tags: blog
 published: true
-date: "2011-09-21"
+date: 2011-09-21
 ---
 
 [![A loaded lanyard](/images/IMG_0040-225x300.jpg "A loaded lanyard")](http://www.bigbadcon.com/wp-content/uploads/2011/09/IMG_0040.jpg)The Wolf has been so busy crafting these pins, you'd think he had hijacked the elves (Nick, you've got nothing on me, paws don't leave prints).

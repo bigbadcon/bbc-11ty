@@ -2,7 +2,7 @@
 title: "New World Magischola House Rivalry"
 tags: blog
 published: true
-date: "2017-09-20"
+date: 2017-09-20
 categories: 
   - "the-making-of"
 coverImage: "soledad.png"

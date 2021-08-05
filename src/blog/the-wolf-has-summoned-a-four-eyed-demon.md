@@ -2,7 +2,7 @@
 title: "The Wolf has summoned a Four-Eyed Demon!"
 tags: blog
 published: true
-date: "2011-08-31"
+date: 2011-08-31
 categories: 
   - "events"
 ---

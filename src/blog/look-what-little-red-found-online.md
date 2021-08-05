@@ -2,7 +2,7 @@
 title: "Look what Little Red found online"
 tags: blog
 published: true
-date: "2012-09-17"
+date: 2012-09-17
 categories: 
   - "the-making-of"
 coverImage: "AetherCon-Bookmark-1.png"

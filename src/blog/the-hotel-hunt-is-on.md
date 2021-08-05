@@ -2,7 +2,7 @@
 title: "The Hotel Hunt is on!"
 tags: blog
 published: true
-date: "2015-03-10"
+date: 2015-03-10
 categories: 
   - "hotel-info"
   - "the-making-of"

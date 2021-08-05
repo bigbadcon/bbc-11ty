@@ -2,7 +2,7 @@
 title: "Big Bad GM - Who is the Biggest, Baddest GM in the land?"
 tags: blog
 published: true
-date: "2012-02-08"
+date: 2012-02-08
 categories: 
   - "events"
 ---

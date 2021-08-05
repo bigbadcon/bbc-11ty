@@ -2,7 +2,7 @@
 title: "The Big Bad Code"
 tags: blog
 published: true
-date: "2013-07-26"
+date: 2013-07-26
 categories: 
   - "the-making-of"
 ---

@@ -2,7 +2,7 @@
 title: "Big Bad Con 2019 POC Dinner"
 tags: blog
 published: true
-date: "2019-09-23"
+date: 2019-09-23
 categories: 
   - "events"
 ---

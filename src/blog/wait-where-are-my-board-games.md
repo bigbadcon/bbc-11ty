@@ -2,7 +2,7 @@
 title: "Wait, where are my board games?"
 tags: blog
 published: true
-date: "2010-08-12"
+date: 2010-08-12
 categories: 
   - "events"
   - "faq"

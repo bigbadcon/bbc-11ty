@@ -2,7 +2,7 @@
 title: "Goats in the Gruff!"
 tags: blog
 published: true
-date: "2013-08-30"
+date: 2013-08-30
 categories: 
   - "the-making-of"
 ---

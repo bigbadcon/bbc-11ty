@@ -2,7 +2,7 @@
 title: "Big Bad Lodging (update 9/11/2013)"
 tags: blog
 published: true
-date: "2013-09-11"
+date: 2013-09-11
 categories: 
   - "hotel-info"
 ---

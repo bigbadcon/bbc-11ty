@@ -2,7 +2,7 @@
 title: "2012 Testimonials"
 tags: blog
 published: true
-date: "2013-07-24"
+date: 2013-07-24
 categories: 
   - "the-making-of"
 ---

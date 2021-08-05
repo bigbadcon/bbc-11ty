@@ -2,7 +2,7 @@
 title: "112 Events. LIVE!"
 tags: blog
 published: true
-date: "2012-08-07"
+date: 2012-08-07
 categories: 
   - "the-making-of"
 ---

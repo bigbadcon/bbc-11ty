@@ -2,7 +2,7 @@
 title: "Special Orders from EndGame delivered to YOU!"
 tags: blog
 published: true
-date: "2011-09-29"
+date: 2011-09-29
 categories: 
   - "events"
 ---

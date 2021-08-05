@@ -2,7 +2,7 @@
 title: "Little Red is on Fire!"
 tags: blog
 published: true
-date: "2012-06-07"
+date: 2012-06-07
 categories: 
   - "events"
 coverImage: "burningwheel.png"

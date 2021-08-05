@@ -2,7 +2,7 @@
 title: "Sign ups - Limited availability"
 tags: blog
 published: true
-date: "2015-09-22"
+date: 2015-09-22
 categories: 
   - "the-making-of"
 ---

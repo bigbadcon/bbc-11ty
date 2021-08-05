@@ -2,7 +2,7 @@
 title: "Big Bad Con 101: Little Red's Must Have List!"
 tags: blog
 published: true
-date: "2012-09-25"
+date: 2012-09-25
 categories: 
   - "faq"
 coverImage: "474788_383991204969359_549615007_o-1.jpg"

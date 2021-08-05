@@ -2,7 +2,7 @@
 title: "Table assignments are done!"
 tags: blog
 published: true
-date: "2011-09-23"
+date: 2011-09-23
 ---
 
 Hey all, last time you saw the schedule, games were all over the place. Their date/times were accurate but I didn't know what was going to be where. Now the tables are assigned, so you'll know what room/table your game is in. Check it out.

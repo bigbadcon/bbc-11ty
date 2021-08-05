@@ -2,7 +2,7 @@
 title: "Gifts from The Hat"
 tags: blog
 published: true
-date: "2012-09-21"
+date: 2012-09-21
 categories: 
   - "the-making-of"
 coverImage: "120920-191419.jpg"

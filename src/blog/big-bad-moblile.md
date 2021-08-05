@@ -2,7 +2,7 @@
 title: "Big Bad Moblile"
 tags: blog
 published: true
-date: "2013-08-01"
+date: 2013-08-01
 categories: 
   - "the-making-of"
 ---

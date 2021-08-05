@@ -2,7 +2,7 @@
 title: "Big Bad on Your Back!"
 tags: blog
 published: true
-date: "2011-09-16"
+date: 2011-09-16
 ---
 
 Ink Monkey Graphics has produced a work of art...three works of art! And they can be yours (see purchase information below)

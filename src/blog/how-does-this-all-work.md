@@ -2,7 +2,7 @@
 title: "How does this all work?"
 tags: blog
 published: true
-date: "2017-10-02"
+date: 2017-10-02
 categories: 
   - "faq"
   - "hotel-info"

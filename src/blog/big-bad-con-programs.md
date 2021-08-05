@@ -2,7 +2,7 @@
 title: "Big Bad Con Programs"
 tags: blog
 published: true
-date: "2014-10-15"
+date: 2014-10-15
 categories: 
   - "the-making-of"
 ---

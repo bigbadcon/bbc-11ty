@@ -2,7 +2,7 @@
 title: "Big Bad Con 2016: Preparing for your arrival!"
 tags: blog
 published: true
-date: "2016-10-09"
+date: 2016-10-09
 categories: 
   - "hotel-info"
   - "the-making-of"
