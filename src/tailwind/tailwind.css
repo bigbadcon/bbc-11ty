@@ -120,6 +120,10 @@ button[type="submit"], .button {
   @apply font-bold uppercase transition-colors duration-200 rounded shadow text-form bg-highlight hover:bg-highlight-2 py-xs px-base border border-highlight;
 }
 
+.button-sm {
+  @apply font-bold uppercase transition-colors duration-200 rounded shadow text-form text-sm bg-highlight hover:bg-highlight-2 py-2xs px-sm border border-highlight;
+}
+
 button:disabled {
   @apply opacity-50 hover:bg-highlight;
 }

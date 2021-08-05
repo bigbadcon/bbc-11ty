@@ -13,7 +13,6 @@ const decodeText = text => {
     return utf8.decode(windows1252.encode(text))
 }
 
-
 /* ---------------------------- Main url for API ---------------------------- */
 // TODO: change this for production to non-dev api
 
@@ -21,7 +20,7 @@ const url = "https://bigbadcon.com:8091/apidev/events/all/public"
 
 /* -------- Convert metadata array to object to make it easier to use ------- */
 function metadataArrayToObject(arr) {
-    const object = arr.reduce(function(result, item, index, array) {
+    const object = arr.reduce(function(result, item) {
       result[item.metaKey] = item.metaValue;
       return result;
     }, {});
@@ -34,7 +33,7 @@ function metadataArrayToObject(arr) {
 
 module.exports = async () => {
     try {
-        let data = await Cache(url,{
+        let data = await Cache(url, {
             duration: "1d",
             type: "json"
         });

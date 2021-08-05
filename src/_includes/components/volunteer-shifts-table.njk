@@ -1,5 +1,9 @@
-<section class="mt-md">
+<section class="mt-md" x-data="{favsOnly: false}">
     <h2 class="font-serif text-3xl font-bold leading-none md:text-4xl text-header mb-base">Volunteer Shift List</h2>
+    <div x-cloak class="flex justify-start border-t-2 border-b-2 my-base text-body gap-sm py-sm border-hr" x-show="$store.auth.isAuth">
+        <span class="font-bold">Filter:</span><span>{% icon 'star', 'fill-body' %}</span>
+        <button @click="favsOnly = !favsOnly" x-text="(favsOnly) ? 'Show All' : 'Show Favs Only'" class="button-sm"></button>
+    </div>
     <table class="w-full text-sm text-body">
         <thead>
             <tr>
@@ -16,7 +20,7 @@
         </thead>
         <tbody>
             {% for event in eventData.volunteer %}
-                <tr class="" x-data="{ eventId: {{event.eventId}} }">
+                <tr x-show="!favsOnly || $store.auth.isFav({{event.eventId}})">
                     {# Event Name #}
                     <td class="py-sm pr-sm">
                         <a href="/volunteer/{{event.eventSlug}}" class="font-semibold text-highlight">{{event.eventName | safe }}</a>
