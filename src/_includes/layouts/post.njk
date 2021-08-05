@@ -1,21 +1,32 @@
 {% extends 'layouts/base.njk' %}
 
 {% block header %}
-    {% include 'components/header.njk' %}
+  {% include 'components/header.njk' %}
 {% endblock %}
 
 {% block content %}
-    <main id="content">
-      <div class="max-w-content mx-auto p-base">
-        <h1 class="font-serif text-4xl md:text-5xl text-header font-bold mb-base leading-none">{{title}}</h1>
-        <div class="prose">{{ content | safe }}</div>
-        {# Pagination #}
-        <div class="bg-primary p-sm rounded-md shadow mt-lg flex items-center justify-between text-sm flex-wrap">
-          {% set previousPost = collections.blog | getPreviousCollectionItem(page) %}
-          {% set nextPost = collections.blog | getNextCollectionItem(page) %}
-          <div class="justify-self-start">{% if nextPost %}<a href="{{ nextPost.url }}" class="text-highlight flex items-center hover:underline">{% include 'components/arrow-left.njk' %}<span class="text-body-highlight">{{ nextPost.data.title }}</span></a>{% endif %}</div>
-          <div class="justify-self-end">{% if previousPost %}<a href="{{ previousPost.url }}" class="text-highlight flex items-center hover:underline"><span class="text-body-highlight">{{ previousPost.data.title }}</span>{% include 'components/arrow-right.njk' %}</a>{% endif %}</div>
+  <main id="content">
+    <div class="mx-auto max-w-content p-base">
+      <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header">{{title}}</h1>
+      <div class="text-sm font-bold text-body mb-base">{{date | formatBlogPostDate }}</div>
+      <div class="prose">{{ content | safe }}</div>
+      {# Pagination #}
+      <div class="flex flex-wrap items-center justify-between text-sm rounded-md shadow bg-primary p-sm mt-lg">
+        {% set previousPost = collections.blog | getPreviousCollectionItem(page) %}
+        {% set nextPost = collections.blog | getNextCollectionItem(page) %}
+        <div class="justify-self-start">
+          {% if nextPost %}
+            <a href="{{ nextPost.url }}" class="flex items-center text-highlight hover:underline">{% include 'components/arrow-left.njk' %}
+              <span class="text-body-highlight">{{ nextPost.data.title }}</span></a>
+          {% endif %}
+        </div>
+        <div class="justify-self-end">
+          {% if previousPost %}
+            <a href="{{ previousPost.url }}" class="flex items-center text-highlight hover:underline">
+              <span class="text-body-highlight">{{ previousPost.data.title }}</span>{% include 'components/arrow-right.njk' %}</a>
+          {% endif %}
         </div>
       </div>
-    </main>
+    </div>
+  </main>
 {% endblock %}

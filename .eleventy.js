@@ -63,7 +63,12 @@ module.exports = (eleventyConfig) => {
 /* -------------------------------------------------------------------------- */
 
   // Format date for posts
-  eleventyConfig.addFilter( "formatDate", (val) => format(val, "MMM do, yyyy"));
+  eleventyConfig.addFilter( "formatBlogListDate", (date) => format(date, "MMM do, yyyy"));
+
+   // Format date for posts
+   eleventyConfig.addFilter( "formatBlogPostDate", (date) => {
+     return format(parse(date, "yyyy-MM-dd", new Date()),"MMM do, yyyy")
+  });
 
   // Remove seconds from times
   eleventyConfig.addFilter( "stripSeconds", (val) => val.slice(0,5));
@@ -73,7 +78,7 @@ module.exports = (eleventyConfig) => {
   /* -------------------------------------------------------------------------- */
 
   // Format Date/Time
-  eleventyConfig.addShortcode('formatDate', function (date, dateFormat = 'MMM d, y', dateParse = "MMM do, yyyy") {
+  eleventyConfig.addShortcode('formatBlogDate', function (date, dateFormat = 'MMM d, y', dateParse = "MMM do, yyyy") {
     date = isDate(date) ? date : parse(date, dateParse, new Date())
     date = isDate(date) ? date : new Date();
     return format(date, dateFormat)
