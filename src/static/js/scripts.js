@@ -95,7 +95,7 @@ document.addEventListener('alpine:init', () => {
   /* -------------------------------------------------------------------------- */
 
   const apiBaseUrl = "https://bigbadcon.com:8091/api/"
-  
+
   const api = {
     getEvent: async (id) => {
       const token = getAuthToken()
@@ -104,11 +104,13 @@ document.addEventListener('alpine:init', () => {
       const params = { id: id }
       try {
         const res = await axios.post(apiBaseUrl + 'events/find', params, config)
+        const eventStartDateTime = dayjs(res.data.eventStartDate + "T" + res.data.eventStartTime + "-0700").format("MMM D, YYYY h:mm a")
         const data = {...res.data, 
           // Convert to keyed object
           metadata: metadataArrayToObject(res.data.metadata),
           // strip out status 0 which are canceled attendees
-          bookings: res.data.bookings.filter(booking => booking.bookingStatus === 1)
+          bookings: res.data.bookings.filter(booking => booking.bookingStatus === 1),
+          eventStartDateTime: eventStartDateTime
         }
         return data
       } catch (err) {
@@ -141,13 +143,25 @@ document.addEventListener('alpine:init', () => {
         console.log("user events", data);
         const asyncResult = await Promise.all(data.map( async eventId => {
           const eventData = await api.getEvent(eventId)
+          const eventStartDateTime = dayjs(eventData.eventStartDate + "T" + eventData.eventStartTime + "-0700")
+          const eventEndDateTime = dayjs(eventData.eventEndDate + "T" + eventData.eventEndTime + "-0700")
+          const duration = (dateStart,dateEnd) => {
+            // calculate hours
+            let diffInMilliSeconds = Math.abs(dateEnd - dateStart) / 1000;
+            const hours = Math.floor(diffInMilliSeconds / 3600) % 24;
+        
+            diffInMilliSeconds -= hours * 3600;
+            // calculate minutes
+            const minutes = Math.floor(diffInMilliSeconds / 60) % 60;
+            diffInMilliSeconds -= minutes * 60;
+            return hours.toString()
+          };
+
           return {
             eventId: eventId, 
             eventName: eventData.eventName,
-            eventStartDate: eventData.eventStartDate,
-            eventStartTime: eventData.eventStartTime,
-            eventEndDate: eventData.eventEndDate,
-            eventEndTime: eventData.eventEndTime,
+            eventStartDateTime: eventStartDateTime.format("MMM D, YYYY h:mm a"),
+            eventDuration: duration(eventStartDateTime,eventEndDateTime)
           }
         }))
         console.log("🚀 ~ file: scripts.js ~ line 130 ~ getBookedEvents: ~ asyncResult", asyncResult)

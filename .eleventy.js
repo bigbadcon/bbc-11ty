@@ -1,10 +1,8 @@
 // Per 11ty from scratch, we have to have a module.exports definition
 
 const blogTools = require("eleventy-plugin-blog-tools");
-const format = require('date-fns/format');
-const parse = require('date-fns/parse');
-const isDate = require('date-fns/isDate');
 const pluginRss = require("@11ty/eleventy-plugin-rss");
+var dayjs = require('dayjs')
 
 // Function to sort by order frontmatter field then by fileSlug alphabetically
 function sortByOrder(a,b) {
@@ -63,10 +61,10 @@ module.exports = (eleventyConfig) => {
 /* -------------------------------------------------------------------------- */
 
   // Format date for Blog list
-  eleventyConfig.addFilter( "formatBlogDate", (date) => format(date, "MMM do, yyyy"));
+  eleventyConfig.addFilter( "formatBlogDate", (date) => dayjs(date).format("MMM D, YYYY"));
 
   // Format date for event start
-  eleventyConfig.addFilter( "formatEventDate", (date) => format(date, "MMM do, yyyy h:mm aaa"));
+  eleventyConfig.addFilter( "formatEventDate", (date) => dayjs(date).format("MMM D, YYYY h:mm a"));
 
   // Remove seconds from times
   eleventyConfig.addFilter( "stripSeconds", (val) => val.slice(0,5));
@@ -74,18 +72,6 @@ module.exports = (eleventyConfig) => {
   /* -------------------------------------------------------------------------- */
   /*                                 Shortcodes                                 */
   /* -------------------------------------------------------------------------- */
-
-  // Format date for posts
-  eleventyConfig.addShortcode( "formatBlogPostDate", (date, post) => {
-    try {
-      if (!isDate(date)) { date = parse(date, "yyyy-MM-dd", new Date()) }
-      date = format(date,"MMM do, yyyy")
-    return date}
-
-    catch(e) {
-      console.error("postDate", post, date, e);
-    }
-  });
 
   // Event duration in hours
   eleventyConfig.addShortcode( "eventDuration", (dateStart,dateEnd) => {

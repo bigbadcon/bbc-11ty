@@ -29,7 +29,7 @@
     "autoprefixer": "latest",
     "axios": "^0.21.1",
     "cross-env": "^7.0.3",
-    "date-fns": "^2.22.1",
+    "dayjs": "^1.10.6",
     "eleventy-plugin-blog-tools": "^0.3.1",
     "postcss": "latest",
     "postcss-cli": "latest",

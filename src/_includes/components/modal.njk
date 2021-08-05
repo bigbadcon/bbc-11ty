@@ -102,25 +102,22 @@
             <span x-text="$store.auth.availableSlots"></span>
         </div> #}
         {# My Events #}
-        <h3 class="font-serif text-2xl font-semibold text-header">My Events</h3>
-        <ul class="flex-grow overflow-y-auto text-sm" x-cloak x-show="$store.auth.bookedEvents">
+        <h3 class="font-serif text-2xl font-semibold text-body">My Events</h3>
+        <ul class="flex-grow overflow-y-auto text-sm border-t-2 border-b-2 text-body border-hr py-xs" x-cloak x-show="$store.auth.bookedEvents">
             <template x-for="event in $store.auth.bookedEvents">
                 <li class="mb-xs">
-                    <h4>
+                    <h4 class="font-bold">
                         <span x-html="event.eventName"></span>
                     </h4>
-                    <p class="text-xs opacity-80">
-                        <span x-text="event.eventStartDate"></span>
-                        <span x-text="event.eventStartTime"></span> &ndash;
-                        <span x-text="event.eventEndDate"></span>
-                        <span x-text="event.eventEndTime"></span>
+                    <p class="text-xs opacity-90">
+                        <span x-text="event.eventStartDateTime"></span> (<span x-text="event.eventDuration"></span> hrs)
                     </p>
                 </li>
             </template>
         </ul>
 
         {# Buttons #}
-        <div class="pt-sm">
+        <div class="pt-base">
             <button class="button" @click="$store.auth.logout()">Logout</button>
             {# <button class="button" @click="$store.panel.flip()">Change Password</button> #}
             {# Change Password shoudl flip to other side with change password form #}

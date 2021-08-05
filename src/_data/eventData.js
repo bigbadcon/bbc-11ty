@@ -3,8 +3,7 @@ const windows1252 = require('windows-1252');
 const utf8 = require('utf8')
 const slugify = require('slugify')
 const rootCas = require('ssl-root-cas').create();
-const format = require('date-fns/format');
-const parse = require('date-fns/parse');
+var dayjs = require('dayjs')
   
 /* ----- Inject cert to avoid the UNABLE_TO_VERIFY_LEAF_SIGNATURE error ----- */
 rootCas.addFile('certs/bigbadcon-com-chain.pem')
@@ -49,8 +48,8 @@ module.exports = async () => {
             let metadata = metadataArrayToObject(entry.metadata)
             metadata = {...metadata, GM: (metadata.GM) ? decodeText(metadata.GM) : null}
 
-            const eventStartDateTime = parse(entry.eventStartDate + entry.eventStartTime, "yyyy-MM-ddHH:mm:ss", new Date())
-            const eventEndDateTime = parse(entry.eventEndDate + entry.eventEndTime, "yyyy-MM-ddHH:mm:ss", new Date())
+            const eventStartDateTime = dayjs(entry.eventStartDate + "T" + entry.eventStartTime + "-0700").toDate()
+            const eventEndDateTime = dayjs(entry.eventEndDate + "T" + entry.eventEndTime + "-0700").toDate()
  
             return {
                 ...entry,
