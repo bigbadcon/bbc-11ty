@@ -106,6 +106,7 @@ document.addEventListener('alpine:init', () => {
         const res = await axios.post(apiBaseUrl + 'events/find', params, config)
         // TODO: set timezone?
         const eventStartDateTime = dayjs(res.data.eventStartDate + "T" + res.data.eventStartTime).format("MMM D, YYYY h:mm a")
+
         const data = {...res.data, 
           // Convert to keyed object
           metadata: metadataArrayToObject(res.data.metadata),
@@ -162,7 +163,7 @@ document.addEventListener('alpine:init', () => {
           return {
             eventId: eventId, 
             eventName: eventData.eventName,
-            eventStartDateTime: eventStartDateTime.format("MMM D, YYYY h:mm a"),
+            eventStartDateTime: eventStartDateTime,
             eventDuration: duration(eventStartDateTime,eventEndDateTime)
           }
         }))
@@ -268,12 +269,12 @@ document.addEventListener('alpine:init', () => {
           const token = res.headers.authorization
           return token
         } else {
-          this.makeToast(`login failed, status: ${res.status}`)
           alertMsg(`login failed, status: ${res.status}`)
+          return null
         }
       } catch (err) {
-        this.makeToast(`login failed, status: ${err}`)
         alertMsg(`login failed, error: ${err}`)
+        return null
       }
     },
   }
@@ -357,7 +358,7 @@ document.addEventListener('alpine:init', () => {
         this.getBookedEvents()
         this.getFavEvents()
         this.getAvailableSlots()
-      }
+      } else this.makeToast('Login failed')
     },
     test(){
       console.log(this.isAuth)
@@ -466,6 +467,9 @@ document.addEventListener('alpine:init', () => {
         this.spacesOpen = maxPlayers - bookings.length
       }
     },
+    showTimezone(date,tz) {
+      console.log(dayjs(date).tz(tz))
+    }
   }))
 
   /* ---------------------------------- Theme --------------------------------- */
@@ -483,6 +487,29 @@ document.addEventListener('alpine:init', () => {
       const theme = getLSWithExpiry('theme')
       if (theme) this.theme = theme
       // console.log("theme:", theme);
+    }
+  }))
+  
+  /* --------------------------- Event Table Filter --------------------------- */
+
+  Alpine.data('eventFilter', () => ({
+    init() {
+      this.favsOnly = getLSWithExpiry('favsOnly') || this.favsOnly
+      this.timezone = getLSWithExpiry('timezone') || this.timezone
+      console.log(this.timezone);
+    },
+    favsOnly: false, 
+    timezone: 'America/Los_Angeles',
+    setTimezone(val) {
+      setLSWithExpiry('timezone',val)
+      this.timezone = val;
+    },
+    toggleFavsOnly() {
+      setLSWithExpiry('favsOnly',!this.favsOnly)
+      this.favsOnly = !this.favsOnly
+    },
+    isSelected(tz) {
+      return this.timezone === tz
     }
   }))
 
