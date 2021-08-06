@@ -12,15 +12,7 @@ fields:
   name: description
   label: description
 pages:
-- src/badge.md
-- src/community.md
-- src/dealers.md
-- src/drop-in.md
 - src/events.md
 - src/faq.md
-- src/games-on-demand.md
-- src/hotel.md
 - src/rangers.md
-- src/run-an-event.md
-- src/small-press.md
 - src/staff.md
