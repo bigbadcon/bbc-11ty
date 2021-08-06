@@ -114,7 +114,7 @@
                     <h4 class="font-bold">
                         <span x-html="event.eventName"></span>
                     </h4>
-                    <p class="text-xs opacity-90">
+                    <p class="text-xs opacity-90" x-cloak x-show="timezone">
                         <span x-text="eventFormat(event.eventStartDateTime)"></span> (<span x-text="event.eventDuration"></span> hrs)
                     </p>
                 </li>

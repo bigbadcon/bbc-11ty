@@ -1,5 +1,5 @@
 {# Timezones from here: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones #}
-{# must contain x-data="eventFilter" in wrapping compontent for this to work #}
+{# timezone data is in x-data="eventFilter" in wrapping div in base.njk #}
 <select id="timezone" class="mb-0 text-sm cursor-pointer px-xs py-2xs" 
     @change="setTimezone($el.value)"
     x-init="$el.value = timezone"
