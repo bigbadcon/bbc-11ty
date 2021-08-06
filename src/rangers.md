@@ -4,8 +4,30 @@ title: Join The Rangers
 description: ''
 
 ---
-Excepteur irure elit aute ad sint commodo elit incididunt exercitation voluptate dolor elit sit reprehenderit. Voluptate ipsum elit minim dolore est id anim aute cupidatat occaecat enim. Velit irure in esse deserunt reprehenderit enim tempor veniam Lorem.
+This year, Big Bad is going online! We’re going to have 24 hours of panels and hangout time on Discord! Because of all the energy, joy, and passion our rangers poured into Big Bad Con in the past, 2019 was an incredible success. We want to foster that same joy this year for our online experience and would love to have you rejoin the ranks of the Rangers!
 
-Elit anim consequat Lorem commodo do. Laboris elit nulla aliquip in labore. Sint eu cupidatat id ipsum minim deserunt sint proident sunt tempor. Ea nisi ea Lorem ea nisi exercitation eu velit elit pariatur minim veniam mollit non. Sunt laborum eu proident veniam excepteur adipisicing ullamco. Mollit consequat dolore mollit adipisicing.
+Here’re the roles we’re looking for this year:
 
-Aute exercitation voluptate ea cupidatat culpa aliquip elit. Pariatur tempor non quis magna. Deserunt ex elit ea adipisicing magna nisi. Nisi Lorem dolor labore reprehenderit et et aliqua labore mollit Lorem nisi consectetur Lorem ut. Quis in do laboris do exercitation. Excepteur ut culpa dolore deserunt eu minim nostrud id voluptate. Exercitation laboris cupidatat et fugiat deserunt et anim.
+* **Discord Greeter**: Just as we welcome folks when they walk in the physical doors of the con, this year we want to welcome folks when they arrive on the Discord server. Greeters will roam the Discord lobby as well as the other channels to:
+  * Welcome attendees
+  * Help them find events and hangout areas
+  * Spread cheer!
+* **Twitch Moderators**: All of our panels this year will be streamed on Twitch. Twitch Moderators will perform three important tasks:
+  * Welcome folks in Twitch Chat
+  * Moderate chat to enforce our code of conduct
+  * Convey questions that come up in chat to the panel moderator.
+* **Panel Moderators**: For each panel we’ll have one panel moderator that will be on stream with the other panelists helping them:
+  * Keep the conversation going
+  * Spread the spotlight around
+  * Remind them of the time remaining
+  * When applicable, ask question(s) sourced from chat (as sent by the Twitch moderator)
+* **Stream Producers**: For each panel we’ll have one producer who will manage the Streamyard account and produce the stream. Specific task will be to:
+  * Ensure all the panelists have their cameras and mics working as intended
+  * Start and stop the streams
+  * Display opening and closing slides.
+
+Training for all of these roles will be provided ahead of time by the Big Bad Con staff. We’ll ask that each Ranger attends a 1-hour training in late-September / early-October to review all the duties of the role, provide us feedback, and ask any questions.
+
+Would you like to be part of putting on Big Bad Online this year? Because, we would love to have you!
+
+{% iconLink "/rangers", "Sign up here to join the Rangers", "paw" %}
