@@ -41,11 +41,11 @@ Anyone can report harassment. If someone’s behavior has made you uncomfortable
 
 ### Failure to adhere to the community standards may result in:
 
-1. Mediation by Big Bad Con staff.
-2. Verbal warnings.
-3. Turning the individual over to hotel staff.
-4. Revocation of badge and ejection from Big Bad Con. No refunds will be offered.
-5. Contacting local law enforcement.
+* Mediation by Big Bad Con staff.
+* Verbal warnings.
+* Turning the individual over to hotel staff.
+* Revocation of badge and ejection from Big Bad Con. No refunds will be offered.
+* Contacting local law enforcement.
 
 Our policy applies to **EVERYONE** at the convention. Exhibitors, attendees, GMs, speakers, guests, staff, and volunteers are all subject to our anti-harassment policy and will be held to the same standards and disciplinary action.
 
