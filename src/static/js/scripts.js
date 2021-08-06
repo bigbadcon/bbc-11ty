@@ -308,34 +308,6 @@ document.addEventListener('alpine:init', () => {
     }
   });
 
-   /* --------------------------- Event Table Filter --------------------------- */
-
-  Alpine.store('filter', {
-    init() {
-      this.favsOnly = getLSWithExpiry('favsOnly') || this.favsOnly
-      this.timezone = getLSWithExpiry('timezone') || this.timezone
-      console.log(this.timezone);
-    },
-    favsOnly: false, 
-    timezone: 'America/Los_Angeles',
-    setTimezone(val) {
-      setLSWithExpiry('timezone',val)
-      this.timezone = val;
-    },
-    toggleFavsOnly() {
-      setLSWithExpiry('favsOnly',!this.favsOnly)
-      this.favsOnly = !this.favsOnly
-    },
-    isSelected(tz) {
-      return this.timezone === tz
-    },
-    eventFormat(date, tz, format = 'MMM D, YYYY h:mm a') {
-      tz = this.timezone || 'America/Los_Angeles'
-      console.log("eventFormat",date,tz,dayjs(date).tz(tz).format(format));
-      return dayjs(date).tz(tz).format(format)
-    }
-  });
-
   /* ---------------------------- Auth Store --------------------------- */
   // ALl data for logged in users
 
@@ -524,7 +496,7 @@ document.addEventListener('alpine:init', () => {
     init() {
       this.favsOnly = getLSWithExpiry('favsOnly') || this.favsOnly
       this.timezone = getLSWithExpiry('timezone') || this.timezone
-      console.log(this.timezone);
+      // console.log(this.timezone);
     },
     favsOnly: false, 
     timezone: 'America/Los_Angeles',
@@ -541,7 +513,7 @@ document.addEventListener('alpine:init', () => {
     },
     eventFormat(date, tz, format = 'MMM D, YYYY h:mm a') {
       tz = this.timezone || 'America/Los_Angeles'
-      console.log("eventFormat",date,tz,dayjs(date).tz(tz).format(format));
+      // console.log("eventFormat",date,tz,dayjs(date).tz(tz).format(format));
       return dayjs(date).tz(tz).format(format)
     }
   }))
