@@ -23,7 +23,7 @@
                         <a href="/volunteer/{{event.eventSlug}}" class="font-bold transition-colors text-header hover:text-highlight">{{event.eventName | safe }}</a>
                     </td>
                     {# Event Start Date/Time #}
-                    <td class="w-44 py-sm" x-data="{ startDate:'{{event.eventStartDateTime}}' }" x-text="dayjs(startDate).tz(timezone).format('MMM D, YYYY h:mm a')">{{ event.eventStartDateTime | formatEventDate }}</td>
+                    <td class="w-44 py-sm" x-data="{ date: '{{event.eventStartDateTime}}' }" x-text="eventFormat(date)">{{ event.eventStartDateTime | formatEventDate }}</td>
                     {# Event Duration #}
                     <td class="w-20 text-center py-sm">
                         {% eventDuration event.eventStartDateTime,

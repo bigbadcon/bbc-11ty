@@ -1,5 +1,9 @@
-<div x-cloak class="flex flex-wrap items-center justify-start border-t-2 border-b-2 mb-base text-body gap-sm py-sm border-hr" x-show="$store.auth.isAuth">
-    <div class="flex items-center justify-start gap-xs">
+<div class="flex flex-wrap items-center justify-start border-t-2 border-b-2 mb-base text-body gap-sm py-sm border-hr" >
+    <div class="flex flex-wrap items-center justify-start gap-xs">
+        <h5 class="text-sm font-bold">Timezone:</h5>
+        {% include 'components/timezone-select.njk' %}
+    </div>
+    <div class="flex items-center justify-start gap-xs" x-cloak x-show="$store.auth.isAuth">
         <h5 class="text-sm font-bold">Filter:</h5>
         <button @click="toggleFavsOnly()" class="flex items-center transition-colors rounded group gap-x-xs bg-main-gradient-bottom px-sm py-2xs hover:bg-primary">
             <svg class="w-4 h-4 fill-body group-hover:fill-highlight">
@@ -8,9 +12,4 @@
             <span x-text="(favsOnly) ? 'Show All' : 'Show Favs Only'" class="text-sm">Show Favs Only</span>
         </button>
     </div>
-    <div class="flex flex-wrap items-center justify-start gap-xs">
-        <h5 class="text-sm font-bold">Timezone:</h5>
-        {% include 'components/timezone-select.njk' %}
-    </div>
-
 </div>

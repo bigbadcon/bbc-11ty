@@ -1,7 +1,9 @@
 {# Timezones from here: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones #}
-<select id="timezone" class="mb-0 text-sm px-xs py-2xs" 
+{# must contain x-data="eventFilter" in wrapping compontent for this to work #}
+<select id="timezone" class="mb-0 text-sm cursor-pointer px-xs py-2xs" 
     @change="setTimezone($el.value)"
-    x-init="$el.value = timezone">
+    x-init="$el.value = timezone"
+    x-cloak x-show="timezone">
     <option value="Pacific/Midway">Midway Islands (-11/-11)</option>
     <option value="Pacific/Honolulu">Hawaii (-10/-10)</option>
     <option value="America/Adak">Aleutian Islands (-10/-9)</option>
@@ -18,7 +20,7 @@
     <option value="America/New_York">Eastern: Detriot/New York/Montreal (-5/-4)</option>
     <option value="America/Caracas">Barbados/Caracas/Port_of_Spain (-4/-4)</option>
     <option value="America/Halifax">Halifax/Santiago/Bermuda (-4/-3)</option>
-    <option value="America/Argentina/Buenos_Aires">St. Johns (-3:30/-2:30)</option>
+    <option value="America/St_Johns">St. Johns (-3:30/-2:30)</option>
     <option value="America/Argentina/Buenos_Aires">Buenos_Aires/Montevideo/San Paulo (-3/-3)</option>
     <option value="America/Nuuk">Nuuk (-3/-2)</option>
     <option value="America/Noronha">Atlantic Islands (-2/-2)</option>

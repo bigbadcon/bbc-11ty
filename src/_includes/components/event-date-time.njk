@@ -1,10 +1,9 @@
-<div class="text-lg prose border-t-2 border-b-2 text-body mb-base space-y-xs border-hr py-sm" 
-x-data="eventFilter">
+<div class="text-lg prose border-t-2 border-b-2 text-body mb-base space-y-xs border-hr py-sm" x-data="eventFilter">
     {# Event Day #}
     <div class="flex flex-wrap justify-between">
         <div>
             <strong>Date:</strong>
-            <span x-data="{ startDate:'{{event.eventStartDateTime}}' }" x-text="dayjs(startDate).tz(timezone).format('MMM D, YYYY h:mm a')">{{ event.eventStartDateTime | formatEventDate }}</span>
+            <span x-data="{ date: '{{event.eventStartDateTime}}' }" x-text="eventFormat(date)">{{ event.eventStartDateTime | formatEventDate }}</span>
         </div>
         <div>{% include 'components/timezone-select.njk' %}</div>
     </div>

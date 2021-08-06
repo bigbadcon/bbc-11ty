@@ -86,7 +86,10 @@
 
 {# My Account User Info including My Events. Shown when logged in #}
 {% macro userInfo() %}
-    <div x-cloak x-show="$store.auth.isAuth && $store.auth.user" class="flex flex-col h-full text-body" x-data="eventFilter">
+    <div class="flex flex-col h-full text-body"
+    x-cloak x-show="$store.auth.isAuth && $store.auth.user"  
+    x-data="eventFilter"
+    >
         {# Header #}
         <div class="flex justify-between gap-x-sm">
             <h2 class="flex-grow -mt-1 font-serif text-3xl font-semibold leading-none text-header gap-base">
@@ -111,7 +114,7 @@
                         <span x-html="event.eventName"></span>
                     </h4>
                     <p class="text-xs opacity-90">
-                        <span x-text="dayjs(event.eventStartDateTime).tz(timezone).format('MMM D, YYYY h:mm a')"></span> (<span x-text="event.eventDuration"></span> hrs)
+                        <span x-text="eventFormat(event.eventStartDateTime)"></span> (<span x-text="event.eventDuration"></span> hrs)
                     </p>
                 </li>
             </template>

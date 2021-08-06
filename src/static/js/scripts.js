@@ -104,15 +104,19 @@ document.addEventListener('alpine:init', () => {
       const params = { id: id }
       try {
         const res = await axios.post(apiBaseUrl + 'events/find', params, config)
-        // TODO: set timezone?
-        const eventStartDateTime = dayjs(res.data.eventStartDate + "T" + res.data.eventStartTime).format("MMM D, YYYY h:mm a")
+        const event = res.data
 
-        const data = {...res.data, 
+        // Create Javascript date object
+        const eventStartDateTime = dayjs(event.eventStartDate + "T" + event.eventStartTime + "-07:00").toDate()
+        const eventEndDateTime = dayjs(event.eventEndDate + "T" + event.eventEndTime + "-07:00").toDate()
+  
+        const data = {...event, 
           // Convert to keyed object
-          metadata: metadataArrayToObject(res.data.metadata),
+          metadata: metadataArrayToObject(event.metadata),
           // strip out status 0 which are canceled attendees
           bookings: res.data.bookings.filter(booking => booking.bookingStatus === 1),
-          eventStartDateTime: eventStartDateTime
+          eventStartDateTime: eventStartDateTime,
+          eventEndDateTime: eventEndDateTime,
         }
         return data
       } catch (err) {
@@ -144,10 +148,13 @@ document.addEventListener('alpine:init', () => {
         const data = await res.data
         console.log("user events", data);
         const asyncResult = await Promise.all(data.map( async eventId => {
-          const eventData = await api.getEvent(eventId)
-          // TODO: set timezone?
-          const eventStartDateTime = dayjs(eventData.eventStartDate + "T" + eventData.eventStartTime)
-          const eventEndDateTime = dayjs(eventData.eventEndDate + "T" + eventData.eventEndTime)
+          const event = await api.getEvent(eventId)
+          
+          // Create Javascript date object
+          const eventStartDateTime = dayjs(event.eventStartDate + "T" + event.eventStartTime + "-07:00").toDate()
+          const eventEndDateTime = dayjs(event.eventEndDate + "T" + event.eventEndTime + "-07:00").toDate()
+
+          // Create Duration
           const duration = (dateStart,dateEnd) => {
             // calculate hours
             let diffInMilliSeconds = Math.abs(dateEnd - dateStart) / 1000;
@@ -162,7 +169,7 @@ document.addEventListener('alpine:init', () => {
 
           return {
             eventId: eventId, 
-            eventName: eventData.eventName,
+            eventName: event.eventName,
             eventStartDateTime: eventStartDateTime,
             eventDuration: duration(eventStartDateTime,eventEndDateTime)
           }
@@ -283,14 +290,7 @@ document.addEventListener('alpine:init', () => {
   /*                                Alpine Stores                               */
   /* -------------------------------------------------------------------------- */
 
-  // TODO: consider removing
-  Alpine.store('panel', {
-    isFlipped: false,
-    flip() { 
-      console.log("flip panel");
-      this.isFlipped = !this.isFlipped 
-    }
-  });
+  /* ------------------------------- Modal Login ------------------------------ */
 
   Alpine.store('modal', {
     isOpen: false,
@@ -305,6 +305,34 @@ document.addEventListener('alpine:init', () => {
     },
     close() {
       this.isOpen = false
+    }
+  });
+
+   /* --------------------------- Event Table Filter --------------------------- */
+
+  Alpine.store('filter', {
+    init() {
+      this.favsOnly = getLSWithExpiry('favsOnly') || this.favsOnly
+      this.timezone = getLSWithExpiry('timezone') || this.timezone
+      console.log(this.timezone);
+    },
+    favsOnly: false, 
+    timezone: 'America/Los_Angeles',
+    setTimezone(val) {
+      setLSWithExpiry('timezone',val)
+      this.timezone = val;
+    },
+    toggleFavsOnly() {
+      setLSWithExpiry('favsOnly',!this.favsOnly)
+      this.favsOnly = !this.favsOnly
+    },
+    isSelected(tz) {
+      return this.timezone === tz
+    },
+    eventFormat(date, tz, format = 'MMM D, YYYY h:mm a') {
+      tz = this.timezone || 'America/Los_Angeles'
+      console.log("eventFormat",date,tz,dayjs(date).tz(tz).format(format));
+      return dayjs(date).tz(tz).format(format)
     }
   });
 
@@ -510,6 +538,11 @@ document.addEventListener('alpine:init', () => {
     },
     isSelected(tz) {
       return this.timezone === tz
+    },
+    eventFormat(date, tz, format = 'MMM D, YYYY h:mm a') {
+      tz = this.timezone || 'America/Los_Angeles'
+      console.log("eventFormat",date,tz,dayjs(date).tz(tz).format(format));
+      return dayjs(date).tz(tz).format(format)
     }
   }))
 
