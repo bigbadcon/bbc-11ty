@@ -86,7 +86,10 @@
 
 {# My Account User Info including My Events. Shown when logged in #}
 {% macro userInfo() %}
-    <div x-cloak x-show="$store.auth.isAuth && $store.auth.user" class="flex flex-col h-full text-body">
+    <div class="flex flex-col h-full text-body"
+    x-cloak x-show="$store.auth.isAuth && $store.auth.user"  
+    x-data="eventFilter"
+    >
         {# Header #}
         <div class="flex justify-between gap-x-sm">
             <h2 class="flex-grow -mt-1 font-serif text-3xl font-semibold leading-none text-header gap-base">
@@ -102,15 +105,17 @@
             <span x-text="$store.auth.availableSlots"></span>
         </div> #}
         {# My Events #}
+        {# TODO: see why this isn't picking up when timezone changes. Might have to add eventFilter higher up? #}
         <h3 class="font-serif text-2xl font-semibold text-body">My Events</h3>
+        <div class="mb-sm">{% include 'components/timezone-select.njk' %}</div>
         <ul class="flex-grow overflow-y-auto text-sm border-t-2 border-b-2 text-body border-hr py-xs" x-cloak x-show="$store.auth.bookedEvents">
             <template x-for="event in $store.auth.bookedEvents">
                 <li class="mb-xs">
                     <h4 class="font-bold">
                         <span x-html="event.eventName"></span>
                     </h4>
-                    <p class="text-xs opacity-90">
-                        <span x-text="event.eventStartDateTime"></span> (<span x-text="event.eventDuration"></span> hrs)
+                    <p class="text-xs opacity-90" x-cloak x-show="timezone">
+                        <span x-text="eventFormat(event.eventStartDateTime)"></span> (<span x-text="event.eventDuration"></span> hrs)
                     </p>
                 </li>
             </template>

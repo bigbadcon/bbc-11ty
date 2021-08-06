@@ -1,8 +1,13 @@
 <div class="text-lg prose border-t-2 border-b-2 text-body mb-base space-y-xs border-hr py-sm">
     {# Event Day #}
-    <div class="">
-        <strong>Date:</strong>
-        {{ event.eventStartDateTime | formatEventDate }}</div>
+    <div class="flex flex-wrap justify-between">
+        {# timezone data is in x-data="eventFilter" in wrapping div in base.njk #}
+        <div>
+            <strong>Date:</strong>
+            <span x-cloak x-show="timezone" x-data="{ date: '{{event.eventStartDateTime}}' }" x-text="eventFormat(date)">{{ event.eventStartDateTime | formatEventDate }}</span>
+        </div>
+        <div>{% include 'components/timezone-select.njk' %}</div>
+    </div>
     {# Event Time #}
     <div class="">
         <strong>Duration:</strong>

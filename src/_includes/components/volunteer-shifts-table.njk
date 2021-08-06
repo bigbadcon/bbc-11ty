@@ -1,4 +1,4 @@
-<section class="mt-md" x-data="{favsOnly: false}">
+<section class="mt-md">
     <h2 class="font-serif text-3xl font-bold leading-none md:text-4xl text-header mb-base">Volunteer Shift List</h2>
     {% include 'components/event-table-filter.njk' %}
     <table class="w-full text-sm text-body">
@@ -16,6 +16,7 @@
             </tr>
         </thead>
         <tbody>
+            {# favsOnly and timezone data is in x-data="eventFilter" in wrapping div in base.njk #}
             {% for event in eventData.volunteer %}
                 <tr x-show="!favsOnly || $store.auth.isFav({{event.eventId}})">
                     {# Event Name #}
@@ -23,7 +24,7 @@
                         <a href="/volunteer/{{event.eventSlug}}" class="font-bold transition-colors text-header hover:text-highlight">{{event.eventName | safe }}</a>
                     </td>
                     {# Event Start Date/Time #}
-                    <td class="w-44 py-sm">{{ event.eventStartDateTime | formatEventDate }}</td>
+                    <td class="w-44 py-sm" x-cloak x-show="timezone" x-data="{ date: '{{event.eventStartDateTime}}' }" x-text="eventFormat(date)">{{ event.eventStartDateTime | formatEventDate }}</td>
                     {# Event Duration #}
                     <td class="w-20 text-center py-sm">
                         {% eventDuration event.eventStartDateTime,

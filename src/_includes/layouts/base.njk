@@ -14,7 +14,7 @@
       <div class="header-wrapper">
         {% block header %}{% endblock %}
       </div>
-      <div class="relative content-wrapper bg-gradient-to-b from-main-gradient-top to-main-gradient-bottom pb-lg">
+      <div class="relative content-wrapper bg-gradient-to-b from-main-gradient-top to-main-gradient-bottom pb-lg" x-data="eventFilter">
         {# Login / Account Button #}
         <button @click.stop="$store.modal.open()" class="absolute top-0 font-bold uppercase transition-all transform border rounded-b cursor-pointer text-form right-base bg-highlight px-base pb-xs pt-md hover:bg-highlight-2 hover:pt-lg border-highlight" x-text="($store.auth.isAuth) ? 'My Account' : 'Login'">Login</button>
         {# Decorative underbrush svg #}

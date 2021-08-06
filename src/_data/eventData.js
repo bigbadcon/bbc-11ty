@@ -8,7 +8,6 @@ var utc = require('dayjs/plugin/utc')
 var timezone = require('dayjs/plugin/timezone')
 dayjs.extend(utc)
 dayjs.extend(timezone)
-dayjs.tz.setDefault("America/San_Francisco")
   
 /* ----- Inject cert to avoid the UNABLE_TO_VERIFY_LEAF_SIGNATURE error ----- */
 rootCas.addFile('certs/bigbadcon-com-chain.pem')
@@ -45,21 +44,22 @@ module.exports = async () => {
 
         /* -------------- Filter out unpublished events by eventStatus -------------- */
         // TODO: turn this filter on before we go live
-        // data = data.filter(entry => entry.eventStatus === 1);
+        // data = data.filter(event => event.eventStatus === 1);
 
         /* ---------------- fix data if missing slug and decode text ---------------- */
-        data = data.map(entry => {
-            if (!entry.eventSlug || entry.eventSlug === "") entry = {...entry, eventSlug: slugify(entry.eventName,{strict: true})}
-            let metadata = metadataArrayToObject(entry.metadata)
+        data = data.map(event => {
+            if (!event.eventSlug || event.eventSlug === "") event = {...event, eventSlug: slugify(event.eventName,{strict: true})}
+            let metadata = metadataArrayToObject(event.metadata)
             metadata = {...metadata, GM: (metadata.GM) ? decodeText(metadata.GM) : null}
 
-            const eventStartDateTime = dayjs(entry.eventStartDate + "T" + entry.eventStartTime).toDate()
-            const eventEndDateTime = dayjs(entry.eventEndDate + "T" + entry.eventEndTime).toDate()
+            // Create Javascript date object
+            const eventStartDateTime = dayjs(event.eventStartDate + "T" + event.eventStartTime + "-07:00").toDate()
+            const eventEndDateTime = dayjs(event.eventEndDate + "T" + event.eventEndTime + "-07:00").toDate()
  
             return {
-                ...entry,
-                eventName: decodeText(entry.eventName),
-                postContent: decodeText(entry.postContent),
+                ...event,
+                eventName: decodeText(event.eventName),
+                postContent: decodeText(event.postContent),
                 metadata: metadata,
                 eventStartDateTime: eventStartDateTime,
                 eventEndDateTime: eventEndDateTime,
@@ -67,12 +67,12 @@ module.exports = async () => {
         })
 
         /* -------------------- Function to check for categories -------------------- */
-        function hasCategory(entry, type) {
-            return entry.categories.some(category => category.slug === type)
+        function hasCategory(event, type) {
+            return event.categories.some(category => category.slug === type)
         }
         /* ------------------ Seperate Events from Volunteer shifts ----------------- */
-        const events = data.filter(entry => !hasCategory(entry, "volunteer-shift"))
-        const volunteer = data.filter(entry => hasCategory(entry, "volunteer-shift"))
+        const events = data.filter(event => !hasCategory(event, "volunteer-shift"))
+        const volunteer = data.filter(event => hasCategory(event, "volunteer-shift"))
 
         /* ------------------- Sort by start time& alphabetically ------------------- */
         function eventSort(events) {
