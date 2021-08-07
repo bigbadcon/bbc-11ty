@@ -514,7 +514,8 @@ document.addEventListener('alpine:init', () => {
     eventFormat(date, tz, format = 'MMM D, YYYY h:mm a') {
       tz = this.timezone || 'America/Los_Angeles'
       // console.log("eventFormat",date,tz,dayjs(date).tz(tz).format(format));
-      return dayjs(date).tz(tz).format(format)
+      return "<span>" + dayjs(date).tz(tz).format('MMM D, YYYY') + "</span> <span>" + dayjs(date).tz(tz).format('h:mm a') + "</span>"
+      // return dayjs(date).tz(tz).format(format)
     }
   }))
 

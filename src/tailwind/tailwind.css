@@ -271,3 +271,14 @@ input[type="checkbox"] ~ label {
     transform: rotateY(180deg);
     transition: transform 0.3s;
 }
+
+/* -------------------------------------------------------------------------- */
+/*                                 Event Table                                */
+/* -------------------------------------------------------------------------- */
+
+.event-table-date {
+  @apply flex flex-col py-sm gap-x-2xs sm:flex-row
+}
+.event-table-date span {
+  white-space: nowrap;
+}

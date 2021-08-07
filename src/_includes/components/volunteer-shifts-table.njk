@@ -1,11 +1,11 @@
 <section class="mt-md">
     <h2 class="font-serif text-3xl font-bold leading-none md:text-4xl text-header mb-base">Volunteer Shift List</h2>
     {% include 'components/event-table-filter.njk' %}
-    <table class="w-full text-sm text-body">
+    <table class="w-full text-sm leading-tight text-body">
         <thead>
             <tr>
                 <th class="text-left pb-sm">Event Name</th>
-                <th class="text-left pb-sm">Date Time PDT</th>
+                <th class="text-left pb-sm">Date Time</th>
                 <th class="text-center pb-sm max-w-max">Dur</th>
                 <th class="w-8 text-center pb-sm" x-cloak x-show="$store.auth.isAuth">
                     <span class="flex items-center justify-end">{% icon 'square-check', 'fill-body' %}</span>
@@ -24,11 +24,11 @@
                         <a href="/volunteer/{{event.eventSlug}}" class="font-bold transition-colors text-header hover:text-highlight">{{event.eventName | safe }}</a>
                     </td>
                     {# Event Start Date/Time #}
-                    <td class="py-sm" x-cloak x-show="timezone" x-data="{ date: '{{event.eventStartDateTime}}' }" x-text="eventFormat(date)">{{ event.eventStartDateTime | formatEventDate }}</td>
+                    <td class="event-table-date" x-cloak x-show="timezone" x-data="{ date: '{{event.eventStartDateTime}}' }" x-html="eventFormat(date)">{{ event.eventStartDateTime | formatEventDate | safe }}</td>
                     {# Event Duration #}
                     <td class="text-center py-sm">
                         {% eventDuration event.eventStartDateTime,
-                        event.eventEndDateTime %} hrs
+                        event.eventEndDateTime %}h
                     </td>
                     {# Booked Event Icon #}
                     <td x-cloak x-show="$store.auth.isAuth">

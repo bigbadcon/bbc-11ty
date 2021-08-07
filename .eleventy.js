@@ -64,7 +64,8 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addFilter( "formatBlogDate", (date) => dayjs(date).format("MMM D, YYYY"));
 
   // Format date for event start
-  eleventyConfig.addFilter( "formatEventDate", (date) => dayjs(date).format("MMM D, YYYY h:mm a"));
+  const tz= 'America/Los_Angeles'
+  eleventyConfig.addFilter( "formatEventDate", (date) => "<span style='white-space: nowrap;'>" + dayjs(date).tz(tz).format('MMM D, YYYY') + "</span> <span>" + dayjs(date).tz(tz).format('h:mm a') + "</span>");
 
   // Remove seconds from times
   eleventyConfig.addFilter( "stripSeconds", (val) => val.slice(0,5));
