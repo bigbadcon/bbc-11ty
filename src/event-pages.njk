@@ -28,10 +28,12 @@ eleventyComputed:
         <span>{{event.metadata.GM}}</span>
     </div>
 </div>
+{# Event Image: bit of a kludge. Must be added to images folder and named the same as the eventSlug #}
+<div class="rounded-md bg-hr mb-base"><img src="/images/{{ event.eventSlug }}.png" alt=""></div>
 {# Description #}
 <div class="prose">{{event.postContent | nl2br | safe }}</div>
 {# Event Signup / Booking Panel #}
 {# {% include 'components/eventBookingPanel.njk'%} #}
 
-<div class="prose border-t-2 my-base pt-base border-hr">Back to <a href="/events/">List of Events</a>
+<div class="prose border-t-2 mt-md mb-base pt-base border-hr">Back to <a href="/events/">List of Events</a>
 </div>
