@@ -170,6 +170,9 @@ document.addEventListener('alpine:init', () => {
           return {
             eventId: eventId, 
             eventName: event.eventName,
+            eventSlug: event.eventSlug,
+            categories: event.categories,
+            isVolunteer: event.categories.some(cat => cat.slug === "volunteer-shift"),
             eventStartDateTime: eventStartDateTime,
             eventDuration: duration(eventStartDateTime,eventEndDateTime)
           }
