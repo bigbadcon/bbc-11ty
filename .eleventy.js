@@ -114,9 +114,12 @@ module.exports = (eleventyConfig) => {
   // Pass "static" things straight through from "src" to "dist"
   eleventyConfig.addPassthroughCopy("./src/static/");
   eleventyConfig.addPassthroughCopy("./images/");
+  // Event images is a kludge until we can get it working with event manager
+  eleventyConfig.addPassthroughCopy("./event-images/");
 
   // Watch for changes in tailwind css
   eleventyConfig.addWatchTarget("./src/tailwind/tailwind.css");
+  eleventyConfig.addWatchTarget("./event-images");
 
   // Clarify which folder is for input and which folder is for output
   return {

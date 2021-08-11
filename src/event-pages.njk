@@ -23,13 +23,14 @@ eleventyComputed:
 {# TODO: turn this on once we have real times for panels #}
 {# {% include 'components/event-date-time.njk'%} #}
 
-<div class="prose mb-base space-y-sm">
-    <div class="text-2xl font-semibold text-body-highlight">
-        <span>{{event.metadata.GM}}</span>
+<div class="prose mb-base mt-sm space-y-sm">
+    <div class="text-2xl font-semibold leading-snug text-body-highlight">
+        {{event.metadata.GM}}
     </div>
+    {# TODO: date is added here once it's ready #}
 </div>
-{# Event Image: bit of a kludge. Must be added to images folder and named the same as the eventSlug #}
-<div class="rounded-md bg-hr mb-base"><img src="/images/{{ event.eventSlug }}.png" alt=""></div>
+{# Event Image: bit of a kludge. Must be added to event-images folder and named the same as the eventSlug #}
+<div class="rounded-md bg-hr mb-base"><img src="/event-images/{{ event.eventSlug }}.png" alt=""></div>
 {# Description #}
 <div class="prose">{{event.postContent | nl2br | safe }}</div>
 {# Event Signup / Booking Panel #}
