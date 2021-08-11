@@ -2,7 +2,7 @@
 layout: layouts/page.njk
 title: Proof of 501(c)(3) Status
 description: 'Big Bad Con is fully registered 501c3 so all donations are tax deductible. If you require proof of Big Bad Con’s 501c3 status, there are several ways to get it.'
-
+tags: pages
 ---
 A few folks have noticed that if they donate to Big Bad Con their contributions are tax deductible! **Yes!**
 

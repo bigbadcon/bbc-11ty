@@ -70,6 +70,9 @@ module.exports = (eleventyConfig) => {
   // Remove seconds from times
   eleventyConfig.addFilter( "stripSeconds", (val) => val.slice(0,5));
 
+  // Convert unix time to ISO format
+  eleventyConfig.addFilter("unixToISO", (date) => new Date(date).toISOString());
+
   /* -------------------------------------------------------------------------- */
   /*                                 Shortcodes                                 */
   /* -------------------------------------------------------------------------- */

@@ -2,6 +2,7 @@
 layout: layouts/page.njk
 title: FAQ
 description: ''
+tags: pages
 
 ---
 ## Where are all the games at Big Bad Online?

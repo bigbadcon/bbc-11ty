@@ -2,6 +2,7 @@
 layout: layouts/page.njk
 title: Discord
 description: ''
+tags: pages
 
 ---
 Want to stay connected with Big Bad Con year round? 
