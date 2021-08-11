@@ -27,6 +27,8 @@ fields:
       file: 
       path: 
   label: tags
+  description: "'cards' are small cards in the grid; 'bigcards' are full width ones
+    below. Only 'bigcards' use images."
 pages:
 - src/cards/attend.md
 - src/cards/events.md
