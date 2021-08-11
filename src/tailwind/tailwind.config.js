@@ -122,6 +122,9 @@ module.exports = {
       'hero': '120ch',
       'content': '70ch'
     },
+    maxHeight: {
+      'blog-cover-image': '398px'
+    },
     fontFamily: {
       sans: ['Open Sans', 'Hevetica', 'sans-serif'],
       serif: ['Rokkitt', 'serif']

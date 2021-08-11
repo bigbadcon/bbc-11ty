@@ -9,6 +9,12 @@
     <div class="mx-auto max-w-content p-base">
       <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header">{{title}}</h1>
       <div class="text-sm font-bold text-body mb-base">{{ date | formatBlogDate }}</div>
+      {% if coverImage %}
+        {% if coverImageAlt %}{% set alt = coverImageAlt %}
+        {% else %}{% set alt = "" %}
+        {% endif %}
+        <div class="mb-base"><img src="{{ coverImage }}" alt="{{ alt }}" class="block object-cover object-center w-full max-h-blog-cover-image"></div>
+      {% endif %}
       <div class="prose">{{ content | safe }}</div>
       {# Pagination #}
       <div class="flex flex-wrap items-center justify-between text-sm rounded-md shadow bg-primary p-sm mt-lg">
