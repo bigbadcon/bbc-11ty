@@ -2,7 +2,6 @@
 title: ''
 order: 2
 published: true
-tags: ''
 
 ---
 {% iconLink "https://twitter.com/bigbadcon", "@bigbadcon", "twitter" %}
