@@ -7,14 +7,18 @@
 {% block content %}
   <main id="content">
     <div class="mx-auto max-w-content p-base">
-      <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header">{{title}}</h1>
+      {# Title #}
+      <h1 class="font-serif text-4xl font-bold leading-none md:leading-sub md:text-5xl text-header">{{title}}</h1>
+      {# Date #}
       <div class="text-sm font-bold text-body mb-base">{{ date | formatBlogDate }}</div>
+      {# Cover Image #}
       {% if coverImage %}
         {% if coverImageAlt %}{% set alt = coverImageAlt %}
         {% else %}{% set alt = "" %}
         {% endif %}
         <div class="mb-base"><img src="{{ coverImage }}" alt="{{ alt }}" class="block object-cover object-center w-full max-h-blog-cover-image"></div>
       {% endif %}
+      {# Content #}
       <div class="prose">{{ content | safe }}</div>
       {# Pagination #}
       <div class="flex flex-wrap items-center justify-between text-sm rounded-md shadow bg-primary p-sm mt-lg">

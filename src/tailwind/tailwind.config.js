@@ -117,17 +117,20 @@ module.exports = {
         highlight: 'var(--fill-highlight)',
         body: 'var(--body)'
       },
-    },
-    maxWidth: {
-      'hero': '120ch',
-      'content': '70ch'
-    },
-    maxHeight: {
-      'blog-cover-image': '398px'
-    },
-    fontFamily: {
-      sans: ['Open Sans', 'Hevetica', 'sans-serif'],
-      serif: ['Rokkitt', 'serif']
+      maxWidth: {
+        'hero': '120ch',
+        'content': '70ch'
+      },
+      maxHeight: {
+        'blog-cover-image': '398px'
+      },
+      fontFamily: {
+        sans: ['Open Sans', 'Hevetica', 'sans-serif'],
+        serif: ['Rokkitt', 'serif']
+      },
+      lineHeight: {
+        'sub': '.9'
+      },
     }
   },
   variants: {
