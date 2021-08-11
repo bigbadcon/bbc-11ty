@@ -96,7 +96,7 @@ module.exports = {
               }
             },
             strong: {
-              color: 'inherit'
+              color: 'inherit',
             },
             'ul > li::before': {
                 backgroundColor: 'var(--secondary)'
