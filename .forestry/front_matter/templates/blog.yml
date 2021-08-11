@@ -14,10 +14,6 @@ fields:
   type: boolean
   label: published
   default: false
-- name: tags
-  type: tag_list
-  default: []
-  label: tags
 - name: excerpt
   type: textarea
   default: ''
@@ -34,6 +30,11 @@ fields:
   config:
     maxSize: 64
   label: cover image
+- name: coverImageAlt
+  type: text
+  config:
+    required: false
+  label: cover image alt text
 pages:
 - src/blog/big-bad-online-is-here.md
 - src/blog/wolf-chase-2016.md
