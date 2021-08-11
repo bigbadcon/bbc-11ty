@@ -1,10 +1,10 @@
 ---
-layout: layouts/twitter-card.njk
+layout: layouts/og-card.njk
 pagination:
     data: eventData.events
     size: 1
     alias: event
-permalink: "events-og/{{ event.eventSlug }}/"
+permalink: "og/events/{{ event.eventSlug }}/"
 eleventyComputed:
     title: "{{ event.eventName | safe }}"
 ---
