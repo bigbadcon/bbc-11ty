@@ -14,10 +14,6 @@ fields:
   type: boolean
   label: published
   default: false
-- name: tags
-  type: tag_list
-  default: []
-  label: tags
 - name: excerpt
   type: textarea
   default: ''
