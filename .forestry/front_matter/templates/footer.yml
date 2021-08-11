@@ -5,11 +5,6 @@ fields:
 - type: text
   name: title
   label: title
-- type: text
-  name: tags
-  label: tags
-  hidden: true
-  default: footer
 - type: number
   name: order
   label: order
