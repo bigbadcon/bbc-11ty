@@ -91,6 +91,7 @@ module.exports = {
             a:{
               color: 'var(--highlight)',
               transition: 'color 500ms',
+              fontWeight: 'inherit',
               '&:hover': {
                 color: 'var(--body)'
               }

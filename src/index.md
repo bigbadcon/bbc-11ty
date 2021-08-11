@@ -12,4 +12,4 @@ description: 'Big Bad Con is a tabletop and live action gaming convention featur
 
 Welcoming community gathering **free to all attendees** so we can share this vital information with all!
 
-**Please back our Mightycause fundraiser** to support this event and the future of Big Bad Con in 2022 and beyond!
+**Please back our [Mightycause fundraiser](https://www.mightycause.com/story/Bigbadonline)** to support this event and the future of Big Bad Con in 2022 and beyond!
