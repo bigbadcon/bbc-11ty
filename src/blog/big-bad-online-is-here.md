@@ -4,6 +4,7 @@ date: 2021-08-17T17:00:00Z
 published: true
 excerpt: ''
 coverImage: "/images/twitter-share-card.png"
+coverImageAlt: Big Bad Online Oct 23-24th 2021, Support Our Fundraiser
 
 ---
 We’ve been hard at work the past several months curating an online event that all of the Big Bad Community can be proud of. All of us immediately realized that this event is a unique opportunity for us to bring together many diverse and powerful voices.
