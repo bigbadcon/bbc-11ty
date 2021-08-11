@@ -9,15 +9,24 @@ fields:
   name: order
   label: order
   default: 0
-- type: text
-  name: tags
-  label: tags
-  default: cards
-  hidden: true
 - name: published
   type: boolean
   label: published
   default: false
+- name: tags
+  type: select
+  default: []
+  config:
+    required: false
+    options:
+    - cards
+    - bigcards
+    source:
+      type: simple
+      section: 
+      file: 
+      path: 
+  label: tags
 pages:
 - src/cards/attend.md
 - src/cards/events.md
