@@ -44,7 +44,7 @@
     --secondary: #ffd800;
     --highlight: #ffb53b;
     --highlight-2: #ff7f00;
-    --card: rgba(16, 52, 55, 0.58);
+    --card: rgba(57, 5, 66, 0.4);
     --body: #d5e3ed;
     --body-highlight: #fff;
     --header: var(--secondary);
@@ -70,7 +70,7 @@
   --secondary: #ffd800;
   --highlight: #ffb53b;
   --highlight-2: #ff7f00;
-  --card: rgba(16, 52, 55, 0.58);
+  --card: rgba(37, 5, 46, 0.4);
   --body: #d5e3ed;
   --body-highlight: #fff;
   --header: var(--secondary);

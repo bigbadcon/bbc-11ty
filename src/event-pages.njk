@@ -30,7 +30,7 @@ eleventyComputed:
     {# TODO: date is added here once it's ready #}
 </div>
 {# Event Image: bit of a kludge. Must be added to event-images folder and named the same as the eventSlug #}
-<div class="rounded-md bg-hr mb-base"><img src="/event-images/{{ event.eventSlug }}.png" alt=""></div>
+<div class="rounded-md bg-card mb-base"><img src="/event-images/{{ event.eventSlug }}.png" alt=""></div>
 {# Description #}
 <div class="prose">{{event.postContent | nl2br | safe }}</div>
 {# Event Signup / Booking Panel #}
