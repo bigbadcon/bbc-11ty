@@ -474,24 +474,6 @@ document.addEventListener('alpine:init', () => {
       console.log(dayjs(date).tz(tz))
     }
   }))
-
-  /* ---------------------------------- Theme --------------------------------- */
-
-  Alpine.data('siteTheme', () => ({
-    init() {
-      this.getTheme()
-    },
-    theme: "auto",
-    setTheme(theme) {
-      this.theme = theme;
-      setLSWithExpiry('theme', theme)
-    },
-    getTheme() {
-      const theme = getLSWithExpiry('theme')
-      if (theme) this.theme = theme
-      // console.log("theme:", theme);
-    }
-  }))
   
   /* --------------------------- Event Table Filter --------------------------- */
 

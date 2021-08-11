@@ -1,10 +1,10 @@
 {%- from "components/modal.njk" import authModal -%}
 
 <!doctype html>
-<html lang="en" class="min-h-screen" >
+<html lang="en" class="min-h-screen" x-data="{theme: $persist('auto')}">
   {% include 'layouts/html_head.njk' %}
   <body
-  x-data="siteTheme"
+  x-cloak x-show="theme"
   class="min-h-screen bg-primary"
   :class="theme"
   :style="$store.modal.isOpen && 'overflow: hidden; height: 100vh;'"

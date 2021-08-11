@@ -1,4 +1,4 @@
-<div id="theme-toggle" class="relative" @click="if ($event.target.checked) { setTheme($event.target.value) }">
+<div id="theme-toggle" class="relative" @click="if ($event.target.checked) { theme = $event.target.value }">
   <div class="relative z-10 flex items-center h-4">
     <label class="relative flex items-center justify-end w-6 h-6 pr-sm text-body">
       <input value="light" name="state-d" type="radio" :checked="theme === 'light'" class="absolute inset-0 block w-full h-full opacity-0 cursor-pointer"/>
