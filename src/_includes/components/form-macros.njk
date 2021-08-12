@@ -1,5 +1,5 @@
 {% macro input(id, label, description) %}
-    <div>
+    <div class="mb-sm">
         <label for="{{id}}">{{ label }}</label>
         {% if description %}
             <p class="text-xs mb-sm text-body">{{ description }}</p>
@@ -9,7 +9,7 @@
 {% endmacro %}
 
 {% macro textarea(id, label, description, rows = 3) %}
-    <div>
+    <div class="mb-sm">
         <label for="{{id}}">{{ label }}</label>
         {% if description %}
             <p class="text-xs mb-sm text-body">{{ description }}</p>
