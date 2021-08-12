@@ -58,7 +58,7 @@ async function handler(event, context) {
 //   let pathSplit = event.path.split("/").filter(entry => !!entry);
 //   let [slug, size = "opengraph", aspectratio, zoom] = pathSplit;
 const path = event.path.replace(/\/\.netlify\/functions\/[^/]*\//, '')
-  const [slug, size = "opengraph", aspectratio, zoom] = (path) ? path.split('/') : []
+  let [slug, size = "opengraph", aspectratio, zoom] = (path) ? path.split('/') : []
 
 // grab variables from query string
 //   let slug = event.queryStringParameters && event.queryStringParameters.slug
