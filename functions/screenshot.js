@@ -106,7 +106,7 @@ const path = event.path.replace(/\/\.netlify\/functions\/[^/]*\//, '')
 
 //   url = decodeURIComponent(url);
 
-let url = "https://hopeful-pike-1a02ec.netlify.app/og/events/" + slug
+let url = "https://screenshot--hopeful-pike-1a02ec.netlify.app/og/events/" + slug
 
   try {
     if(!isFullUrl(url)) {
