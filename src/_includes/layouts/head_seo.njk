@@ -14,9 +14,14 @@
 <meta property="og:locale" content="en_US"/>
 <meta property="og:url" content="{{ page.url }}"/>
 <!-- End OG cards -->
+{% if ogImage %}
+    {% set og = ogImage %}
+{% else %}
+    {% set og = "{{sitemeta.url}}/static/images/og.jpg" %}
+{% endif %}
 
-<meta name="image" content="https://bigbadcon.com/static/images/og.jpg">
-<meta property="og:image" content="https://bigbadcon.com/static/images/og.jpg">
+<meta name="image" content="{{ og }}">
+<meta property="og:image" content="{{ og }}">
 <meta name="twitter:card" content="summary_large_image"/>
 
 <!-- Favicon -->

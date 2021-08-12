@@ -7,6 +7,9 @@ pagination:
 permalink: "events/{{ event.eventSlug }}/"
 eleventyComputed:
     title: "{{ event.eventName | safe }}"
+    ogImage: "{{sitemeta.url}}/.netlify/functions/screenshot/{{event.eventSlug}}/"
+    heroImage: "/event-images/{{ event.eventSlug }}.png"
+    heroImageAlt: "Speaker headshots"
 ---
 {%- from "components/auth-macros.njk" import eventAuthPanel -%}
 {# Speakers #}
@@ -30,7 +33,10 @@ eleventyComputed:
     {# TODO: date is added here once it's ready #}
 </div>
 {# Event Image: bit of a kludge. Must be added to event-images folder and named the same as the eventSlug #}
-<div class="rounded-md bg-card mb-base"><img src="/event-images/{{ event.eventSlug }}.png" alt=""></div>
+<div class="rounded-md bg-card mb-md">
+    {% image heroImage,
+    heroImageAlt %}
+</div>
 {# Description #}
 <div class="prose">{{event.postContent | nl2br | safe }}</div>
 {# Event Signup / Booking Panel #}

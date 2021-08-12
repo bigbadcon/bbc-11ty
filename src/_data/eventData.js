@@ -63,6 +63,7 @@ module.exports = async () => {
                 metadata: metadata,
                 eventStartDateTime: eventStartDateTime,
                 eventEndDateTime: eventEndDateTime,
+                eventSlug: event.eventSlug.toLowerCase(),
             }
         })
 
