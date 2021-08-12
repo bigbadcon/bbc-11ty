@@ -2,7 +2,10 @@
 title: Planning for 2021
 date: 2021-04-15T07:00:00Z
 published: true
-excerpt: ''
+excerpt: Last year in April we decided to cancel Big Bad Con 2020 and that turned
+  out to be the correct (and necessary) decision. Though vaccination in the US is
+  proceeding ahead of schedule, we’re once again trying to predict what an in-person
+  convention would look like in October.
 coverImage: ''
 coverImageAlt: ''
 
