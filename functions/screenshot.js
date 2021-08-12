@@ -100,8 +100,7 @@ const path = event.path.replace(/\/\.netlify\/functions\/[^/]*\//, '')
     }
   } else if(size === "opengraph") {
     // ignores aspectratio and zoom/dpr
-    viewport = [1200, 675];
-    // dpr = 1.4; // the math calculates to a 1200×630 final image
+    viewport = [1200, 630];
   }
 
 //   url = decodeURIComponent(url);
