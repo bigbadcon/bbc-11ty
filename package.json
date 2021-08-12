@@ -41,7 +41,7 @@
     "tailwindcss": "latest",
     "utf8": "^3.0.0",
     "windows-1252": "^1.0.0",
-    "@11ty/eleventy-img": "^0.9.0",
+    "@11ty/eleventy-img": "^0.9.0"
   },
   "devDependencies": {
     "svg-sprite-generator": "^0.0.7"
