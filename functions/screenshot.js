@@ -58,7 +58,7 @@ async function handler(event, context) {
 //   let pathSplit = event.path.split("/").filter(entry => !!entry);
 //   let [slug, size = "opengraph", aspectratio, zoom] = pathSplit;
 const path = event.path.replace(/\/\.netlify\/functions\/[^/]*\//, '')
-  let [slug, size = "opengraph", aspectratio, zoom] = (path) ? path.split('/') : []
+  let [slug, size, aspectratio, zoom] = (path) ? path.split('/') : []
 
 // grab variables from query string
 //   let slug = event.queryStringParameters && event.queryStringParameters.slug
@@ -72,7 +72,7 @@ const path = event.path.replace(/\/\.netlify\/functions\/[^/]*\//, '')
   // Set Defaults
   format = format || "jpeg";
   aspectratio = aspectratio || "1:1";
-  size = size || "small";
+  size = size || "opengraph";
 
   let dpr = 1;
   if(zoom === "bigger") {
