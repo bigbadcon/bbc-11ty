@@ -112,22 +112,28 @@ module.exports = (eleventyConfig) => {
   /* ----------------------------- Image Shortcode ---------------------------- */
 
   async function imageShortcode(src, alt, sizes = "100vw") {
-    let metadata = await Image(src, {
-      widths: [960],
-      formats: ["webp", "png"],
-      urlPath:"/event-images/",
-      outputDir:"./dist/event-images/"
-    });
+    try {
+      let metadata = await Image(`.${src}`, {
+        widths: [960],
+        formats: ["webp", "png"],
+        urlPath:"/event-images/",
+        outputDir:"./dist/event-images/"
+      }); 
 
-    let imageAttributes = {
-      alt,
-      sizes,
-      loading: "lazy",
-      decoding: "async",
-    };
+      let imageAttributes = {
+        alt,
+        sizes,
+        loading: "lazy",
+        decoding: "async",
+      };
+      
+      return Image.generateHTML(metadata, imageAttributes);
 
-    // You bet we throw an error on missing alt in `imageAttributes` (alt="" works okay)
-    return Image.generateHTML(metadata, imageAttributes);
+    } catch (e) {
+      console.log(e)
+      return `<img src="${src}" alt="${alt}" />`
+    }
+    
   }
 
   eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
