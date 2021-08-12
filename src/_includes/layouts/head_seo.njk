@@ -17,7 +17,7 @@
 {% if ogImage %}
     {% set og = ogImage %}
 {% else %}
-    {% set og = "https://screenshot--hopeful-pike-1a02ec.netlify.app/static/images/og.jpg" %}
+    {% set og = "{{sitemeta.url}}/static/images/og.jpg" %}
 {% endif %}
 
 <meta name="image" content="{{ og }}">
