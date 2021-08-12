@@ -7,6 +7,7 @@ pagination:
 permalink: "events/{{ event.eventSlug }}/"
 eleventyComputed:
     title: "{{ event.eventName | safe }}"
+    ogImage: "https://screenshot--hopeful-pike-1a02ec.netlify.app/.netlify/functions/screenshot/{{event.eventSlug}}/"
 ---
 {%- from "components/auth-macros.njk" import eventAuthPanel -%}
 {# Speakers #}
