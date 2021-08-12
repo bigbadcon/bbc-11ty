@@ -11,30 +11,7 @@ eleventyComputed:
     heroImageAlt: "Speaker headshots"
 ---
 
-{# Logo #}
-{# Event Name #}
-{# Speakers #}
-{# Date/Time #}
-{# Image #}
-
-{# <div class="grid w-full h-full grid-cols-7 border-4 border-red-500 border-solid" >
-    <div class="col-span-2 bg-primary-2 text-body p-base">
-        <h1 class="font-serif text-2xl font-bold leading-none">{{ event.eventName | safe }}</h1>
-        <div class="text-base font-bold py-sm">{{ event.metadata.GM }}</div>
-        <time class="inline-block font-bold border-t-4 text-1xl border-hr mt-xs pt-xs">{{ event.eventStartDateTime | formatEventDate | safe }}</time>
-    </div>
-    <div class="flex flex-col col-span-5">
-        <div class="flex-grow bg-primary">
-            <img src="/images/{{ event.eventSlug }}.png" alt="" class="object-contain w-full h-full">
-        </div>
-    </div>
-    <div class="flex text-form bg-secondary p-md col-span-full gap-base">
-        <div class="w-72">{% include 'components/bigbadonline-logo-horz.njk' %}</div>
-        <div class="text-3xl font-bold">Oct 23-24, 2021</div>
-    </div>
-</div> #}
-
-<div class="grid w-full h-full" style="grid-template-columns: 240px 960px; grid-template-rows: 500px 136px">
+<div class="grid w-full h-full" style="grid-template-columns: 240px 960px; grid-template-rows: 480px 156px">
     <div class="flex flex-col bg-primary-4">
         <div class="h-72 p-base">{% include 'components/bigbadonline-logo-vert.njk' %}</div>
         <div class="flex flex-col items-center font-bold text-primary">
@@ -42,19 +19,16 @@ eleventyComputed:
             <div class="text-5xl">2021</div>
         </div>
     </div>
-    <div class="flex flex-col ">
-        <div class="flex-grow bg-primary">
+    <div class="overflow-hidden bg-primary">
+        <div style="margin-top: -10px">
             {% image heroImage,
             heroImageAlt %}
-        </div>
+        </div class="relative">
     </div>
     <div class="text-form bg-secondary col-span-full">
         <div class="col-span-9 px-md py-base ">
             <h1 class="font-serif text-4xl font-bold leading-8">{{ event.eventName | safe }}</h1>
-            <div class="text-base font-bold my-xs">{{ event.metadata.GM }}</div>
+            <div class="text-base font-bold mt-2xs">{{ event.metadata.GM }}</div>
         </div>
-        {# <div class="col-span-2 px-base py-sm">
-            <time class="flex flex-col text-2xl font-bold text-form gap-xs">{{ event.eventStartDateTime | formatEventDate | safe }}</time>
-        </div> #}
     </div>
 </div>
