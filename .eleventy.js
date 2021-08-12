@@ -131,7 +131,8 @@ module.exports = (eleventyConfig) => {
 
     } catch (e) {
       console.log(e)
-      return `<img src="${src}" alt="${alt}" />`
+      // return blank so no image appears if missing
+      return ``
     }
     
   }
