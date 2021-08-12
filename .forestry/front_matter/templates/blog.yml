@@ -36,6 +36,7 @@ fields:
     required: false
   label: cover image alt text
 pages:
+- src/blog/big-bad-online-2021.md
 - src/blog/big-bad-online-is-here.md
 - src/blog/planning-for-2021.md
 - src/blog/wolf-chase-2016.md
