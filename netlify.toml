@@ -1,7 +1,11 @@
+[functions]
+  directory = "functions"
+
 [build]
   base = "./"
   command = "npm run build"
   publish = "dist"
+  functions = "functions"
 [dev]
   base = "./"
   command = "npm run dev"
