@@ -1,8 +1,7 @@
-// Per 11ty from scratch, we have to have a module.exports definition
-
 const blogTools = require("eleventy-plugin-blog-tools");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
-var dayjs = require('dayjs')
+const dayjs = require('dayjs')
+const Image = require("@11ty/eleventy-img");
 
 // Function to sort by order frontmatter field then by fileSlug alphabetically
 function sortByOrder(a,b) {
@@ -109,6 +108,29 @@ module.exports = (eleventyConfig) => {
       <use xlink:href="/static/images/icons.svg#${icon}"></use>
     </svg><span class="icon-link__title">${title}</span></a>`
   });
+
+  /* ----------------------------- Image Shortcode ---------------------------- */
+
+  async function imageShortcode(src, alt, sizes = "100vw") {
+    let metadata = await Image(src, {
+      widths: [960],
+      formats: ["webp", "jpeg"],
+      urlPath:"/event-images/",
+      outputDir:"./dist/event-images/"
+    });
+
+    let imageAttributes = {
+      alt,
+      sizes,
+      loading: "lazy",
+      decoding: "async",
+    };
+
+    // You bet we throw an error on missing alt in `imageAttributes` (alt="" works okay)
+    return Image.generateHTML(metadata, imageAttributes);
+  }
+
+  eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
 
   /* -------------------------------------------------------------------------- */
   /*                                 Build Stuff                                */

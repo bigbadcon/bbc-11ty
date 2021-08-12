@@ -7,6 +7,8 @@ pagination:
 permalink: "og/events/{{ event.eventSlug }}/"
 eleventyComputed:
     title: "{{ event.eventName | safe }}"
+    heroImage: "./event-images/{{ event.eventSlug }}.png"
+    heroImageAlt: "Speaker headshots"
 ---
 
 {# Logo #}
@@ -32,20 +34,21 @@ eleventyComputed:
     </div>
 </div> #}
 
-<div class="grid w-full h-full grid-cols-10" >
-    <div class="flex flex-col col-span-2 bg-primary-4">
+<div class="grid w-full h-full" style="grid-template-columns: 240px 960px; grid-template-rows: 500px 136px">
+    <div class="flex flex-col bg-primary-4">
         <div class="h-72 p-base">{% include 'components/bigbadonline-logo-vert.njk' %}</div>
         <div class="flex flex-col items-center font-bold text-primary">
             <div class="text-2xl">Oct 23-24</div>
             <div class="text-5xl">2021</div>
         </div>
     </div>
-    <div class="flex flex-col col-span-8">
+    <div class="flex flex-col ">
         <div class="flex-grow bg-primary">
-            <img src="/event-images/{{ event.eventSlug }}.png" alt="" class="object-cover w-full h-full">
+            {% image heroImage,
+            heroImageAlt %}
         </div>
     </div>
-    <div class="grid grid-cols-10 text-form bg-secondary col-span-full">
+    <div class="text-form bg-secondary col-span-full">
         <div class="col-span-9 px-md py-base ">
             <h1 class="font-serif text-4xl font-bold leading-8">{{ event.eventName | safe }}</h1>
             <div class="text-base font-bold my-xs">{{ event.metadata.GM }}</div>
