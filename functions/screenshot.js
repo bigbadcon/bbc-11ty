@@ -58,10 +58,10 @@ async function handler(event, context) {
 //   let [slug, size = "opengraph", aspectratio, zoom] = pathSplit;
 
 // grab variables from query string
-  const slug = event.queryStringParameters && event.queryStringParameters.slug
-  const size = event.queryStringParameters && event.queryStringParameters.slug || "opengraph"
-  const aspectratio = event.queryStringParameters && event.queryStringParameters.aspectratio
-  const zoom = event.queryStringParameters && event.queryStringParameters.zoom
+  let slug = event.queryStringParameters && event.queryStringParameters.slug
+  let size = event.queryStringParameters && event.queryStringParameters.slug || "opengraph"
+  let aspectratio = event.queryStringParameters && event.queryStringParameters.aspectratio
+  let zoom = event.queryStringParameters && event.queryStringParameters.zoom
 
   let format = "jpeg"; // hardcoded for now
   let viewport = [];
