@@ -12,7 +12,7 @@
             <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
             <div class="prose">{{ content | safe }}</div>
             <div class="mt-base">
-                <form method="POST" name="suggest-event" data-netlify="true" netlify-honeypot="bot-field">
+                <form method="POST" name="suggest-event" data-netlify="true" netlify-honeypot="bot-field" action="/suggest-an-event-thank-you">
                     <p class="hidden">
                         <label>Don’t fill this out if you’re human: <input name="bot-field"/></label>
                     </p>
