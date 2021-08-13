@@ -10,8 +10,43 @@
             <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
             <div class="prose">{{ content | safe }}</div>
             <section class="my-base text-body">
-                Form goes here. Should only show if logged in. Otherwise invites users to log in.
+                {# Login disclaimer: only show if not logged in #}
+                <div x-cloak x-show="!$store.auth.isAuth" class="prose">
+                    <p>You must <button @click="modal = 'login'" class="font-bold text-highlight">login</button> to register for Big Bad Online.</p>
+                </div>
+                {# Register form; only show if logged in #}
+                <form x-cloak x-show="$store.auth.isAuth" method="POST" name="register-bigbadonline" data-netlify="true" netlify-honeypot="bot-field" action="/register-thank-you" class="prose">
+                    <p class="hidden">
+                        <label>Don’t fill this out if you’re human: <input name="bot-field"/></label>
+                    </p>
+                    <input type="hidden" id="userId" name="userId" value="" :value="$store.auth.user.id">
+                    <input type="hidden" id="userEmail" name="userEmail" value="" :value="$store.auth.user.userEmail">
+                    <input type="hidden" id="userNicename" name="userNicename" value="" :value="$store.auth.user.userNicename">
+                    <input type="hidden" id="displayName" name="displayName" value="" :value="$store.auth.user.displayName">
+                    <p>Big Bad Con is committed to making both our in-person and online events physically, socially, and financially accessible as possible, and to cultivate a culture of respect, support, and kindness. We ask that all of our attendees agree to abide by our Community Standards, please take a moment to read them before answering yes below.</p>
+                    <p>{% iconLink "/community-standards", "Community Standards", "scroll" %}</p>
+                    <fieldset>
+                        <legend>Your Agreement</legend>
+                        <div>
+                            <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes">
+                            <label for="agree-to-community-standards" class="text-body-highlight"3324>
+                                <strong >Yes &mdash; I, <span x-text="$store.auth.user.displayName"></span>, agree to the Big Bad Con Community Standards</strong>
+                            </label>
+                        </div>
+                    </fieldset>
+                    <p>
+                        <button type="submit">Submit</button>
+                    </p>
+                </form>
             </section>
         </div>
     </main>
 {% endblock %}
+
+{# Register for the con. I think this can be super simple. We just need folks to login, check a box that they agree to our community standards, and then register. Once they have registered it should do three things:
+
+Tell them to check back later for a Discord link
+Offer them an Google Calendar/ical link to add Big Bad Online to their calendar (note, I'm okay if we skip this but add it to the individual event instead, I just want some calendar invites somewhere so folks don't forget about this)
+Point them to the events and volunteer pages. #}
+
+{# user	{"value":{"id":493,"userNicename":"colinaut","userEmail":"colin.fahrion@gmail.com","userUrl":"","userRegistered":1347009101000,"displayName":"Colin Fahrion","bookingComment":null,"lastUpdated":null,"metadata":[{"umetaId":64878,"metaKey":"facebook","metaValue":"","userId":493},{"umetaId":7740,"metaKey":"first_name","metaValue":"Colin","userId":493},{"umetaId":7741,"metaKey":"last_name","metaValue":"Fahrion","userId":493},{"umetaId":7742,"metaKey":"nickname","metaValue":"colinaut","userId":493},{"umetaId":64882,"metaKey":"parentemail","metaValue":"","userId":493},{"umetaId":64881,"metaKey":"parentname","metaValue":"","userId":493},{"umetaId":64879,"metaKey":"twitter","metaValue":"@colinaut","userId":493},{"umetaId":85774,"metaKey":"wp_tuiny5_capabilities","metaValue":"a:2:{s:13:\"administrator\";b:1;s:5:\"staff\";b:1;}","userId":493}],"bbcUserFavorites":[{"bbcUserFavoritesId":7987,"userId":493,"eventId":2659,"createDate":1568848882000,"updateDate":1568848882000,"status":1},{"bbcUserFavoritesId":7998,"userId":493,"eventId":2547,"createDate":1568863479000,"updateDate":1568863479000,"status":1},{"bbcUserFavoritesId":8521,"userId":493,"eventId":2845,"createDate":1628183203000,"updateDate":1628183203000,"status":1}]},"expiry":1628910026402} #}
