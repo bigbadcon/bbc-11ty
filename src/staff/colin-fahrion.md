@@ -7,8 +7,8 @@ twitter: colinaut
 website: http://colinaut.com
 image: "/images/37304880_10156299746000491_4517727746197028864_n.jpg"
 position: Marketing & Web Front-End Manager
-website_name: colinaut.com
-website_url: https://colinaut.com
+website_name: mirthpeddlers.com
+website_url: https://mirthpeddlers.com
 order: 1
 
 ---
