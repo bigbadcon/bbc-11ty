@@ -12,7 +12,10 @@
             <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
             <div class="prose">{{ content | safe }}</div>
             <div class="mt-base">
-                <form method="POST" name="suggest-event" data-netlify="true">
+                <form method="POST" name="suggest-event" data-netlify="true" netlify-honeypot="bot-field">
+                    <p class="hidden">
+                        <label>Don’t fill this out if you’re human: <input name="bot-field"/></label>
+                    </p>
                     <fieldset>
                         <legend>Your Info</legend>
                         <p class="text-body mb-base">All of this is optional. If you share your email, we may follow up to ask more information, but that is all we will use it for.</p>
