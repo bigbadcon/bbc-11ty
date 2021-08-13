@@ -32,10 +32,9 @@
             </ul>
         </section>
         {# Big full width cards with images #}
-        {# TODO: add 123ABC index for bigcards #}
         <section class="mx-auto max-w-hero p-base">
             <ul class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-                {% for card in collections.bigcards %}
+                {% for card in collections.bigcards123ABC %}
                     <li class="grid overflow-hidden rounded shadow-md md:grid-cols-3 sm:col-span-2 md:col-span-3 bg-card">
                         <figure class="aspect-w-2 aspect-h-1">
                             <img src="{{card.data.image}}" class="object-cover object-center" alt="{{card.data.alt}}">

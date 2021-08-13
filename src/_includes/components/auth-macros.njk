@@ -66,7 +66,6 @@
     <div x-cloak x-show="$store.auth.isAuth && $store.auth.user" class="prose">
         <h3>My Events</h3>
         <p class="text-body">
-            {# TODO: fix this so userNicename error doesn't show if not logged in #}
             <span x-text="$store.auth.user.displayName"></span> (<span x-text="$store.auth.user.userNicename"></span>)!
         </p>
         <ul>
@@ -127,7 +126,6 @@
 {% endmacro %}
 
 {# Event Page Panel #}
-{# TODO: simplify this so we don't have my events on the back? #}
 {% macro eventAuthPanel(eventId) %}
     <div 
     class="flip-wrapper" 

@@ -34,7 +34,6 @@
               {% if item.subnav %}
                 {# Primary Button with subnav #}
                 <div @click.away="open = false" @keydown.window.escape="open = false" class="relative" x-data="{ open: false }">
-                  {# TODO: add Aria tags #}
                   <button @click="open = !open"
                   class="flex flex-row items-center w-full text-left rounded cursor-pointer py-2xs md:w-auto md:inline md:mt-0 focus:outline-none focus:ring-2 focus:ring-primary-4"
                   aria-haspopup="true"
