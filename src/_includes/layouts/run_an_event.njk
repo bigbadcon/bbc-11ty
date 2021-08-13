@@ -113,8 +113,8 @@
                                     </template>
                                 </select>
                             </div>
-                            {{ input("eventName", "Event Name") }}
-                            {{ input("system", "System") }}
+                            {# TODO: add without macro {{ input("eventName", "Event Name") }} #}
+                            {# TODO: add without macro {{ input("system", "System") }} #}
                             <div x-show="isGame()">
                                 <label for="playtest">Is this a playtest?</label>
                                 <select id="playtest" name="playtest" x-model="event.system"/>

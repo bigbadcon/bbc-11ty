@@ -12,12 +12,12 @@
             <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
             <div class="prose">{{ content | safe }}</div>
             <div class="mt-base">
-                <form action="">
+                <form method="POST" name="suggest-event" data-netlify="true">
                     <fieldset>
                         <legend>Your Info</legend>
                         <p class="text-body mb-base">All of this is optional. If you share your email, we may follow up to ask more information, but that is all we will use it for.</p>
                         {{ input("name", "Name") }}
-                        {{ input("email", "Email") }}
+                        {{ input("email", "Email", false, "email") }}
                     </fieldset>
                     <fieldset>
                         <legend>Panelist Suggestion</legend>

@@ -1,10 +1,10 @@
-{% macro input(id, label, description) %}
+{% macro input(id, label, description, type = "text") %}
     <div class="mb-sm">
         <label for="{{id}}">{{ label }}</label>
         {% if description %}
             <p class="text-xs mb-sm text-body">{{ description }}</p>
         {% endif %}
-        <input id="{{id}}" name="{{name}}" type="text" value="" x-model="event.{{id}}"/>
+        <input id="{{id}}" name="{{id}}" type="{{type}}" value=""/>
     </div>
 {% endmacro %}
 
@@ -14,6 +14,6 @@
         {% if description %}
             <p class="text-xs mb-sm text-body">{{ description }}</p>
         {% endif %}
-        <textarea cols="30" id="{{id}}" name="{{id}}" rows="{{rows}}" x-model="event.{{id}}"></textarea>
+        <textarea cols="30" id="{{id}}" name="{{id}}" rows="{{rows}}"></textarea>
     </div>
 {% endmacro %}
