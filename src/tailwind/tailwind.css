@@ -125,7 +125,7 @@ button[type="submit"], .button {
 }
 
 button:disabled {
-  @apply opacity-50 hover:bg-highlight;
+  @apply opacity-70 bg-hr hover:bg-hr border-hr cursor-default;
 }
 
 textarea {

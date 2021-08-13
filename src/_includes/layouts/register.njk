@@ -9,33 +9,42 @@
         <div class="mx-auto max-w-content p-base">
             <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
             <div class="prose">{{ content | safe }}</div>
-            <section class="my-base text-body">
-                {# Login disclaimer: only show if not logged in #}
-                <div x-cloak x-show="!$store.auth.isAuth" class="prose">
+            <section class="my-base text-body" x-data="{registered: $persist(false), agree: false}" x-effect="console.log(agree)">
+                <div x-cloak x-show="registered" class="prose">
+                    <p>
+                        <strong>You are registered for Big Bad Online 2021!</strong> We will send you an email with the Discord invite once the date gets closer.</p>
+
+                </div>
+                {# Login disclaimer: only show if not registered and not logged in #}
+                <div x-cloak x-show="!registered && !$store.auth.isAuth" class="prose">
                     <p>You must <button @click="modal = 'login'" class="font-bold text-highlight">login</button> to register for Big Bad Online.</p>
                 </div>
-                {# Register form; only show if logged in #}
-                <form x-cloak x-show="$store.auth.isAuth" method="POST" name="register-bigbadonline" data-netlify="true" netlify-honeypot="bot-field" action="/register-thank-you" class="prose">
+                {# Register form; only show if not registered and logged in #}
+                <form x-cloak x-show="!registered && $store.auth.isAuth" 
+                @submit="if (agree) registered = true"
+                method="POST" name="register-bigbadonline" 
+                data-netlify="true" netlify-honeypot="bot-field" 
+                action="/register-thank-you" class="prose">
                     <p class="hidden">
                         <label>Don’t fill this out if you’re human: <input name="bot-field"/></label>
                     </p>
-                    <input type="hidden" id="userId" name="userId" value="" :value="$store.auth.user.id">
+                    <input type="hidden" id="displayName" name="displayName" value="" :value="$store.auth.user.displayName">
                     <input type="hidden" id="userEmail" name="userEmail" value="" :value="$store.auth.user.userEmail">
                     <input type="hidden" id="userNicename" name="userNicename" value="" :value="$store.auth.user.userNicename">
-                    <input type="hidden" id="displayName" name="displayName" value="" :value="$store.auth.user.displayName">
+                    <input type="hidden" id="userId" name="userId" value="" :value="$store.auth.user.id">
                     <p>Big Bad Con is committed to making both our in-person and online events physically, socially, and financially accessible as possible, and to cultivate a culture of respect, support, and kindness. We ask that all of our attendees agree to abide by our Community Standards, please take a moment to read them before answering yes below.</p>
                     <p>{% iconLink "/community-standards", "Community Standards", "scroll" %}</p>
                     <fieldset>
                         <legend>Your Agreement</legend>
-                        <div>
-                            <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes">
+                        <div class="flex items-center">
+                            <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-model="agree">
                             <label for="agree-to-community-standards" class="text-body-highlight"3324>
-                                <strong >Yes &mdash; I, <span x-text="$store.auth.user.displayName"></span>, agree to the Big Bad Con Community Standards</strong>
+                                Yes &mdash; I, <span x-text="$store.auth.user.displayName" class="font-bold"></span>, agree to the Big Bad Con Community Standards
                             </label>
                         </div>
                     </fieldset>
                     <p>
-                        <button type="submit">Submit</button>
+                        <button type="submit" :disabled="!agree" disabled>Submit</button>
                     </p>
                 </form>
             </section>
