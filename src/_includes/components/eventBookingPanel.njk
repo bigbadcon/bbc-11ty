@@ -25,6 +25,6 @@ x-init="getEvent({{event.eventId}}); $watch('$store.auth.isAuth', value => {if (
     </div>
     {# Message for people not logged in #}
     <div x-cloak x-show="!event">
-        You must be <button @click="$store.modal.open()" class="underline text-highlight">logged in</button> to book an event.
+        You must be <button @click="modal = 'login'" class="underline text-highlight">logged in</button> to book an event.
     </div>
 </div>

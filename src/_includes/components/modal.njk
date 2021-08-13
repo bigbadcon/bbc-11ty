@@ -1,6 +1,6 @@
 {% macro authModal() %}
     {# Backdrop #}
-    <div x-cloak x-show="$store.modal.isOpen" x-transition 
+    <div x-cloak x-show="(modal)" x-transition 
     class="fixed inset-0 z-40 flex items-center justify-center bg-backdrop" 
     style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);"
     >
@@ -9,7 +9,7 @@
         id="authModal"
         class="rounded-md shadow h-80 p-base bg-primary" 
         style="max-height: 90%; max-width: 90%"
-        @click.outside="$store.modal.close()">
+        @click.outside="modal = false">
             {{ login() }}
             {{ createAccount() }}
             {{ spinner() }}
@@ -22,7 +22,7 @@
 
 {# Login Panel #}
 {% macro login() %}
-    <div x-cloak x-show="!$store.auth.isAuth && $store.modal.panel === 'login'" class="flex flex-col w-64 h-full">
+    <div x-cloak x-show="!$store.auth.isAuth && modal === 'login'" class="flex flex-col w-64 h-full">
         <h2 class="-mt-1 font-serif text-3xl font-extrabold leading-none text-secondary">Login</h2>
         <form action="post" class="flex flex-col flex-grow my-sm text-body gap-base" @submit.prevent="$store.auth.submitLogin()">
             <div>
@@ -41,16 +41,16 @@
             {# TODO: get lost password working #}
             {# <button class="font-bold text-highlight" type="button">Lost Your Password?</button> #}
             <div>If you do not have an account, <br/>
-                <button @click="$store.modal.panel= 'register'" class="font-bold text-highlight" type="button">Create an Account</button>
+                <button @click="modal = 'register'" class="font-bold text-highlight" type="button">Create an Account</button>
             </div>
         </div>
     </div>
 {% endmacro %}
 
-{# Create Account #}
+{# Create Account Panel #}
 {% macro createAccount() %}
     {# TODO: get register account function working #}
-    <div x-cloak x-show="!$store.auth.isAuth && $store.modal.panel === 'register'" class="flex flex-col w-64 h-full">
+    <div x-cloak x-show="!$store.auth.isAuth && modal === 'register'" class="flex flex-col w-64 h-full">
         <h2 class="-mt-1 font-serif text-3xl font-extrabold leading-none text-secondary">Create an Account</h2>
         <form action="post" class="flex flex-col flex-grow my-sm text-body gap-base" @submit.prevent="">
             <div>
@@ -66,7 +66,7 @@
             </div>
         </form>
         <div class="text-sm text-body">
-            If you have an account, <button @click="$store.modal.panel= 'login'" class="font-bold text-highlight" type="button">Login Here</button>
+            If you have an account, <button @click="modal = 'login'" class="font-bold text-highlight" type="button">Login Here</button>
         </div>
     </div>
 {% endmacro %}
@@ -76,19 +76,19 @@
     <div x-cloak x-show="$store.auth.isAuth && !$store.auth.user" class="text-body">Loading...</div>
 {% endmacro %}
 
+{# Close button #}
 {% macro closeBtn() %}
-    <button @click="$store.modal.close()" class="flex items-center justify-center border-2 border-solid rounded w-7 h-7 border-body bg-card hover:border-highlight">
+    <button @click="modal = false" class="flex items-center justify-center border-2 border-solid rounded w-7 h-7 border-body bg-card hover:border-highlight">
         <svg class="w-4 h-4 fill-body hover:fill-highlight">
             <use xlink:href="/static/images/icons.svg#close"></use>
         </svg>
     </button>
 {% endmacro %}
 
-{# My Account User Info including My Events. Shown when logged in #}
+{# My Account User Info Panel including My Events. Shown only when logged in #}
 {% macro userInfo() %}
     <div class="flex flex-col h-full text-body"
     x-cloak x-show="$store.auth.isAuth && $store.auth.user"  
-    x-data="eventFilter"
     >
         {# Header #}
         <div class="flex justify-between gap-x-sm">
@@ -105,7 +105,6 @@
             <span x-text="$store.auth.availableSlots"></span>]
         </div> #}
         {# My Events #}
-        {# TODO: see why this isn't picking up when timezone changes. Might have to add eventFilter higher up? #}
         <h3 class="font-serif text-2xl font-semibold text-body">My Events</h3>
         <div class="mb-sm">{% include 'components/timezone-select.njk' %}</div>
         <ul class="flex-grow overflow-y-auto text-sm border-t-2 border-b-2 text-body border-hr py-xs" x-cloak x-show="$store.auth.bookedEvents">
@@ -114,8 +113,10 @@
                     <h4 class="font-bold">
                         <a :href="(event.isVolunteer) ? '/volunteer/'+ event.eventSlug : '/events/'+ event.eventSlug" class="text-header hover:text-highlight" x-html="event.eventName"></a>
                     </h4>
+                    {# Timezone data is in x-data in html #}
+                    {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
                     <p class="text-xs opacity-90" x-cloak x-show="timezone">
-                        <span x-html="eventFormat(event.eventStartDateTime)"></span> (<span x-text="event.eventDuration"></span> hrs)
+                        <span x-html="formatEventDate(event.eventStartDateTime, timezone)"></span> (<span x-text="event.eventDuration"></span> hrs)
                     </p>
                 </li>
             </template>
@@ -124,8 +125,7 @@
         {# Buttons #}
         <div class="pt-base">
             <button class="button" @click="$store.auth.logout()">Logout</button>
-            {# <button class="button" @click="$store.panel.flip()">Change Password</button> #}
-            {# Change Password shoudl flip to other side with change password form #}
+            {# TODO: <button class="button" @click="() => {}">Change Password</button> #}
         </div>
     </div>
 {% endmacro %}

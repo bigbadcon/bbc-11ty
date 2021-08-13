@@ -49,21 +49,23 @@ module.exports = async () => {
         /* ---------------- fix data if missing slug and decode text ---------------- */
         data = data.map(event => {
             if (!event.eventSlug || event.eventSlug === "") event = {...event, eventSlug: slugify(event.eventName,{strict: true})}
+            // Convert metadata array to a more usable keyed object
             let metadata = metadataArrayToObject(event.metadata)
-            metadata = {...metadata, GM: (metadata.GM) ? decodeText(metadata.GM) : null}
+            // decode GM field text to proper format
+            metadata = {...metadata, GM: (metadata.GM) && decodeText(metadata.GM) }
 
-            // Create Javascript date object
+            // Create Javascript date objects
             const eventStartDateTime = dayjs(event.eventStartDate + "T" + event.eventStartTime + "-07:00").toDate()
             const eventEndDateTime = dayjs(event.eventEndDate + "T" + event.eventEndTime + "-07:00").toDate()
  
             return {
                 ...event,
-                eventName: decodeText(event.eventName),
-                postContent: decodeText(event.postContent),
-                metadata: metadata,
-                eventStartDateTime: eventStartDateTime,
-                eventEndDateTime: eventEndDateTime,
-                eventSlug: event.eventSlug.toLowerCase(),
+                eventName: decodeText(event.eventName), // change to proper format
+                postContent: decodeText(event.postContent), // change to proper format
+                metadata: metadata, // replace with keyyed object
+                eventStartDateTime: eventStartDateTime, // native javascript date object
+                eventEndDateTime: eventEndDateTime, // native javascript date object
+                eventSlug: event.eventSlug.toLowerCase(), // force lowercase
             }
         })
 

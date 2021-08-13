@@ -16,7 +16,7 @@
             </tr>
         </thead>
         <tbody>
-            {# favsOnly and timezone data is in x-data="eventFilter" in wrapping div in base.njk #}
+            {# favsOnly and timezone in x-data in html #}
             {% for event in eventData.volunteer %}
                 <tr x-show="!favsOnly || $store.auth.isFav({{event.eventId}})">
                     {# Event Name #}
@@ -24,7 +24,9 @@
                         <a href="/volunteer/{{event.eventSlug}}" class="font-bold transition-colors text-header hover:text-highlight">{{event.eventName | safe }}</a>
                     </td>
                     {# Event Start Date/Time #}
-                    <td class="event-table-date" x-cloak x-show="timezone" x-data="{ date: '{{event.eventStartDateTime}}' }" x-html="eventFormat(date)">{{ event.eventStartDateTime | formatEventDate | safe }}</td>
+                    {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
+                    {# formatEventDate filter is in eleventy.js and returns html with date and time in seperate span tags #}
+                    <td class="event-table-date" x-cloak x-show="timezone" x-html="formatEventDate('{{event.eventStartDateTime}}', timezone)">{{ event.eventStartDateTime | formatEventDate | safe }}</td>
                     {# Event Duration #}
                     <td class="text-center py-sm">
                         {% eventDuration event.eventStartDateTime,

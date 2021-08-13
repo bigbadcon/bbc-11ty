@@ -16,6 +16,14 @@ function slugify(text) {
 }
 
 /* -------------------------------------------------------------------------- */
+/*                             dayjs event format                             */
+/* -------------------------------------------------------------------------- */
+
+function formatEventDate(date, tz = 'America/Los_Angeles') {
+  return "<span>" + dayjs(date).tz(tz).format('MMM D, YYYY') + "</span> <span>" + dayjs(date).tz(tz).format('h:mm a') + "</span>"
+}
+
+/* -------------------------------------------------------------------------- */
 /*                        LocalStorage Helper Functions                       */
 /* -------------------------------------------------------------------------- */
 
@@ -76,13 +84,6 @@ function metadataArrayToObject(arr) {
   }, {});
   return object
 }
-
-/* --------------------- Convert windows1252 characters --------------------- */
-// TODO: do we need this? If so I will need to add these scripts to the site
-
-// const decodeText = text => {
-//   return utf8.decode(windows1252.encode(text))
-// }
 
 /* -------------------------------------------------------------------------- */
 /*                                Alpine Stuff                                */
@@ -293,28 +294,9 @@ document.addEventListener('alpine:init', () => {
   /*                                Alpine Stores                               */
   /* -------------------------------------------------------------------------- */
 
-  /* ------------------------------- Modal Login ------------------------------ */
-
-  Alpine.store('modal', {
-    isOpen: false,
-    toggle() { 
-      // console.log("toggle modal",this.isOpen);
-      this.isOpen = !this.isOpen 
-    },
-    panel: 'login',
-    open() {
-      this.panel = 'login',
-      this.isOpen = true
-    },
-    close() {
-      this.isOpen = false
-    }
-  });
-
   /* ---------------------------- Auth Store --------------------------- */
   // ALl data for logged in users
 
-  // TODO: add alert for failed password
   Alpine.store('auth', {
     async init() {
       const token = getAuthToken()
@@ -448,7 +430,6 @@ document.addEventListener('alpine:init', () => {
 
   /* -------------------------- eventInfo panel data -------------------------- */
 
-  // TODO: getEvent needs to be called once logged in use $watch maybe
   Alpine.data('eventInfo', () => ({
     event: null,
     maxPlayers: null,
@@ -472,35 +453,6 @@ document.addEventListener('alpine:init', () => {
     },
     showTimezone(date,tz) {
       console.log(dayjs(date).tz(tz))
-    }
-  }))
-  
-  /* --------------------------- Event Table Filter --------------------------- */
-
-  Alpine.data('eventFilter', () => ({
-    init() {
-      this.favsOnly = getLSWithExpiry('favsOnly') || this.favsOnly
-      this.timezone = getLSWithExpiry('timezone') || this.timezone
-      // console.log(this.timezone);
-    },
-    favsOnly: false, 
-    timezone: 'America/Los_Angeles',
-    setTimezone(val) {
-      setLSWithExpiry('timezone',val)
-      this.timezone = val;
-    },
-    toggleFavsOnly() {
-      setLSWithExpiry('favsOnly',!this.favsOnly)
-      this.favsOnly = !this.favsOnly
-    },
-    isSelected(tz) {
-      return this.timezone === tz
-    },
-    eventFormat(date, tz, format = 'MMM D, YYYY h:mm a') {
-      tz = this.timezone || 'America/Los_Angeles'
-      // console.log("eventFormat",date,tz,dayjs(date).tz(tz).format(format));
-      return "<span>" + dayjs(date).tz(tz).format('MMM D, YYYY') + "</span> <span>" + dayjs(date).tz(tz).format('h:mm a') + "</span>"
-      // return dayjs(date).tz(tz).format(format)
     }
   }))
 

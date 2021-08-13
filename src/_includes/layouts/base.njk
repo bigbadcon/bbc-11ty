@@ -1,22 +1,22 @@
 {%- from "components/modal.njk" import authModal -%}
 
 <!doctype html>
-<html lang="en" class="min-h-screen" x-data="{theme: $persist('auto')}">
+<html lang="en" class="min-h-screen" x-data="{theme: $persist('auto'), timezone: $persist('America/Los_Angeles'), favsOnly: $persist(false), modal: false }">
   {% include 'layouts/html_head.njk' %}
   <body
   x-cloak x-show="theme"
   class="min-h-screen bg-primary"
   :class="theme"
-  :style="$store.modal.isOpen && 'overflow: hidden; height: 100vh;'"
+  :style="(modal) && 'overflow: hidden; height: 100vh;'"
   >
     <div class="relative z-10 grid min-h-screen shadow page-wrapper">
       {# Header with branding and nav #}
       <div class="header-wrapper">
         {% block header %}{% endblock %}
       </div>
-      <div class="relative content-wrapper bg-gradient-to-b from-main-gradient-top to-main-gradient-bottom pb-lg" x-data="eventFilter">
+      <div class="relative content-wrapper bg-gradient-to-b from-main-gradient-top to-main-gradient-bottom pb-lg" >
         {# Login / Account Button #}
-        <button @click.stop="$store.modal.open()" class="absolute top-0 font-bold uppercase transition-all transform border rounded-b cursor-pointer text-form right-base bg-highlight px-base pb-xs pt-md hover:bg-highlight-2 hover:pt-lg border-highlight" x-text="($store.auth.isAuth) ? 'My Account' : 'Login'">Login</button>
+        <button @click.stop="modal = 'login'" class="absolute top-0 font-bold uppercase transition-all transform border rounded-b cursor-pointer text-form right-base bg-highlight px-base pb-xs pt-md hover:bg-highlight-2 hover:pt-lg border-highlight" x-text="($store.auth.isAuth) ? 'My Account' : 'Login'">Login</button>
         {# Decorative underbrush svg #}
         <div style="-webkit-mask: url(/static/images/underbrush.svg) repeat-x; mask: url(/static/images/underbrush.svg) repeat-x; pointer-events: none;" class="h-10 underbrush bg-primary mb-sm"></div>
         {# Main Content Area. <main> tag should live in content block #}

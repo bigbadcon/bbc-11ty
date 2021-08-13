@@ -1,7 +1,7 @@
 {# Timezones from here: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones #}
-{# timezone data is in x-data="eventFilter" in wrapping div in base.njk #}
+{# timezone data is in x-data=in html element base.njk #}
 <select id="timezone" class="mb-0 text-sm cursor-pointer px-xs py-2xs" 
-    @change="setTimezone($el.value)"
+    @change="timezone = $el.value"
     x-init="$el.value = timezone"
     x-cloak x-show="timezone">
     <option value="Pacific/Midway">Midway Islands (-11/-11)</option>

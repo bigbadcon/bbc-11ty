@@ -6,7 +6,7 @@
     <div class="flex items-center justify-start gap-xs" x-cloak x-show="$store.auth.isAuth">
         {# favsOnly data is in x-data="eventFilter" in wrapping div in base.njk #}
         <h5 class="text-sm font-bold">Filter:</h5>
-        <button @click="toggleFavsOnly()" class="flex items-center transition-colors rounded group gap-x-xs bg-main-gradient-bottom px-sm py-2xs hover:bg-primary">
+        <button @click="favsOnly = !favsOnly" class="flex items-center transition-colors rounded group gap-x-xs bg-main-gradient-bottom px-sm py-2xs hover:bg-primary">
             <svg class="w-4 h-4 fill-body group-hover:fill-highlight">
                 <use xlink:href="/static/images/icons.svg#star"></use>
             </svg>
