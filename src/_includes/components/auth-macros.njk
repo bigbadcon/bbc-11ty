@@ -53,7 +53,7 @@
 {% macro userInfo() %}
     <div x-cloak x-show="$store.auth.isAuth && $store.auth.user" class="flex flex-col justify-between sm:flex-row gap-base">
         <div>
-            <p class="text-lg font-semibold text-body">Welcome <span x-text="$store.auth.user.displayName"></span> (<span x-text="$store.auth.user.userNicename"></span>)!</p>
+            <p class="text-lg font-semibold text-body">Welcome <span x-text="$store.auth.user && $store.auth.user.displayName"></span> (<span x-text="$store.auth.user.userNicename"></span>)!</p>
         </div>
         <div>
             <button class="button" @click="$store.auth.logout()">Logout</button>
@@ -66,7 +66,7 @@
     <div x-cloak x-show="$store.auth.isAuth && $store.auth.user" class="prose">
         <h3>My Events</h3>
         <p class="text-body">
-            <span x-text="$store.auth.user.displayName"></span> (<span x-text="$store.auth.user.userNicename"></span>)!
+            <span x-text="$store.auth.user && $store.auth.user.displayName"></span> (<span x-text="$store.auth.user && $store.auth.user.userNicename"></span>)!
         </p>
         <ul>
             <template x-for="event in $store.auth.bookedEvents">
@@ -97,7 +97,7 @@
             <p class="flex mt-xs gap-sm">
                 <button class="button" x-show="spaces > 0 && !$store.auth.isBooked({{eventId}})">Book Event</button>
                 <span x-show="spaces <= 0 && !$store.auth.isBooked({{eventId}})" class="font-bold">Event is full</span>
-                <button class="button" x-show="$store.auth.isBooked({{eventId}}) && $store.auth.user.displayName !== owner">Cancel Booking</span>
+                <button class="button" x-show="$store.auth.isBooked({{eventId}}) && $store.auth.user && $store.auth.user.displayName !== owner">Cancel Booking</span>
                 <button class="button" @click="$store.panel.flip()">My Events</button>
             </p>
         </div>

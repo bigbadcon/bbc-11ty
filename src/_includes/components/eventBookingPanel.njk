@@ -20,7 +20,7 @@ x-init="getEvent({{event.eventId}}); $watch('$store.auth.isAuth', value => {if (
         <div class="flex mt-base gap-sm">
             <button class="button" x-show="spacesOpen > 0 && !$store.auth.isBooked({{event.eventId}})" @click="$store.auth.bookEvent({{event.eventId}})">Book Event</button>
             <span x-show="spacesOpen <= 0 && !$store.auth.isBooked({{event.eventId}})" class="font-bold">Event is full</span>
-            <button class="button" x-show="$store.auth.isBooked({{event.eventId}}) && $store.auth.user.displayName !== owner" @click="$store.auth.cancelBooking({{event.eventId}})">Cancel Booking</span>
+            <button class="button" x-show="$store.auth.isBooked({{event.eventId}}) && $store.auth.user && $store.auth.user.displayName !== owner" @click="$store.auth.cancelBooking({{event.eventId}})">Cancel Booking</span>
         </div>
     </div>
     {# Message for people not logged in #}
