@@ -25,7 +25,7 @@
                 name="create-account"  
                 action="/create-account-thank-you"
                 x-data="{agree: false, firstName:'', lastName:'', howToDisplay: 'firstlast', nickname:'', displayName:''}"
-                {# x-effect="displayName = (howToDisplay === 'nickname') ? nickname : firstName + ' ' + lastName;" #}
+                x-effect="displayName = (howToDisplay === 'nickname') ? nickname : firstName + ' ' + lastName;"
                 >
                     <div class="prose">
                         <p class="hidden">
