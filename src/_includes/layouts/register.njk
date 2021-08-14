@@ -17,8 +17,17 @@
                 {# You are Registered notification. Show only when registered and logged in.  #}
                 <div x-cloak x-show="registered && $store.auth.isAuth" class="prose">
                     <p>
-                        <strong>You are registered for Big Bad Online 2021!</strong> We will send you an email with the Discord invite once the date gets closer.</p>
-
+                        <strong>You are registered for Big Bad Online 2021!</strong> We will send you an email with the Discord invite once the date gets closer.
+                    </p>
+                    <h3>Save the Date!</h3>
+                    <ul>
+                        <li>
+                            <a href="http://www.google.com/calendar/event?action=TEMPLATE&dates=20211023T190000Z%2F20211024T190000Z&text=Big%20Bad%20Online%202021&location=Discord%20%26%20Twitch&details=Join%20us%20for%20Big%20Bad%20Online%202021!%20We%20will%20be%20gathering%20on%20Discord%20and%20a%20full%2024hrs%20of%20amazing%20speakers%2C%20game%20designers%20and%20industry%20professionals!">Google Calendar Link</a>
+                        </li>
+                        <li>
+                            <a href="/static/ical/Big%20Bad%20Online%202021.ics">iCal Link</a>
+                        </li>
+                    </ul>
                 </div>
                 {# Register form; only show if not registered and logged in #}
                 <form x-cloak x-show="!registered && $store.auth.isAuth" 
