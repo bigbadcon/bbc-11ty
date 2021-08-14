@@ -56,7 +56,7 @@
                                 <input class="w-64" id="userEmail" name="userEmail" required type="email" value=""/>
                             </div>
                             <div>
-                                <label for="userPass" class="text-xs uppercase">Email</label>
+                                <label for="userPass" class="text-xs uppercase">Password</label>
                                 <input class="w-64" id="userPass" name="userPass" required type="password" value=""/>
                             </div>
                             <input type="hidden" value="" name="userLogin" id="userLogin" :value="userNicename"/>
@@ -93,6 +93,7 @@
                             <input type="hidden" value="" name="displayName" id="displayName" :value="displayName"/>
                         </div>
                     </fieldset>
+                    <div data-netlify-recaptcha="true"></div>
                     <p>
                         <button type="submit" :disabled="!agree" disabled>Submit</button>
                     </p>
