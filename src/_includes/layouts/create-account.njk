@@ -9,7 +9,9 @@
         <div class="mx-auto max-w-content p-base">
             <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
             <div class="prose">{{ content | safe }}</div>
-            <section class="my-base text-body">
+            <section class="my-base text-body"
+                x-data="{agree: false, firstName:'', lastName:'', howToDisplay: 'firstlast', nickname:'', displayName:''}"
+                x-effect="displayName = (howToDisplay === 'nickname') ? nickname : firstName + ' ' + lastName;">
                 <div class="prose" x-cloak x-show="$store.auth.isAuth && $store.auth.user">
                     <p>Hi, you are signed in as <span x-text="$store.auth.user && $store.auth.user.displayName" class="font-bold"></span>. If you would like to create a new account please logout first.
                     </p>
@@ -24,8 +26,6 @@
                 method="POST" 
                 name="create-account"  
                 action="/create-account-thank-you"
-                x-data="{agree: false, firstName:'', lastName:'', howToDisplay: 'firstlast', nickname:'', displayName:''}"
-                x-effect="displayName = (howToDisplay === 'nickname') ? nickname : firstName + ' ' + lastName;"
                 >
                     <div class="prose">
                         <p class="hidden">
