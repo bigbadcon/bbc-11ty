@@ -9,7 +9,7 @@
         <div class="mx-auto max-w-content p-base">
             <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
             <div class="prose">{{ content | safe }}</div>
-            <section class="my-base text-body" x-data="{registered: $persist(false), agree: false}" x-effect="console.log(agree)">
+            <section class="my-base text-body" x-data="{registered: $persist(false), agree: false}" >
                 {# Login disclaimer: only show if not registered and not logged in #}
                 <div x-cloak x-show="!$store.auth.isAuth" class="prose">
                     <p>You must <button @click="modal = 'login'" class="font-bold text-highlight">login</button> to register for Big Bad Online.</p>
@@ -38,18 +38,18 @@
                     <p class="hidden">
                         <label>Don’t fill this out if you’re human: <input name="bot-field"/></label>
                     </p>
-                    <input type="hidden" id="displayName" name="displayName" value="" :value="$store.auth.user.displayName">
-                    <input type="hidden" id="userEmail" name="userEmail" value="" :value="$store.auth.user.userEmail">
-                    <input type="hidden" id="userNicename" name="userNicename" value="" :value="$store.auth.user.userNicename">
-                    <input type="hidden" id="userId" name="userId" value="" :value="$store.auth.user.id">
+                    <input type="hidden" id="displayName" name="displayName" value="" :value="$store.auth.user && $store.auth.user.displayName">
+                    <input type="hidden" id="userEmail" name="userEmail" value="" :value="$store.auth.user && $store.auth.user.userEmail">
+                    <input type="hidden" id="userNicename" name="userNicename" value="" :value="$store.auth.user && $store.auth.user.userNicename">
+                    <input type="hidden" id="userId" name="userId" value="" :value="$store.auth.user && $store.auth.user.id">
                     <p>Big Bad Con is committed to cultivating a culture of respect, support, and kindness at both our in-person and online events. We ask that all of our attendees agree to abide by our Community Standards, please take a moment to read them before answering yes below.</p>
                     <p>{% iconLink "/community-standards", "Community Standards", "scroll" %}</p>
                     <fieldset>
-                        <legend>Your Agreement</legend>
+                        <legend>Community Standards Agreement</legend>
                         <div class="flex items-center">
-                            <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-model="agree">
+                            <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-model="agree" required>
                             <label for="agree-to-community-standards" class="text-body-highlight"3324>
-                                Yes &mdash; I, <span x-text="$store.auth.user.displayName" class="font-bold"></span>, agree to the Big Bad Con Community Standards
+                                Yes &mdash; I, <span x-text="$store.auth.user && $store.auth.user.displayName" class="font-bold"></span>, agree to the Big Bad Con Community Standards
                             </label>
                         </div>
                     </fieldset>
@@ -69,3 +69,5 @@ Offer them an Google Calendar/ical link to add Big Bad Online to their calendar 
 Point them to the events and volunteer pages. #}
 
 {# user	{"value":{"id":493,"userNicename":"colinaut","userEmail":"colin.fahrion@gmail.com","userUrl":"","userRegistered":1347009101000,"displayName":"Colin Fahrion","bookingComment":null,"lastUpdated":null,"metadata":[{"umetaId":64878,"metaKey":"facebook","metaValue":"","userId":493},{"umetaId":7740,"metaKey":"first_name","metaValue":"Colin","userId":493},{"umetaId":7741,"metaKey":"last_name","metaValue":"Fahrion","userId":493},{"umetaId":7742,"metaKey":"nickname","metaValue":"colinaut","userId":493},{"umetaId":64882,"metaKey":"parentemail","metaValue":"","userId":493},{"umetaId":64881,"metaKey":"parentname","metaValue":"","userId":493},{"umetaId":64879,"metaKey":"twitter","metaValue":"@colinaut","userId":493},{"umetaId":85774,"metaKey":"wp_tuiny5_capabilities","metaValue":"a:2:{s:13:\"administrator\";b:1;s:5:\"staff\";b:1;}","userId":493}],"bbcUserFavorites":[{"bbcUserFavoritesId":7987,"userId":493,"eventId":2659,"createDate":1568848882000,"updateDate":1568848882000,"status":1},{"bbcUserFavoritesId":7998,"userId":493,"eventId":2547,"createDate":1568863479000,"updateDate":1568863479000,"status":1},{"bbcUserFavoritesId":8521,"userId":493,"eventId":2845,"createDate":1628183203000,"updateDate":1628183203000,"status":1}]},"expiry":1628910026402} #}
+
+{# How to create google sheet connection: https://www.stackbit.com/blog/complete-guide-netlify-forms/ #}

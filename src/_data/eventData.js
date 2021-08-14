@@ -10,7 +10,7 @@ dayjs.extend(utc)
 dayjs.extend(timezone)
   
 /* ----- Inject cert to avoid the UNABLE_TO_VERIFY_LEAF_SIGNATURE error ----- */
-rootCas.addFile('certs/bigbadcon-com-chain.pem')
+rootCas.addFile('./certs/bigbadcon-com-chain.pem')
 require('https').globalAgent.options.ca = rootCas;
 
 /* ------------------------- Convert odd characters ------------------------- */
