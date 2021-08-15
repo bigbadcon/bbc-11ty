@@ -1,8 +1,9 @@
 const axios = require('axios');
 const rootCas = require('ssl-root-cas').create();
+const cert = require('')
 
 /* ----- Inject cert to avoid the UNABLE_TO_VERIFY_LEAF_SIGNATURE error ----- */
-rootCas.addFile('./certs/bigbadcon-com-chain.pem')
+rootCas.addFile('../certs/bigbadcon-com-chain.pem')
 require('https').globalAgent.options.ca = rootCas;
 
 // TODO: change to prod api once tested
@@ -17,7 +18,7 @@ exports.handler = async function(event, context) {
     if (form_name === 'create-account') {
         const { displayName, firstName, lastName, nickname, userEmail, userNicename, userLogin, userPass, userUrl } = submission_payload
         console.log("submission_payload", submission_payload);
-        
+
         const params = {
             displayName: displayName, 
             firstName: firstName, 
