@@ -40,9 +40,9 @@ exports.handler = async function(event, context) {
 
         try {
             const res = await axios.put(apiBaseUrl + 'users/create', params)
-            console.log("put response", res.response);
+            // console.log("put response", res);
             return {
-                statusCode: res.response.status,
+                statusCode: 200,
                 body: "account submitted"
             }
         } catch(e) {
