@@ -22,7 +22,7 @@
                 <form x-cloak x-show="!$store.auth.isAuth" 
                 data-netlify="true" 
                 netlify-honeypot="bot-field"
-                data-netlify-recaptcha="true"
+                {# data-netlify-recaptcha="true" #}
                 method="POST" 
                 name="create-account"  
                 action="/create-account-thank-you"
@@ -96,7 +96,7 @@
                             <input type="hidden" value="" name="displayName" id="displayName" :value="displayName"/>
                         </div>
                     </fieldset>
-                    <div data-netlify-recaptcha="true"></div>
+                    {# <div data-netlify-recaptcha="true"></div> #}
                     <p class="mt-base">
                         <button type="submit" :disabled="!agree" disabled>Submit</button>
                     </p>
