@@ -6,13 +6,14 @@ const https = require('https')
 // const cert = require('../certs/bigbadcon-com-chain.pem')
 
 /* ----- Inject cert to avoid the UNABLE_TO_VERIFY_LEAF_SIGNATURE error ----- */
-// rootCas.addFile('certs/bigbadcon-com-chain.pem')
-let cas = https.globalAgent.options.ca || []
-cas.push = fs.readFileSync(resolve('./certs/bigbadcon-com-chain.pem'))
-https.globalAgent.options.ca = cas;
+rootCas.addFile('certs/bigbadcon-com-chain.pem')
+https.globalAgent.options.ca = rootCas;
+// let cas = https.globalAgent.options.ca || []
+// cas.push = fs.readFileSync(resolve('./certs/bigbadcon-com-chain.pem'))
+// https.globalAgent.options.ca = cas;
 
 // TODO: change to prod api once tested
-const apiBaseUrl = 'https://bigbadcon.com:8091/apidev/'
+const apiBaseUrl = 'https://www.bigbadcon.com:8091/api/'
 
 exports.handler = async function(event, context) {
     // const isFile = fs.readFileSync(resolve('./certs/bigbadcon-com-chain.pem'))
@@ -23,7 +24,7 @@ exports.handler = async function(event, context) {
     // console.log("🚀 ~ file: submission-created.js ~ line 21 ~ exports.handler=function ~ form_name", submission_payload)
 
     if (submission_path === '/create-account-thank-you') {
-        const { displayName, firstName, lastName, nickname, userEmail, userNicename, userLogin, userPass, userUrl } = submission_payload.data
+        const { displayName, firstName, lastName, nickname, userEmail, userNicename, userLogin, userPass, twitter } = submission_payload.data
 
         const params = {
             displayName: displayName, 
@@ -34,9 +35,9 @@ exports.handler = async function(event, context) {
             userNicename: userNicename, 
             userLogin: userLogin, 
             userPass: userPass,
-            userUrl: userUrl
+            userUrl: ""
+            // twitter: twitter
         }
-        console.log("🚀 ~ file: submission-created.js ~ line 33 ~ exports.handler=function ~ params", params)
 
         try {
             const res = await axios.put(apiBaseUrl + 'users/create', params)
@@ -48,7 +49,7 @@ exports.handler = async function(event, context) {
         } catch(e) {
             console.log("error", e);
             return {
-                statusCode: 500,
+                statusCode: e.response.status,
                 body: "error"
             }
         }
