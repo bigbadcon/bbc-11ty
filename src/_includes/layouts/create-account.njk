@@ -10,7 +10,7 @@
             <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
             <div class="prose">{{ content | safe }}</div>
             <section class="my-base text-body"
-                x-data="{agree: false, firstName:'', lastName:'', howToDisplay: 'firstlast', nickname:'', displayName:''}"
+                x-data="createAccount"
                 x-effect="displayName = (howToDisplay === 'nickname') ? nickname : firstName + ' ' + lastName;">
                 <div class="prose" x-cloak x-show="$store.auth.isAuth && $store.auth.user">
                     <p>Hi, you are signed in as <span x-text="$store.auth.user && $store.auth.user.displayName" class="font-bold"></span>. If you would like to create a new account please logout first.
@@ -26,6 +26,7 @@
                 method="POST" 
                 name="create-account"  
                 action="/create-account-thank-you"
+                {# @submit.prevent="putUserCreate()" #}
                 >
                     <div class="prose">
                         <p class="hidden">
@@ -46,18 +47,19 @@
                     <fieldset>
                         <legend>Login Info</legend>
                         <div class="space-y-sm">
-                            <p class="text-body mb-base">All fields are required</p>
+                            <p class="text-body mb-base">
+                                <span class="font-bold text-highlight">*</span> Required</p>
                             <div>
-                                <label for="userNicename" class="text-xs uppercase">User Name</label>
-                                <input class="w-64" id="userNicename" name="userNicename" required type="text" value=""/>
+                                <label for="userNicename" class="text-xs uppercase">User Name <span class="font-bold text-highlight">*</span></label>
+                                <input class="w-64" id="userNicename" name="userNicename" required type="text" value="" x-model="userNicename"/>
                             </div>
                             <div>
-                                <label for="userEmail" class="text-xs uppercase">Email</label>
-                                <input class="w-64" id="userEmail" name="userEmail" required type="email" value=""/>
+                                <label for="userEmail" class="text-xs uppercase">Email <span class="font-bold text-highlight">*</span></label>
+                                <input class="w-64" id="userEmail" name="userEmail" required type="email" value="" x-model="userEmail"/>
                             </div>
                             <div>
-                                <label for="userPass" class="text-xs uppercase">Password</label>
-                                <input class="w-64" id="userPass" name="userPass" required type="password" value=""/>
+                                <label for="userPass" class="text-xs uppercase">Password <span class="font-bold text-highlight">*</span></label>
+                                <input class="w-64" id="userPass" name="userPass" required type="password" value="" x-model="userPass"/>
                             </div>
                             <input type="hidden" value="" name="userLogin" id="userLogin" :value="userNicename"/>
                         </div>
@@ -65,17 +67,18 @@
                     <fieldset>
                         <legend>Your Info</legend>
                         <div class="space-y-sm">
-                            <p class="text-body mb-base">All fields are required</p>
+                            <p class="text-body mb-base">
+                                <span class="font-bold text-highlight">*</span> Required</p>
                             <div>
-                                <label for="firstName" class="text-xs uppercase">First Name</label>
+                                <label for="firstName" class="text-xs uppercase">First Name <span class="font-bold text-highlight">*</span></label>
                                 <input class="w-64" id="firstName" name="firstName" required type="text" x-model="firstName" value=""/>
                             </div>
                             <div>
-                                <label for="lastName" class="text-xs uppercase">Last Name</label>
+                                <label for="lastName" class="text-xs uppercase">Last Name <span class="font-bold text-highlight">*</span></label>
                                 <input class="w-64" id="lastName" name="lastName" required type="text" x-model="lastName" value=""/>
                             </div>
                             <div>
-                                <label for="howToDisplay" class="text-xs uppercase">How to Display Your Name</label>
+                                <label for="howToDisplay" class="text-xs uppercase">How to Display Your Name <span class="font-bold text-highlight">*</span></label>
                                 <p class="text-xs text-body mb-sm">This is how your name will be displayed on your badge and online event signups</p>
                                 <select class="w-64" id="howToDisplay" name="howToDisplay" required x-model="howToDisplay" value="">
                                     <option value="firstlast" default>Use my first and last</option>
@@ -83,12 +86,12 @@
                                 </select>
                             </div>
                             <div x-cloak x-show="howToDisplay === 'nickname'">
-                                <label for="nickname" class="text-xs uppercase">Publically Displayed Name</label>
+                                <label for="nickname" class="text-xs uppercase">Publically Displayed Name <span class="font-bold text-highlight">*</span></label>
                                 <input class="w-64" id="nickname" name="nickname" :required="howToDisplay === 'nickname'" type="text" x-model="nickname" value=""/>
                             </div>
                             <div>
                                 <label for="userUrl" class="text-xs uppercase">Twitter Url</label>
-                                <input class="w-64" id="userUrl" name="userUrl" required type="text" value=""/>
+                                <input class="w-64" id="userUrl" name="userUrl" type="text" value="" x-model="userUrl"/>
                             </div>
                             <input type="hidden" value="" name="displayName" id="displayName" :value="displayName"/>
                         </div>

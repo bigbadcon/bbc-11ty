@@ -1,23 +1,29 @@
 const axios = require('axios');
 const rootCas = require('ssl-root-cas').create();
-const cert = require('')
+const fs = require('fs');
+const resolve = require('path').resolve
+const https = require('https')
+// const cert = require('../certs/bigbadcon-com-chain.pem')
 
 /* ----- Inject cert to avoid the UNABLE_TO_VERIFY_LEAF_SIGNATURE error ----- */
-rootCas.addFile('../certs/bigbadcon-com-chain.pem')
-require('https').globalAgent.options.ca = rootCas;
+// rootCas.addFile('certs/bigbadcon-com-chain.pem')
+let cas = https.globalAgent.options.ca || []
+cas.push = fs.readFileSync(resolve('./certs/bigbadcon-com-chain.pem'))
+https.globalAgent.options.ca = cas;
 
 // TODO: change to prod api once tested
 const apiBaseUrl = 'https://bigbadcon.com:8091/apidev/'
 
 exports.handler = async function(event, context) {
+    // const isFile = fs.readFileSync(resolve('./certs/bigbadcon-com-chain.pem'))
+    // console.log("🚀 ~ file: submission-created.js ~ line 15 ~ exports.handler=function ~ isFile", isFile)
     // your server-side functionality
     const submission_path = event.path;
     const submission_payload = JSON.parse(event.body).payload;
-    const form_name = submission_payload.form_name;
+    // console.log("🚀 ~ file: submission-created.js ~ line 21 ~ exports.handler=function ~ form_name", submission_payload)
 
-    if (form_name === 'create-account') {
-        const { displayName, firstName, lastName, nickname, userEmail, userNicename, userLogin, userPass, userUrl } = submission_payload
-        console.log("submission_payload", submission_payload);
+    if (submission_path === '/create-account-thank-you') {
+        const { displayName, firstName, lastName, nickname, userEmail, userNicename, userLogin, userPass, userUrl } = submission_payload.data
 
         const params = {
             displayName: displayName, 
@@ -30,8 +36,27 @@ exports.handler = async function(event, context) {
             userPass: userPass,
             userUrl: userUrl
         }
-        const res = await axios.put(apiBaseUrl + 'users/create', params)
+        console.log("🚀 ~ file: submission-created.js ~ line 33 ~ exports.handler=function ~ params", params)
 
-        console.log("put response data", res.data);
+        try {
+            const res = await axios.put(apiBaseUrl + 'users/create', params)
+            console.log("put response", res);
+            return {
+                statusCode: 200,
+                body: "done"
+            }
+        } catch(e) {
+            console.log("error", e);
+            return {
+                statusCode: 500,
+                body: "error"
+            }
+        }
+ 
+    }
+
+    return {
+        statusCode: 500,
+        body: "no response as different form"
     }
 }
