@@ -457,7 +457,7 @@ document.addEventListener('alpine:init', () => {
   }))
 
   Alpine.data('createAccount',() => ({
-    agree: true, 
+    agree: false, 
     userNicename: '', 
     userEmail: '', 
     userPass:'', 
