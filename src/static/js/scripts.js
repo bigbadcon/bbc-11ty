@@ -458,16 +458,16 @@ document.addEventListener('alpine:init', () => {
 
   Alpine.data('createAccount',() => ({
     agree: true, 
-    userNicename: 'col', 
-    userEmail: 'colin.fahrion+test2@gmail.com', 
-    userPass:'testing', 
-    firstName:'col', 
-    lastName:'test', 
+    userNicename: '', 
+    userEmail: '', 
+    userPass:'', 
+    firstName:'', 
+    lastName:'', 
     howToDisplay: 'firstlast', 
-    nickname:'coltest', 
-    displayName:'col test', 
-    twitter:'colinaut',
-    userLogin: 'coltest',
+    nickname:'', 
+    displayName:'', 
+    twitter:'',
+    userLogin: '',
     async putUserCreate() {
       // const token = getAuthToken()
       // if (!token) return null
