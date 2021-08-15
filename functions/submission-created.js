@@ -21,9 +21,10 @@ exports.handler = async function(event, context) {
     // your server-side functionality
     const submission_path = event.path;
     const submission_payload = JSON.parse(event.body).payload;
-    // console.log("🚀 ~ file: submission-created.js ~ line 21 ~ exports.handler=function ~ form_name", submission_payload)
+    console.log("event triggered. Event Path:", submission_path)
 
     if (submission_path === '/create-account-thank-you') {
+        console.log("submission data",submission_payload.data);
         const { displayName, firstName, lastName, nickname, userEmail, userNicename, userLogin, userPass, twitter } = submission_payload.data
 
         const params = {
