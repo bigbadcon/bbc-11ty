@@ -6,7 +6,7 @@ const https = require('https')
 // const cert = require('../certs/bigbadcon-com-chain.pem')
 
 /* ----- Inject cert to avoid the UNABLE_TO_VERIFY_LEAF_SIGNATURE error ----- */
-rootCas.addFile('certs/bigbadcon-com-chain.pem')
+rootCas.addFile('./certs/bigbadcon-com-chain.pem')
 https.globalAgent.options.ca = rootCas;
 // let cas = https.globalAgent.options.ca || []
 // cas.push = fs.readFileSync(resolve('./certs/bigbadcon-com-chain.pem'))
