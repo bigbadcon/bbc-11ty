@@ -16,16 +16,14 @@ https.globalAgent.options.ca = rootCas;
 const apiBaseUrl = 'https://www.bigbadcon.com:8091/api/'
 
 exports.handler = async function(event, context) {
-    // const isFile = fs.readFileSync(resolve('./certs/bigbadcon-com-chain.pem'))
-    // console.log("🚀 ~ file: submission-created.js ~ line 15 ~ exports.handler=function ~ isFile", isFile)
     // your server-side functionality
-    const submission_path = event.path;
-    const submission_payload = JSON.parse(event.body).payload;
-    console.log("event triggered. Event Path:", submission_path)
+    const payload = JSON.parse(event.body).payload;
+    const data = payload.data
+    console.log("submission data", data);
 
-    if (submission_path === '/create-account-thank-you') {
-        console.log("submission data",submission_payload.data);
-        const { displayName, firstName, lastName, nickname, userEmail, userNicename, userLogin, userPass, twitter } = submission_payload.data
+    if (data.formName === 'create-account') {
+        console.log("create account function start");
+        const { displayName, firstName, lastName, nickname, userEmail, userNicename, userLogin, userPass, twitter } = data
 
         const params = {
             displayName: displayName, 
@@ -42,10 +40,10 @@ exports.handler = async function(event, context) {
 
         try {
             const res = await axios.put(apiBaseUrl + 'users/create', params)
-            console.log("put response", res);
+            console.log("put response", res.response);
             return {
-                statusCode: 200,
-                body: "done"
+                statusCode: res.response.status,
+                body: "account submitted"
             }
         } catch(e) {
             console.log("error", e);
