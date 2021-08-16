@@ -288,6 +288,20 @@ document.addEventListener('alpine:init', () => {
         return null
       }
     },
+    changePassword: async (userId, password) => {
+      try {
+        const res = await axios.post(apiBaseUrl + "users/setMyPassword", { userId: userId, password: password })
+        if (res.status === 200 || res.status === 201) {
+          return true
+        } else {
+          alertMsg(`login failed, status: ${res.status}`)
+          return null
+        }
+      } catch (err) {
+        alertMsg(`login failed, error: ${err}`)
+        return null
+      }
+    },
   }
 
   /* -------------------------------------------------------------------------- */
@@ -402,6 +416,11 @@ document.addEventListener('alpine:init', () => {
       const data = await api.getFavEvents()
       this.favEvents = data
       setLSWithExpiry('favEvents',data)
+    },
+    async changePassword(newPassword) {
+      // TODO: test me
+      // returns boolean value
+      const isChanged = await api.changePassword(this.user.id, newPassword)
     },
     logout() {
       console.log("logout")

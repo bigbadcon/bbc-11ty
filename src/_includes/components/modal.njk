@@ -14,6 +14,7 @@
             {{ login() }}
             {{ spinner() }}
             {{ userInfo() }}
+            {{ changePassword() }}
         </div>
     </div>
 {% endmacro %}
@@ -49,6 +50,30 @@
     </div>
 {% endmacro %}
 
+{# Change Password Panel #}
+{% macro changePassword() %}
+    <div x-cloak x-show="$store.auth.isAuth && modal === 'changePassword'" class="flex flex-col w-64 h-full" >
+        {# Header #}
+        <div class="flex justify-between gap-x-sm">
+            <h2 class="flex-grow -mt-1 font-serif text-2xl font-semibold leading-none text-header">
+                Change Password
+            </h2>
+            <div>
+                {{ closeBtn() }}
+            </div>
+        </div>
+        <form action="post" class="flex flex-col flex-grow my-sm text-body gap-base" x-data="{newPassword:''}" @submit.prevent="$store.auth.changePassword(newPassword)" >
+            <div>
+                <label for="password" class="text-xs uppercase">New Password</label>
+                <input class="w-full" id="password" name="password" required type="password" x-model="newPassword" value=""/>
+            </div>
+            <div>
+                <button class="font-bold uppercase transition-colors duration-200 rounded shadow text-form bg-highlight hover:bg-highlight-2 py-xs px-base" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+{% endmacro %}
+
 {# Loading Spinner. When logging in but user info not yet loaded #}
 {% macro spinner() %}
     <div x-cloak x-show="$store.auth.isAuth && !$store.auth.user" class="text-body">Loading...</div>
@@ -66,7 +91,7 @@
 {# My Account User Info Panel including My Events. Shown only when logged in #}
 {% macro userInfo() %}
     <div class="flex flex-col h-full text-body"
-    x-cloak x-show="$store.auth.isAuth && $store.auth.user"  
+    x-cloak x-show="$store.auth.isAuth && $store.auth.user && modal !== 'changePassword'"  
     >
         {# Header #}
         <div class="flex justify-between gap-x-sm">
@@ -101,9 +126,9 @@
         </ul>
 
         {# Buttons #}
-        <div class="pt-base">
+        <div class="flex pt-base gap-base">
             <button class="button" @click="$store.auth.logout()">Logout</button>
-            {# TODO: <button class="button" @click="() => {}">Change Password</button> #}
+            <button class="button" @click="modal = 'changePassword'">Change Password</button>
         </div>
     </div>
 {% endmacro %}
