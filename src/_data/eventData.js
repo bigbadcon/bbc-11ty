@@ -2,7 +2,7 @@ const Cache = require("@11ty/eleventy-cache-assets");
 const windows1252 = require('windows-1252');
 const utf8 = require('utf8')
 const slugify = require('slugify')
-const rootCas = require('ssl-root-cas').create();
+// const rootCas = require('ssl-root-cas').create();
 var dayjs = require('dayjs')
 var utc = require('dayjs/plugin/utc')
 var timezone = require('dayjs/plugin/timezone')
@@ -10,8 +10,10 @@ dayjs.extend(utc)
 dayjs.extend(timezone)
   
 /* ----- Inject cert to avoid the UNABLE_TO_VERIFY_LEAF_SIGNATURE error ----- */
-rootCas.addFile('./certs/bigbadcon-com-chain.pem')
-require('https').globalAgent.options.ca = rootCas;
+// rootCas.addFile('./certs/bigbadcon-com-chain.pem')
+// rootCas.addFile('./certs/admin-bbc-fullchain.pem')
+// rootCas.addFile('./certs/chain.pem')
+// require('https').globalAgent.options.ca = rootCas;
 
 /* ------------------------- Convert odd characters ------------------------- */
 const decodeText = text => {
@@ -20,7 +22,7 @@ const decodeText = text => {
 
 /* ---------------------------- Main url for API ---------------------------- */
 
-const url = "https://bigbadcon.com:8091/api/events/all/public"
+const url = "https://admin.bigbadcon.com:8091/api/events/all/public"
 
 /* -------- Convert metadata array to object to make it easier to use ------- */
 function metadataArrayToObject(arr) {
@@ -44,7 +46,7 @@ module.exports = async () => {
 
         /* -------------- Filter out unpublished events by eventStatus -------------- */
         // TODO: turn this filter on before we go live
-        // data = data.filter(event => event.eventStatus === 1);
+        data = data.filter(event => event.eventStatus === 1);
 
         /* ---------------- fix data if missing slug and decode text ---------------- */
         data = data.map(event => {

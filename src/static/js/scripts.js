@@ -95,7 +95,7 @@ document.addEventListener('alpine:init', () => {
   /*                             API Fetch Functions                            */
   /* -------------------------------------------------------------------------- */
 
-  const apiBaseUrl = "https://bigbadcon.com:8091/api/"
+  const apiBaseUrl = "https://admin.bigbadcon.com:8091/api/"
 
   const api = {
     getEvent: async (id) => {
