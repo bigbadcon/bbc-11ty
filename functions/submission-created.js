@@ -36,6 +36,7 @@ exports.handler = async function(event, context) {
         try {
             const res = await axios.put(apiBaseUrl + 'users/create', params)
             // console.log("put response", res);
+            console.log("New user successfully created for", userNicename, userEmail, displayName);
 
             /* --------------------------- New user message ---------------------------- */
             const newUserMsg = {
@@ -49,7 +50,7 @@ exports.handler = async function(event, context) {
             sgMail
             .send(newUserMsg)
             .then(() => {
-                console.log('Email sent')
+                console.log(`New User Success Email sent to ${userEmail}`)
             })
             .catch((error) => {
                 console.error(error)
@@ -67,7 +68,7 @@ exports.handler = async function(event, context) {
             sgMail
             .send(newUserAdminMsg)
             .then(() => {
-                console.log('Email sent')
+                console.log(`Admin Email sent for ${userEmail}`)
             })
             .catch((error) => {
                 console.error(error)
@@ -93,7 +94,7 @@ exports.handler = async function(event, context) {
             sgMail
             .send(newUserMsg)
             .then(() => {
-                console.log('Email sent')
+                console.log(`Failed New User Email sent to ${userEmail}`)
             })
             .catch((error) => {
                 console.error(error)
@@ -111,7 +112,7 @@ exports.handler = async function(event, context) {
             sgMail
             .send(newUserAdminMsg)
             .then(() => {
-                console.log('Email sent')
+                console.log(`Failed New User Email sent to admin about ${userEmail}`)
             })
             .catch((error) => {
                 console.error(error)
