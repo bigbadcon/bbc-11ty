@@ -26,7 +26,6 @@
                 method="POST" 
                 name="create-account"  
                 action="/create-account-thank-you"
-                {# @submit.prevent="putUserCreate()" #}
                 >
                     <div class="prose">
                         <p class="hidden">
@@ -89,10 +88,10 @@
                                 <label for="nickname" class="text-xs uppercase">Publically Displayed Name <span class="font-bold text-highlight">*</span></label>
                                 <input class="w-64" id="nickname" name="nickname" :required="howToDisplay === 'nickname'" type="text" x-model="nickname" value=""/>
                             </div>
-                            <div>
+                            {# <div>
                                 <label for="twitter" class="text-xs uppercase">Twitter handle</label>
                                 <input class="w-64" id="twitter" name="twitter" type="text" value="" x-model="twitter"/>
-                            </div>
+                            </div> #}
                             <input type="hidden" value="" name="displayName" id="displayName" :value="displayName"/>
                             <input type="hidden" value="create-account" name="formName" id="formName"/>
                         </div>

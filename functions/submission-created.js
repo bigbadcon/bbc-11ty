@@ -86,8 +86,8 @@ exports.handler = async function(event, context) {
                 to: userEmail,
                 from: 'info@bigbadcon.com', 
                 subject: 'Big Bad Con New User Account',
-                text: `Hello ${displayName}! There was a problem adding your account. This could have been for several reasons including if there already was a user by that name or email in the system. Or just server error. An email has been sent to our admin staff to see what is wrong. If you have any questions you can reply to this message.`,
-                html: `Hello ${displayName}! There was a problem adding your account. This could have been for several reasons including if there already was a user by that name or email in the system. Or just server error. An email has been sent to our admin staff to see what is wrong. If you have any questions you can reply to this message.`,
+                text: `Hello ${displayName}, Unfortunately there was a problem adding your account. This could have been for several reasons including if there already was a user by that name or email in the system. Or just server error. An email has been sent to our admin staff to see what is wrong. If you have any questions you can reply to this message.`,
+                html: `Hello ${displayName}, Unfortunately there was a problem adding your account. This could have been for several reasons including if there already was a user by that name or email in the system. Or just server error. An email has been sent to our admin staff to see what is wrong. If you have any questions you can reply to this message.`,
             }
             /* ---------------------------- SendGrid function --------------------------- */
             sgMail
