@@ -1,18 +1,13 @@
 const axios = require('axios');
 const rootCas = require('ssl-root-cas').create();
-const fs = require('fs');
-const resolve = require('path').resolve
 const https = require('https')
-// const cert = require('../certs/bigbadcon-com-chain.pem')
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 /* ----- Inject cert to avoid the UNABLE_TO_VERIFY_LEAF_SIGNATURE error ----- */
-rootCas.addFile('./certs/bigbadcon-com-chain.pem')
+rootCas.addFile('./certs/bigbadcon-com-chain.pem');
 https.globalAgent.options.ca = rootCas;
-// let cas = https.globalAgent.options.ca || []
-// cas.push = fs.readFileSync(resolve('./certs/bigbadcon-com-chain.pem'))
-// https.globalAgent.options.ca = cas;
 
-// TODO: change to prod api once tested
 const apiBaseUrl = 'https://www.bigbadcon.com:8091/api/'
 
 exports.handler = async function(event, context) {
@@ -41,15 +36,90 @@ exports.handler = async function(event, context) {
         try {
             const res = await axios.put(apiBaseUrl + 'users/create', params)
             // console.log("put response", res);
+
+            /* --------------------------- New user message ---------------------------- */
+            const newUserMsg = {
+                to: userEmail,
+                from: 'info@bigbadcon.com', 
+                subject: 'Big Bad Con New User Account',
+                text: `Welcome ${displayName}! Your new user account has been created. You can now return to bigbadcon.com to log in!`,
+                html: `Welcome ${displayName}! Your new user account has been created. You can now return to <a href="http://www.bigbadcon.com>Big Bad Con</a> to log in!`,
+            }
+            /* ---------------------------- SendGrid function --------------------------- */
+            sgMail
+            .send(newUserMsg)
+            .then(() => {
+                console.log('Email sent')
+            })
+            .catch((error) => {
+                console.error(error)
+            })
+
+            /* --------------------------- Admin user message --------------------------- */
+            const newUserAdminMsg = {
+                to: 'info@bigbadcon.com',
+                from: 'info@bigbadcon.com', 
+                subject: 'New User added',
+                text: `New user ${displayName} added! Email: ${userEmail}; Full name: ${firstName} ${lastName}; userNicename: ${userNicename}`,
+                html: `New user ${displayName} added! Email: ${userEmail}; Full name: ${firstName} ${lastName}; userNicename: ${userNicename}`,
+            }
+            /* ---------------------------- SendGrid function --------------------------- */
+            sgMail
+            .send(newUserAdminMsg)
+            .then(() => {
+                console.log('Email sent')
+            })
+            .catch((error) => {
+                console.error(error)
+            })
+
+            /* ------------------------------- Return 200 ------------------------------- */
             return {
                 statusCode: 200,
                 body: "account submitted"
             }
         } catch(e) {
-            console.log("error", e);
+            console.log("account submission error", e);
+
+            /* --------------------------- New user message ---------------------------- */
+            const newUserMsg = {
+                to: userEmail,
+                from: 'info@bigbadcon.com', 
+                subject: 'Big Bad Con New User Account',
+                text: `Hello ${displayName}! There was a problem adding your account. This could have been for several reasons including if there already was a user by that name or email in the system. Or just server error. An email has been sent to our admin staff to see what is wrong. If you have any questions you can reply to this message.`,
+                html: `Hello ${displayName}! There was a problem adding your account. This could have been for several reasons including if there already was a user by that name or email in the system. Or just server error. An email has been sent to our admin staff to see what is wrong. If you have any questions you can reply to this message.`,
+            }
+            /* ---------------------------- SendGrid function --------------------------- */
+            sgMail
+            .send(newUserMsg)
+            .then(() => {
+                console.log('Email sent')
+            })
+            .catch((error) => {
+                console.error(error)
+            })
+
+            /* --------------------------- Admin user message --------------------------- */
+            const newUserAdminMsg = {
+                to: 'info@bigbadcon.com',
+                from: 'info@bigbadcon.com', 
+                subject: 'New User Account Creation Failed',
+                text: `The user ${displayName} attempted but failed to create an account. Not sure why it failed. Email: ${userEmail}; Full name: ${firstName} ${lastName}; userNicename: ${userNicename}`,
+                html: `The user ${displayName} attempted but failed to create an account. Not sure why it failed. Email: ${userEmail}; Full name: ${firstName} ${lastName}; userNicename: ${userNicename}`,
+            }
+            /* ---------------------------- SendGrid function --------------------------- */
+            sgMail
+            .send(newUserAdminMsg)
+            .then(() => {
+                console.log('Email sent')
+            })
+            .catch((error) => {
+                console.error(error)
+            })
+
             return {
                 statusCode: e.response.status,
-                body: "error"
+                body: "error in account submission"
             }
         }
  

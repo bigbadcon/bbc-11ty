@@ -466,34 +466,8 @@ document.addEventListener('alpine:init', () => {
     howToDisplay: 'firstlast', 
     nickname:'', 
     displayName:'', 
-    twitter:'',
+    twitter:'', // not set up yet in API
     userLogin: '',
-    async putUserCreate() {
-      // const token = getAuthToken()
-      // if (!token) return null
-      // const config = { headers: { Authorization: token } }
-      const params = {
-        userNicename: this.userNicename,
-        userEmail: this.userEmail,
-        firstName: this.firstName,
-        lastName: this.lastName,
-        nickname: this.nickname,
-        displayName: this.displayName,
-        userUrl: this.userUrl,
-        userPass: this.userPass,
-        userLogin: this.userNicename,
-      }
-      console.log("params", params);
-      try {
-        const res = await axios.put('https://bigbadcon.com:8091/apidev/' + 'users/create', params);
-        
-        const data = await res.data
-        console.log("🚀 ~ file: scripts.js ~ line 488 ~ putUserCreate ~ data", res, data)
-      } catch (err) {
-        alertMsg(`get create user failed, error: ${err}`)
-        return null
-      }
-    }
   }))
 
 })
