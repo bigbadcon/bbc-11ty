@@ -1,6 +1,7 @@
 const axios = require('axios');
 const rootCas = require('ssl-root-cas').create();
 const https = require('https')
+require('dotenv').config();
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
