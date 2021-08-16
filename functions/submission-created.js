@@ -52,7 +52,7 @@ exports.handler = async function(event, context) {
                     from: 'info@bigbadcon.com', 
                     subject: 'Big Bad Con New User Account',
                     text: `Welcome ${displayName}! Your new user account has been created. You can now return to bigbadcon.com to log in!`,
-                    html: `Welcome ${displayName}! Your new user account has been created. You can now return to <a href="http://www.bigbadcon.com>Big Bad Con</a> to log in!`,
+                    html: `Welcome ${displayName}! Your new user account has been created. You can now return to <a href="http://www.bigbadcon.com">bigbadcon.com</a> to log in!`,
                 }
 
                 await sgMail.send(newUserMsg);
