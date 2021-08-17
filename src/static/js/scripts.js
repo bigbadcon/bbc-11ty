@@ -446,7 +446,7 @@ document.addEventListener('alpine:init', () => {
       // console.log("🚀 ~ file: scripts.js ~ line 431 ~ getEventsCategory ~ data", data)
     },
     volunteerEventSpace(eventId) {
-      return (this.volunteerEventSpaces.length > 0) ? this.volunteerEventSpaces.find( e => e.eventId === eventId) : false
+      return (this.volunteerEventSpaces && this.volunteerEventSpaces.length > 0) ? this.volunteerEventSpaces.find( e => e.eventId === eventId) : false
     },
     async getBookedEvents() {
       const data = await api.getBookedEvents()
