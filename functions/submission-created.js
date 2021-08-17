@@ -1,15 +1,11 @@
 const axios = require('axios');
-const rootCas = require('ssl-root-cas').create();
-const https = require('https')
 require('dotenv').config();
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 /* ----- Inject cert to avoid the UNABLE_TO_VERIFY_LEAF_SIGNATURE error ----- */
-rootCas.addFile('./certs/bigbadcon-com-chain.pem');
-https.globalAgent.options.ca = rootCas;
 
-const apiBaseUrl = 'https://www.bigbadcon.com:8091/api/'
+const apiBaseUrl = 'https://admin.bigbadcon.com:8091/api/'
 
 exports.handler = async function(event, context) {
     // your server-side functionality
