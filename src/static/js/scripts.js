@@ -424,6 +424,7 @@ document.addEventListener('alpine:init', () => {
       // console.log("change password",this.user.id,newPassword);
       // returns boolean value
       const isChanged = await api.changePassword(this.user.id, newPassword)
+      // triggers toast
       if (isChanged) { this.makeToast("Password changed") } else this.makeToast("Error: Failed to change password")
       return isChanged
     },
@@ -441,6 +442,7 @@ document.addEventListener('alpine:init', () => {
       localStorage.removeItem('availableSlots')
     },
     // Toast notifications
+    // TODO: look into making this global
     toast: null,
     makeToast(notification) {
       this.toast = notification
