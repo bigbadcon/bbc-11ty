@@ -3,6 +3,7 @@ layout: layouts/page.njk
 title: Community Standards
 description: ''
 tags: pages
+
 ---
 At Big Bad Con, we foster a community that welcomes marginalized genders, queer folks, people of color, and people with disabilities. We actively work to make the con as physically, socially, and financially accessible as possible, and to cultivate a culture of **respect**, **support**, and **kindness**.
 
@@ -15,8 +16,8 @@ At Big Bad Con, we foster a community that welcomes marginalized genders, queer 
 ## **Support**
 
 * **We celebrate new players.** _We take time to teach rules, invite questions, and offer help in-game._
-* **_We hold space for one another._** _We keep pathways clear, communicate with patience, and create opportunities for everyone to participate._
-* **_We invest in our community._** _Donations made at the Fireside Chat go to our scholarship fund, which helps marginalized folks attend the con._
+* **We hold space for one another_._** _We keep pathways clear, communicate with patience, and create opportunities for everyone to participate._
+* **We invest in our community_._** _Donations made go to our scholarship fund, which helps marginalized folks attend the con._
 
 ## **Kindness**
 
