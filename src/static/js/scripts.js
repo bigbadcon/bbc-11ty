@@ -125,6 +125,32 @@ document.addEventListener('alpine:init', () => {
         return null
       }
     },
+    getEventsCategory: async (category) => {
+      const token = getAuthToken()
+      if (!token) return null
+      const config = { headers: { Authorization: token } }
+      try {
+        const res = await axios.get(apiBaseUrl + 'events/category/' + category, config)
+        const events = res.data
+
+        const data = events.map(event => {
+          const spacesTotal = Number(event.metadata.find( m => m.metaKey === 'Players' ).metaValue)
+          const bookings = event.bookings.filter(booking => booking.bookingStatus === 1).length
+          // return only the spaces numbers as that's all I need right now
+          // TODO: this will break when we have events where the GM is listed as booked!!!
+          return {
+            eventId: event.eventId,
+            spacesOpen: spacesTotal - bookings,
+            spacesTotal: spacesTotal
+          }
+        })
+
+        return data
+      } catch (err) {
+        alertMsg(`get events category ${category} failed, error: ${err}`)
+        return null
+      }
+    },
     getFavEvents: async () => {
       const token = getAuthToken()
       if (!token) return null
@@ -322,6 +348,7 @@ document.addEventListener('alpine:init', () => {
       this.availableSlots = getLSWithExpiry('availableSlots')
       this.bookedEvents = getLSWithExpiry('bookedEvents')
       this.favEvents = getLSWithExpiry('favEvents')
+      this.volunteerEventSpaces = getLSWithExpiry('volunteerEventSpaces')
       if (this.isAuth) {
         if (!this.user) this.getUserData()
         if (!this.bookedEvents) this.getBookedEvents()
@@ -340,6 +367,7 @@ document.addEventListener('alpine:init', () => {
     availableSlots: null,
     bookedEvents: [],
     favEvents: [],
+    volunteerEventSpaces: [],
     isBooked(id) {
       if (this.bookedEvents) return this.bookedEvents.some( item => item.eventId === id)
       return false
@@ -410,6 +438,16 @@ document.addEventListener('alpine:init', () => {
       this.availableSlots = data
       setLSWithExpiry('availableSlots',data)
     },
+    async getEventsCategory(category) {
+      // console.log("🚀 ~ file: scripts.js ~ line 429 ~ getEventsCategory ~ category", category)
+      const data = await api.getEventsCategory(category)
+      this.volunteerEventSpaces = data
+      setLSWithExpiry('volunteerEventSpaces',data)
+      // console.log("🚀 ~ file: scripts.js ~ line 431 ~ getEventsCategory ~ data", data)
+    },
+    volunteerEventSpace(eventId) {
+      return (this.volunteerEventSpaces.length > 0) ? this.volunteerEventSpaces.find( e => e.eventId === eventId) : false
+    },
     async getBookedEvents() {
       const data = await api.getBookedEvents()
       this.bookedEvents = data
@@ -435,11 +473,13 @@ document.addEventListener('alpine:init', () => {
       this.bookedEvents = null
       this.favEvents = null
       this.availableSlots = null
+      this.volunteerEventSpaces = null
       localStorage.removeItem('authToken')
       localStorage.removeItem('user')
       localStorage.removeItem('favEvents')
       localStorage.removeItem('bookedEvents')
       localStorage.removeItem('availableSlots')
+      localStorage.removeItem('volunteerEventSpaces')
     },
     // Toast notifications
     // TODO: look into making this global
@@ -458,7 +498,7 @@ document.addEventListener('alpine:init', () => {
 
   Alpine.data('eventInfo', () => ({
     event: null,
-    maxPlayers: null,
+    spacesTotal: null,
     spacesOpen: null,
     owner: null,
     gm: null,
@@ -468,13 +508,13 @@ document.addEventListener('alpine:init', () => {
       console.log("🚀 ~ file: scripts.js ~ line 373 ~ getEvent ~ data", data)
       if (data) {
         this.event = data
-        const maxPlayers = parseInt(data.metadata.Players)
-        this.maxPlayers = maxPlayers
+        const spacesTotal = parseInt(data.metadata.Players)
+        this.spacesTotal = spacesTotal
         this.owner = data.eventOwner.displayName
         this.gm = data.metadata.GM
         const bookings = data.bookings.filter(booking => booking.bookingComment !== "GM")
         this.bookings = bookings
-        this.spacesOpen = maxPlayers - bookings.length
+        this.spacesOpen = spacesTotal - bookings.length
       }
     },
     showTimezone(date,tz) {

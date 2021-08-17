@@ -9,8 +9,6 @@ eleventyComputed:
     title: "{{ event.eventName | safe }}"
 ---
 
-{%- from "components/auth-macros.njk" import eventAuthPanel -%}
-
 {# Date and Time #}
 {% include 'components/event-date-time.njk'%}
 
