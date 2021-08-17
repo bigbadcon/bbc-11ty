@@ -62,7 +62,7 @@
                 {{ closeBtn() }}
             </div>
         </div>
-        <form action="post" class="flex flex-col flex-grow my-sm text-body gap-base" x-data="{newPassword:''}" @submit.prevent="$store.auth.changePassword(newPassword)" >
+        <form action="post" class="flex flex-col flex-grow my-sm text-body gap-base" x-data="{newPassword:''}" @submit.prevent="$store.auth.changePassword(newPassword); modal = false" >
             <div>
                 <label for="password" class="text-xs uppercase">New Password</label>
                 <input class="w-full" id="password" name="password" required type="password" x-model="newPassword" value=""/>

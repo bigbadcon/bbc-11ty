@@ -289,8 +289,11 @@ document.addEventListener('alpine:init', () => {
       }
     },
     changePassword: async (userId, password) => {
+      const token = getAuthToken()
+      if (!token) return null
+      const config = { headers: { Authorization: token } }
       try {
-        const res = await axios.post(apiBaseUrl + "users/setMyPassword", { userId: userId, password: password })
+        const res = await axios.post(apiBaseUrl + "users/setMyPassword", { userId: userId, password: password }, config)
         if (res.status === 200 || res.status === 201) {
           return true
         } else {
@@ -418,9 +421,12 @@ document.addEventListener('alpine:init', () => {
       setLSWithExpiry('favEvents',data)
     },
     async changePassword(newPassword) {
-      // TODO: test me
+      // console.log("change password",this.user.id,newPassword);
       // returns boolean value
       const isChanged = await api.changePassword(this.user.id, newPassword)
+      // triggers toast
+      if (isChanged) { this.makeToast("Password changed") } else this.makeToast("Error: Failed to change password")
+      return isChanged
     },
     logout() {
       console.log("logout")
@@ -436,6 +442,7 @@ document.addEventListener('alpine:init', () => {
       localStorage.removeItem('availableSlots')
     },
     // Toast notifications
+    // TODO: look into making this global
     toast: null,
     makeToast(notification) {
       this.toast = notification
