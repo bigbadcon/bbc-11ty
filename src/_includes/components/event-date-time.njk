@@ -15,4 +15,10 @@
         {% eventDuration event.eventStartDateTime,
         event.eventEndDateTime %} hrs
     </div>
+    {# Spaces #}
+    {# TODO: make a seperate component for panels as this only shows on Volunteer events #}
+    <div>
+        <strong>Spaces:</strong>
+        <span x-text="(spacesOpen) ? spacesOpen + ' out of ' + maxPlayers : '{{event.metadata.Players}}'">{{event.metadata.Players}}</span>
+    </div>
 </div>
