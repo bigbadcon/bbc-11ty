@@ -539,9 +539,10 @@ document.addEventListener('alpine:init', () => {
 })
 
 /* -------------------------------------------------------------------------- */
-/*      If queueMicrotask isn't supported then Alpine v3 isn't supported      */
+/*                           Polyfills for Safari 11                          */
 /* -------------------------------------------------------------------------- */
 
+/* ----------------------------- queueMicrotask ----------------------------- */
 if (typeof self.queueMicrotask !== "function") {
   self.queueMicrotask = function (callback) {
     Promise.resolve()
@@ -559,5 +560,5 @@ if (typeof self.queueMicrotask !== "function") {
 	delete Object.prototype.__magic__;
 }());
 
-// Your code can use `globalThis` now.
-console.log(globalThis);
+/* -------------------------------- flatMap() ------------------------------- */
+// See https://unpkg.com/array-flat-polyfill in head
