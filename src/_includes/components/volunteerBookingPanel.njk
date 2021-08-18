@@ -7,11 +7,11 @@
             <span>Spaces Open:</span>
             <span x-text="spacesOpen"></span> out of <span x-text="spacesTotal"></span>
         </div>
-        <div x-cloak x-show="bookings.length > 0">
+        <div x-cloak x-show="booking && bookings.length > 0">
             <h4 class="font-serif text-2xl font-semibold mt-sm">Volunteer List</h4>
             <ul class="list-disc pl-md">
                 <template x-for="booking in bookings">
-                    <li class="mb-xs" x-text="booking?.user.displayName"></li>
+                    <li class="mb-xs" x-text="booking && booking.user.displayName"></li>
                 </template>
             </ul>
         </div>

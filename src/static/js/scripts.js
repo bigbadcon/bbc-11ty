@@ -405,16 +405,16 @@ document.addEventListener('alpine:init', () => {
         this.favEvents = [...this.favEvents, id]
         data = await api.addFav(id) 
       }
-      if (data?.status === 'FAILURE') this.makeToast(data.message)
-      if (data?.status === 'SUCCESS') {
+      if (data && data.status === 'FAILURE') this.makeToast(data.message)
+      if (data && data.status === 'SUCCESS') {
         this.getFavEvents()
       }
     },
     async bookEvent(id) {
       const data = await api.bookEvent(id)
       console.log("🚀 ~ file: scripts.js ~ line 294 ~ bookEvent ~ data", data)
-      if (data?.status === 'FAILURE') this.makeToast(data.message)
-      if (data?.status === 'SUCCESS') {
+      if (data && data.status === 'FAILURE') this.makeToast(data.message)
+      if (data && data.status === 'SUCCESS') {
         this.getBookedEvents()
         this.makeToast("You've booked this event!")
       }
@@ -422,8 +422,8 @@ document.addEventListener('alpine:init', () => {
     async cancelBooking(id) {
       const data = await api.cancelBooking(id)
       console.log("🚀 ~ file: scripts.js ~ line 294 ~ bookEvent ~ data", data)
-      if (data?.status === 'FAILURE') this.makeToast(data.message)
-      if (data?.status === 'SUCCESS') {
+      if (data && data.status === 'FAILURE') this.makeToast(data.message)
+      if (data && data.status === 'SUCCESS') {
         this.getBookedEvents()
         this.makeToast("Booking canceled")
       }
@@ -537,3 +537,28 @@ document.addEventListener('alpine:init', () => {
   }))
 
 })
+
+/* -------------------------------------------------------------------------- */
+/*                           Polyfills for Safari 11                          */
+/* -------------------------------------------------------------------------- */
+
+/* ----------------------------- queueMicrotask ----------------------------- */
+if (typeof self.queueMicrotask !== "function") {
+  self.queueMicrotask = function (callback) {
+    Promise.resolve()
+      .then(callback)
+      .catch(e => setTimeout(() => { throw e; })); // report exceptions
+  };
+}
+/* ------------------------- Polyfill for globalThis ------------------------ */
+(function() {
+	if (typeof globalThis === 'object') return;
+	Object.prototype.__defineGetter__('__magic__', function() {
+		return this;
+	});
+	__magic__.globalThis = __magic__; // lolwat
+	delete Object.prototype.__magic__;
+}());
+
+/* -------------------------------- flatMap() ------------------------------- */
+// See https://unpkg.com/array-flat-polyfill in head
