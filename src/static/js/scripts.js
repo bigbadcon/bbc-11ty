@@ -91,6 +91,7 @@ function metadataArrayToObject(arr) {
 
 document.addEventListener('alpine:init', () => {
 
+  console.log('alpine:init');
   /* -------------------------------------------------------------------------- */
   /*                             API Fetch Functions                            */
   /* -------------------------------------------------------------------------- */
