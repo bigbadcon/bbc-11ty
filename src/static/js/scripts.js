@@ -549,3 +549,15 @@ if (typeof self.queueMicrotask !== "function") {
       .catch(e => setTimeout(() => { throw e; })); // report exceptions
   };
 }
+/* ------------------------- Polyfill for globalThis ------------------------ */
+(function() {
+	if (typeof globalThis === 'object') return;
+	Object.prototype.__defineGetter__('__magic__', function() {
+		return this;
+	});
+	__magic__.globalThis = __magic__; // lolwat
+	delete Object.prototype.__magic__;
+}());
+
+// Your code can use `globalThis` now.
+console.log(globalThis);
