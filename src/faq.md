@@ -20,7 +20,7 @@ Yes! Big Bad Con is an official 501(c)(3) non-profit! Donations are tax deductib
 
 ## Where did you get all the wonderful illustrations and graphics?
 
-The character illustrations of Red and The Wolf are done [Eden Parkinson](https://www.eden-eventide.art/)
+The character illustrations of Red and The Wolf are done [Eden Parkinson](https://eden-parkinson.com)
 
 Logo design, web design and front-end web development by [Colin Fahrion](http://www.twitter.com/colinaut)
 
