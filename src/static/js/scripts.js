@@ -91,7 +91,6 @@ function metadataArrayToObject(arr) {
 
 document.addEventListener('alpine:init', () => {
 
-  console.log('alpine:init');
   /* -------------------------------------------------------------------------- */
   /*                             API Fetch Functions                            */
   /* -------------------------------------------------------------------------- */
@@ -538,3 +537,15 @@ document.addEventListener('alpine:init', () => {
   }))
 
 })
+
+/* -------------------------------------------------------------------------- */
+/*      If queueMicrotask isn't supported then Alpine v3 isn't supported      */
+/* -------------------------------------------------------------------------- */
+
+if (typeof self.queueMicrotask !== "function") {
+  self.queueMicrotask = function (callback) {
+    Promise.resolve()
+      .then(callback)
+      .catch(e => setTimeout(() => { throw e; })); // report exceptions
+  };
+}
