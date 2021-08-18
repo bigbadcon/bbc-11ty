@@ -1,12 +1,11 @@
-<div class="rounded-md shadow mt-md text-body p-base bg-card" 
-x-data="eventInfo" 
-x-init="getEvent({{event.eventId}}); $watch('$store.auth.isAuth', value => {if (value === true) getEvent({{event.eventId}})}); $watch('$store.auth.bookedEvents', value => { getEvent({{event.eventId}}) } )">
+<div class="rounded-md shadow mt-md text-body p-base bg-card">
     <h2 class="-mt-1 font-serif text-2xl font-bold leading-none md:text-4xl text-header mb-sm">Volunteer Signup</h2>
     {# Event Name, spaces open, and list of players; only show if logged in and has event data #}
+    {# data is in eventInfo which is in event.njk #}
     <div x-cloak x-show="event">
         <div>
             <span>Spaces Open:</span>
-            <span x-text="spacesOpen"></span> out of <span x-text="maxPlayers"></span>
+            <span x-text="spacesOpen"></span> out of <span x-text="spacesTotal"></span>
         </div>
         <div x-cloak x-show="bookings.length > 0">
             <h4 class="font-serif text-2xl font-semibold mt-sm">Volunteer List</h4>

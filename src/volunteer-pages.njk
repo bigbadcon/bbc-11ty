@@ -1,5 +1,5 @@
 ---
-layout: layouts/plain.njk
+layout: layouts/event.njk
 pagination:
     data: eventData.volunteer
     size: 1
@@ -8,8 +8,6 @@ permalink: "volunteer/{{ event.eventSlug }}/"
 eleventyComputed:
     title: "{{ event.eventName | safe }}"
 ---
-
-{%- from "components/auth-macros.njk" import eventAuthPanel -%}
 
 {# Date and Time #}
 {% include 'components/event-date-time.njk'%}
