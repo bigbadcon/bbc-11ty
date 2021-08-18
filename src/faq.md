@@ -12,11 +12,11 @@ Big Bad Online 2021 is a more focused event than our in-person Big Bad Con. With
 
 ## Where are all the games at Big Bad Online?
 
-There are no scheduled games at Big Bad Online. We will have a Big Bad Online 2021 Discord the day of the event where people can chat and jump off into games if they like. You can register for the Big Bad Online Discord [here](/register). Note this is seperate Discord from our year-round [Community Discord](/community-discord).
+There are no scheduled games at Big Bad Online. We will have a Big Bad Online 2021 Discord the day of the event where people can chat and jump off into games if they like. You can register for the Big Bad Online Discord [here](/register). Note this is separate Discord from our year-round [Community Discord](/community-discord).
 
 ## Is Big Bad Con an official non-profit? Are my donations tax deductible?
 
-Yes Big Bad Con is an official 501(c)(3) non-profit! Donations are tax deductible and we count as a charitable organization for volunteering. For more information on our non-profit status see [Proof of 501(c)(3) Status](/non-profit).
+Yes! Big Bad Con is an official 501(c)(3) non-profit! Donations are tax deductible and we count as a charitable organization for volunteering. For more information on our non-profit status see [Proof of 501(c)(3) Status](/non-profit).
 
 ## Where did you get all the wonderful illustrations and graphics?
 
