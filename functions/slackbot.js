@@ -91,7 +91,7 @@ exports.handler = async function(event, context) {
         ack: async (response) => {
             return {
               statusCode: 200,
-              body: response ?? ""
+              body: (response !== null || response !== undefined) ? response : ""
             };
         }
     }
