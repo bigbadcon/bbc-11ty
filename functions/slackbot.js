@@ -48,7 +48,7 @@ async function sendChat(body,text) {
 
 app.command('/website', async({body, ack}) => {
     ack();
-    const buildHookUrl = "https://api.netlify.com/build_hooks/611e8a3c85726626487bab71"
+    const buildHookUrl = `https://api.netlify.com/build_hooks/${process.env.NETLIFY_BUILD_HOOK_SLACKBOT}`
     //  trigger different functions with parameters
     if (body.text === '') await sendChat(body, `Hi ${body.user_name}! I'm the website bot! You can trigger a new Production build by typing "/website build" or a new Drafts branch by typing "/website drafts"`)
     if (body.text === 'build') {
