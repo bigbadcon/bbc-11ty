@@ -15,4 +15,11 @@
         {% eventDuration event.eventStartDateTime,
         event.eventEndDateTime %} hrs
     </div>
+    {# Spaces #}
+    {# spacesOpen is in eventInfo which is in event.njk #}
+    {# TODO: make a seperate component for panels as this only shows on Volunteer events #}
+    <div>
+        <strong>Spaces:</strong>
+        <span x-text="(spacesTotal) ? spacesOpen + ' out of ' + spacesTotal : '{{event.metadata.Players}}'">{{event.metadata.Players}}</span>
+    </div>
 </div>

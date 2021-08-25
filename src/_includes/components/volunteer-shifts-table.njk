@@ -1,4 +1,5 @@
-<section class="mt-md">
+<section class="mt-md" 
+x-init="if ($store.auth.isAuth) $store.auth.getEventsCategory('volunteer-shift'); $watch('$store.auth.isAuth', value => {if (value) $store.auth.getEventsCategory('volunteer-shift')})">
     <h2 class="font-serif text-3xl font-bold leading-none md:text-4xl text-header mb-base">Volunteer Shift List</h2>
     {% include 'components/event-table-filter.njk' %}
     <table class="w-full text-sm leading-tight text-body">
@@ -7,6 +8,7 @@
                 <th class="text-left pb-sm">Event Name</th>
                 <th class="text-left pb-sm">Date Time</th>
                 <th class="text-center pb-sm max-w-max">Dur</th>
+                <th class="text-center pb-sm max-w-max">Spaces</th>
                 <th class="w-8 text-center pb-sm" x-cloak x-show="$store.auth.isAuth">
                     <span class="flex items-center justify-end">{% icon 'square-check', 'fill-body' %}</span>
                 </th>
@@ -31,6 +33,13 @@
                     <td class="text-center py-sm">
                         {% eventDuration event.eventStartDateTime,
                         event.eventEndDateTime %}h
+                    </td>
+                    {# Spaces #}
+                    <td class="text-center py-sm" 
+                    x-data="{eventSpace:$store.auth.volunteerEventSpace({{event.eventId}})}" 
+                    x-init="$watch('$store.auth.volunteerEventSpaces', value => {if (value) eventSpace = $store.auth.volunteerEventSpace({{event.eventId}})})" 
+                    x-text="(eventSpace) ? eventSpace.spacesOpen + '/' + eventSpace.spacesTotal : '{{event.metadata.Players}}'">
+                        {{  event.metadata.Players }}
                     </td>
                     {# Booked Event Icon #}
                     <td x-cloak x-show="$store.auth.isAuth">

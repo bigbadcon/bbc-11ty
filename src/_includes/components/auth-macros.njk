@@ -92,7 +92,7 @@
             </p>
             <p>
                 <span>Spaces Open:</span>
-                <span x-text="spaces"></span> out of <span x-text="maxPlayers"></span>
+                <span x-text="spacesOpen"></span> out of <span x-text="spacesTotal"></span>
             </p>
             <p class="flex mt-xs gap-sm">
                 <button class="button" x-show="spaces > 0 && !$store.auth.isBooked({{eventId}})">Book Event</button>

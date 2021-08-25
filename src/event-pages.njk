@@ -1,5 +1,5 @@
 ---
-layout: layouts/plain.njk
+layout: layouts/event.njk
 pagination:
     data: eventData.events
     size: 1
@@ -11,7 +11,7 @@ eleventyComputed:
     heroImage: "/event-images/{{ event.eventSlug }}.png"
     heroImageAlt: "Speaker headshots"
 ---
-{%- from "components/auth-macros.njk" import eventAuthPanel -%}
+
 {# Speakers #}
 {# Time #}
 {# Time at their timezone #}
