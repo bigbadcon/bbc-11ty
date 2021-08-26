@@ -10,9 +10,6 @@ x-init="if ($store.auth.isAuth) $store.auth.getEventsCategory('volunteer-shift')
                 <th class="text-center pb-sm max-w-max">Dur</th>
                 <th class="text-center pb-sm max-w-max">Spaces</th>
                 <th class="w-8 text-center pb-sm" x-cloak x-show="$store.auth.isAuth">
-                    <span class="flex items-center justify-end">{% icon 'square-check', 'fill-body' %}</span>
-                </th>
-                <th class="w-8 text-center pb-sm" x-cloak x-show="$store.auth.isAuth">
                     <span class="flex items-center justify-end">{% icon 'star', 'fill-body' %}</span>
                 </th>
             </tr>
@@ -35,17 +32,14 @@ x-init="if ($store.auth.isAuth) $store.auth.getEventsCategory('volunteer-shift')
                         event.eventEndDateTime %}h
                     </td>
                     {# Spaces #}
-                    <td class="text-center py-sm" 
-                    x-data="{eventSpace:$store.auth.volunteerEventSpace({{event.eventId}})}" 
-                    x-init="$watch('$store.auth.volunteerEventSpaces', value => {if (value) eventSpace = $store.auth.volunteerEventSpace({{event.eventId}})})" 
-                    x-text="(eventSpace) ? eventSpace.spacesOpen + '/' + eventSpace.spacesTotal : '{{event.metadata.Players}}'">
-                        {{  event.metadata.Players }}
-                    </td>
-                    {# Booked Event Icon #}
-                    <td x-cloak x-show="$store.auth.isAuth">
-                        <span x-show="$store.auth.isBooked({{event.eventId}})" class="flex justify-end">{% icon 'square-check' %}</span>
-                        <span x-show="!$store.auth.isBooked({{event.eventId}}) && $store.auth.volunteerEventSpace({{event.eventId}}).spacesOpen > 0" class="flex justify-end opacity-40">{% icon 'square-open', 'fill-body' %}</span>
-                        <span x-show="!$store.auth.isBooked({{event.eventId}}) && $store.auth.volunteerEventSpace({{event.eventId}}).spacesOpen === 0" class="flex justify-end opacity-40">{% icon 'square-full', 'fill-body' %}</span>
+                    <td class="flex items-center justify-center py-sm">
+                        <span 
+                        style="width: 1.375rem; height: 1.375rem" 
+                        class="block text-center border-2 rounded border-body" 
+                        x-data="{eventSpace:$store.auth.volunteerEventSpace({{event.eventId}})}" 
+                        x-init="$watch('$store.auth.volunteerEventSpaces', value => {if (value) eventSpace = $store.auth.volunteerEventSpace({{event.eventId}})})" 
+                        :class="eventSpace && eventSpace.spacesOpen === 0 && 'bg-card opacity-40'" 
+                        x-text="($store.auth.isBooked({{event.eventId}})) ? '&#10004;' : (eventSpace) ? eventSpace.spacesOpen : '{{event.metadata.Players}}'">{{ event.metadata.Players }}</span>
                     </td>
                     {# Fav Event Icon #}
                     <td x-cloak x-show="$store.auth.isAuth">
