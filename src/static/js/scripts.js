@@ -339,6 +339,7 @@ document.addEventListener('alpine:init', () => {
 
   /* ---------------------------- Auth Store --------------------------- */
   // ALl data for logged in users
+  // TODO: refactor to data with persist?
 
   Alpine.store('auth', {
     async init() {
@@ -349,6 +350,8 @@ document.addEventListener('alpine:init', () => {
       this.bookedEvents = getLSWithExpiry('bookedEvents')
       this.favEvents = getLSWithExpiry('favEvents')
       this.volunteerEventSpaces = getLSWithExpiry('volunteerEventSpaces')
+      this.favsOnly = getLSWithExpiry('favsOnly')
+      this.openOnly = getLSWithExpiry('openOnly')
       if (this.isAuth) {
         if (!this.user) this.getUserData()
         if (!this.bookedEvents) this.getBookedEvents()
@@ -487,6 +490,23 @@ document.addEventListener('alpine:init', () => {
     makeToast(notification) {
       this.toast = notification
       setTimeout(() => this.toast = null, 2000);
+    },
+    // Event Table Filter
+    favsOnly: false, // filter to only show favs
+    openOnly: false, // filter to only show open events
+    toggleFavsOnly() {
+      setLSWithExpiry('favsOnly',!this.favsOnly);
+      this.favsOnly = !this.favsOnly;
+    },
+    toggleOpenOnly() {
+      setLSWithExpiry('openOnly',!this.openOnly);
+      this.openOnly = !this.openOnly;
+    },
+    filterEvent(eventId) {
+      let showEvent = true
+      if (this.favsOnly && !this.isFav(eventId)) showEvent = false // hide if favsOnly true and not a fav
+      if (this.openOnly && this.volunteerEventSpaces.length > 0 && this.volunteerEventSpaces.find( e => e.eventId === eventId) && this.volunteerEventSpaces.find( e => e.eventId === eventId).spacesOpen === 0) showEvent = false // hide if openOnly true and no availableSlots
+      return showEvent
     }
   })
 

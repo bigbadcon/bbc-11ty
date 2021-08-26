@@ -20,7 +20,7 @@ x-init="if ($store.auth.isAuth) $store.auth.getEventsCategory('volunteer-shift')
         <tbody>
             {# favsOnly and timezone in x-data in html #}
             {% for event in eventData.volunteer %}
-                <tr x-show="!favsOnly || $store.auth.isFav({{event.eventId}})">
+                <tr x-show="$store.auth.filterEvent({{event.eventId}})">
                     {# Event Name #}
                     <td class="py-sm pr-sm">
                         <a href="/volunteer/{{event.eventSlug}}" class="font-bold transition-colors text-header hover:text-highlight">{{event.eventName | safe }}</a>
@@ -44,6 +44,8 @@ x-init="if ($store.auth.isAuth) $store.auth.getEventsCategory('volunteer-shift')
                     {# Booked Event Icon #}
                     <td x-cloak x-show="$store.auth.isAuth">
                         <span x-show="$store.auth.isBooked({{event.eventId}})" class="flex justify-end">{% icon 'square-check' %}</span>
+                        <span x-show="!$store.auth.isBooked({{event.eventId}}) && $store.auth.volunteerEventSpace({{event.eventId}}).spacesOpen > 0" class="flex justify-end opacity-40">{% icon 'square-open', 'fill-body' %}</span>
+                        <span x-show="!$store.auth.isBooked({{event.eventId}}) && $store.auth.volunteerEventSpace({{event.eventId}}).spacesOpen === 0" class="flex justify-end opacity-40">{% icon 'square-full', 'fill-body' %}</span>
                     </td>
                     {# Fav Event Icon #}
                     <td x-cloak x-show="$store.auth.isAuth">
