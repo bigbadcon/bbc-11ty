@@ -15,7 +15,10 @@
                     <p>You must <button @click="modal = 'login'" class="font-bold text-highlight">login</button> to register for Big Bad Online.</p>
                 </div>
                 {# You are Registered notification. Show only when registered and logged in.  #}
-                <div x-cloak x-show="registered && $store.auth.isAuth" class="prose">
+                <div 
+                x-cloak 
+                {# x-show="registered && $store.auth.isAuth"  #}
+                class="prose">
                     <p>
                         <strong>You are registered for Big Bad Online 2021!</strong> We will send you an email with the Discord invite once the date gets closer.
                     </p>
@@ -30,7 +33,8 @@
                     </ul>
                 </div>
                 {# Register form; only show if not registered and logged in #}
-                <form x-cloak x-show="!registered && $store.auth.isAuth" 
+                <form 
+                {# x-cloak x-show="!registered && $store.auth.isAuth"  #}
                 @submit="if (agree) registered = true"
                 method="POST" name="register-bigbadonline" 
                 data-netlify="true" netlify-honeypot="bot-field" 
