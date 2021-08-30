@@ -146,7 +146,10 @@ exports.handler = async function(event, context) {
             const sheet = doc.sheetsByIndex[0]
 
             /* ---------------------- Take submit event and add row --------------------- */
+
+            const dateAdded = new Date().toLocaleDateString()
             const addedRow = await sheet.addRow({
+                dateAdded: dateAdded,
                 displayName: data.displayName,
                 userEmail: data.userEmail,
                 userNicename: data.userNicename,
