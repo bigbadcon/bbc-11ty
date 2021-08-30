@@ -2,6 +2,7 @@ const axios = require('axios');
 require('dotenv').config();
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+const { GoogleSpreadsheet } = require('google-spreadsheet')
 
 /* ----- Inject cert to avoid the UNABLE_TO_VERIFY_LEAF_SIGNATURE error ----- */
 
@@ -13,6 +14,9 @@ exports.handler = async function(event, context) {
     const data = payload.data
     console.log("submission data", data);
 
+    /* -------------------------------------------------------------------------- */
+    /*                       Script for Create Account form                       */
+    /* -------------------------------------------------------------------------- */
     if (data.formName === 'create-account') {
         console.log("create account function start");
         const { displayName, firstName, lastName, nickname, userEmail, userNicename, userLogin, userPass, twitter } = data
@@ -120,8 +124,56 @@ exports.handler = async function(event, context) {
  
     }
 
+    /* -------------------------------------------------------------------------- */
+    /*                             Script for Register                            */
+    /* -------------------------------------------------------------------------- */
+
+    if (data.formName === 'register-bigbadonline') {
+        console.log("script for",data.formName);
+        console.log(process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"));
+        try {
+            // Initialize the sheet - doc ID is the long id in the sheets URL
+            const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_REGISTER_BIGBADONLINE)
+
+            // Initialize Auth - see more available options at https://theoephraim.github.io/node-google-spreadsheet/#/getting-started/authentication
+            await doc.useServiceAccountAuth({
+                client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+                private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"),
+            });
+
+            await doc.loadInfo() // loads document properties and worksheets
+            console.log(doc.title);
+            const sheet = doc.sheetsByIndex[0]
+
+            /* ---------------------- Take submit event and add row --------------------- */
+
+            const dateAdded = new Date().toLocaleDateString()
+            const addedRow = await sheet.addRow({
+                dateAdded: dateAdded,
+                displayName: data.displayName,
+                userEmail: data.userEmail,
+                userNicename: data.userNicename,
+                userId: data.userId,
+                "Agree To Community Standards": data["agree-to-community-standards"],
+            })
+            console.log("🚀 ~ file: submission-created.js ~ line 149 ~ exports.handler=function ~ addedRow", addedRow)
+
+            return {
+              statusCode: 200,
+              body: JSON.stringify({
+                message: `row added`,
+              }),
+            }
+          } catch (e) {
+            return {
+              statusCode: 500,
+              body: e.toString(),
+            }
+          }
+    }
+
     return {
-        statusCode: 500,
-        body: "no response as different form"
+        statusCode: 200,
+        body: "form with no script"
     }
 }

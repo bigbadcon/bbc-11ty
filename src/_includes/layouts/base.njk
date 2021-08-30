@@ -1,7 +1,7 @@
 {%- from "components/modal.njk" import authModal -%}
 
 <!doctype html>
-<html lang="en" class="min-h-screen" x-data="{theme: $persist('auto'), timezone: $persist('America/Los_Angeles'), favsOnly: $persist(false), modal: false }">
+<html lang="en" class="min-h-screen" x-data="{theme: $persist('auto'), timezone: $persist('America/Los_Angeles'), modal: false }">
   {% include 'layouts/html_head.njk' %}
   <body
   x-cloak x-show="theme"

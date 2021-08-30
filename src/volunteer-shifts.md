@@ -5,6 +5,6 @@ description: ''
 tags: pages
 
 ---
-Our Rangers are the folks that make Big Bad Online possible. To join, sign up for a shift below!
+Our Rangers are the folks that make Big Bad Online possible. To join, sign up for a shift below! *NOTE: You must be logged in to see shift availability and sign up.*
 
 {% iconLink "/rangers", "Learn more about the Rangers ", "paw" %}

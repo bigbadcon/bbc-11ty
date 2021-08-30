@@ -6,11 +6,17 @@
     <div class="flex items-center justify-start gap-xs" x-cloak x-show="$store.auth.isAuth">
         {# favsOnly data is in x-data="eventFilter" in wrapping div in base.njk #}
         <h5 class="text-sm font-bold">Filter:</h5>
-        <button @click="favsOnly = !favsOnly" class="flex items-center transition-colors rounded group gap-x-xs bg-main-gradient-bottom px-sm py-2xs hover:bg-primary">
-            <svg class="w-4 h-4 fill-body group-hover:fill-highlight">
+        <button @click="$store.auth.toggleFavsOnly()" class="flex items-center transition-colors rounded group gap-x-xs bg-main-gradient-bottom px-sm py-2xs hover:bg-primary">
+            <svg class="w-4 h-4 group-hover:fill-highlight" :class="($store.auth.favsOnly) ? 'fill-highlight' : 'fill-body'">
                 <use xlink:href="/static/images/icons.svg#star"></use>
             </svg>
-            <span x-text="(favsOnly) ? 'Show All' : 'Show Favs Only'" class="text-sm">Show Favs Only</span>
+            <span class="text-sm">Favs</span>
+        </button>
+        <button @click="$store.auth.toggleOpenOnly()" class="flex items-center transition-colors rounded group gap-x-xs bg-main-gradient-bottom px-sm py-2xs hover:bg-primary">
+            <svg class="w-4 h-4 group-hover:fill-highlight" :class="($store.auth.openOnly) ? 'fill-highlight' : 'fill-body'">
+                <use xlink:href="/static/images/icons.svg#square-full"></use>
+            </svg>
+            <span class="text-sm">Open Spaces</span>
         </button>
     </div>
 </div>
