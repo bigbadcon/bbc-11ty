@@ -4,7 +4,7 @@
   <link rel="stylesheet" href="/tailwindoutlive.css"/>
   <script src="https://unpkg.com/axios@0.21.1/dist/axios.min.js" defer></script>
   <script src="https://unpkg.com/array-flat-polyfill" defer></script>
-  <script defer src="https://unpkg.com/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://unpkg.com/@alpinejs/persist@3.x.x/dist/cdn.min.js" defer></script>
   <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
   <script src="https://unpkg.com/dayjs@1.10.6/dayjs.min.js"></script>
   <script src="https://unpkg.com/dayjs@1.10.6/plugin/utc.js"></script>
@@ -14,5 +14,9 @@
     dayjs.extend(window.dayjs_plugin_timezone)
   </script>
   <script src="/static/js/scripts.js"></script>
+  <link rel="preload" as="font" href="/static/fonts/open-sans-v23-latin-regular.woff2" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" as="font" href="/static/fonts/open-sans-v23-latin-700.woff2" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" as="font" href="/static/fonts/rokkitt-v20-latin-500.woff2" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" as="font" href="/static/fonts/rokkitt-v20-latin-700.woff2" type="font/woff2" crossorigin="anonymous">
   {% include 'layouts/head_seo.njk' %}
 </head>
