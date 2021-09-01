@@ -5,10 +5,10 @@
         <thead>
             <tr>
                 <th class="text-lg text-left pb-sm">Event</th>
+                <th class="text-left pb-sm">Date Time</th>
+                <th class="text-center pb-sm max-w-max">Dur</th>
                 {# <th class="text-left pb-sm">System</th> #}
                 {# <th class="text-left pb-sm">Categories</th> #}
-                {# <th class="text-center pb-sm">Date</th> #}
-                {# <th class="text-center pb-sm">Time PDT</th> #}
                 {# <th class="w-8 text-center pb-sm">
                     <span class="flex items-center justify-end pl-xs">{% icon 'square-check', 'fill-body' %}</span>
                 </th> #}
@@ -27,6 +27,15 @@
                         </h3>
                         <p>{{event.metadata.GM | safe}}</p>
                     </td>
+                    {# Event Start Date/Time #}
+                    {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
+                    {# formatEventDate filter is in eleventy.js and returns html with date and time in seperate span tags #}
+                    <td class="flex flex-col py-sm gap-x-2xs" x-cloak x-show="timezone" x-html="formatEventDate('{{event.eventStartDateTime}}', timezone)">{{ event.eventStartDateTime | formatEventDate | safe }}</td>
+                    {# Event Duration #}
+                    <td class="font-bold text-center align-top py-sm px-sm">
+                        {% eventDuration event.eventStartDateTime,
+                        event.eventEndDateTime %}h
+                    </td>
                     {# System #}
                     {# <td class="py-sm pr-sm">{{event.metadata.System}}</td> #}
                     {# Event Categories #}
@@ -39,14 +48,6 @@
                             {% endif %}
                         {% endfor %}
                     </td class="py-sm pr-sm"> #}
-                    {# Event Day #}
-                    {# <td class="w-24 text-center py-sm">{{ event.eventStartDate }}</td> #}
-                    {# Event Time #}
-                    {# <td class="w-24 text-center py-sm">{{ event.eventStartTime | stripSeconds }} &ndash; {{ event.eventEndTime | stripSeconds }}</td> #}
-                    {# Booked Event Icon #}
-                    {# <td>
-                        <span x-cloak x-show="$store.auth.isBooked({{event.eventId}})" class="flex justify-end pl-xs">{% icon 'square-check' %}</span>
-                    </td> #}
                     {# Fav Event Icon #}
                     <td x-cloak x-show="$store.auth.isAuth">
                         <span @click="$store.auth.toggleFav({{event.eventId}})" class="flex justify-end cursor-pointer opacity-40 hover:opacity-100" :class="$store.auth.isFav({{event.eventId}}) && 'favved'">{% icon 'star', 'fill-body' %}</span>

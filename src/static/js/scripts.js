@@ -20,7 +20,7 @@ function slugify(text) {
 /* -------------------------------------------------------------------------- */
 
 function formatEventDate(date, tz = 'America/Los_Angeles') {
-  return "<span>" + dayjs(date).tz(tz).format('MMM D, YYYY') + "</span> <span>" + dayjs(date).tz(tz).format('h:mm a') + "</span>"
+  return "<span style='white-space: nowrap;'>" + dayjs(date).tz(tz).format('MMM D, YYYY') + "</span> <span>" + dayjs(date).tz(tz).format('h:mm a') + "</span>"
 }
 
 /* -------------------------------------------------------------------------- */

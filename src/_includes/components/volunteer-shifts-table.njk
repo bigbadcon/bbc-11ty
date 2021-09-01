@@ -25,9 +25,9 @@ x-init="if ($store.auth.isAuth) $store.auth.getEventsCategory('volunteer-shift')
                     {# Event Start Date/Time #}
                     {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
                     {# formatEventDate filter is in eleventy.js and returns html with date and time in seperate span tags #}
-                    <td class="event-table-date" x-cloak x-show="timezone" x-html="formatEventDate('{{event.eventStartDateTime}}', timezone)">{{ event.eventStartDateTime | formatEventDate | safe }}</td>
+                    <td class="flex flex-col py-sm gap-x-2xs sm:flex-row" x-cloak x-show="timezone" x-html="formatEventDate('{{event.eventStartDateTime}}', timezone)">{{ event.eventStartDateTime | formatEventDate | safe }}</td>
                     {# Event Duration #}
-                    <td class="text-center py-sm">
+                    <td class="font-bold text-center py-sm px-sm">
                         {% eventDuration event.eventStartDateTime,
                         event.eventEndDateTime %}h
                     </td>
