@@ -47,7 +47,8 @@ module.exports = async () => {
 
         /* -------------- Filter out unpublished events by eventStatus -------------- */
         // TODO: turn this filter on before we go live
-        // data = data.filter(event => event.eventStatus === 1);
+        // TODO: figure out a better way to handle this for main vs drafts
+        data = data.filter(event => event.eventStatus === 1);
 
         /* ---------------- fix data if missing slug and decode text ---------------- */
         data = data.map(event => {
