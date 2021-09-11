@@ -1,6 +1,6 @@
 ---
 title: Who We Are
-order: 6
+order: 7
 description: Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusmod
   tempor incididunt ut labore.
 published: true

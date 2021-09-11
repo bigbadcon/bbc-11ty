@@ -1,5 +1,5 @@
 ---
-order: 7
+order: 6
 tags: bigcards
 title: Burn Bryte free for all attendees!
 published: true
