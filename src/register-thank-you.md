@@ -5,7 +5,6 @@ description: ''
 tags: pages
 
 ---
-
 You are now registered for Big Bad Online! We will send out the offical Big Bad Con 2021 Discord link once the event gets closer. Check out our ever growing [list of events](/events)!
 
 We encourage you to back our [Mightycause fundraiser](https://www.mightycause.com/story/Bigbadonline) and follow and promote us on twitter [@bigbadcon](https://twitter.com/bigbadcon)!
@@ -23,3 +22,12 @@ We’re going to have 24 hours of panels and hangout time on Discord! Because of
 
 {% iconLink "/volunteer-shifts", "Volunteer Shifts", "calendar-clock" %}
 
+## Play Burn Bryte on Roll20
+
+The incredibly generous folks at [Roll20](https://roll20.net/) have offered a free copy of [Burn Bryte](https://marketplace.roll20.net/browse/bundle/6091/burn-bryte-core-rulebook) to all Big Bad Online attendees.
+
+Here's the code to activate your free copy: **ITP5T-Y8TW1-LG2VE**
+
+To redeem head over to [https://marketplace.roll20.net/coupon/](https://marketplace.roll20.net/coupon/ "https://marketplace.roll20.net/coupon/"), make sure you're logged in, and enter the code. If you have any questions, more info on using codes is [here](https://help.roll20.net/hc/en-us/articles/360037773173-Redemption-Codes).
+
+The code expires 12/31/2021 so use it soon! 
