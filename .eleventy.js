@@ -2,6 +2,8 @@ const blogTools = require("eleventy-plugin-blog-tools");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
 const dayjs = require('dayjs')
 const Image = require("@11ty/eleventy-img");
+const { google, outlook, office365, yahoo, ics } = require("calendar-link");
+
 
 // Function to sort by order frontmatter field then by fileSlug alphabetically
 function sortByOrder(a,b) {
@@ -76,8 +78,7 @@ module.exports = (eleventyConfig) => {
   /*                                 Shortcodes                                 */
   /* -------------------------------------------------------------------------- */
 
-  // Event duration in hours
-  eleventyConfig.addShortcode( "eventDuration", (dateStart,dateEnd) => {
+  function getDuration( dateStart, dateEnd, accuracy = "hours") {
     // calculate hours
     let diffInMilliSeconds = Math.abs(dateEnd - dateStart) / 1000;
     const hours = Math.floor(diffInMilliSeconds / 3600) % 24;
@@ -86,7 +87,15 @@ module.exports = (eleventyConfig) => {
     // calculate minutes
     const minutes = Math.floor(diffInMilliSeconds / 60) % 60;
     diffInMilliSeconds -= minutes * 60;
-    return hours.toString()
+
+    if (accuracy = "hours") return hours.toString();
+    if (accuracy = "minutes") return `${hours.toString()}:${minutes.toString()}`;
+    return false
+  }
+
+  // Event duration in hours
+  eleventyConfig.addShortcode( "eventDuration", (dateStart,dateEnd) => {
+    return getDuration(dateStart,dateEnd)
   });
 
   // Current Year
@@ -138,6 +147,24 @@ module.exports = (eleventyConfig) => {
   }
 
   eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
+
+  /* ------------------------- Calendar Link Shortcode ------------------------ */
+  eleventyConfig.addShortcode("calendarLink", function (title, description, dateStart, dateEnd, type = "google") {
+    const event = {
+      title: title,
+      description: description,
+      start: dateStart.toString(),
+      duration: [getDuration(dateStart,dateEnd), "hour"],
+    };
+
+    if (type === "google") return google(event);
+    if (type === "outlook") return outlook(event);
+    if (type === "office365") return office365(event);
+    if (type === "ics") return ics(event);
+    if (type === "yahoo") return yahoo(event);
+    return false
+  });
+
 
   /* -------------------------------------------------------------------------- */
   /*                                 Build Stuff                                */

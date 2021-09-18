@@ -41,13 +41,28 @@ eleventyComputed:
 <div class="prose">{{event.postContent | nl2br | safe }}</div>
 {# Event Signup / Booking Panel #}
 {# {% include 'components/eventBookingPanel.njk'%} #}
-<div class="text-sm prose mt-base">
-    <p>
+{# Event links #}
+<div class="flex flex-wrap justify-between prose border-t-2 border-b-2 mt-md border-hr py-sm gap-base">
+    <div class="flex text-sm gap-xs">
+        <strong>Add to your calendar:</strong>
+        {% set calendarDescription = "Big Bad Online 2021 event: https://www.bigbadcon.com/events/" + event.eventSlug %}
+        <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'google' %}">Google</a>
+        <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'ics' %}">ics</a>
+    </div>
+    <div class="text-sm">
+        {% set tweeturl = "https://twitter.com/intent/tweet?text=Check+out+this+panel+at+#BigBadOnline+2021!+https://www.bigbadcon.com/events/" + event.eventSlug %}
+
+        <a class="inline-flex items-center gap-sm" href="{{tweeturl}}">
+            <svg class="w-4 h-4 fill-body">
+                <use xlink:href="/static/images/icons.svg#twitter"></use>
+            </svg>Tweet This!</a>
+    </div>
+    <div class="text-sm">
         <a href="{{sitemeta.url}}/.netlify/functions/screenshot/{{event.eventSlug}}/" class="inline-flex items-center gap-sm">
             <svg class="w-4 h-4 fill-body">
                 <use xlink:href="/static/images/icons.svg#image"></use>
-            </svg> Twitter Image Card</a>
-    </p>
+            </svg>Social Image Card</a>
+    </div>
 </div>
-<div class="prose border-t-2 mt-md mb-base pt-base border-hr">Back to <a href="/events/">List of Events</a>
+<div class="prose py-base">Back to <a href="/events/">List of Events</a>
 </div>

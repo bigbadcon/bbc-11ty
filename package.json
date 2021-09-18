@@ -32,6 +32,7 @@
     "@tailwindcss/typography": "^0.4.0",
     "autoprefixer": "latest",
     "axios": "^0.21.1",
+    "calendar-link": "^2.1.1",
     "chrome-aws-lambda": "^10.1.0",
     "cross-env": "^7.0.3",
     "dayjs": "^1.10.6",
