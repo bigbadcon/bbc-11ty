@@ -5,7 +5,7 @@ description: ''
 tags: pages
 
 ---
-You are now registered for Big Bad Online! We will send out the offical Big Bad Con 2021 Discord link once the event gets closer. Check out our ever growing [list of events](/events)!
+You are now registered for Big Bad Online! We will send out the official Big Bad Con 2021 Discord link once the event gets closer. Check out our ever growing [list of events](/events)!
 
 We encourage you to back our [Mightycause fundraiser](https://www.mightycause.com/story/Bigbadonline) and follow and promote us on twitter [@bigbadcon](https://twitter.com/bigbadcon)!
 
@@ -30,4 +30,4 @@ Here's the code to activate your free copy: **ITP5T-Y8TW1-LG2VE**
 
 To redeem head over to [https://marketplace.roll20.net/coupon/](https://marketplace.roll20.net/coupon/ "https://marketplace.roll20.net/coupon/"), make sure you're logged in, and enter the code. If you have any questions, more info on using codes is [here](https://help.roll20.net/hc/en-us/articles/360037773173-Redemption-Codes).
 
-The code expires 12/31/2021 so use it soon! 
+The code expires 12/31/2021 so use it soon!
