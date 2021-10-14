@@ -1,11 +1,11 @@
 ---
-layout: layouts/page.njk
+layout: layouts/register-thank-you.njk
 title: Thank you for registering!
 description: ''
 tags: pages
 
 ---
-You are now registered for Big Bad Online! We will send out the official Big Bad Con 2021 Discord link once the event gets closer. Check out our ever growing [list of events](/events)!
+You are now registered for Big Bad Online! Check out our ever growing [list of events](/events)!
 
 We encourage you to back our [Mightycause fundraiser](https://www.mightycause.com/story/Bigbadonline) and follow and promote us on twitter [@bigbadcon](https://twitter.com/bigbadcon)!
 

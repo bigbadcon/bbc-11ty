@@ -1,0 +1,35 @@
+{% extends 'layouts/base.njk' %}
+
+{% block header %}
+    {% include 'components/header.njk' %}
+{% endblock %}
+
+{% block content %}
+    <main id="content">
+        <div class="mx-auto max-w-content p-base">
+            <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
+            <section>
+                {# Loading spinner #}
+                <div x-cloak x-show="$store.auth.isAuth && $store.auth.bboDiscordInvite === null" 
+                x-init="$store.auth.checkRegistration()"
+                class="flex items-center justify-center gap-sm animate-pulse py-md">
+                    <div class="w-8 h-8 rounded-full bg-body"></div>
+                    <div class="w-8 h-8 rounded-full bg-body"></div>
+                    <div class="w-8 h-8 rounded-full bg-body"></div>
+                </div>
+                {# Registration info #}
+                <div x-cloak x-show="$store.auth.isAuth && $store.auth.bboDiscordInvite" class="prose">
+                    <h2>You are registered!</h2>
+                    <p>Big Bad Online 2021 will be held on a special event Discord with our panels broadcast live on Twitch. Panels will be archived later on YouTube.</p>
+                    <p>
+                        <strong>Join</strong> the <a :href="'https://discord.gg/' + $store.auth.bboDiscordInvite">Big Bad Online 2021 Discord</a>!
+                    </p>
+                    <p>
+                        <strong>Follow</strong> the <a href="https://twitch.tv/bigbadcon">Big Bad Con Twitch Channel</a>! <em>You must be a follower for 10 minutes before you can enter the twitch chat.</em>
+                    </p>
+                </div>
+            </section>
+            <div class="prose">{{ content | safe }}</div>
+        </div>
+    </main>
+{% endblock %}

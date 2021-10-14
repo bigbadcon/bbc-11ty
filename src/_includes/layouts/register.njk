@@ -8,29 +8,28 @@
     <main id="content">
         <div class="mx-auto max-w-content p-base">
             <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
-            <div class="prose">{{ content | safe }}</div>
-            <section class="my-base text-body" x-data="{isRegistered: $persist(false), agree: false}" >
+
+            <section class="my-base text-body">
+                {# State Machine:
+                1. Not logged in: display login link. When logged in check registration status using serverless function.
+                2. Logged in but not registered: display registration form. 
+                3. Logged in and registered: display registration info for user and discord and twitch info 
+                #}
                 {# Login disclaimer: only show if not registered and not logged in #}
                 <div x-cloak x-show="!$store.auth.isAuth" class="prose">
-                    <p>You must <button @click="modal = 'login'" class="font-bold text-highlight">login</button> to register for Big Bad Online.</p>
+                    <p>You must <button @click="modal = 'login'" class="font-bold text-highlight">login</button> to register for Big Bad Online or view your registration information.</p>
                 </div>
-                {# You are Registered notification. Show only when registered and logged in.  #}
-                <div x-cloak x-show="isRegistered && $store.auth.isAuth" class="prose">
-                    <p>
-                        <strong>You are registered for Big Bad Online 2021!</strong> We will send you an email with the Discord invite once the date gets closer.
-                    </p>
-                    <h3>Save the Date!</h3>
-                    <ul>
-                        <li>
-                            <a href="http://www.google.com/calendar/event?action=TEMPLATE&dates=20211023T190000Z%2F20211024T190000Z&text=Big%20Bad%20Online%202021&location=Discord%20%26%20Twitch&details=Join%20us%20for%20Big%20Bad%20Online%202021!%20We%20will%20be%20gathering%20on%20Discord%20and%20a%20full%2024hrs%20of%20amazing%20speakers%2C%20game%20designers%20and%20industry%20professionals!">Google Calendar Link</a>
-                        </li>
-                        <li>
-                            <a href="/static/ical/Big%20Bad%20Online%202021.ics">iCal Link</a>
-                        </li>
-                    </ul>
+                {# Loading spinner #}
+                <div x-cloak x-show="$store.auth.isAuth && $store.auth.bboDiscordInvite === null" 
+                x-init="$store.auth.checkRegistration()"
+                class="flex items-center justify-center gap-sm animate-pulse py-md">
+                    <div class="w-8 h-8 rounded-full bg-body"></div>
+                    <div class="w-8 h-8 rounded-full bg-body"></div>
+                    <div class="w-8 h-8 rounded-full bg-body"></div>
                 </div>
                 {# Register form; only show if not registered and logged in #}
-                <form x-cloak x-show="!isRegistered && $store.auth.isAuth" 
+                <form x-cloak x-show="$store.auth.isAuth && $store.auth.bboDiscordInvite === false" 
+                x-data="{agree:false}"
                 method="POST" name="register-bigbadonline" 
                 data-netlify="true" netlify-honeypot="bot-field" 
                 action="/register-thank-you/" class="prose">
@@ -57,6 +56,19 @@
                         <button type="submit" :disabled="!agree" disabled @click="if (agree) isRegistered = true">Submit</button>
                     </p>
                 </form>
+
+                {# You are Registered notification. Show only when registered and logged in.  #}
+                <div x-cloak x-show="$store.auth.isAuth && $store.auth.bboDiscordInvite" class="prose">
+                    <h2>You are registered!</h2>
+                    <p>Big Bad Online 2021 will be held on a special event Discord with our panels broadcast live on Twitch. Panels will be archived later on YouTube.</p>
+                    <p>
+                        <strong>Join</strong> the <a :href="'https://discord.gg/' + $store.auth.bboDiscordInvite">Big Bad Online 2021 Discord</a>!
+                    </p>
+                    <p>
+                        <strong>Follow</strong> the <a href="https://twitch.tv/bigbadcon">Big Bad Con Twitch Channel</a>! <em>You must be a follower for 10 minutes before you can enter the twitch chat.</em>
+                    </p>
+                    <div class="prose">{{ content | safe }}</div>
+                </div>
             </section>
         </div>
     </main>

@@ -352,6 +352,8 @@ document.addEventListener('alpine:init', () => {
       this.volunteerEventSpaces = getLSWithExpiry('volunteerEventSpaces')
       this.favsOnly = getLSWithExpiry('favsOnly')
       this.openOnly = getLSWithExpiry('openOnly')
+      this.bboDiscordInvite = getLSWithExpiry('bboDiscordInvite')
+      this.isRegistered = getLSWithExpiry('isRegistered')
       if (this.isAuth) {
         if (!this.user) this.getUserData()
         if (!this.bookedEvents) this.getBookedEvents()
@@ -371,6 +373,29 @@ document.addEventListener('alpine:init', () => {
     bookedEvents: [],
     favEvents: [],
     volunteerEventSpaces: [],
+    // Big Bad Online Registration
+    isRegistered: null, // null is not set; false not registered; true is registered
+    bboDiscordInvite: null, //stores discord invite link id grabbed from server; null == not set; false = unregistered; id string = discord invite id
+    // Big Bad Online Registration Functions
+    async checkRegistration() {
+      // If no discord link and has user info then check registration status
+      console.log("check reg");
+      if (!this.bboDiscordInvite && this.user) {
+        console.log("check reg yes user no bboDiscord");
+        const res = await axios.get(`/.netlify/functions/check-registration/${this.user.userNicename}`)
+        if (res && res.data) {
+          console.log(res.data)
+          const bboDiscordInvite = res.data.bboDiscordInvite || null
+          const isRegistered = res.data.isRegistered || null
+          this.bboDiscordInvite = bboDiscordInvite
+          this.isRegistered = isRegistered
+          setLSWithExpiry('bboDiscordInvite', bboDiscordInvite)
+          setLSWithExpiry('isRegistered', isRegistered)
+          return bboDiscordInvite
+        }
+      }
+    },
+    // Event Table Functions
     isBooked(id) {
       if (this.bookedEvents) return this.bookedEvents.some( item => item.eventId === id)
       return false
@@ -379,25 +404,6 @@ document.addEventListener('alpine:init', () => {
       if (this.favEvents) return this.favEvents.some( item => item === id)
       return false
     },
-    // functions
-    async submitLogin() {
-      const token = await api.submitLogin(this.username,this.password)
-      this.username = ""
-      this.password = ""
-      if (token) {
-        setAuthToken(token)
-        this.isAuth = true
-        this.getUserData()
-        this.getBookedEvents()
-        this.getFavEvents()
-        this.getAvailableSlots()
-      } else this.makeToast('Login failed')
-    },
-    test(){
-      console.log(this.isAuth)
-    },
-    async createAccount() {},
-    async forgetPassword() {},
     async toggleFav(id) {
       let data
       if (this.isFav(id)) { 
@@ -413,54 +419,40 @@ document.addEventListener('alpine:init', () => {
         this.getFavEvents()
       }
     },
-    async bookEvent(id) {
-      const data = await api.bookEvent(id)
-      console.log("🚀 ~ file: scripts.js ~ line 294 ~ bookEvent ~ data", data)
-      if (data && data.status === 'FAILURE') this.makeToast(data.message)
-      if (data && data.status === 'SUCCESS') {
+    // Event Table Filter
+    favsOnly: false, // filter to only show favs
+    openOnly: false, // filter to only show open events
+    toggleFavsOnly() {
+      setLSWithExpiry('favsOnly',!this.favsOnly);
+      this.favsOnly = !this.favsOnly;
+    },
+    toggleOpenOnly() {
+      setLSWithExpiry('openOnly',!this.openOnly);
+      this.openOnly = !this.openOnly;
+    },
+    filterEvent(eventId) {
+      let showEvent = true
+      if (this.favsOnly && !this.isFav(eventId)) showEvent = false // hide if favsOnly true and not a fav
+      if (this.openOnly && this.volunteerEventSpaces.length > 0 && this.volunteerEventSpaces.find( e => e.eventId === eventId) && this.volunteerEventSpaces.find( e => e.eventId === eventId).spacesOpen === 0) showEvent = false // hide if openOnly true and no availableSlots
+      return showEvent
+    },
+    // Login functions
+    async submitLogin() {
+      const token = await api.submitLogin(this.username,this.password)
+      this.username = ""
+      this.password = ""
+      if (token) {
+        setAuthToken(token)
+        this.isAuth = true
+        this.getUserData()
         this.getBookedEvents()
-        this.makeToast("You've booked this event!")
-      }
+        this.getFavEvents()
+        this.getAvailableSlots()
+        this.checkRegistration()
+      } else this.makeToast('Login failed')
     },
-    async cancelBooking(id) {
-      const data = await api.cancelBooking(id)
-      console.log("🚀 ~ file: scripts.js ~ line 294 ~ bookEvent ~ data", data)
-      if (data && data.status === 'FAILURE') this.makeToast(data.message)
-      if (data && data.status === 'SUCCESS') {
-        this.getBookedEvents()
-        this.makeToast("Booking canceled")
-      }
-    },
-    async getUserData() {
-      const data = await api.getUserData()
-      this.user = data
-      setLSWithExpiry('user', data)
-    },
-    async getAvailableSlots() {
-      const data = await api.getAvailableSlots()
-      this.availableSlots = data
-      setLSWithExpiry('availableSlots',data)
-    },
-    async getEventsCategory(category) {
-      // console.log("🚀 ~ file: scripts.js ~ line 429 ~ getEventsCategory ~ category", category)
-      const data = await api.getEventsCategory(category)
-      this.volunteerEventSpaces = data
-      setLSWithExpiry('volunteerEventSpaces',data)
-      // console.log("🚀 ~ file: scripts.js ~ line 431 ~ getEventsCategory ~ data", data)
-    },
-    volunteerEventSpace(eventId) {
-      return (this.volunteerEventSpaces && this.volunteerEventSpaces.length > 0) ? this.volunteerEventSpaces.find( e => e.eventId === eventId) : false
-    },
-    async getBookedEvents() {
-      const data = await api.getBookedEvents()
-      this.bookedEvents = data
-      setLSWithExpiry('bookedEvents',data)
-    },
-    async getFavEvents() {
-      const data = await api.getFavEvents()
-      this.favEvents = data
-      setLSWithExpiry('favEvents',data)
-    },
+    async createAccount() {},
+    async forgetPassword() {},
     async changePassword(newPassword) {
       // console.log("change password",this.user.id,newPassword);
       // returns boolean value
@@ -483,6 +475,60 @@ document.addEventListener('alpine:init', () => {
       localStorage.removeItem('bookedEvents')
       localStorage.removeItem('availableSlots')
       localStorage.removeItem('volunteerEventSpaces')
+      localStorage.removeItem('isRegistered')
+      localStorage.removeItem('bboDiscordInvite')
+    },
+    // Booking functions
+    async bookEvent(id) {
+      const data = await api.bookEvent(id)
+      console.log("🚀 ~ file: scripts.js ~ line 294 ~ bookEvent ~ data", data)
+      if (data && data.status === 'FAILURE') this.makeToast(data.message)
+      if (data && data.status === 'SUCCESS') {
+        this.getBookedEvents()
+        this.makeToast("You've booked this event!")
+      }
+    },
+    async cancelBooking(id) {
+      const data = await api.cancelBooking(id)
+      console.log("🚀 ~ file: scripts.js ~ line 294 ~ bookEvent ~ data", data)
+      if (data && data.status === 'FAILURE') this.makeToast(data.message)
+      if (data && data.status === 'SUCCESS') {
+        this.getBookedEvents()
+        this.makeToast("Booking canceled")
+      }
+    },
+    // User data
+    async getUserData() {
+      const data = await api.getUserData()
+      this.user = data
+      setLSWithExpiry('user', data)
+    },
+    async getAvailableSlots() {
+      const data = await api.getAvailableSlots()
+      this.availableSlots = data
+      setLSWithExpiry('availableSlots',data)
+    },
+    async getBookedEvents() {
+      const data = await api.getBookedEvents()
+      this.bookedEvents = data
+      setLSWithExpiry('bookedEvents',data)
+    },
+    async getFavEvents() {
+      const data = await api.getFavEvents()
+      this.favEvents = data
+      setLSWithExpiry('favEvents',data)
+    },
+    // Load full events data for category. This is mainly to show number of slots open of volunteer shifts
+    // TODO: make this work for other event types, hopefully with simpler API
+    async getEventsCategory(category) {
+      // console.log("🚀 ~ file: scripts.js ~ line 429 ~ getEventsCategory ~ category", category)
+      const data = await api.getEventsCategory(category)
+      this.volunteerEventSpaces = data
+      setLSWithExpiry('volunteerEventSpaces',data)
+      // console.log("🚀 ~ file: scripts.js ~ line 431 ~ getEventsCategory ~ data", data)
+    },
+    volunteerEventSpace(eventId) {
+      return (this.volunteerEventSpaces && this.volunteerEventSpaces.length > 0) ? this.volunteerEventSpaces.find( e => e.eventId === eventId) : false
     },
     // Toast notifications
     // TODO: look into making this global
@@ -491,23 +537,6 @@ document.addEventListener('alpine:init', () => {
       this.toast = notification
       setTimeout(() => this.toast = null, 2000);
     },
-    // Event Table Filter
-    favsOnly: false, // filter to only show favs
-    openOnly: false, // filter to only show open events
-    toggleFavsOnly() {
-      setLSWithExpiry('favsOnly',!this.favsOnly);
-      this.favsOnly = !this.favsOnly;
-    },
-    toggleOpenOnly() {
-      setLSWithExpiry('openOnly',!this.openOnly);
-      this.openOnly = !this.openOnly;
-    },
-    filterEvent(eventId) {
-      let showEvent = true
-      if (this.favsOnly && !this.isFav(eventId)) showEvent = false // hide if favsOnly true and not a fav
-      if (this.openOnly && this.volunteerEventSpaces.length > 0 && this.volunteerEventSpaces.find( e => e.eventId === eventId) && this.volunteerEventSpaces.find( e => e.eventId === eventId).spacesOpen === 0) showEvent = false // hide if openOnly true and no availableSlots
-      return showEvent
-    }
   })
 
   /* -------------------------------------------------------------------------- */
@@ -543,17 +572,37 @@ document.addEventListener('alpine:init', () => {
   }))
 
   Alpine.data('createAccount',() => ({
-    agree: false, 
-    userNicename: '', 
-    userEmail: '', 
-    userPass:'', 
-    firstName:'', 
-    lastName:'', 
-    howToDisplay: 'firstlast', 
-    nickname:'', 
-    displayName:'', 
+    agree: false,
+    userNicename: '',
+    userEmail: '',
+    userPass:'',
+    firstName:'',
+    lastName:'',
+    howToDisplay: 'firstlast',
+    nickname:'',
+    displayName:'',
     twitter:'', // not set up yet in API
     userLogin: '',
+  }))
+
+  // Big Bad Online Registration Page
+  Alpine.data('registration',() => ({
+    agree: false,
+    isRegistered: false,
+    regState: 'loading',
+    getRegState() {
+      this.regState = getLSWithExpiry('registration')
+    },
+    async checkRegistration() {
+      const user = getLSWithExpiry('user')
+      if (user) {
+        const res = await axios.get(`https://hopeful-pike-1a02ec-71488a.netlify.live/.netlify/functions/check-registration/${user.userNicename}`)
+        if (res && res.data && res.data.isUserRegistered) {
+          this.regState = 'registered'
+          setLSWithExpiry('registration','registered')
+        }
+      }
+    }
   }))
 
 })
