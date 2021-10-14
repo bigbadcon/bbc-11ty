@@ -382,7 +382,7 @@ document.addEventListener('alpine:init', () => {
       console.log("check reg");
       if (!this.bboDiscordInvite && this.user) {
         console.log("check reg yes user no bboDiscord");
-        const res = await axios.get(`/.netlify/functions/check-registration/${this.user.userNicename}`)
+        const res = await axios.get(`/.netlify/functions/check-registration/${this.user.id}/${this.user.userNicename}`)
         if (res && res.data) {
           console.log(res.data)
           const bboDiscordInvite = res.data.bboDiscordInvite || null

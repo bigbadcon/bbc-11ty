@@ -7,7 +7,7 @@ const { GoogleSpreadsheet } = require('google-spreadsheet')
 exports.handler = async function(event, context) {
 
     const path = event.path.replace(/\/\.netlify\/functions\/[^/]*\//, '')
-    let [userNicename] = (path) ? path.split('/') : []
+    let [id,userNicename] = (path) ? path.split('/') : []
 
     try {
         // Initialize the sheet - doc ID is the long id in the sheets URL
@@ -27,7 +27,7 @@ exports.handler = async function(event, context) {
         const rows = await sheet.getRows()
 
         // Search for user based on userNicename
-        const isRegistered = rows.some((row) => row.userNicename === userNicename)
+        const isRegistered = rows.some((row) => row.userId === id && row.userNicename === userNicename)
 
         const discordInviteCode = "C7ffzSVYwK"
 

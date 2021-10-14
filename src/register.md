@@ -6,7 +6,7 @@ tags: pages
 
 ---
 
-You are registered for Big Bad Online! Check out our ever growing [list of events](/events)!
+Check out our ever growing [list of events](/events)!
 
 We encourage you to back our [Mightycause fundraiser](https://www.mightycause.com/story/Bigbadonline) and follow and promote us on twitter [@bigbadcon](https://twitter.com/bigbadcon)!
 

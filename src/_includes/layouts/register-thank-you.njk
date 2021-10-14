@@ -20,16 +20,19 @@
                 {# Registration info #}
                 <div x-cloak x-show="$store.auth.isAuth && $store.auth.bboDiscordInvite" class="prose">
                     <h2>You are registered!</h2>
-                    <p>Big Bad Online 2021 will be held on a special event Discord with our panels broadcast live on Twitch. Panels will be archived later on YouTube.</p>
                     <p>
+                        You, <strong>
+                            <span x-text="$store.auth.user.displayName"></span> (<span x-text="$store.auth.user.userNicename"></span>)</strong>, are registered for Big Bad Online 2021. You can prepare for the event by join the special event Discord using the invite link below and following us on Twitch.
+                    </p>
+       ]            <p>
                         <strong>Join</strong> the <a :href="'https://discord.gg/' + $store.auth.bboDiscordInvite">Big Bad Online 2021 Discord</a>!
                     </p>
                     <p>
-                        <strong>Follow</strong> the <a href="https://twitch.tv/bigbadcon">Big Bad Con Twitch Channel</a>! <em>You must be a follower for 10 minutes before you can enter the twitch chat.</em>
-                    </p>
-                </div>
-            </section>
-            <div class="prose">{{ content | safe }}</div>
-        </div>
-    </main>
+                        <strong>Follow</strong> the <a href="https://twitch.tv/bigbadcon">Big Bad Con Twitch Channel</a>!</em>
+                </p>
+            </div>
+        </section>
+        <div class="prose">{{ content | safe }}</div>
+    </div>
+</main>
 {% endblock %}
