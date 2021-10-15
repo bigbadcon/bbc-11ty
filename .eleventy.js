@@ -155,6 +155,8 @@ module.exports = (eleventyConfig) => {
       description: description,
       start: dateStart.toString(),
       duration: [getDuration(dateStart,dateEnd), "hour"],
+      location: 'https://twitch.tv/bigbadcon',
+      url: 'https://twitch.tv/bigbadcon'
     };
 
     if (type === "google") return google(event);
