@@ -2,7 +2,7 @@ const axios = require('axios');
 require('dotenv').config();
 const { GoogleSpreadsheet } = require('google-spreadsheet')
 
-// https://[domain.com]/.netlify/functions/check-registration/[userNicename]
+// https://[domain.com]/.netlify/functions/check-registration/[userId]/[userNicename]
 
 exports.handler = async function(event, context) {
 
