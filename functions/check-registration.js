@@ -38,7 +38,7 @@ exports.handler = async function(event, context) {
             body: JSON.stringify({
                 message: `${userNicename} ${msg}`,
                 isRegistered: isRegistered,
-                bboDiscordInvite: (isRegistered) ? discordInviteCode : null
+                bboDiscordInvite: (isRegistered) ? discordInviteCode : false
             }),
         }
 

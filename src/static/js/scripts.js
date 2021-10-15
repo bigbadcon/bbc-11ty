@@ -385,8 +385,8 @@ document.addEventListener('alpine:init', () => {
         const res = await axios.get(`/.netlify/functions/check-registration/${this.user.id}/${this.user.userNicename}`)
         if (res && res.data) {
           console.log(res.data)
-          const bboDiscordInvite = res.data.bboDiscordInvite || null
-          const isRegistered = res.data.isRegistered || null
+          const bboDiscordInvite = res.data.bboDiscordInvite
+          const isRegistered = res.data.isRegistered
           this.bboDiscordInvite = bboDiscordInvite
           this.isRegistered = isRegistered
           setLSWithExpiry('bboDiscordInvite', bboDiscordInvite)
