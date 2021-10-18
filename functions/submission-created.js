@@ -55,10 +55,8 @@ exports.handler = async function(event, context) {
             console.log(err);
         }
 
-        const auth = `Bearer ${token}`
-
         try {
-            const config = { headers: { Authorization: auth } }
+            const config = { headers: { Authorization: token } }
             const res = await axios.get(apiBaseUrl + `users/username/${userNicename}`, config)
     
             if (res.status === 200) {
@@ -76,7 +74,7 @@ exports.handler = async function(event, context) {
             /*                          Attempt to create account                         */
             /* -------------------------------------------------------------------------- */
             try {
-                const res = await axios.put(apiBaseUrl + 'users/create', params)
+                const res = await axios.put(apiBaseUrl + 'users/create', params, { headers: { Authorization: auth } })
                 // console.log("put response", res);
                 console.log("New user successfully created for", userNicename, userEmail, displayName);
 
