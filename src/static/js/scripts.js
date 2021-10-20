@@ -574,6 +574,7 @@ document.addEventListener('alpine:init', () => {
   Alpine.data('createAccount',() => ({
     agree: false,
     userNicename: '',
+    userNicenameExists: false,
     userEmail: '',
     userPass:'',
     firstName:'',
@@ -583,6 +584,17 @@ document.addEventListener('alpine:init', () => {
     displayName:'',
     twitter:'', // not set up yet in API
     userLogin: '',
+    async checkUsername() {
+      try {
+        const res = await axios.get(`/.netlify/functions/check-user/${this.userNicename}`)
+        console.log(res);
+        if (res && res.data === "user exists") {
+          this.userNicenameExists = true;
+        }
+      } catch (err) {
+
+      }
+    }
   }))
 
   // Big Bad Online Registration Page
