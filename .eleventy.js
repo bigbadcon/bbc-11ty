@@ -157,8 +157,8 @@ module.exports = (eleventyConfig) => {
     const event = {
       title: title,
       description: description,
-      start: dateStart.toString(),
-      duration: [getDuration(dateStart,dateEnd), "hour"],
+      start: dateStart,
+      end: dateEnd,
       location: 'https://twitch.tv/bigbadcon',
       url: 'https://twitch.tv/bigbadcon'
     };
