@@ -78,24 +78,28 @@ module.exports = (eleventyConfig) => {
   /*                                 Shortcodes                                 */
   /* -------------------------------------------------------------------------- */
 
-  function getDuration( dateStart, dateEnd, accuracy = "hours") {
+  function getDuration( dateStart, dateEnd, accuracy = "minutes") {
     // calculate hours
     let diffInMilliSeconds = Math.abs(dateEnd - dateStart) / 1000;
     const hours = Math.floor(diffInMilliSeconds / 3600) % 24;
 
-    diffInMilliSeconds -= hours * 3600;
     // calculate minutes
+    diffInMilliSeconds -= hours * 3600;
     const minutes = Math.floor(diffInMilliSeconds / 60) % 60;
+    const minutesString = (minutes < 10) ? `0${minutes.toString()}` : minutes.toString();
+
+    // calculate seconds
     diffInMilliSeconds -= minutes * 60;
 
-    if (accuracy = "hours") return hours.toString();
-    if (accuracy = "minutes") return `${hours.toString()}:${minutes.toString()}`;
+    if (accuracy === "hours") return `${hours.toString()}`;
+    if (accuracy === "minutes") return `${hours.toString()}:${minutesString}`;
     return false
   }
 
   // Event duration in hours
-  eleventyConfig.addShortcode( "eventDuration", (dateStart,dateEnd) => {
-    return getDuration(dateStart,dateEnd)
+  eleventyConfig.addShortcode( "eventDuration", (dateStart, dateEnd, accuracy) => {
+    // accuracy "hours" || "minutes"; Defaults to minutes
+    return getDuration(dateStart,dateEnd,accuracy)
   });
 
   // Current Year
