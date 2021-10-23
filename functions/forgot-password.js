@@ -7,18 +7,18 @@ const apiKey = `ApiKey ${process.env.BBC_API_KEY}`
 // headers: {"x-api-key": apiKey}
 
 exports.handler = async function(event, context) {
-    // https://[domain.com]/.netlify/functions/forgot-password/[emailAddress]
-    const path = event.path.replace(/\/\.netlify\/functions\/[^/]*\//, '')
-    let [emailAddress] = (path) ? path.split('/') : []
+
+    const {email} = event.queryStringParameters
+    console.log(email);
 
     const body = {
-        "emailAddress": emailAddress,
-        "emailBody": "Hello, A request has been made to reset the password for the email address [emailAddress]. If you did not make this request you can ignore this email. If you did make this request then use the following link to create a new password https://www.bigbadcon.com/change-password?uuid=[uuid]",
+        "emailAddress": email,
+        "emailBody": "Hello, A request has been made to reset the password for the email address [emailAddress]. If you did not make this request you can ignore this email. If you did make this request then use the following link to create a new password https://www.bigbadcon.com/change-password/?uuid=[uuid]",
         "emailSubject": "Big Bad Con Password Reset"
     }
-    console.log(body);
+    
     const headers = { headers: {"x-api-key": apiKey} }
-
+    console.log(headers, body);
     try {
 
         const res = await axios.post(apiBaseUrl + `password/request`, body, headers)

@@ -8,12 +8,11 @@ const apiKey = `ApiKey ${process.env.BBC_API_KEY}`
 // headers: {"x-api-key": apiKey}
 
 exports.handler = async function(event, context) {
-    // https://[domain.com]/.netlify/functions/change-password/[uuid]/[emailAddress]/[password]
-    const path = event.path.replace(/\/\.netlify\/functions\/[^/]*\//, '')
-    let [uuid,emailAddress,password] = (path) ? path.split('/') : []
+    const {uuid,email,password} = event.queryStringParameters
+    console.log(uuid,email,password);
 
     const body = {
-        "emailAddress": emailAddress,
+        "emailAddress": email,
         "password": password,
         "uuid": uuid
     }

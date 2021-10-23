@@ -625,9 +625,9 @@ document.addEventListener('alpine:init', () => {
     async resetPassword() {
       resetPasswordFormState = "working"
       if (this.userEmail) {
-        const res = await axios.get(`/.netlify/functions/forgot-password/${this.userEmail}`)
+        const res = await axios.get(`/.netlify/functions/forgot-password/?email=${this.userEmail}`)
         if (res && res.data === "forgot password email sent") {
-          this.resetPasswordFormState = "sent"
+          this.resetPasswordFormState = "succeeded"
           console.log("email address found. Sent reset email");
         } else {
           this.resetPasswordFormState = "failed"
@@ -641,14 +641,21 @@ document.addEventListener('alpine:init', () => {
     uuid: null,
     userEmail: '',
     userPass: '',
-    passwordChanged: false,
+    passwordChangedState: 'empty',
     async changePassword() {
-      console.log(this.uuid,this.userEmail,this.userPass);
+      this.passwordChangedState = 'working'
       if (this.uuid) {
-        const res = await axios.get(`/.netlify/functions/change-password/${this.uuid}/${this.userEmail}/${this.userPass}`)
+        console.log("working",this.uuid);
+        const res = await axios.get(`/.netlify/functions/change-password/?uuid=${this.uuid}&email=${this.userEmail}&password=${this.userPass}`)
         if (res && res.data === "password changed") {
-          passwordChanged = true
+          console.log("password change succeeded");
+          this.passwordChangedState = 'succeeded'
+        } else {
+          console.log("password change failed");
+          this.passwordChangedState = 'failed'
         }
+        this.userEmail = ''
+        this.userPass = ''
       }
     }
   }))
