@@ -28,7 +28,7 @@
         <form action="post" class="flex flex-col flex-grow my-sm text-body gap-base" @submit.prevent="$store.auth.submitLogin()">
             <div>
                 <label for="username" class="text-xs uppercase">User Name</label>
-                <input class="w-full" id="username" name="username" required type="text" x-model="$store.auth.username" value=""/>
+                <input class="w-full" autocapitalize="off" id="username" name="username" required type="text" x-model="$store.auth.username" value=""/>
             </div>
             <div>
                 <label for="password" class="text-xs uppercase">Password</label>
@@ -41,7 +41,7 @@
         <div class="flex flex-col justify-start text-sm text-body gap-xs">
             {# TODO: get lost password working #}
             <div>
-                Can't login? <a href="/contact-us" class="font-bold text-highlight">Contact Us</a>
+                Forgot Password? <a href="#" class="font-bold text-highlight" @click.prevent="modal='changePassword'">Reset Password</a>
             </div>
             <div>
                 New? <a href="/create-account" class="font-bold text-highlight">Create an Account</a>
@@ -52,23 +52,46 @@
 
 {# Change Password Panel #}
 {% macro changePassword() %}
-    <div x-cloak x-show="$store.auth.isAuth && modal === 'changePassword'" class="flex flex-col w-64 h-full" >
+    <div x-cloak x-show="!$store.auth.isAuth && modal === 'changePassword'" class="flex flex-col w-64 h-full" >
         {# Header #}
         <div class="flex justify-between gap-x-sm">
             <h2 class="flex-grow -mt-1 font-serif text-2xl font-semibold leading-none text-header">
-                Change Password
+                Reset Password
             </h2>
             <div>
                 {{ closeBtn() }}
             </div>
         </div>
-        <form action="post" class="flex flex-col flex-grow my-sm text-body gap-base" x-data="{newPassword:''}" @submit.prevent="$store.auth.changePassword(newPassword); modal = false" >
+        <form action="post" class="flex flex-col flex-grow my-sm text-body gap-base" x-data="resetPasswordForm" @submit.prevent="resetPassword();" >
+            <div class="text-sm prose">
+                <p>Submit your email address to reset your password.</p>
+            </div>
             <div>
-                <label for="password" class="text-xs uppercase">New Password</label>
-                <input class="w-full" id="password" name="password" required type="password" x-model="newPassword" value=""/>
+                <label for="userEmail" autocapitalize="off" class="text-xs uppercase">Email <span class="font-bold text-highlight">*</span></label>
+                <input class="w-64" id="userEmail" name="userEmail" required type="email" autocapitalize="off" autocorrect="off" spellcheck="false" value="" x-model="userEmail"/>
             </div>
             <div>
                 <button class="font-bold uppercase transition-colors duration-200 rounded shadow text-form bg-highlight hover:bg-highlight-2 py-xs px-base" type="submit">Submit</button>
+            </div>
+            {# Loading spinner #}
+            <div x-cloak x-show="resetPasswordFormState === 'working'" class="flex items-center justify-center gap-sm animate-pulse py-md">
+                <div class="w-8 h-8 rounded-full bg-body"></div>
+                <div class="w-8 h-8 rounded-full bg-body"></div>
+                <div class="w-8 h-8 rounded-full bg-body"></div>
+            </div>
+            <div x-cloak x-show="resetPasswordFormState === 'succeeded'" class="text-sm prose">
+                <p>
+                    <strong>
+                        <em>Password reset email sent!</em>
+                    </strong>
+                </p>
+            </div>
+            <div x-cloak x-show="resetPasswordFormState === 'failed'" class="text-sm prose">
+                <p>
+                    <strong>
+                        <em>Password reset failed, probability due to email not associated with an account.</em>
+                    </strong>
+                </p>
             </div>
         </form>
     </div>
@@ -76,7 +99,11 @@
 
 {# Loading Spinner. When logging in but user info not yet loaded #}
 {% macro spinner() %}
-    <div x-cloak x-show="$store.auth.isAuth && !$store.auth.user" class="text-body">Loading...</div>
+    <div x-cloak x-show="$store.auth.isAuth && !$store.auth.user" class="flex items-center justify-center gap-sm animate-pulse py-md">
+        <div class="w-8 h-8 rounded-full bg-body"></div>
+        <div class="w-8 h-8 rounded-full bg-body"></div>
+        <div class="w-8 h-8 rounded-full bg-body"></div>
+    </div>
 {% endmacro %}
 
 {# Close button #}
