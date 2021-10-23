@@ -28,7 +28,7 @@
         <form action="post" class="flex flex-col flex-grow my-sm text-body gap-base" @submit.prevent="$store.auth.submitLogin()">
             <div>
                 <label for="username" class="text-xs uppercase">User Name</label>
-                <input class="w-full" id="username" name="username" required type="text" x-model="$store.auth.username" value=""/>
+                <input class="w-full" autocapitalize="off" id="username" name="username" required type="text" x-model="$store.auth.username" value=""/>
             </div>
             <div>
                 <label for="password" class="text-xs uppercase">Password</label>
@@ -41,7 +41,7 @@
         <div class="flex flex-col justify-start text-sm text-body gap-xs">
             {# TODO: get lost password working #}
             <div>
-                Can't login? <a href="/contact-us" class="font-bold text-highlight">Contact Us</a>
+                Forgot Password? <a href="#" class="font-bold text-highlight" @click.prevent="modal='changePassword'">Reset Password</a>
             </div>
             <div>
                 New? <a href="/create-account" class="font-bold text-highlight">Create an Account</a>
@@ -52,7 +52,7 @@
 
 {# Change Password Panel #}
 {% macro changePassword() %}
-    <div x-cloak x-show="$store.auth.isAuth && modal === 'changePassword'" class="flex flex-col w-64 h-full" >
+    <div x-cloak x-show="!$store.auth.isAuth && modal === 'changePassword'" class="flex flex-col w-64 h-full" >
         {# Header #}
         <div class="flex justify-between gap-x-sm">
             <h2 class="flex-grow -mt-1 font-serif text-2xl font-semibold leading-none text-header">
@@ -62,10 +62,13 @@
                 {{ closeBtn() }}
             </div>
         </div>
-        <form action="post" class="flex flex-col flex-grow my-sm text-body gap-base" x-data="{newPassword:''}" @submit.prevent="$store.auth.changePassword(newPassword); modal = false" >
+        <form action="post" class="flex flex-col flex-grow my-sm text-body gap-base" x-data="resetPasswordForm" @submit.prevent="resetPassword();modal=false" >
+            <div class="prose">
+                <p>Submit your email address and we will send an email with a link to reset your password.</p>
+            </div>
             <div>
-                <label for="password" class="text-xs uppercase">New Password</label>
-                <input class="w-full" id="password" name="password" required type="password" x-model="newPassword" value=""/>
+                <label for="userEmail" autocapitalize="off" class="text-xs uppercase">Email <span class="font-bold text-highlight">*</span></label>
+                <input class="w-64" id="userEmail" name="userEmail" required type="email" value="" x-model="userEmail"/>
             </div>
             <div>
                 <button class="font-bold uppercase transition-colors duration-200 rounded shadow text-form bg-highlight hover:bg-highlight-2 py-xs px-base" type="submit">Submit</button>

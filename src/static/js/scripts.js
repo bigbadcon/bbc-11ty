@@ -95,7 +95,8 @@ document.addEventListener('alpine:init', () => {
   /*                             API Fetch Functions                            */
   /* -------------------------------------------------------------------------- */
 
-  const apiBaseUrl = "https://admin.bigbadcon.com:8091/api/"
+  // const apiBaseUrl = "https://admin.bigbadcon.com:8091/api/"
+  const apiBaseUrl = 'http://www.logictwine.com:8092/'
 
   const api = {
     getEvent: async (id) => {
@@ -592,7 +593,7 @@ document.addEventListener('alpine:init', () => {
           this.userNicenameExists = true;
         }
       } catch (err) {
-
+        console.log(err);
       }
     }
   }))
@@ -608,10 +609,40 @@ document.addEventListener('alpine:init', () => {
     async checkRegistration() {
       const user = getLSWithExpiry('user')
       if (user) {
-        const res = await axios.get(`https://hopeful-pike-1a02ec-71488a.netlify.live/.netlify/functions/check-registration/${user.userNicename}`)
+        const res = await axios.get(`/.netlify/functions/check-registration/${user.userNicename}`)
         if (res && res.data && res.data.isUserRegistered) {
           this.regState = 'registered'
           setLSWithExpiry('registration','registered')
+        }
+      }
+    }
+  }))
+
+  // Change Password
+  Alpine.data('resetPasswordForm',() => ({
+    userEmail: '',
+    async resetPassword() {
+      if (this.userEmail) {
+        const res = await axios.get(`/.netlify/functions/forgot-password/${this.userEmail}`)
+        if (res && res.status === 200) {
+         console.log("email address found. Sent reset email");
+        }
+      }
+    }
+  }))
+
+  // Change Password
+  Alpine.data('changePasswordForm',() => ({
+    uuid: null,
+    userEmail: '',
+    userPass: '',
+    passwordChanged: false,
+    async changePassword() {
+      console.log(this.uuid,this.userEmail,this.userPass);
+      if (this.uuid) {
+        const res = await axios.get(`/.netlify/functions/change-password/${this.uuid}/${this.userEmail}/${this.userPass}`)
+        if (res && res.data === "password changed") {
+          passwordChanged = true
         }
       }
     }
