@@ -95,8 +95,8 @@ document.addEventListener('alpine:init', () => {
   /*                             API Fetch Functions                            */
   /* -------------------------------------------------------------------------- */
 
-  // const apiBaseUrl = "https://admin.bigbadcon.com:8091/api/"
-  const apiBaseUrl = 'http://www.logictwine.com:8092/'
+  const apiBaseUrl = "https://admin.bigbadcon.com:8091/api/"
+  // const apiBaseUrl = 'http://www.logictwine.com:8092/'
 
   const api = {
     getEvent: async (id) => {
@@ -621,11 +621,16 @@ document.addEventListener('alpine:init', () => {
   // Change Password
   Alpine.data('resetPasswordForm',() => ({
     userEmail: '',
+    resetPasswordFormState: "empty",
     async resetPassword() {
+      resetPasswordFormState = "working"
       if (this.userEmail) {
         const res = await axios.get(`/.netlify/functions/forgot-password/${this.userEmail}`)
-        if (res && res.status === 200) {
-         console.log("email address found. Sent reset email");
+        if (res && res.data === "forgot password email sent") {
+          this.resetPasswordFormState = "sent"
+          console.log("email address found. Sent reset email");
+        } else {
+          this.resetPasswordFormState = "failed"
         }
       }
     }
