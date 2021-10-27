@@ -8,10 +8,8 @@ tags: pages
 ---
 ## Big Bad Online 2021
 
-**We are thrilled to announce Big Bad Online,** a unique opportunity to bring together many diverse and talented voices!
+We want to thank everyone who made Big Bad Online possible: our amazing speaker and panel moderators, the volunteers who made everything work, and all who attended!
 
-**A platform for game designers and professionals** from all over the world to share their knowledge, creativity, and insight. Watch us now on [twitch.tv/bigbadcon](https://www.twitch.tv/bigbadcon).
+All of the knowledge, creativity, and insight shared by our panelists can still be found on [twitch.tv/bigbadcon](https://www.twitch.tv/bigbadcon). All of the videos will be archived later on the [Big Bad Con YouTube channel](https://www.youtube.com/channel/UCZTZeTM1WamDePxRpEMCftw/featured)
 
-Welcoming community gathering **free to all attendees** so we can share this vital information with all!
-
-**Please back our** [**Mightycause fundraiser**](https://www.mightycause.com/story/Bigbadonline) to support this event and the future of Big Bad Con in 2022 and beyond!
+We are keeping our [**Mightycause fundraiser**](https://www.mightycause.com/story/Bigbadonline) up for a little while longer for those that want to support the future of Big Bad Con in 2022 and beyond!
