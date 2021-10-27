@@ -6,6 +6,10 @@ tags: pages
 
 ---
 
+## Will Big Bad Con return in-person in 2022?
+
+We hope so! We don't know yet what 2022 will look like. We will base our decision on the advice of health experts.
+
 ## Will there be a Dealer Room or Small Press Showcase at Big Bad Online?
 
 Big Bad Online 2021 is a more focused event than our in-person Big Bad Con. With Big Bad Online we wanted to have a different event showcasing diverse speakers from across the game community. Several small press designers will be speakers at this event. We hope to bring back our in-person Big Bad Con in 2022, with a lively dealer area and small press spotlight.
