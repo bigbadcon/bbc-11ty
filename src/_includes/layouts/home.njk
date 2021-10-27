@@ -40,8 +40,8 @@
             </ul>
         </section>
         {# Big full width cards with images #}
-        <section class="grid gap-4 mx-auto max-w-hero p-base lg:grid-cols-12">
-            <ul class="grid gap-4 lg:col-span-8 xl:col-span-9">
+        <section class="grid gap-4 mx-auto max-w-hero p-base">
+            <ul class="grid gap-4">
                 {% for card in collections.bigcards123ABC %}
                     <li class="grid overflow-hidden rounded shadow-md md:grid-cols-3 bg-card">
                         <figure class="aspect-w-2 aspect-h-1">
@@ -54,10 +54,6 @@
                     </li>
                 {% endfor %}
             </ul>
-            {# Fundraiser widget #}
-            <div class="rounded shadow-md bg-card lg:col-span-4 xl:col-span-3 py-sm">
-                <iframe class="mx-auto" width="300" height="500" src= "https://www.mightycause.com/forms/Bigbadonline?embed=donation_widget" scrolling="no" marginHeight="0" marginWidth="0" frameBorder="0" ></iframe>
-            </div>
         </section>
     </main>
 
