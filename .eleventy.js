@@ -1,14 +1,51 @@
 const blogTools = require("eleventy-plugin-blog-tools");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
 const dayjs = require('dayjs')
+const utc = require('dayjs/plugin/utc')
+const timezone = require('dayjs/plugin/timezone') // dependent on utc plugin
+dayjs.extend(utc)
+dayjs.extend(timezone)
 const Image = require("@11ty/eleventy-img");
 const { google, outlook, office365, yahoo, ics } = require("calendar-link");
+const windows1252 = require('windows-1252');
+const utf8 = require('utf8')
 
+/* -------------------------------------------------------------------------- */
+/*                              Useful Functions                              */
+/* -------------------------------------------------------------------------- */
 
-// Function to sort by order frontmatter field then by fileSlug alphabetically
+/* ---------------- Get Duration Between Two Javascript Dates --------------- */
+function getDuration( dateStart, dateEnd, accuracy = "minutes") {
+  // calculate hours
+  let diffInMilliSeconds = Math.abs(dateEnd - dateStart) / 1000;
+  const hours = Math.floor(diffInMilliSeconds / 3600) % 24;
+
+  // calculate minutes
+  diffInMilliSeconds -= hours * 3600;
+  const minutes = Math.floor(diffInMilliSeconds / 60) % 60;
+  const minutesString = (minutes < 10) ? `0${minutes.toString()}` : minutes.toString();
+
+  // calculate seconds
+  diffInMilliSeconds -= minutes * 60;
+
+  if (accuracy === "hours") return `${hours.toString()}`;
+  if (accuracy === "minutes") return `${hours.toString()}:${minutesString}`;
+  return false
+}
+
+/* ----- Sort by order frontmatter field then by fileSlug alphabetically ---- */
 function sortByOrder(a,b) {
   return a.template.frontMatter.data.order - b.template.frontMatter.data.order || a.template.fileSlugStr.localeCompare(b.template.fileSlugStr)
 }
+
+/* ------------------------- Convert odd characters ------------------------- */
+const decodeText = text => {
+  return utf8.decode(windows1252.encode(text))
+}
+
+/* -------------------------------------------------------------------------- */
+/*                               Module Exports                               */
+/* -------------------------------------------------------------------------- */
 
 module.exports = (eleventyConfig) => {
 
@@ -74,27 +111,23 @@ module.exports = (eleventyConfig) => {
   // Convert unix time to ISO format
   eleventyConfig.addFilter("unixToISO", (date) => new Date(date).toISOString());
 
+  // eventStartDateTime
+  eleventyConfig.addFilter("eventStartDateTime", (event) => dayjs(event.eventStartDate + "T" + event.eventStartTime + "-07:00").toDate());
+  
+  // event Duration
+  eleventyConfig.addFilter("eventDuration", (event) => {
+    const eventStartDateTime = dayjs(event.eventStartDate + "T" + event.eventStartTime + "-07:00").toDate()
+    const eventEndDateTime = dayjs(event.eventEndDate + "T" + event.eventEndTime + "-07:00").toDate()
+    return getDuration(eventStartDateTime,eventEndDateTime)
+  });
+
+  // decode text
+  eleventyConfig.addFilter("decodeText", (text) => decodeText(text))
+  
+
   /* -------------------------------------------------------------------------- */
   /*                                 Shortcodes                                 */
   /* -------------------------------------------------------------------------- */
-
-  function getDuration( dateStart, dateEnd, accuracy = "minutes") {
-    // calculate hours
-    let diffInMilliSeconds = Math.abs(dateEnd - dateStart) / 1000;
-    const hours = Math.floor(diffInMilliSeconds / 3600) % 24;
-
-    // calculate minutes
-    diffInMilliSeconds -= hours * 3600;
-    const minutes = Math.floor(diffInMilliSeconds / 60) % 60;
-    const minutesString = (minutes < 10) ? `0${minutes.toString()}` : minutes.toString();
-
-    // calculate seconds
-    diffInMilliSeconds -= minutes * 60;
-
-    if (accuracy === "hours") return `${hours.toString()}`;
-    if (accuracy === "minutes") return `${hours.toString()}:${minutesString}`;
-    return false
-  }
 
   // Event duration in hours
   eleventyConfig.addShortcode( "eventDuration", (dateStart, dateEnd, accuracy) => {
@@ -120,6 +153,22 @@ module.exports = (eleventyConfig) => {
     return `<a href="${link}" class="icon-link"><svg class="icon-link__icon ${fill}">
       <use xlink:href="/static/images/icons.svg#${icon}"></use>
     </svg><span class="icon-link__title">${title}</span></a>`
+  });
+
+  /* -------- Convert metadata array to object to make it easier to use ------- */
+  function metadataArrayToObject(arr) {
+    const object = arr.reduce(function(result, item) {
+      result[item.metaKey] = item.metaValue;
+      return result;
+    }, {});
+    return object
+  }
+
+  // Find Metadata Value By Key
+  eleventyConfig.addShortcode("metaValue", function(metadata, key) {
+    let value = metadata.find(item => item.metaKey === key ).metaValue
+    if (key = "GM") value = decodeText(value)
+    return value
   });
 
   /* ----------------------------- Image Shortcode ---------------------------- */

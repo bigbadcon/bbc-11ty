@@ -1,9 +1,9 @@
 ---
-layout: layouts/events.njk
-title: Events
+layout: layouts/events-archive.njk
+title: Past Events
 description: ''
 tags: pages
 listing: events
 ---
 
-Big Bad Online 2021 panels and seminars are all streamed on our [Big Bad Con Twitch channel](https://www.twitch.tv/bigbadcon). They will all be later archived on our YouTube channel.
+Big Bad Online 2021 panels and seminars have all been archived on the [Big Bad Con YouTube channel](https://www.youtube.com/channel/UCZTZeTM1WamDePxRpEMCftw)

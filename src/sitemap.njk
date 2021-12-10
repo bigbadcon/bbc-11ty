@@ -20,14 +20,9 @@ eleventyExcludeFromCollections: true
             </url>
         {%- endif -%}
     {%- endfor -%}
-    {% for page in eventData.events %}
-        <url>
-            <loc>https://{{ sitemeta.domain }}/events/{{ page.eventSlug }}/</loc>
-            <lastmod>{{ page.lastUpdated | unixToISO }}</lastmod>
-            <changefreq>{{ page.data.changeFreq if page.data.changeFreq else "weekly" }}</changefreq>
-        </url>
-    {%- endfor -%}
-    {% for page in eventData.volunteer %}
+    {# TODO: add other events #}
+    {# TODO: shift to year folder structure events/2021 #}
+    {% for page in events2021 %}
         <url>
             <loc>https://{{ sitemeta.domain }}/events/{{ page.eventSlug }}/</loc>
             <lastmod>{{ page.lastUpdated | unixToISO }}</lastmod>

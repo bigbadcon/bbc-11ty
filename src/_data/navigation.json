@@ -1,16 +1,17 @@
-[{
+[
+    {
         "title": "Attend",
         "id": "attend",
         "subnav": [
             {
-                "title": "Events",
-                "url": "/events",
-                "icon": "calendar-clock"
-            },
-            {
                 "title": "FAQ",
                 "url": "/faq",
                 "icon": "faq"
+            },
+            {
+                "title": "Past Events",
+                "url": "/events",
+                "icon": "calendar-clock"
             }
         ]
     },
@@ -18,12 +19,12 @@
         "title": "Volunteer",
         "id": "volunteer",
         "subnav": [
-        {
-            "title": "Join The Rangers",
-            "url": "/rangers",
-            "icon": "paw"
-        }
-    ]
+            {
+                "title": "Join The Rangers",
+                "url": "/rangers",
+                "icon": "paw"
+            }
+        ]
     },
     {
         "title": "Community",

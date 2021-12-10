@@ -1,0 +1,26 @@
+{# TODO: make this modular #}
+{# TODO: make a list of archive pages? #}
+{# TODO: shift to events/2021/ year folder structure #}
+<section class="mt-md">
+    <h2 class="font-serif text-3xl font-bold leading-none md:text-4xl text-header mb-2xs">2021 Events</h2>
+    <table class="w-full text-sm text-body">
+        <tbody>
+            {% for event in events2021 %}
+                <tr x-show="$store.auth.filterEvent({{event.eventId}})">
+                    {# Event Name #}
+                    <td class="py-sm pr-sm">
+                        <h3>
+                            <a href="/events/{{event.eventSlug}}" class="font-bold transition-colors text-header hover:text-highlight">{{event.eventName | safe }}</a>
+                        </h3>
+                        <p>{% metaValue event.metadata,
+                            "GM" %}</p>
+                        {% set vidlink = "https://www.youtube.com/watch?=" + event.youtubeId %}
+                        {# <p>{% iconLink vidlink,
+                            "Watch on Youtube",
+                            "youtube" %}</p> #}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>

@@ -6,6 +6,4 @@ published: true
 ---
 Big Bad Online 2021 is over. Thank you all who attended! We how to see everyone next year in 2022!
 
-{% iconLink "https://www.mightycause.com/story/Bigbadonline", "Back Our Fundraiser!", "pig" %}
-
 {% iconLink "/faq", "FAQ", "faq" %}

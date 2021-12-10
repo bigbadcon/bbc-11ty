@@ -1,7 +1,7 @@
 ---
 layout: layouts/event.njk
 pagination:
-    data: eventData.events
+    data: events2021
     size: 1
     alias: event
 permalink: "events/{{ event.eventSlug }}/"
@@ -11,6 +11,11 @@ eleventyComputed:
     heroImage: "/event-images/{{ event.eventSlug }}.png"
     heroImageAlt: "Speaker headshots"
 ---
+
+{# TODO: make this modular for more years #}
+{# TODO: shift to events/2021/ folder structure  #}
+{# TODO: make sure the redirects move to new folder structure #}
+{# TODO: add more archive events. But use serverless eleventy #}
 
 {# Speakers #}
 {# Time #}
@@ -23,14 +28,28 @@ eleventyComputed:
 
 {# Categories and Facilitator/GM #}
 
-{# TODO: turn this on once we have real times for panels #}
-{% include 'components/event-date-time.njk'%}
+<div class="text-lg prose border-t-2 border-b-2 text-body mb-base space-y-xs border-hr py-sm">
+    {# Event Day #}
+    <div class="flex flex-wrap justify-between">
+        {# timezone data is in x-data="eventFilter" in wrapping div in base.njk #}
+        {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
+        <div>
+            <strong>Date:</strong>
+            <span>{{ event | eventStartDateTime | formatEventDate | safe }} (PST)</span>
+        </div>
+    </div>
+    {# Event Time #}
+    <div class="">
+        <strong>Duration:</strong>
+        <span>{{ event | eventDuration | safe }}</span>
+    </div>
+</div>
 
 <div class="prose mb-base mt-sm space-y-sm">
     <div class="text-2xl font-semibold leading-snug text-body-highlight">
-        {{event.metadata.GM}}
+        {% metaValue event.metadata,
+        "GM" %}
     </div>
-    {# TODO: date is added here once it's ready #}
 </div>
 {# Event Image: bit of a kludge. Must be added to event-images folder and named the same as the eventSlug #}
 <div class="rounded-md bg-card mb-md">
@@ -38,18 +57,12 @@ eleventyComputed:
     heroImageAlt %}
 </div>
 {# Description #}
-<div class="prose">{{event.postContent | nl2br | safe }}</div>
-{# Event Signup / Booking Panel #}
-{# {% include 'components/eventBookingPanel.njk'%} #}
+<div class="prose">{{event.postContent | decodeText | nl2br | safe }}</div>
+<div class="my-base">
+    <lite-youtube videoid="{{event.youtubeId}}" playlabel="Play"></lite-youtube>
+</div>
 {# Event links #}
-<div class="flex flex-wrap justify-between prose border-t-2 border-b-2 mt-md border-hr py-sm gap-base">
-    <div class="flex text-sm gap-xs">
-        <strong>Add to calendar:</strong>
-        {% set calendarDescription = "Big Bad Online 2021 event: https://www.bigbadcon.com/events/" + event.eventSlug %}
-        <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'google' %}">Google</a>
-        <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'ics' %}">iCal</a>
-        <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'outlook' %}">Outlook</a>
-    </div>
+<div class="flex flex-wrap justify-between max-w-full prose border-t-2 border-b-2 mt-md border-hr py-sm gap-base">
     <div class="text-sm">
         {% set tweeturl = "https://twitter.com/intent/tweet?text=Check+out+this+panel+at+#BigBadOnline+2021!+https://www.bigbadcon.com/events/" + event.eventSlug %}
 
