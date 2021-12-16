@@ -44,6 +44,11 @@
                 "title": "Community Discord",
                 "url": "/community-discord",
                 "icon": "discord"
+            },
+            {
+                "title": "Morgan Ellis Awards",
+                "url": "/morgan-ellis-awards",
+                "icon": "trophy"
             }
         ]
     },

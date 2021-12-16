@@ -6,7 +6,7 @@ description: Big Bad Con is a tabletop and live action gaming convention featuri
 tags: pages
 
 ---
-## Big Bad Online 2021
+## Big Bad Online
 
 We want to thank everyone who made Big Bad Online possible: our amazing speaker and panel moderators, the volunteers who made everything work, and all who attended!
 
