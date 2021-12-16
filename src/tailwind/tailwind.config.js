@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin')
+
 const scale = {
   '2xs': '0.236rem',
   xs: '0.382rem',
@@ -143,5 +145,17 @@ module.exports = {
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/forms'),
+    plugin(function ({ addComponents }) {
+      addComponents({
+        '.h2': {
+          color: 'var(--header)',
+          fontFamily: 'var(--serif)',
+          fontSize: '2.25rem',
+          lineHeight: '1.10',
+          marginBottom: '0.5em',
+          marginTop: '1.4em'
+        }
+      })
+    })
   ],
 };
