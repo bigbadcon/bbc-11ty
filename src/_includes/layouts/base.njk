@@ -16,7 +16,7 @@
       </div>
       <div class="relative content-wrapper bg-gradient-to-b from-main-gradient-top to-main-gradient-bottom pb-lg" >
         {# Login / Account Button #}
-        <button @click.stop="modal = 'login'" class="absolute top-0 font-bold uppercase transition-all transform border rounded-b cursor-pointer text-form right-base bg-highlight px-base pb-xs pt-md hover:bg-highlight-2 hover:pt-lg border-highlight" x-text="($store.auth.isAuth) ? 'My Account' : 'Login'">Login</button>
+        {# <button @click.stop="modal = 'login'" class="absolute top-0 font-bold uppercase transition-all transform border rounded-b cursor-pointer text-form right-base bg-highlight px-base pb-xs pt-md hover:bg-highlight-2 hover:pt-lg border-highlight" x-text="($store.auth.isAuth) ? 'My Account' : 'Login'">Login</button> #}
         {# Decorative underbrush svg #}
         <div style="-webkit-mask: url(/static/images/underbrush.svg) repeat-x; mask: url(/static/images/underbrush.svg) repeat-x; pointer-events: none;" class="h-10 underbrush bg-primary mb-sm"></div>
         {# Main Content Area. <main> tag should live in content block #}
