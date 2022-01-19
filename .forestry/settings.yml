@@ -50,6 +50,7 @@ file_template: ":filename:"
 build:
   preview_env:
   - NODE_ENV = development
+  - ELEVENTY_ENV=dev
   preview_output_directory: dist
   install_dependencies_command: npm install
   preview_docker_image: forestryio/node:12
