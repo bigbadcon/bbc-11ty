@@ -1,14 +1,11 @@
 ---
+layout: layouts/page.njk
 title: 'Big Bad Con Presents: Story Synth Microgrants'
-date: 2022-01-24T18:00:00Z
-published: false
-excerpt: Big Bad Con and Randy Lubin (creator of Story Synth) are excited to announce
-  a microgrant program focused on helping game designers at the intersection of marginalized
-  identities create, publish, and monetize games on the Story Synth platform!
-coverImage: ''
-coverImageAlt: ''
+description: 'Big Bad Con and Randy Lubin (creator of Story Synth) are excited to announce a microgrant program focused on helping game designers at the intersection of marginalized identities create, publish, and monetize games on the Story Synth platform!'
+tags: pages
 
 ---
+
 Hello!
 
 As award recipients from Grant for the Web, Big Bad Con and Randy Lubin (creator of Story Synth) are excited to announce a microgrant program focused on helping game designers at the intersection of marginalized identities create, publish, and monetize games on the Story Synth platform!
@@ -78,12 +75,13 @@ You will also receive micropayments directly from players of your game who suppo
 
 This grant kicks off January 24, 2022 and will go till July 23, 2022. Here’s what we expect each month:
 
+| Time | Description |
 | --- | --- |
-| Pre-grant Period \[COMPLETE\] | Story Synth Platform: begin work on new web monetization features; conduct research on any additional web monetization features to add to the roadmapMicrogrants: Big Bad Con grant administrators design microgrant application and application process. |
+| Pre-grant Period \[COMPLETE\] | Story Synth Platform: begin work on new web monetization features; conduct research on any additional web monetization features to add to the roadmap Microgrants: Big Bad Con grant administrators design microgrant application and application process. |
 | Month 1 | Story Synth Platform: continue development work, beta test work with designersMicrogrants: publicly launch microgrant program and promote broadly; accept initial grantee |
 | Month 2 | Story Synth Platform: continue development work, beta test work with designersMicrogrants: continue promotion of the microgrant program, accept new applications on a rolling basis, promote finished games made by grantees |
 | Month 3 | Story Synth Platform: launch initial feature work with accompanying tutorials, explore additional featuresMicrogrants: continue promotion of the microgrant program, accept new applications on a rolling basis, promote finished games made by grantees |
-| Month 4 | Progress Report dueContinued promotion of microgrant program if there are funds remaining; micrograntee training and assistance. Development work on any additional features. |
+| Month 4 | Progress Report due: Continued promotion of microgrant program if there are funds remaining; micrograntee training and assistance. Development work on any additional features. |
 | Month 5 | Continued promotion of microgrant program if there are funds remaining; micrograntee training and assistance. Development work on any additional features. |
 | Month 6 | Continued promotion of microgrant program if there are funds remaining. Continued promotion of microgrant program if there are funds remaining; micrograntee training and assistance. Development work on any additional features. |
 | Post-grant period | Final Report due 30 days after project end date |
