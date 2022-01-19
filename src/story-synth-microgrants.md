@@ -89,4 +89,4 @@ This grant kicks off January 24, 2022 and will go till July 23, 2022. Here’s w
 
 ### Application
 
-Apply now (Link: [https://airtable.com/shr2bGagYJxhDX2Te](https://airtable.com/shr2bGagYJxhDX2Te "https://airtable.com/shr2bGagYJxhDX2Te"))
+[Apply now](https://airtable.com/shr2bGagYJxhDX2Te)!
