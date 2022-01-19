@@ -101,8 +101,8 @@ module.exports = {
             strong: {
               color: 'inherit',
             },
-            'ul > li::before': {
-                backgroundColor: 'var(--secondary)'
+            'ul > li::marker': {
+                color: 'var(--secondary)'
             },
             hr: {
               borderColor: 'var(--hr)',
@@ -110,6 +110,15 @@ module.exports = {
               marginTop: '1rem',
               marginBottom: '1.618rem',
             },
+            'thead': {
+              borderBottomColor: 'var(--hr)',
+            },
+            'thead th': {
+              color: 'var(--subheader)',
+            },
+            'tbody tr': {
+              borderBottomColor: 'var(--hr)',
+            }
           }
         }
       },
