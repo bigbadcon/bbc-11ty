@@ -11,6 +11,12 @@ fields:
 - type: textarea
   name: description
   label: description
+- name: ogImage
+  type: file
+  config:
+    maxSize: 64
+  label: open graph image
+  description: Twitter/Facebook social image card
 pages:
 - src/events.md
 - src/faq.md

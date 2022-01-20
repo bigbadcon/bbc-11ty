@@ -35,8 +35,13 @@ fields:
   config:
     required: false
   label: cover image alt text
+- name: ogImage
+  type: file
+  config:
+    maxSize: 64
+  label: open graph image
+  description: Twitter/Facebook image card
 pages:
-- src/blog/big-bad-con-presents-story-synth-microgrants.md
 - src/blog/big-bad-online-2021.md
 - src/blog/big-bad-online-is-here.md
 - src/blog/big-news-coming-soon.md
