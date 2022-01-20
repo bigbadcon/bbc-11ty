@@ -5,7 +5,7 @@ published: true
 date: 2012-08-07
 categories:
 - the-making-of
-ogImage: "/images/twitter-share-card.png"
+ogImage: ''
 
 ---
 The games are in, the schedule made. Now it's time to look at all the awesome and try not to drool on your keyboard.
