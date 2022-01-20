@@ -14,7 +14,7 @@
 <meta property="og:url" content="{{ page.url }}"/>
 <!-- End OG cards -->
 {% if ogImage %}
-    {% set og = ogImage %}
+    {% set og = sitemeta.url + ogImage %}
 {% else %}
     {% set og = sitemeta.url + "/static/images/og.jpg" %}
 {% endif %}
