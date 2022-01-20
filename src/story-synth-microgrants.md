@@ -2,14 +2,15 @@
 layout: layouts/page.njk
 title: 'Big Bad Con Presents: Story Synth Microgrants'
 description: Big Bad Con and Randy Lubin (creator of Story Synth) are excited to announce
-  a microgrant program focused on helping game designers at the intersection of marginalized
-  identities create, publish, and monetize games on the Story Synth platform!
+  a microgrant program focused on helping game designers from marginalized identities
+  create, publish, and monetize games on the Story Synth platform!
 tags: pages
+ogImage: "/images/big-bad-grant-for-the-web-banner.png"
 
 ---
 Hello!
 
-As award recipients from [Grant for the Web](https://www.grantfortheweb.org/), Big Bad Con and Randy Lubin (creator of [Story Synth](https://storysynth.org/)) are excited to announce a microgrant program focused on helping game designers at the intersection of marginalized identities create, publish, and monetize games on the Story Synth platform!
+As award recipients from [Grant for the Web](https://www.grantfortheweb.org/), Big Bad Con and Randy Lubin (creator of [Story Synth](https://storysynth.org/)) are excited to announce a microgrant program focused on helping game designers from marginalized identities create, publish, and monetize games on the Story Synth platform!
 
 ### What are the microgrants and how do I get one?
 
@@ -17,7 +18,7 @@ The microgrants (application information below) award the following:
 
 * $300 to each grant recipient (up to 100 recipients) to create a game in a 6 month window
 * Administrative support from the Big Bad Con grants administrators
-* Technical and design support from Randy Lubin on using [Story Syth](https://storysynth.org/)
+* Technical and design support from Randy Lubin on using [Story Synth](https://storysynth.org/)
 * Instructions on how to monetize your game on the platform
 
 More on all the details below.
@@ -74,7 +75,7 @@ You will also receive micropayments directly from players of your game who suppo
 
 ### Expected Timeline
 
-This grant kicks off January 24, 2022 and will go till July 23, 2022. Here’s what we expect each month:
+This grant kicks off January 24, 2022 and will go till July 23, 2022. Here’s what the Big Bad Con admin team and Story Synth will be doing each month:
 
 | Time | Description |
 | --- | --- |
