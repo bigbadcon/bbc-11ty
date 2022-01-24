@@ -6,7 +6,9 @@ description: Big Bad Con is a tabletop and live action gaming convention featuri
 tags: pages
 
 ---
-## Big Bad Con Presents: Story Synth Microgrants
+## Big Bad Con Presents: 
+
+### Story Synth Microgrants
 
 We’re excited to announce a new microgrant program focused on helping marginalized game designers create, publish, and monetize games on the Story Synth platform!
 
