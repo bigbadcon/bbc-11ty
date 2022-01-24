@@ -88,6 +88,8 @@ This grant kicks off January 24, 2022 and will go till July 23, 2022. Here’s w
 | Month 6 | Continued promotion of microgrant program if there are funds remaining. Continued promotion of microgrant program if there are funds remaining; micrograntee training and assistance. Development work on any additional features. |
 | Post-grant period | Final Report due 30 days after project end date |
 
-### Application
+### How do I apply?
 
-[Apply now](https://airtable.com/shr2bGagYJxhDX2Te)!
+The Apply Now link below will bring you to our Story Synth Microgrant Application! All we need is some details for who you are and a pitch for your game — it's that easy!
+
+{% iconLink "https://airtable.com/shr2bGagYJxhDX2Te", "Apply Now!", "pencil-square" %}
