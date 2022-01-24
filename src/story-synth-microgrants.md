@@ -5,7 +5,7 @@ description: Big Bad Con and Randy Lubin (creator of Story Synth) are excited to
   a microgrant program focused on helping game designers from marginalized identities
   create, publish, and monetize games on the Story Synth platform!
 tags: pages
-ogImage: "/images/big-bad-grant-for-the-web-banner.png"
+ogImage: "/images/story-synth-microgrants-twitter-card.png"
 
 ---
 Hello!
