@@ -17,3 +17,5 @@ We want to help you create your own games on Story Synth. Administrative support
 If your design ends up needing longer than six months to create, that’s okay. Share what you've done by the end of the grant window, and you can keep working on finishing the game as long as you like. This funding will begin on January 24, 2022 with completed* games due on (or before, if you are so motivated) July 23, 2022.
 
 \*Complete is a nebulous term in digital offerings. You can always modify your game to make changes and improvements. From our perspective, it is complete as soon as you say it’s ready to share with the public.
+
+{% iconLink "/story-synth-microgrants", "Visit our Story Synth Microgrants page to apply!", "pencil-square" %}
