@@ -93,3 +93,25 @@ This grant kicks off January 24, 2022 and will go till July 23, 2022. Here’s w
 The Apply Now link below will bring you to our Story Synth Microgrant Application. All we need is some details for who you are and a pitch for your game — it's that easy!
 
 {% iconLink "https://airtable.com/shr2bGagYJxhDX2Te", "Apply Now!", "pencil-square" %}
+
+### FAQ
+
+**Q: Who has rights to the games created on Story Synth.**
+
+A: All rights are kept by the game creator. For more see the Story Synth Licensing section here: [https://docs.storysynth.org/guide/#licensing](https://docs.storysynth.org/guide/#licensing "https://docs.storysynth.org/guide/#licensing")
+
+**Q: Can I publish under a pseudonym?**
+
+A: Yes. We respect everyone’s right to privacy. For legal and financial reasons we ask that you use your legal name when applying for the grant, but we’re happy to use any name you’d like in all public facing locations, including your game page on Story Synth and our report to Grant for the Web.
+
+**Q: Can we use an alternative to PayPal for international transfers (where currency exchanges are charged)?**
+
+A: As much as possible, we want to stick with PayPal for our payment processing, however we’re happy to cover the transfer fees.
+
+**Q: Are minors (under 18) eligible for the microgrant?**
+
+A: Yes, but our privacy policy means that we will not publish the personal information of minors in any public spaces. (That’s why we ask in our application form).
+
+**Q: Can I apply to adapt my non-Story Synth game or create an updated version of my Story Synth game?**
+
+A: Absolutely. Adaptations of existing games, second editions, etc. are all welcome.
