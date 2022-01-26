@@ -115,3 +115,7 @@ A: Yes, but our privacy policy means that we will not publish the personal infor
 **Q: Can I apply to adapt my non-Story Synth game or create an updated version of my Story Synth game?**
 
 A: Absolutely. Adaptations of existing games, second editions, etc. are all welcome.
+
+**Q: Can I apply for multiple grants either by submitting multiple game ideas or submitting a game with multiple contributors?**
+
+A: At present, we're only offering one grant per game, and per creator. However, if you complete a game in the grant window and there are still funds available, you're welcome to apply a second time. Similarly if you have a team working on a game, once the first one is complete, any member of the team (including the original applicant) can apply for another grant for a second game.
