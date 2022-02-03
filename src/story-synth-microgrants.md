@@ -136,7 +136,7 @@ A: Grant for the Web is governed by [Coil](https://coil.com/), [Mozilla Foundati
 
 A: The proposed Web Monetization standard, the Interledger Protocol, and the Coil service are not based on blockchain technology and they don't have an affiliated cryptocurrency nor other form of crypto tokens, mining, or minting. Likewise, use of web monetization on Story Synth won't involve cryptocurrency or blockchains.
 
-Q: Is Web Monetization related to blockchain or web3?
+**Q: Is Web Monetization related to blockchain or web3?**
 
 A: We found that the initial funds and development for Interledger (the underlying tech) came from Ripple, a crypto company, and former CTO Stephan Thomas. Understanding the flaws of blockchains, he made an explicit choice to develop Interleger on the open web, not the blockchain.
 
