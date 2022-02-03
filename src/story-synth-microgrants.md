@@ -119,3 +119,27 @@ A: Absolutely. Adaptations of existing games, second editions, etc. are all welc
 **Q: Can I apply for multiple grants either by submitting multiple game ideas or submitting a game with multiple contributors?**
 
 A: At present, we're only offering one grant per game, and per creator. However, if you complete a game in the grant window and there are still funds available, you're welcome to apply a second time. Similarly if you have a team working on a game, once the first one is complete, any member of the team (including the original applicant) can apply for another grant for a second game.
+
+**Q: What can I expect in terms of ongoing income from web monetization revenue?**
+
+A: Adoption of web monetization is still in its very early days. In the near term, you might only see pennies from web monetized players. Our hope is that this grows as interest in web monetization increases and the growth of web monetized games encourages players to adopt the technology.
+
+**Q: Can I use my Story Synth game to promote other income streams?**
+
+A: You're welcome to point players toward a KoFi, Patreon, or crowdfunding links in the credits of your game. You can also link to a different, paid version of the game (e.g. physical copy, print and play).
+
+**Q: Who runs Grant for the Web?**
+
+A: Grant for the Web is governed by [Coil](https://coil.com/), [Mozilla Foundation](https://foundation.mozilla.org/en/), and [Creative Commons](https://creativecommons.org/). It is a program of the [Interledger Foundation](https://interledger.org/).
+
+**Q: Is the underlying technology powered by blockchain or cryptocurrency?**
+
+A: The proposed Web Monetization standard, the Interledger Protocol, and the Coil service are not based on blockchain technology and they don't have an affiliated cryptocurrency nor other form of crypto tokens, mining, or minting. Likewise, use of web monetization on Story Synth won't involve cryptocurrency or blockchains.
+
+Q: Is Web Monetization related to blockchain or web3?
+
+A: We found that the initial funds and development for Interledger (the underlying tech) came from Ripple, a crypto company, and former CTO Stephan Thomas. Understanding the flaws of blockchains, he made an explicit choice to develop Interleger on the open web, not the blockchain.
+
+Interledger itself does not rely on a blockchain, and projects (like Story Synth) can use it without touching blockchains or cryptocurrencies. That being said, some organizations might use it with their blockchain or cryptocurrency projects.
+
+From an [interview](https://interledger.org/news/the-history-and-promise-of-interledger-qa-with-co-founder-stefan-thomas/) with Thomas in 2021 “My deep involvement in Bitcoin and Ripple gave me an appreciation for the strengths and weaknesses of blockchain, including the difficulty in upgrading such systems to keep up with new technologies. This in large part influenced the decision NOT to make Interledger a blockchain. Instead, we looked to the internet for inspiration on how to create a massive global interoperability system that can still remain flexible and evolve as new technologies become available. And thus, Interledger was born - a protocol for routing packets of money just like the internet routes packets of data.”
