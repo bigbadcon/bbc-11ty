@@ -1,7 +1,7 @@
 ---
 title: Our new Story Synth Microgrant Program!
-date: 2022-01-24T08:00:00Z
-published: false
+date: 2022-01-24T08:00:00.000+00:00
+published: true
 excerpt: Big Bad Con and Randy Lubin (creator of Story Synth) are excited to announce
   a new microgrant program focused on helping game designers at the intersection of
   marginalized identities create, publish, and monetize games on the Story Synth platform!
