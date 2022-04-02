@@ -8,8 +8,8 @@ exports.handler = async (event, context) => {
   console.log('event', event)
   console.log('context', context)
   if (event.body) {
-    let pubData = await JSON.parse(event.body);
-    console.log('payload',pubData.payload);
+    let body = JSON.parse(event.body);
+    console.log('payload',body.payload);
   }
   
   return {
