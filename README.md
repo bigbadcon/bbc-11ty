@@ -9,3 +9,4 @@ Uses Eleventy, Alpine JS, and Tailwind.
 TODO: update README
 TODO: upgrade to latest Tailwind
 TODO: upgrade to latest 11ty
+TODO: move past events to year folder and add redirect
