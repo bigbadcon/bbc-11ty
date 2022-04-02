@@ -1,15 +1,17 @@
-const fetch = require('node-fetch')
-const { URL } = process.env
+// const fetch = require('node-fetch')
+// const { URL } = process.env
 // URL === your site URL
 
 // const functionOne = `${URL}/.netlify/functions/check-registration/493/colinaut/`
 // const functionTwo = `${URL}/.netlify/functions/screenshot/online-interactive-fiction-collaborative-storytelling-games/`
 
-exports.handler = async (event, context) => {
+exports.handler = async (event, context, payload) => {
   
   console.log('deploy-succeeded')
   console.log('event', event)
   console.log('context', context)
+  let pubData = await JSON.parse(event.body).payload;
+  console.log(pubData);
 
   // Ping serverless functions to renew cache
   // TODO: do I still need this?
