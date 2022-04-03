@@ -1,4 +1,4 @@
-import fetch from "node-fetch"
+const axios = require('axios');
 
 exports.handler = async (event, context) => {
   
@@ -8,33 +8,31 @@ exports.handler = async (event, context) => {
     const payload = JSON.parse(event.body).payload
     
     // Only allow POST
-    if (event.httpMethod !== "POST") {
-      return { statusCode: 405, body: "Method Not Allowed" };
-    }
+    // if (event.httpMethod !== "POST") {
+    //   return { statusCode: 405, body: "Method Not Allowed" };
+    // }
     
-    // Send message with link to Slack
-    return fetch(process.env.SLACK_WEBHOOK_URL, {
-      headers: {
-        "content-type": "application/json",
-      },
-      method: "POST",
-      body: JSON.stringify({ text: `${payload.title} build has successfully depoloyed. Preview permalink: ${payload.links.permalink}` }),
-    })
-      .then(() => ({
+    try {
+      
+      // Send message with link to Slack
+      await axios.post(process.env.SLACK_WEBHOOK_URL, { text: `${payload.title} build has successfully depoloyed. Preview permalink: ${payload.links.permalink}` })
+      
+      return {
         statusCode: 200,
         body: `The deploy message for ${payload.title} has been sent to Slack 👋`,
-      }))
-      .catch((error) => ({
+      }
+      
+    } catch(error) {
+      return {
         statusCode: 422,
         body: `Oops! Something went wrong. ${error}`,
-      }));
-      
+      }
+    }
   } else {
     return {
       statusCode: 422,
       body: `missing event.body`,
     }
   }
-  
   
 }
