@@ -7,11 +7,6 @@ exports.handler = async (event, context) => {
   if (event.body) {
     const payload = JSON.parse(event.body).payload
     
-    // Only allow POST
-    // if (event.httpMethod !== "POST") {
-    //   return { statusCode: 405, body: "Method Not Allowed" };
-    // }
-    
     try {
       
       // Send message with link to Slack
