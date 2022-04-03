@@ -1,8 +1,5 @@
 import fetch from "node-fetch"
 
-// const { URL } = process.env
-// URL === your site URL
-
 exports.handler = async (event, context) => {
   
   console.log('deploy-succeeded')
