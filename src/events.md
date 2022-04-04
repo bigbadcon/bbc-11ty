@@ -6,4 +6,6 @@ tags: pages
 listing: events
 ---
 
-Big Bad Online 2021 panels and seminars have all been archived on the [Big Bad Con YouTube channel](https://www.youtube.com/channel/UCZTZeTM1WamDePxRpEMCftw)
+Stay tuned for our Big Bad Online 2022 events! 
+
+Big Bad Online 2021 panels and seminars are archived on the [Big Bad Con YouTube channel](https://www.youtube.com/channel/UCZTZeTM1WamDePxRpEMCftw)

@@ -7,6 +7,6 @@ image: ''
 alt: ''
 
 ---
-Big Bad Online 2021 is over. Thank you all who attended! Plans for 2022 are still in the works.
+Join us for Big Bad Online 2022!
 
 {% iconLink "/faq", "FAQ", "faq" %}
