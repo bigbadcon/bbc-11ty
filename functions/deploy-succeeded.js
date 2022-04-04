@@ -16,9 +16,9 @@ exports.handler = async (event, context) => {
       console.log("try send to Slack")
       
       // Send message with link to Slack
-      await axios.post(process.env.SLACK_WEBHOOK_WEB_DEV, { text: `${payload.title} build has successfully deployed. Preview permalink: ${payload.links.permalink}` })
+      await axios.post(process.env.SLACK_WEBHOOK_WEB_DEV, { text: `🎉 New Build 🛠 '${payload.title}' 👁 Preview permalink: ${payload.links.permalink}` })
       
-      console.log(`The deploy message for change '${payload.title}' has been sent to Slack 👋`)
+      console.log(`The deploy message for change '${payload.title}' has been sent to Slack`)
       
       return {
         statusCode: 200,
