@@ -9,4 +9,6 @@ alt: ''
 ---
 Join us for Big Bad Online 2022!
 
+{% iconLink "/register", "Register", "badge" %}
+
 {% iconLink "/faq", "FAQ", "faq" %}
