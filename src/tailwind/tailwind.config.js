@@ -33,18 +33,12 @@ const colors = {
 }
 
 module.exports = {
-  mode: 'jit',
-  purge: {
-    content: [
-      "./dist/**/*.html",
-      "./src/**/*.njk",
-      "./src/**/*.njk",
-      "./src/**/*.html",
-    ],
-    options: {
-      safelist: [],
-    },
-  },
+  content: [
+    "./dist/**/*.html",
+    "./src/**/*.njk",
+    "./src/**/*.njk",
+    "./src/**/*.html",
+  ],
   theme: {
     darkMode: 'class',
     extend: {
