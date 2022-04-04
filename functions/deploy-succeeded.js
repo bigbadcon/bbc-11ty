@@ -4,6 +4,7 @@ exports.handler = async (event, context) => {
   
   console.log('deploy-succeeded')
   
+  // event.body is undefined when run with netlify cli locally so skip this.
   if (event.body) {
     const payload = JSON.parse(event.body).payload
     
