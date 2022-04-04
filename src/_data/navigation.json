@@ -19,9 +19,9 @@
                 "icon": "calendar-clock"
             },
             {
-                "title": "Events Archive",
-                "url": "/events-archive",
-                "icon": "calendar-clock"
+                "title": "Past Events",
+                "url": "/past-events",
+                "icon": "library"
             }
         ]
     },

@@ -1,6 +1,6 @@
 ---
 layout: layouts/page.njk
-title: Events Archive
+title: Past Events
 description: 'Archive of Events'
 tags: pages
 ---
