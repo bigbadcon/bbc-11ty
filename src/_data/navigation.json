@@ -4,13 +4,23 @@
         "id": "attend",
         "subnav": [
             {
+                "title": "Register",
+                "url": "/register",
+                "icon": "badge"
+            },
+            {
                 "title": "FAQ",
                 "url": "/faq",
                 "icon": "faq"
             },
             {
-                "title": "Past Events",
+                "title": "Events",
                 "url": "/events",
+                "icon": "calendar-clock"
+            },
+            {
+                "title": "Events Archive",
+                "url": "/events-archive",
                 "icon": "calendar-clock"
             }
         ]
@@ -23,6 +33,11 @@
                 "title": "Join The Rangers",
                 "url": "/rangers",
                 "icon": "paw"
+            },
+            {
+                "title": "Volunteer Shifts",
+                "url": "/volunteer-shifts",
+                "icon": "calendar-clock"
             }
         ]
     },
