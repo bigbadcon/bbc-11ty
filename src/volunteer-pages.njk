@@ -1,0 +1,40 @@
+---
+layout: layouts/event.njk
+pagination:
+    data: eventData.volunteer
+    size: 1
+    alias: event
+permalink: "volunteer/{{ event.eventSlug }}/"
+eleventyComputed:
+    title: "{{ event.eventName | safe }}"
+---
+
+{# Date and Time #}
+{% include 'components/event-date-time.njk'%}
+
+{# Description #}
+<div class="prose">{{event.postContent | safe }}</div>
+
+{# Event Signup / Booking #}
+{% include 'components/volunteerBookingPanel.njk'%}
+{# Event links #}
+<div class="flex flex-wrap justify-between prose border-t-2 border-b-2 mt-md border-hr py-sm gap-base">
+    <div class="flex text-sm gap-xs">
+        <strong>Add to calendar:</strong>
+        {% set calendarDescription = "Big Bad Online 2021 volunteer shift: https://www.bigbadcon.com/events/" + event.eventSlug %}
+        <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'google' %}">Google</a>
+        <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'ics' %}">iCal</a>
+        <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'outlook' %}">Outlook</a>
+    </div>
+    <div class="text-sm">
+        {% set tweeturl = "https://twitter.com/intent/tweet?text=Volunteer+at+#BigBadOnline+2021!+https://www.bigbadcon.com/events/" + event.eventSlug %}
+
+        <a class="inline-flex items-center gap-sm" href="{{tweeturl}}">
+            <svg class="w-4 h-4 fill-body">
+                <use xlink:href="/static/images/icons.svg#twitter"></use>
+            </svg>Tweet This!</a>
+    </div>
+</div>
+
+<div class="prose py-base">Back to <a href="/volunteer-shifts/">List of Volunteer Shifts</a>
+</div>

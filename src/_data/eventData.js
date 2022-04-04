@@ -94,5 +94,9 @@ module.exports = async () => {
 
     } catch(error) {
         console.log(error)
+        return {
+            events: [],
+            volunteer: [],
+        }
     }
 }
