@@ -8,12 +8,6 @@ var utc = require('dayjs/plugin/utc')
 var timezone = require('dayjs/plugin/timezone')
 dayjs.extend(utc)
 dayjs.extend(timezone)
-  
-/* ----- Inject cert to avoid the UNABLE_TO_VERIFY_LEAF_SIGNATURE error ----- */
-// rootCas.addFile('./certs/bigbadcon-com-chain.pem')
-// rootCas.addFile('./certs/admin-bbc-fullchain.pem')
-// rootCas.addFile('./certs/chain.pem')
-// require('https').globalAgent.options.ca = rootCas;
 
 /* ------------------------- Convert odd characters ------------------------- */
 const decodeText = text => {

@@ -4,8 +4,6 @@ const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 const { GoogleSpreadsheet } = require('google-spreadsheet')
 
-/* ----- Inject cert to avoid the UNABLE_TO_VERIFY_LEAF_SIGNATURE error ----- */
-
 const apiBaseUrl = 'https://admin.bigbadcon.com:8091/api/'
 
 exports.handler = async function(event, context) {
