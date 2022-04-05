@@ -383,16 +383,22 @@ document.addEventListener('alpine:init', () => {
       console.log("check reg");
       if (!this.bboDiscordInvite && this.user) {
         console.log("check reg yes user no bboDiscord");
-        const res = await axios.get(`/.netlify/functions/check-registration/${this.user.id}/${this.user.userNicename}`)
-        if (res && res.data) {
-          console.log(res.data)
-          const bboDiscordInvite = res.data.bboDiscordInvite
-          const isRegistered = res.data.isRegistered
-          this.bboDiscordInvite = bboDiscordInvite
-          this.isRegistered = isRegistered
-          setLSWithExpiry('bboDiscordInvite', bboDiscordInvite)
-          setLSWithExpiry('isRegistered', isRegistered)
-          return bboDiscordInvite
+        try {
+          const res = await axios.get(`/.netlify/functions/check-registration/${this.user.id}/${this.user.userNicename}`)
+          if (res && res.data) {
+            console.log(res.data)
+            const bboDiscordInvite = res.data.bboDiscordInvite
+            const isRegistered = res.data.isRegistered
+            this.bboDiscordInvite = bboDiscordInvite
+            this.isRegistered = isRegistered
+            setLSWithExpiry('bboDiscordInvite', bboDiscordInvite)
+            setLSWithExpiry('isRegistered', isRegistered)
+            return bboDiscordInvite
+          }
+        } catch(err) {
+          this.makeToast('Failed to check registration status')
+          console.log("failed to reach Google Sheet")
+          return false
         }
       }
     },
