@@ -11,7 +11,7 @@ exports.handler = async function(event, context) {
 
     try {
         // Initialize the sheet - doc ID is the long id in the sheets URL
-        const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_REGISTER_BIGBADONLINE)
+        const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_REGISTER_BIGBADONLINE_2022)
 
         // Initialize Auth - see more available options at https://theoephraim.github.io/node-google-spreadsheet/#/getting-started/authentication
         await doc.useServiceAccountAuth({
