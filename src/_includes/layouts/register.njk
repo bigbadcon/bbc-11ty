@@ -58,13 +58,14 @@
                 </form>
 
                 {# You are Registered notification. Show only when registered and logged in.  #}
-                <div x-cloak x-show="$store.auth.isAuth && $store.auth.bboDiscordInvite" class="prose">
+                <div x-cloak x-show="$store.auth.isAuth" class="prose">
                     <h2>You are registered!</h2>
                     <p>You, <strong>
-                            <span x-text="$store.auth.user && $store.auth.user.displayName"></span> (<span x-text="$store.auth.user && $store.auth.user.userNicename"></span>)</strong>, are registered for Big Bad Online 2021. You can prepare for the event by join the special event Discord using the invite link below and following us on Twitch.</p>
-                    <p>
+                            <span x-text="$store.auth.user && $store.auth.user.displayName"></span> (<span x-text="$store.auth.user && $store.auth.user.userNicename"></span>)</strong>, are registered for Big Bad Online 2022.</p>
+                    {# <p>
                         <strong>Join</strong> the <a :href="'https://discord.gg/' + $store.auth.bboDiscordInvite">Big Bad Online 2021 Discord</a>!
-                    </p>
+                    </p> #}
+                    <p>We will post the event Discord invite link here once it gets closer to the date.</p>
                     <p>
                         <strong>Follow</strong> the <a href="https://twitch.tv/bigbadcon">Big Bad Con Twitch Channel</a>! <em>You must be a follower for 10 minutes before you can enter the twitch chat.</em>
                     </p>
