@@ -89,6 +89,8 @@ function metadataArrayToObject(arr) {
 /*                                Alpine Stuff                                */
 /* -------------------------------------------------------------------------- */
 
+// TODO: convert to Alpine 3 persist
+
 document.addEventListener('alpine:init', () => {
 
   /* -------------------------------------------------------------------------- */
