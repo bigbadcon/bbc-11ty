@@ -8,8 +8,12 @@ tags: pages
 ---
 ## Big Bad Online 2022!
 
-Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. 
+We're delighted to announce Big Bad Online will be returning this year year May 6-7.
 
-Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris. 
+As with last year's online event, we'll be streaming 24 hours of amazing, free-to-view panels on a diverse array of TTRPG-related topics, but we can't do it without you. Your contribution will support us in showing off expert conversations on a diverse array of topics and amplifying the voices of marginalized designers, professionals, and players in our TTRPG community.
 
-Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium. Mightycause
+We're so stoked to present these panels to you this year, and we hope you will help us put on this amazing event,
+
+{% iconLink "[https://www.mightycause.com/story/Bigbadonline2022](https://www.mightycause.com/story/Bigbadonline2022 "https://www.mightycause.com/story/Bigbadonline2022")", "Support us on MightyCause!", "pencil-square" %}
+
+{% iconLink "/rangers", "Join The Rangers", "paw" %}
