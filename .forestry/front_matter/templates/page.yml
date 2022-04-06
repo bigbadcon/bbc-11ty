@@ -18,7 +18,6 @@ fields:
   label: open graph image
   description: Twitter/Facebook social image card
 pages:
-- src/events.md
 - src/faq.md
 - src/rangers.md
 - src/staff.md
