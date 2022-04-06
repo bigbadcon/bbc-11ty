@@ -14,6 +14,6 @@ As with last year's online event, we'll be streaming 24 hours of amazing, free-t
 
 We're so stoked to present these panels to you this year, and we hope you will help us put on this amazing event,
 
-{% iconLink "[https://www.mightycause.com/story/Bigbadonline2022](https://www.mightycause.com/story/Bigbadonline2022 "https://www.mightycause.com/story/Bigbadonline2022")", "Support us on MightyCause!", "pencil-square" %}
+{% iconLink "https://www.mightycause.com/story/Bigbadonline2022", "Support us on MightyCause!", "pig" %}
 
 {% iconLink "/rangers", "Join The Rangers", "paw" %}
