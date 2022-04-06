@@ -94,6 +94,7 @@ module.exports = {
             },
             strong: {
               color: 'inherit',
+              fontWeight: '700'
             },
             'ul > li::marker': {
                 color: 'var(--secondary)'
