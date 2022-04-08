@@ -381,16 +381,15 @@ document.addEventListener('alpine:init', () => {
     bboDiscordInvite: null, //stores discord invite link id grabbed from server; null == not set; false = unregistered; id string = discord invite id
     // Big Bad Online Registration Functions
     async checkRegistration() {
-      // If no discord link and has user info then check registration status
-      console.log("check reg");
-      if (!this.bboDiscordInvite && this.user) {
-        console.log("check reg yes user no bboDiscord");
+      // If not registered but logged in (has user info) then check registration status
+      if (!this.isRegistered && this.user) {
+        console.log("not registered so check reg");
         try {
           const res = await axios.get(`/.netlify/functions/check-registration/${this.user.id}/${this.user.userNicename}`)
           if (res && res.data) {
             console.log(res.data)
             const bboDiscordInvite = res.data.bboDiscordInvite || null
-            const isRegistered = res.data.isRegistered
+            const isRegistered = res.data.isRegistered || null
             this.bboDiscordInvite = bboDiscordInvite
             this.isRegistered = isRegistered
             setLSWithExpiry('bboDiscordInvite', bboDiscordInvite)

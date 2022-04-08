@@ -58,7 +58,7 @@
                 </form>
 
                 {# You are Registered notification. Show only when registered and logged in.  #}
-                <div x-cloak x-show="$store.auth.isAuth && $store.auth.isRegistered" class="prose">
+                <div x-cloak x-show="$store.auth.isAuth && $store.auth.isRegistered === true" class="prose">
                     <h2>You are registered!</h2>
                     <p>You, <strong>
                             <span x-text="$store.auth.user && $store.auth.user.displayName"></span> (<span x-text="$store.auth.user && $store.auth.user.userNicename"></span>)</strong>, are registered for Big Bad Online 2022.</p>
