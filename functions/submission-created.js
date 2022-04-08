@@ -5,6 +5,7 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 const { GoogleSpreadsheet } = require('google-spreadsheet')
 
 const apiBaseUrl = 'https://admin.bigbadcon.com:8091/api/'
+const apiKey = `ApiKey ${process.env.BBC_API_KEY}`
 
 exports.handler = async function(event, context) {
     // your server-side functionality
@@ -232,6 +233,37 @@ exports.handler = async function(event, context) {
                 "Agree To Community Standards": data["agree-to-community-standards"],
             })
             console.log("🚀 ~ file: submission-created.js ~ line 149 ~ exports.handler=function ~ addedRow", addedRow)
+            
+            // TODO: add Volunteer Role to any registered users. TEST THIS!!!
+            const body = {
+                "role": "volunteer",
+                "userId": data.userId
+            }
+            
+            const headers = { headers: {"x-api-key": apiKey} }
+            console.log("addRoleToUser API POST", headers, body);
+            try {
+            
+                const res = await axios.post(apiBaseUrl + `users/addRoleToUser`, body, headers)
+            
+                if (res.status === 200) {
+                    return {
+                        statusCode: 200,
+                        body: "user added volunter role",
+                    }
+                } else {
+                    return {
+                        statusCode: 500,
+                        body: "failed"
+                    }
+                }
+            } catch (err) {
+                console.log("add user role for voluteer failed", err.toString());
+                return {
+                    statusCode: 200,
+                    body: "add user role for voluteer failed"
+                }
+            }
 
             return {
               statusCode: 200,
