@@ -15,6 +15,8 @@
 <!-- End OG cards -->
 {% if ogImage %}
     {% set og = sitemeta.url + ogImage %}
+{% elif ogAPIImage %}
+    {% set og = ogAPIImage %}
 {% else %}
     {% set og = sitemeta.url + "/static/images/og.jpg" %}
 {% endif %}
