@@ -120,6 +120,9 @@ module.exports = (eleventyConfig) => {
     const eventEndDateTime = dayjs(event.eventEndDate + "T" + event.eventEndTime + "-07:00").toDate()
     return getDuration(eventStartDateTime,eventEndDateTime)
   });
+  
+  // event year
+  eleventyConfig.addFilter("eventYear", (event) => event.eventStartDate.slice(0,4));
 
   // decode text
   eleventyConfig.addFilter("decodeText", (text) => decodeText(text))
@@ -150,6 +153,8 @@ module.exports = (eleventyConfig) => {
 
   // SVG Sprite Link Shortcode
   eleventyConfig.addShortcode("iconLink", function(link, title, icon = "star", fill="fill-highlight") {
+    // check for markdown link due to Forestry WYSIWYG issue
+    if (link.startsWith("[")) link = link.match( /\[(.*)\]/)[1];
     return `<a href="${link}" class="icon-link"><svg class="icon-link__icon ${fill}">
       <use xlink:href="/static/images/icons.svg#${icon}"></use>
     </svg><span class="icon-link__title">${title}</span></a>`
@@ -166,8 +171,8 @@ module.exports = (eleventyConfig) => {
 
   // Find Metadata Value By Key
   eleventyConfig.addShortcode("metaValue", function(metadata, key) {
-    let value = metadata.find(item => item.metaKey === key ).metaValue
-    if (key = "GM") value = decodeText(value)
+    let value = Array.isArray(metadata) && metadata.find(item => item.metaKey === key ).metaValue
+    if (value && key === "GM") value = decodeText(value)
     return value
   });
 
