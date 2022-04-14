@@ -7,7 +7,7 @@ pagination:
 permalink: "events/{{ event.eventSlug }}/"
 eleventyComputed:
     title: "{{ event.eventName | safe }}"
-    ogImage: "{{sitemeta.url}}/.netlify/functions/screenshot/{{event.eventSlug}}/"
+    ogImage: "https://v1.screenshot.11ty.dev/https%3A%2F%2Fwww.bigbadcon.com%2Fog%2Fevents%2F{{event.eventSlug}}%2F/opengraph/"
     heroImage: "/event-images/{{ event.eventSlug }}.png"
     heroImageAlt: "Speaker headshots"
 ---
@@ -73,7 +73,7 @@ eleventyComputed:
             </svg>Tweet This!</a>
     </div>
     <div class="text-sm">
-        <a href="{{sitemeta.url}}/.netlify/functions/screenshot/{{event.eventSlug}}/" class="inline-flex items-center gap-sm">
+        <a href="{{ogImage}}" class="inline-flex items-center gap-sm">
             <svg class="w-4 h-4 fill-body">
                 <use xlink:href="/static/images/icons.svg#image"></use>
             </svg>Social Image Card</a>
