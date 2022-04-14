@@ -50,6 +50,7 @@ module.exports = async () => {
             // Convert metadata array to a more usable keyed object
             let metadata = metadataArrayToObject(event.metadata)
             // decode GM field text to proper format
+            // TODO: refactor so that both this and the past events works the same? Right now we convert this to an object here but with past events we use a filter. Might be nice if we did it on the server API side though.
             metadata = {...metadata, GM: (metadata.GM) && decodeText(metadata.GM) }
 
             // Create Javascript date objects
@@ -73,6 +74,7 @@ module.exports = async () => {
         }
         /* ------------------ Seperate Events from Volunteer shifts ----------------- */
         const events = data.filter(event => !hasCategory(event, "volunteer-shift"))
+        // console.log(events);
         const volunteer = data.filter(event => hasCategory(event, "volunteer-shift"))
 
         /* ------------------- Sort by start time& alphabetically ------------------- */

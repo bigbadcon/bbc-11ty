@@ -32,7 +32,7 @@ eleventyComputed:
     {# Event Day #}
     <div class="flex flex-wrap justify-between">
         {# timezone data is in x-data="eventFilter" in wrapping div in base.njk #}
-        {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
+        {# formatEventDate is in .eleventy.js and returns html with date and time in separate span tags #}
         <div>
             <strong>Date:</strong>
             <span>{{ event | eventStartDateTime | formatEventDate | safe }} (PST)</span>
@@ -79,5 +79,5 @@ eleventyComputed:
             </svg>Social Image Card</a>
     </div>
 </div>
-<div class="prose py-base">Back to <a href="/events/">List of Events</a>
+<div class="prose py-base">Back to <a href="/past-events/2021-online/">List of 2021 Online Events</a>
 </div>
