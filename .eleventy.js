@@ -178,7 +178,7 @@ module.exports = (eleventyConfig) => {
 
   /* ----------------------------- Image Shortcode ---------------------------- */
 
-  async function imageShortcode(src, alt, sizes = "100vw") {
+  async function imageShortcode(src, alt, sizes = "100vw", loading = "lazy") {
     try {
       let metadata = await Image(`.${src}`, {
         widths: [960],
@@ -190,7 +190,7 @@ module.exports = (eleventyConfig) => {
       let imageAttributes = {
         alt,
         sizes,
-        loading: "lazy",
+        loading: loading,
         decoding: "async",
       };
       
