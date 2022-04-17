@@ -15,6 +15,7 @@
             {{ spinner() }}
             {{ userInfo() }}
             {{ changePassword() }}
+            {{ resetPassword() }}
         </div>
     </div>
 {% endmacro %}
@@ -41,7 +42,7 @@
         <div class="flex flex-col justify-start text-sm text-body gap-xs">
             {# TODO: get lost password working #}
             <div>
-                Forgot Password? <a href="#" class="font-bold text-highlight" @click.prevent="modal='changePassword'">Reset Password</a>
+                Forgot Password? <a href="#" class="font-bold text-highlight" @click.prevent="modal='resetPassword'">Reset Password</a>
             </div>
             <div>
                 New? <a href="/create-account" class="font-bold text-highlight">Create an Account</a>
@@ -51,8 +52,8 @@
 {% endmacro %}
 
 {# Change Password Panel #}
-{% macro changePassword() %}
-    <div x-cloak x-show="!$store.auth.isAuth && modal === 'changePassword'" class="flex flex-col w-64 h-full" >
+{% macro resetPassword() %}
+    <div x-cloak x-show="!$store.auth.isAuth && modal === 'resetPassword'" class="flex flex-col w-64 h-full" >
         {# Header #}
         <div class="flex justify-between gap-x-sm">
             <h2 class="flex-grow -mt-1 font-serif text-2xl font-semibold leading-none text-header">
@@ -65,6 +66,53 @@
         <form action="post" class="flex flex-col flex-grow my-sm text-body gap-base" x-data="resetPasswordForm" @submit.prevent="resetPassword();" >
             <div class="text-sm prose">
                 <p>Submit your email address to reset your password.</p>
+            </div>
+            <div>
+                <label for="userEmail" autocapitalize="off" class="text-xs uppercase">Email <span class="font-bold text-highlight">*</span></label>
+                <input class="w-64" id="userEmail" name="userEmail" required type="email" autocapitalize="off" autocorrect="off" spellcheck="false" value="" x-model="userEmail"/>
+            </div>
+            <div>
+                <button class="font-bold uppercase transition-colors duration-200 rounded shadow text-form bg-highlight hover:bg-highlight-2 py-xs px-base" type="submit">Submit</button>
+            </div>
+            {# Loading spinner #}
+            <div x-cloak x-show="resetPasswordFormState === 'working'" class="flex items-center justify-center gap-sm animate-pulse py-md">
+                <div class="w-8 h-8 rounded-full bg-body"></div>
+                <div class="w-8 h-8 rounded-full bg-body"></div>
+                <div class="w-8 h-8 rounded-full bg-body"></div>
+            </div>
+            <div x-cloak x-show="resetPasswordFormState === 'succeeded'" class="text-sm prose">
+                <p>
+                    <strong>
+                        <em>Password reset email sent!</em>
+                    </strong>
+                </p>
+            </div>
+            <div x-cloak x-show="resetPasswordFormState === 'failed'" class="text-sm prose">
+                <p>
+                    <strong>
+                        <em>Password reset failed, probability due to email not associated with an account.</em>
+                    </strong>
+                </p>
+            </div>
+        </form>
+    </div>
+{% endmacro %}
+
+{# Change Password Panel #}
+{% macro changePassword() %}
+    <div x-cloak x-show="$store.auth.isAuth && modal === 'changePassword'" class="flex flex-col w-64 h-full" >
+        {# Header #}
+        <div class="flex justify-between gap-x-sm">
+            <h2 class="flex-grow -mt-1 font-serif text-2xl font-semibold leading-none text-header">
+                Change Password
+            </h2>
+            <div>
+                {{ closeBtn() }}
+            </div>
+        </div>
+        <form action="post" class="flex flex-col flex-grow my-sm text-body gap-base" x-data="resetPasswordForm" @submit.prevent="resetPassword();" >
+            <div class="text-sm prose">
+                <p>Submit your email address and a reset password email will be sent which will allow you to change your password.</p>
             </div>
             <div>
                 <label for="userEmail" autocapitalize="off" class="text-xs uppercase">Email <span class="font-bold text-highlight">*</span></label>
