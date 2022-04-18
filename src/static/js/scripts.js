@@ -377,7 +377,7 @@ document.addEventListener('alpine:init', () => {
     favEvents: [],
     volunteerEventSpaces: [],
     // Big Bad Online Registration
-    isRegistered: null, // null is not set; "no" not registered; "yes" is registered
+    isRegistered: null, // null is not set; false for no; true for yes;
     bboDiscordInvite: null, //stores discord invite link id grabbed from server; null == not set; false = unregistered; id string = discord invite id
     // Big Bad Online Registration Functions
     async checkRegistration() {
@@ -390,7 +390,7 @@ document.addEventListener('alpine:init', () => {
           if (res && res.data) {
             console.log(res.data)
             const bboDiscordInvite = res.data.bboDiscordInvite || null
-            const isRegistered = (res.data.isRegistered) ? "yes" : "no";
+            const isRegistered = res.data.isRegistered;
             this.bboDiscordInvite = bboDiscordInvite
             this.isRegistered = isRegistered
             setLSWithExpiry('bboDiscordInvite', bboDiscordInvite)
