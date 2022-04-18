@@ -20,7 +20,7 @@
                     <p>You must <button @click="modal = 'login'" class="font-bold text-highlight">login</button> to register for Big Bad Online or view your registration information.</p>
                 </div>
                 {# Loading spinner #}
-                <div x-cloak x-show="$store.auth.isAuth && $store.auth.isRegistered === null" 
+                <div x-cloak x-show="$store.auth.isAuth && !$store.auth.isRegistered" 
                 x-init="$store.auth.checkRegistration()"
                 class="flex items-center justify-center gap-sm animate-pulse py-md">
                     <div class="w-8 h-8 rounded-full bg-body"></div>
@@ -63,7 +63,7 @@
                     <p>You, <strong>
                             <span x-text="$store.auth.user && $store.auth.user.displayName"></span> (<span x-text="$store.auth.user && $store.auth.user.userNicename"></span>)</strong>, are registered for Big Bad Online 2022.</p>
                     {# <p>
-                        <strong>Join</strong> the <a :href="'https://discord.gg/' + $store.auth.bboDiscordInvite">Big Bad Online 2021 Discord</a>!
+                        <strong>Join</strong> the <a :href="'https://discord.gg/' + $store.auth.bboDiscordInvite">Big Bad Online 2022 Discord</a>!
                     </p> #}
                     <p>We will post the event Discord invite link here once it gets closer to the date.</p>
                     <p>
