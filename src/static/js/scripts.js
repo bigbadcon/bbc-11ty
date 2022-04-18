@@ -398,8 +398,8 @@ document.addEventListener('alpine:init', () => {
             return bboDiscordInvite
           }
         } catch(err) {
-          this.makeToast('Failed to check registration status')
-          console.log("failed to reach Google Sheet")
+          this.makeToast('Failed to check registration status. Try reloading page.')
+          console.log("failed to reach Google Sheet. Try reloading page.")
           return false
         }
       }
