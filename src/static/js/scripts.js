@@ -381,8 +381,9 @@ document.addEventListener('alpine:init', () => {
     bboDiscordInvite: null, //stores discord invite link id grabbed from server; null == not set; false = unregistered; id string = discord invite id
     // Big Bad Online Registration Functions
     async checkRegistration() {
-      // If not registered but logged in (has user info) then check registration status
-      if (!this.isRegistered && this.user) {
+      console.log("check registration")
+      // If not registered but logged in then check registration status
+      if (!this.isRegistered && this.isAuth) {
         console.log("not registered so check reg");
         try {
           const res = await axios.get(`/.netlify/functions/check-registration/${this.user.id}/${this.user.userNicename}`)
@@ -601,26 +602,6 @@ document.addEventListener('alpine:init', () => {
         }
       } catch (err) {
         console.log(err);
-      }
-    }
-  }))
-
-  // Big Bad Online Registration Page
-  Alpine.data('registration',() => ({
-    agree: false,
-    isRegistered: false,
-    regState: 'loading',
-    getRegState() {
-      this.regState = getLSWithExpiry('registration')
-    },
-    async checkRegistration() {
-      const user = getLSWithExpiry('user')
-      if (user) {
-        const res = await axios.get(`/.netlify/functions/check-registration/${user.userNicename}`)
-        if (res && res.data && res.data.isUserRegistered) {
-          this.regState = 'registered'
-          setLSWithExpiry('registration','registered')
-        }
       }
     }
   }))
