@@ -9,7 +9,7 @@
         <div class="mx-auto max-w-content p-base">
             <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
 
-            <section class="my-base text-body">
+            <section class="my-base text-body" x-data="isRegistrationChecked = false">
                 {# State Machine:
                 1. Not logged in: display login link. When logged in check registration status using serverless function.
                 2. Logged in but not registered: display registration form. 
@@ -28,7 +28,7 @@
                     <div class="w-8 h-8 rounded-full bg-body"></div>
                 </div>
                 {# Register form; only show if not registered and logged in #}
-                <form x-cloak x-show="$store.auth.isAuth && $store.auth.isRegistered === 'no'" 
+                <form x-cloak x-show='$store.auth.isAuth && $store.auth.isRegistered === "no"' 
                 x-data="{agree:false}"
                 method="POST" name="register-bigbadonline" 
                 data-netlify="true" netlify-honeypot="bot-field" 
