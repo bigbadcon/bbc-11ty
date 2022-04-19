@@ -127,6 +127,13 @@ module.exports = (eleventyConfig) => {
   // decode text
   eleventyConfig.addFilter("decodeText", (text) => decodeText(text))
   
+  // Add date for og cachebuster
+  eleventyConfig.addFilter("ogCacheBuster", (text) => {
+    const today = new Date();
+    const date = dayjs(today).format("YYYYMMDD");
+    return text + "_d" + date
+  })
+  
 
   /* -------------------------------------------------------------------------- */
   /*                                 Shortcodes                                 */
@@ -144,7 +151,7 @@ module.exports = (eleventyConfig) => {
     return today.getFullYear();
   });
   
-  // Current Year
+  // Current Date
   eleventyConfig.addShortcode("currentDate", function () {
     const today = new Date();
     return dayjs(today).format("YYYYMMDD");
