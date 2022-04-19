@@ -21,8 +21,8 @@
     {% set og = sitemeta.url + "/static/images/og.jpg" %}
 {% endif %}
 
-<meta name="image" content="{{ og }}">
-<meta property="og:image" content="{{ og }}">
+<meta name="image" content="{{ og }}_{% currentDate %}">
+<meta property="og:image" content="{{ og }}_{% currentDate %}">
 <meta name="twitter:card" content="summary_large_image"/>
 
 <!-- Favicon -->
