@@ -16,13 +16,13 @@
 {% if ogImage %}
     {% set og = sitemeta.url + ogImage %}
 {% elif ogAPIImage %}
-    {% set og = ogAPIImage %}
+    {% set og = ogAPIImage | ogCacheBuster %}
 {% else %}
     {% set og = sitemeta.url + "/static/images/og.jpg" %}
 {% endif %}
 
-<meta name="image" content="{{ og }}_{% currentDate %}">
-<meta property="og:image" content="{{ og }}_{% currentDate %}">
+<meta name="image" content="{{ og }}">
+<meta property="og:image" content="{{ og }}">
 <meta name="twitter:card" content="summary_large_image"/>
 
 <!-- Favicon -->
