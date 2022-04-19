@@ -143,6 +143,13 @@ module.exports = (eleventyConfig) => {
     const today = new Date();
     return today.getFullYear();
   });
+  
+  // Current Year
+  eleventyConfig.addShortcode("currentDate", function () {
+    const today = new Date();
+    return dayjs(today).format("YYYYMMDD");
+  });
+
 
   // SVG Sprite Shortcode
   eleventyConfig.addShortcode("icon", function(icon = "star", fill="fill-highlight") {

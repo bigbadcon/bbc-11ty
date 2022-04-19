@@ -21,9 +21,8 @@ eleventyComputed:
     </div>
     <div class="overflow-hidden bg-primary">
         <div style="margin-top: -10px">
-            {% image heroImage,
-            heroImageAlt, "100vw", "eager" %}
-        </div class="relative">
+            <img src="{{heroImage}}" alt="{{heroImageAlt}}" class="w-full h-full object-cover"/>
+        </div>
     </div>
     <div class="text-form bg-secondary col-span-full">
         <div class="col-span-9 px-md py-base ">
