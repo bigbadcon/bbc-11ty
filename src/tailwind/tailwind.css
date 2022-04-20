@@ -6,7 +6,7 @@
 /*                               Color Variables                              */
 /* -------------------------------------------------------------------------- */
 
-:root, .light {
+:root, .light, [data-theme='light'] {
   /* ---------------------------- Base Light Theme ---------------------------- */
   --primary: #e1eac4;
   --primary-2: #c4d0a0;
@@ -62,7 +62,7 @@
     --backdrop: rgba(90, 100, 120, 0.6);
   }
 }
-.dark {
+.dark, [data-theme='dark'] {
   --primary: #171b30;
   --primary-2: #122436;
   --primary-3: #142F40;

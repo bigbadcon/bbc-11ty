@@ -11,8 +11,23 @@
   <script src="https://unpkg.com/dayjs@1.10.6/plugin/timezone.js"></script>
   <script src="https://unpkg.com/lite-youtube-embed"></script>
   <script>
+    // dayjs plugins 
     dayjs.extend(window.dayjs_plugin_utc)
     dayjs.extend(window.dayjs_plugin_timezone)
+    
+    // dark/light theme
+    const cssRoot = document.documentElement.style
+    const darkMatcher = window.matchMedia("(prefers-color-scheme: dark)")
+    const lightMatcher = window.matchMedia("(prefers-color-scheme: light)")
+    const savedTheme = window.localStorage.getItem('theme');
+    
+    function setTheme (theme) {
+      window.localStorage.setItem("theme", theme)
+      document.querySelector('html').setAttribute('data-theme',theme)
+    }
+    if (savedTheme) { setTheme(savedTheme) }
+    else if (darkMatcher.matchs) { setTheme('dark') }
+    else if (lightMatcher.matchs) { setTheme('light') }
   </script>
   <script src="/static/js/scripts.js"></script>
   {# Preload the main fonts used. Italics are not preloaded as they are not used as much #}
