@@ -28,7 +28,7 @@ function formatEventDate(date, tz = 'America/Los_Angeles') {
 /* -------------------------------------------------------------------------- */
 
 function setLSWithExpiry(key, value, ttl) {
-  console.log("🚀 ~ file: scripts.js ~ line 23 ~ setLSWithExpiry ~ value", key, value)
+  // console.log("🚀 ~ file: scripts.js ~ line 23 ~ setLSWithExpiry ~ value", key, value)
   ttl = ttl || 86400000 // one day
   const now = new Date()
 
@@ -176,7 +176,6 @@ document.addEventListener('alpine:init', () => {
       try {
         const res = await axios.get(apiBaseUrl + 'events/me', config);
         const data = await res.data
-        console.log("user events", data);
         const asyncResult = await Promise.all(data.map( async eventId => {
           const event = await api.getEvent(eventId)
           
@@ -207,7 +206,7 @@ document.addEventListener('alpine:init', () => {
             eventDuration: duration(eventStartDateTime,eventEndDateTime)
           }
         }))
-        console.log("🚀 ~ file: scripts.js ~ line 130 ~ getBookedEvents: ~ asyncResult", asyncResult)
+        // console.log("🚀 ~ file: scripts.js ~ line 130 ~ getBookedEvents: ~ asyncResult", asyncResult)
         return asyncResult
       } catch (err) {
         alertMsg(`get booked events failed, error: ${err}`)
@@ -221,7 +220,7 @@ document.addEventListener('alpine:init', () => {
       try {
         const config = { headers: { Authorization: token } }
         const res = await axios.get(apiBaseUrl + 'users/me', config)
-        console.log("🚀 ~ file: scripts.js ~ line 143 ~ getUserData: ~ res", res)
+        // console.log("🚀 ~ file: scripts.js ~ line 143 ~ getUserData: ~ res", res)
         if (res.status === 200) {
           return res.data
         } else {
@@ -238,7 +237,7 @@ document.addEventListener('alpine:init', () => {
       try {
         const config = { headers: { Authorization: token } }
         const res = await axios.get(apiBaseUrl + 'bookings/myAvailableSlots', config)
-        console.log("🚀 ~ file: scripts.js ~ line 174 ~ getAvailableSlots: ~ res", res)
+        // console.log("🚀 ~ file: scripts.js ~ line 174 ~ getAvailableSlots: ~ res", res)
         if (res.status === 200) {
           return res.data
         } else {
@@ -381,10 +380,9 @@ document.addEventListener('alpine:init', () => {
     bboDiscordInvite: null, //stores discord invite link id grabbed from server; null == not set; false = unregistered; id string = discord invite id
     // Big Bad Online Registration Functions
     async checkRegistration() {
-      console.log("check registration")
       // If not registered but logged in then check registration status
       if (!this.isRegistered && this.isAuth) {
-        console.log("not registered so check reg");
+        console.log("not registered so checking reg");
         try {
           const res = await axios.get(`/.netlify/functions/check-registration/${this.user.id}/${this.user.userNicename}`)
           if (res && res.data) {
@@ -453,7 +451,8 @@ document.addEventListener('alpine:init', () => {
       if (token) {
         setAuthToken(token)
         this.isAuth = true
-        this.getUserData()
+        // await getUserData as we need this for checkRegistration
+        await this.getUserData()
         this.getBookedEvents()
         this.getFavEvents()
         this.getAvailableSlots()
@@ -463,7 +462,6 @@ document.addEventListener('alpine:init', () => {
     async createAccount() {},
     async forgetPassword() {},
     async changePassword(newPassword) {
-      // console.log("change password",this.user.id,newPassword);
       // returns boolean value
       const isChanged = await api.changePassword(this.user.id, newPassword)
       // triggers toast
@@ -490,7 +488,7 @@ document.addEventListener('alpine:init', () => {
     // Booking functions
     async bookEvent(id) {
       const data = await api.bookEvent(id)
-      console.log("🚀 ~ file: scripts.js ~ line 294 ~ bookEvent ~ data", data)
+      // console.log("🚀 ~ file: scripts.js ~ line 294 ~ bookEvent ~ data", data)
       if (data && data.status === 'FAILURE') this.makeToast(data.message)
       if (data && data.status === 'SUCCESS') {
         this.getBookedEvents()
@@ -499,7 +497,7 @@ document.addEventListener('alpine:init', () => {
     },
     async cancelBooking(id) {
       const data = await api.cancelBooking(id)
-      console.log("🚀 ~ file: scripts.js ~ line 294 ~ bookEvent ~ data", data)
+      // console.log("🚀 ~ file: scripts.js ~ line 294 ~ bookEvent ~ data", data)
       if (data && data.status === 'FAILURE') this.makeToast(data.message)
       if (data && data.status === 'SUCCESS') {
         this.getBookedEvents()
@@ -511,6 +509,7 @@ document.addEventListener('alpine:init', () => {
       const data = await api.getUserData()
       this.user = data
       setLSWithExpiry('user', data)
+      return data
     },
     async getAvailableSlots() {
       const data = await api.getAvailableSlots()
@@ -563,7 +562,7 @@ document.addEventListener('alpine:init', () => {
     bookings: [], // bookings minus all GMs
     async getEvent(id) {
       const data = await api.getEvent(id)
-      console.log("🚀 ~ file: scripts.js ~ line 373 ~ getEvent ~ data", data)
+      // console.log("🚀 ~ file: scripts.js ~ line 373 ~ getEvent ~ data", data)
       if (data) {
         this.event = data
         const spacesTotal = parseInt(data.metadata.Players)
@@ -576,7 +575,7 @@ document.addEventListener('alpine:init', () => {
       }
     },
     showTimezone(date,tz) {
-      console.log(dayjs(date).tz(tz))
+      // console.log(dayjs(date).tz(tz))
     }
   }))
 
@@ -596,7 +595,6 @@ document.addEventListener('alpine:init', () => {
     async checkUsername() {
       try {
         const res = await axios.get(`/.netlify/functions/check-user/${this.userNicename}`)
-        console.log(res);
         if (res && res.data === "user exists") {
           this.userNicenameExists = true;
         }
@@ -613,7 +611,6 @@ document.addEventListener('alpine:init', () => {
     async resetPassword() {
       resetPasswordFormState = "working"
       if (this.userEmail) {
-        console.log("working",this.userEmail);
         const paramSafeEmail = this.userEmail.replace(/\+/gi, '%2B') // replace + symbols for URLSearchParams
         const res = await axios.get(`/.netlify/functions/forgot-password/?email=${paramSafeEmail}`)
         if (res && res.data === "forgot password email sent") {
@@ -636,7 +633,6 @@ document.addEventListener('alpine:init', () => {
     async changePassword() {
       this.passwordChangedState = 'working'
       if (this.uuid) {
-        console.log("working",this.uuid,this.userEmail);
         const paramSafeEmail = this.userEmail.replace(/\+/gi, '%2B') // replace + symbols for URLSearchParams
         const res = await axios.get(`/.netlify/functions/change-password/?uuid=${this.uuid}&email=${paramSafeEmail}&password=${this.userPass}`)
         if (res && res.data === "password changed") {
