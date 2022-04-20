@@ -1,4 +1,6 @@
-<div id="theme-toggle" class="relative" @click="if ($event.target.checked) { theme = $event.target.value }">
+{# Light Dark Switch #}
+{# setTheme() function calls a global function in the html_head.njk which sets data-theme on the html tag  #}
+<div id="theme-toggle" class="relative" x-data="{theme: 'auto'}" @click="if ($event.target.checked) { theme = $event.target.value; setTheme(theme) }" >
   <div class="relative z-10 flex items-center h-4">
     <label class="relative flex items-center justify-end w-6 h-6 pr-sm text-body">
       <input value="light" name="state-d" type="radio" :checked="theme === 'light'" class="absolute inset-0 block w-full h-full opacity-0 cursor-pointer"/>
@@ -21,8 +23,7 @@
   </div>
   <div class="absolute top-0 transform -translate-x-1/2 left-1/2">
     <div class="w-10 h-4 bg-gray-500 rounded-full shadow-inner track bg-opacity-80"></div>
-    <div
-            class="absolute top-0 w-4 h-4 transition-all duration-300 ease-in-out bg-white border-2 rounded-full thumb border-primary-4"></div>
+    <div class="absolute top-0 w-4 h-4 transition-all duration-300 ease-in-out bg-white border-2 rounded-full thumb border-primary-4"></div>
   </div>
 </div>
 
@@ -30,10 +31,10 @@
   .thumb {
     left: 0.75rem;
   }
-  .light .thumb {
+  [data-theme='light'] .thumb {
     left: 0;
   }
-  .dark .thumb {
+  [data-theme='dark'] .thumb {
     left: 1.5rem;
   }
   input:checked + svg {
