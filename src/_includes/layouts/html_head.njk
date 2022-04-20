@@ -16,18 +16,12 @@
     dayjs.extend(window.dayjs_plugin_timezone)
     
     // dark/light theme
-    const cssRoot = document.documentElement.style
-    const darkMatcher = window.matchMedia("(prefers-color-scheme: dark)")
-    const lightMatcher = window.matchMedia("(prefers-color-scheme: light)")
-    const savedTheme = window.localStorage.getItem('theme');
-    
     function setTheme (theme) {
-      window.localStorage.setItem("theme", theme)
       document.querySelector('html').setAttribute('data-theme',theme)
+      window.localStorage.setItem("theme", theme)
     }
-    if (savedTheme) { setTheme(savedTheme) }
-    else if (darkMatcher.matchs) { setTheme('dark') }
-    else if (lightMatcher.matchs) { setTheme('light') }
+    const savedTheme = window.localStorage.getItem('theme');
+    if (savedTheme) setTheme(savedTheme)
   </script>
   <script src="/static/js/scripts.js"></script>
   {# Preload the main fonts used. Italics are not preloaded as they are not used as much #}
