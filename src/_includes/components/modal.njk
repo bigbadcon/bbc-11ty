@@ -8,7 +8,7 @@
         <div 
         id="authModal"
         class="transition-all rounded-md shadow h-80 p-base bg-primary" 
-        :class="$store.auth.user && 'h-96'"
+        :class="user && 'h-96'"
         style="max-height: 90%; max-width: 90%"
         @click.outside="modal = false">
             {{ login() }}
@@ -147,7 +147,7 @@
 
 {# Loading Spinner. When logging in but user info not yet loaded #}
 {% macro spinner() %}
-    <div x-cloak x-show="authToken && !$store.auth.user" class="flex items-center justify-center gap-sm animate-pulse py-md">
+    <div x-cloak x-show="authToken && !user" class="flex items-center justify-center gap-sm animate-pulse py-md">
         <div class="w-8 h-8 rounded-full bg-body"></div>
         <div class="w-8 h-8 rounded-full bg-body"></div>
         <div class="w-8 h-8 rounded-full bg-body"></div>
@@ -166,12 +166,12 @@
 {# My Account User Info Panel including My Events. Shown only when logged in #}
 {% macro userInfo() %}
     <div class="flex flex-col h-full text-body"
-    x-cloak x-show="authToken && $store.auth.user && modal !== 'changePassword'"  
+    x-cloak x-show="authToken && user && modal !== 'changePassword'"  
     >
         {# Header #}
         <div class="flex justify-between gap-x-sm">
             <h2 class="flex-grow -mt-1 font-serif text-3xl font-semibold leading-none text-header gap-base">
-                <span x-text="$store.auth.user && $store.auth.user.displayName"></span> (<span x-text="$store.auth.user && $store.auth.user.userNicename"></span>)
+                <span x-text="user && user.displayName"></span> (<span x-text="user && user.userNicename"></span>)
             </h2>
             <div>
                 {{ closeBtn() }}
@@ -180,13 +180,13 @@
         {# Quota #}
         {# <div class="text-sm mb-sm">
             <strong>Quota Slots Available:</strong>
-            <span x-text="$store.auth.availableSlots"></span>]
+            <span x-text="availableSlots"></span>]
         </div> #}
         {# My Events #}
         <h3 class="font-serif text-2xl font-semibold text-body">My Events</h3>
         <div class="mb-sm">{% include 'components/timezone-select.njk' %}</div>
-        <ul class="flex-grow overflow-y-auto text-sm border-t-2 border-b-2 text-body border-hr py-xs" x-cloak x-show="$store.auth.bookedEvents">
-            <template x-for="event in $store.auth.bookedEvents">
+        <ul class="flex-grow overflow-y-auto text-sm border-t-2 border-b-2 text-body border-hr py-xs" x-cloak x-show="bookedEvents">
+            <template x-for="event in bookedEvents">
                 <li class="mb-xs">
                     <h4 class="font-bold">
                         <a :href="(event.isVolunteer) ? '/volunteer/'+ event.eventSlug : '/events/'+ event.eventSlug" class="text-header hover:text-highlight" x-html="event.eventName"></a>
@@ -202,7 +202,7 @@
 
         {# Buttons #}
         <div class="flex pt-base gap-base">
-            <button class="button" @click="$store.auth.logout()">Logout</button>
+            <button class="button" @click="logout()">Logout</button>
             <button class="button" @click="modal = 'changePassword'">Change Password</button>
         </div>
     </div>
