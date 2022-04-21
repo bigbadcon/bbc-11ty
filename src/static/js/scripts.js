@@ -326,22 +326,6 @@ document.addEventListener('alpine:init', () => {
     }
   })
   
-  // async function submitLogin() {
-  //   const token = await api.submitLogin(this.username,this.password)
-  //   this.username = ""
-  //   this.password = ""
-  //   if (token) {
-  //     setAuthToken(token)
-  //     this.isAuth = true
-  //     // await getUserData as we need this for checkRegistration
-  //     await this.getUserData()
-  //     this.getBookedEvents()
-  //     this.getFavEvents()
-  //     this.getAvailableSlots()
-  //     this.checkRegistration()
-  //   } else this.makeToast('Login failed')
-  // }
-
   Alpine.store('auth', {
     async init() {
       const token = getAuthToken()

@@ -51,7 +51,7 @@
     </div>
 {% endmacro %}
 
-{# Change Password Panel #}
+{# Reset Password Panel #}
 {% macro resetPassword() %}
     <div x-cloak x-show="!authToken && modal === 'resetPassword'" class="flex flex-col w-64 h-full" >
         {# Header #}
@@ -100,7 +100,7 @@
 
 {# Change Password Panel #}
 {% macro changePassword() %}
-    <div x-cloak x-show="authToken && modal === 'changePassword'" class="flex flex-col w-64 h-full" >
+    <div x-cloak x-show="user && modal === 'changePassword'" class="flex flex-col w-64 h-full" >
         {# Header #}
         <div class="flex justify-between gap-x-sm">
             <h2 class="flex-grow -mt-1 font-serif text-2xl font-semibold leading-none text-header">
@@ -166,7 +166,7 @@
 {# My Account User Info Panel including My Events. Shown only when logged in #}
 {% macro userInfo() %}
     <div class="flex flex-col h-full text-body"
-    x-cloak x-show="authToken && user && modal !== 'changePassword'"  
+    x-cloak x-show="user && modal !== 'changePassword'"  
     >
         {# Header #}
         <div class="flex justify-between gap-x-sm">

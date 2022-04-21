@@ -12,13 +12,14 @@
                 {# <th class="w-8 text-center pb-sm">
                     <span class="flex items-center justify-end pl-xs">{% icon 'square-check', 'fill-body' %}</span>
                 </th> #}
-                <th class="w-8 text-center pb-sm" x-cloak x-show="$store.auth.isAuth">
+                <th class="w-8 text-center pb-sm" x-cloak x-show="user">
                     <span class="flex items-center justify-end pl-xs">{% icon 'star', 'fill-body' %}</span>
                 </th>
             </tr>
         </thead>
         <tbody>
             {% for event in eventData.events %}
+            {# TODO: refactor filter event #}
                 <tr x-show="$store.auth.filterEvent({{event.eventId}})">
                     {# Event Name #}
                     <td class="py-sm pr-sm">
@@ -49,7 +50,8 @@
                         {% endfor %}
                     </td class="py-sm pr-sm"> #}
                     {# Fav Event Icon #}
-                    <td x-cloak x-show="$store.auth.isAuth">
+                    <td x-cloak x-show="user">
+                    {# TODO: refactor toggleFav and isFav #}
                         <span @click="$store.auth.toggleFav({{event.eventId}})" class="flex justify-end cursor-pointer opacity-40 hover:opacity-100" :class="$store.auth.isFav({{event.eventId}}) && 'favved'">{% icon 'star', 'fill-body' %}</span>
                     </td>
                 </tr>
