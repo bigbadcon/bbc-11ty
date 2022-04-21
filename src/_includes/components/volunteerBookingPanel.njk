@@ -2,13 +2,14 @@
     <h2 class="-mt-1 font-serif text-2xl font-bold leading-none md:text-4xl text-header mb-sm">Volunteer Signup</h2>
     {# Event Name, spaces open, and list of players; only show if logged in and has event data #}
     {# data is in eventInfo which is in event.njk #}
-    <div x-cloak x-show="event">
+    <div x-cloak x-show="event" class="flex flex-col gap-sm">
         <div>
             <span>Spaces Open:</span>
             <span x-text="spacesOpen"></span> out of <span x-text="spacesTotal"></span>
         </div>
+        <div class="text-sm italic" x-init="console.log($store.auth.user)">You must be <a href="/register/" class="text-highlight underline">registered for the con</a> to volunteer</div>
         <div x-cloak x-show="bookings && bookings.length > 0">
-            <h4 class="font-serif text-2xl font-semibold mt-sm">Volunteer List</h4>
+            <h4 class="font-serif text-2xl font-semibold">Volunteer List</h4>
             <ul class="list-disc pl-md">
                 <template x-for="booking in bookings">
                     <li class="mb-xs" x-text="booking && booking.user.displayName"></li>
@@ -16,7 +17,7 @@
             </ul>
         </div>
         {# Booking buttons #}
-        <div class="flex mt-base gap-sm">
+        <div class="flex gap-sm">
             <button class="button" x-show="spacesOpen > 0 && !$store.auth.isBooked({{event.eventId}})" @click="$store.auth.bookEvent({{event.eventId}})">Signup to Volunteer</button>
             <span x-show="spacesOpen <= 0 && !$store.auth.isBooked({{event.eventId}})" class="font-bold">Shift is full</span>
             <button class="button" x-show="$store.auth.isBooked({{event.eventId}})" @click="$store.auth.cancelBooking({{event.eventId}})">Cancel Shift</span>
