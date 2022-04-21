@@ -86,6 +86,175 @@ function metadataArrayToObject(arr) {
 }
 
 /* -------------------------------------------------------------------------- */
+/*                             API Fetch Functions                            */
+/* -------------------------------------------------------------------------- */
+
+// TODO: refactor all this to simpler global functions 
+
+const apiBaseUrl = 'https://admin.bigbadcon.com:8091/api/'
+
+// Global Fetch Function for API
+async function fetchData(url, options, authToken) {
+  authToken = authToken || JSON.parse(localStorage.getItem('_x_authToken'))
+  options = {...options, 
+    method: 'GET', 
+    headers: { 
+      'Content-Type': 'application/json;charset=utf-8',
+      Authorization: authToken
+    }
+  }
+  if (options.body) options.body = JSON.stringify(options.body)
+
+  console.log(`fetch options for ${url}`,options)
+  try {
+    let response = await fetch(apiBaseUrl + url, options)
+    let result = await response.json()
+    console.log(`RESULT:fetch for ${url}`, result)
+    return result
+  } catch (err) {
+    console.log(`ERROR:fetch for ${url}`,err)
+    return false
+  }
+}
+
+const api = {
+  getEvent: async (id) => {
+    let data = await fetchData('events/find','POST',{id: id},)
+    if (!data) return false
+    // Create Javascript date object
+    const eventStartDateTime = dayjs(data.eventStartDate + "T" + data.eventStartTime + "-07:00").toDate()
+    const eventEndDateTime = dayjs(data.eventEndDate + "T" + data.eventEndTime + "-07:00").toDate()
+    
+    data = {...data, 
+      // Convert to keyed object
+      metadata: metadataArrayToObject(data.metadata),
+      // strip out status 0 which are canceled attendees
+      bookings: data.bookings.filter(booking => booking.bookingStatus === 1),
+      eventStartDateTime: eventStartDateTime,
+      eventEndDateTime: eventEndDateTime,
+    }
+    return data
+  },
+  getEventsCategory: async (category) => {
+    let data = await fetchData('events/category/' + category,'POST')
+    if (!data) return false
+    data = data.map(event => {
+      const spacesTotal = Number(event.metadata.find( m => m.metaKey === 'Players' ).metaValue)
+      const bookings = event.bookings.filter(booking => booking.bookingStatus === 1).length
+      // return only the spaces numbers as that's all I need right now
+      // TODO: this will break when we have events where the GM is listed as booked!!!
+      return {
+        eventId: event.eventId,
+        spacesOpen: spacesTotal - bookings,
+        spacesTotal: spacesTotal
+      }
+    })
+    return data
+  },
+  getFavEvents: async () => {
+    let data = await fetchData('events/me/favorites')
+    return data && data.map(item => item.eventId)
+  },
+  getBookedEvents: async () => {
+    
+    const token = getAuthToken()
+    if (!token) return null
+    const config = { headers: { Authorization: token } }
+    try {
+      const res = await axios.get(apiBaseUrl + 'events/me', config);
+      const data = await res.data
+      const asyncResult = await Promise.all(data.map( async eventId => {
+        const event = await api.getEvent(eventId)
+        
+        // Create Javascript date object
+        const eventStartDateTime = dayjs(event.eventStartDate + "T" + event.eventStartTime + "-07:00").toDate()
+        const eventEndDateTime = dayjs(event.eventEndDate + "T" + event.eventEndTime + "-07:00").toDate()
+
+        // Create Duration
+        const duration = (dateStart,dateEnd) => {
+          // calculate hours
+          let diffInMilliSeconds = Math.abs(dateEnd - dateStart) / 1000;
+          const hours = Math.floor(diffInMilliSeconds / 3600) % 24;
+      
+          diffInMilliSeconds -= hours * 3600;
+          // calculate minutes
+          const minutes = Math.floor(diffInMilliSeconds / 60) % 60;
+          diffInMilliSeconds -= minutes * 60;
+          return hours.toString()
+        };
+
+        return {
+          eventId: eventId, 
+          eventName: event.eventName,
+          eventSlug: event.eventSlug,
+          categories: event.categories,
+          isVolunteer: event.categories.some(cat => cat.slug === "volunteer-shift"),
+          eventStartDateTime: eventStartDateTime,
+          eventDuration: duration(eventStartDateTime,eventEndDateTime)
+        }
+      }))
+      // console.log("🚀 ~ file: scripts.js ~ line 130 ~ getBookedEvents: ~ asyncResult", asyncResult)
+      return asyncResult
+    } catch (err) {
+      alertMsg(`get booked events failed, error: ${err}`)
+      return null
+    }
+  },
+  getUserData: async () => {
+    let data = await fetchData('users/me')
+    return data
+  },
+  getAvailableSlots: async () => {
+    let data = await fetchData('bookings/myAvailableSlots')
+    return data
+  },
+  addFav: async (id) => {
+    let data = await fetchData('events/me/favorite/create','POST',{ eventId: id })
+    return data
+  },
+  deleteFav: async (id) => {
+    let data = await fetchData('events/me/favorite/delete',{ eventId: id },'DELETE')
+    return data
+  },
+  bookEvent: async (id) => {
+    let data = await fetchData('bookings/bookMeIntoGame',{ gameId: id },'POST')
+    return data
+  },
+  cancelBooking: async (id) => {
+    let data = await fetchData('bookings/removeMeFromGame',{ gameId: id },'DELETE')
+    return data
+  },
+  submitLogin2: async (username, password) => {
+    // let data = await fetchData('login',{ username: username, password: password },'POST')
+    let res = await fetch(apiBaseUrl + 'login', {headers: { 'Content-Type': 'application/json;charset=utf-8' }, method: 'POST', body:JSON.stringify({ username: username, password: password })})
+    if (res.status === 200 && res.headers.get('authorization')) {
+      const token = res.headers.get('authorization')
+      return token
+    } else return false
+  },
+  submitLogin: async (username, password) => {
+    try {
+      const res = await axios.post(apiBaseUrl + "login", { username: username, password: password })
+      if (res.status === 200 && res.headers.authorization) {
+        const token = res.headers.authorization
+        console.log('token',token)
+        return token
+      } else {
+        alertMsg(`login failed, status: ${res.status}`)
+        return null
+      }
+    } catch (err) {
+      alertMsg(`login failed, error: ${err}`)
+      return null
+    }
+  },
+  changePassword: async (userId, password) => {
+    let data = await fetchData('users/setMyPassword',{ userId: userId, password: password },'POST')
+    return data
+  }
+}
+
+/* -------------------------------------------------------------------------- */
 /*                                Alpine Stuff                                */
 /* -------------------------------------------------------------------------- */
 
@@ -94,254 +263,74 @@ function metadataArrayToObject(arr) {
 document.addEventListener('alpine:init', () => {
 
   /* -------------------------------------------------------------------------- */
-  /*                             API Fetch Functions                            */
-  /* -------------------------------------------------------------------------- */
-
-  const apiBaseUrl = "https://admin.bigbadcon.com:8091/api/"
-  // const apiBaseUrl = 'http://www.logictwine.com:8092/'
-
-  const api = {
-    getEvent: async (id) => {
-      const token = getAuthToken()
-      if (!token) return null
-      const config = { headers: { Authorization: token } }
-      const params = { id: id }
-      try {
-        const res = await axios.post(apiBaseUrl + 'events/find', params, config)
-        const event = res.data
-
-        // Create Javascript date object
-        const eventStartDateTime = dayjs(event.eventStartDate + "T" + event.eventStartTime + "-07:00").toDate()
-        const eventEndDateTime = dayjs(event.eventEndDate + "T" + event.eventEndTime + "-07:00").toDate()
-  
-        const data = {...event, 
-          // Convert to keyed object
-          metadata: metadataArrayToObject(event.metadata),
-          // strip out status 0 which are canceled attendees
-          bookings: res.data.bookings.filter(booking => booking.bookingStatus === 1),
-          eventStartDateTime: eventStartDateTime,
-          eventEndDateTime: eventEndDateTime,
-        }
-        return data
-      } catch (err) {
-        alertMsg(`get event #${id} failed, error: ${err}`)
-        return null
-      }
-    },
-    getEventsCategory: async (category) => {
-      const token = getAuthToken()
-      if (!token) return null
-      const config = { headers: { Authorization: token } }
-      try {
-        const res = await axios.get(apiBaseUrl + 'events/category/' + category, config)
-        const events = res.data
-
-        const data = events.map(event => {
-          const spacesTotal = Number(event.metadata.find( m => m.metaKey === 'Players' ).metaValue)
-          const bookings = event.bookings.filter(booking => booking.bookingStatus === 1).length
-          // return only the spaces numbers as that's all I need right now
-          // TODO: this will break when we have events where the GM is listed as booked!!!
-          return {
-            eventId: event.eventId,
-            spacesOpen: spacesTotal - bookings,
-            spacesTotal: spacesTotal
-          }
-        })
-
-        return data
-      } catch (err) {
-        alertMsg(`get events category ${category} failed, error: ${err}`)
-        return null
-      }
-    },
-    getFavEvents: async () => {
-      const token = getAuthToken()
-      if (!token) return null
-      const config = { headers: { Authorization: token } }
-      try {
-        const res = await axios.get(apiBaseUrl + 'events/me/favorites', config);
-        const data = await res.data
-        const simpleArray = data.map(item => item.eventId)
-        return simpleArray
-        // TODO: get Jerry to change to just a list of ids?
-      } catch (err) {
-        alertMsg(`get user fav events failed, error: ${err}`)
-        return null
-      }
-    },
-    getBookedEvents: async () => {
-      const token = getAuthToken()
-      if (!token) return null
-      const config = { headers: { Authorization: token } }
-      try {
-        const res = await axios.get(apiBaseUrl + 'events/me', config);
-        const data = await res.data
-        const asyncResult = await Promise.all(data.map( async eventId => {
-          const event = await api.getEvent(eventId)
-          
-          // Create Javascript date object
-          const eventStartDateTime = dayjs(event.eventStartDate + "T" + event.eventStartTime + "-07:00").toDate()
-          const eventEndDateTime = dayjs(event.eventEndDate + "T" + event.eventEndTime + "-07:00").toDate()
-
-          // Create Duration
-          const duration = (dateStart,dateEnd) => {
-            // calculate hours
-            let diffInMilliSeconds = Math.abs(dateEnd - dateStart) / 1000;
-            const hours = Math.floor(diffInMilliSeconds / 3600) % 24;
-        
-            diffInMilliSeconds -= hours * 3600;
-            // calculate minutes
-            const minutes = Math.floor(diffInMilliSeconds / 60) % 60;
-            diffInMilliSeconds -= minutes * 60;
-            return hours.toString()
-          };
-
-          return {
-            eventId: eventId, 
-            eventName: event.eventName,
-            eventSlug: event.eventSlug,
-            categories: event.categories,
-            isVolunteer: event.categories.some(cat => cat.slug === "volunteer-shift"),
-            eventStartDateTime: eventStartDateTime,
-            eventDuration: duration(eventStartDateTime,eventEndDateTime)
-          }
-        }))
-        // console.log("🚀 ~ file: scripts.js ~ line 130 ~ getBookedEvents: ~ asyncResult", asyncResult)
-        return asyncResult
-      } catch (err) {
-        alertMsg(`get booked events failed, error: ${err}`)
-        return null
-      }
-    },
-    getUserData: async () => {
-      // contains { displayName, userNicename }
-      const token = getAuthToken()
-      if (!token) return null
-      try {
-        const config = { headers: { Authorization: token } }
-        const res = await axios.get(apiBaseUrl + 'users/me', config)
-        // console.log("🚀 ~ file: scripts.js ~ line 143 ~ getUserData: ~ res", res)
-        if (res.status === 200) {
-          return res.data
-        } else {
-          alertMsg(`get user data failed, status: ${res.status}`)
-        }
-      } catch (err) {
-        alertMsg(`get user data failed, error: ${err}`)
-      }
-    },
-    getAvailableSlots: async () => {
-      // contains { displayName, userNicename }
-      const token = getAuthToken()
-      if (!token) return null
-      try {
-        const config = { headers: { Authorization: token } }
-        const res = await axios.get(apiBaseUrl + 'bookings/myAvailableSlots', config)
-        // console.log("🚀 ~ file: scripts.js ~ line 174 ~ getAvailableSlots: ~ res", res)
-        if (res.status === 200) {
-          return res.data
-        } else {
-          alertMsg(`get myAvailableSlots failed, status: ${res.status}`)
-        }
-      } catch (err) {
-        alertMsg(`get myAvailableSlots failed, error: ${err}`)
-      }
-    },
-    addFav: async (id) => {
-      const token = getAuthToken()
-      if (!token) return null
-      const config = { headers: { Authorization: token } }
-      const params = { eventId: id }
-      try {
-        const res = await axios.post(apiBaseUrl + 'events/me/favorite/create', params, config)
-        const data = res.data
-        return data
-      } catch (err) {
-        alertMsg(`fav event failed, error: ${err}`)
-        return null
-      }
-    },
-    deleteFav: async (id) => {
-      const token = getAuthToken()
-      if (!token) return null
-      const config = { headers: { Authorization: token }, data: { eventId: id } }
-      try {
-        const res = await axios.delete(apiBaseUrl + 'events/me/favorite/delete', config)
-        const data = res.data
-        return data
-      } catch (err) {
-        alertMsg(`delete fav failed, error: ${err}`)
-        return null
-      }
-    },
-    bookEvent: async (id) => {
-      const token = getAuthToken()
-      if (!token) return null
-      const config = { headers: { Authorization: token } }
-      const params = { gameId: id }
-      try {
-        const res = await axios.post(apiBaseUrl + 'bookings/bookMeIntoGame', params, config)
-        const data = res.data
-        return data
-      } catch (err) {
-        alertMsg(`book event failed, error: ${err}`)
-        return null
-      }
-    },
-    cancelBooking: async (id) => {
-      const token = getAuthToken()
-      if (!token) return null
-      const config = { headers: { Authorization: token }, data: { gameId: id } }
-      try {
-        const res = await axios.delete(apiBaseUrl + 'bookings/removeMeFromGame', config)
-        const data = res.data
-        return data
-      } catch (err) {
-        alertMsg(`cancel booking failed, error: ${err}`)
-        return null
-      }
-    },
-    submitLogin: async (username, password) => {
-      try {
-        const res = await axios.post(apiBaseUrl + "login", { username: username, password: password })
-        if (res.status === 200 && res.headers.authorization) {
-          const token = res.headers.authorization
-          return token
-        } else {
-          alertMsg(`login failed, status: ${res.status}`)
-          return null
-        }
-      } catch (err) {
-        alertMsg(`login failed, error: ${err}`)
-        return null
-      }
-    },
-    changePassword: async (userId, password) => {
-      const token = getAuthToken()
-      if (!token) return null
-      const config = { headers: { Authorization: token } }
-      try {
-        const res = await axios.post(apiBaseUrl + "users/setMyPassword", { userId: userId, password: password }, config)
-        if (res.status === 200 || res.status === 201) {
-          return true
-        } else {
-          alertMsg(`login failed, status: ${res.status}`)
-          return null
-        }
-      } catch (err) {
-        alertMsg(`login failed, error: ${err}`)
-        return null
-      }
-    },
-  }
-
-  /* -------------------------------------------------------------------------- */
   /*                                Alpine Stores                               */
   /* -------------------------------------------------------------------------- */
 
   /* ---------------------------- Auth Store --------------------------- */
   // ALl data for logged in users
   // TODO: refactor to data with persist?
+  
+  Alpine.data('global', function () {
+    return {
+      authToken: this.$persist(false),
+      user: this.$persist(false),
+      availableSlots: this.$persist(null),
+      bookedEvents: this.$persist([]),
+      favEvents: this.$persist([]),
+      isRegistered: this.$persist(null),
+      async submitLogin(username, password) {
+        let res = await fetch(apiBaseUrl + 'login', { headers: { 'Content-Type': 'application/json;charset=utf-8' }, method: 'POST', body:JSON.stringify({ username: username, password: password })})
+        if (res.status === 200 && res.headers.get('authorization')) {
+          const token = res.headers.get('authorization')
+          this.authToken = token
+          this.makeToast('logged in!')
+          if (token) {
+            // Need to pass token since there is a delay with the $persist code storing it
+            this.user = await fetchData('users/me',{},token)
+            this.availableSlots = await fetchData('bookings/myAvailableSlots',{}, token)
+            this.bookedEvents = await this.getBookedEvents()
+            this.favEvents = await fetchData('events/me/favorites',{},token)
+            this.checkRegistration()
+          }
+          return token
+        } else return false
+      },
+      async getUserData() {
+        // TODO: do we need this for more than the login?
+        const data = await fetchData('users/me')
+        this.user = data
+        return data
+      },
+      async checkRegistration () {
+        
+      },
+      async getBookedEvents() {
+        // TODO: fill this in
+      }
+      // Toast notifications
+      toast: null,
+      makeToast(notification) {
+        this.toast = notification
+        setTimeout(() => this.toast = null, 4000);
+      }
+    }
+  })
+  
+  // async function submitLogin() {
+  //   const token = await api.submitLogin(this.username,this.password)
+  //   this.username = ""
+  //   this.password = ""
+  //   if (token) {
+  //     setAuthToken(token)
+  //     this.isAuth = true
+  //     // await getUserData as we need this for checkRegistration
+  //     await this.getUserData()
+  //     this.getBookedEvents()
+  //     this.getFavEvents()
+  //     this.getAvailableSlots()
+  //     this.checkRegistration()
+  //   } else this.makeToast('Login failed')
+  // }
 
   Alpine.store('auth', {
     async init() {
@@ -444,10 +433,8 @@ document.addEventListener('alpine:init', () => {
       return showEvent
     },
     // Login functions
-    async submitLogin() {
-      const token = await api.submitLogin(this.username,this.password)
-      this.username = ""
-      this.password = ""
+    async submitLogin(username,password) {
+      const token = await api.submitLogin(username,password)
       if (token) {
         setAuthToken(token)
         this.isAuth = true
@@ -459,6 +446,7 @@ document.addEventListener('alpine:init', () => {
         this.checkRegistration()
       } else this.makeToast('Login failed')
     },
+    
     async createAccount() {},
     async forgetPassword() {},
     async changePassword(newPassword) {
@@ -543,7 +531,15 @@ document.addEventListener('alpine:init', () => {
     toast: null,
     makeToast(notification) {
       this.toast = notification
-      setTimeout(() => this.toast = null, 2000);
+      setTimeout(() => this.toast = null, 4000);
+    },
+  })
+  
+  Alpine.store('toast', {
+    toast: null,
+    makeToast(notification) {
+      this.toast = notification
+      setTimeout(() => this.toast = null, 4000);
     },
   })
 

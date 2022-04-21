@@ -24,16 +24,16 @@
 
 {# Login Panel #}
 {% macro login() %}
-    <div x-cloak x-show="!$store.auth.isAuth && modal === 'login'" class="flex flex-col w-64 h-full">
+    <div x-cloak x-show="!authToken && modal === 'login'" class="flex flex-col w-64 h-full">
         <h2 class="-mt-1 font-serif text-3xl font-extrabold leading-none text-secondary">Login</h2>
-        <form action="post" class="flex flex-col flex-grow my-sm text-body gap-base" @submit.prevent="$store.auth.submitLogin()">
+        <form action="post" class="flex flex-col flex-grow my-sm text-body gap-base" x-data="{username: '',password: ''}" @submit.prevent="submitLogin(username,password); username = '';password = ''">
             <div>
                 <label for="username" class="text-xs uppercase">User Name</label>
-                <input class="w-full" autocapitalize="off" id="username" name="username" required type="text" x-model="$store.auth.username" value=""/>
+                <input class="w-full" autocapitalize="off" id="username" name="username" required type="text" x-model="username" value=""/>
             </div>
             <div>
                 <label for="password" class="text-xs uppercase">Password</label>
-                <input class="w-full" id="password" name="password" required type="password" x-model="$store.auth.password" value=""/>
+                <input class="w-full" id="password" name="password" required type="password" x-model="password" value=""/>
             </div>
             <div>
                 <button class="font-bold uppercase transition-colors duration-200 rounded shadow text-form bg-highlight hover:bg-highlight-2 py-xs px-base" type="submit">Login</button>
@@ -53,7 +53,7 @@
 
 {# Change Password Panel #}
 {% macro resetPassword() %}
-    <div x-cloak x-show="!$store.auth.isAuth && modal === 'resetPassword'" class="flex flex-col w-64 h-full" >
+    <div x-cloak x-show="!authToken && modal === 'resetPassword'" class="flex flex-col w-64 h-full" >
         {# Header #}
         <div class="flex justify-between gap-x-sm">
             <h2 class="flex-grow -mt-1 font-serif text-2xl font-semibold leading-none text-header">
@@ -100,7 +100,7 @@
 
 {# Change Password Panel #}
 {% macro changePassword() %}
-    <div x-cloak x-show="$store.auth.isAuth && modal === 'changePassword'" class="flex flex-col w-64 h-full" >
+    <div x-cloak x-show="authToken && modal === 'changePassword'" class="flex flex-col w-64 h-full" >
         {# Header #}
         <div class="flex justify-between gap-x-sm">
             <h2 class="flex-grow -mt-1 font-serif text-2xl font-semibold leading-none text-header">
@@ -147,7 +147,7 @@
 
 {# Loading Spinner. When logging in but user info not yet loaded #}
 {% macro spinner() %}
-    <div x-cloak x-show="$store.auth.isAuth && !$store.auth.user" class="flex items-center justify-center gap-sm animate-pulse py-md">
+    <div x-cloak x-show="authToken && !$store.auth.user" class="flex items-center justify-center gap-sm animate-pulse py-md">
         <div class="w-8 h-8 rounded-full bg-body"></div>
         <div class="w-8 h-8 rounded-full bg-body"></div>
         <div class="w-8 h-8 rounded-full bg-body"></div>
@@ -166,7 +166,7 @@
 {# My Account User Info Panel including My Events. Shown only when logged in #}
 {% macro userInfo() %}
     <div class="flex flex-col h-full text-body"
-    x-cloak x-show="$store.auth.isAuth && $store.auth.user && modal !== 'changePassword'"  
+    x-cloak x-show="authToken && $store.auth.user && modal !== 'changePassword'"  
     >
         {# Header #}
         <div class="flex justify-between gap-x-sm">
