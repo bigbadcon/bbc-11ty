@@ -21,7 +21,7 @@ eleventyComputed:
 <div class="flex flex-wrap justify-between prose border-t-2 border-b-2 mt-md border-hr py-sm gap-base">
     <div class="flex text-sm gap-xs">
         <strong>Add to calendar:</strong>
-        {% set calendarDescription = "Big Bad Online 2021 volunteer shift: https://www.bigbadcon.com/events/" + event.eventSlug %}
+        {% set calendarDescription = "Big Bad Online 2022 volunteer shift: https://www.bigbadcon.com/events/" + event.eventSlug %}
         <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'google' %}">Google</a>
         <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'ics' %}">iCal</a>
         <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'outlook' %}">Outlook</a>
