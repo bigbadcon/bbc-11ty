@@ -278,6 +278,7 @@ document.addEventListener('alpine:init', () => {
       bookedEvents: this.$persist([]),
       favEvents: this.$persist([]),
       isRegistered: this.$persist(null),
+      volunteerEventSpaces: this.$persist([]),
       async submitLogin(username, password) {
         let res = await fetch(apiBaseUrl + 'login', { headers: { 'Content-Type': 'application/json;charset=utf-8' }, method: 'POST', body:JSON.stringify({ username: username, password: password })})
         if (res.status === 200 && res.headers.get('authorization')) {
@@ -295,6 +296,15 @@ document.addEventListener('alpine:init', () => {
           return token
         } else return false
       },
+      logout () {
+        this.authToken = null
+        this.user = null
+        this.bookedEvents = null
+        this.favEvents = []
+        this.availableSlots = []
+        this.isRegistered = null
+        this.volunteerEventSpaces = []
+      },
       async getUserData() {
         // TODO: do we need this for more than the login?
         const data = await fetchData('users/me')
@@ -306,7 +316,7 @@ document.addEventListener('alpine:init', () => {
       },
       async getBookedEvents() {
         // TODO: fill this in
-      }
+      },
       // Toast notifications
       toast: null,
       makeToast(notification) {
