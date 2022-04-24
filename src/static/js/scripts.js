@@ -272,6 +272,10 @@ document.addEventListener('alpine:init', () => {
   
   Alpine.data('global', function () {
     return {
+      init() {
+        // TODO: add a check to test when the last login was. logout if it's been too long.
+      },
+      lastLogin: '',
       authToken: this.$persist(false),
       user: this.$persist(false),
       availableSlots: this.$persist(null),
