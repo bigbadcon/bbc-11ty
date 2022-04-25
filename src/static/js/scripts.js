@@ -85,6 +85,21 @@ function metadataArrayToObject(arr) {
   return object
 }
 
+
+/* --------------------------- Event Duration ------------------------------ */
+
+const duration = (dateStart,dateEnd) => {
+  // calculate hours
+  let diffInMilliSeconds = Math.abs(dateEnd - dateStart) / 1000;
+  const hours = Math.floor(diffInMilliSeconds / 3600) % 24;
+
+  diffInMilliSeconds -= hours * 3600;
+  // calculate minutes
+  const minutes = Math.floor(diffInMilliSeconds / 60) % 60;
+  diffInMilliSeconds -= minutes * 60;
+  return hours.toString()
+};
+
 /* -------------------------------------------------------------------------- */
 /*                             API Fetch Functions                            */
 /* -------------------------------------------------------------------------- */
@@ -181,7 +196,7 @@ const api = {
           const minutes = Math.floor(diffInMilliSeconds / 60) % 60;
           diffInMilliSeconds -= minutes * 60;
           return hours.toString()
-        };
+        };  
 
         return {
           eventId: eventId, 
@@ -266,7 +281,7 @@ document.addEventListener('alpine:init', () => {
   /*                                Alpine Stores                               */
   /* -------------------------------------------------------------------------- */
 
-  /* ---------------------------- Auth Store --------------------------- */
+  /* ---------------------------- Auth Global --------------------------- */
   // ALl data for logged in users
   // TODO: refactor to data with persist?
   
@@ -290,11 +305,11 @@ document.addEventListener('alpine:init', () => {
           this.authToken = token
           this.makeToast('logged in!')
           if (token) {
-            // Need to pass token since there is a delay with the $persist code storing it
+            // Need to pass token for first couple since there is a delay with the $persist code storing it
             this.user = await fetchData('users/me',{},token)
             this.availableSlots = await fetchData('bookings/myAvailableSlots',{}, token)
             this.bookedEvents = await this.getBookedEvents()
-            this.favEvents = await fetchData('events/me/favorites',{},token)
+            this.favEvents = await this.getFavEvents()
             this.checkRegistration()
           }
           return token
@@ -303,9 +318,9 @@ document.addEventListener('alpine:init', () => {
       logout () {
         this.authToken = null
         this.user = null
-        this.bookedEvents = null
         this.favEvents = []
         this.availableSlots = []
+        this.bookedEvents = null
         this.isRegistered = null
         this.volunteerEventSpaces = []
       },
@@ -318,8 +333,60 @@ document.addEventListener('alpine:init', () => {
       async checkRegistration () {
         
       },
+      async getEvent(id) {
+        const data = await fetchData('events/find',{method: 'POST',body: {id: id}})
+        
+        // Create Javascript date object
+        const eventStartDateTime = dayjs(data.eventStartDate + "T" + data.eventStartTime + "-07:00").toDate()
+        const eventEndDateTime = dayjs(data.eventEndDate + "T" + data.eventEndTime + "-07:00").toDate()
+        
+        return {...data, 
+          // Convert to keyed object
+          metadata: metadataArrayToObject(data.metadata),
+          // strip out status 0 which are canceled attendees
+          bookings: data.bookings.filter(booking => booking.bookingStatus === 1),
+          // add simple isVolunteer boolean
+          isVolunteer: event.categories.some(cat => cat.slug === "volunteer-shift"),
+          // add javascript date objects and duration
+          eventStartDateTime: eventStartDateTime,
+          eventEndDateTime: eventEndDateTime,
+          eventDuration: duration(eventStartDateTime,eventEndDateTime)
+        }
+      },
       async getBookedEvents() {
-        // TODO: fill this in
+        // TODO: test this
+        // 1. Get ID array of my events
+        let myEvents = await fetchData('events/me/',{},token)
+        // 2. Get event data for each ID
+        myEvents = await Promise.all(myEvents.map( async id => {
+          const event = await this.getEvent(id)
+          return event
+        }))
+        return myEvents
+      },
+      async bookEvent(id) {
+        let data = await fetchData('bookings/bookMeIntoGame',{method: 'POST',body: { gameId: id }})
+        return data
+      },
+      async cancelBooking(id) {
+        let data = await fetchData('bookings/removeMeFromGame',{method: 'DELETE',body: { gameId: id }})
+        return data
+      },
+      async getFavEvents() {
+        let data = await fetchData('events/me/favorites')
+        return data && data.map(item => item.eventId)
+      },
+      async addFav(id) {
+        let data = await fetchData('events/me/favorite/create',{ method: 'POST', body:{eventId: id} })
+        return data
+      },
+      async deleteFav(id) {
+        let data = await fetchData('events/me/favorite/delete',{ method: 'DELETE', body:{eventId: id} })
+        return data
+      },
+      async changePassword(userId,password) {
+        let data = await fetchData('users/setMyPassword',{ method: 'POST', body: { userId: userId, password: password }})
+        return data
       },
       // Toast notifications
       toast: null,
