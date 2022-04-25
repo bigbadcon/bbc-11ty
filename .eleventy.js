@@ -131,7 +131,7 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addFilter("ogCacheBuster", (text) => {
     const today = new Date();
     const date = dayjs(today).format("YYYYMMDD");
-    return text + "_d" + date
+    return text + "_" + date
   })
   
 
