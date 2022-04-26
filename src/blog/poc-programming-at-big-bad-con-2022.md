@@ -42,3 +42,5 @@ Here is the amazing team organizing the scholarship and putting these events tog
 ### Would you like to contribute?
 
 If you would like to support out efforts, please consider donating below. All funds sent to this link will go directly to our POC programing. For more information about our charity status, [click here](https://www.bigbadcon.com/proof-of-501c3-status/).
+
+{% iconLink "[https://www.paypal.com/us/fundraiser/charity/1653860](https://www.paypal.com/us/fundraiser/charity/1653860 "https://www.paypal.com/us/fundraiser/charity/1653860")", "Donate Now ", "paw" %}
