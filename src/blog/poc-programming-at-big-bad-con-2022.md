@@ -1,6 +1,6 @@
 ---
 title: POC Programming at Big Bad Con 2022
-date: 
+date: 2022-04-27T08:00:00.000+00:00
 published: true
 excerpt: The Big Bad Con 2022 POC Programming is extending our international reach!
   We are continuing our work to support POCs at Big Bad Con through financial aid,
@@ -10,7 +10,6 @@ coverImageAlt: ''
 ogImage: ''
 
 ---
-## POC Programming at Big Bad Con 2022
 
 The Big Bad Con 2022 POC Programming is extending our international reach! We are continuing our work to support POCs at Big Bad Con through financial aid, a community dinner, and an industry meet and greet event. This year we’re also working with local gamers in India, South East Asia, and Latin America to bring more international POCs to the con!
 
@@ -45,6 +44,6 @@ Here is the amazing team organizing the scholarship and putting these events tog
 
 ### **Would you like to contribute?**
 
-If you would like to support our efforts, please consider donating below. All funds sent to this link will go directly to our POC programing. For more information about our charity status,[ click here](https://www.bigbadcon.com/proof-of-501c3-status/).
+If you would like to support our efforts, please consider donating below. All funds sent to this link will go directly to our POC programing. All donations are tax deductible as Big Bad Con is a [501c3 Non-Profit](https://www.bigbadcon.com/proof-of-501c3-status/).
 
-{% iconLink "[https://www.paypal.com/us/fundraiser/charity/1653860](https://www.paypal.com/us/fundraiser/charity/1653860 "https://www.paypal.com/us/fundraiser/charity/1653860")", "Donate Now ", "paw" %}
+{% iconLink "https://www.paypal.com/us/fundraiser/charity/1653860", "Donate Now ", "paw" %}
