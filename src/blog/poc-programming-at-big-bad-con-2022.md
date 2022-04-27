@@ -1,8 +1,10 @@
 ---
 title: POC Programming at Big Bad Con 2022
 date: 
-published: false
-excerpt: ''
+published: true
+excerpt: The Big Bad Con 2022 POC Programming is extending our international reach!
+  We are continuing our work to support POCs at Big Bad Con through financial aid,
+  a community dinner, and an industry meet and greet event.
 coverImage: ''
 coverImageAlt: ''
 ogImage: ''
