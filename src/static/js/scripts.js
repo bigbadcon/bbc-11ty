@@ -111,18 +111,20 @@ const apiBaseUrl = 'https://admin.bigbadcon.com:8091/api/'
 // Global Fetch Function for API
 async function fetchData(url, options, authToken) {
   authToken = authToken || JSON.parse(localStorage.getItem('_x_authToken'))
-  options = {...options, 
+  options = { 
     method: 'GET', 
     headers: { 
       'Content-Type': 'application/json;charset=utf-8',
       Authorization: authToken
-    }
+    }, 
+    ...options
   }
   if (options.body) options.body = JSON.stringify(options.body)
-
-  console.log(`fetch options for ${url}`,options)
+  // console.log(`fetch options for ${url}`,options)
+  // TODO: add throw for non-200 status responses
   try {
     let response = await fetch(apiBaseUrl + url, options)
+    console.log(`RESPONSE:fetch for ${url}`, response)
     let result = await response.json()
     console.log(`RESULT:fetch for ${url}`, result)
     return result
@@ -132,158 +134,17 @@ async function fetchData(url, options, authToken) {
   }
 }
 
-const api = {
-  getEvent: async (id) => {
-    let data = await fetchData('events/find','POST',{id: id},)
-    if (!data) return false
-    // Create Javascript date object
-    const eventStartDateTime = dayjs(data.eventStartDate + "T" + data.eventStartTime + "-07:00").toDate()
-    const eventEndDateTime = dayjs(data.eventEndDate + "T" + data.eventEndTime + "-07:00").toDate()
-    
-    data = {...data, 
-      // Convert to keyed object
-      metadata: metadataArrayToObject(data.metadata),
-      // strip out status 0 which are canceled attendees
-      bookings: data.bookings.filter(booking => booking.bookingStatus === 1),
-      eventStartDateTime: eventStartDateTime,
-      eventEndDateTime: eventEndDateTime,
-    }
-    return data
-  },
-  getEventsCategory: async (category) => {
-    let data = await fetchData('events/category/' + category,'POST')
-    if (!data) return false
-    data = data.map(event => {
-      const spacesTotal = Number(event.metadata.find( m => m.metaKey === 'Players' ).metaValue)
-      const bookings = event.bookings.filter(booking => booking.bookingStatus === 1).length
-      // return only the spaces numbers as that's all I need right now
-      // TODO: this will break when we have events where the GM is listed as booked!!!
-      return {
-        eventId: event.eventId,
-        spacesOpen: spacesTotal - bookings,
-        spacesTotal: spacesTotal
-      }
-    })
-    return data
-  },
-  getFavEvents: async () => {
-    let data = await fetchData('events/me/favorites')
-    return data && data.map(item => item.eventId)
-  },
-  getBookedEvents: async () => {
-    
-    const token = getAuthToken()
-    if (!token) return null
-    const config = { headers: { Authorization: token } }
-    try {
-      const res = await axios.get(apiBaseUrl + 'events/me', config);
-      const data = await res.data
-      const asyncResult = await Promise.all(data.map( async eventId => {
-        const event = await api.getEvent(eventId)
-        
-        // Create Javascript date object
-        const eventStartDateTime = dayjs(event.eventStartDate + "T" + event.eventStartTime + "-07:00").toDate()
-        const eventEndDateTime = dayjs(event.eventEndDate + "T" + event.eventEndTime + "-07:00").toDate()
-
-        // Create Duration
-        const duration = (dateStart,dateEnd) => {
-          // calculate hours
-          let diffInMilliSeconds = Math.abs(dateEnd - dateStart) / 1000;
-          const hours = Math.floor(diffInMilliSeconds / 3600) % 24;
-      
-          diffInMilliSeconds -= hours * 3600;
-          // calculate minutes
-          const minutes = Math.floor(diffInMilliSeconds / 60) % 60;
-          diffInMilliSeconds -= minutes * 60;
-          return hours.toString()
-        };  
-
-        return {
-          eventId: eventId, 
-          eventName: event.eventName,
-          eventSlug: event.eventSlug,
-          categories: event.categories,
-          isVolunteer: event.categories.some(cat => cat.slug === "volunteer-shift"),
-          eventStartDateTime: eventStartDateTime,
-          eventDuration: duration(eventStartDateTime,eventEndDateTime)
-        }
-      }))
-      // console.log("🚀 ~ file: scripts.js ~ line 130 ~ getBookedEvents: ~ asyncResult", asyncResult)
-      return asyncResult
-    } catch (err) {
-      alertMsg(`get booked events failed, error: ${err}`)
-      return null
-    }
-  },
-  getUserData: async () => {
-    let data = await fetchData('users/me')
-    return data
-  },
-  getAvailableSlots: async () => {
-    let data = await fetchData('bookings/myAvailableSlots')
-    return data
-  },
-  addFav: async (id) => {
-    let data = await fetchData('events/me/favorite/create','POST',{ eventId: id })
-    return data
-  },
-  deleteFav: async (id) => {
-    let data = await fetchData('events/me/favorite/delete',{ eventId: id },'DELETE')
-    return data
-  },
-  bookEvent: async (id) => {
-    let data = await fetchData('bookings/bookMeIntoGame',{ gameId: id },'POST')
-    return data
-  },
-  cancelBooking: async (id) => {
-    let data = await fetchData('bookings/removeMeFromGame',{ gameId: id },'DELETE')
-    return data
-  },
-  submitLogin2: async (username, password) => {
-    // let data = await fetchData('login',{ username: username, password: password },'POST')
-    let res = await fetch(apiBaseUrl + 'login', {headers: { 'Content-Type': 'application/json;charset=utf-8' }, method: 'POST', body:JSON.stringify({ username: username, password: password })})
-    if (res.status === 200 && res.headers.get('authorization')) {
-      const token = res.headers.get('authorization')
-      return token
-    } else return false
-  },
-  submitLogin: async (username, password) => {
-    try {
-      const res = await axios.post(apiBaseUrl + "login", { username: username, password: password })
-      if (res.status === 200 && res.headers.authorization) {
-        const token = res.headers.authorization
-        console.log('token',token)
-        return token
-      } else {
-        alertMsg(`login failed, status: ${res.status}`)
-        return null
-      }
-    } catch (err) {
-      alertMsg(`login failed, error: ${err}`)
-      return null
-    }
-  },
-  changePassword: async (userId, password) => {
-    let data = await fetchData('users/setMyPassword',{ userId: userId, password: password },'POST')
-    return data
-  }
-}
-
 /* -------------------------------------------------------------------------- */
 /*                                Alpine Stuff                                */
 /* -------------------------------------------------------------------------- */
 
-// TODO: convert to Alpine 3 persist
-
 document.addEventListener('alpine:init', () => {
 
   /* -------------------------------------------------------------------------- */
-  /*                                Alpine Stores                               */
+  /*                                Alpine Global                               */
   /* -------------------------------------------------------------------------- */
 
-  /* ---------------------------- Auth Global --------------------------- */
-  // ALl data for logged in users
-  // TODO: refactor to data with persist?
+  // Main data for logged in users
   
   Alpine.data('global', function () {
     return {
@@ -292,6 +153,7 @@ document.addEventListener('alpine:init', () => {
       },
       lastLogin: '',
       authToken: this.$persist(false),
+      get isAuth() { return (typeof this.authToken === "string") },
       user: this.$persist(false),
       availableSlots: this.$persist(null),
       bookedEvents: this.$persist([]),
@@ -308,8 +170,8 @@ document.addEventListener('alpine:init', () => {
             // Need to pass token for first couple since there is a delay with the $persist code storing it
             this.user = await fetchData('users/me',{},token)
             this.availableSlots = await fetchData('bookings/myAvailableSlots',{}, token)
-            this.bookedEvents = await this.getBookedEvents()
-            this.favEvents = await this.getFavEvents()
+            await this.getBookedEvents()
+            await this.getFavEvents()
             this.checkRegistration()
           }
           return token
@@ -356,12 +218,13 @@ document.addEventListener('alpine:init', () => {
       async getBookedEvents() {
         // TODO: test this
         // 1. Get ID array of my events
-        let myEvents = await fetchData('events/me/',{},token)
+        let myEvents = await fetchData('events/me/',{})
         // 2. Get event data for each ID
         myEvents = await Promise.all(myEvents.map( async id => {
           const event = await this.getEvent(id)
           return event
         }))
+        this.bookedEvents = myEvents
         return myEvents
       },
       async bookEvent(id) {
@@ -374,15 +237,32 @@ document.addEventListener('alpine:init', () => {
       },
       async getFavEvents() {
         let data = await fetchData('events/me/favorites')
+        this.favEvents = data && data.map(item => item.eventId)
         return data && data.map(item => item.eventId)
       },
-      async addFav(id) {
-        let data = await fetchData('events/me/favorite/create',{ method: 'POST', body:{eventId: id} })
-        return data
+      async toggleFav(id) {
+        let data
+        if (this.isFav(id)) {
+          data = await fetchData('events/me/favorite/delete',{ method: 'DELETE', body:{eventId: id} })
+        } else { 
+          data = await fetchData('events/me/favorite/create',{ method: 'POST', body:{eventId: id} })
+        }
+        if (data && data.status === 'FAILURE') this.makeToast(data.message)
+        if (data && data.status === 'SUCCESS') {
+          this.getFavEvents()
+        }
       },
-      async deleteFav(id) {
-        let data = await fetchData('events/me/favorite/delete',{ method: 'DELETE', body:{eventId: id} })
-        return data
+      isFav(id) {
+        console.log("fav events",this.favEvents)
+        if (this.favEvents) return this.favEvents.some( item => item === id)
+        return false
+      },
+      isBooked(id) {
+        if (this.bookedEvents) return this.bookedEvents.some( item => item.eventId === id)
+        return false
+      },
+      isOpen(id) {
+        return true
       },
       async changePassword(userId,password) {
         let data = await fetchData('users/setMyPassword',{ method: 'POST', body: { userId: userId, password: password }})
@@ -396,221 +276,29 @@ document.addEventListener('alpine:init', () => {
       }
     }
   })
-  
-  Alpine.store('auth', {
-    async init() {
-      const token = getAuthToken()
-      this.isAuth = (typeof token === 'string')
-      this.user = getLSWithExpiry('user')
-      this.availableSlots = getLSWithExpiry('availableSlots')
-      this.bookedEvents = getLSWithExpiry('bookedEvents')
-      this.favEvents = getLSWithExpiry('favEvents')
-      this.volunteerEventSpaces = getLSWithExpiry('volunteerEventSpaces')
-      this.favsOnly = getLSWithExpiry('favsOnly')
-      this.openOnly = getLSWithExpiry('openOnly')
-      this.bboDiscordInvite = getLSWithExpiry('bboDiscordInvite')
-      this.isRegistered = getLSWithExpiry('isRegistered')
-      if (this.isAuth) {
-        if (!this.user) this.getUserData()
-        if (!this.bookedEvents) this.getBookedEvents()
-        if (!this.favEvents) this.getFavEvents()
-        if (typeof this.availableSlots !== 'number') this.getAvailableSlots()
-      }
-    },
-    // Login stuff
-    username: "",
-    password: "",
-    email: "",
-    isAuth: false,
-    // User Data
-    user: false,
-    // User Events
-    availableSlots: null,
-    bookedEvents: [],
-    favEvents: [],
-    volunteerEventSpaces: [],
-    // Big Bad Online Registration
-    isRegistered: null, // null is not set; false for no; true for yes;
-    bboDiscordInvite: null, //stores discord invite link id grabbed from server; null == not set; false = unregistered; id string = discord invite id
-    // Big Bad Online Registration Functions
-    async checkRegistration() {
-      // If not registered but logged in then check registration status
-      if (!this.isRegistered && this.isAuth) {
-        console.log("not registered so checking reg");
-        try {
-          const res = await axios.get(`/.netlify/functions/check-registration/${this.user.id}/${this.user.userNicename}`)
-          if (res && res.data) {
-            console.log(res.data)
-            const bboDiscordInvite = res.data.bboDiscordInvite || null
-            const isRegistered = res.data.isRegistered;
-            this.bboDiscordInvite = bboDiscordInvite
-            this.isRegistered = isRegistered
-            setLSWithExpiry('bboDiscordInvite', bboDiscordInvite)
-            setLSWithExpiry('isRegistered', isRegistered)
-            return bboDiscordInvite
-          }
-        } catch(err) {
-          this.makeToast('Failed to check registration status. Try reloading page.')
-          console.log("failed to reach Google Sheet. Try reloading page.")
-          return false
-        }
-      }
-    },
-    // Event Table Functions
-    isBooked(id) {
-      if (this.bookedEvents) return this.bookedEvents.some( item => item.eventId === id)
-      return false
-    },
-    isFav(id) {
-      if (this.favEvents) return this.favEvents.some( item => item === id)
-      return false
-    },
-    async toggleFav(id) {
-      let data
-      if (this.isFav(id)) { 
-        this.favEvents = this.favEvents.filter(fav => fav !== id)
-        data = await api.deleteFav(id) 
-      }
-      else { 
-        this.favEvents = [...this.favEvents, id]
-        data = await api.addFav(id) 
-      }
-      if (data && data.status === 'FAILURE') this.makeToast(data.message)
-      if (data && data.status === 'SUCCESS') {
-        this.getFavEvents()
-      }
-    },
-    // Event Table Filter
-    favsOnly: false, // filter to only show favs
-    openOnly: false, // filter to only show open events
-    toggleFavsOnly() {
-      setLSWithExpiry('favsOnly',!this.favsOnly);
-      this.favsOnly = !this.favsOnly;
-    },
-    toggleOpenOnly() {
-      setLSWithExpiry('openOnly',!this.openOnly);
-      this.openOnly = !this.openOnly;
-    },
-    filterEvent(eventId) {
-      let showEvent = true
-      if (this.favsOnly && !this.isFav(eventId)) showEvent = false // hide if favsOnly true and not a fav
-      if (this.openOnly && this.volunteerEventSpaces.length > 0 && this.volunteerEventSpaces.find( e => e.eventId === eventId) && this.volunteerEventSpaces.find( e => e.eventId === eventId).spacesOpen === 0) showEvent = false // hide if openOnly true and no availableSlots
-      return showEvent
-    },
-    // Login functions
-    async submitLogin(username,password) {
-      const token = await api.submitLogin(username,password)
-      if (token) {
-        setAuthToken(token)
-        this.isAuth = true
-        // await getUserData as we need this for checkRegistration
-        await this.getUserData()
-        this.getBookedEvents()
-        this.getFavEvents()
-        this.getAvailableSlots()
-        this.checkRegistration()
-      } else this.makeToast('Login failed')
-    },
-    
-    async createAccount() {},
-    async forgetPassword() {},
-    async changePassword(newPassword) {
-      // returns boolean value
-      const isChanged = await api.changePassword(this.user.id, newPassword)
-      // triggers toast
-      if (isChanged) { this.makeToast("Password changed") } else this.makeToast("Error: Failed to change password")
-      return isChanged
-    },
-    logout() {
-      console.log("logout")
-      this.isAuth = false
-      this.user = null
-      this.bookedEvents = null
-      this.favEvents = null
-      this.availableSlots = null
-      this.volunteerEventSpaces = null
-      localStorage.removeItem('authToken')
-      localStorage.removeItem('user')
-      localStorage.removeItem('favEvents')
-      localStorage.removeItem('bookedEvents')
-      localStorage.removeItem('availableSlots')
-      localStorage.removeItem('volunteerEventSpaces')
-      localStorage.removeItem('isRegistered')
-      localStorage.removeItem('bboDiscordInvite')
-    },
-    // Booking functions
-    async bookEvent(id) {
-      const data = await api.bookEvent(id)
-      // console.log("🚀 ~ file: scripts.js ~ line 294 ~ bookEvent ~ data", data)
-      if (data && data.status === 'FAILURE') this.makeToast(data.message)
-      if (data && data.status === 'SUCCESS') {
-        this.getBookedEvents()
-        this.makeToast("You've booked this event!")
-      }
-    },
-    async cancelBooking(id) {
-      const data = await api.cancelBooking(id)
-      // console.log("🚀 ~ file: scripts.js ~ line 294 ~ bookEvent ~ data", data)
-      if (data && data.status === 'FAILURE') this.makeToast(data.message)
-      if (data && data.status === 'SUCCESS') {
-        this.getBookedEvents()
-        this.makeToast("Booking canceled")
-      }
-    },
-    // User data
-    async getUserData() {
-      const data = await api.getUserData()
-      this.user = data
-      setLSWithExpiry('user', data)
-      return data
-    },
-    async getAvailableSlots() {
-      const data = await api.getAvailableSlots()
-      this.availableSlots = data
-      setLSWithExpiry('availableSlots',data)
-    },
-    async getBookedEvents() {
-      const data = await api.getBookedEvents()
-      this.bookedEvents = data
-      setLSWithExpiry('bookedEvents',data)
-    },
-    async getFavEvents() {
-      const data = await api.getFavEvents()
-      this.favEvents = data
-      setLSWithExpiry('favEvents',data)
-    },
-    // Load full events data for category. This is mainly to show number of slots open of volunteer shifts
-    // TODO: make this work for other event types, hopefully with simpler API
-    async getEventsCategory(category) {
-      // console.log("🚀 ~ file: scripts.js ~ line 429 ~ getEventsCategory ~ category", category)
-      const data = await api.getEventsCategory(category)
-      this.volunteerEventSpaces = data
-      setLSWithExpiry('volunteerEventSpaces',data)
-      // console.log("🚀 ~ file: scripts.js ~ line 431 ~ getEventsCategory ~ data", data)
-    },
-    volunteerEventSpace(eventId) {
-      return (this.volunteerEventSpaces && this.volunteerEventSpaces.length > 0) ? this.volunteerEventSpaces.find( e => e.eventId === eventId) : false
-    },
-    // Toast notifications
-    // TODO: look into making this global
-    toast: null,
-    makeToast(notification) {
-      this.toast = notification
-      setTimeout(() => this.toast = null, 4000);
-    },
-  })
-  
-  Alpine.store('toast', {
-    toast: null,
-    makeToast(notification) {
-      this.toast = notification
-      setTimeout(() => this.toast = null, 4000);
-    },
-  })
+
 
   /* -------------------------------------------------------------------------- */
   /*                            Alpine Component Data                           */
   /* -------------------------------------------------------------------------- */
+  
+  Alpine.data('eventsTable', function () {
+    return {
+      filter: this.$persist({
+        favsOnly: false,
+        openOnly: false
+      }),
+      filterEvent(id,isFav) {
+        // show event by default
+        let showEvent = true
+        // if filtering only favs and this is not a fav then hide it
+        if (this.filter.favsOnly && !isFav) return false
+        // if filtering only open events and this event is full then hide it
+        // if (this.filter.openOnly) return false
+        return showEvent
+      }
+    }
+  })
 
   /* -------------------------- eventInfo panel data -------------------------- */
 

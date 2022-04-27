@@ -1,6 +1,7 @@
-<section class="mt-md">
+<section class="mt-md" x-data="eventsTable">
     <h2 class="font-serif text-3xl font-bold leading-none md:text-4xl text-header mb-2xs">Events List</h2>
     {% include 'components/event-table-filter.njk' %}
+    <button @click="getFavEvents">load favs</button>
     <table class="w-full text-sm text-body">
         <thead>
             <tr>
@@ -19,8 +20,8 @@
         </thead>
         <tbody>
             {% for event in eventData.events %}
-            {# TODO: refactor filter event #}
-                <tr x-show="$store.auth.filterEvent({{event.eventId}})">
+            {# filterEvent script in Alpine.data("eventsTable") and isFav is in Alpine.data("global") #}
+                <tr x-show="filterEvent({{event.eventId}},isFav({{event.eventId}}))">
                     {# Event Name #}
                     <td class="py-sm pr-sm">
                         <h3>
@@ -52,7 +53,7 @@
                     {# Fav Event Icon #}
                     <td x-cloak x-show="user">
                     {# TODO: refactor toggleFav and isFav #}
-                        <span @click="$store.auth.toggleFav({{event.eventId}})" class="flex justify-end cursor-pointer opacity-40 hover:opacity-100" :class="$store.auth.isFav({{event.eventId}}) && 'favved'">{% icon 'star', 'fill-body' %}</span>
+                        <span @click="toggleFav({{event.eventId}})" class="flex justify-end cursor-pointer opacity-40 hover:opacity-100" :class="isFav({{event.eventId}}) && 'favved'">{% icon 'star', 'fill-body' %}</span>
                     </td>
                 </tr>
             {% endfor %}
