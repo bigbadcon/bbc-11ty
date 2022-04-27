@@ -8,13 +8,15 @@ coverImageAlt: ''
 ogImage: ''
 
 ---
+## POC Programming at Big Bad Con 2022
+
 The Big Bad Con 2022 POC Programming is extending our international reach! We are continuing our work to support POCs at Big Bad Con through financial aid, a community dinner, and an industry meet and greet event. This year we’re also working with local gamers in India, South East Asia, and Latin America to bring more international POCs to the con!
 
 Here is the programming for 2022:
 
 ### POC Scholarship
 
-Working with individual and industry donors we hope to raise $30,000+ to to aid people of color in attending the con by paying for travel, boarding, admission, and related expenses. This program will compliment our crowdfunding campaign and the Big Bad Con Scholarship program to give financial assistance to as many would-be attendees as we can.
+Working with individual and industry donors we hope to raise $40,000+ to aid people of color in attending the con by paying for travel, boarding, admission, and related expenses. This program will complement our crowdfunding campaign and the Big Bad Con Scholarship program to give financial assistance to as many would-be attendees as we can.
 
 ### POC Dinner
 
@@ -22,25 +24,25 @@ The POC Programming team is planning another POC Dinner at the start of the conv
 
 ### POC Meet & Greet
 
-We're also hosting another meet and greet for POC writers, artists, editors, and creators to their fellow piers and industry contacts. Non-POC industry attendees will also be invited with the specific goal to offer mentorship, publishing, or employment opportunities to the attendees of color.
+We're also hosting another meet and greet for POC writers, artists, editors, and creators to their fellow peers and industry contacts. Non-POC industry attendees will also be invited with the specific goal to offer mentorship, publishing, or employment opportunities to the attendees of color.
 
 ### Programming Team
 
 Here is the amazing team organizing the scholarship and putting these events together.
 
-* Ajit George (lead, fundraising, industry contacts)
-* Whitney Beltran (fundraising, industry contacts)
-* Surena Marie (fundraising, industry contacts)
-* Carlos Luna (fundraising, industry contacts)
-* Mario Ortegon (nominating Latin American recipients)
-* Pam Punzalan (nominating SEAs recipients)
-* Indrani Ganguly (nominating Indian recipients)
-* Justice Arman (Meet and Greet planning and execution)
-* Anthony Joyce-Rivera (Meet and Greet planning and execution)
-* Sean Nittner (BBC liaison)
+* Ajit George
+* Whitney Beltran
+* Surena Marie
+* Carlos Luna
+* Mario Ortegon
+* Pam Punzalan
+* Indrani Ganguly
+* Justice Arman
+* Anthony Joyce-Rivera
+* Sean Nittner
 
-### Would you like to contribute?
+### **Would you like to contribute?**
 
-If you would like to support out efforts, please consider donating below. All funds sent to this link will go directly to our POC programing. For more information about our charity status, [click here](https://www.bigbadcon.com/proof-of-501c3-status/).
+If you would like to support our efforts, please consider donating below. All funds sent to this link will go directly to our POC programing. For more information about our charity status,[ click here](https://www.bigbadcon.com/proof-of-501c3-status/).
 
 {% iconLink "[https://www.paypal.com/us/fundraiser/charity/1653860](https://www.paypal.com/us/fundraiser/charity/1653860 "https://www.paypal.com/us/fundraiser/charity/1653860")", "Donate Now ", "paw" %}
