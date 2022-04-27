@@ -1,4 +1,4 @@
-<section class="mt-md" 
+<section class="mt-md" x-data="{ filter: $persist({favsOnly: false,openOnly: false}) }"
 x-init="if ($store.auth.isAuth) $store.auth.getEventsCategory('volunteer-shift'); $watch('$store.auth.isAuth', value => {if (value) $store.auth.getEventsCategory('volunteer-shift')})">
     <h2 class="font-serif text-3xl font-bold leading-none md:text-4xl text-header mb-base">Volunteer Shift List</h2>
     {% include 'components/event-table-filter.njk' %}
@@ -9,7 +9,7 @@ x-init="if ($store.auth.isAuth) $store.auth.getEventsCategory('volunteer-shift')
                 <th class="text-left pb-sm">Date Time</th>
                 <th class="text-center pb-sm max-w-max">Dur</th>
                 <th class="text-center pb-sm max-w-max">Spaces</th>
-                <th class="w-8 text-center pb-sm" x-cloak x-show="$store.auth.isAuth">
+                <th class="w-8 text-center pb-sm" x-cloak x-show="isAuth">
                     <span class="flex items-center justify-end">{% icon 'star', 'fill-body' %}</span>
                 </th>
             </tr>
@@ -17,7 +17,11 @@ x-init="if ($store.auth.isAuth) $store.auth.getEventsCategory('volunteer-shift')
         <tbody>
             {# favsOnly and timezone in x-data in html #}
             {% for event in eventData.volunteer %}
-                <tr x-show="$store.auth.filterEvent({{event.eventId}})">
+            {# isFav is in Alpine.data("global") #}
+            {# TODO: test openOnly #}
+            {# If only showing favs and is fav then show #}
+            {# If only showing open and is open then show #}
+                <tr x-show="(!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || isOpen({{event.eventId}}))">
                     {# Event Name #}
                     <td class="py-sm pr-sm">
                         <a href="/volunteer/{{event.eventSlug}}" class="font-bold transition-colors text-header hover:text-highlight">{{event.eventName | safe }}</a>
@@ -43,7 +47,7 @@ x-init="if ($store.auth.isAuth) $store.auth.getEventsCategory('volunteer-shift')
                     </td>
                     {# Fav Event Icon #}
                     <td x-cloak x-show="$store.auth.isAuth">
-                        <span @click="$store.auth.toggleFav({{event.eventId}})" class="flex justify-end cursor-pointer opacity-40 hover:opacity-100" :class="$store.auth.isFav({{event.eventId}}) && 'favved'">{% icon 'star', 'fill-body' %}</span>
+                        <span @click="toggleFav({{event.eventId}})" class="flex justify-end cursor-pointer opacity-40 hover:opacity-100" :class="isFav({{event.eventId}}) && 'favved'">{% icon 'star', 'fill-body' %}</span>
                     </td>
                 </tr>
             {% endfor %}

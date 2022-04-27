@@ -253,7 +253,7 @@ document.addEventListener('alpine:init', () => {
         }
       },
       isFav(id) {
-        console.log("fav events",this.favEvents)
+        // console.log("fav events",this.favEvents)
         if (this.favEvents) return this.favEvents.some( item => item === id)
         return false
       },
@@ -282,23 +282,6 @@ document.addEventListener('alpine:init', () => {
   /*                            Alpine Component Data                           */
   /* -------------------------------------------------------------------------- */
   
-  Alpine.data('eventsTable', function () {
-    return {
-      filter: this.$persist({
-        favsOnly: false,
-        openOnly: false
-      }),
-      filterEvent(id,isFav) {
-        // show event by default
-        let showEvent = true
-        // if filtering only favs and this is not a fav then hide it
-        if (this.filter.favsOnly && !isFav) return false
-        // if filtering only open events and this event is full then hide it
-        // if (this.filter.openOnly) return false
-        return showEvent
-      }
-    }
-  })
 
   /* -------------------------- eventInfo panel data -------------------------- */
 

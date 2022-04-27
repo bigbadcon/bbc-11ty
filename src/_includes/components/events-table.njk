@@ -1,7 +1,7 @@
-<section class="mt-md" x-data="eventsTable">
+<section class="mt-md" x-data="{ filter: $persist({favsOnly: false,openOnly: false}) }">
     <h2 class="font-serif text-3xl font-bold leading-none md:text-4xl text-header mb-2xs">Events List</h2>
     {% include 'components/event-table-filter.njk' %}
-    <button @click="getFavEvents">load favs</button>
+    {# Testing: <button @click="getFavEvents">load favs</button> #}
     <table class="w-full text-sm text-body">
         <thead>
             <tr>
@@ -13,15 +13,15 @@
                 {# <th class="w-8 text-center pb-sm">
                     <span class="flex items-center justify-end pl-xs">{% icon 'square-check', 'fill-body' %}</span>
                 </th> #}
-                <th class="w-8 text-center pb-sm" x-cloak x-show="user">
+                <th class="w-8 text-center pb-sm" x-cloak x-show="isAuth">
                     <span class="flex items-center justify-end pl-xs">{% icon 'star', 'fill-body' %}</span>
                 </th>
             </tr>
         </thead>
         <tbody>
             {% for event in eventData.events %}
-            {# filterEvent script in Alpine.data("eventsTable") and isFav is in Alpine.data("global") #}
-                <tr x-show="filterEvent({{event.eventId}},isFav({{event.eventId}}))">
+            {# isFav is in Alpine.data("global") #}
+                <tr x-show="!filter.favsOnly || isFav({{event.eventId}})">
                     {# Event Name #}
                     <td class="py-sm pr-sm">
                         <h3>
@@ -51,7 +51,7 @@
                         {% endfor %}
                     </td class="py-sm pr-sm"> #}
                     {# Fav Event Icon #}
-                    <td x-cloak x-show="user">
+                    <td x-cloak x-show="isAuth">
                     {# TODO: refactor toggleFav and isFav #}
                         <span @click="toggleFav({{event.eventId}})" class="flex justify-end cursor-pointer opacity-40 hover:opacity-100" :class="isFav({{event.eventId}}) && 'favved'">{% icon 'star', 'fill-body' %}</span>
                     </td>
