@@ -2,7 +2,7 @@
 title: Big Bad Con 2022 - October 27-30
 date: 
 published: true
-excerpt: ''
+excerpt: Our plans for Big Bad Con 2022!
 coverImage: ''
 coverImageAlt: ''
 ogImage: ''
