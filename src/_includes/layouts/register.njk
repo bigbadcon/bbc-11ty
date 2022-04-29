@@ -16,19 +16,19 @@
                 3. Logged in and registered: display registration info for user and discord and twitch info 
                 #}
                 {# Login disclaimer: only show if not registered and not logged in #}
-                <div x-cloak x-show="!$store.auth.isAuth" class="prose">
+                <div x-cloak x-show="!isAuth" class="prose">
                     <p>You must <button @click="modal = 'login'" class="font-bold text-highlight">login</button> to register for Big Bad Online or view your registration information.</p>
                 </div>
                 {# Loading spinner #}
-                <div x-cloak x-show="$store.auth.isAuth && $store.auth.isRegistered === null" 
-                x-init="$store.auth.checkRegistration()"
+                <div x-cloak x-show="isAuth && isRegistered === null" 
+                x-init="checkRegistration()"
                 class="flex items-center justify-center gap-sm animate-pulse py-md">
                     <div class="w-8 h-8 rounded-full bg-body"></div>
                     <div class="w-8 h-8 rounded-full bg-body"></div>
                     <div class="w-8 h-8 rounded-full bg-body"></div>
                 </div>
                 {# Register form; only show if not registered and logged in #}
-                <form x-cloak x-show="$store.auth.isAuth && $store.auth.isRegistered === false"
+                <form x-cloak x-show="isAuth && isRegistered === false"
                 x-data="{agree:false}"
                 method="POST" name="register-bigbadonline" 
                 data-netlify="true" netlify-honeypot="bot-field" 
@@ -36,10 +36,10 @@
                     <p class="hidden">
                         <label>Don’t fill this out if you’re human: <input name="bot-field"/></label>
                     </p>
-                    <input type="hidden" id="displayName" name="displayName" value="" :value="$store.auth.user && $store.auth.user.displayName">
-                    <input type="hidden" id="userEmail" name="userEmail" value="" :value="$store.auth.user && $store.auth.user.userEmail">
-                    <input type="hidden" id="userNicename" name="userNicename" value="" :value="$store.auth.user && $store.auth.user.userNicename">
-                    <input type="hidden" id="userId" name="userId" value="" :value="$store.auth.user && $store.auth.user.id">
+                    <input type="hidden" id="displayName" name="displayName" value="" :value="user && user.displayName">
+                    <input type="hidden" id="userEmail" name="userEmail" value="" :value="user && user.userEmail">
+                    <input type="hidden" id="userNicename" name="userNicename" value="" :value="user && user.userNicename">
+                    <input type="hidden" id="userId" name="userId" value="" :value="user && user.id">
                     <input type="hidden" id="formName" name="formName" value="register-bigbadonline">
                     <p>Big Bad Con is committed to cultivating a culture of respect, support, and kindness at both our in-person and online events. We ask that all of our attendees agree to abide by our Community Standards, please take a moment to read them before answering yes below.</p>
                     <p>{% iconLink "/community-standards", "Community Standards", "scroll" %}</p>
@@ -48,7 +48,7 @@
                         <div class="flex items-center">
                             <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-model="agree" required>
                             <label for="agree-to-community-standards" class="text-body-highlight"3324>
-                                Yes &mdash; I, <span x-text="$store.auth.user && $store.auth.user.displayName" class="font-bold"></span>, agree to the Big Bad Con Community Standards
+                                Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Big Bad Con Community Standards
                             </label>
                         </div>
                     </fieldset>
@@ -58,14 +58,14 @@
                 </form>
 
                 {# You are Registered notification. Show only when registered and logged in.  #}
-                <div x-cloak x-show="$store.auth.isAuth && $store.auth.isRegistered === true" class="prose">
+                <div x-cloak x-show="isAuth && isRegistered === true" class="prose">
                     <h2>You are registered!</h2>
                     <p>You, <strong>
-                            <span x-text="$store.auth.user && $store.auth.user.displayName"></span> (<span x-text="$store.auth.user && $store.auth.user.userNicename"></span>)</strong>, are registered for Big Bad Online 2022.</p>
-                    {# <p>
-                        <strong>Join</strong> the <a :href="'https://discord.gg/' + $store.auth.bboDiscordInvite">Big Bad Online 2022 Discord</a>!
-                    </p> #}
-                    <p>We will post the event Discord invite link here once it gets closer to the date.</p>
+                            <span x-text="user && user.displayName"></span> (<span x-text="user && user.userNicename"></span>)</strong>, are registered for Big Bad Online 2022.</p>
+                    <p>
+                        <strong>Join</strong> the <a :href="'https://discord.gg/' + bboDiscordInvite">Big Bad Online 2022 Discord</a>!
+                    </p>
+                    {# <p>We will post the event Discord invite link here once it gets closer to the date.</p> #}
                     <p>
                         <strong>Follow</strong> the <a href="https://twitch.tv/bigbadcon">Big Bad Con Twitch Channel</a>! <em>You must be a follower for 10 minutes before you can enter the twitch chat.</em>
                     </p>

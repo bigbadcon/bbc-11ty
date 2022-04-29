@@ -12,14 +12,14 @@
             <section class="my-base text-body"
                 x-data="createAccount"
                 x-effect="displayName = (howToDisplay === 'nickname') ? nickname : firstName + ' ' + lastName;">
-                <div class="prose" x-cloak x-show="$store.auth.isAuth && $store.auth.user">
-                    <p>Hi, you are signed in as <span x-text="$store.auth.user && $store.auth.user.displayName" class="font-bold"></span>. If you would like to create a new account please logout first.
+                <div class="prose" x-cloak x-show="isAuth && user">
+                    <p>Hi, you are signed in as <span x-text="$user && user.displayName" class="font-bold"></span>. If you would like to create a new account please logout first.
                     </p>
                     <p>
-                        <button class="button" @click="$store.auth.logout()">Logout</button>
+                        <button class="button" @click="logout()">Logout</button>
                     </p>
                 </div>
-                <form x-cloak x-show="!$store.auth.isAuth" 
+                <form x-cloak x-show="!isAuth" 
                 data-netlify="true" 
                 netlify-honeypot="bot-field"
                 data-netlify-recaptcha="true"

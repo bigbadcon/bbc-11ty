@@ -15,55 +15,16 @@ function slugify(text) {
         .replace(/--+/g, '-') // replace multiple dash with single
 }
 
+function isFullArray(arr) {
+  return Array.isArray(arr) && arr.length
+}
+
 /* -------------------------------------------------------------------------- */
 /*                             dayjs event format                             */
 /* -------------------------------------------------------------------------- */
 
 function formatEventDate(date, tz = 'America/Los_Angeles') {
   return "<span style='white-space: nowrap;'>" + dayjs(date).tz(tz).format('MMM D, YYYY') + "</span> <span>" + dayjs(date).tz(tz).format('h:mm a') + "</span>"
-}
-
-/* -------------------------------------------------------------------------- */
-/*                        LocalStorage Helper Functions                       */
-/* -------------------------------------------------------------------------- */
-
-function setLSWithExpiry(key, value, ttl) {
-  // console.log("🚀 ~ file: scripts.js ~ line 23 ~ setLSWithExpiry ~ value", key, value)
-  ttl = ttl || 86400000 // one day
-  const now = new Date()
-
-  // `item` is an object which contains the original value
-  // as well as the time when it's supposed to expire (now + time in milliseconds)
-  const item = {
-    value: value,
-    expiry: now.getTime() + ttl,
-  }
-  localStorage.setItem(key, JSON.stringify(item))
-}
-
-function getLSWithExpiry(key) {
-  const itemStr = localStorage.getItem(key)
-  // if the item doesn't exist, return null
-  if (!itemStr) {
-    return null
-  }
-  const item = JSON.parse(itemStr)
-  const now = new Date()
-  // compare the expiry time of the item with the current time
-  if (now.getTime() > item.expiry) {
-    // If the item is expired, delete the item from storage
-    // and return null
-    localStorage.removeItem(key)
-    return null
-  }
-  return item.value
-}
-
-function getAuthToken() {
-  return getLSWithExpiry('authToken')
-}
-function setAuthToken(token) {
-  return setLSWithExpiry('authToken', token)
 }
 
 /* -------------------------------------------------------------------------- */
@@ -106,7 +67,7 @@ const duration = (dateStart,dateEnd) => {
 
 // TODO: refactor all this to simpler global functions 
 
-const apiBaseUrl = 'https://admin.bigbadcon.com:8091/api/'
+const apiBaseUrl = 'https://admin.bigbadcon.com:8091/api'
 
 // Global Fetch Function for API
 async function fetchData(url, options, authToken) {
@@ -161,15 +122,15 @@ document.addEventListener('alpine:init', () => {
       isRegistered: this.$persist(null),
       volunteerEventSpaces: this.$persist([]),
       async submitLogin(username, password) {
-        let res = await fetch(apiBaseUrl + 'login', { headers: { 'Content-Type': 'application/json;charset=utf-8' }, method: 'POST', body:JSON.stringify({ username: username, password: password })})
+        let res = await fetch(apiBaseUrl + '/login', { headers: { 'Content-Type': 'application/json;charset=utf-8' }, method: 'POST', body:JSON.stringify({ username: username, password: password })})
         if (res.status === 200 && res.headers.get('authorization')) {
           const token = res.headers.get('authorization')
           this.authToken = token
           this.makeToast('logged in!')
           if (token) {
             // Need to pass token for first couple since there is a delay with the $persist code storing it
-            this.user = await fetchData('users/me',{},token)
-            this.availableSlots = await fetchData('bookings/myAvailableSlots',{}, token)
+            this.user = await fetchData('/users/me',{},token)
+            this.availableSlots = await fetchData('/bookings/myAvailableSlots',{}, token)
             await this.getBookedEvents()
             await this.getFavEvents()
             this.checkRegistration()
@@ -188,7 +149,7 @@ document.addEventListener('alpine:init', () => {
       },
       async getUserData() {
         // TODO: do we need this for more than the login?
-        const data = await fetchData('users/me')
+        const data = await fetchData('/users/me')
         this.user = data
         return data
       },
@@ -196,7 +157,7 @@ document.addEventListener('alpine:init', () => {
         
       },
       async getEvent(id) {
-        const data = await fetchData('events/find',{method: 'POST',body: {id: id}})
+        const data = await fetchData('/events/find',{method: 'POST',body: {id: id}})
         
         // Create Javascript date object
         const eventStartDateTime = dayjs(data.eventStartDate + "T" + data.eventStartTime + "-07:00").toDate()
@@ -208,7 +169,7 @@ document.addEventListener('alpine:init', () => {
           // strip out status 0 which are canceled attendees
           bookings: data.bookings.filter(booking => booking.bookingStatus === 1),
           // add simple isVolunteer boolean
-          isVolunteer: event.categories.some(cat => cat.slug === "volunteer-shift"),
+          isVolunteer: data.categories.some(cat => cat.slug === "volunteer-shift"),
           // add javascript date objects and duration
           eventStartDateTime: eventStartDateTime,
           eventEndDateTime: eventEndDateTime,
@@ -218,7 +179,7 @@ document.addEventListener('alpine:init', () => {
       async getBookedEvents() {
         // TODO: test this
         // 1. Get ID array of my events
-        let myEvents = await fetchData('events/me/',{})
+        let myEvents = await fetchData('/events/me/',{})
         // 2. Get event data for each ID
         myEvents = await Promise.all(myEvents.map( async id => {
           const event = await this.getEvent(id)
@@ -228,24 +189,24 @@ document.addEventListener('alpine:init', () => {
         return myEvents
       },
       async bookEvent(id) {
-        let data = await fetchData('bookings/bookMeIntoGame',{method: 'POST',body: { gameId: id }})
+        let data = await fetchData('/bookings/bookMeIntoGame',{method: 'POST',body: { gameId: id }})
         return data
       },
       async cancelBooking(id) {
-        let data = await fetchData('bookings/removeMeFromGame',{method: 'DELETE',body: { gameId: id }})
+        let data = await fetchData('/bookings/removeMeFromGame',{method: 'DELETE',body: { gameId: id }})
         return data
       },
       async getFavEvents() {
-        let data = await fetchData('events/me/favorites')
+        let data = await fetchData('/events/me/favorites')
         this.favEvents = data && data.map(item => item.eventId)
         return data && data.map(item => item.eventId)
       },
       async toggleFav(id) {
         let data
         if (this.isFav(id)) {
-          data = await fetchData('events/me/favorite/delete',{ method: 'DELETE', body:{eventId: id} })
+          data = await fetchData('/events/me/favorite/delete',{ method: 'DELETE', body:{eventId: id} })
         } else { 
-          data = await fetchData('events/me/favorite/create',{ method: 'POST', body:{eventId: id} })
+          data = await fetchData('/events/me/favorite/create',{ method: 'POST', body:{eventId: id} })
         }
         if (data && data.status === 'FAILURE') this.makeToast(data.message)
         if (data && data.status === 'SUCCESS') {
@@ -253,19 +214,13 @@ document.addEventListener('alpine:init', () => {
         }
       },
       isFav(id) {
-        // console.log("fav events",this.favEvents)
-        if (this.favEvents) return this.favEvents.some( item => item === id)
-        return false
+        return isFullArray(this.favEvents) && this.favEvents.some( item => item === id)
       },
       isBooked(id) {
-        if (this.bookedEvents) return this.bookedEvents.some( item => item.eventId === id)
-        return false
-      },
-      isOpen(id) {
-        return true
+        return isFullArray(this.bookedEvents) && this.bookedEvents.some( item => item.eventId === id)
       },
       async changePassword(userId,password) {
-        let data = await fetchData('users/setMyPassword',{ method: 'POST', body: { userId: userId, password: password }})
+        let data = await fetchData('/users/setMyPassword',{ method: 'POST', body: { userId: userId, password: password }})
         return data
       },
       // Toast notifications
@@ -286,24 +241,48 @@ document.addEventListener('alpine:init', () => {
   /* -------------------------- eventInfo panel data -------------------------- */
 
   Alpine.data('eventInfo', () => ({
-    event: null,
     spacesTotal: null,
     spacesOpen: null,
     owner: null,
     gm: null,
     bookings: [], // bookings minus all GMs
-    async getEvent(id) {
-      const data = await api.getEvent(id)
-      // console.log("🚀 ~ file: scripts.js ~ line 373 ~ getEvent ~ data", data)
+    async getEventBooking(id) {
+      // Check localStorage first to quickly populate this
+      let eventsLS = localStorage.getItem("events")
+      let events = (eventsLS) ? JSON.parse(eventsLS) : false
+      if (events[id]) {
+        // set Alpine 'eventInfo' variables
+        this.owner = events[id].owner
+        this.gm = events[id].gm
+        this.bookings = events[id].bookings
+        this.spacesTotal = events[id].spacesTotal
+        this.spacesOpen = events[id].spacesOpen
+      }
+      // fetch new data from server
+      const data = await fetchData('/events/find',{ method: 'POST', body: { id: id }})
       if (data) {
-        this.event = data
-        const spacesTotal = parseInt(data.metadata.Players)
-        this.spacesTotal = spacesTotal
+        // Convert metadata array to object
+        const metadata = metadataArrayToObject(data.metadata)
+        // set Alpine 'eventInfo' variables
         this.owner = data.eventOwner.displayName
-        this.gm = data.metadata.GM
-        const bookings = data.bookings.filter(booking => booking.bookingComment !== "GM")
+        this.gm = metadata.GM
+        // filter out all cancelled bookings and GM roles
+        const bookings = data.bookings.filter(booking => booking.bookingStatus === 1 && booking.bookingComment !== "GM")
         this.bookings = bookings
-        this.spacesOpen = spacesTotal - bookings.length
+        this.spacesTotal = parseInt(metadata.Players)
+        this.spacesOpen = parseInt(metadata.Players) - bookings.length
+        
+        // get and reset localStorage with new data
+        eventsLS = localStorage.getItem("events")
+        events = (eventsLS) ? JSON.parse(eventsLS) : {}
+        events = {...events, [id]:{
+          owner: this.owner,
+          gm: this.gm,
+          bookings: this.bookings,
+          spacesTotal: this.spacesTotal,
+          spacesOpen: this.spacesOpen
+        }}
+        localStorage.setItem("events",JSON.stringify(events))
       }
     },
     showTimezone(date,tz) {
