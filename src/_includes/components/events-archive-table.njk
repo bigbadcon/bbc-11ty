@@ -6,7 +6,7 @@
     <table class="w-full text-sm text-body">
         <tbody>
             {% for event in events2021 %}
-                <tr x-show="$store.auth.filterEvent({{event.eventId}})">
+                <tr x-show="filterEvent({{event.eventId}})">
                     {# Event Name #}
                     <td class="py-sm pr-sm">
                         <h3>

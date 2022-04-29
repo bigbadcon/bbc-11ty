@@ -1,9 +1,9 @@
 <div class="rounded-md shadow mt-md text-body p-base bg-card" 
 x-data="eventInfo" 
-x-init="getEvent({{event.eventId}}); $watch('$store.auth.isAuth', value => {if (value === true) getEvent({{event.eventId}})}); $watch('$store.auth.bookedEvents', value => { getEvent({{event.eventId}}) } )">
+x-init="getEvent({{event.eventId}}); $watch('isAuth', value => {if (value === true) getEvent({{event.eventId}})}); $watch('bookedEvents', value => { getEvent({{event.eventId}}) } )">
     <h2 class="-mt-1 font-serif text-2xl font-bold leading-none md:text-4xl text-header mb-sm">Event Booking</h2>
     {# Event Name, spaces open, and list of players; only show if logged in and has event data #}
-    <div x-cloak x-show="event">
+    <div x-cloak x-show="isAuth && spacesTotal">
         <div>
             <span>Spaces Open:</span>
             <span x-text="spacesOpen"></span> out of <span x-text="spacesTotal"></span>
@@ -18,13 +18,13 @@ x-init="getEvent({{event.eventId}}); $watch('$store.auth.isAuth', value => {if (
         </div>
         {# Booking buttons #}
         <div class="flex mt-base gap-sm">
-            <button class="button" x-show="spacesOpen > 0 && !$store.auth.isBooked({{event.eventId}})" @click="$store.auth.bookEvent({{event.eventId}})">Book Event</button>
-            <span x-show="spacesOpen <= 0 && !$store.auth.isBooked({{event.eventId}})" class="font-bold">Event is full</span>
-            <button class="button" x-show="$store.auth.isBooked({{event.eventId}}) && $store.auth.user && $store.auth.user.displayName !== owner" @click="$store.auth.cancelBooking({{event.eventId}})">Cancel Booking</span>
+            <button class="button" x-show="spacesOpen > 0 && !isBooked({{event.eventId}})" @click="bookEvent({{event.eventId}})">Book Event</button>
+            <span x-show="spacesOpen <= 0 && !isBooked({{event.eventId}})" class="font-bold">Event is full</span>
+            <button class="button" x-show="isBooked({{event.eventId}}) && user && user.displayName !== owner" @click="cancelBooking({{event.eventId}})">Cancel Booking</span>
         </div>
     </div>
     {# Message for people not logged in #}
-    <div x-cloak x-show="!event">
+    <div x-cloak x-show="!isAuth">
         You must be <button @click="modal = 'login'" class="underline text-highlight">logged in</button> to book an event.
     </div>
 </div>
