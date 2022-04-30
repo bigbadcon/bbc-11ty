@@ -29,7 +29,7 @@ exports.handler = async function(event, context) {
         // Search for user based on userNicename
         const isRegistered = rows.some((row) => row.userId === id && row.userNicename === userNicename)
 
-        const discordInviteCode = "C7ffzSVYwK"
+        const discordInviteCode = "pM74SJtQH9"
 
         const msg = (isRegistered) ? "is registered" : "is not registered"
 
@@ -38,8 +38,7 @@ exports.handler = async function(event, context) {
             body: JSON.stringify({
                 message: `${userNicename} ${msg}`,
                 isRegistered: isRegistered,
-                // TODO: add discord invite code when we have it
-                // bboDiscordInvite: (isRegistered) ? "C7ffzSVYwK" : false
+                bboDiscordInvite: isRegistered && discordInviteCode
             }),
         }
 

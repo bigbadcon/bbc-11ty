@@ -3,7 +3,7 @@
         <h5 class="text-sm font-bold">Timezone:</h5>
         {% include 'components/timezone-select.njk' %}
     </div>
-    <div class="flex items-center justify-start gap-xs" x-cloak x-show="isAuth" x-init="console.log(isAuth)">
+    <div class="flex items-center justify-start gap-xs" x-cloak x-show="isAuth">
         {# favsOnly data is in x-data="eventFilter" in wrapping div in base.njk #}
         <h5 class="text-sm font-bold">Filter:</h5>
         <button @click="filter.favsOnly = !filter.favsOnly" 
