@@ -81,16 +81,16 @@ async function fetchData(url, options, authToken) {
     ...options
   }
   if (options.body) options.body = JSON.stringify(options.body)
-  // console.log(`fetch options for ${url}`,options)
-  // TODO: add throw for non-200 status responses
+
   try {
     let response = await fetch(apiBaseUrl + url, options)
     console.log(`RESPONSE:fetch for ${url}`, response)
+    if (response.status !== 200) throw `fetch fail status: ${response.status}`
     let result = await response.json()
     console.log(`RESULT:fetch for ${url}`, result)
     return result
   } catch (err) {
-    console.log(`ERROR:fetch for ${url}`,err)
+    console.error(`ERROR:fetch for ${url}`,err)
     return false
   }
 }
@@ -121,6 +121,7 @@ document.addEventListener('alpine:init', () => {
       favEvents: this.$persist([]),
       isRegistered: this.$persist(null),
       volunteerEventSpaces: this.$persist([]),
+      bboDiscordInvite: null,
       async submitLogin(username, password) {
         let res = await fetch(apiBaseUrl + '/login', { headers: { 'Content-Type': 'application/json;charset=utf-8' }, method: 'POST', body:JSON.stringify({ username: username, password: password })})
         if (res.status === 200 && res.headers.get('authorization')) {
@@ -146,6 +147,7 @@ document.addEventListener('alpine:init', () => {
         this.bookedEvents = null
         this.isRegistered = null
         this.volunteerEventSpaces = []
+        this.bboDiscordInvite = null
       },
       async getUserData() {
         // TODO: do we need this for more than the login?
@@ -154,7 +156,20 @@ document.addEventListener('alpine:init', () => {
         return data
       },
       async checkRegistration () {
-        
+        const url = `/.netlify/functions/check-registration/${this.user.id}/${this.user.userNicename}`
+        try {
+          const response = await fetch(url)
+          console.log(`RESPONSE:fetch for ${url}`, response)
+          if (response.status !== 200) throw `checkRegistration fetch fail status: ${response.status}`
+          let data = await response.json()
+          console.log(`RESULT:fetch for ${url}`, data)
+          this.bboDiscordInvite = data.bboDiscordInvite
+          this.isRegistered = data.isRegistered
+          return data
+        } catch(err) {
+          console.error(`ERROR: fetch for ${url}`,err)
+          return false
+        }
       },
       async getEvent(id) {
         const data = await fetchData('/events/find',{method: 'POST',body: {id: id}})
