@@ -110,11 +110,11 @@ document.addEventListener('alpine:init', () => {
   Alpine.data('global', function () {
     return {
       init() {
-        // TODO: add a check to test when the last login was. logout if it's been too long.
+        // logout if it's been more than 24 hours
+        if (dayjs(this.lastLogin).diff(dayjs(),'hour') > 24) this.logout()
       },
-      lastLogin: '',
+      lastLogin: this.$persist(null),
       authToken: this.$persist(false),
-      get isAuth() { return (typeof this.authToken === "string") },
       user: this.$persist(false),
       availableSlots: this.$persist(null),
       bookedEvents: this.$persist([]),
@@ -122,12 +122,14 @@ document.addEventListener('alpine:init', () => {
       isRegistered: this.$persist(null),
       volunteerEventSpaces: this.$persist([]),
       bboDiscordInvite: null,
+      get isAuth() { return (typeof this.authToken === "string") },
       async submitLogin(username, password) {
         let res = await fetch(apiBaseUrl + '/login', { headers: { 'Content-Type': 'application/json;charset=utf-8' }, method: 'POST', body:JSON.stringify({ username: username, password: password })})
         if (res.status === 200 && res.headers.get('authorization')) {
           const token = res.headers.get('authorization')
           this.authToken = token
-          this.makeToast('logged in!')
+          // this.makeToast('You are logged in!')
+          this.lastLogin = dayjs()
           if (token) {
             // Need to pass token for first couple since there is a delay with the $persist code storing it
             this.user = await fetchData('/users/me',{},token)
@@ -140,6 +142,7 @@ document.addEventListener('alpine:init', () => {
         } else return false
       },
       logout () {
+        this.lastLogin = null
         this.authToken = null
         this.user = null
         this.favEvents = []
