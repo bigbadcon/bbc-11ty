@@ -72,7 +72,33 @@ app.command('/website', async({body, ack}) => {
         }
     }
 
-  });
+    if (body.text === 'publish') {
+        // 1. get second text which should be the deployId
+        await sendChat(body, `Publish command for deploy initiated!`)
+        // 2. Send post request to publish that deploy using https://open-api.netlify.com/#operation/restoreSiteDeploy 
+        const netlifyToken = `${process.env.NETLIFY_ACCESS}`
+        const site_id = `${process.env.SITE_ID}`
+        try {
+            const res = await axios.post(`https://api.netlify.com/api/v1/sites/${site_id}/deploys`, {},{
+                headers: {
+                        Authorization: `Bearer ${netlifyToken}`
+                    }
+            })
+            console.log(res.data)
+            // await axios.post(`https://api.netlify.com/api/v1/sites/${site_id}/deploys/${deploy_id}/restore`, {})
+            if (res.data && res.data.length && res.data[0].name) {
+                await sendChat(body, `Latest deploy name is: ${res.data[0].name} and site_id: ${res.data[0].site_id}`)
+            } else {
+                await sendChat(body, `deploy call didn't work.);`)
+            }
+        }
+        catch(err) {
+            await sendChat(body, `Sorry publish command failed for some reason!`)
+            console.log(err)
+        }
+    }
+
+});
 
 exports.handler = async function(event, context) {
 
