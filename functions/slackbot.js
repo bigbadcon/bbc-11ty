@@ -1,7 +1,6 @@
 const { App, ExpressReceiver } = require('@slack/bolt');
 require('dotenv').config();
 const axios = require('axios');
-const fetch = require('node-fetch');
 
 function parseRequestBody(stringBody, contentType) {
     try {
@@ -81,16 +80,17 @@ app.command('/website', async({body, ack}) => {
         const site_id = `${process.env.SITE_ID}`
         try {
             const endpoint = `https://api.netlify.com/api/v1/sites/${site_id}/deploys`;
-            const result = await fetch(endpoint, {
+            const result = axios.post(`https://api.netlify.com/api/v1/sites/${site_id}/deploys`, {},{
                 headers: {
-                  'Authorization':`Bearer ${netlifyToken}`
+                    Authorization: `Bearer ${netlifyToken}`
                 }
-            });
+            })
 
-            let data = await result.json();
-            let lastDeploy = data[0];
-            console.log("slackbot publish: listSiteDeploy",lastDeploy)
-            await sendChat(body, `Deploy (deploy_id: ${lastDeploy.id})`)
+            
+            console.log("slackbot publish: listSiteDeploy result",result)
+            console.log("slackbot publish: listSiteDeploy result.data",result.data)
+            if (result.data[0]) console.log("slackbot publish: listSiteDeploy result.data[0]",result.data[0])
+            
     
 
             // const res = await axios.post(`https://api.netlify.com/api/v1/sites/${site_id}/deploys`, {},{
