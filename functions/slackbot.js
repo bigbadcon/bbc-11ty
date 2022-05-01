@@ -50,7 +50,7 @@ app.command('/website', async({body, ack}) => {
     ack();
     const buildHookUrl = `https://api.netlify.com/build_hooks/${process.env.NETLIFY_BUILD_HOOK_SLACKBOT}`
     //  trigger different functions with parameters
-    if (body.text === '') await sendChat(body, `Hi ${body.user_name}! I'm the website bot! You can use the following slash commands:\n*/website build* triggers a new production build\n*/website drafts* triggers a new drafts branch build\n*/website publish latest* publishes the most recent deploy live`)
+    if (body.text === '') await sendChat(body, `Hi ${body.user_name}! I'm the website bot! You can use the following slash commands:\n*/website build* triggers a new production build\n*/website drafts* triggers a new drafts branch build\n*/website publish* publishes the most recent deploy live`)
     if (body.text === 'build') {
         await sendChat(body, `Build command for Production initiated!`)
         try {
@@ -72,7 +72,7 @@ app.command('/website', async({body, ack}) => {
         }
     }
 
-    if (body.text === 'publish latest') {
+    if (body.text === 'publish') {
         // 1. get second text which should be the deployId
         await sendChat(body, `Publish command for deploy initiated!`)
         // 2. Send post request to publish that deploy using https://open-api.netlify.com/#operation/restoreSiteDeploy 
