@@ -80,12 +80,11 @@ app.command('/website', async({body, ack}) => {
         const site_id = `${process.env.SITE_ID}`
         try {
             const endpoint = `https://api.netlify.com/api/v1/sites/${site_id}/deploys`;
-            const result = axios.post(`https://api.netlify.com/api/v1/sites/${site_id}/deploys`, {},{
+            const result = await axios.post(`https://api.netlify.com/api/v1/sites/${site_id}/deploys`, {},{
                 headers: {
                     Authorization: `Bearer ${netlifyToken}`
                 }
             })
-
             
             console.log("slackbot publish: listSiteDeploy result",result)
             console.log("slackbot publish: listSiteDeploy result.data",result.data)
