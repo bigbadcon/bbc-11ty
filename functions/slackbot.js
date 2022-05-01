@@ -1,6 +1,7 @@
 const { App, ExpressReceiver } = require('@slack/bolt');
 require('dotenv').config();
 const axios = require('axios');
+const fetch = require('node-fetch');
 
 function parseRequestBody(stringBody, contentType) {
     try {
@@ -79,26 +80,40 @@ app.command('/website', async({body, ack}) => {
         const netlifyToken = `${process.env.NETLIFY_ACCESS}`
         const site_id = `${process.env.SITE_ID}`
         try {
-            const res = await axios.post(`https://api.netlify.com/api/v1/sites/${site_id}/deploys`, {},{
+            const endpoint = `https://api.netlify.com/api/v1/sites/${site_id}/deploys`;
+            const result = await fetch(endpoint, {
                 headers: {
-                    Authorization: `Bearer ${netlifyToken}`
+                  'Authorization':`Bearer ${netlifyToken}`
                 }
-            })
-            console.log("slackbot publish: listSiteDeploy",res.data)
-            if (res.data && res.data.id) {
-                await sendChat(body, `Deploy (deploy_id: ${res.data.id})`)
-                // const restoreRes = await axios.post(`https://api.netlify.com/api/v1/sites/${site_id}/deploys/${res.data.id}/restore`, {},{
-                //     headers: {
-                //         Authorization: `Bearer ${netlifyToken}`
-                //     }
-                // })
-                // console.log("slackbot publish: listSiteDeploy",restoreRes)
-                // if (restoreRes) { 
-                //     await sendChat(body, `🎉 Latest deploy (deploy_id: ${res.data.id}) has been published live! https://www.bigbadcon.com`)
-                // } else await sendChat(body, `netlify restoreSiteDeploy failed for some reason`)
-            } else {
-                await sendChat(body, `Netlify listSiteDeploy api didn't work for some reason. Check slackbot.js function logs`)
-            }
+            });
+
+            let data = await result.json();
+            let lastDeploy = data[0];
+            console.log("slackbot publish: listSiteDeploy",lastDeploy)
+            await sendChat(body, `Deploy (deploy_id: ${lastDeploy.id})`)
+    
+
+            // const res = await axios.post(`https://api.netlify.com/api/v1/sites/${site_id}/deploys`, {},{
+            //     headers: {
+            //         Authorization: `Bearer ${netlifyToken}`
+            //     }
+            // })
+            // console.log("slackbot publish: listSiteDeploy",res.data)
+            // if (res.data && res.data.id) {
+            //     await sendChat(body, `Deploy (deploy_id: ${res.data.id})`)
+            //      let endpoint = `https://api.netlify.com/api/v1/sites/${siteId}/deploys`;
+            //     // const restoreRes = await axios.post(`https://api.netlify.com/api/v1/sites/${site_id}/deploys/${res.data.id}/restore`, {},{
+            //     //     headers: {
+            //     //         Authorization: `Bearer ${netlifyToken}`
+            //     //     }
+            //     // })
+            //     // console.log("slackbot publish: listSiteDeploy",restoreRes)
+            //     // if (restoreRes) { 
+            //     //     await sendChat(body, `🎉 Latest deploy (deploy_id: ${res.data.id}) has been published live! https://www.bigbadcon.com`)
+            //     // } else await sendChat(body, `netlify restoreSiteDeploy failed for some reason`)
+            // } else {
+            //     await sendChat(body, `Netlify listSiteDeploy api didn't work for some reason. Check slackbot.js function logs`)
+            // }
         }
         catch(err) {
             await sendChat(body, `Sorry publish command failed for some reason!`)
