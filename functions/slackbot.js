@@ -50,7 +50,7 @@ app.command('/website', async({body, ack}) => {
     ack();
     const buildHookUrl = `https://api.netlify.com/build_hooks/${process.env.NETLIFY_BUILD_HOOK_SLACKBOT}`
     //  trigger different functions with parameters
-    if (body.text === '') await sendChat(body, `Hi ${body.user_name}! I'm the website bot! You can trigger a new Production build by typing "/website build" or a new Drafts branch by typing "/website drafts"`)
+    if (body.text === '') await sendChat(body, `Hi ${body.user_name}! I'm the website bot! You can use the following slash commands:\n*/website build* triggers a new production build\n*/website drafts* triggers a new drafts branch build\n*/website publish latest* publishes the most recent deploy live`)
     if (body.text === 'build') {
         await sendChat(body, `Build command for Production initiated!`)
         try {
@@ -72,7 +72,7 @@ app.command('/website', async({body, ack}) => {
         }
     }
 
-    if (body.text === 'publish') {
+    if (body.text === 'publish latest') {
         // 1. get second text which should be the deployId
         await sendChat(body, `Publish command for deploy initiated!`)
         // 2. Send post request to publish that deploy using https://open-api.netlify.com/#operation/restoreSiteDeploy 
@@ -81,15 +81,23 @@ app.command('/website', async({body, ack}) => {
         try {
             const res = await axios.post(`https://api.netlify.com/api/v1/sites/${site_id}/deploys`, {},{
                 headers: {
+                    Authorization: `Bearer ${netlifyToken}`
+                }
+            })
+            console.log("slackbot publish: listSiteDeploy",res.data)
+            if (res.data && res.data.id) {
+                await sendChat(body, `Publishing latest deploy (deploy_id: ${res.data.id})`)
+                const restoreRes = await axios.post(`https://api.netlify.com/api/v1/sites/${site_id}/deploys/${res.data.id}/restore`, {},{
+                    headers: {
                         Authorization: `Bearer ${netlifyToken}`
                     }
-            })
-            console.log(res.data)
-            // await axios.post(`https://api.netlify.com/api/v1/sites/${site_id}/deploys/${deploy_id}/restore`, {})
-            if (res.data && res.data.length && res.data[0].name) {
-                await sendChat(body, `Latest deploy name is: ${res.data[0].name} and site_id: ${res.data[0].site_id}`)
+                })
+                console.log("slackbot publish: listSiteDeploy",restoreRes)
+                if (restoreRes) { 
+                    await sendChat(body, `🎉 Latest deploy (deploy_id: ${res.data.id}) has been published live! https://www.bigbadcon.com`)
+                } else await sendChat(body, `netlify restoreSiteDeploy failed for some reason`)
             } else {
-                await sendChat(body, `deploy call didn't work.);`)
+                await sendChat(body, `Netlify listSiteDeploy api didn't work for some reason. Check slackbot.js function logs`)
             }
         }
         catch(err) {
