@@ -28,22 +28,7 @@ eleventyComputed:
 
 {# Categories and Facilitator/GM #}
 
-<div class="text-lg prose border-t-2 border-b-2 text-body mb-base space-y-xs border-hr py-sm">
-    {# Event Day #}
-    <div class="flex flex-wrap justify-between">
-        {# timezone data is in x-data="eventFilter" in wrapping div in base.njk #}
-        {# formatEventDate is in .eleventy.js and returns html with date and time in separate span tags #}
-        <div>
-            <strong>Date:</strong>
-            <span>{{ event | eventStartDateTime | formatEventDate | safe }} (PST)</span>
-        </div>
-    </div>
-    {# Event Time #}
-    <div class="">
-        <strong>Duration:</strong>
-        <span>{{ event | eventDuration | safe }}</span>
-    </div>
-</div>
+{% include 'components/event-date-time.njk'%}
 
 <div class="prose mb-base mt-sm space-y-sm">
     <div class="text-2xl font-semibold leading-snug text-body-highlight">
@@ -59,6 +44,13 @@ eleventyComputed:
 <div class="prose">{{event.postContent | nl2br | safe }}</div>
 {# Event links #}
 <div class="flex flex-wrap justify-between max-w-full prose border-t-2 border-b-2 mt-md border-hr py-sm gap-base">
+    <div class="flex text-sm gap-xs">
+        <strong>Add to calendar:</strong>
+        {% set calendarDescription = "Big Bad Online 2022: " + event.eventName | safe + " https://www.bigbadcon.com/events/" + event.eventSlug %}
+        <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'google' %}">Google</a>
+        <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'ics' %}">iCal</a>
+        <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'outlook' %}">Outlook</a>
+    </div>
     <div class="text-sm">
         {% set tweeturl = "https://twitter.com/intent/tweet?text=Check+out+this+panel+at+#BigBadOnline+2021!+https://www.bigbadcon.com/events/" + event.eventSlug %}
 
