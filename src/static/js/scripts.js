@@ -67,7 +67,8 @@ const duration = (dateStart,dateEnd) => {
 
 // TODO: refactor all this to simpler global functions 
 
-const apiBaseUrl = 'https://admin.bigbadcon.com:8091/api'
+// const apiBaseUrl = 'https://admin.bigbadcon.com:8091/api'
+const apiBaseUrl = 'https://devapi.bigbadcon.com'
 
 // Global Fetch Function for API
 async function fetchData(url, options, authToken) {
@@ -124,7 +125,9 @@ document.addEventListener('alpine:init', () => {
       bboDiscordInvite: null,
       get isAuth() { return (typeof this.authToken === "string") },
       async submitLogin(username, password) {
+        console.log("submitLogin", username)
         let res = await fetch(apiBaseUrl + '/login', { headers: { 'Content-Type': 'application/json;charset=utf-8' }, method: 'POST', body:JSON.stringify({ username: username, password: password })})
+        console.log("response", res, res.headers.get('authorization'))
         if (res.status === 200 && res.headers.get('authorization')) {
           const token = res.headers.get('authorization')
           this.authToken = token
@@ -173,6 +176,10 @@ document.addEventListener('alpine:init', () => {
           console.error(`ERROR: fetch for ${url}`,err)
           return false
         }
+      },
+      async getEvents() {
+        const data = await fetchData('/events/all/public')
+        console.log('getEvents', data)
       },
       async getEvent(id) {
         const data = await fetchData('/events/find',{method: 'POST',body: {id: id}})
