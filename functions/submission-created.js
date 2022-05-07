@@ -132,8 +132,8 @@ exports.handler = async function(event, context) {
                         to: userEmail,
                         from: 'info@bigbadcon.com', 
                         subject: 'Big Bad Con New User Account',
-                        text: `Hello ${displayName}, Unfortunately there was a problem adding your account. An email has been sent to our admin staff to see what is wrong. If you have any questions you can reply to this message.`,
-                        html: `Hello ${displayName}, Unfortunately there was a problem adding your account. An email has been sent to our admin staff to see what is wrong. If you have any questions you can reply to this message.`,
+                        text: `Hello ${displayName}, Unfortunately there was a problem adding your account. It's possible that you already have an account with us if you had an account on our old site. As our reset password is broken right now you can go to our old site at https://admin.bigbadcon.com and reset it there. Once reset it will work on our new site. If you have any questions you can reply to this message.`,
+                        html: `Hello ${displayName}, Unfortunately there was a problem adding your account. It's possible that you already have an account with us if you had an account on our old site. As our reset password is broken right now you can go to our old site at https://admin.bigbadcon.com and reset it there. Once reset it will work on our new site. An email has been sent to our admin staff to see what is wrong. If you have any questions you can reply to this message.`,
                     }
 
                     await sgMail.send(newUserMsg);
