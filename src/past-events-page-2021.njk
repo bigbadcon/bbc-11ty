@@ -56,10 +56,12 @@ eleventyComputed:
 </div>
 {# Description #}
 <div class="prose">{{event.postContent | decodeText | nl2br | safe }}</div>
-<h2 class="h2">Panel Video</h2>
-<div class="my-base">
-    <lite-youtube videoid="{{event.youtubeId}}" playlabel="Play"></lite-youtube>
-</div>
+{% if event.youtubeId %}
+    <h2 class="h2">Panel Video</h2>
+    <div class="my-base">
+        <lite-youtube videoid="{{event.youtubeId}}" playlabel="Play"></lite-youtube>
+    </div>
+{% endif %}
 {# Event links #}
 <div class="flex flex-wrap justify-between max-w-full prose border-t-2 border-b-2 mt-md border-hr py-sm gap-base">
     <div class="text-sm">
