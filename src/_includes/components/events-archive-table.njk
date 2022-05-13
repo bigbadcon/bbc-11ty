@@ -2,7 +2,7 @@
     <h2 class="font-serif text-3xl font-bold leading-none md:text-4xl text-header mb-2xs">{{year}} Events</h2>
     <table class="w-full text-sm text-body">
         <tbody>
-            {% for event in eventsArchive[year] %}
+            {% for event in eventsArchive[year] | sortEvents %}
                 <tr x-show="$store.auth.filterEvent({{event.eventId}})">
                     {# Event Name #}
                     <td class="py-sm pr-sm">
