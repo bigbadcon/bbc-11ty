@@ -43,6 +43,14 @@ const decodeText = text => {
   return utf8.decode(windows1252.encode(text))
 }
 
+/* --------------------------- Create Date Object --------------------------- */
+// TODO: make sure this is right with Daylite Savings Time
+
+function createDateObject (date, time) {
+  return dayjs(date + "T" + time + "-07:00").toDate()
+}
+
+
 /* -------------------------------------------------------------------------- */
 /*                               Module Exports                               */
 /* -------------------------------------------------------------------------- */
@@ -112,12 +120,12 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addFilter("unixToISO", (date) => new Date(date).toISOString());
 
   // eventStartDateTime
-  eleventyConfig.addFilter("eventStartDateTime", (event) => dayjs(event.eventStartDate + "T" + event.eventStartTime + "-07:00").toDate());
+  eleventyConfig.addFilter("eventStartDateTime", (event) => createDateObject(event.eventStartDate, event.eventStartTime));
   
   // event Duration
   eleventyConfig.addFilter("eventDuration", (event) => {
-    const eventStartDateTime = dayjs(event.eventStartDate + "T" + event.eventStartTime + "-07:00").toDate()
-    const eventEndDateTime = dayjs(event.eventEndDate + "T" + event.eventEndTime + "-07:00").toDate()
+    const eventStartDateTime = createDateObject(event.eventStartDate, event.eventStartTime)
+    const eventEndDateTime = createDateObject(event.eventEndDate, event.eventEndTime)
     return getDuration(eventStartDateTime,eventEndDateTime)
   });
   
@@ -133,6 +141,15 @@ module.exports = (eleventyConfig) => {
     const date = dayjs(today).format("YYYYMMDDHHmm");
     return text + "_" + date
   })
+
+  eleventyConfig.addFilter('sortEvents', function(events) {
+    if (events) return events.sort((a,b) => {
+      const aEventStartDateTime = createDateObject(a.eventStartDate, a.eventStartTime)
+      const bEventStartDateTime = createDateObject(b.eventStartDate, b.eventStartTime)
+      return aEventStartDateTime - bEventStartDateTime;
+    });
+    return false;
+});
   
 
   /* -------------------------------------------------------------------------- */
