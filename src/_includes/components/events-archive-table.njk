@@ -1,11 +1,8 @@
-{# TODO: make this modular #}
-{# TODO: make a list of archive pages? #}
-{# TODO: shift to events/2021/ year folder structure #}
 <section class="mt-md">
-    <h2 class="font-serif text-3xl font-bold leading-none md:text-4xl text-header mb-2xs">2021 Events</h2>
+    <h2 class="font-serif text-3xl font-bold leading-none md:text-4xl text-header mb-2xs">{{year}} Events</h2>
     <table class="w-full text-sm text-body">
         <tbody>
-            {% for event in events2021 %}
+            {% for event in eventsArchive[year] %}
                 <tr x-show="$store.auth.filterEvent({{event.eventId}})">
                     {# Event Name #}
                     <td class="py-sm pr-sm">
