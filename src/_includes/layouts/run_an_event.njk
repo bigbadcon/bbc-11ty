@@ -15,7 +15,9 @@
 
                 {# START Submit Form: only show if logged in #}
                 {# TODO: fix the user not an object issues #}
-                <div x-cloak x-show="isAuth && user">
+                {# TODO: Add if its a rpg game then allow a location private room or outdoors #}
+                {# <div x-cloak x-show="isAuth && user"> #}
+                <div x-cloak>
                     <div x-cloak x-init="getUserData()" class="flex justify-between rounded-md shadow p-base bg-primary mb-base">
                         <div>
                             <p class="text-lg font-semibold text-body">Welcome <span x-text="user && user.displayName"></span> (<span x-text="user && user.userNicename"></span>)!</p>
