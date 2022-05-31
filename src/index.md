@@ -8,8 +8,8 @@ tags: pages
 ---
 ## Big Bad Con 2022
 
-We thank all of our panelist, volunteers, and donors who made Big Bad Online 2022 the amazing event it was!
+**Big Bad Con is returning October 27-30** at the Hyatt Regency near San Francisco Airport. We're so excited to see our friends, meet new people, and play games together! 
 
-We’re planning for Big Bad Con to return in person on October 27-30, 2022. We are still working out the details, including our COVID safety guidelines.
+To cover the costs of hosting the event, we'll be running an Indiegogo campaign starting June 21. There you'll be able to buy a badge, sign up for online games before the con, and secure the illustrious backer pin! To stay connected and find out more [sign up here.](https://igg.me/at/bigbadcon2022)
 
-Stay tuned to our [blog](/blog) and our twitter for more! 
+For more updates about the con, including COVID safety precautions, game submissions, and hotel info stay tuned to our [blog](/blog)!
