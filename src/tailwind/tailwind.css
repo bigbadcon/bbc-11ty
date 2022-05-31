@@ -167,7 +167,7 @@
 /* -------------------------------------------------------------------------- */
 
 input[type="text"], input[type="password"], input[type="email"] {
-  @apply px-sm py-xs border rounded-md bg-form border-body text-body focus:ring-highlight focus:border-highlight;
+  @apply px-sm py-xs border rounded-md bg-form border-body text-body focus:ring-highlight focus:border-highlight mb-sm;
 }
 
 label {

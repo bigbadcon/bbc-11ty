@@ -16,16 +16,10 @@
                 {# START Submit Form: only show if logged in #}
                 {# TODO: fix the user not an object issues #}
                 {# TODO: Add if its a rpg game then allow a location private room or outdoors #}
-                {# <div x-cloak x-show="isAuth && user"> #}
-                <div x-cloak>
-                    <div x-cloak x-init="getUserData()" class="flex justify-between rounded-md shadow p-base bg-primary mb-base">
-                        <div>
-                            <p class="text-lg font-semibold text-body">Welcome <span x-text="user && user.displayName"></span> (<span x-text="user && user.userNicename"></span>)!</p>
-                        </div>
-                        <div>
-                            <button class="button" @click="logout()">Logout</button>
-                        </div>
-                    </div>
+                <div x-cloak x-show="!isAuth" class="prose">
+                    <p>You must be <button @click.stop="modal = 'login'" class="underline text-highlight font-bold">logged in</button> to submit a game</p>
+                </div>
+                <div x-cloak x-show="isAuth && user">
                     <header class="prose">
                         <h2>Submit Your Event</h2>
                     </header>
@@ -35,16 +29,17 @@
                         {# Personal Info #}
                         <fieldset>
                             <legend>Personal Info</legend>
-                            {# TODO: fix that this loads before it gets user data and so does not update #}
                             <div>
                                 <label for="publicName">Public Badge Name</label>
                                 <p class="text-xs mb-sm text-body">We encourage attendees to list their first and last names. However, if for privacy reasons you would like to use another name, enter it here.</p>
-                                <input id="publicName" name="publicName" type="text" value="" x-init="event.publicName = user && user.displayName" x-model="event.publicName"/>
+                                <input id="publicName" name="publicName" type="text" value="" 
+                                x-init="event.publicName = user && user.displayName; $watch('user', value => event.publicName = value && value.displayName)" 
+                                x-model="event.publicName"/>
                             </div>
                             <div>
                                 <label for="yourAge">
                                     Your age as of
-                                    <span>{{site.eventDate}}</span>
+                                    <span>{{sitemeta.eventDate}}</span>
                                 </label>
                                 <select id="yourAge" name="yourAge" x-model="event.yourAge" @change="if (event.yourAge === '13+') event.playerAge = '13+'">
                                     <option :disabled="event.yourAge" selected>
@@ -59,6 +54,10 @@
                         <fieldset x-show="event.yourAge">
                             <legend>Event Info</legend>
                             <div>
+                                <label for="eventName">Event Name</label>
+                                <input id="eventName" name="eventName" type="text" value="" x-model="event.eventName"/>
+                            </div>
+                            <div>
                                 <label for="format">Format</label>
                                 <select id="format" name="format" x-model="event.format">
                                     <option :disabled="event.format" selected>
@@ -68,10 +67,12 @@
                                         <option :value="type.id" x-text="type.name"></option>
                                     </template>
                                 </select>
+                            </div> 
+                            <div x-show="isGame">
+                                <label for="system">System</label>
+                                <input id="system" name="system" type="text" value="" x-model="event.system"/>
                             </div>
-                            {# TODO: add without macro {{ input("eventName", "Event Name") }} #}
-                            {# TODO: add without macro {{ input("system", "System") }} #}
-                            <div x-show="isGame()">
+                            <div x-show="isGame">
                                 <label for="playtest">Is this a playtest?</label>
                                 <select id="playtest" name="playtest" x-model="event.system"/>
                                 <option :disabled="event.system" selected>
@@ -85,7 +86,7 @@
                         {{ textarea("otherInfo","Other info we should know (this will not go in the program)")}}
                         <div>
                             {# TODO: get image upload working #}
-                            <label for="imageUpload">Image Upload</label>
+                            <label for="imageUpload">Image Upload (NOT CURRENTLY WORKING)</label>
                             <input id="imageUpload" name="imageUpload" type="text" value="" x-model="event.imageUpload"/>
                         </div>
                     </fieldset>
@@ -105,6 +106,17 @@
                             </select>
                         </div>
                         {# Add icon picture? #}
+                        <div x-show="isTableTop">
+                            <label for="privateRoom">Location Preference</label>
+                            <select id="privateRoom" name="privateRoom" x-model="event.privateRoom">
+                                <option :disabled="event.privateRoom" selected>
+                                        -- Choose One --
+                                    </option>
+                                <option>No Preference</option>
+                                <option>Private Room</option>
+                                <option>Outside</option>
+                            </select>
+                        </div>
                         <div x-show="event.format === 'Board/Card Game'">
                             <label for="tableType">Board game table type requested</label>
                             <select id="tableType" name="tableType" x-model="event.tableType">
@@ -116,17 +128,7 @@
                                 <option>Either</option>
                             </select>
                         </div>
-                        <div>
-                            <label for="privateRoom">Request private room</label>
-                            <select id="privateRoom" name="privateRoom" x-model="event.privateRoom">
-                                <option :disabled="event.privateRoom" selected>
-                                        -- Choose One --
-                                    </option>
-                                <option>No</option>
-                                <option>Yes</option>
-                            </select>
-                        </div>
-                        <div>
+                        <div x-show="!isGame">
                             <label for="mediaEquipment">Request media room</label>
                             <select id="mediaRoom" name="mediaRoom" x-model="event.mediaRoom">
                                 <option :disabled="event.mediaRoom" selected>
@@ -136,7 +138,7 @@
                                 <option>Yes</option>
                             </select>
                         </div>
-                        <div>
+                        <div x-show="event.mediaRoom === 'Yes'">
                             <label for="mediaEquipment">Media equipment</label>
                             <select id="mediaEquipment" name="mediaEquipment" x-model="event.mediaEquipment">
                                 <option :disabled="event.mediaEquipment" selected>
@@ -210,7 +212,7 @@
                         </div>
                     </fieldset>
                     {# Content Advisory & Safety Tools #}
-                    <fieldset x-show="isGame() && event.length !== '0' && event.playerAge">
+                    <fieldset x-show="isGame && event.length !== '0' && event.playerAge">
                         <legend>Content Advisory &amp; Safety Tools</legend>
                         <div x-show="event.playerAge === '13+'" class="prose mb-base">
                             <p class="font-bold">Event designed for players/attendees aged 13+</p>
@@ -234,7 +236,7 @@
                             <label for="triggerWarnings">Potential trigger warnings</label>
                             <input id="triggerWarnings" name="triggerWarnings" type="text" value="" x-model="event.triggerWarnings"/>
                         </div>
-                        {# Concatinate this and other as a string #}
+                        {# Concatenate this and other as a string #}
                         {# TODO: change this to checkboxes #}
                         <div>
                             <label for="safetyTools">
@@ -256,7 +258,7 @@
                         </div>
                     </fieldset>
                     {# Additional Info #}
-                    <fieldset x-show="isGame() && event.length !== '0' && event.playerAge">
+                    <fieldset x-show="isGame && event.length !== '0' && event.playerAge">
                         <legend>Additional Info</legend>
                         <div x-show="event.format === formatId('Panel')">
                             <label for="panelTopic">Panel Topic</label>
@@ -267,7 +269,7 @@
                                 </div>
                             </template>
                         </div>
-                        <div x-show="isGame()">
+                        <div x-show="isGame">
                             <label for="gameFocus">Game Focus</label>
                             <div class="mb-base">
                                 <template x-for="(type, i) in gameFocus">
@@ -278,7 +280,7 @@
                                 </template>
                             </div>
                         </div>
-                        <div x-show="isGame()">
+                        <div x-show="isGame">
                             <label for="playerContributions">Player Contributions</label>
                             <div class="mb-base">
                                 <template x-for="(type, i) in playerContributions">
@@ -289,7 +291,7 @@
                                 </template>
                             </div>
                         </div>
-                        <div x-show="isGame()">
+                        <div x-show="isGame">
                             <label for="gameGenre">Game Genre</label>
                             <div class="mb-base">
                                 <template x-for="(type, i) in gameGenre">
@@ -300,7 +302,7 @@
                                 </template>
                             </div>
                         </div>
-                        <div x-show="isGame()">
+                        <div x-show="isGame">
                             <label for="gameMood">Game Mood</label>
                             <div class="mb-base">
                                 <template x-for="(type, i) in gameMood">
@@ -417,8 +419,11 @@
                     .id
                     .toString()
             },
-            isGame() {
+            get isGame() {
                 return this.event.format === "8" || this.event.format === "9" || this.event.format === "10"
+            },
+            get isTableTop() {
+                return this.event.format === "8" || this.event.format === "10"
             },
             format: [
                 {
