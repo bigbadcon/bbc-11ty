@@ -1,6 +1,4 @@
 {% extends 'layouts/base.njk' %}
-{% from 'components/form-macros.njk' import input %}
-{% from 'components/form-macros.njk' import textarea %}
 
 {% block header %}
     {% include 'components/header.njk' %}
@@ -17,7 +15,7 @@
                 {# TODO: fix the user not an object issues #}
                 {# TODO: Add if its a rpg game then allow a location private room or outdoors #}
                 <div x-cloak x-show="!isAuth" class="prose">
-                    <p>You must be <button @click.stop="modal = 'login'" class="underline text-highlight font-bold">logged in</button> to submit a game</p>
+                    <p>You must be <button @click.stop="modal = 'login'" class="font-bold underline text-highlight">logged in</button> to submit a game</p>
                 </div>
                 <div x-cloak x-show="isAuth && user">
                     <header class="prose">
@@ -67,7 +65,7 @@
                                         <option :value="type.id" x-text="type.name"></option>
                                     </template>
                                 </select>
-                            </div> 
+                            </div>
                             <div x-show="isGame">
                                 <label for="system">System</label>
                                 <input id="system" name="system" type="text" value="" x-model="event.system"/>
@@ -82,8 +80,14 @@
                                 <option>Yes</option>
                             </select>
                         </div>
-                        {{ textarea("eventDescription","Description")}}
-                        {{ textarea("otherInfo","Other info we should know (this will not go in the program)")}}
+                        <div>
+                            <label for="eventDescription">Description</label>
+                            <textarea cols="30" id="eventDescription" name="eventDescription" rows="3" x-model="event.eventDescription"></textarea>
+                        </div>
+                        <div>
+                            <label for="otherInfo">Other info we should know (this will not go in the program)</label>
+                            <textarea cols="30" id="otherInfo" name="otherInfo" rows="3" x-model="event.otherInfo"></textarea>
+                        </div>
                         <div>
                             {# TODO: get image upload working #}
                             <label for="imageUpload">Image Upload (NOT CURRENTLY WORKING)</label>
@@ -169,7 +173,7 @@
                             <label for="length">Schedule Preferences</label>
                             <template x-for="(time, i) in scheduleTimes[event.length]">
                                 <div class="flex items-center">
-                                    <input type="checkbox" name="schedulePref" :id="'time' + i" :value="time" @change="setCheckboxArray($el,'schedulePref')">
+                                    <input type="checkbox" :name="'time' + i" :id="'time' + i" :value="time" @change="setCheckboxArray($el,'schedulePref')">
                                     <label :for="'time' + i" x-text="time"></label>
                                 </div>
                             </template>
@@ -220,36 +224,31 @@
                         {# Break out to Maturity level and other stuff #}
                         {# No Content Advisory vs Adult themes. Then add new list which is meta #}
                         <div x-show="event.playerAge === '18+'">
-                            <label for="contentAdvisory">
-                                    Content Advisory
-                                </label>
-                            <select id="contentAdvisory" name="contentAdvisory" x-model="event.contentAdvisory">
-                                <option :disabled="event.contentAdvisory" selected>
-                                        -- Choose One --
-                                    </option>
-                                <template x-for="type in contentAdvisory">
-                                    <option :value="type.id" x-text="type.name"></option>
-                                </template>
-                            </select>
+                            <label>
+                                Content Advisory
+                            </label>
+                            <template x-for="(type, i) in contentAdvisory">
+                                <div class="flex items-center">
+                                    <input type="checkbox" :name="'contentAdvisory' + i" :id="'contentAdvisory' + i" :value="type.id" @change="setCheckboxArray($el,'contentAdvisory')">
+                                    <label :for="'contentAdvisory' + i" x-text="type.name"></label>
+                                </div>
+                            </template>
                         </div>
                         <div x-show="event.playerAge === '18+'">
                             <label for="triggerWarnings">Potential trigger warnings</label>
                             <input id="triggerWarnings" name="triggerWarnings" type="text" value="" x-model="event.triggerWarnings"/>
                         </div>
-                        {# Concatenate this and other as a string #}
-                        {# TODO: change this to checkboxes #}
+                        {# TODO: Concatenate this and other as a string #}
                         <div>
-                            <label for="safetyTools">
-                                    Safety Tools
-                                </label>
-                            <select id="safetyTools" name="safetyTools" x-model="event.safetyTools">
-                                <option :disabled="event.safetyTools" selected>
-                                        -- Choose One --
-                                    </option>
-                                <template x-for="type in safetyTools">
-                                    <option :value="type" x-text="type"></option>
-                                </template>
-                            </select>
+                            <label>
+                                Safety Tools
+                            </label>
+                            <template x-for="(type, i) in safetyTools">
+                                <div class="flex items-center">
+                                    <input type="checkbox" :name="'safetyTools' + i" :id="'safetyTools' + i" :value="type" @change="setCheckboxArray($el,'safeyTools')">
+                                    <label :for="'safetyTools' + i" x-text="type"></label>
+                                </div>
+                            </template>
                         </div>
                         {# TODO: make sure this x-show works (or just show it all the time) #}
                         <div x-show="event.safetyTools === 'other'">
@@ -261,59 +260,62 @@
                     <fieldset x-show="isGame && event.length !== '0' && event.playerAge">
                         <legend>Additional Info</legend>
                         <div x-show="event.format === formatId('Panel')">
-                            <label for="panelTopic">Panel Topic</label>
+                            <label>Panel Topic</label>
                             <template x-for="(type, i) in panelTopic">
                                 <div class="flex items-center">
-                                    <input type="checkbox" name="panelTopic" :id="'panelTopic' + i" :value="type.id" @change="setCheckboxArray($el,'panelTopic')">
+                                    <input type="checkbox" :name="'panelTopic' + i" :id="'panelTopic' + i" :value="type.id" @change="setCheckboxArray($el,'panelTopic')">
                                     <label :for="'panelTopic' + i" x-text="type.name"></label>
                                 </div>
                             </template>
                         </div>
                         <div x-show="isGame">
-                            <label for="gameFocus">Game Focus</label>
-                            <div class="mb-base">
+                            <label>Game Focus</label>
+                            <div>
                                 <template x-for="(type, i) in gameFocus">
                                     <div class="flex items-center">
-                                        <input type="checkbox" name="gameFocus" :id="'gameFocus' + i" :value="type.id">
+                                        <input type="checkbox" :name="'gameFocus' + i" :id="'gameFocus' + i" :value="type.id"  @change="setCheckboxArray($el,'gameFocus')">
                                         <label :for="'gameFocus' + i" x-text="type.name"></label>
                                     </div>
                                 </template>
                             </div>
                         </div>
                         <div x-show="isGame">
-                            <label for="playerContributions">Player Contributions</label>
-                            <div class="mb-base">
+                            <label>Player Contributions</label>
+                            <div>
                                 <template x-for="(type, i) in playerContributions">
                                     <div class="flex items-center">
-                                        <input type="checkbox" name="playerContributions" :id="'playerContributions' + i" :value="type.id" @change="setCheckboxArray($el,'playerContributions')">
+                                        <input type="checkbox" :name="'playerContributions' + i" :id="'playerContributions' + i" :value="type.id" @change="setCheckboxArray($el,'playerContributions')">
                                         <label :for="'playerContributions' + i" x-text="type.name"></label>
                                     </div>
                                 </template>
                             </div>
                         </div>
                         <div x-show="isGame">
-                            <label for="gameGenre">Game Genre</label>
-                            <div class="mb-base">
+                            <label>Game Genre</label>
+                            <div>
                                 <template x-for="(type, i) in gameGenre">
                                     <div class="flex items-center">
-                                        <input type="checkbox" name="gameGenre" :id="'gameGenre' + i" :value="type.id" @change="setCheckboxArray($el,'gameGenre')">
+                                        <input type="checkbox" :name="'gameGenre' + i" :id="'gameGenre' + i" :value="type.id" @change="setCheckboxArray($el,'gameGenre')">
                                         <label :for="'gameGenre' + i" x-text="type.name"></label>
                                     </div>
                                 </template>
                             </div>
                         </div>
                         <div x-show="isGame">
-                            <label for="gameMood">Game Mood</label>
-                            <div class="mb-base">
+                            <label>Game Mood</label>
+                            <div>
                                 <template x-for="(type, i) in gameMood">
                                     <div class="flex items-center">
-                                        <input type="checkbox" name="gameMood" :id="'gameMood' + i" :value="type.id" @change="setCheckboxArray($el,'gameMood')">
+                                        <input type="checkbox" :name="'gameMood' + i" :id="'gameMood' + i" :value="type.id" @change="setCheckboxArray($el,'gameMood')">
                                         <label :for="'gameMood' + i" x-text="type.name"></label>
                                     </div>
                                 </template>
                             </div>
                         </div>
-                        {{ textarea("additionalGMs","List any additional GMs/facilitators")}}
+                        <div>
+                            <label for="additionalGMs">List any additional GMs/facilitators</label>
+                            <textarea cols="30" id="additionalGMs" name="additionalGMs" rows="3" x-model="event.additionalGMs"></textarea>
+                        </div>
                         <div x-show="event.format === '9'">
                             <label for="additionalRequirements">List any additional requirements</label>
                             <textarea cols="30" id="additionalRequirements" name="additionalRequirements" rows="3" x-model="event.additionalRequirements"></textarea>
@@ -350,7 +352,6 @@
                 }
             },
             times1hr: [
-                "Caterday morning (between 9AM-1PM)",
                 "Friday afternoon (between 2PM-6PM)",
                 "Friday night (between 8PM-Midnight)",
                 "Saturday morning (between 9AM-1PM)",
@@ -716,6 +717,7 @@
             contentAdvisory: [
                 {
                     "id": 1000000,
+                    "type": "no-content-advisory",
                     "name": "No Content Advisory"
                 }, {
                     "id": 91,
