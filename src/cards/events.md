@@ -2,14 +2,12 @@
 title: Events
 tags: cards
 published: true
-order: 
-image: ''
-alt: ''
+order: 0
 
 ---
 
-We are excited for the growing list of panels for Big Bad Online 2022!
+Thank you all for making Big Bad Online 2022 an amazing success!
 
-{% iconLink "/events", "Events", "calendar-clock" %}
+<!-- {% iconLink "/events", "Events", "calendar-clock" %} -->
 
 {% iconLink "/past-events", "Past Events", "library" %}

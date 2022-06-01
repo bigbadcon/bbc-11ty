@@ -13,35 +13,7 @@ fields:
   type: boolean
   label: published
   default: false
-- name: tags
-  type: select
-  default: []
-  config:
-    required: false
-    options:
-    - cards
-    - bigcards
-    source:
-      type: simple
-      section: 
-      file: 
-      path: 
-  label: tags
-  description: "'cards' are small cards in the grid; 'bigcards' are full width ones
-    below. Only 'bigcards' use images."
-- name: image
-  type: file
-  config:
-    maxSize: 64
-  label: image
-  description: only 'bigcards' use images
-- name: alt
-  type: text
-  config:
-    required: false
-  label: image alt text
 pages:
 - src/cards/attend.md
 - src/cards/events.md
-- src/cards/support-our-kickstarter.md
 - src/cards/volunteer.md

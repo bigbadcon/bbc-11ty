@@ -1,8 +1,6 @@
 ---
 title: Morgan Ellis Awards
 order: 5
-description: Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusmod
-  tempor incididunt ut labore.
 published: true
 tags: bigcards
 image: "/images/morgan-ellis-award.jpg"
