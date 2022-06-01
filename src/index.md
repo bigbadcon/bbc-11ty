@@ -6,14 +6,10 @@ description: Big Bad Con is a tabletop and live action gaming convention featuri
 tags: pages
 
 ---
-## Big Bad Online 2022!
+## Big Bad Con 2022
 
-We're delighted to announce Big Bad Online will be returning this year year May 6-7.
+**Big Bad Con is returning October 27-30** at the Hyatt Regency near San Francisco Airport. We're so excited to see our friends, meet new people, and play games together! 
 
-As with last year's online event, we'll be streaming 24 hours of amazing, free-to-view panels on a diverse array of TTRPG-related topics, but we can't do it without you. Your contribution will support us in showing off expert conversations on a diverse array of topics and amplifying the voices of marginalized designers, professionals, and players in our TTRPG community.
+To cover the costs of hosting the event, we'll be running an Indiegogo campaign starting June 21. There you'll be able to buy a badge, sign up for online games before the con, and secure the illustrious backer pin! To stay connected and find out more [sign up here.](https://igg.me/at/bigbadcon2022)
 
-We're so stoked to present these panels to you this year, and we hope you will help us put on this amazing event,
-
-{% iconLink "https://www.mightycause.com/story/Bigbadonline2022", "Support us on MightyCause!", "pig" %}
-
-{% iconLink "/rangers", "Join The Rangers", "paw" %}
+For more updates about the con, including COVID safety precautions, game submissions, and hotel info stay tuned to our [blog](/blog)!

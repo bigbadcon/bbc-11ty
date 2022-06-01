@@ -1,7 +1,7 @@
 ---
 layout: layouts/event.njk
 pagination:
-    data: eventsArchive.2021
+    data: eventsArchive.2022
     size: 1
     alias: event
 permalink: "events/{{ event.eventSlug }}/"
@@ -57,7 +57,7 @@ eleventyComputed:
 {# Description #}
 <div class="prose">{{event.postContent | decodeText | nl2br | safe }}</div>
 {% if event.youtubeId %}
-    <h2 class="h2">Panel Video</h2>
+<h2 class="h2">Panel Video</h2>
     <div class="my-base">
         <lite-youtube videoid="{{event.youtubeId}}" playlabel="Play"></lite-youtube>
     </div>

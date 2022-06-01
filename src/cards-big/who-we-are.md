@@ -1,10 +1,7 @@
 ---
 title: Who We Are
 order: 7
-description: Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusmod
-  tempor incididunt ut labore.
 published: true
-tags: bigcards
 image: "/images/2019bbc-9548.jpg"
 alt: Big Bad Con 2019 attendees playing a game
 

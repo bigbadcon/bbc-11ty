@@ -33,6 +33,13 @@ sections:
   templates:
   - home-page-cards
 - type: directory
+  path: src/cards-big
+  label: Home Page Big Cards
+  create: documents
+  match: "**/*.md"
+  templates:
+  - home-page-cards
+- type: directory
   path: src/footer
   label: Footer
   create: documents

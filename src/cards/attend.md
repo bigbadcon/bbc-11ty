@@ -7,10 +7,10 @@ image: ''
 alt: ''
 
 ---
-Join us for Big Bad Online 2022!
+Big Bad Con to return in person on October 27-30, 2022! Stay tuned for more info!
 
-{% iconLink "/register", "Register", "badge" %}
+<!-- {% iconLink "/register", "Register", "badge" %} -->
 
-{% iconLink "https://www.mightycause.com/story/Bigbadonline2022", "Support Our Fundraiser", "pig" %}
+<!-- {% iconLink "https://www.mightycause.com/story/Bigbadonline2022", "Support Our Fundraiser", "pig" %} -->
 
 {% iconLink "/faq", "FAQ", "faq" %}
