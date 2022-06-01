@@ -167,7 +167,7 @@
 /* -------------------------------------------------------------------------- */
 
 input[type="text"], input[type="password"], input[type="email"] {
-  @apply px-sm py-xs border rounded-md bg-form border-body text-body focus:ring-highlight focus:border-highlight mb-sm;
+  @apply px-sm py-xs border rounded-md bg-form border-body text-body focus:ring-highlight focus:border-highlight;
 }
 
 label {
@@ -175,7 +175,7 @@ label {
 }
 
 select {
-  @apply rounded mb-base bg-form text-body border-body focus:ring-highlight focus:border-highlight;
+  @apply rounded bg-form text-body border-body focus:ring-highlight focus:border-highlight;
 }
 
 button[type="submit"], .button {
@@ -191,11 +191,11 @@ button:disabled {
 }
 
 textarea {
-  @apply w-full px-4 py-2 border rounded-md border-body bg-form mb-sm text-body focus:ring-highlight focus:border-highlight;
+  @apply w-full px-4 py-2 border rounded-md border-body bg-form text-body focus:ring-highlight focus:border-highlight;
 }
 
 fieldset {
-  @apply border-t-4 border-solid border-hr pt-base my-md;
+  @apply border-t-4 border-solid border-hr pt-base my-md flex flex-col gap-sm;
 }
 
 legend {

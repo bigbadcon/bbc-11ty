@@ -22,6 +22,11 @@ module.exports = [
 				"title": "Past Events",
 				"url": "/past-events",
 				"icon": "library"
+			},
+			{
+				"title": "Run An Event",
+				"url": "/run-an-event",
+				"icon": "dice"
 			}
 		]
 	},
