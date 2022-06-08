@@ -20,6 +20,10 @@
                 <div x-cloak x-show="isAuth && user">
                     <header class="prose">
                         <h2>Submit Your Event</h2>
+                        <p>
+                            <span class="font-bold text-highlight">*</span>
+                            <em>required field</em>
+                        </p>
                     </header>
                     {# TODO: Get Submit working. Make sure to zero out everything on submit #}
                     <form action="post" class="mt-base" x-data="runAnEventData">
@@ -27,20 +31,20 @@
                         {# Personal Info #}
                         <fieldset>
                             <legend>Personal Info</legend>
-                            <div>
+                            <div class="required">
                                 <label for="publicName">Public Badge Name</label>
                                 <p class="text-xs mb-sm text-body">We encourage attendees to list their first and last names. However, if for privacy reasons you would like to use another name, enter it here.</p>
                                 <input id="publicName" name="publicName" type="text" value="" 
                                 x-init="eventInfo.publicName = user && user.displayName; $watch('user', value => eventInfo.publicName = value && value.displayName)" 
-                                x-model="eventInfo.publicName"/>
+                                x-model="eventInfo.publicName" @blur="validate"/>
                             </div>
-                            <div>
+                            <div class="required">
                                 <label for="yourAge">
                                     Your age as of
                                     <span>{{sitemeta.eventDate}}</span>
                                 </label>
-                                <select id="yourAge" name="yourAge" x-model="eventInfo.yourAge" @change="if (eventInfo.yourAge === '13+') eventInfo.playerAge = '13+'">
-                                    <option :disabled="eventInfo.yourAge" selected>
+                                <select id="yourAge" name="yourAge" x-model="eventInfo.yourAge" @change="if (eventInfo.yourAge === '13+') eventInfo.playerAge = '13+'" @blur="validate">
+                                    <option :disabled="eventInfo.yourAge !== ''" selected value="">
                                         -- Choose One --
                                     </option>
                                     <option>13+</option>
@@ -51,14 +55,14 @@
                         {# Event Format #}
                         <fieldset x-show="eventInfo.yourAge">
                             <legend>Event Info</legend>
-                            <div>
+                            <div class="required">
                                 <label for="eventName">Event Name</label>
-                                <input id="eventName" name="eventName" type="text" value="" x-model="eventInfo.eventName"/>
+                                <input id="eventName" name="eventName" type="text" value="" x-model="eventInfo.eventName" @blur="validate"/>
                             </div>
-                            <div>
+                            <div class="required">
                                 <label for="format">Format</label>
-                                <select id="format" name="format" x-model="eventInfo.format">
-                                    <option :disabled="eventInfo.format" selected>
+                                <select id="format" name="format" x-model="eventInfo.format" @blur="validate">
+                                    <option :disabled="eventInfo.format !== ''" selected value="">
                                         -- Choose One --
                                     </option>
                                     <template x-for="type in format">
@@ -66,23 +70,23 @@
                                     </template>
                                 </select>
                             </div>
-                            <div x-show="isGame">
+                            <div x-show="isGame" class="required">
                                 <label for="system">System</label>
-                                <input id="system" name="system" type="text" value="" x-model="eventInfo.system"/>
+                                <input id="system" name="system" type="text" value="" x-model="eventInfo.system" @blur="validate"/>
                             </div>
-                            <div x-show="isGame">
+                            <div x-show="isGame" class="required">
                                 <label for="playtest">Is this a playtest?</label>
-                                <select id="playtest" name="playtest" x-model="eventInfo.system"/>
-                                <option :disabled="eventInfo.system" selected>
+                                <select id="playtest" name="playtest" x-model="eventInfo.system" @blur="validate"/>
+                                <option :disabled="eventInfo.playtest !== ''" selected value="">
                                         -- Choose One --
                                     </option>
                                 <option>No</option>
                                 <option>Yes</option>
                             </select>
                         </div>
-                        <div>
+                        <div class="required">
                             <label for="eventDescription">Description</label>
-                            <textarea cols="30" id="eventDescription" name="eventDescription" rows="3" x-model="eventInfo.eventDescription"></textarea>
+                            <textarea cols="30" id="eventDescription" name="eventDescription" rows="3" x-model="eventInfo.eventDescription" @blur="validate"></textarea>
                         </div>
                         <div>
                             <label for="otherInfo">Other info we should know (this will not go in the program)</label>
@@ -97,10 +101,10 @@
                     {# Scheduling Info #}
                     <fieldset x-show="eventInfo.format && eventInfo.eventDescription">
                         <legend>Scheduling Info</legend>
-                        <div>
+                        <div class="required">
                             <label for="runMultiple">Run this event</label>
-                            <select id="runMultiple" name="runMultiple" x-model="eventInfo.runMultiple">
-                                <option :disabled="eventInfo.runMultiple" selected>
+                            <select id="runMultiple" name="runMultiple" x-model="eventInfo.runMultiple" @blur="validate">
+                                <option :disabled="eventInfo.runMultiple !== ''" selected value="">
                                         -- Choose One --
                                     </option>
                                 <option value="1">Once</option>
@@ -110,10 +114,10 @@
                             </select>
                         </div>
                         {# Add icon picture? #}
-                        <div x-show="isTableTop">
+                        <div x-show="isTableTop" class="required">
                             <label for="privateRoom">Location Preference</label>
-                            <select id="privateRoom" name="privateRoom" x-model="eventInfo.privateRoom">
-                                <option :disabled="eventInfo.privateRoom" selected>
+                            <select id="privateRoom" name="privateRoom" x-model="eventInfo.privateRoom" @blur="validate">
+                                <option :disabled="eventInfo.privateRoom !== ''" selected value="">
                                         -- Choose One --
                                     </option>
                                 <option>No Preference</option>
@@ -121,10 +125,10 @@
                                 <option>Outside</option>
                             </select>
                         </div>
-                        <div x-show="eventInfo.format === 'Board/Card Game'">
+                        <div x-show="eventInfo.format === 'Board/Card Game'" class="required">
                             <label for="tableType">Board game table type requested</label>
-                            <select id="tableType" name="tableType" x-model="eventInfo.tableType">
-                                <option :disabled="eventInfo.tableType" selected>
+                            <select id="tableType" name="tableType" x-model="eventInfo.tableType" @blur="validate">
+                                <option :disabled="eventInfo.tableType !== ''" selected value="">
                                         -- Choose One --
                                     </option>
                                 <option>Long</option>
@@ -132,41 +136,41 @@
                                 <option>Either</option>
                             </select>
                         </div>
-                        <div x-show="!isGame">
+                        <div x-show="!isGame" class="required">
                             <label for="mediaEquipment">Request media room</label>
-                            <select id="mediaRoom" name="mediaRoom" x-model="eventInfo.mediaRoom">
-                                <option :disabled="eventInfo.mediaRoom" selected>
+                            <select id="mediaRoom" name="mediaRoom" x-model="eventInfo.mediaRoom" @blur="validate">
+                                <option :disabled="eventInfo.mediaRoom !== ''" selected value="">
                                         -- Choose One --
                                     </option>
                                 <option>No</option>
                                 <option>Yes</option>
                             </select>
                         </div>
-                        <div x-show="eventInfo.mediaRoom === 'Yes'">
+                        <div x-show="eventInfo.mediaRoom === 'Yes'" class="required">
                             <label for="mediaEquipment">Media equipment</label>
-                            <select id="mediaEquipment" name="mediaEquipment" x-model="eventInfo.mediaEquipment">
-                                <option :disabled="eventInfo.mediaEquipment" selected>
+                            <select id="mediaEquipment" name="mediaEquipment" x-model="eventInfo.mediaEquipment" @blur="validate">
+                                <option :disabled="eventInfo.mediaEquipment !== ''" selected value="">
                                         -- Choose One --
                                     </option>
                                 <option>I have my own</option>
                                 <option>Equipment requested</option>
                             </select>
                         </div>
-                        <div x-show="eventInfo.mediaEquipment === 'Equipment requested'">
+                        <div x-show="eventInfo.mediaEquipment === 'Equipment requested'" class="required">
                             <label for="mediaEquipmentRequested">Media equipment requested</label>
-                            <input id="mediaEquipmentRequested" name="mediaEquipmentRequested" type="text" value="" x-model="eventInfo.mediaEquipmentRequested"/>
+                            <input id="mediaEquipmentRequested" name="mediaEquipmentRequested" type="text" value="" x-model="eventInfo.mediaEquipmentRequested" @blur="validate"/>
                         </div>
-                        <div>
+                        <div class="required">
                             <label for="length">Length</label>
-                            <select id="length" name="length" x-model="eventInfo.length">
-                                <option :disabled="eventInfo.length" selected>
+                            <select id="length" name="length" x-model="eventInfo.length" @blur="validate">
+                                <option :disabled="eventInfo.length !== '0'" selected value="0">
                                         -- Choose One --
                                     </option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>4</option>
-                                <option>6</option>
-                                <option>8</option>
+                                <option value="1">1 hour</option>
+                                <option value="2">2 hours</option>
+                                <option value="4">4 hours</option>
+                                <option value="6">6 hours</option>
+                                <option value="8">8 hours</option>
                             </select>
                         </div>
                         <div x-show="eventInfo.length && eventInfo.length !== '0'">
@@ -182,32 +186,32 @@
                     {# Player Info #}
                     <fieldset x-show="eventInfo.length !== '0'">
                         <legend>Player/Attendee Info</legend>
-                        <div x-show="eventInfo.yourAge === '18+'">
+                        <div x-show="eventInfo.yourAge === '18+'" class="required">
                             <label for="playerAge">
                                     Player/Attendee Age
                                 </label>
-                            <select id="playerAge" name="playerAge" x-model="eventInfo.playerAge">
-                                <option :disabled="eventInfo.playerAge" selected>
+                            <select id="playerAge" name="playerAge" x-model="eventInfo.playerAge" @blur="validate">
+                                <option :disabled="eventInfo.playerAge !== ''" selected value="">
                                         -- Choose One --
                                     </option>
                                 <option>13+</option>
                                 <option>18+</option>
                             </select>
                         </div>
-                        <div>
+                        {# Only required for games #}
+                        <div :class="isGame && 'required'">
                             <label for="minPlayers">Minimum players/attendees</label>
-                            <input id="minPlayers" name="minPlayers" type="text" value="" x-model="eventInfo.minPlayers"/>
+                            <input id="minPlayers" name="minPlayers" type="text" value="" x-model="eventInfo.minPlayers" @blur="validate"/>
                         </div>
-                        <div>
-                            <label for="maxPlayers">Maximum players/attendees</label>
-                            <input id="maxPlayers" name="maxPlayers" type="text" value="" x-model="eventInfo.maxPlayers"/>
+                        {# Only required for games #}
+                        <div :class="isGame && 'required'">
+                            <label for="maxPlayers" >Maximum players/attendees</label>
+                            <input id="maxPlayers" name="maxPlayers" type="text" value="" x-model="eventInfo.maxPlayers" @blur="validate"/>
                         </div>
                         <div x-show="eventInfo.format === formatId('RPG') || eventInfo.format === formatId('LARP')">
-                            <label for="characters">
-                                    Characters
-                                </label>
+                            <label for="characters">Characters</label>
                             <select id="characters" name="characters" x-model="eventInfo.characters">
-                                <option :disabled="eventInfo.characters" selected>
+                                <option :disabled="eventInfo.characters !== ''" selected value="">
                                         -- Choose One --
                                     </option>
                                 <option>Provided</option>
@@ -215,7 +219,8 @@
                             </select>
                         </div>
                     </fieldset>
-                    {# Content Advisory & Safety Tools #}
+                    {# Content Advisory & Safety Tools - game only; not required #}
+                    {# TODO: ask Sean if we want content advisory for panels? #}
                     <fieldset x-show="isGame && eventInfo.length !== '0' && eventInfo.playerAge">
                         <legend>Content Advisory &amp; Safety Tools</legend>
                         <div x-show="eventInfo.playerAge === '13+'" class="prose mb-base">
@@ -240,9 +245,7 @@
                         </div>
                         {# TODO: Concatenate this and other as a string #}
                         <div>
-                            <label>
-                                Safety Tools
-                            </label>
+                            <label>Safety Tools</label>
                             <template x-for="(type, i) in safetyTools">
                                 <div class="flex items-center">
                                     <input type="checkbox" :name="'safetyTools' + i" :id="'safetyTools' + i" :value="type" @change="setCheckboxArray($el,'safeyTools')">
@@ -256,7 +259,7 @@
                             <input id="otherSafety" name="otherSafety" type="text" value="" x-model="eventInfo.otherSafety"/>
                         </div>
                     </fieldset>
-                    {# Additional Info #}
+                    {# Additional Info - not required #}
                     <fieldset x-show="isGame && eventInfo.length !== '0' && eventInfo.playerAge">
                         <legend>Additional Info</legend>
                         <div x-show="eventInfo.format === formatId('Panel')">
@@ -321,7 +324,7 @@
                             <textarea cols="30" id="additionalRequirements" name="additionalRequirements" rows="3" x-model="eventInfo.additionalRequirements"></textarea>
                         </div>
                     </fieldset>
-                    <button type="submit" @click.prevent="submitEvent" class="btn btn-primary">Submit</button>
+                    <button type="submit" @click.prevent="submitEvent" :disabled="!isComplete">Submit</button>
                 </form>
             </div>
             {# END Submit Form #}
@@ -339,7 +342,54 @@
         Alpine.data('runAnEventData', function () {
             return {
                 eventInfo: {
-                    length: '0'
+                    publicName: '', //required
+                    yourAge: '', //required
+                    eventName: '', //required
+                    format: '', //required
+                    system: '', //required only isGame
+                    playtest: '', //required only isGame
+                    eventDescription: '', //required
+                    otherInfo: '',
+                    // imageUpload
+                    runMultiple: '', //required
+                    privateRoom: '', //required if isTabletop
+                    tableType: '', //required if Board/Card game
+                    mediaEquipment: '', //required if not isGame
+                    mediaEquipmentRequested: '', //required if mediaEquipment = "Equipment Requested"
+                    length: '0', //required
+                    schedulePref: '', // not required
+                    playerAge: '', //required if yourAge = "18+"
+                    minPlayers: '', //required if isGame
+                    maxPlayers: '', //required if isGame
+                    characters: '', //not required
+                    contentAdvisory: '', //not required
+                    triggerWarnings: '', //not required
+                    safetyTools: '', //not required
+                    otherSafety: '', //not required
+                    panelTopic: '', //not required
+                    gameFocus: '', //not required
+                    playerContributions: '', //not required
+                    gameGenre: '', //not required
+                    gameMood: '', //not required
+                    additionalGMs: '', //not required
+                    additionalRequirements: '', //not required
+                },
+                get isComplete() {
+                    return (this.eventInfo.length !== '0' && this.eventInfo.playerAge)
+                },
+                validate(event) {
+                    const target = event.target;
+                    const parent = target.parentNode;
+                    console.log("validate", event);
+                    if (target.value === '') {
+                        parent
+                            .classList
+                            .add('error-required');
+                    } else {
+                        parent
+                            .classList
+                            .remove('error-required');
+                    }
                 },
                 submitEvent() {
                     console.log("submit", this.eventInfo)

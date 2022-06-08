@@ -182,6 +182,10 @@ button[type="submit"], .button {
   @apply font-bold uppercase transition-colors duration-200 rounded shadow text-form bg-highlight hover:bg-highlight-2 py-xs px-base border border-highlight;
 }
 
+button[type="submit"]:disabled .button:disabled {
+  @apply bg-slate-500;
+}
+
 .button-sm {
   @apply font-bold uppercase transition-colors duration-200 rounded shadow text-form text-sm bg-highlight hover:bg-highlight-2 py-2xs px-sm border border-highlight;
 }
@@ -208,6 +212,14 @@ input[type="checkbox"] {
 
 input[type="checkbox"] ~ label {
   @apply inline-block font-normal m-0;
+}
+
+.required label {
+  @apply after:content-['*'] after:text-highlight after:font-bold after:ml-2xs;
+}
+
+.error-required {
+  @apply bg-card p-sm rounded-md after:content-['required'] after:ml-xs after:text-highlight after:italic after:font-bold;
 }
 
 /* -------------------------------------------------------------------------- */
