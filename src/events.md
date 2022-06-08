@@ -1,5 +1,5 @@
 ---
-layout: layouts/page.njk
+layout: layouts/events.njk
 title: Events
 description: ''
 tags: pages

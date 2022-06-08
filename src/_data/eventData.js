@@ -17,6 +17,7 @@ const decodeText = text => {
 /* ---------------------------- Main url for API ---------------------------- */
 
 const url = "https://admin.bigbadcon.com:8091/api/events/all/public"
+// const url = "https://admin.bigbadcon.com/apidev/events/all/public"
 
 /* -------- Convert metadata array to object to make it easier to use ------- */
 function metadataArrayToObject(arr) {
@@ -61,7 +62,7 @@ module.exports = async () => {
                 ...event,
                 eventName: decodeText(event.eventName), // change to proper format
                 postContent: decodeText(event.postContent), // change to proper format
-                metadata: metadata, // replace with keyyed object
+                metadata: metadata, // replace with keyed object
                 eventStartDateTime: eventStartDateTime, // native javascript date object
                 eventEndDateTime: eventEndDateTime, // native javascript date object
                 eventSlug: event.eventSlug.toLowerCase(), // force lowercase
@@ -72,7 +73,7 @@ module.exports = async () => {
         function hasCategory(event, type) {
             return event.categories.some(category => category.slug === type)
         }
-        /* ------------------ Seperate Events from Volunteer shifts ----------------- */
+        /* ------------------ Separate Events from Volunteer shifts ----------------- */
         const events = data.filter(event => !hasCategory(event, "volunteer-shift"))
         // console.log(events);
         const volunteer = data.filter(event => hasCategory(event, "volunteer-shift"))
@@ -82,7 +83,7 @@ module.exports = async () => {
             return events.sort((a,b) => a.eventStartDateTime - b.eventStartDateTime || a.eventName.localeCompare(b.eventName))
         }
 
-        /* ------------------- Return object with events seperated ------------------ */
+        /* ------------------- Return object with events separated ------------------ */
         return {
             events: eventSort(events),
             volunteer: eventSort(volunteer)
