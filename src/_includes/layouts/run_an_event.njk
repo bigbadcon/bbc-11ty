@@ -54,7 +54,7 @@
                         </fieldset>
                         {# END Personal Info #}
                         {# Event Info - Personal Info must be complete before showing #}
-                        <fieldset x-show="isPersonalInfoComplete">
+                        <fieldset class="transition-opacity" :class="(isPersonalInfoComplete) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
                             <legend>Event Info</legend>
                             <div class="required">
                                 <label for="eventName">Event Name</label>
@@ -97,7 +97,7 @@
                         </fieldset>
                         {# END Event Info #}
                         {# Player/Attendee Info - all above must be completed #}
-                        <fieldset x-show="isEventInfoComplete">
+                        <fieldset class="transition-opacity" :class="(isEventInfoComplete) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
                             <legend>Player/Attendee Info</legend>
                             <div x-show="eventInfo.yourAge === '18+'" class="required">
                                 <label for="playerAge">
@@ -135,7 +135,7 @@
                         </fieldset>
                         {# END Player Attendee Info #}
                         {# Scheduling Info - player age must be completed #}
-                        <fieldset x-show="isPlayerInfoComplete">
+                        <fieldset class="transition-opacity" :class="(isPlayerInfoComplete) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
                             <legend>Scheduling Info</legend>
                             <div class="required">
                                 <label for="runMultiple">Run this event</label>
@@ -221,7 +221,7 @@
                         </fieldset>
                         {# END Scheduling Info #}
                         {# Content Advisory & Safety Tools - show only if scheduling is completed #}
-                        <fieldset x-show="isSchedulingInfoComplete">
+                        <fieldset class="transition-opacity" :class="(isSchedulingInfoComplete) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
                             <legend>Content Advisory &amp; Safety Tools</legend>
                             <div x-show="eventInfo.playerAge === '13+'" class="prose mb-base">
                                 <p class="italic">Event designed for people aged 13+</p>
@@ -257,7 +257,7 @@
                         </fieldset>
                         {# END Content Advisory & Safety Tools #}
                         {# Additional Info - not required #}
-                        <fieldset x-show="isSchedulingInfoComplete">
+                        <fieldset class="transition-opacity" :class="(isSchedulingInfoComplete) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
                             <legend>Additional Info</legend>
                             <div x-show="eventInfo.format === formatId('Panel')">
                                 <label>Panel Topic</label>
