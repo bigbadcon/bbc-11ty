@@ -19,7 +19,7 @@
                 </div>
 
                 <div x-cloak x-show="isAuth && user" x-data="runAnEventData">
-                    <div x-show="!eventSubmitted">
+                    <div x-show="!eventSubmitted" id="submit-your-event">
                         <header class="prose">
                             <h2>Submit Your Event</h2>
                             <p>
@@ -28,7 +28,8 @@
                             </p>
                         </header>
                         {# TODO: Get Submit working. Make sure to zero out everything on submit #}
-                        <form action="post" class="mt-base">
+                        <form action="post" class="mt-base" id="form-run-an-event">
+                            <input type="hidden" x-model="eventInfo.userDisplayName" x-init="eventInfo.userDisplayName = user && user.displayName; $watch('user', value => eventInfo.userDisplayName = value && value.displayName)">
                             {# Personal Info #}
                             <fieldset>
                                 <legend>Personal Info</legend>
@@ -325,25 +326,24 @@
                                 </div>
                             </fieldset>
                             <button type="submit" @click.prevent="submitEvent" :disabled="!isSchedulingInfoComplete">Submit</button>
-
-                            {# Testing purposes only #}
-                            <div class="prose border rounded mt-lg p-base bg-card border-header">
-                                <h2>Testing purposes only</h2>
-                                <p>Listing of event form selections</p>
-                                <ul>
-                                    <template x-for="(type, i) in eventInfo">
-                                        <li x-show="type && type !== ''" x-text="i + ': ' +type"></li>
-                                    </template>
-                                </ul>
-                            </div>
                         </form>
                     </div>
                     {# END event submission div #}
                     {# event submitted #}
-                    <div class="prose" x-show="eventSubmitted">
+                    <div class="prose" x-show="eventSubmitted" id="event-submitted">
                         <h2>Thanks for submitting your event!</h2>
-                        <p>Our staff will review your event, <span x-text="eventInfo.eventName" class="italic font-bold"></span>, and let you know about scheduling it!</p>
-                        <p>You can <button @click="eventSubmitted = false" class="font-bold underline text-highlight">submit another event</button> now if you'd like.</p>
+                        <p>Our staff will review your <span x-text="formatType"></span> event, <span x-text="eventInfo.eventName" class="italic font-bold"></span>, and let you know about scheduling it!</p>
+                        <p>You can <button @click="submitNewEvent" class="font-bold underline text-highlight">submit another event</button> now if you'd like.</p>
+                    </div>
+                    {# Testing purposes only #}
+                    <div class="prose border rounded mt-lg p-base bg-card border-header">
+                        <h2>Testing purposes only</h2>
+                        <p>Listing of event form selections</p>
+                        <ul>
+                            <template x-for="(type, i) in eventInfo">
+                                <li x-show="type && type !== ''" x-text="i + ': ' +type"></li>
+                            </template>
+                        </ul>
                     </div>
                 </div>
                 {# END runAnEventData component #}
@@ -351,6 +351,43 @@
         </div>
     </main>
 {% endblock %}
+
+{# 
+    PUT /events/create API
+    
+    {
+        "accessabilityOptions": "string", //  not used
+        "additionalGms": "string", // used
+        "additionalRequirements": "string", //used
+        "characters": "string", //used
+        "contentAdvisory": true, // used but using a checkbox
+        "eventCategoryId": 0, // this is format
+        "eventDescription": "string", // used
+        "eventFacilitators": "string", // not used
+        "eventMetadataIds": [
+        0
+        ], // need to combine multiple
+        "eventName": "string", // used
+        "gm": "string", // need to convert from publicName?
+        "gmAge": "string", //need to convert from yourAge
+        "length": "string", // used but named eventLength
+        "minPlayers": "string", //used
+        "otherInfo": "string", //used
+        "playerAge": "string", //used
+        "players": "string", // this is maxPlayers
+        "playtest": "string", //used
+        "requestMediaEquipment": "string", // used
+        "requestMediaRoom": true,   // used
+        "requestPrivateRoom": true, // used but need to change this as it's no longer boolean 
+        "runNumberOfTimes": 0, // used
+        "safetyTools": "string", // used convert to string
+        "schedulingPref": "string", // convert to string
+        "system": "string", //  used
+        "tableType": "string",  // used
+        "triggerWarnings": "string",    // used
+        "userDisplayName": "string" , // matches user.displayName
+    }
+ #}
 
 {% block pagebottom %}
 
@@ -365,6 +402,7 @@
 
             const eventInfoDefault = {
                 // -- Personal Info
+                userDisplayName: '', // hidden; matches user.displayName
                 publicName: '', //required
                 yourAge: '', //required
                 // -- Event Info
@@ -400,6 +438,37 @@
                 gameMood: '', //not required
                 additionalGMs: '', //not required
                 additionalRequirements: '', //not required
+            }
+
+            function convertToCreateEventAPI(eventInfo) {
+                eventInfo = {
+                    ...eventInfo,
+                    gmAge: eventInfo.yourAge,
+                    contentAdvisory: eventInfo.contentAdvisory !== "1000000", // this is a boolean in the API so we are using 1000000 is no-content-advisory; selection info goes into the eventMetadataIds
+                    eventCategoryId: eventInfo.format,
+                    gm: eventInfo.publicName,
+                    length: eventInfo.eventLength,
+                    players: eventInfo.maxPlayers,
+                    requestMediaEquipment: eventInfo.requestMediaEquipment === "Yes",
+                    requestMediaRoom: eventInfo.requestMediaRoom === "Yes",
+                    requestPrivateRoom: eventInfo.requestPrivateRoom !== "No Preference", // add extra to additionalRequirements for now
+                    additionalRequirements: eventInfo.additionalRequirements + "; Room Request: " + eventInfo.requestPrivateRoom,
+                    eventMetadataIds: [
+                        ...eventInfo.playerContributions,
+                        ...eventInfo.gameFocus,
+                        ...eventInfo.gameMood,
+                        ...eventInfo.gameGenre,
+                        ...eventInfo.contentAdvisory,
+                        ...eventInfo.panelTopic
+                    ],
+                    schedulePref: eventInfo
+                        .schedulePref
+                        .toString(),
+                    safetyTools: eventInfo
+                        .safetyTools
+                        .toString()
+                }
+                return eventInfo;
             }
 
             Alpine.data('runAnEventData', function () {
@@ -512,7 +581,7 @@
                         const submitNow = () => {
                             this.eventSubmitted = true
                             // Zero out all the form fields
-                            this.eventInfo = eventInfoDefault
+                            // this.eventInfo = eventInfoDefault
                         }
                         function checkScrollEnd() {
                             window.addEventListener('scroll', function () {
@@ -526,8 +595,15 @@
                         checkScrollEnd()
                         window.scroll({top: y, behavior: 'smooth'});
                     },
+                    submitNewEvent() {
+                        // Zero out all the form fields
+                        this.eventInfo = eventInfoDefault
+                        // Bring back form
+                        this.eventSubmitted = false
+                    },
                     setCheckboxArray(el, arrayName) {
                         this.eventInfo[arrayName] = this.eventInfo[arrayName] || [];
+                        // if checked then add value to array; otherwise remove
                         if (el.checked) {
                             this.eventInfo[arrayName] = [
                                 ...this.eventInfo[arrayName],
@@ -538,7 +614,7 @@
                                 .eventInfo[arrayName]
                                 .filter(item => item !== el.value)
                         }
-                        console.log(this.eventInfo[arrayName])
+                        //console.log(this.eventInfo[arrayName])
                     },
                     times1hr: [
                         "Friday afternoon (between 2PM-6PM)",
@@ -608,6 +684,16 @@
                             .find(e => e.name === name)
                             .id
                             .toString()
+                    },
+                    get formatType() {
+                        const id = parseFloat(this.eventInfo.format)
+                        const name = (id)
+                            ? this
+                                .format
+                                .find(e => e.id === parseFloat(this.eventInfo.format))
+                                .name
+                            : ''
+                        return name
                     },
                     get isGame() {
                         return this.eventInfo.format === "8" || this.eventInfo.format === "9" || this.eventInfo.format === "10"
