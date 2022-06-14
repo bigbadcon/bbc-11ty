@@ -347,7 +347,7 @@
                         <p>You can <button @click="submitNewEvent" class="font-bold underline text-highlight">submit another event</button> now if you'd like.</p>
                     </div>
                     {# Testing purposes only #}
-                    <div class="prose border rounded mt-lg p-base bg-card border-header">
+                    {# <div class="prose border rounded mt-lg p-base bg-card border-header">
                         <h2>Testing purposes only</h2>
                         <p>Listing of event form selections</p>
                         <ul>
@@ -355,7 +355,7 @@
                                 <li x-show="type && type !== ''" x-text="i + ': ' +type"></li>
                             </template>
                         </ul>
-                    </div>
+                    </div> #}
                 </div>
                 {# END runAnEventData component #}
             </section>
@@ -593,6 +593,7 @@
                         const y = 0
 
                         const submitNow = () => {
+                            this.createEvent(this.eventInfo)
                             this.eventSubmitted = true
                             console.log("api", JSON.stringify(convertToCreateEventAPI(this.eventInfo)))
                             // Zero out all the form fields
@@ -610,6 +611,13 @@
                         }
                         checkScrollEnd()
                         window.scroll({top: y, behavior: 'smooth'});
+                    },
+                    async createEvent(eventInfo) {
+                        let data = await fetchData('/events/create', {
+                            method: 'POST',
+                            body: eventInfo
+                        })
+                        return data
                     },
                     submitNewEvent() {
                         // Zero out all the form fields
