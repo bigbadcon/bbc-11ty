@@ -1,13 +1,32 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, chromium } from '@playwright/test';
 import 'dotenv/config'
 
 // TODO: set up test using tab from field to field
 // TODO: set up test for other formats
 
+const eventName = 'Extradimensional Bunny Squad'
+const eventDescription = 'A elite squad of dimension hopping bunnies come into the world of Torg in search of the One True Carrot!'
+
+//  Run headless simulation
+test.use({
+    headless: false, 
+    launchOptions: {
+        logger: {
+            isEnabled: (name, severity) => name === 'browser',
+            log: (name, severity, message, args) => console.log(`${name} ${message}`)
+        },
+        slowMo: 400,
+        devtools: true
+    }
+})
+
 test.describe('Submit Run An Event Form', () => {
 
     test.beforeEach(async ({ page }) => {
         // Runs before each test and signs in each page.
+
+        // await chromium.launch({ headless: false, slowMo: 100, devtools: true });
+
         await page.goto('http://localhost:8888/run-an-event/');
 
         // Click text=login
@@ -40,6 +59,8 @@ test.describe('Submit Run An Event Form', () => {
 
     test('should submit an RPG Event', async ({ page }) => {
 
+        page.on('console', msg => console.log(msg.text()))
+
         await expect(page.locator('#form-run-an-event')).toBeVisible()
 
         await expect(page.locator('#form-run-an-event button[type="submit"]')).not.toBeEnabled();
@@ -51,7 +72,7 @@ test.describe('Submit Run An Event Form', () => {
         await page.locator('input[name="eventName"]').click();
 
         // Fill input[name="eventName"]
-        await page.locator('input[name="eventName"]').fill('Extradimensional Bunny Squad');
+        await page.locator('input[name="eventName"]').fill(eventName);
 
         // select RPG
         await page.locator('select[name="format"]').selectOption('8');
@@ -69,7 +90,7 @@ test.describe('Submit Run An Event Form', () => {
         await page.locator('textarea[name="eventDescription"]').click();
 
         // Fill textarea[name="eventDescription"]
-        await page.locator('textarea[name="eventDescription"]').fill('A elite squad of dimension hopping bunnies come into the world of Torg in search of the One True Carrot!');
+        await page.locator('textarea[name="eventDescription"]').fill(eventDescription);
 
         // Select 18+
         await page.locator('select[name="playerAge"]').selectOption('18+');
@@ -90,12 +111,12 @@ test.describe('Submit Run An Event Form', () => {
         await page.locator('select[name="characters"]').selectOption('Provided');
 
         // Select how many times to run
-        await page.locator('select[name="runMultiple"]').selectOption('1');
+        await page.locator('select[name="runNumberOfTimes"]').selectOption('1');
 
         // Select Location Preference
-        await page.locator('select[name="privateRoom"]').selectOption('Private Room');
+        await page.locator('select[name="locationPref"]').selectOption('Private Room');
 
-        // Select 4
+        // Select event length 4
         await page.locator('select[name="eventLength"]').selectOption('4');
 
         // Check input[name="time0"]
@@ -107,8 +128,11 @@ test.describe('Submit Run An Event Form', () => {
         // Check input[name="time6"]
         await page.locator('input[name="time6"]').check();
 
+        // Select contentAdvisory
+        await page.locator('select[name="contentAdvisory"]').selectOption('Yes');
+
         // Check input[name="contentAdvisory2"]
-        await page.locator('input[name="contentAdvisory2"]').check();
+        await page.locator('input[name="contentAdvisoryOptions2"]').check();
 
         // Click input[name="triggerWarnings"]
         await page.locator('input[name="triggerWarnings"]').click();
@@ -154,7 +178,7 @@ test.describe('Submit Run An Event Form', () => {
         await expect(page.locator('#event-submitted')).toBeVisible()
 
         await expect(page.locator('#event-submitted span[x-text="formatType"]')).toHaveText('RPG')
-        await expect(page.locator('#event-submitted span[x-text="eventInfo.eventName"]')).toHaveText('Bunny Squad')
+        await expect(page.locator('#event-submitted span[x-text="eventInfo.eventName"]')).toHaveText(eventName)
 
     });
 })
