@@ -60,7 +60,7 @@
                                 <legend>Event Info</legend>
                                 <div class="required">
                                     <label for="eventName">Event Name</label>
-                                    <input id="eventName" name="eventName" type="text" value="" x-model="eventInfo.eventName" @blur="validate"/>
+                                    <input id="eventName" name="eventName" type="text" value="" x-model="eventInfo.eventName" @blur="validate" class="w-full max-w-md"/>
                                 </div>
                                 <div class="required">
                                     <label for="format">Format</label>
@@ -143,9 +143,9 @@
                             <fieldset class="transition-opacity" :class="(isPlayerInfoComplete) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
                                 <legend>Scheduling Info</legend>
                                 <div class="required">
-                                    <label for="runMultiple">Run this event</label>
-                                    <select id="runMultiple" name="runMultiple" x-model="eventInfo.runMultiple" @blur="validate">
-                                        <option :disabled="eventInfo.runMultiple !== ''" selected value="">
+                                    <label for="runNumberOfTimes">Run this event</label>
+                                    <select id="runNumberOfTimes" name="runNumberOfTimes" x-model="eventInfo.runNumberOfTimes" @blur="validate">
+                                        <option :disabled="eventInfo.runNumberOfTimes !== ''" selected value="">
                                             -- Choose One --
                                         </option>
                                         <option value="1">Once</option>
@@ -155,9 +155,9 @@
                                     </select>
                                 </div>
                                 <div x-show="isTableTop" class="required">
-                                    <label for="privateRoom">Location Preference</label>
-                                    <select id="privateRoom" name="privateRoom" x-model="eventInfo.privateRoom" @blur="validate">
-                                        <option :disabled="eventInfo.privateRoom !== ''" selected value="">
+                                    <label for="locationPref">Location Preference</label>
+                                    <select id="locationPref" name="locationPref" x-model="eventInfo.locationPref" @blur="validate">
+                                        <option :disabled="eventInfo.locationPref !== ''" selected value="">
                                             -- Choose One --
                                         </option>
                                         <option>No Preference</option>
@@ -236,18 +236,29 @@
                                 </div>
                                 {# Break out to Maturity level and other stuff #}
                                 {# No Content Advisory vs Adult themes. Then add new list which is meta #}
-                                <div x-show="eventInfo.playerAge === '18+'">
+                                <div x-show="eventInfo.playerAge === '18+'" class="required">
                                     <label>Content Advisory</label>
-                                    <template x-for="(type, i) in contentAdvisory">
+                                    <select id="contentAdvisory" name="contentAdvisory" x-model="eventInfo.contentAdvisory" @blur="validate">
+                                        <option :disabled="eventInfo.contentAdvisory !== ''" selected value="">
+                                            -- Choose One --
+                                        </option>
+                                        <option value="No">No content advisory needed</option>
+                                        <option value="Yes">Yes, contains strong content</option>
+                                    </select>
+
+                                </div>
+                                <div x-show="eventInfo.playerAge === '18+' && eventInfo.contentAdvisory === 'Yes'">
+                                    <label>Types of Content Advisory</label>
+                                    <template x-for="(type, i) in contentAdvisoryOptions">
                                         <div class="flex items-center">
-                                            <input type="checkbox" :name="'contentAdvisory' + i" :id="'contentAdvisory' + i" :value="type.id" @change="setCheckboxArray($el,'contentAdvisory')">
-                                            <label :for="'contentAdvisory' + i" x-text="type.name"></label>
+                                            <input type="checkbox" :name="'contentAdvisoryOptions' + i" :id="'contentAdvisoryOptions' + i" :value="type.id" @change="setCheckboxArray($el,'contentAdvisoryOptions')">
+                                            <label :for="'contentAdvisoryOptions' + i" x-text="type.name"></label>
                                         </div>
                                     </template>
                                 </div>
                                 <div x-show="eventInfo.playerAge === '18+'">
                                     <label for="triggerWarnings">Potential trigger warnings</label>
-                                    <input id="triggerWarnings" name="triggerWarnings" type="text" value="" x-model="eventInfo.triggerWarnings"/>
+                                    <input id="triggerWarnings" name="triggerWarnings" type="text" value="" x-model="eventInfo.triggerWarnings" class="w-full max-w-md"/>
                                 </div>
                                 <div x-show="isGame">
                                     <label>Safety Tools</label>
@@ -378,7 +389,7 @@
         "playtest": "string", //used
         "requestMediaEquipment": "string", // used
         "requestMediaRoom": true,   // used
-        "requestPrivateRoom": true, // used but need to change this as it's no longer boolean 
+        "requestPrivateRoom": true, // use locationPref for boolean and add rest to additionalRequirements 
         "runNumberOfTimes": 0, // used
         "safetyTools": "string", // used convert to string
         "schedulingPref": "string", // convert to string
@@ -400,10 +411,11 @@
                 return value && value !== ''
             }
 
+            // Used to void variables
             const eventInfoDefault = {
                 // -- Personal Info
-                userDisplayName: '', // hidden; matches user.displayName
-                publicName: '', //required
+                //userDisplayName: '',  hidden; matches user.displayName; don't void
+                //publicName: '', required; don't void
                 yourAge: '', //required
                 // -- Event Info
                 eventName: '', //required
@@ -419,15 +431,16 @@
                 maxPlayers: '', //required if isGame
                 characters: '', //not required
                 // -- Scheduling Info
-                runMultiple: '', //required
-                privateRoom: '', //required if isTabletop
+                runNumberOfTimes: '', //required
+                locationPref: '', //required if isTabletop
                 tableType: '', //required if Board/Card game
                 mediaEquipment: '', //required if not isGame
                 mediaEquipmentRequested: '', //required if mediaEquipment = "Equipment Requested"
                 eventLength: null, //required
                 schedulePref: '', // not required
                 // -- Content Advisory
-                contentAdvisory: '', //not required
+                contentAdvisory: '', // required
+                contentAdvisoryOptions: '', //not required
                 triggerWarnings: '', //not required
                 safetyTools: '', //not required
                 // -- Additional Info
@@ -444,21 +457,21 @@
                 eventInfo = {
                     ...eventInfo,
                     gmAge: eventInfo.yourAge,
-                    contentAdvisory: eventInfo.contentAdvisory !== "1000000", // this is a boolean in the API so we are using 1000000 is no-content-advisory; selection info goes into the eventMetadataIds
+                    contentAdvisory: eventInfo.contentAdvisory !== "Yes", // this is a boolean in the API so we are using 1000000 is no-content-advisory; selection info goes into the eventMetadataIds
                     eventCategoryId: eventInfo.format,
                     gm: eventInfo.publicName,
                     length: eventInfo.eventLength,
                     players: eventInfo.maxPlayers,
                     requestMediaEquipment: eventInfo.requestMediaEquipment === "Yes",
                     requestMediaRoom: eventInfo.requestMediaRoom === "Yes",
-                    requestPrivateRoom: eventInfo.requestPrivateRoom !== "No Preference", // add extra to additionalRequirements for now
-                    additionalRequirements: eventInfo.additionalRequirements + "; Room Request: " + eventInfo.requestPrivateRoom,
+                    requestPrivateRoom: eventInfo.locationPref !== "No Preference", // add extra to additionalRequirements for now
+                    additionalRequirements: eventInfo.additionalRequirements + "; Room Request: " + eventInfo.locationPref,
                     eventMetadataIds: [
                         ...eventInfo.playerContributions,
                         ...eventInfo.gameFocus,
                         ...eventInfo.gameMood,
                         ...eventInfo.gameGenre,
-                        ...eventInfo.contentAdvisory,
+                        ...eventInfo.contentAdvisoryOptions,
                         ...eventInfo.panelTopic
                     ],
                     schedulePref: eventInfo
@@ -492,15 +505,16 @@
                         maxPlayers: '', //required if isGame
                         characters: '', //not required
                         // -- Scheduling Info
-                        runMultiple: '', //required
-                        privateRoom: '', //required if isTabletop
+                        runNumberOfTimes: '', //required
+                        locationPref: '', //required if isTabletop
                         tableType: '', //required if Board/Card game
                         mediaEquipment: '', //required if not isGame
                         mediaEquipmentRequested: '', //required if mediaEquipment = "Equipment Requested"
                         eventLength: null, //required
                         schedulePref: '', // not required
                         // -- Content Advisory
-                        contentAdvisory: '', //not required
+                        contentAdvisory: '', //required
+                        contentAdvisoryOptions: '', //not required
                         triggerWarnings: '', //not required
                         safetyTools: '', //not required
                         // -- Additional Info
@@ -542,11 +556,11 @@
                         return (this.isEventInfoComplete && fields.every(isNotEmptyString));
                     },
                     get isSchedulingInfoComplete() {
-                        let fields = [this.eventInfo.runMultiple, this.eventInfo.eventLength]
+                        let fields = [this.eventInfo.runNumberOfTimes, this.eventInfo.eventLength]
                         if (this.isTableTop) 
                             fields = [
                                 ...fields,
-                                this.eventInfo.privateRoom
+                                this.eventInfo.locationPref
                             ]
                         if (this.isBoardgame) 
                             fields = [
@@ -580,24 +594,29 @@
 
                         const submitNow = () => {
                             this.eventSubmitted = true
+                            console.log("api", JSON.stringify(convertToCreateEventAPI(this.eventInfo)))
                             // Zero out all the form fields
                             // this.eventInfo = eventInfoDefault
                         }
-                        function checkScrollEnd() {
-                            window.addEventListener('scroll', function () {
-                                if (window.pageYOffset === 0) {
-                                    submitNow();
-                                    window.removeEventListener('scroll')
-                                }
-                            });
 
+                        const scrollEventListener = () => {
+                            if (window.pageYOffset === 0) {
+                                submitNow();
+                                window.removeEventListener('scroll', scrollEventListener)
+                            }
+                        }
+                        function checkScrollEnd() {
+                            window.addEventListener('scroll', scrollEventListener);
                         }
                         checkScrollEnd()
                         window.scroll({top: y, behavior: 'smooth'});
                     },
                     submitNewEvent() {
                         // Zero out all the form fields
-                        this.eventInfo = eventInfoDefault
+                        this.eventInfo = {
+                            ...this.eventInfo,
+                            ...eventInfoDefault
+                        }
                         // Bring back form
                         this.eventSubmitted = false
                     },
@@ -940,11 +959,6 @@
                             "name": "Super Powers",
                             "slug": "super-powers",
                             "type": "event-tags"
-                        }, {
-                            "id": 120,
-                            "name": "Super Powers",
-                            "slug": "super-powers",
-                            "type": "event-tags"
                         }
                     ],
                     gameMood: [
@@ -995,12 +1009,8 @@
                             "type": "event-tags"
                         }
                     ],
-                    contentAdvisory: [
+                    contentAdvisoryOptions: [
                         {
-                            "id": 1000000,
-                            "type": "no-content-advisory",
-                            "name": "No Content Advisory"
-                        }, {
                             "id": 91,
                             "name": "Gore",
                             "slug": "gore",
