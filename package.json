@@ -50,6 +50,7 @@
     "windows-1252": "^1.0.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.22.2",
     "svg-sprite-generator": "^0.0.7"
   }
 }

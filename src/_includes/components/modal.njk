@@ -24,7 +24,7 @@
 
 {# Login Panel #}
 {% macro login() %}
-    <div x-cloak x-show="!authToken && modal === 'login'" class="flex flex-col w-64 h-full">
+    <div id="modal-login" class="x-cloak x-show="!authToken && modal === 'login'" class="flex flex-col w-64 h-full">
         <h2 class="-mt-1 font-serif text-3xl font-extrabold leading-none text-secondary">Login</h2>
         <form action="post" class="flex flex-col flex-grow my-sm text-body gap-base" x-data="{username: '',password: ''}" @submit.prevent="submitLogin(username,password); username = '';password = ''">
             <div>
@@ -53,7 +53,7 @@
 
 {# Reset Password Panel #}
 {% macro resetPassword() %}
-    <div x-cloak x-show="!authToken && modal === 'resetPassword'" class="flex flex-col w-64 h-full" >
+    <div id="modal-reset-password" x-cloak x-show="!authToken && modal === 'resetPassword'" class="flex flex-col w-64 h-full" >
         {# Header #}
         <div class="flex justify-between gap-x-sm">
             <h2 class="flex-grow -mt-1 font-serif text-2xl font-semibold leading-none text-header">
@@ -63,7 +63,7 @@
                 {{ closeBtn() }}
             </div>
         </div>
-        {# <div class="prose text-sm py-base">
+        {# <div class="text-sm prose py-base">
             <p>Our current website's password reset function is currently broken.</p>
             <p>Please visit our old site <a href="https://admin.bigbadcon.com">admin.bigbadcon.com</a> which uses the same user database to reset your password. Once you change it on the old site it will work on our new site.</p>
         </div> #}
@@ -105,7 +105,7 @@
 
 {# Change Password Panel #}
 {% macro changePassword() %}
-    <div x-cloak x-show="user && modal === 'changePassword'" class="flex flex-col w-64 h-full" >
+    <div id="modal-change-password" x-cloak x-show="user && modal === 'changePassword'" class="flex flex-col w-64 h-full" >
         {# Header #}
         <div class="flex justify-between gap-x-sm">
             <h2 class="flex-grow -mt-1 font-serif text-2xl font-semibold leading-none text-header">
@@ -115,7 +115,7 @@
                 {{ closeBtn() }}
             </div>
         </div>
-        {# <div class="prose text-sm py-base">
+        {# <div class="text-sm prose py-base">
             <p>Our current website's password change function is currently broken.</p>
             <p>Please visit our old site <a href="https://admin.bigbadcon.com">admin.bigbadcon.com</a> which uses the same user database to reset your password. Once you change it on the old site it will work on our new site.</p>
         </div> #}
@@ -165,7 +165,7 @@
 
 {# Close button #}
 {% macro closeBtn() %}
-    <button @click="modal = false" class="flex items-center justify-center border-2 border-solid rounded w-7 h-7 border-body bg-card hover:border-highlight">
+    <button @click="modal = false" class="flex items-center justify-center border-2 border-solid rounded close-btn w-7 h-7 border-body bg-card hover:border-highlight">
         <svg class="w-4 h-4 fill-body hover:fill-highlight">
             <use xlink:href="/static/images/icons.svg#close"></use>
         </svg>
@@ -174,7 +174,7 @@
 
 {# My Account User Info Panel including My Events. Shown only when logged in #}
 {% macro userInfo() %}
-    <div class="flex flex-col h-full text-body"
+    <div id="modal-user-info" class="flex flex-col h-full text-body"
     x-cloak x-show="user && modal !== 'changePassword'"  
     >
         {# Header #}
