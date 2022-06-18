@@ -24,7 +24,7 @@
 
 {# Login Panel #}
 {% macro login() %}
-    <div id="modal-login" class="x-cloak x-show="!authToken && modal === 'login'" class="flex flex-col w-64 h-full">
+    <div id="modal-login" class="x-cloak" x-show="!authToken && modal === 'login'" class="flex flex-col w-64 h-full">
         <h2 class="-mt-1 font-serif text-3xl font-extrabold leading-none text-secondary">Login</h2>
         <form action="post" class="flex flex-col flex-grow my-sm text-body gap-base" x-data="{username: '',password: ''}" @submit.prevent="submitLogin(username,password); username = '';password = ''">
             <div>
