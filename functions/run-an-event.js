@@ -45,7 +45,7 @@ exports.handler = async function(event, context) {
 
     const headers = { 
         'Content-Type': 'application/json;charset=utf-8',
-        Authorization: authToken,
+        // Authorization: authToken,
         "x-api-key": apiKey
     }
 
