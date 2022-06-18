@@ -10,10 +10,7 @@
             <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
             <div class="prose">{{ content | safe }}</div>
             <section class="my-base">
-
                 {# START Submit Form: only show if logged in #}
-                {# TODO: fix the user not an object issues #}
-                {# TODO: Add if its a rpg game then allow a location private room or outdoors #}
                 <div x-cloak x-show="!isAuth" class="prose">
                     <p>You must be <button @click.stop="modal = 'login'" class="font-bold underline text-highlight">logged in</button> to submit a game</p>
                 </div>
@@ -336,7 +333,8 @@
                                     <textarea cols="30" id="additionalRequirements" name="additionalRequirements" rows="3" x-model="eventInfo.additionalRequirements"></textarea>
                                 </div>
                             </fieldset>
-                            <button type="submit" @click.prevent="submitEvent" :disabled="!isSchedulingInfoComplete">Submit</button>
+                            {# <button type="submit" @click.prevent="submitEvent" :disabled="!isSchedulingInfoComplete">Submit</button> #}
+                            <button type="submit" @click.prevent="submitEvent">Submit</button>
                         </form>
                     </div>
                     {# END event submission div #}
@@ -363,9 +361,8 @@
     </main>
 {% endblock %}
 
-{# 
+{#
     PUT /events/create API
-    
     {
         "accessabilityOptions": "string", //  not used
         "additionalGms": "string", // used
@@ -593,9 +590,9 @@
                         const y = 0
 
                         const submitNow = () => {
-                            this.createEvent(this.eventInfo)
+                            this.createEvent2()
                             this.eventSubmitted = true
-                            console.log("api", JSON.stringify(convertToCreateEventAPI(this.eventInfo)))
+                            // console.log("api", JSON.stringify(convertToCreateEventAPI(this.eventInfo)))
                             // Zero out all the form fields
                             // this.eventInfo = eventInfoDefault
                         }
@@ -612,12 +609,43 @@
                         checkScrollEnd()
                         window.scroll({top: y, behavior: 'smooth'});
                     },
-                    async createEvent(eventInfo) {
+                    async createEvent() {
                         let data = await fetchData('/events/create', {
                             method: 'POST',
-                            body: eventInfo
+                            body: this.eventInfo
                         })
                         return data
+                    },
+                    async createEvent2() {
+                        const url = '/.netlify/functions/run-an-event/'
+                        const authToken = JSON.parse(localStorage.getItem('_x_authToken'))
+                        const body = JSON.stringify({
+                            ...this.eventInfo,
+                            authToken: authToken
+                        })
+                        const options = {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json;charset=utf-8',
+                                Authorization: authToken
+                            },
+                            body: JSON.stringify({
+                                ...this.eventInfo,
+                                authToken: authToken
+                            })
+                        }
+                        try {
+                            let response = await fetch(url, options)
+                            console.log(`RESPONSE:fetch for ${url}`, response)
+                            if (response.status !== 200) 
+                                throw `fetch fail status: ${response.status}`
+                            let result = await response.json()
+                            console.log(`RESULT:fetch for ${url}`, result)
+                            return result
+                        } catch (err) {
+                            console.error(`ERROR:fetch for ${url}`, err)
+                            return false
+                        }
                     },
                     submitNewEvent() {
                         // Zero out all the form fields
