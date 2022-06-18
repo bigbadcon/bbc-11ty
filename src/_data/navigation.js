@@ -23,11 +23,11 @@ module.exports = [
 				"url": "/past-events",
 				"icon": "library"
 			},
-			{
-				"title": "Run An Event",
-				"url": "/run-an-event",
-				"icon": "dice"
-			}
+			// {
+			// 	"title": "Run An Event",
+			// 	"url": "/run-an-event",
+			// 	"icon": "dice"
+			// }
 		]
 	},
 	{
