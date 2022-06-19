@@ -23,11 +23,11 @@ module.exports = [
 				"url": "/past-events",
 				"icon": "library"
 			},
-			// {
-			// 	"title": "Run An Event",
-			// 	"url": "/run-an-event",
-			// 	"icon": "dice"
-			// }
+			{
+				"title": "Run An Event",
+				"url": "/run-an-event",
+				"icon": "dice"
+			}
 		]
 	},
 	{
@@ -39,11 +39,11 @@ module.exports = [
 				"url": "/rangers",
 				"icon": "paw"
 			},
-			// {
-			// 	"title": "Volunteer Shifts",
-			// 	"url": "/volunteer-shifts",
-			// 	"icon": "calendar-clock"
-			// }
+			{
+				"title": "Volunteer Shifts",
+				"url": "/volunteer-shifts",
+				"icon": "calendar-clock"
+			}
 		]
 	},
 	{

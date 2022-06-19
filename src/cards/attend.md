@@ -7,7 +7,7 @@ image: ''
 alt: ''
 
 ---
-Big Bad Con to return in person on October 27-30, 2022! Stay tuned for more info!
+Big Bad Con to returning in person October 27-30, 2022!
 
 <!-- {% iconLink "/register", "Register", "badge" %} -->
 
