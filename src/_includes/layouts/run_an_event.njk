@@ -333,8 +333,7 @@
                                     <textarea cols="30" id="additionalRequirements" name="additionalRequirements" rows="3" x-model="eventInfo.additionalRequirements"></textarea>
                                 </div>
                             </fieldset>
-                            {# <button type="submit" @click.prevent="submitEvent" :disabled="!isSchedulingInfoComplete">Submit</button> #}
-                            <button type="submit" @click.prevent="submitEvent">Submit</button>
+                            <button type="submit" @click.prevent="submitEvent" :disabled="!isSchedulingInfoComplete">Submit</button>
                         </form>
                     </div>
                     {# END event submission div #}
