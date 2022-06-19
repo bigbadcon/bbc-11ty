@@ -253,7 +253,7 @@
                                         </div>
                                     </template>
                                 </div>
-                                <div x-show="eventInfo.playerAge === '18+'">
+                                <div x-show="eventInfo.playerAge === '18+' && eventInfo.contentAdvisory === 'Yes'">
                                     <label for="triggerWarnings">Potential trigger warnings</label>
                                     <input id="triggerWarnings" name="triggerWarnings" type="text" value="" x-model="eventInfo.triggerWarnings" class="w-full max-w-md"/>
                                 </div>
@@ -271,7 +271,7 @@
                             {# Additional Info - not required #}
                             <fieldset class="transition-opacity" :class="(isSchedulingInfoComplete) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
                                 <legend>Additional Info</legend>
-                                <div x-show="eventInfo.format === formatId('Panel')">
+                                <div x-show="eventInfo.format === formatId('Panel')" class="checkbox-grid">
                                     <label>Panel Topic</label>
                                     <template x-for="(type, i) in panelTopic">
                                         <div class="flex items-center">
@@ -282,7 +282,7 @@
                                 </div>
                                 <div x-show="isGame">
                                     <label>Game Focus</label>
-                                    <div>
+                                    <div class="checkbox-grid">
                                         <template x-for="(type, i) in gameFocus">
                                             <div class="flex items-center">
                                                 <input type="checkbox" :name="'gameFocus' + i" :id="'gameFocus' + i" :value="type.id"  @change="setCheckboxArray($el,'gameFocus')">
@@ -293,7 +293,7 @@
                                 </div>
                                 <div x-show="isGame">
                                     <label>Player Contributions</label>
-                                    <div>
+                                    <div class="checkbox-grid">
                                         <template x-for="(type, i) in playerContributions">
                                             <div class="flex items-center">
                                                 <input type="checkbox" :name="'playerContributions' + i" :id="'playerContributions' + i" :value="type.id" @change="setCheckboxArray($el,'playerContributions')">
@@ -304,7 +304,7 @@
                                 </div>
                                 <div x-show="isGame">
                                     <label>Game Genre</label>
-                                    <div>
+                                    <div class="checkbox-grid">
                                         <template x-for="(type, i) in gameGenre">
                                             <div class="flex items-center">
                                                 <input type="checkbox" :name="'gameGenre' + i" :id="'gameGenre' + i" :value="type.id" @change="setCheckboxArray($el,'gameGenre')">
@@ -315,7 +315,7 @@
                                 </div>
                                 <div x-show="isGame">
                                     <label>Game Mood</label>
-                                    <div>
+                                    <div class="checkbox-grid">
                                         <template x-for="(type, i) in gameMood">
                                             <div class="flex items-center">
                                                 <input type="checkbox" :name="'gameMood' + i" :id="'gameMood' + i" :value="type.id" @change="setCheckboxArray($el,'gameMood')">
