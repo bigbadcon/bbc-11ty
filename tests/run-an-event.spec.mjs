@@ -15,7 +15,7 @@ test.use({
             isEnabled: (name, severity) => name === 'browser',
             log: (name, severity, message, args) => console.log(`${name} ${message}`)
         },
-        slowMo: 400,
+        // slowMo: 400,
         devtools: true
     }
 })
@@ -63,7 +63,7 @@ test.describe('Submit Run An Event Form', () => {
 
         await expect(page.locator('#form-run-an-event')).toBeVisible()
 
-        await expect(page.locator('#form-run-an-event button[type="submit"]')).not.toBeEnabled();
+        // await expect(page.locator('#form-run-an-event button[type="submit"]')).not.toBeEnabled();
 
         // Select 18+
         await page.locator('select[name="yourAge"]').selectOption('18+');
@@ -157,9 +157,6 @@ test.describe('Submit Run An Event Form', () => {
 
         // Check input[name="playerContributions6"]
         await page.locator('input[name="playerContributions6"]').check();
-
-        // Uncheck input[name="playerContributions3"]
-        await page.locator('input[name="playerContributions3"]').uncheck();
 
         // Check input[name="gameGenre1"]
         await page.locator('input[name="gameGenre1"]').check();

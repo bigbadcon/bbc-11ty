@@ -590,7 +590,7 @@
                         const y = 0
 
                         const submitNow = () => {
-                            this.createEvent2()
+                            this.createEvent()
                             this.eventSubmitted = true
                             // console.log("api", JSON.stringify(convertToCreateEventAPI(this.eventInfo)))
                             // Zero out all the form fields
@@ -611,7 +611,7 @@
                     },
                     async createEvent() {
                         let data = await fetchData('/events/create', {
-                            method: 'POST',
+                            method: 'PUT',
                             body: this.eventInfo
                         })
                         return data
