@@ -4,7 +4,6 @@ title: Run An Event
 description: ''
 tags: pages
 ogImage: ''
-permalink: false,
 
 ---
 
