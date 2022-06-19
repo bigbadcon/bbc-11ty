@@ -459,6 +459,9 @@
                     gm: eventInfo.publicName,
                     length: eventInfo.eventLength,
                     players: eventInfo.maxPlayers,
+                    playtest: (eventInfo.playtest === 'Yes')
+                        ? 1
+                        : 0,
                     requestMediaEquipment: eventInfo.requestMediaEquipment === "Yes",
                     requestMediaRoom: eventInfo.requestMediaRoom === "Yes",
                     requestPrivateRoom: eventInfo.locationPref !== "No Preference", // add extra to additionalRequirements for now
