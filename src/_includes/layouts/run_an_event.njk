@@ -615,40 +615,9 @@
                     async createEvent() {
                         let data = await fetchData('/events/create', {
                             method: 'PUT',
-                            body: this.eventInfo
+                            body: convertToCreateEventAPI(this.eventInfo)
                         })
                         return data
-                    },
-                    async createEvent2() {
-                        const url = '/.netlify/functions/run-an-event/'
-                        const authToken = JSON.parse(localStorage.getItem('_x_authToken'))
-                        const body = JSON.stringify({
-                            ...this.eventInfo,
-                            authToken: authToken
-                        })
-                        const options = {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json;charset=utf-8',
-                                Authorization: authToken
-                            },
-                            body: JSON.stringify({
-                                ...this.eventInfo,
-                                authToken: authToken
-                            })
-                        }
-                        try {
-                            let response = await fetch(url, options)
-                            console.log(`RESPONSE:fetch for ${url}`, response)
-                            if (response.status !== 200) 
-                                throw `fetch fail status: ${response.status}`
-                            let result = await response.json()
-                            console.log(`RESULT:fetch for ${url}`, result)
-                            return result
-                        } catch (err) {
-                            console.error(`ERROR:fetch for ${url}`, err)
-                            return false
-                        }
                     },
                     submitNewEvent() {
                         // Zero out all the form fields
