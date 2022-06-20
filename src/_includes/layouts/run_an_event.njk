@@ -25,7 +25,7 @@
                             </p>
                         </header>
                         {# TODO: Get Submit working. Make sure to zero out everything on submit #}
-                        <form action="post" class="mt-base" id="form-run-an-event">
+                        <form action="post" class="mt-base" id="form-run-an-event" @submit.prevent="submitEvent">
                             {# TODO: add honeypot #}
                             <input type="hidden" x-model="eventInfo.userDisplayName" x-init="eventInfo.userDisplayName = user && user.displayName; $watch('user', value => eventInfo.userDisplayName = value && value.displayName)">
                             {# Personal Info #}
@@ -40,7 +40,7 @@
                                 </div>
                                 <div class="required">
                                     <label for="yourAge">
-                                        Your age as of
+                                        Your age at start of con
                                         <span>{{sitemeta.eventDate}}</span>
                                     </label>
                                     <select id="yourAge" name="yourAge" x-model="eventInfo.yourAge" @change="if (eventInfo.yourAge === '13+') eventInfo.playerAge = '13+'" @blur="validate">
@@ -350,7 +350,7 @@
                                     <textarea cols="30" id="additionalRequirements" name="additionalRequirements" rows="3" x-model="eventInfo.additionalRequirements"></textarea>
                                 </div>
                             </fieldset>
-                            <button type="submit" @click.prevent="submitEvent" :disabled="!isSchedulingInfoComplete">Submit</button>
+                            <button type="submit" :disabled="!isSchedulingInfoComplete">Submit</button>
                         </form>
                     </div>
                     {# END event submission div #}

@@ -5,6 +5,6 @@ description: 'Our Rangers are the folks that make Big Bad Online possible. To jo
 tags: pages
 listing: volunteer
 ---
-Our Rangers are the folks that make Big Bad Con possible. To join, you must first [register for the con](/register/) and agree to our Code of Conduct. Once you are registered you can sign up for a shift below! *NOTE: You must be logged in to see shift availability and sign up.*
+Our Rangers are the folks that make Big Bad Con possible. To join, you must first [sign up as a volunteer](/volunteer-signup). Once you are registered you can book a shift below! *NOTE: You must be logged in to see shift availability*
 
 {% iconLink "/rangers", "Learn more about the Rangers ", "paw" %}
