@@ -18,6 +18,7 @@ fields:
   label: open graph image
   description: Twitter/Facebook social image card
 pages:
+- src/covid-safety.md
 - src/faq.md
 - src/rangers.md
 - src/staff.md
