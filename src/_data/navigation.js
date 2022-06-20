@@ -19,15 +19,20 @@ module.exports = [
 			// 	"icon": "calendar-clock"
 			// },
 			{
-				"title": "Past Events",
-				"url": "/past-events",
-				"icon": "library"
+				"title": "Hotel",
+				"url": "/hotel",
+				"icon": "hotel"
 			},
 			{
 				"title": "Run An Event",
 				"url": "/run-an-event",
 				"icon": "dice"
-			}
+			},
+			{
+				"title": "Past Events",
+				"url": "/past-events",
+				"icon": "library"
+			},
 		]
 	},
 	{
