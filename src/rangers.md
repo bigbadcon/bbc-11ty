@@ -20,10 +20,10 @@ Here's all the work we do. If you're ready to engage with our community, conside
 
 **Board Game Host:** If you love board games and want to help others enjoy them, this is the job for you! The Board Game Host checks games in and out of our extensive library, offering suggestions to those in need.
 
-**Games on Demand Host**: If you’d like to make gaming dreams come true for attendees, become a Games on Demand (GoD) host! GoD Hosts run a boarding pass system that allows attendees to queue up for two and four hour drop-in games in a stress-free manor. They manage the queue while also managing player and facilitator expectations.
+**Games on Demand Host**: If you’d like to make gaming dreams come true for attendees, become a Games on Demand (GoD) host! GoD Hosts run a boarding pass system that allows attendees to queue up for two and four hour drop-in games in a stress-free manner. They manage the queue while also managing player and facilitator expectations.
 
 **Setup/Breakdown**: If you want to work behind the convention scenes, here is your opportunity! Those working Setup or Breakdown need to be able to take direction when offered and rapidly enact plans of action. They’ll be building or dismantling stanchions, putting up or taking down signage, and loading or unloading everything as needed.
 
-Plus, all Rangers have access to our in person Ranger Station, a place to relax behind the scenes!
+Plus, all Rangers have access to our Ranger Station, a place to relax behind the scenes!
 
 {% iconLink "/volunteer-shifts", "Volunteer Shifts", "calendar-clock" %}
