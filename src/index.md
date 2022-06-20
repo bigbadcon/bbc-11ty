@@ -14,4 +14,4 @@ To cover the costs of hosting the event, we're running an [Indiegogo campaign](h
 
 Once we hit our funding level, stretch goal we reach will make the con even better!
 
-<!-- {% iconLink "[https://igg.me/at/bigbadcon2022](https://igg.me/at/bigbadcon2022 "https://igg.me/at/bigbadcon2022")", "Support us on Indiegogo", "pig" %} -->
+{% iconLink "https://igg.me/at/bigbadcon2022", "Support us on Indiegogo", "pig" %}
