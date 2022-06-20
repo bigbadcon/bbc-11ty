@@ -1,5 +1,5 @@
 ---
-layout: ''
+layout: 'layouts/page.njk'
 title: Hotel
 description: ''
 ogImage: "/images/hyatt-768x419.jpg"
