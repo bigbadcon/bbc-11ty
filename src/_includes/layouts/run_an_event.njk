@@ -26,6 +26,7 @@
                         </header>
                         {# TODO: Get Submit working. Make sure to zero out everything on submit #}
                         <form action="post" class="mt-base" id="form-run-an-event">
+                            {# TODO: add honeypot #}
                             <input type="hidden" x-model="eventInfo.userDisplayName" x-init="eventInfo.userDisplayName = user && user.displayName; $watch('user', value => eventInfo.userDisplayName = value && value.displayName)">
                             {# Personal Info #}
                             <fieldset>
@@ -50,7 +51,22 @@
                                         <option>18+</option>
                                     </select>
                                 </div>
+
                             </fieldset>
+                            <fieldset>
+                                <legend>Community Standards Agreement</legend>
+                                <div class="prose mb-sm">
+                                    <p>Big Bad Con is committed to cultivating a culture of respect, support, and kindness at both our in-person and online events. We ask that all of our attendees agree to abide by our Community Standards, please take a moment to read them before answering yes below.</p>
+                                    <p>{% iconLink "/community-standards", "Community Standards", "scroll" %}</p>
+                                </div>
+                                <div class="required">
+                                    <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-model="eventInfo.communityStandards" required>
+                                    <label for="agree-to-community-standards" class="text-body-highlight"3324>
+                                        Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Big Bad Con Community Standards
+                                    </label>
+                                </div>
+                            </fieldset>
+
                             {# END Personal Info #}
                             {# Event Info - Personal Info must be complete before showing #}
                             <fieldset class="transition-opacity" :class="(isPersonalInfoComplete) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
@@ -219,6 +235,7 @@
                                             <label :for="'time' + i" x-text="time"></label>
                                         </div>
                                     </template>
+
                                 </div>
                             </fieldset>
                             {# END Scheduling Info #}
@@ -261,7 +278,7 @@
                                     <label>Safety Tools</label>
                                     <template x-for="(type, i) in safetyTools">
                                         <div class="flex items-center">
-                                            <input type="checkbox" :name="'safetyTools' + i" :id="'safetyTools' + i" :value="type" @change="setCheckboxArray($el,'safeyTools')">
+                                            <input type="checkbox" :name="'safetyTools' + i" :id="'safetyTools' + i" :value="type" @change="setCheckboxArray($el,'safetyTools')">
                                             <label :for="'safetyTools' + i" x-text="type"></label>
                                         </div>
                                     </template>
@@ -415,6 +432,7 @@
                 yourAge: '', //required
                 // -- Event Info
                 eventName: '', //required
+                communityStandards: false,
                 format: '', //required
                 system: '', //required only isGame
                 playtest: '', //required only isGame
@@ -450,13 +468,32 @@
             }
 
             function convertToCreateEventAPI(eventInfo) {
+                const eventMetadataIds = [
+                    ...eventInfo.playerContributions,
+                    ...eventInfo.gameFocus,
+                    ...eventInfo.gameMood,
+                    ...eventInfo.gameGenre,
+                    ...eventInfo.contentAdvisoryOptions,
+                    ...eventInfo.panelTopic
+                ].map(id => parseInt(id));
+
                 eventInfo = {
-                    ...eventInfo,
-                    gmAge: eventInfo.yourAge,
+                    //accessabilityOptions: eventInfo.accessabilityOptions,
+                    additionalGms: eventInfo.additionalGMs,
+                    additionalRequirements: eventInfo.additionalRequirements + " Room Request: " + eventInfo.locationPref,
+                    characters: eventInfo.characters,
                     contentAdvisory: eventInfo.contentAdvisory !== "Yes", // this is a boolean in the API so we are using 1000000 is no-content-advisory; selection info goes into the eventMetadataIds
-                    eventCategoryId: eventInfo.format,
+                    eventCategoryId: parseInt(eventInfo.format),
+                    eventDescription: eventInfo.eventDescription,
+                    //eventFacilitators: eventInfo.facilitators,
+                    eventMetadataIds: eventMetadataIds,
+                    eventName: eventInfo.eventName,
                     gm: eventInfo.publicName,
+                    gmAge: eventInfo.yourAge,
                     length: eventInfo.eventLength,
+                    minPlayers: eventInfo.minPlayers,
+                    otherInfo: eventInfo.otherInfo,
+                    playerAge: eventInfo.playerAge,
                     players: eventInfo.maxPlayers,
                     playtest: (eventInfo.playtest === 'Yes')
                         ? 1
@@ -464,21 +501,17 @@
                     requestMediaEquipment: eventInfo.requestMediaEquipment === "Yes",
                     requestMediaRoom: eventInfo.requestMediaRoom === "Yes",
                     requestPrivateRoom: eventInfo.locationPref !== "No Preference", // add extra to additionalRequirements for now
-                    additionalRequirements: eventInfo.additionalRequirements + "; Room Request: " + eventInfo.locationPref,
-                    eventMetadataIds: [
-                        ...eventInfo.playerContributions,
-                        ...eventInfo.gameFocus,
-                        ...eventInfo.gameMood,
-                        ...eventInfo.gameGenre,
-                        ...eventInfo.contentAdvisoryOptions,
-                        ...eventInfo.panelTopic
-                    ],
-                    schedulePref: eventInfo
-                        .schedulePref
-                        .toString(),
+                    runNumberOfTimes: parseInt(eventInfo.runNumberOfTimes),
                     safetyTools: eventInfo
                         .safetyTools
-                        .toString()
+                        .toString(),
+                    schedulingPref: eventInfo
+                        .schedulePref
+                        .toString(),
+                    system: eventInfo.system,
+                    tableType: eventInfo.tableType,
+                    triggerWarnings: eventInfo.triggerWarnings,
+                    userDisplayName: eventInfo.userDisplayName
                 }
                 return eventInfo;
             }
@@ -490,6 +523,7 @@
                         // -- Personal Info
                         publicName: '', //required
                         yourAge: '', //required
+                        communityStandards: false,
                         // -- Event Info
                         eventName: '', //required
                         format: '', //required
@@ -526,7 +560,7 @@
                         additionalRequirements: '', //not required
                     },
                     get isPersonalInfoComplete() {
-                        return [this.eventInfo.publicName, this.eventInfo.yourAge].every(isNotEmptyString);
+                        return [this.eventInfo.publicName, this.eventInfo.yourAge].every(isNotEmptyString) && this.eventInfo.communityStandards;
                     },
                     get isEventInfoComplete() {
                         let fields = [this.eventInfo.eventName, this.eventInfo.format, this.eventInfo.eventDescription]
@@ -612,6 +646,8 @@
                         window.scroll({top: y, behavior: 'smooth'});
                     },
                     async createEvent() {
+                        const eventInfo = convertToCreateEventAPI(this.eventInfo)
+                        console.log(eventInfo)
                         let data = await fetchData('/events/create', {
                             method: 'PUT',
                             body: convertToCreateEventAPI(this.eventInfo)
