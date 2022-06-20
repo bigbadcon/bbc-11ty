@@ -21,9 +21,13 @@ Big Bad Con Group Rate: $139/night ([booking link](https://www.hyatt.com/en-US/g
 
 {% iconLink "/hotel", "Hotel Information", "hotel" %}
 
-## Will there be a Dealer Room or Small Press Showcase at Big Bad Online?
+## Will there be a Dealer Room or Small Press Showcase?
 
-Big Bad Online is a more focused event than our in-person Big Bad Con. With Big Bad Online we wanted to have a different event showcasing diverse speakers from across the game community. Several small press designers will be speakers at this event. We hope to bring back our in-person Big Bad Con in 2022, with a lively dealer area and small press spotlight.
+Yes, you can find out more about each of those here:
+
+{% iconLink "/exhibitor-information", "Exhibitor Information", "hotel" %}
+
+{% iconLink "/small-press-showcase", "Small Press Showcase", "hotel" %}
 
 ## Where are all the games at Big Bad Online?
 
