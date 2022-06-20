@@ -20,5 +20,6 @@ fields:
 pages:
 - src/covid-safety.md
 - src/faq.md
+- src/hotel.md
 - src/rangers.md
 - src/staff.md

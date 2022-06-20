@@ -7,10 +7,10 @@ image: ''
 alt: ''
 
 ---
-Big Bad Con to returning in person October 27-30, 2022!
+Big Bad Con is happening October 27-30, 2022! Sign up now!
 
-<!-- {% iconLink "/register", "Register", "badge" %} -->
+ {% iconLink "[https://igg.me/at/bigbadcon2022](https://igg.me/at/bigbadcon2022 "https://igg.me/at/bigbadcon2022")", "Pledge for a Badge", "badge" %}
 
-<!-- {% iconLink "https://www.mightycause.com/story/Bigbadonline2022", "Support Our Fundraiser", "pig" %} -->
+{% iconLink "[https://www.hyatt.com/en-US/group-booking/SFOBU/G-BBC3](https://www.hyatt.com/en-US/group-booking/SFOBU/G-BBC3 "https://www.hyatt.com/en-US/group-booking/SFOBU/G-BBC3")", "Book a Room", "badge" %}
 
 {% iconLink "/faq", "FAQ", "faq" %}
