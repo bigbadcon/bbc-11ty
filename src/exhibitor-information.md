@@ -27,12 +27,12 @@ Big Bad Con is a charity event, and that commitment to giving extends to our exh
 **Hotel Information**
 
 Hyatt Regency San Francisco Airport  
- 1333 Old Bayshore Highway  
- Burlingame, CA 94010
+1333 Old Bayshore Highway  
+Burlingame, CA 94010
 
 * Dealers room will be in the Grand Peninsula.
 * Direct loading/unloading access available.
-* See [here ](/hotel)for more hotel information.
+* See [here](/hotel) for more hotel information.
 
 ### Booth Information
 
