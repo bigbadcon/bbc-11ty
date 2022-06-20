@@ -19,6 +19,7 @@ fields:
   description: Twitter/Facebook social image card
 pages:
 - src/covid-safety.md
+- src/exhibitor-information.md
 - src/faq.md
 - src/hotel.md
 - src/rangers.md
