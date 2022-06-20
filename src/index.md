@@ -8,8 +8,10 @@ tags: pages
 ---
 ## Big Bad Con 2022
 
-**Big Bad Con is returning October 27-30** at the Hyatt Regency near San Francisco Airport. We're so excited to see our friends, meet new people, and play games together! 
+**Big Bad Con is returning October 27-30** at the Hyatt Regency near San Francisco Airport. We're so excited to see our friends, meet new people, and play games together!
 
-To cover the costs of hosting the event, we'll be running an Indiegogo campaign starting June 21. There you'll be able to buy a badge, sign up for online games before the con, and secure the illustrious backer pin! To stay connected and find out more [sign up here.](https://igg.me/at/bigbadcon2022)
+To cover the costs of hosting the event, we're running an [Indiegogo campaign](https://igg.me/at/bigbadcon2022). There you'll be able to buy a badge, sign up for online games before the con, and secure the illustrious backer pin.
 
-For more updates about the con, including COVID safety precautions, game submissions, and hotel info stay tuned to our [blog](/blog)!
+Once we hit our funding level, stretch goal we reach will make the con even better!
+
+<!-- {% iconLink "[https://igg.me/at/bigbadcon2022](https://igg.me/at/bigbadcon2022 "https://igg.me/at/bigbadcon2022")", "Support us on Indiegogo", "pig" %} -->
