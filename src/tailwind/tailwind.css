@@ -166,7 +166,7 @@
 /*                                    Forms                                   */
 /* -------------------------------------------------------------------------- */
 
-input[type="text"], input[type="password"], input[type="email"] {
+input[type="text"], input[type="password"], input[type="email"], input[type="phone"] {
   @apply px-sm py-xs border rounded-md bg-form border-body text-body focus:ring-highlight focus:border-highlight;
 }
 
@@ -219,7 +219,21 @@ input[type="checkbox"] ~ label {
 }
 
 .error-required {
-  @apply bg-card p-sm rounded-md after:content-['required'] after:ml-xs after:text-highlight after:italic after:font-bold;
+  @apply bg-card p-sm rounded-md;
+}
+.error-required:after {
+  @apply ml-xs text-highlight italic font-bold;
+  content: 'required';
+}
+/* If specific data error text specified use that instead */
+.error-required[data-error]:after {
+  content: attr(data-error);
+}
+
+/* Used on Run an Event Additional Info */
+.checkbox-grid {
+  @apply grid gap-x-sm;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
 }
 
 /* -------------------------------------------------------------------------- */

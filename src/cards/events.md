@@ -5,10 +5,10 @@ published: true
 order: 
 
 ---
-Thank you all for making Big Bad Online 2022 an amazing success!
+
+Submit an event for Big Bad Con 2022!
 
 <!-- {% iconLink "/events", "Events", "calendar-clock" %} -->
-
-{% iconLink "/run-an-event", "Run an Event", "calendar-clock" %}
+{% iconLink "run-an-event", "Run An Event", "dice" %}
 
 {% iconLink "/past-events", "Past Events", "library" %}
