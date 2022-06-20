@@ -1,15 +1,13 @@
 ---
 layout: ''
 title: Hotel
-description: ''
+description: Big Bad Con will be hosted at the Hyatt Regency San Francisco Airport
 ogImage: "/images/hyatt-768x419.jpg"
 
 ---
-## Where will it be?
+Big Bad Con will be hosted by the
 
-Big Bad Con will be hosted by the 
-
-Hyatt Regency San Francisco Airport  
+**Hyatt Regency San Francisco Airport**  
 1333 Old Bayshore Hwy  
 Burlingame, CA 94010
 
@@ -23,11 +21,7 @@ Big Bad Con Group Rate: $139/night ([booking link](https://www.hyatt.com/en-US/g
 
 ### Shuttle Service
 
-The Hyatt offers a free shuttle that runs ever 10-15 minutes. At SFO, go to the area marked “Hotel Shuttle.” The bus is marked “Hyatt Regency and Marriott.” [**Click here**](https://ips-systems.com/Sentry/Anon/40) to track the shuttle location.
-
-Shuttle Service
-
-The Hyatt offers a free shuttle that runs ever 10-15 minutes. At SFO, go to the area marked “Hotel Shuttle.” The bus is marked “Hyatt Regency and Marriott.” [**Click here**](https://ips-systems.com/Sentry/Anon/40) to track the shuttle location.
+The Hyatt offers a free shuttle that runs ever 10-15 minutes. At SFO, go to the area marked “**Hotel Shuttle**.” The bus is marked “**Hyatt Regency and Marriott**.” [**Click here**](https://ips-systems.com/Sentry/Anon/40) to track the shuttle location.
 
 ### Parking
 
