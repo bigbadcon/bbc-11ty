@@ -5,9 +5,9 @@ description: ''
 ogImage: ''
 
 ---
-**Returning from Big Bad Con 2019**, the Small Press Showcase is a space for self publishers, small press, crafters, and artists to vend their games, art, and creative works. Open the same hours as the [**Dealer’s Room**](/exhibitor-information), the Small Press Showcase is free to any vendor already attending the con.
+**Returning from Big Bad Con 2019**, the Small Press Showcase is a space for self publishers, small press, crafters, and artists to vend their games, art, and creative works. The Small Press Showcase is free to any vendor attending the con.
 
-How it works:
+### How it works:
 
 Once you have a **badge**, fill out the **Small Press Vendor Signup form** (still in development) to become one of our small press showcase vendors, then and book yourself in vending spots on the schedule.
 
