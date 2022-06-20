@@ -25,7 +25,8 @@
                             </p>
                         </header>
                         {# TODO: Get Submit working. Make sure to zero out everything on submit #}
-                        <form action="post" class="mt-base" id="form-run-an-event">
+                        <form action="post" class="mt-base" id="form-run-an-event" @submit.prevent="submitEvent">
+                            {# TODO: add honeypot #}
                             <input type="hidden" x-model="eventInfo.userDisplayName" x-init="eventInfo.userDisplayName = user && user.displayName; $watch('user', value => eventInfo.userDisplayName = value && value.displayName)">
                             {# Personal Info #}
                             <fieldset>
@@ -39,7 +40,7 @@
                                 </div>
                                 <div class="required">
                                     <label for="yourAge">
-                                        Your age as of
+                                        Your age at start of con
                                         <span>{{sitemeta.eventDate}}</span>
                                     </label>
                                     <select id="yourAge" name="yourAge" x-model="eventInfo.yourAge" @change="if (eventInfo.yourAge === '13+') eventInfo.playerAge = '13+'" @blur="validate">
@@ -50,7 +51,22 @@
                                         <option>18+</option>
                                     </select>
                                 </div>
+
                             </fieldset>
+                            <fieldset>
+                                <legend>Community Standards Agreement</legend>
+                                <div class="prose mb-sm">
+                                    <p>Big Bad Con is committed to cultivating a culture of respect, support, and kindness at both our in-person and online events. We ask that all of our attendees agree to abide by our Community Standards, please take a moment to read them before answering yes below.</p>
+                                    <p>{% iconLink "/community-standards", "Community Standards", "scroll" %}</p>
+                                </div>
+                                <div class="required">
+                                    <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-model="eventInfo.communityStandards" required>
+                                    <label for="agree-to-community-standards" class="text-body-highlight"3324>
+                                        Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Big Bad Con Community Standards
+                                    </label>
+                                </div>
+                            </fieldset>
+
                             {# END Personal Info #}
                             {# Event Info - Personal Info must be complete before showing #}
                             <fieldset class="transition-opacity" :class="(isPersonalInfoComplete) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
@@ -219,6 +235,7 @@
                                             <label :for="'time' + i" x-text="time"></label>
                                         </div>
                                     </template>
+
                                 </div>
                             </fieldset>
                             {# END Scheduling Info #}
@@ -253,7 +270,7 @@
                                         </div>
                                     </template>
                                 </div>
-                                <div x-show="eventInfo.playerAge === '18+'">
+                                <div x-show="eventInfo.playerAge === '18+' && eventInfo.contentAdvisory === 'Yes'">
                                     <label for="triggerWarnings">Potential trigger warnings</label>
                                     <input id="triggerWarnings" name="triggerWarnings" type="text" value="" x-model="eventInfo.triggerWarnings" class="w-full max-w-md"/>
                                 </div>
@@ -261,7 +278,7 @@
                                     <label>Safety Tools</label>
                                     <template x-for="(type, i) in safetyTools">
                                         <div class="flex items-center">
-                                            <input type="checkbox" :name="'safetyTools' + i" :id="'safetyTools' + i" :value="type" @change="setCheckboxArray($el,'safeyTools')">
+                                            <input type="checkbox" :name="'safetyTools' + i" :id="'safetyTools' + i" :value="type" @change="setCheckboxArray($el,'safetyTools')">
                                             <label :for="'safetyTools' + i" x-text="type"></label>
                                         </div>
                                     </template>
@@ -271,7 +288,7 @@
                             {# Additional Info - not required #}
                             <fieldset class="transition-opacity" :class="(isSchedulingInfoComplete) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
                                 <legend>Additional Info</legend>
-                                <div x-show="eventInfo.format === formatId('Panel')">
+                                <div x-show="eventInfo.format === formatId('Panel')" class="checkbox-grid">
                                     <label>Panel Topic</label>
                                     <template x-for="(type, i) in panelTopic">
                                         <div class="flex items-center">
@@ -282,7 +299,7 @@
                                 </div>
                                 <div x-show="isGame">
                                     <label>Game Focus</label>
-                                    <div>
+                                    <div class="checkbox-grid">
                                         <template x-for="(type, i) in gameFocus">
                                             <div class="flex items-center">
                                                 <input type="checkbox" :name="'gameFocus' + i" :id="'gameFocus' + i" :value="type.id"  @change="setCheckboxArray($el,'gameFocus')">
@@ -293,7 +310,7 @@
                                 </div>
                                 <div x-show="isGame">
                                     <label>Player Contributions</label>
-                                    <div>
+                                    <div class="checkbox-grid">
                                         <template x-for="(type, i) in playerContributions">
                                             <div class="flex items-center">
                                                 <input type="checkbox" :name="'playerContributions' + i" :id="'playerContributions' + i" :value="type.id" @change="setCheckboxArray($el,'playerContributions')">
@@ -304,7 +321,7 @@
                                 </div>
                                 <div x-show="isGame">
                                     <label>Game Genre</label>
-                                    <div>
+                                    <div class="checkbox-grid">
                                         <template x-for="(type, i) in gameGenre">
                                             <div class="flex items-center">
                                                 <input type="checkbox" :name="'gameGenre' + i" :id="'gameGenre' + i" :value="type.id" @change="setCheckboxArray($el,'gameGenre')">
@@ -315,7 +332,7 @@
                                 </div>
                                 <div x-show="isGame">
                                     <label>Game Mood</label>
-                                    <div>
+                                    <div class="checkbox-grid">
                                         <template x-for="(type, i) in gameMood">
                                             <div class="flex items-center">
                                                 <input type="checkbox" :name="'gameMood' + i" :id="'gameMood' + i" :value="type.id" @change="setCheckboxArray($el,'gameMood')">
@@ -333,8 +350,7 @@
                                     <textarea cols="30" id="additionalRequirements" name="additionalRequirements" rows="3" x-model="eventInfo.additionalRequirements"></textarea>
                                 </div>
                             </fieldset>
-                            {# <button type="submit" @click.prevent="submitEvent" :disabled="!isSchedulingInfoComplete">Submit</button> #}
-                            <button type="submit" @click.prevent="submitEvent">Submit</button>
+                            <button type="submit" :disabled="!isSchedulingInfoComplete">Submit</button>
                         </form>
                     </div>
                     {# END event submission div #}
@@ -416,6 +432,7 @@
                 yourAge: '', //required
                 // -- Event Info
                 eventName: '', //required
+                communityStandards: false,
                 format: '', //required
                 system: '', //required only isGame
                 playtest: '', //required only isGame
@@ -451,13 +468,32 @@
             }
 
             function convertToCreateEventAPI(eventInfo) {
+                const eventMetadataIds = [
+                    ...eventInfo.playerContributions,
+                    ...eventInfo.gameFocus,
+                    ...eventInfo.gameMood,
+                    ...eventInfo.gameGenre,
+                    ...eventInfo.contentAdvisoryOptions,
+                    ...eventInfo.panelTopic
+                ].map(id => parseInt(id));
+
                 eventInfo = {
-                    ...eventInfo,
-                    gmAge: eventInfo.yourAge,
+                    //accessabilityOptions: eventInfo.accessabilityOptions,
+                    additionalGms: eventInfo.additionalGMs,
+                    additionalRequirements: eventInfo.additionalRequirements + " Room Request: " + eventInfo.locationPref,
+                    characters: eventInfo.characters,
                     contentAdvisory: eventInfo.contentAdvisory !== "Yes", // this is a boolean in the API so we are using 1000000 is no-content-advisory; selection info goes into the eventMetadataIds
-                    eventCategoryId: eventInfo.format,
+                    eventCategoryId: parseInt(eventInfo.format),
+                    eventDescription: eventInfo.eventDescription,
+                    //eventFacilitators: eventInfo.facilitators,
+                    eventMetadataIds: eventMetadataIds,
+                    eventName: eventInfo.eventName,
                     gm: eventInfo.publicName,
+                    gmAge: eventInfo.yourAge,
                     length: eventInfo.eventLength,
+                    minPlayers: eventInfo.minPlayers,
+                    otherInfo: eventInfo.otherInfo,
+                    playerAge: eventInfo.playerAge,
                     players: eventInfo.maxPlayers,
                     playtest: (eventInfo.playtest === 'Yes')
                         ? 1
@@ -465,21 +501,17 @@
                     requestMediaEquipment: eventInfo.requestMediaEquipment === "Yes",
                     requestMediaRoom: eventInfo.requestMediaRoom === "Yes",
                     requestPrivateRoom: eventInfo.locationPref !== "No Preference", // add extra to additionalRequirements for now
-                    additionalRequirements: eventInfo.additionalRequirements + "; Room Request: " + eventInfo.locationPref,
-                    eventMetadataIds: [
-                        ...eventInfo.playerContributions,
-                        ...eventInfo.gameFocus,
-                        ...eventInfo.gameMood,
-                        ...eventInfo.gameGenre,
-                        ...eventInfo.contentAdvisoryOptions,
-                        ...eventInfo.panelTopic
-                    ],
-                    schedulePref: eventInfo
-                        .schedulePref
-                        .toString(),
+                    runNumberOfTimes: parseInt(eventInfo.runNumberOfTimes),
                     safetyTools: eventInfo
                         .safetyTools
-                        .toString()
+                        .toString(),
+                    schedulingPref: eventInfo
+                        .schedulePref
+                        .toString(),
+                    system: eventInfo.system,
+                    tableType: eventInfo.tableType,
+                    triggerWarnings: eventInfo.triggerWarnings,
+                    userDisplayName: eventInfo.userDisplayName
                 }
                 return eventInfo;
             }
@@ -491,6 +523,7 @@
                         // -- Personal Info
                         publicName: '', //required
                         yourAge: '', //required
+                        communityStandards: false,
                         // -- Event Info
                         eventName: '', //required
                         format: '', //required
@@ -527,7 +560,7 @@
                         additionalRequirements: '', //not required
                     },
                     get isPersonalInfoComplete() {
-                        return [this.eventInfo.publicName, this.eventInfo.yourAge].every(isNotEmptyString);
+                        return [this.eventInfo.publicName, this.eventInfo.yourAge].every(isNotEmptyString) && this.eventInfo.communityStandards;
                     },
                     get isEventInfoComplete() {
                         let fields = [this.eventInfo.eventName, this.eventInfo.format, this.eventInfo.eventDescription]
@@ -613,6 +646,8 @@
                         window.scroll({top: y, behavior: 'smooth'});
                     },
                     async createEvent() {
+                        const eventInfo = convertToCreateEventAPI(this.eventInfo)
+                        console.log(eventInfo)
                         let data = await fetchData('/events/create', {
                             method: 'PUT',
                             body: convertToCreateEventAPI(this.eventInfo)
