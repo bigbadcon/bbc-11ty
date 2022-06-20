@@ -8,7 +8,7 @@ ogImage: ''
 ---
 ## Will Big Bad Con return in-person in 2022?
 
-Signs are pointing towards yes! We're hosting Big Bad Online earlier in the year so we can prepare for an in person Big Bad Con in October. More details coming soon!
+Yes, we're coming back October 27-30. Join us!
 
 ## Will there be a Dealer Room or Small Press Showcase at Big Bad Online?
 
