@@ -139,7 +139,7 @@ document.addEventListener('alpine:init', () => {
             this.availableSlots = await fetchData('/bookings/myAvailableSlots',{}, token)
             await this.getBookedEvents()
             await this.getFavEvents()
-            this.checkRegistration()
+            // this.checkRegistration()  this was for Big Bad Online
           }
           return token
         } else return false
@@ -169,7 +169,11 @@ document.addEventListener('alpine:init', () => {
         this.user = user
         return user
       },
+      hasUserRole(role) {
+        return this.user && this.user.roles && this.user.roles.includes(role)
+      },
       async checkRegistration () {
+        // Used for Big Bad Online
         const url = `/.netlify/functions/check-registration/${this.user.id}/${this.user.userNicename}`
         try {
           const response = await fetch(url)
@@ -210,7 +214,6 @@ document.addEventListener('alpine:init', () => {
         }
       },
       async getBookedEvents() {
-        // TODO: test this
         // 1. Get ID array of my events
         let myEvents = await fetchData('/events/me/',{})
         // 2. Get event data for each ID
@@ -223,12 +226,12 @@ document.addEventListener('alpine:init', () => {
       },
       async bookEvent(id) {
         let data = await fetchData('/bookings/bookMeIntoGame',{method: 'POST',body: { gameId: id }})
-        getBookedEvents()
+        this.getBookedEvents()
         return data
       },
       async cancelBooking(id) {
         let data = await fetchData('/bookings/removeMeFromGame',{method: 'DELETE',body: { gameId: id }})
-        getBookedEvents()
+        this.getBookedEvents()
         return data
       },
       async getFavEvents() {

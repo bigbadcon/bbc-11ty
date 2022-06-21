@@ -9,7 +9,7 @@
         <div class="mx-auto max-w-content p-base">
             <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
             <div class="prose">{{ content | safe }}</div>
-            <section class="border-t-4 mt-lg pt-base mb-base text-body border-hr" x-data="volunteerSignup">
+            <section class="border-t-4 mt-lg pt-base mb-base text-body border-hr" x-data="volunteerSignup" x-init="formSubmitted = hasUserRole('volunteer'); $watch('user', v => formSubmitted = hasUserRole('volunteer'))">
                 {# State Machine:
                 1. Not logged in: display login link. When logged in check volunteer status
                 2. Logged in but not volunteer: display signup form.
@@ -28,7 +28,7 @@
                 method="POST" name="volunteer-signup" 
                 class="prose"
                 id="volunteer-signup" 
-                @submit.prevent="() => submit(user)">
+                @submit.prevent="() => { submit(user); getUserData(); }">
                     <p class="hidden">
                         <label>Don't fill this out if you're human: <input name="bot-field"/></label>
                     </p>
@@ -175,24 +175,8 @@
                             userId: user.id
                         }
                         console.log("submit", submitData)
-                        const y = 0
-
-                        const submitNow = () => {
-                            this.submitForm(submitData)
-                            this.formSubmitted = true
-                        }
-
-                        const scrollEventListener = () => {
-                            if (window.pageYOffset === 0) {
-                                submitNow();
-                                window.removeEventListener('scroll', scrollEventListener)
-                            }
-                        }
-                        function checkScrollEnd() {
-                            window.addEventListener('scroll', scrollEventListener);
-                        }
-                        checkScrollEnd()
-                        window.scroll({top: y, behavior: 'smooth'});
+                        this.submitForm(submitData)
+                        this.formSubmitted = true
                     },
                     async submitForm(submitData) {
                         // TODO: add fetch POST to serverless function
