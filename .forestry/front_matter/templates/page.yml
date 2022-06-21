@@ -5,6 +5,7 @@ fields:
 - type: text
   name: layout
   label: layout
+  default: layouts/page.njk
 - type: text
   name: title
   label: title
@@ -19,7 +20,9 @@ fields:
   description: Twitter/Facebook social image card
 pages:
 - src/covid-safety.md
+- src/exhibitor-information.md
 - src/faq.md
 - src/hotel.md
 - src/rangers.md
+- src/small-press-showcase.md
 - src/staff.md
