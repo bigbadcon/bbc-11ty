@@ -172,6 +172,9 @@ document.addEventListener('alpine:init', () => {
       hasUserRole(role) {
         return this.user && this.user.roles && this.user.roles.includes(role)
       },
+      get isVolunteer() {
+        return this.user && this.user.roles && this.user.roles.includes('volunteer')
+      },
       async checkRegistration () {
         // Used for Big Bad Online
         const url = `/.netlify/functions/check-registration/${this.user.id}/${this.user.userNicename}`

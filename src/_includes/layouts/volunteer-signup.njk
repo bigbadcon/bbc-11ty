@@ -9,7 +9,7 @@
         <div class="mx-auto max-w-content p-base">
             <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
             <div class="prose">{{ content | safe }}</div>
-            <section class="border-t-4 mt-lg pt-base mb-base text-body border-hr" x-data="volunteerSignup" x-init="formSubmitted = hasUserRole('volunteer'); $watch('user', v => formSubmitted = hasUserRole('volunteer'))">
+            <section class="border-t-4 mt-lg pt-base mb-base text-body border-hr" x-data="volunteerSignup" x-init="formSubmitted = isVolunteer; $watch('user', v => formSubmitted = isVolunteer)">
                 {# State Machine:
                 1. Not logged in: display login link. When logged in check volunteer status
                 2. Logged in but not volunteer: display signup form.
