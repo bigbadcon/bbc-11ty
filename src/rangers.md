@@ -1,5 +1,5 @@
 ---
-layout: layouts/page.njk
+layout: layouts/volunteer-signup.njk
 title: Join The Rangers
 description: ''
 tags: pages

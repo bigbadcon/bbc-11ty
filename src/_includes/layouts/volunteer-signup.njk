@@ -8,23 +8,27 @@
     <main id="content">
         <div class="mx-auto max-w-content p-base">
             <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
-
-            <section class="my-base text-body" x-data="volunteerSignup">
+            <div class="prose">{{ content | safe }}</div>
+            <section class="border-t-4 mt-lg pt-base mb-base text-body border-hr" x-data="volunteerSignup">
                 {# State Machine:
                 1. Not logged in: display login link. When logged in check volunteer status
                 2. Logged in but not volunteer: display signup form.
                 3. Logged in and registered: display thank you 
                 #}
                 {# Login disclaimer: only show if not logged in #}
+                <header class="prose">
+                    <h2 id="signup">Volunteer Signup Form</h2>
+                </header>
                 <div x-cloak x-show="!isAuth" class="prose">
                     <p>You must <button @click="modal = 'login'" class="font-bold text-highlight">login</button> to signup as a volunteer.</p>
                 </div>
                 {# Register form; only show if logged in #}
                 {# TODO: make this only show if not already a volunteer. Not sure if this is possible with API #}
-                <form x-cloak x-show="isAuth"
+                <form x-cloak x-show="isAuth && !formSubmitted"
                 method="POST" name="volunteer-signup" 
                 class="prose"
-                @submit.prevent="console.log('submitted')">
+                id="volunteer-signup" 
+                @submit.prevent="() => submit(user)">
                     <p class="hidden">
                         <label>Don't fill this out if you're human: <input name="bot-field"/></label>
                     </p>
@@ -86,9 +90,8 @@
 
                 {# You are signed up notification. Show only when signed up and logged in.  #}
                 <div x-cloak x-show="isAuth && formSubmitted === true" class="prose">
-                    <h2>Thank you for signing up as a volunteer!</h2>
-                    <p>Head on over to our [Volunteer Shifts](/volunteer-shifts) page and book a shift!</p>
-                    {# <div class="prose">{{ content | safe }}</div> #}
+                    <h3>Thank you for signing up as a volunteer!</h3>
+                    <p>Head on over to our <a href="/volunteer-shifts">Volunteer Shifts</a> page and book a shift!</p>
                 </div>
             </section>
         </div>
@@ -109,7 +112,7 @@
             const validatePhone = (txt) => {
                 return String(txt)
                     .toLowerCase()
-                    .match(/^(\([0-9]{3}\)\s*|[0-9]{3}\-)[0-9]{3}-[0-9]{4}$/);
+                    .match(/^([+]?\d{1,2}[-\s]?|)\d{3}[-\s]?\d{3}[-\s]?\d{4}$/);
             };
 
             // Used to void variables
@@ -132,7 +135,7 @@
                         communityStandards: false
                     },
                     get isFormComplete() {
-                        return [this.formData.yourAge, this.formData.phone].every(isNotEmpty) && this.eventInfo.communityStandards;
+                        return [this.formData.yourAge, this.formData.phone].every(isNotEmpty) && this.formData.communityStandards;
                     },
                     validate(event, options) {
                         options = {
@@ -164,12 +167,18 @@
                                 .remove('error-required');
                         }
                     },
-                    submit() {
-                        console.log("submit", this.formData)
+                    submit(user) {
+                        const submitData = {
+                            ...this.formData,
+                            userEmail: user.userEmail,
+                            displayName: user.displayName,
+                            userId: user.id
+                        }
+                        console.log("submit", submitData)
                         const y = 0
 
                         const submitNow = () => {
-                            this.submitForm()
+                            this.submitForm(submitData)
                             this.formSubmitted = true
                         }
 
@@ -185,8 +194,30 @@
                         checkScrollEnd()
                         window.scroll({top: y, behavior: 'smooth'});
                     },
-                    async submitForm() {
+                    async submitForm(submitData) {
                         // TODO: add fetch POST to serverless function
+                        const options = {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json;charset=utf-8'
+                            },
+                            body: JSON.stringify(submitData)
+                        }
+
+                        const url = "/.netlify/functions/volunteer-signup"
+
+                        try {
+                            let response = await fetch(url, options)
+                            console.log(`RESPONSE:fetch for ${url}`, response)
+                            if (response.status !== 200) 
+                                throw `fetch fail status: ${response.status}`
+                            let result = await response.json()
+                            console.log(`RESULT:fetch for ${url}`, result)
+                            return result
+                        } catch (err) {
+                            console.error(`ERROR:fetch for ${url}`, err)
+                            return false
+                        }
                     },
                     zeroFormData() {
                         // Zero out all the form fields
