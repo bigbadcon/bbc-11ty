@@ -29,9 +29,9 @@ Yes, you can find out more about each of those here:
 
 {% iconLink "/small-press-showcase", "Small Press Showcase", "hotel" %}
 
-## Where are all the games at Big Bad Online?
+## <!-- Where are all the games at Big Bad Online? -->
 
-There are no scheduled games at Big Bad Online. We will have a Big Bad Online 2022 Discord the day of the event where people can chat and jump off into games if they like. You can register for the Big Bad Online Discord [here](/register). Note this is separate Discord from our year-round [Community Discord](/community-discord).
+<!-- There are no scheduled games at Big Bad Online. We will have a Big Bad Online 2022 Discord the day of the event where people can chat and jump off into games if they like. You can register for the Big Bad Online Discord [here](/register). Note this is separate Discord from our year-round [Community Discord](/community-discord). -->
 
 ## Is Big Bad Con an official non-profit? Are my donations tax deductible?
 
