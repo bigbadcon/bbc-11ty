@@ -6,7 +6,7 @@ tags: pages
 ogImage: ''
 
 ---
-## Will Big Bad Con return in-person in 2022?
+## Will Big Bad Con return in-person?
 
 Yes, we're coming back October 27-30. Join us!
 
