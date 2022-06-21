@@ -7,6 +7,10 @@ import 'dotenv/config'
 const eventName = 'Extradimensional Bunny Squad'
 const eventDescription = 'A elite squad of dimension hopping bunnies come into the world of Torg in search of the One True Carrot!'
 
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 //  Run headless simulation
 test.use({
     headless: false, 
@@ -68,6 +72,9 @@ test.describe('Submit Run An Event Form', () => {
         // Select 18+
         await page.locator('select[name="yourAge"]').selectOption('18+');
 
+        // Check community standards
+        await page.locator('input#agree-to-community-standards').check();
+
         // Click input[name="eventName"]
         await page.locator('input[name="eventName"]').click();
 
@@ -75,7 +82,7 @@ test.describe('Submit Run An Event Form', () => {
         await page.locator('input[name="eventName"]').fill(eventName);
 
         // select RPG
-        await page.locator('select[name="format"]').selectOption('8');
+        await page.locator('select[name="format"]').selectOption('RPG');
 
         // Click input[name="system"]
         await page.locator('input[name="system"]').click();
@@ -167,14 +174,21 @@ test.describe('Submit Run An Event Form', () => {
         // Check input[name="gameGenre12"]
         await page.locator('input[name="gameGenre12"]').check();
 
+        await page.locator('textarea[name="additionalGMs"]').fill('I have a dozen real bunnies that will help me GM!');
+
+        await page.locator('textarea[name="additionalRequirements"]').fill('I need a bushel of carrots for the game and to feed my bunnies!');
+
         await expect(page.locator('#content form button[type="submit"]')).toBeEnabled();
+
+        // await delay(5000);
 
         // Click text=Submit Your Event * required field Personal Info Public Badge Name We encourage  >> button
         await page.locator('#content form button[type="submit"]').click();
 
-        await expect(page.locator('#event-submitted')).toBeVisible()
+        await expect(page.locator('#event-submitted')).toBeVisible();
 
-        await expect(page.locator('#event-submitted span[x-text="formatType"]')).toHaveText('RPG')
+        await expect(page.locator('#event-submitted span[x-text="eventInfo.format"]')).toHaveText('RPG')
+        
         await expect(page.locator('#event-submitted span[x-text="eventInfo.eventName"]')).toHaveText(eventName)
 
     });

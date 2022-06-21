@@ -24,7 +24,6 @@
                                 <em>required field</em>
                             </p>
                         </header>
-                        {# TODO: Get Submit working. Make sure to zero out everything on submit #}
                         <form action="post" class="mt-base" id="form-run-an-event" @submit.prevent="submitEvent">
                             {# TODO: add honeypot #}
                             <input type="hidden" x-model="eventInfo.userDisplayName" x-init="eventInfo.userDisplayName = user && user.displayName; $watch('user', value => eventInfo.userDisplayName = value && value.displayName)">
@@ -80,7 +79,7 @@
                                     <select id="format" name="format" x-model="eventInfo.format" @blur="validate">
                                         <option :disabled="eventInfo.format !== ''" selected value="">-- Choose One --</option>
                                         <template x-for="type in format">
-                                            <option :value="type.id" x-text="type.name"></option>
+                                            <option :value="type.name" x-text="type.name"></option>
                                         </template>
                                     </select>
                                 </div>
@@ -104,11 +103,10 @@
                                     <label for="otherInfo">Other info we should know (this will not go in the program)</label>
                                     <textarea cols="30" id="otherInfo" name="otherInfo" rows="3" x-model="eventInfo.otherInfo"></textarea>
                                 </div>
-                                <div>
-                                    {# TODO: get image upload working #}
+                                {# <div>
                                     <label for="imageUpload">Image Upload (NOT CURRENTLY WORKING)</label>
                                     <input id="imageUpload" name="imageUpload" type="text" value="" x-model="eventInfo.imageUpload"/>
-                                </div>
+                                </div> #}
                             </fieldset>
                             {# END Event Info #}
                             {# Player/Attendee Info - all above must be completed #}
@@ -357,7 +355,7 @@
                     {# event submitted #}
                     <div class="prose" x-show="eventSubmitted" id="event-submitted">
                         <h2>Thanks for submitting your event!</h2>
-                        <p>Our staff will review your <span x-text="formatType"></span> event, <span x-text="eventInfo.eventName" class="italic font-bold"></span>, and let you know about scheduling it!</p>
+                        <p>Our staff will review your <span x-text="eventInfo.format"></span> event, <span x-text="eventInfo.eventName" class="italic font-bold"></span>, and let you know about scheduling it!</p>
                         <p>You can <button @click="submitNewEvent" class="font-bold underline text-highlight">submit another event</button> now if you'd like.</p>
                     </div>
                     {# Testing purposes only #}
@@ -488,6 +486,7 @@
                     //eventFacilitators: eventInfo.facilitators,
                     eventMetadataIds: eventMetadataIds,
                     eventName: eventInfo.eventName,
+                    format: eventInfo.format,
                     gm: eventInfo.publicName,
                     gmAge: eventInfo.yourAge,
                     length: eventInfo.eventLength,
@@ -622,15 +621,12 @@
                         } //TODO: add test to see if isNumber
                     },
                     submitEvent() {
-                        console.log("submit", this.eventInfo)
+                        console.log("submit", convertToCreateEventAPI(this.eventInfo))
                         const y = 0
 
                         const submitNow = () => {
                             this.createEvent()
                             this.eventSubmitted = true
-                            // console.log("api", JSON.stringify(convertToCreateEventAPI(this.eventInfo)))
-                            // Zero out all the form fields
-                            // this.eventInfo = eventInfoDefault
                         }
 
                         const scrollEventListener = () => {
@@ -747,27 +743,17 @@
                             .id
                             .toString()
                     },
-                    get formatType() {
-                        const id = parseFloat(this.eventInfo.format)
-                        const name = (id)
-                            ? this
-                                .format
-                                .find(e => e.id === parseFloat(this.eventInfo.format))
-                                .name
-                            : ''
-                        return name
-                    },
                     get isGame() {
-                        return this.eventInfo.format === "8" || this.eventInfo.format === "9" || this.eventInfo.format === "10"
+                        return this.eventInfo.format === "RPG" || this.eventInfo.format === "LARP" || this.eventInfo.format === "Board/Card Game"
                     },
                     get isRPGorLARP() {
-                        return this.eventInfo.format === "8" || this.eventInfo.format === "9"
+                        return this.eventInfo.format === "RPG" || this.eventInfo.format === "LARP"
                     },
                     get isTableTop() {
-                        return this.eventInfo.format === "8" || this.eventInfo.format === "10"
+                        return this.eventInfo.format === "RPG" || this.eventInfo.format === "Board/Card Game"
                     },
                     get isBoardgame() {
-                        return this.eventInfo.format === "10"
+                        return this.eventInfo.format === "Board/Card Game"
                     },
                     format: [
                         {
