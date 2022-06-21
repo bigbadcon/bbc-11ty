@@ -21,6 +21,10 @@ Big Bad Con Group Rate: $139/night ([booking link](https://www.hyatt.com/en-US/g
 
 {% iconLink "/hotel", "Hotel Information", "hotel" %}
 
+## What safety precautions are we taking?
+
+Find out about our COVID safety policies and risk mitigations efforts [here](/covid-safety).
+
 ## Will there be a Dealer Room or Small Press Showcase?
 
 Yes, you can find out more about each of those here:
