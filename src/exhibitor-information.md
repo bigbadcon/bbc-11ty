@@ -1,5 +1,5 @@
 ---
-layout: ''
+layout: layouts/page.njk
 title: Exhibitor Information
 description: ''
 ogImage: ''
