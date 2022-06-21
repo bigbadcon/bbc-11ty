@@ -230,7 +230,7 @@ document.addEventListener('alpine:init', () => {
         return data
       },
       async cancelBooking(id) {
-        let data = await fetchData('/bookings/removeMeFromGame',{method: 'DELETE',body: { gameId: id }})
+        let data = await fetchData('/bookings/removeMeFromGame',{method: 'DELETE',body: { gameId: id, guid: id }})
         this.getBookedEvents()
         return data
       },
