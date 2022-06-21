@@ -135,7 +135,7 @@ document.addEventListener('alpine:init', () => {
           this.lastLogin = dayjs()
           if (token) {
             // Need to pass token for first couple since there is a delay with the $persist code storing it
-            this.user = await fetchData('/users/me',{},token)
+            await this.getUserData(token)
             this.availableSlots = await fetchData('/bookings/myAvailableSlots',{}, token)
             await this.getBookedEvents()
             await this.getFavEvents()
@@ -155,11 +155,19 @@ document.addEventListener('alpine:init', () => {
         this.volunteerEventSpaces = []
         this.bboDiscordInvite = null
       },
-      async getUserData() {
-        // TODO: do we need this for more than the login?
-        const data = await fetchData('/users/me')
-        this.user = data
-        return data
+      async getUserData(token) {
+        token = token || this.authToken
+        let user = await fetchData('/users/me',{}, token)
+        const userMetadata = metadataArrayToObject(user.metadata)
+        const userRoles = [...userMetadata.wp_tuiny5_capabilities.matchAll(/"([a-z]+)/g)].map( (match) => match[1])
+        user = {
+          ...user,
+          metadata: userMetadata,
+          roles: userRoles
+        }
+        console.log("user data transformed",user);
+        this.user = user
+        return user
       },
       async checkRegistration () {
         const url = `/.netlify/functions/check-registration/${this.user.id}/${this.user.userNicename}`
