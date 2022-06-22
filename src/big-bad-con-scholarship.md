@@ -22,3 +22,15 @@ If you would like to contribute to the Scholarship Fund, there are a few ways to
 * You can also donate direct vial our [PayPal giving fund](https://www.paypal.com/us/fundraiser/charity/1653860).
 
 Any contributions made after September will be set aside for next year’s fund. Thank you very much for your support!
+
+### History
+
+We started the scholarship program in 2015. Here's the number of people we've been able to give financial support to so far. We're delighted that the program has grown every year!
+
+* 2019: 20 awards
+* 2018 13 awards
+* 2017: 11 awards
+* 2016: 7 awards
+* 2015: 4 awards
+
+{% iconLink "[https://www.paypal.com/us/fundraiser/charity/1653860](https://www.paypal.com/us/fundraiser/charity/1653860 "https://www.paypal.com/us/fundraiser/charity/1653860")", "Donate Now ", "paw" %}
