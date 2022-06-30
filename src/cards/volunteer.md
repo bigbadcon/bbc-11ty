@@ -7,6 +7,6 @@ published: true
 ---
 Big Bad Con is a purely volunteer run organization. Join the Rangers and be part of the team!
 
-{% iconLink "/rangers", "Join The Rangers", "paw" %}
+[Join The Rangers](/rangers){.icon-paw}
 
-{% iconLink "/volunteer-shifts", "Volunteer Shifts", "calendar-clock" %}
+[Volunteer Shifts](/volunteer-shifts){.icon-calendar-clock}
