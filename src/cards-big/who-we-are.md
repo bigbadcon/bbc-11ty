@@ -9,6 +9,6 @@ alt: Big Bad Con 2019 attendees playing a game
 Big Bad Con is a tabletop and live action gaming convention featuring fantastic games and even better company!
 We’re a volunteer run [501c3 non-profit](/non-profit) organization comprised of wonderful volunteers, staff, GMs, and players.
 
-{% iconLink "/community-standards", "Community Standards", "scroll" %}
+[Community Standards](/community-standards){.icon-scroll}
 
-{% iconLink "/staff", "Our Staff", "wolf" %}
+[Our Staff](/staff){.icon-wolf}
