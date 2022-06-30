@@ -43,6 +43,8 @@
     "eleventy-plugin-blog-tools": "^0.3.1",
     "google-spreadsheet": "^3.1.15",
     "lite-youtube-embed": "^0.2.0",
+    "markdown-it": "^13.0.1",
+    "markdown-it-attrs": "^4.1.4",
     "node-fetch": "^3.1.0",
     "postcss": "latest",
     "postcss-cli": "latest",
@@ -55,8 +57,6 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.22.2",
-    "markdown-it": "^13.0.1",
-    "markdown-it-attrs": "^4.1.4",
     "svg-sprite-generator": "^0.0.7"
   }
 }
