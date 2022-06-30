@@ -9,10 +9,10 @@ alt: ''
 ---
 Sign up now:
 
-{% iconLink "https://igg.me/at/bigbadcon2022", "Pledge for a Badge", "badge" %}
+[Pledge for a Badge](https://igg.me/at/bigbadcon2022){.icon-badge}
 
-{% iconLink "https://www.hyatt.com/en-US/group-booking/SFOBU/G-BBC3", "Book a Room", "hotel" %}
+[Book a Room](https://www.hyatt.com/en-US/group-booking/SFOBU/G-BBC3){.icon-hotel}
 
-{% iconLink "/faq", "FAQ", "faq" %}
+[FAQ](/faq){.icon-faq}
 
-{% iconLink "/big-bad-con-scholarship", "Scholarship", "paw" %}
+[Scholarship](/big-bad-con-scholarship){.icon-paw}
