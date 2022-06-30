@@ -279,33 +279,33 @@ input[type="checkbox"] ~ label {
 }
 
 /* --------------------------- Icon Link Shortcode -------------------------- */
-.icon-link, .icon {
+.iconlink, .icon {
   @apply flex items-center space-x-sm text-highlight;
   text-decoration: none !important;
 }
-.icon-link:hover {
+.iconlink:hover {
   text-decoration: underline !important;
 }
-.icon-link__icon,
+.iconlink__icon,
 .light .icon-link__icon {
   @apply w-6 h-6 flex-shrink-0;
   filter: drop-shadow(0 0.1rem 0.1rem rgba(230, 255, 230, 0.4))
 }
 @media (prefers-color-scheme: dark) {
-  .icon-link__icon {
+  .iconlink__icon {
     filter: drop-shadow(0 0.1rem 0.1rem rgba(0, 0, 50, 0.4))
   }
 }
-.dark .icon-link__icon {
+.dark .iconlink__icon {
   filter: drop-shadow(0 0.1rem 0.1rem rgba(0, 0, 50, 0.4))
 }
-.icon-link__title {
+.iconlink__title {
   @apply text-body-highlight font-serif;
   font-size: 1.3em;
   line-height: 0.9;
 }
 /* Needed for cards on homepage */
-.prose p .icon-link {
+.prose p .iconlink {
   margin: -.4em 0 0;
 }
 /* Make sure favved are highlighted */
@@ -322,6 +322,145 @@ input[type="checkbox"] ~ label {
 
 .fill-body {
   fill: var(--body);
+}
+
+/* ------------------------------ Icon Link V2 ------------------------------ */
+
+[class^='icon-'] {
+  @apply text-body-highlight font-serif no-underline flex items-center gap-sm;
+  font-size: 1.3em;
+  line-height: 0.9;
+  text-decoration-color: var(--highlight);
+}
+
+[class^='icon-']:hover {
+  @apply underline;
+}
+
+[class^='icon-']:before {
+  @apply block h-6 w-6 bg-highlight bg-gradient-to-br from-highlight to-highlight-2;
+  mask-repeat: no-repeat;
+  content: " ";
+}
+
+.icon-add:before {
+  mask-image: url(/static/svgs/add.svg)
+}
+
+.icon-badge:before {
+  mask-image: url(/static/svgs/badge.svg)
+}
+
+.icon-book:before {
+  mask-image: url(/static/svgs/book.svg)
+}
+
+.icon-calendar-clock:before {
+  mask-image: url(/static/svgs/calendar-clock.svg)
+}
+
+.icon-calendar-star:before {
+  mask-image: url(/static/svgs/calendar-star.svg)
+}
+
+.icon-dice:before {
+  mask-image: url(/static/svgs/dice.svg)
+}
+
+.icon-discord:before {
+  mask-image: url(/static/svgs/discord.svg)
+}
+
+.icon-envelope:before {
+  mask-image: url(/static/svgs/envelope.svg)
+}
+
+.icon-faq:before {
+  mask-image: url(/static/svgs/faq.svg)
+}
+
+.icon-hotel:before {
+  mask-image: url(/static/svgs/hotel.svg)
+}
+
+.icon-itch-io:before {
+  mask-image: url(/static/svgs/itch-io.svg)
+}
+
+.icon-kickstarter:before {
+  mask-image: url(/static/svgs/kickstarter.svg)
+}
+
+.icon-library:before {
+  mask-image: url(/static/svgs/library.svg)
+}
+
+.icon-light-bulb:before {
+  mask-image: url(/static/svgs/light-bulb.svg)
+}
+
+.icon-list:before {
+  mask-image: url(/static/svgs/list.svg)
+}
+
+.icon-parachute:before {
+  mask-image: url(/static/svgs/parachute.svg)
+}
+
+.icon-party:before {
+  mask-image: url(/static/svgs/party.svg)
+}
+
+.icon-paw:before {
+  mask-image: url(/static/svgs/paw.svg)
+}
+
+.icon-pig:before {
+  mask-image: url(/static/svgs/pig.svg)
+}
+
+.icon-price-tags:before {
+  mask-image: url(/static/svgs/price-tags.svg)
+}
+
+.icon-scroll:before {
+  mask-image: url(/static/svgs/scroll.svg)
+}
+
+.icon-settings:before {
+  mask-image: url(/static/svgs/settings.svg)
+}
+
+.icon-shield:before {
+  mask-image: url(/static/svgs/shield.svg)
+}
+
+.icon-star:before {
+  mask-image: url(/static/svgs/star.svg)
+}
+
+.icon-trophy:before {
+  mask-image: url(/static/svgs/trophy.svg)
+}
+
+.icon-twitch:before {
+  mask-image: url(/static/svgs/twitch.svg)
+}
+
+.icon-twitter:before {
+  mask-image: url(/static/svgs/twitter.svg)
+}
+
+.icon-website:before {
+  mask-image: url(/static/svgs/website.svg)
+}
+
+.icon-wolf:before {
+  mask-image: url(/static/svgs/wolf.svg)
+}
+
+.icon-youtube:before {
+  mask-image: url(/static/svgs/youtube.svg)
 }
 
 /* -------------------------------------------------------------------------- */

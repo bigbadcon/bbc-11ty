@@ -7,9 +7,8 @@ order:
 ---
 Submit an event for Big Bad Con 2022!
 
-<!-- {% iconLink "/events", "Events", "calendar-clock" %} -->
-{% iconLink "run-an-event", "Run An Event", "dice" %}
+[Run An Event](/run_an_event){.icon-dice}
 
-{% iconLink "/past-events", "Past Events", "library" %}
+[Past Events](/past-events){.icon-library}
 
 Games on Demand (coming soon)
