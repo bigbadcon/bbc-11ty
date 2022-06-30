@@ -52,7 +52,7 @@ function createDateObject (date, time) {
 
 
 /* -------------------------------------------------------------------------- */
-/*                               Module Exports                               */
+/*                     eleventyConfig Module Exports                          */
 /* -------------------------------------------------------------------------- */
 
 module.exports = (eleventyConfig) => {
@@ -64,6 +64,25 @@ module.exports = (eleventyConfig) => {
   module.exports = function (eleventyConfig) {
     eleventyConfig.setUseGitIgnore(false);
   };
+
+  /* -------------------------------------------------------------------------- */
+  /*                                 Markdown It                                */
+  /* -------------------------------------------------------------------------- */
+
+  const markdownIt = require('markdown-it')
+  const markdownItAttrs = require('markdown-it-attrs')
+
+  const markdownItOptions = {
+    html: true,
+    linkify: true
+  }
+
+  const markdownLib = markdownIt(markdownItOptions).use(markdownItAttrs)
+  eleventyConfig.setLibrary('md', markdownLib)
+
+  /* -------------------------------------------------------------------------- */
+  /*                                   Plugins                                  */
+  /* -------------------------------------------------------------------------- */
 
   eleventyConfig.addPlugin(blogTools);
   eleventyConfig.addPlugin(pluginRss);
@@ -177,7 +196,7 @@ module.exports = (eleventyConfig) => {
 
   // SVG Sprite Shortcode
   eleventyConfig.addShortcode("icon", function(icon = "star", fill="fill-highlight") {
-    return `<span class="icon"><svg class="icon-link__icon ${fill}">
+    return `<span class="icon"><svg class="iconlink__icon ${fill}">
       <use xlink:href="/static/images/icons.svg#${icon}"></use>
     </svg></span>`
   });
@@ -186,9 +205,9 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addShortcode("iconLink", function(link, title, icon = "star", fill="fill-highlight") {
     // check for markdown link due to Forestry WYSIWYG issue
     if (link.startsWith("[")) link = link.match( /\[(.*)\]/)[1];
-    return `<a href="${link}" class="icon-link"><svg class="icon-link__icon ${fill}">
+    return `<a href="${link}" class="iconlink"><svg class="iconlink__icon ${fill}">
       <use xlink:href="/static/images/icons.svg#${icon}"></use>
-    </svg><span class="icon-link__title">${title}</span></a>`
+    </svg><span class="iconlink__title">${title}</span></a>`
   });
 
   /* -------- Convert metadata array to object to make it easier to use ------- */
@@ -261,9 +280,23 @@ module.exports = (eleventyConfig) => {
   /*                                 Build Stuff                                */
   /* -------------------------------------------------------------------------- */
 
+  // Pass through 3rd party libraries
+  eleventyConfig.addPassthroughCopy({
+    "node_modules/alpinejs/dist/cdn.min.js" : "js/alpine.min.js",
+    "node_modules/dayjs/dayjs.min.js" : "js/dayjs.min.js",
+    "node_modules/dayjs/plugin/utc.js": "js/dayjs.utc.js",
+    "node_modules/dayjs/plugin/timezone.js": "js/dayjs.timezone.js",
+    "node_modules/lite-youtube-embed/src/lite-yt-embed.js": "js/lite-youtube-embed.js",
+    "node_modules/lite-youtube-embed/src/lite-yt-embed.css": "css/lite-youtube-embed.css",
+    "node_modules/array-flat-polyfill/index.js": "js/array-flat-polyfill.js",
+    "node_modules/@alpinejs/persist/dist/cdn.min.js": "js/alpine.persist.min.js",
+  })
+
   // Pass "static" things straight through from "src" to "dist"
   eleventyConfig.addPassthroughCopy("./src/static/");
   eleventyConfig.addPassthroughCopy("./images/");
+  eleventyConfig.addPassthroughCopy({"./src/assets/svgs" : "/static/svgs"});
+
   // Event images is a kludge until we can get it working with event manager
   eleventyConfig.addPassthroughCopy("./event-images/");
 

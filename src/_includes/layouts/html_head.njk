@@ -3,28 +3,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#c4d0a0">
   <link rel="stylesheet" href="/tailwindoutlive.css"/>
-  <script src="https://unpkg.com/axios@0.21.1/dist/axios.min.js" defer></script>
-  <script src="https://unpkg.com/array-flat-polyfill" defer></script>
-  <script src="https://unpkg.com/@alpinejs/persist@3.x.x/dist/cdn.min.js" defer></script>
-  <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-  <script src="https://unpkg.com/dayjs@1.10.6/dayjs.min.js"></script>
-  <script src="https://unpkg.com/dayjs@1.10.6/plugin/utc.js"></script>
-  <script src="https://unpkg.com/dayjs@1.10.6/plugin/timezone.js"></script>
-  <script src="https://unpkg.com/lite-youtube-embed"></script>
+  {# <script src="https://unpkg.com/axios@0.21.1/dist/axios.min.js" defer></script> #}
+  <script src="/js/array-flat-polyfill.js" defer></script>
+  <script src="/js/alpine.persist.min.js" defer></script>
+  <script src="/js/alpine.min.js" defer></script>
+  <script src="/js/dayjs.min.js"></script>
+  <script src="/js/dayjs.utc.js"></script>
+  <script src="/js/dayjs.timezone.js"></script>
+  <script src="/js/lite-youtube-embed.js"></script>
+  <link rel="stylesheet" href="/css/lite-youtube-embed.css"/>
   <script>
-    // dayjs plugins 
-    dayjs.extend(window.dayjs_plugin_utc)
-    dayjs.extend(window.dayjs_plugin_timezone)
-    
+    // dayjs plugins
+
     // dark/light theme
-    function setTheme (theme) {
-      document.querySelector('html').setAttribute('data-theme',theme)
-      const themeColor = (theme === 'dark') ? '#122436' : '#c4d0a0';
-      document.querySelector("meta[name='theme-color']").content = themeColor; 
-      window.localStorage.setItem("theme", theme)
+    function setTheme(theme) {
+      document
+        .querySelector('html')
+        .setAttribute('data-theme', theme)
+      const themeColor = (theme === 'dark')
+        ? '#122436'
+        : '#c4d0a0';
+      document
+        .querySelector("meta[name='theme-color']")
+        .content = themeColor;
+      window
+        .localStorage
+        .setItem("theme", theme)
     }
-    const savedTheme = window.localStorage.getItem('theme');
-    if (savedTheme) setTheme(savedTheme)
+    const savedTheme = window
+      .localStorage
+      .getItem('theme');
+    if (savedTheme) 
+      setTheme(savedTheme)
   </script>
   <script src="/static/js/scripts.js"></script>
   {# Preload the main fonts used. Italics are not preloaded as they are not used as much #}
