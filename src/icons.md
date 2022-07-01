@@ -7,7 +7,7 @@ description: List of icons
 
 Most of the SVG icons are thanks to Font Awesome and Icomoon with some tweaks and additional svg art by Colin Fahrion
 
-To apply an icon use the following css class to any element using the markdown-it-attr syntax. For instance, the following code…
+To apply an icon use the following css class to any element using the markdown-it-attr syntax. For instance, the following markdown…
 
 ```
 [Hotel](/hotel){.icon-hotel}
