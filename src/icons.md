@@ -17,6 +17,8 @@ To apply an icon use the following css class to any element using the markdown-i
 
 [Hotel](/hotel){.icon-hotel}
 
+If you are using WYSIWIG mode in Forestry just add the {.icon-hotel} immediately after the link with no space.
+
 ## List of Icons
 
 .icon-badge{.icon-badge}
