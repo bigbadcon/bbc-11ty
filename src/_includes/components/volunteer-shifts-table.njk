@@ -9,17 +9,17 @@
                 <th class="text-center pb-sm max-w-max">Dur</th>
                 <th class="text-center pb-sm max-w-max">Spaces</th>
                 <th class="w-8 text-center pb-sm" x-cloak x-show="isAuth">
-                    <span class="flex items-center justify-end">{% icon 'star', 'fill-body' %}</span>
+                    <span class="fav-star-header"></span>
                 </th>
             </tr>
         </thead>
         <tbody>
             {# favsOnly and timezone in x-data in html #}
             {% for event in eventData.volunteer %}
-            {# isFav is in Alpine.data("global") #}
-            {# TODO: test openOnly #}
-            {# If only showing favs and is fav then show #}
-            {# If only showing open and is open then show #}
+                {# isFav is in Alpine.data("global") #}
+                {# TODO: test openOnly #}
+                {# If only showing favs and is fav then show #}
+                {# If only showing open and is open then show #}
                 <tr x-data="eventInfo"
                 x-cloak
                 x-show="(!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || spacesOpen > 0)"
@@ -41,7 +41,7 @@
                     </td>
                     {# Spaces #}
                     <td>
-                    {# If booked add check mark, otherwise list number of spaces open #}
+                        {# If booked add check mark, otherwise list number of spaces open #}
                         <div class="flex items-center justify-center py-sm">
                             <span 
                             style="width: 1.375rem; height: 1.375rem" 
@@ -52,7 +52,7 @@
                     </td>
                     {# Fav Event Icon #}
                     <td x-cloak x-show="isAuth">
-                        <span @click="toggleFav({{event.eventId}})" class="flex justify-end cursor-pointer opacity-40 hover:opacity-100" :class="isFav({{event.eventId}}) && 'favved'">{% icon 'star', 'fill-body' %}</span>
+                        <span @click="toggleFav({{event.eventId}})" class="fav-star" :class="isFav({{event.eventId}}) && 'favved'"></span>
                     </td>
                 </tr>
             {% endfor %}
