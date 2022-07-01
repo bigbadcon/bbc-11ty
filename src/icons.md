@@ -21,11 +21,15 @@ If you are using WYSIWIG mode in Forestry just add the {.icon-hotel} immediately
 
 ## List of Icons
 
+.icon-art{.icon-art}
+
 .icon-badge{.icon-badge}
 
 .icon-book{.icon-book}
 
 .icon-booth{.icon-booth}
+
+.icon-bullhorn{.icon-bullhorn}
 
 .icon-calendar-clock{.icon-calendar-clock}
 
@@ -36,6 +40,8 @@ If you are using WYSIWIG mode in Forestry just add the {.icon-hotel} immediately
 .icon-envelope{.icon-envelope}
 
 .icon-faq{.icon-faq}
+
+.icon-games-on-demand{.icon-games-on-demand}
 
 .icon-hotel{.icon-hotel}
 

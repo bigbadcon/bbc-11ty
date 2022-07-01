@@ -340,6 +340,10 @@ a[class^='icon-']:hover {
   mask-image: url(/static/svgs/add.svg)
 }
 
+.icon-art:before {
+  mask-image: url(/static/svgs/art.svg)
+}
+
 .icon-badge:before {
   mask-image: url(/static/svgs/badge.svg)
 }
@@ -350,6 +354,10 @@ a[class^='icon-']:hover {
 
 .icon-booth:before {
   mask-image: url(/static/svgs/booth.svg)
+}
+
+.icon-bullhorn:before {
+  mask-image: url(/static/svgs/bullhorn.svg)
 }
 
 .icon-calendar-clock:before {
@@ -378,6 +386,10 @@ a[class^='icon-']:hover {
 
 .icon-faq:before {
   mask-image: url(/static/svgs/faq.svg)
+}
+
+.icon-games-on-demand:before {
+  mask-image: url(/static/svgs/games-on-demand.svg)
 }
 
 .icon-hotel:before {
