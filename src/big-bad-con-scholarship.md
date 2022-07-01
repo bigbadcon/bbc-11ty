@@ -33,4 +33,4 @@ We started the scholarship program in 2015. Here's the number of people we've be
 * 2016: 7 awards
 * 2015: 4 awards
 
-[Donate Now](https://www.paypal.com/us/fundraiser/charity/1653860){.icon-paw}
+[Donate Now](https://www.paypal.com/us/fundraiser/charity/1653860){.icon-gift}

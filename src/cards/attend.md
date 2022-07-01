@@ -15,4 +15,4 @@ Sign up now:
 
 [FAQ](/faq){.icon-faq}
 
-[Scholarship](/big-bad-con-scholarship){.icon-paw}
+[Scholarship](/big-bad-con-scholarship){.icon-gift}
