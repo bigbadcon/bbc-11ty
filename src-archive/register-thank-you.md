@@ -20,6 +20,6 @@ We encourage you to back our [Mightycause fundraiser](https://www.mightycause.co
 
 We’re going to have 24 hours of panels and hangout time on Discord! Because of all the energy, joy, and passion our rangers poured into Big Bad Con in the past, 2021 was an incredible success. We want to foster that same joy this year for our online experience and would love to have you rejoin the ranks of the Rangers!
 
-{% iconLink "/rangers", "Join The Rangers", "paw" %}
+[Join The Rangers](/rangers){.icon-paw}
 
-{% iconLink "/volunteer-shifts", "Volunteer Shifts", "calendar-clock" %}
+[Volunteer Shifts](/volunteer-shifts){.icon-calendar-clock}

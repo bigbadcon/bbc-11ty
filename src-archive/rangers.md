@@ -34,4 +34,4 @@ Training for all of these roles will be provided ahead of time by the Big Bad Co
 
 Would you like to be part of putting on Big Bad Online this year? Because, we would love to have you!
 
-{% iconLink "/volunteer-shifts", "Sign up for a shift to join the Rangers", "calendar-clock" %}
+[Sign up for a shift to join the Rangers](/volunteer-shifts){.icon-calendar-clock}

@@ -19,7 +19,7 @@ Burlingame, CA 94010
 
 Big Bad Con Group Rate: $139/night ([booking link](https://www.hyatt.com/en-US/group-booking/SFOBU/G-BBC3))
 
-{% iconLink "/hotel", "Hotel Information", "hotel" %}
+[Hotel Information](/hotel){.icon-hotel}
 
 ## What safety precautions are we taking?
 
@@ -36,9 +36,9 @@ There are a few features we're still developing for the new site. All of these s
 
 Yes, you can find out more about each of those here:
 
-{% iconLink "/exhibitor-information", "Exhibitor Information", "hotel" %}
+[Exhibitor Information](/exhibitor-information){.icon-booth}
 
-{% iconLink "/small-press-showcase", "Small Press Showcase", "hotel" %}
+[Small Press Showcase sign ups](/small-press-showcase){.icon-book}
 
 ## <!-- Where are all the games at Big Bad Online? -->
 

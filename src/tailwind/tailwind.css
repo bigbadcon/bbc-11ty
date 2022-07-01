@@ -333,7 +333,7 @@ input[type="checkbox"] ~ label {
   text-decoration-color: var(--highlight);
 }
 
-[class^='icon-']:hover {
+a[class^='icon-']:hover {
   @apply underline;
 }
 
@@ -355,12 +355,20 @@ input[type="checkbox"] ~ label {
   mask-image: url(/static/svgs/book.svg)
 }
 
+.icon-booth:before {
+  mask-image: url(/static/svgs/booth.svg)
+}
+
 .icon-calendar-clock:before {
   mask-image: url(/static/svgs/calendar-clock.svg)
 }
 
 .icon-calendar-star:before {
   mask-image: url(/static/svgs/calendar-star.svg)
+}
+
+.icon-close:before {
+  mask-image: url(/static/svgs/close.svg)
 }
 
 .icon-dice:before {
@@ -383,6 +391,10 @@ input[type="checkbox"] ~ label {
   mask-image: url(/static/svgs/hotel.svg)
 }
 
+.icon-image:before {
+  mask-image: url(/static/svgs/image.svg)
+}
+
 .icon-itch-io:before {
   mask-image: url(/static/svgs/itch-io.svg)
 }
@@ -403,6 +415,14 @@ input[type="checkbox"] ~ label {
   mask-image: url(/static/svgs/list.svg)
 }
 
+.icon-menu:before {
+  mask-image: url(/static/svgs/menu.svg)
+}
+
+.icon-moon:before {
+  mask-image: url(/static/svgs/moon.svg)
+}
+
 .icon-parachute:before {
   mask-image: url(/static/svgs/parachute.svg)
 }
@@ -413,6 +433,10 @@ input[type="checkbox"] ~ label {
 
 .icon-paw:before {
   mask-image: url(/static/svgs/paw.svg)
+}
+
+.icon-pencil-square:before {
+  mask-image: url(/static/svgs/pencil-square.svg)
 }
 
 .icon-pig:before {
@@ -437,6 +461,10 @@ input[type="checkbox"] ~ label {
 
 .icon-star:before {
   mask-image: url(/static/svgs/star.svg)
+}
+
+.icon-sun:before {
+  mask-image: url(/static/svgs/sun.svg)
 }
 
 .icon-trophy:before {

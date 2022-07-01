@@ -113,6 +113,10 @@ module.exports = {
             },
             'tbody tr': {
               borderBottomColor: 'var(--hr)',
+            },
+            pre: {
+              backgroundColor: 'var(--card)',
+              color: 'var(--body)',
             }
           }
         }

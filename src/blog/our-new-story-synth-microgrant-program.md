@@ -18,4 +18,4 @@ If your design ends up needing longer than six months to create, that’s okay. 
 
 \*Complete is a nebulous term in digital offerings. You can always modify your game to make changes and improvements. From our perspective, it is complete as soon as you say it’s ready to share with the public.
 
-{% iconLink "/story-synth-microgrants", "Visit our Story Synth Microgrants page to apply!", "pencil-square" %}
+[Visit our Story Synth Microgrants page to apply!](/story-synth-microgrants){.icon-pencil-square}
