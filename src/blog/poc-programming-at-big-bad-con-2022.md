@@ -47,4 +47,4 @@ Here is the amazing team organizing the scholarship and putting these events tog
 If you would like to support our efforts, please consider donating below. All funds sent to this link will go directly to our POC programing. All donations are tax deductible as Big Bad Con is a [501c3 Non-Profit](https://www.bigbadcon.com/proof-of-501c3-status/).
 
 
-[Donate Now](https://www.paypal.com/us/fundraiser/charity/1653860){.icon-paw}
+[Donate Now](https://www.paypal.com/us/fundraiser/charity/1653860){.icon-gift}

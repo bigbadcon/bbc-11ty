@@ -19,4 +19,4 @@ Scholarship applications are currently closed. We're reviewing them now and will
 
 If you would like to contribute to the Scholarship Fund, please click the donation button below. Any contributions made after September will be set aside for next year’s fund. Thank you very much for your support!
 
-[Donate Now](https://www.paypal.com/us/fundraiser/charity/1653860){.icon-paw}
+[Donate Now](https://www.paypal.com/us/fundraiser/charity/1653860){.icon-gift}

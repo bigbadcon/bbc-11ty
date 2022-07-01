@@ -43,6 +43,8 @@ If you are using WYSIWIG mode in Forestry just add the {.icon-hotel} immediately
 
 .icon-games-on-demand{.icon-games-on-demand}
 
+.icon-gift{.icon-gift}
+
 .icon-hotel{.icon-hotel}
 
 .icon-image{.icon-image}

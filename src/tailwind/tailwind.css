@@ -392,6 +392,10 @@ a[class^='icon-']:hover {
   mask-image: url(/static/svgs/games-on-demand.svg)
 }
 
+.icon-gift:before {
+  mask-image: url(/static/svgs/gift.svg)
+}
+
 .icon-hotel:before {
   mask-image: url(/static/svgs/hotel.svg)
 }
