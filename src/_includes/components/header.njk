@@ -9,7 +9,7 @@
             {# Branding Logo Area with event date #}
             <div class="grid grid-cols-1 w-36 sm:w-42 lg:w-56">
               <a href="/" class="block md:mt-sm">{% include 'components/logo.njk' %}</a>
-              <div class="font-serif text-sm text-center text-highlight lg:text-2xl leading-tight">{{sitemeta.eventDate}}</div>
+              <div class="font-serif text-sm leading-tight text-center text-highlight lg:text-2xl">{{sitemeta.eventDate}}</div>
             </div>
             {# Light Dark Switch #}
             <div>{% include 'components/light-dark-switch.njk' %}</div>
@@ -59,10 +59,7 @@
                     <div class="md:px-base md:py-base md:bg-main-gradient-top ring-2 ring-primary md:rounded-md md:shadow-lg mb-xs">
                       <div class="grid grid-cols-1 gap-sm md:gap-base">
                         {% for link in item.subnav %}
-                          {# <a href="{{link.url}}" class="block">{{link.title}}</a> #}
-                          {% iconLink link.url,
-                          link.title,
-                          link.icon %}
+                          <a href="{{link.url}}" class="icon-{{link.icon}}">{{link.title}}</a>
                         {% endfor %}
                       </div>
                     </div>

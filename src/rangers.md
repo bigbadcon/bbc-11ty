@@ -26,4 +26,4 @@ Here's all the work we do. If you're ready to engage with our community, conside
 
 Plus, all Rangers have access to our Ranger Station, a place to relax behind the scenes!
 
-{% iconLink "/volunteer-shifts", "Volunteer Shifts", "calendar-clock" %}
+[Volunteer Shifts](/volunteer-shifts){.icon-calendar-clock}
