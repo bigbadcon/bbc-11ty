@@ -78,7 +78,7 @@
                                         <option value="4hr">I want to run one 4 hour games</option>
                                     </select>
                                 </div>
-                                <div x-show="eventInfo.playerAge === '13+'" class="prose mb-base">
+                                <div x-show="eventInfo.gmAge === '13+'" class="prose mb-base">
                                     <p class="italic">Event designed for people aged 13+</p>
                                 </div>
                                 <div x-show="eventInfo.gmAge === '18+'" class="required">
@@ -101,6 +101,10 @@
                                             <label :for="'safetyTools' + i" x-text="type"></label>
                                         </div>
                                     </template>
+                                    <div class="mt-sm" x-show="eventInfo.safetyTools && eventInfo.safetyTools.includes('Other')">
+                                        <label for="safetyToolsOther">Other Safety Tools</label>
+                                        <input type="text" name="safetyToolsOther" id="safetyToolsOther" x-model="eventInfo.safetyToolsOther"/>
+                                    </div>
                                 </div>
                             </fieldset>
                             {# Game 1 #}
@@ -126,10 +130,11 @@
                                     <label for="gameDescription">Elevator Pitch</label>
                                     <textarea cols="30" id="gameDescription" name="gameDescription" rows="3" x-model="eventInfo.gameDescription1" @blur="validate"></textarea>
                                 </div>
-                                <div class="prose">
+                                {# TODO: Get image upload working #}
+                                {# <div class="prose">
                                     <label for="eventImage">Game Image</label>
                                     <input id="eventImage" name="eventImage" type="file" accept=".jpg,.jpeg,.png,.gif"/>
-                                </div>
+                                </div> #}
                                 <div x-show="eventInfo.playerAge === '18+'" class="required">
                                     <label for="contentAdvisory">Content Advisory</label>
                                     <select id="contentAdvisory" name="contentAdvisory" x-model="eventInfo.contentAdvisory1" @blur="validate">
@@ -179,10 +184,10 @@
                                     <label for="gameDescription2">Elevator Pitch</label>
                                     <textarea cols="30" id="gameDescription2" name="gameDescription2" rows="3" x-model="eventInfo.gameDescription2" @blur="validate"></textarea>
                                 </div>
-                                <div>
+                                {# <div>
                                     <label for="eventImage2">Game Image</label>
                                     <input id="eventImage2" name="eventImage2" type="file" accept=".jpg,.jpeg,.png,.gif"/>
-                                </div>
+                                </div> #}
                                 <div x-show="eventInfo.playerAge === '18+'" class="required">
                                     <label for="contentAdvisory2">Content Advisory</label>
                                     <select id="contentAdvisory2" name="contentAdvisory2" x-model="eventInfo.contentAdvisory2" @blur="validate">
@@ -246,18 +251,8 @@
                     <div class="prose" x-show="eventSubmitted" id="event-submitted">
                         <h2>Thanks for submitting your games!</h2>
                         <p>Our staff will review your submissions, <span x-text="eventInfo.gameName1" class="italic font-bold"></span> and <span x-text="eventInfo.gameName2" class="italic font-bold"></span>, and let you know about scheduling it!</p>
-                        <p>You can <button @click="submitNewEvent" class="font-bold underline text-highlight">submit another event</button> now if you'd like.</p>
+                        <p>You can <a href="/games-on-demand">submit another event</a> now if you'd like.</p>
                     </div>
-                    {# Testing purposes only #}
-                    {# <div class="prose border rounded mt-lg p-base bg-card border-header">
-                        <h2>Testing purposes only</h2>
-                        <p>Listing of event form selections</p>
-                        <ul>
-                            <template x-for="(type, i) in eventInfo">
-                                <li x-show="type && type !== ''" x-text="i + ': ' +type"></li>
-                            </template>
-                        </ul>
-                    </div> #}
                 </div>
                 {# END runAnEventData component #}
             </section>
@@ -304,7 +299,7 @@
                     },
                     get isGameTwoComplete() {
                         const x = this.eventInfo
-                        return this.isGameTwoComplete && [x.gameName2, x.system2, x.playtest2, x.gameDescription2].every(isFull) && (x.playerAge === '13+' || isFull(x.contentAdvisory2));
+                        return this.isGameOneComplete && [x.gameName2, x.system2, x.playtest2, x.gameDescription2].every(isFull) && (x.playerAge === '13+' || isFull(x.contentAdvisory2));
                     },
                     validate(event) {
                         const target = event.target;
@@ -322,7 +317,7 @@
                     },
                     submitEvent() {
                         // TODO: get submission working to google sheets or AirTable
-                        console.log("submit", this.eventInfo)
+                        console.log("submit", JSON.stringify(this.submittableEventInfo))
                         const y = 0
 
                         const submitNow = () => {
@@ -342,27 +337,51 @@
                         checkScrollEnd()
                         window.scroll({top: y, behavior: 'smooth'});
                     },
-                    async createEvent() {
-
-                        function anyToString(v) {
-                            return (v.isArray)
-                                ? v.toString
-                                : ''
-                        }
+                    get submittableEventInfo() {
 
                         // Remove communityStandards before submitting
                         let {
                             communityStandards,
                             ...eventInfo
                         } = this.eventInfo
+
+                        // Add Other to Safety Tools
+                        let safetyTools = eventInfo.safetyTools || []
+                        if (isFull(eventInfo.safetyToolsOther)) {
+                            safetyTools = [
+                                ...safetyTools,
+                                eventInfo.safetyToolsOther
+                            ]
+                        }
+
+                        // Make sure they are an array as undefined breaks .toString()
+                        eventInfo.contentAdvisoryOptions1 = eventInfo.contentAdvisoryOptions1 || []
+                        eventInfo.contentAdvisoryOptions2 = eventInfo.contentAdvisoryOptions2 || []
+                        eventInfo.schedulePref = eventInfo.schedulePref || []
+
                         // change arrays to strings
                         eventInfo = {
                             ...eventInfo,
-                            safetyTools: anyToString(eventInfo.safetyTools),
-                            contentAdvisoryOptions1: anyToString(eventInfo.contentAdvisoryOptions1),
-                            contentAdvisoryOptions2: anyToString(eventInfo.contentAdvisoryOptions2),
-                            schedulePref: anyToString(eventInfo.schedulePref)
+                            safetyTools: safetyTools.toString(),
+                            contentAdvisoryOptions1: eventInfo
+                                .contentAdvisoryOptions1
+                                .toString(),
+                            contentAdvisoryOptions2: eventInfo
+                                .contentAdvisoryOptions2
+                                .toString(),
+                            schedulePref: eventInfo
+                                .schedulePref
+                                .toString()
                         }
+
+                        return eventInfo
+                    },
+                    async createEvent() {
+
+                        const eventInfo = this
+                            .submittableEventInfo
+                            console
+                            .log("🚀 ~ file: run_games_on_demand.njk ~ line 368 ~ createEvent ~ eventInfo", eventInfo)
 
                         const options = {
                             method: 'POST',
@@ -387,12 +406,6 @@
                             return false
                         }
                     },
-                    submitNewEvent() {
-                        // Zero out all the form fields
-                        this.eventInfo = {}
-                        // Bring back form
-                        this.eventSubmitted = false
-                    },
                     setCheckboxArray(el, arrayName) {
                         this.eventInfo[arrayName] = this.eventInfo[arrayName] || [];
                         // if checked then add value to array; otherwise remove
@@ -407,7 +420,8 @@
                                 .filter(item => item !== el.value)
                         }
                         //console.log(this.eventInfo[arrayName])
-                    }
+                    },
+                    addOther(val, arrayName) {}
                 }
             })
         })

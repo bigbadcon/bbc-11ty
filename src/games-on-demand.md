@@ -6,4 +6,8 @@ tags: pages
 
 ---
 
-We're looking for GMs to run in the Games On Demand room for the Goats Gruff and possibly a few other adventurous players. Run eight (8) hours or more and you get a free badge! This year we're asking for two different games you can run, and we'll make badges for each of them (example). If you would like to offer four games, submit the form twice.
+We're looking for GMs to run in the Games On Demand room for the Goats Gruff and possibly a few other adventurous players. 
+
+Games on Demand time slots are 4 hours long. In each slot you can run either a single 4-hour game or two 2-hour games. Either way we ask that you offer two different games for players to choose. If you would like to offer four games, submit the form twice.
+
+**Free admission:** attendees who sign up for any combination of 8+ hours of running events, GMing in Games on Demand, or volunteer shifts get a free 4-day badge to attend the con.
