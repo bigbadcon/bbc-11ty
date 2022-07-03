@@ -345,6 +345,12 @@
                     },
                     async createEvent() {
 
+                        function anyToString(v) {
+                            return (v.isArray)
+                                ? v.toString
+                                : ''
+                        }
+
                         // Remove communityStandards before submitting
                         let {
                             communityStandards,
@@ -353,18 +359,10 @@
                         // change arrays to strings
                         eventInfo = {
                             ...eventInfo,
-                            safetyTools: eventInfo
-                                .safetyTools
-                                .toString(),
-                            contentAdvisoryOptions1: eventInfo
-                                .contentAdvisoryOptions1
-                                .toString(),
-                            contentAdvisoryOptions2: eventInfo
-                                .contentAdvisoryOptions2
-                                .toString(),
-                            schedulePref: eventInfo
-                                .schedulePref
-                                .toString()
+                            safetyTools: anyToString(eventInfo.safetyTools),
+                            contentAdvisoryOptions1: anyToString(eventInfo.contentAdvisoryOptions1),
+                            contentAdvisoryOptions2: anyToString(eventInfo.contentAdvisoryOptions2),
+                            schedulePref: anyToString(eventInfo.schedulePref)
                         }
 
                         const options = {
