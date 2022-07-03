@@ -15,8 +15,7 @@
                     <p>You must be <button @click.stop="modal = 'login'" class="font-bold underline text-highlight">logged in</button> to submit a game</p>
                 </div>
 
-                <div x-cloak x-data="runAnEventData">
-                    {# <div x-cloak x-show="isAuth && user" x-data="runAnEventData"> #}
+                <div x-cloak x-show="isAuth && user" x-data="runAnEventData">
                     <div x-show="!eventSubmitted" id="submit-your-event">
                         <header class="prose">
                             <h2>Submit Your Event</h2>
@@ -37,7 +36,7 @@
                                     <label for="publicName">Public Badge Name</label>
                                     <p class="text-xs mb-sm text-body">We encourage attendees to list their first and last names. However, if for privacy reasons you would like to use another name, enter it here.</p>
                                     <input id="publicName" name="publicName" type="text" value="" 
-                                    x-init="eventInfo.publicName = user && user.displayName; $watch('user', value => eventInfo.publicName = value && value.displayName)" 
+                                    x-init="eventInfo.publicName = (user && user.displayName) || ''; $watch('user', value => eventInfo.publicName = value && value.displayName)" 
                                     x-model="eventInfo.publicName" @blur="validate"/>
                                 </div>
                                 <div class="required">
