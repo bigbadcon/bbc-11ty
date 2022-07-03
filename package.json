@@ -31,6 +31,7 @@
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/forms": "^0.5.2",
     "@tailwindcss/typography": "^0.5.2",
+    "airtable": "^0.11.4",
     "alpinejs": "^3.10.2",
     "array-flat-polyfill": "^1.0.1",
     "autoprefixer": "latest",

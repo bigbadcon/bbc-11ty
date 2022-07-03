@@ -178,7 +178,7 @@ select {
   @apply rounded bg-form text-body border-body focus:ring-highlight focus:border-highlight;
 }
 
-button[type="submit"], .button {
+button[type="submit"], input[type="file"], .button {
   @apply font-bold uppercase transition-colors duration-200 rounded shadow text-form bg-highlight hover:bg-highlight-2 py-xs px-base border border-highlight;
 }
 
@@ -234,6 +234,14 @@ input[type="checkbox"] ~ label {
 .checkbox-grid {
   @apply grid gap-x-sm;
   grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+}
+/* transition opacity is applie for forms wist disabled sections */
+fieldset {
+  @apply transition-opacity;
+}
+
+.fieldset-disabled {
+  @apply pointer-events-none opacity-20;
 }
 
 /* -------------------------------------------------------------------------- */

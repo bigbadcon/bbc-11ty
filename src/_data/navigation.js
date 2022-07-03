@@ -29,6 +29,11 @@ module.exports = [
 				"icon": "dice"
 			},
 			{
+				"title": "Games On Demand",
+				"url": "/games-on-demand",
+				"icon": "games-on-demand"
+			},
+			{
 				"title": "Past Events",
 				"url": "/past-events",
 				"icon": "library"
