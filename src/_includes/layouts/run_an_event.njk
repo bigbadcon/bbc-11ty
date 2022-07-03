@@ -420,8 +420,8 @@
         document.addEventListener('alpine:init', () => {
 
             // Check if variable is a string with stuff in it
-            function isNotEmptyString(value) {
-                return value && value !== ''
+            function isFull(str) {
+                return (!!str && typeof str === 'string' && str.trim().length !== 0);
             }
 
             // Used to void variables
@@ -561,52 +561,56 @@
                         additionalRequirements: '', //not required
                     },
                     get isPersonalInfoComplete() {
-                        return [this.eventInfo.publicName, this.eventInfo.yourAge].every(isNotEmptyString) && this.eventInfo.communityStandards;
+                        const x = this.eventInfo;
+                        return [x.publicName, x.yourAge].every(isFull) && x.communityStandards;
                     },
                     get isEventInfoComplete() {
-                        let fields = [this.eventInfo.eventName, this.eventInfo.format, this.eventInfo.eventDescription]
+                        const x = this.eventInfo;
+                        let fields = [x.eventName, x.format, x.eventDescription]
                         if (this.isGame) 
                             fields = [
                                 ...fields,
-                                this.eventInfo.system,
-                                this.eventInfo.playtest
+                                x.system,
+                                x.playtest
                             ]
                             // otherInfo and image upload not required
-                        return (this.isPersonalInfoComplete && fields.every(isNotEmptyString));
+                        return (this.isPersonalInfoComplete && fields.every(isFull));
                     },
                     get isPlayerInfoComplete() {
-                        let fields = [this.eventInfo.playerAge]
+                        const x = this.eventInfo;
+                        let fields = [x.playerAge]
                         if (this.isGame) 
                             fields = [
                                 ...fields,
-                                this.eventInfo.minPlayers,
-                                this.eventInfo.maxPlayers
+                                x.minPlayers,
+                                x.maxPlayers
                             ]
                         if (this.isRPGorLARP) 
                             fields = [
                                 ...fields,
-                                this.eventInfo.characters
+                                x.characters
                             ]
-                        return (this.isEventInfoComplete && fields.every(isNotEmptyString));
+                        return (this.isEventInfoComplete && fields.every(isFull));
                     },
                     get isSchedulingInfoComplete() {
-                        let fields = [this.eventInfo.runNumberOfTimes, this.eventInfo.eventLength]
+                        const x = this.eventInfo
+                        let fields = [x.runNumberOfTimes, x.eventLength]
                         if (this.isTableTop) 
                             fields = [
                                 ...fields,
-                                this.eventInfo.locationPref
+                                x.locationPref
                             ]
                         if (this.isBoardgame) 
                             fields = [
                                 ...fields,
-                                this.eventInfo.tableType
+                                x.tableType
                             ]
                         if (!this.isGame) 
                             fields = [
                                 ...fields,
-                                this.eventInfo.mediaRoom
+                                x.mediaRoom
                             ]
-                        return (this.isPlayerInfoComplete && fields.every(isNotEmptyString));
+                        return (this.isPlayerInfoComplete && fields.every(isFull));
                     },
                     validate(event) {
                         const target = event.target;
