@@ -56,8 +56,8 @@ exports.handler = async function(event, context) {
             await sgMail.send(newUserMsg);
             /* --------------------------- Admin user message --------------------------- */
             const newUserAdminMsg = {
-                to: 'info@bigbadcon.com',
-                from: 'info@bigbadcon.com',
+                to: 'rpgs@bigbadcon.com',
+                from: 'rpgs@bigbadcon.com',
                 subject: 'Games on Demand 2022 submission',
                 text: `User ${eventBody.publicName} (${eventBody.userEmail}) submitted to Games on Demand! You can find their submission on google sheets: https://docs.google.com/spreadsheets/d/1FBurJ_G3_FN4BhAsKzuuMI03DMwCTYMyOHUbMhrW5qI/edit#gid=0`,
                 html: `User ${eventBody.publicName} (${eventBody.userEmail}) submitted to Games on Demand! You can find their submission on <a href="https://docs.google.com/spreadsheets/d/1FBurJ_G3_FN4BhAsKzuuMI03DMwCTYMyOHUbMhrW5qI/edit#gid=0">google sheets</a>.`,
