@@ -11,7 +11,7 @@ Our scholarship funds go towards helping women, people of color, disabled, and l
 
 ### Timeline
 
-* Scholarship applications will open on July 5, 2022 (head back here to apply).
+* Scholarship applications will open on July 7, 2022 (head back here to apply).
 * Determinations and reward disbursement will start August 22, 2022.
 
 ### Contributions
