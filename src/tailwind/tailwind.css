@@ -214,7 +214,7 @@ input[type="checkbox"] ~ label {
   @apply inline-block font-normal m-0;
 }
 
-.required label {
+.required > label {
   @apply after:content-['*'] after:text-highlight after:font-bold after:ml-2xs;
 }
 

@@ -1,0 +1,320 @@
+{% extends 'layouts/base.njk' %}
+
+{% block header %}
+    {% include 'components/header.njk' %}
+{% endblock %}
+
+{% block content %}
+    <main id="content">
+        <div class="mx-auto max-w-content p-base">
+            <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
+            <div class="prose">{{ content | safe }}</div>
+            <section class="my-base">
+                {# START Submit Form: only show if logged in #}
+                <div x-cloak x-show="!isAuth" class="prose">
+                    <p>You must be <button @click.stop="modal = 'login'" class="font-bold underline text-highlight">logged in</button> to submit a game</p>
+                </div>
+
+                <div x-cloak x-show="isAuth && user" x-data="formData">
+                    <div x-show="!formSubmitted" id="submit-form">
+                        <header class="prose">
+                            <h2>Scholarship Application</h2>
+                            <p>
+                                <span class="font-bold text-highlight">*</span>
+                                <em>required field</em>
+                            </p>
+                        </header>
+                        <form action="post" class="mt-base" id="form-scholarship" @submit.prevent="submitForm">
+                            {# TODO: add honeypot #}
+                            <input type="hidden" x-model="formInfo.userDisplayName" x-init="formInfo.userDisplayName = user && user.displayName; $watch('user', value => formInfo.userDisplayName = value && value.displayName)">
+                            <input type="hidden" x-model="formInfo.userId" x-init="formInfo.userId = user && user.id; $watch('user', value => formInfo.userId = value && value.id)">
+                            <input type="hidden" x-model="formInfo.userEmail" x-init="formInfo.userEmail = user && user.userEmail; $watch('user', value => formInfo.userEmail = value && value.userEmail)">
+                            {# Personal Info #}
+                            <fieldset>
+                                <legend>Personal Info</legend>
+                                <div class="required">
+                                    <label for="publicName">Public Badge Name</label>
+                                    <p class="text-xs mb-sm text-body">We encourage attendees to list their first and last names. However, if for privacy reasons you would like to use another name, enter it here.</p>
+                                    <input id="publicName" name="publicName" type="text" value="" 
+                                    x-init="formInfo.publicName = (user && user.displayName) || ''; $watch('user', value => formInfo.publicName = value && value.displayName)" 
+                                    x-model="formInfo.publicName" @blur="validate"/>
+                                </div>
+                                <div class="required">
+                                    <label for="yourAge">
+                                        Your age at start of con
+                                        <span>{{sitemeta.eventDate}}</span>
+                                    </label>
+                                    <select id="yourAge" name="yourAge" x-model="formInfo.yourAge" @change="if (formInfo.yourAge === '13+') formInfo.playerAge = '13+'" @blur="validate">
+                                        <option :disabled="formInfo.yourAge !== ''" selected value="">
+                                            -- Choose One --
+                                        </option>
+                                        <option>13+</option>
+                                        <option>18+</option>
+                                    </select>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <legend>Community Standards Agreement</legend>
+                                <div class="prose mb-sm">
+                                    <p>Big Bad Con is committed to cultivating a culture of respect, support, and kindness at both our in-person and online events. We ask that all of our attendees agree to abide by our Community Standards, please take a moment to read them before answering yes below.</p>
+                                    <p>
+                                        <a href="/community-standards" class="icon-scroll">Community Standards</a>
+                                    </p>
+                                </div>
+                                <div class="required">
+                                    <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-model="formInfo.communityStandards" required>
+                                    <label for="agree-to-community-standards" class="text-body-highlight"3324>
+                                        Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Big Bad Con Community Standards
+                                    </label>
+                                </div>
+                            </fieldset>
+                            <fieldset :class="!isPersonalInfoComplete && 'fieldset-disabled'">
+                                <legend>Social Media</legend>
+                                <div class="prose">
+                                    <p>
+                                    Where can we connect with you on Twitter, Facebook, Instagram, etc. (all optional but we like to connect with people and promote them if possible/desired)
+                                </p>
+                                </div>
+                                <div>
+                                    <label for="twitter">Twitter</label>
+                                    <input id="twitter" name="twitter" type="text" value="" x-model="formInfo.twitter"/>
+                                </div>
+                                <div>
+                                    <label for="instagram">Instagram</label>
+                                    <input id="instagram" name="instagram" type="text" value="" x-model="formInfo.instagram"/>
+                                </div>
+                                <div>
+                                    <label for="facebook">Facebook</label>
+                                    <input id="facebook" name="facebook" type="text" value="" x-model="formInfo.facebook"/>
+                                </div>
+                            </fieldset>
+                            <fieldset :class="!isPersonalInfoComplete && 'fieldset-disabled'">
+                                <legend>Scholarship Assistance</legend>
+                                <div class="required" x-data="{assistanceTypes:['Attendance (4-day badge)','Hotel Room','Travel']}">
+                                    <label>Request assistance with</label>
+                                    <template x-for="(atype, i) in assistanceTypes">
+                                        <div class="flex items-center">
+                                            <input type="checkbox" :name="'atype' + i" :id="'atype' + i" :value="atype" @change="setCheckboxArray($el,'assistanceTypes')">
+                                            <label :for="'atype' + i" x-text="atype"></label>
+                                        </div>
+                                    </template>
+                                </div>
+                                <div class="required" x-data="{nights:['Thursday','Friday','Saturday','Sunday']}">
+                                    <label>Which nights do you plan on staying?</label>
+                                    <template x-for="(night, i) in nights">
+                                        <div class="flex items-center">
+                                            <input type="checkbox" :name="'night' + i" :id="'night' + i" :value="night" @change="setCheckboxArray($el,'nights')">
+                                            <label :for="'night' + i" x-text="night"></label>
+                                        </div>
+                                    </template>
+                                </div>
+                                <div class="required">
+                                    <label for="shareRoom">Are you willing to share a room with others?</label>
+                                    <select id="shareRoom" name="shareRoom" x-model="formInfo.shareRoom" @blur="validate" >
+                                        <option disabled selected value="">-- Choose One --</option>
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                    </select>
+                                </div>
+                                <div class="required">
+                                    <label for="shareRoomWho">If yes who are you comfortable sharing a room with?</label>
+                                    <select id="shareRoomWho" name="shareRoomWho" x-model="formInfo.shareRoomWho" @blur="validate" >
+                                        <option disabled selected value="">-- Choose One --</option>
+                                        <option>No preference</option>
+                                        <option>Women</option>
+                                        <option>Other (fill in below)</option>
+                                    </select>
+                                </div>
+                                <div x-show="formInfo.shareRoomWho === 'Other (fill in below)'">
+                                    <label for="shareRoomWhoOther">Roommate comfort other</label>
+                                    <input id="shareRoomWhoOther" name="shareRoomWhoOther" type="text" value="" x-model="formInfo.shareRoomWhoOther" @blur="validate"/>
+                                </div>
+                                <div class="required">
+                                    <label for="travelCosts">Estimated Travel Costs</label>
+                                    <input id="travelCosts" name="travelCosts" type="text" value="" x-model="formInfo.travelCosts" @blur="validate" class="w-full max-w-md"/>
+                                </div>
+                                <div class="required">
+                                    <label for="fundsRequired">Funds required to attend</label>
+                                    <select id="fundsRequired" name="fundsRequired" x-model="formInfo.fundsRequired" @blur="validate" >
+                                        <option disabled selected value="">-- Choose One --</option>
+                                        <option>Full assistance (100% covered by Scholarship)</option>
+                                        <option>Significant assistance (51-99% covered)</option>
+                                        <option>Partial assistance (1-50% covered)</option>
+                                    </select>
+                                </div>
+                                <div class="required" x-data="{identities:['A person of color','A woman','Disabled','LGBTQIA+','Other (fill in below)']}">
+                                    <label>I identify as</label>
+                                    <template x-for="(identity, i) in identities">
+                                        <div class="flex items-center">
+                                            <input type="checkbox" :name="'identity' + i" :id="'identity' + i" :value="identity" @change="setCheckboxArray($el,'identities')">
+                                            <label :for="'identity' + i" x-text="identity"></label>
+                                        </div>
+                                    </template>
+                                </div>
+                                <div x-show="formInfo.identities && formInfo.identities.includes('Other (fill in below)')">
+                                    <label for="identitiesOther">Other identity</label>
+                                    <input id="identitiesOther" name="identitiesOther" type="text" value="" x-model="formInfo.identitiesOther" @blur="validate"/>
+                                </div>
+                                <div class="required">
+                                    <label for="gamingXp">Gaming Community Experience</label>
+                                    <div class="prose">
+                                        <p>Please tell us a bit about your experiences in the gaming community and why you would like to attend Big Bad Con.</p>
+                                    </div>
+                                    <textarea cols="30" id="gamingXp" name="gamingXp" rows="3" x-model="formInfo.gamingXp" @blur="validate"></textarea>
+                                </div>
+                            </fieldset>
+
+                            <button type="submit" :disabled="!isFormComplete">Submit</button>
+                        </form>
+                    </div>
+                    {# END form submission div #}
+                    {# form submitted #}
+                    <div class="prose" x-show="formSubmitted" id="form-submitted">
+                        <h2>Thanks for submitting for a scholarship!</h2>
+                        <p>Our staff will review your submission, and let you know how much our scholarship fund can help!</p>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </main>
+{% endblock %}
+
+{% block pagebottom %}
+
+    <script type="text/javascript">
+
+        document.addEventListener('alpine:init', () => {
+
+            // Check if variable is a string with stuff in it or an array with stuff in it
+            function isFull(val) {
+                if (!!val && typeof val === 'string' && val.trim().length !== 0) 
+                    return true;
+                if (val && val.constructor === Array && val.length > 0) 
+                    return true;
+                return false;
+            }
+
+            Alpine.data('formData', function () {
+                return {
+                    formSubmitted: false,
+                    formInfo: {},
+                    get isPersonalInfoComplete() {
+                        const x = this.formInfo
+                        return [x.publicName, x.yourAge].every(isFull) && x.communityStandards;
+                    },
+                    get isFormComplete() {
+                        const x = this.formInfo
+                        return this.isPersonalInfoComplete && [
+                            x.assistanceTypes,
+                            x.nights,
+                            x.shareRoom,
+                            x.shareRoomWho,
+                            x.travelCosts,
+                            x.fundsRequired,
+                            x.identities,
+                            x.gamingXp
+                        ].every(isFull);
+                    },
+                    validate(event) {
+                        const target = event.target;
+                        const parent = target.parentNode;
+                        // console.log("validate", event);
+                        if (target.value === '') {
+                            parent
+                                .classList
+                                .add('error-required');
+                        } else {
+                            parent
+                                .classList
+                                .remove('error-required');
+                        }
+                    },
+                    submitForm() {
+                        console.log("submitForm", this.formInfo)
+                        const y = 0
+
+                        const submitNow = () => {
+                            this.postFormInfo()
+                            this.formSubmitted = true
+                        }
+
+                        const scrollEventListener = () => {
+                            if (window.pageYOffset === 0) {
+                                submitNow();
+                                window.removeEventListener('scroll', scrollEventListener)
+                            }
+                        }
+                        function checkScrollEnd() {
+                            window.addEventListener('scroll', scrollEventListener);
+                        }
+                        checkScrollEnd()
+                        window.scroll({top: y, behavior: 'smooth'});
+                    },
+                    async postFormInfo() {
+
+                        console.log('postFormInfo')
+
+                        // Remove communityStandards before submitting
+                        let {
+                            communityStandards,
+                            ...formInfo
+                        } = this.formInfo
+                        // change arrays to strings
+
+                        // Convert any array to string and make empty string for anything else not a string
+                        Object
+                            .keys(formInfo)
+                            .forEach(key => {
+                                if (formInfo[key] && formInfo[key].constructor === Array) {
+                                    formInfo[key] = formInfo[key].toString();
+                                } else if (!formInfo[key] || typeof formInfo[key] !== 'string') {
+                                    formInfo[key] = ''
+                                }
+                            })
+
+                        const options = {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json;charset=utf-8'
+                            },
+                            body: JSON.stringify(formInfo)
+                        }
+
+                        console.log('formInfo JOSN string', JSON.stringify(formInfo));
+
+                        const url = "/.netlify/functions/submit-scholarship-application"
+
+                        try {
+                            let response = await fetch(url, options)
+                            console.log(`RESPONSE:fetch for ${url}`, response)
+                            if (response.status !== 200) 
+                                throw `fetch fail status: ${response.status}`
+                            let result = await response.json()
+                            console.log(`RESULT:fetch for ${url}`, result)
+                            return result
+                        } catch (err) {
+                            console.error(`ERROR:fetch for ${url}`, err)
+                            return false
+                        }
+                    },
+                    setCheckboxArray(el, arrayName) {
+                        this.formInfo[arrayName] = this.formInfo[arrayName] || [];
+                        // if checked then add value to array; otherwise remove
+                        if (el.checked) {
+                            this.formInfo[arrayName] = [
+                                ...this.formInfo[arrayName],
+                                el.value
+                            ]
+                        } else {
+                            this.formInfo[arrayName] = this
+                                .formInfo[arrayName]
+                                .filter(item => item !== el.value)
+                        }
+                    }
+                }
+            })
+        })
+    </script>
+
+{% endblock %}
