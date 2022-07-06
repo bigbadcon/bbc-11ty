@@ -34,6 +34,11 @@ module.exports = [
 				"icon": "games-on-demand"
 			},
 			{
+				"title": "Scholarship",
+				"url": "/big-bad-con-scholarship",
+				"icon": "gift"
+			},
+			{
 				"title": "Past Events",
 				"url": "/past-events",
 				"icon": "library"
