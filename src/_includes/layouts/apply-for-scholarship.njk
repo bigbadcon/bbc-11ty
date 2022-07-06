@@ -12,7 +12,7 @@
             <section class="my-base">
                 {# START Submit Form: only show if logged in #}
                 <div x-cloak x-show="!isAuth" class="prose">
-                    <p>You must be <button @click.stop="modal = 'login'" class="font-bold underline text-highlight">logged in</button> to submit a game</p>
+                    <p>You must be <button @click.stop="modal = 'login'" class="font-bold underline text-highlight">logged in</button> to apply for a scholarship.</p>
                 </div>
 
                 <div x-cloak x-show="isAuth && user" x-data="formData">
@@ -126,7 +126,7 @@
                                     </select>
                                 </div>
                                 <div x-show="formInfo.shareRoomWho === 'Other (fill in below)'">
-                                    <label for="shareRoomWhoOther">Roommate comfort other</label>
+                                    <label for="shareRoomWhoOther">Roommate comfort</label>
                                     <input id="shareRoomWhoOther" name="shareRoomWhoOther" type="text" value="" x-model="formInfo.shareRoomWhoOther" @blur="validate"/>
                                 </div>
                                 <div class="required">
