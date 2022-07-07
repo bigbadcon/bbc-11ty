@@ -358,18 +358,8 @@
                     <div class="prose" x-show="eventSubmitted" id="event-submitted">
                         <h2>Thanks for submitting your event!</h2>
                         <p>Our staff will review your <span x-text="eventInfo.format"></span> event, <span x-text="eventInfo.eventName" class="italic font-bold"></span>, and let you know about scheduling it!</p>
-                        <p>You can <button @click="submitNewEvent" class="font-bold underline text-highlight">submit another event</button> now if you'd like.</p>
+                        <p>You can <a href="/run_an_event">submit another event</a> now if you'd like.</p>
                     </div>
-                    {# Testing purposes only #}
-                    {# <div class="prose border rounded mt-lg p-base bg-card border-header">
-                        <h2>Testing purposes only</h2>
-                        <p>Listing of event form selections</p>
-                        <ul>
-                            <template x-for="(type, i) in eventInfo">
-                                <li x-show="type && type !== ''" x-text="i + ': ' +type"></li>
-                            </template>
-                        </ul>
-                    </div> #}
                 </div>
                 {# END runAnEventData component #}
             </section>
@@ -422,49 +412,6 @@
             // Check if variable is a string with stuff in it
             function isFull(str) {
                 return (!!str && typeof str === 'string' && str.trim().length !== 0);
-            }
-
-            // Used to void variables
-            const eventInfoDefault = {
-                // -- Personal Info
-                //userDisplayName: '',  hidden; matches user.displayName; don't void
-                //publicName: '', required; don't void
-                yourAge: '', //required
-                // -- Event Info
-                eventName: '', //required
-                communityStandards: false,
-                format: '', //required
-                system: '', //required only isGame
-                playtest: '', //required only isGame
-                eventDescription: '', //required
-                otherInfo: '',
-                // imageUpload not working yet
-                // -- Player Info
-                playerAge: '', //required if yourAge = "18+"
-                minPlayers: '', //required if isGame
-                maxPlayers: '', //required if isGame
-                characters: '', //not required
-                // -- Scheduling Info
-                runNumberOfTimes: '', //required
-                locationPref: '', //required if isTabletop
-                tableType: '', //required if Board/Card game
-                mediaEquipment: '', //required if not isGame
-                mediaEquipmentRequested: '', //required if mediaEquipment = "Equipment Requested"
-                eventLength: null, //required
-                schedulePref: '', // not required
-                // -- Content Advisory
-                contentAdvisory: '', // required
-                contentAdvisoryOptions: '', //not required
-                triggerWarnings: '', //not required
-                safetyTools: '', //not required
-                // -- Additional Info
-                panelTopic: '', //not required
-                gameFocus: '', //not required
-                playerContributions: '', //not required
-                gameGenre: '', //not required
-                gameMood: '', //not required
-                additionalGMs: '', //not required
-                additionalRequirements: '', //not required
             }
 
             function convertToCreateEventAPI(eventInfo) {
@@ -656,15 +603,6 @@
                         })
                         return data
                     },
-                    submitNewEvent() {
-                        // Zero out all the form fields
-                        this.eventInfo = {
-                            ...this.eventInfo,
-                            ...eventInfoDefault
-                        }
-                        // Bring back form
-                        this.eventSubmitted = false
-                    },
                     setCheckboxArray(el, arrayName) {
                         this.eventInfo[arrayName] = this.eventInfo[arrayName] || [];
                         // if checked then add value to array; otherwise remove
@@ -750,13 +688,13 @@
                             .toString()
                     },
                     get isGame() {
-                        return this.eventInfo.format === "RPG" || this.eventInfo.format === "LARP" || this.eventInfo.format === "Board/Card Game"
+                        return ["RPG", "LARP", "Board/Card Game"].includes(this.eventInfo.format)
                     },
                     get isRPGorLARP() {
-                        return this.eventInfo.format === "RPG" || this.eventInfo.format === "LARP"
+                        return ["RPG", "LARP"].includes(this.eventInfo.format)
                     },
                     get isTableTop() {
-                        return this.eventInfo.format === "RPG" || this.eventInfo.format === "Board/Card Game"
+                        return ["RPG", "Board/Card Game"].includes(this.eventInfo.format)
                     },
                     get isBoardgame() {
                         return this.eventInfo.format === "Board/Card Game"
@@ -765,301 +703,245 @@
                         {
                             "id": 10,
                             "name": "Board/Card Game",
-                            "slug": "board-game",
-                            "type": "event-categories"
+                            "slug": "board-game"
                         }, {
                             "id": 9,
                             "name": "LARP",
-                            "slug": "larp",
-                            "type": "event-categories"
+                            "slug": "larp"
                         }, {
                             "id": 154,
                             "name": "Panel",
-                            "slug": "panel",
-                            "type": "event-categories"
+                            "slug": "panel"
                         }, {
                             "id": 8,
                             "name": "RPG",
-                            "slug": "rpg",
-                            "type": "event-categories"
+                            "slug": "rpg"
                         }, {
                             "id": 11,
                             "name": "Workshops",
-                            "slug": "workshops",
-                            "type": "event-categories"
+                            "slug": "workshops"
                         }
                     ],
                     panelTopic: [
                         {
                             "id": 160,
                             "name": "GMing Advice",
-                            "slug": "gming-advice",
-                            "type": "event-tags"
+                            "slug": "gming-advice"
                         }, {
                             "id": 159,
                             "name": "Literature",
-                            "slug": "literature",
-                            "type": "event-tags"
+                            "slug": "literature"
                         }, {
                             "id": 161,
                             "name": "Player Advice",
-                            "slug": "player-advice",
-                            "type": "event-tags"
+                            "slug": "player-advice"
                         }, {
                             "id": 163,
                             "name": "Safety Tools",
-                            "slug": "safety-tools",
-                            "type": "event-tags"
+                            "slug": "safety-tools"
                         }, {
                             "id": 162,
                             "name": "Social Contracts",
-                            "slug": "social-contracts",
-                            "type": "event-tags"
+                            "slug": "social-contracts"
                         }, {
                             "id": 158,
                             "name": "Social Justice",
-                            "slug": "social-justice",
-                            "type": "event-tags"
+                            "slug": "social-justice"
                         }
                     ],
                     gameFocus: [
                         {
                             "id": 55,
                             "name": "Adventure",
-                            "slug": "adventure",
-                            "type": "event-tags"
+                            "slug": "adventure"
                         }, {
                             "id": 62,
                             "name": "Combat",
-                            "slug": "combat",
-                            "type": "event-tags"
+                            "slug": "combat"
                         }, {
                             "id": 59,
                             "name": "Drama",
-                            "slug": "drama",
-                            "type": "event-tags"
+                            "slug": "drama"
                         }, {
                             "id": 56,
                             "name": "Exploration",
-                            "slug": "exploration",
-                            "type": "event-tags"
+                            "slug": "exploration"
                         }, {
                             "id": 61,
                             "name": "Hijinx",
-                            "slug": "hijinx",
-                            "type": "event-tags"
+                            "slug": "hijinx"
                         }, {
                             "id": 191,
                             "name": "Improv",
-                            "slug": "improv",
-                            "type": "event-tags"
+                            "slug": "improv"
                         }, {
                             "id": 58,
                             "name": "Intrigue",
-                            "slug": "intrigue",
-                            "type": "event-tags"
+                            "slug": "intrigue"
                         }, {
                             "id": 57,
                             "name": "Investigation",
-                            "slug": "investigation",
-                            "type": "event-tags"
+                            "slug": "investigation"
                         }, {
                             "id": 181,
                             "name": "LGBTQ themes",
-                            "slug": "lgbtq-themes",
-                            "type": "event-tags"
+                            "slug": "lgbtq-themes"
                         }, {
                             "id": 167,
                             "name": "Mystery",
-                            "slug": "mystery",
-                            "type": "event-tags"
+                            "slug": "mystery"
                         }, {
                             "id": 60,
                             "name": "Romance",
-                            "slug": "romance",
-                            "type": "event-tags"
+                            "slug": "romance"
                         }
                     ],
                     playerContributions: [
                         {
                             "id": 66,
                             "name": "Collaborative",
-                            "slug": "collaborative",
-                            "type": "event-tags"
+                            "slug": "collaborative"
                         }, {
                             "id": 188,
                             "name": "Freeform",
-                            "slug": "freeform",
-                            "type": "event-tags"
+                            "slug": "freeform"
                         }, {
                             "id": 67,
                             "name": "GM-less",
-                            "slug": "gm-less",
-                            "type": "event-tags"
+                            "slug": "gm-less"
                         }, {
                             "id": 64,
                             "name": "Play to find out",
-                            "slug": "play-to-find-out",
-                            "type": "event-tags"
+                            "slug": "play-to-find-out"
                         }, {
                             "id": 65,
                             "name": "Player antagonism",
-                            "slug": "player-antagonism",
-                            "type": "event-tags"
+                            "slug": "player-antagonism"
                         }, {
                             "id": 68,
                             "name": "Rotating authority",
-                            "slug": "rotating-authority",
-                            "type": "event-tags"
+                            "slug": "rotating-authority"
                         }, {
                             "id": 63,
                             "name": "Strong storyline",
-                            "slug": "strong-storyline",
-                            "type": "event-tags"
+                            "slug": "strong-storyline"
                         }
                     ],
                     gameGenre: [
                         {
                             "id": 171,
                             "name": "Aliens",
-                            "slug": "aliens",
-                            "type": "event-tags"
+                            "slug": "aliens"
                         }, {
                             "id": 73,
                             "name": "Alternate History",
-                            "slug": "alternate-history",
-                            "type": "event-tags"
+                            "slug": "alternate-history"
                         }, {
                             "id": 76,
                             "name": "Apocalyptic",
-                            "slug": "apocalyptic",
-                            "type": "event-tags"
+                            "slug": "apocalyptic"
                         }, {
                             "id": 156,
                             "name": "Cyberpunk",
-                            "slug": "cyberpunk",
-                            "type": "event-tags"
+                            "slug": "cyberpunk"
                         }, {
                             "id": 77,
                             "name": "Espionage",
-                            "slug": "espionage",
-                            "type": "event-tags"
+                            "slug": "espionage"
                         }, {
                             "id": 71,
                             "name": "Fantasy",
-                            "slug": "fantasy",
-                            "type": "event-tags"
+                            "slug": "fantasy"
                         }, {
                             "id": 69,
                             "name": "Horror",
-                            "slug": "horror",
-                            "type": "event-tags"
+                            "slug": "horror"
                         }, {
                             "id": 78,
                             "name": "Military",
-                            "slug": "military",
-                            "type": "event-tags"
+                            "slug": "military"
                         }, {
                             "id": 72,
                             "name": "Modern",
-                            "slug": "modern",
-                            "type": "event-tags"
+                            "slug": "modern"
                         }, {
                             "id": 167,
                             "name": "Mystery",
-                            "slug": "mystery",
-                            "type": "event-tags"
+                            "slug": "mystery"
                         }, {
                             "id": 75,
                             "name": "Noir",
-                            "slug": "noir",
-                            "type": "event-tags"
+                            "slug": "noir"
                         }, {
                             "id": 74,
                             "name": "Pulp",
-                            "slug": "pulp",
-                            "type": "event-tags"
+                            "slug": "pulp"
                         }, {
                             "id": 70,
                             "name": "Sci-Fi",
-                            "slug": "sci-fi",
-                            "type": "event-tags"
+                            "slug": "sci-fi"
                         }, {
                             "id": 120,
                             "name": "Super Powers",
-                            "slug": "super-powers",
-                            "type": "event-tags"
+                            "slug": "super-powers"
                         }
                     ],
                     gameMood: [
                         {
                             "id": 80,
                             "name": "Comical",
-                            "slug": "comical",
-                            "type": "event-tags"
+                            "slug": "comical"
                         }, {
                             "id": 175,
                             "name": "Cute",
-                            "slug": "cute",
-                            "type": "event-tags"
+                            "slug": "cute"
                         }, {
                             "id": 82,
                             "name": "Dark",
-                            "slug": "dark",
-                            "type": "event-tags"
+                            "slug": "dark"
                         }, {
                             "id": 83,
                             "name": "Emotional",
-                            "slug": "emotional",
-                            "type": "event-tags"
+                            "slug": "emotional"
                         }, {
                             "id": 81,
                             "name": "Light",
-                            "slug": "light",
-                            "type": "event-tags"
+                            "slug": "light"
                         }, {
                             "id": 133,
                             "name": "Melancholy",
-                            "slug": "melancholy",
-                            "type": "event-tags"
+                            "slug": "melancholy"
                         }, {
                             "id": 79,
                             "name": "Serious",
-                            "slug": "serious",
-                            "type": "event-tags"
+                            "slug": "serious"
                         }, {
                             "id": 187,
                             "name": "Silly",
-                            "slug": "silly",
-                            "type": "event-tags"
+                            "slug": "silly"
                         }, {
                             "id": 84,
                             "name": "Suspenseful",
-                            "slug": "suspenseful",
-                            "type": "event-tags"
+                            "slug": "suspenseful"
                         }
                     ],
                     contentAdvisoryOptions: [
                         {
                             "id": 91,
                             "name": "Gore",
-                            "slug": "gore",
-                            "type": "event-tags"
+                            "slug": "gore"
                         }, {
                             "id": 90,
                             "name": "Graphic Violence",
-                            "slug": "graphic-violence",
-                            "type": "event-tags"
+                            "slug": "graphic-violence"
                         }, {
                             "id": 88,
                             "name": "Provocative",
-                            "slug": "provocative",
-                            "type": "event-tags"
+                            "slug": "provocative"
                         }, {
                             "id": 89,
                             "name": "Sex and Sexuality",
-                            "slug": "sex-and-sexuality",
-                            "type": "event-tags"
+                            "slug": "sex-and-sexuality"
                         }
                     ],
                     safetyTools: [

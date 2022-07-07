@@ -1,5 +1,5 @@
 ---
-layout: layouts/page.njk
+layout: layouts/exhibitor-form.njk
 title: Exhibitor Information
 description: ''
 ogImage: ''
@@ -43,15 +43,3 @@ Burlingame, CA 94010
 ### Cost
 
 $300 plus a donation of 10% of your proceeds to the Big Bad Con Scholarship Fund or another charity of your choice. Our scholarship fund helps folks at the intersection of marginalized identities attend the con.
-
-### Vendor Application
-
-If you have interest in vending at Big Bad Con, please email [info@bigbadcon.com](mailto:info@bigbadcon.com) with the following information:
-
-* Company Name
-* Company Website
-* Contact Name
-* Email
-* Phone
-* Product or service you provide
-* Charity you will support

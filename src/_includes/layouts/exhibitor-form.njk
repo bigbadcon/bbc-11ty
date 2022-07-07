@@ -9,22 +9,23 @@
         <div class="mx-auto max-w-content p-base">
             <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
             <div class="prose">{{ content | safe }}</div>
-            <section class="my-base">
+            <section class="my-md">
                 {# START Submit Form: only show if logged in #}
                 <div x-cloak x-show="!isAuth" class="prose">
+                    <h2>Exhibitor Signup</h2>
                     <p>You must be <button @click.stop="modal = 'login'" class="font-bold underline text-highlight">logged in</button> to submit a form.</p>
                 </div>
 
                 <div x-cloak x-show="isAuth && user" x-data="formData">
                     <div x-show="!formSubmitted" id="submit-form">
                         <header class="prose">
-                            <h2>Dealer Signup</h2>
+                            <h2>Exhibitor Signup</h2>
                             <p>
                                 <span class="font-bold text-highlight">*</span>
                                 <em>required field</em>
                             </p>
                         </header>
-                        <form action="post" class="mt-base" id="form-dealer" @submit.prevent="submitForm">
+                        <form action="post" class="mt-base" id="form-exhibitor" @submit.prevent="submitForm">
                             {# TODO: add honeypot #}
                             <input type="hidden" x-model="formInfo.userDisplayName" x-init="formInfo.userDisplayName = user && user.displayName; $watch('user', value => formInfo.userDisplayName = value && value.displayName)">
                             <input type="hidden" x-model="formInfo.userId" x-init="formInfo.userId = user && user.id; $watch('user', value => formInfo.userId = value && value.id)">
@@ -229,7 +230,7 @@
 
                         console.log('formInfo JOSN string', JSON.stringify(formInfo));
 
-                        const url = "/.netlify/functions/submit-dealer-application"
+                        const url = "/.netlify/functions/submit-exhibitor-application"
 
                         try {
                             let response = await fetch(url, options)

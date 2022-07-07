@@ -13,4 +13,4 @@ Submit an event for Big Bad Con 2022!
 
 [Past Events](/past-events){.icon-library}
 
-[Dealers](/dealers){.icon-booth}
+[Exhibitors](/exhibitor-information){.icon-booth}
