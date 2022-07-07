@@ -39,8 +39,8 @@ module.exports = [
 				"icon": "gift"
 			},
 			{
-				"title": "Dealers",
-				"url": "/dealers",
+				"title": "Exhibitors",
+				"url": "/exhibitor-information",
 				"icon": "booth"
 			},
 			{

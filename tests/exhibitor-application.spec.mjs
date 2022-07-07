@@ -24,7 +24,7 @@ test.describe('Apply to be a Dealer', () => {
 
     // await chromium.launch({ headless: false, slowMo: 100, devtools: true });
 
-    await page.goto('http://localhost:8888/dealer-application/');
+    await page.goto('http://localhost:8888/exhibitor-information/');
 
     // Click text=login
     await page.click('text=Login');
@@ -58,7 +58,7 @@ test.describe('Apply to be a Dealer', () => {
 
     page.on('console', msg => console.log(msg.text()))
 
-    await expect(page.locator('#form-dealer')).toBeVisible()
+    await expect(page.locator('#form-exhibitor')).toBeVisible()
 
     await page.locator('input[name="companyName"]').fill('Mirth Peddlers');
 

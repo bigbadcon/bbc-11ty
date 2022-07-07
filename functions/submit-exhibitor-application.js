@@ -4,7 +4,7 @@ const { GoogleSpreadsheet } = require('google-spreadsheet')
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-const googleSheetId = process.env.GOOGLE_SHEET_DEALER
+const googleSheetId = process.env.GOOGLE_SHEET_EXHIBITOR
 
 exports.handler = async function(event, context) {
 
@@ -47,9 +47,9 @@ exports.handler = async function(event, context) {
             const newUserMsg = {
                 to: eventBody.userEmail,
                 from: 'info@bigbadcon.com',
-                subject: 'Thanks for applying to be BBC Dealer',
-                text: `Thank you ${eventBody.publicName} for applying for BBC Scholarship! Our staff will review your submission and let you know about your application`,
-                html: `Thank you ${eventBody.publicName} for applying for BBC Scholarship! Our staff will review your submission and let you know about your application`,
+                subject: 'Thanks for applying to be BBC Exhibitor',
+                text: `Thank you ${eventBody.publicName} for applying to be BBC Exhibitor! Our staff will review your submission and let you know about your application`,
+                html: `Thank you ${eventBody.publicName} for applying to be BBC Exhibitor! Our staff will review your submission and let you know about your application`,
             }
 
             await sgMail.send(newUserMsg);
@@ -57,9 +57,9 @@ exports.handler = async function(event, context) {
             const newUserAdminMsg = {
                 to: 'info@bigbadcon.com',
                 from: 'info@bigbadcon.com',
-                subject: 'BBC dealer application',
-                text: `User ${eventBody.publicName} (${eventBody.userEmail}) applied to be BBC Dealer! You can find their submission on google sheets: https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0`,
-                html: `User ${eventBody.publicName} (${eventBody.userEmail}) applied to be BBC Dealer! You can find their submission on <a href="https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0">google sheets</a>.`,
+                subject: 'BBC Exhibitor application',
+                text: `User ${eventBody.publicName} (${eventBody.userEmail}) applied to be BBC Exhibitor! You can find their submission on google sheets: https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0`,
+                html: `User ${eventBody.publicName} (${eventBody.userEmail}) applied to be BBC Exhibitor! You can find their submission on <a href="https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0">google sheets</a>.`,
             }
             await sgMail.send(newUserAdminMsg);
 
