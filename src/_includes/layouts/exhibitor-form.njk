@@ -49,6 +49,20 @@
                                     <label for="product">Product or service your company provides</label>
                                     <textarea cols="30" id="product" name="product" rows="3" x-model="formInfo.product" @blur="validate"></textarea>
                                 </div>
+                                <div class="required">
+                                    <label for="charitySupported">Charity Supported</label>
+                                    <select id="charitySupported" name="charitySupported" x-model="formInfo.charitySupported" @blur="validate">
+                                        <option disabled selected value="">
+                                            -- Choose One --
+                                        </option>
+                                        <option>Big Bad Con Scholarship</option>
+                                        <option value="Other">Other (fill in below)</option>
+                                    </select>
+                                </div>
+                                <div x-show="formInfo.charitySupported === 'Other'" class="required">
+                                    <label for="charityOther">Other Charity</label>
+                                    <input id="charityOther" name="charityOther" type="text" value="" x-model="formInfo.charityOther" @blur="validate"/>
+                                </div>
                             </fieldset>
                             <fieldset>
                                 <legend>Contact Person</legend>
@@ -136,6 +150,13 @@
                     formInfo: {},
                     get isFormComplete() {
                         const x = this.formInfo
+                        function isCharityComplete() {
+                            if (x.charitySupported === 'Other' && isFull(x.charityOther)) 
+                                return true
+                            if (x.charitySupported === 'Big Bad Con Scholarship') 
+                                return true
+                            return false
+                        }
                         return x.communityStandards && [
                             x.companyName,
                             x.contactName,
@@ -143,7 +164,7 @@
                             x.contactPhone,
                             x.website,
                             x.product
-                        ].every(isFull);
+                        ].every(isFull) && isCharityComplete();
                     },
                     validate(event, options) {
                         options = {
