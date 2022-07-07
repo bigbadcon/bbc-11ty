@@ -36,9 +36,9 @@
                                     <label for="companyName">Company Name</label>
                                     <input id="companyName" name="companyName" type="text" value="" x-model="formInfo.companyName" @blur="validate"/>
                                 </div>
-                                <div class="required" data-error="full url with https:// required">
+                                <div class="required" data-error="website required">
                                     <label for="website">Website</label>
-                                    <input id="website" name="website" type="url" value="" x-model="formInfo.website" @blur="validate"/>
+                                    <input id="website" name="website" type="url" value="" x-model="formInfo.website" @blur="(e) => validate(e,{url: true})"/>
                                 </div>
                                 <div >
                                     <label for="twitter">Twitter</label>
@@ -86,8 +86,8 @@
                     {# END form submission div #}
                     {# form submitted #}
                     <div class="prose" x-show="formSubmitted" id="form-submitted">
-                        <h2>Thanks for submitting for a scholarship!</h2>
-                        <p>Our staff will review your submission, and let you know how much our scholarship fund can help!</p>
+                        <h2>Thanks for submitting to be a dealer!</h2>
+                        <p>Our staff will review your submission, and let you know about your application soon.</p>
                     </div>
                 </div>
 
@@ -126,7 +126,7 @@
             const validateUrl = (txt) => {
                 return String(txt)
                     .toLowerCase()
-                    .match(/^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)/)
+                    .match(/^(https?:\/\/)?(www\.)?([a-zA-Z0-9]+(-?[a-zA-Z0-9])*\.)+[\w]{2,}(\/\S*)?$/)
             }
 
             Alpine.data('formData', function () {
