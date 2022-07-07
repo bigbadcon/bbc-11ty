@@ -1,6 +1,6 @@
 ---
 layout: layouts/dealer-form.njk
-title: Dealer Application
+title: Dealers
 description: ''
 tags: pages
 

@@ -39,6 +39,11 @@ module.exports = [
 				"icon": "gift"
 			},
 			{
+				"title": "Dealers",
+				"url": "/dealers",
+				"icon": "booth"
+			},
+			{
 				"title": "Past Events",
 				"url": "/past-events",
 				"icon": "library"
