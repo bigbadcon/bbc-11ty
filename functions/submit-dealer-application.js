@@ -4,19 +4,16 @@ const { GoogleSpreadsheet } = require('google-spreadsheet')
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-const googleSheetId = process.env.GOOGLE_SHEET_SCHOLARSHIP
+const googleSheetId = process.env.GOOGLE_SHEET_DEALER
 
 exports.handler = async function(event, context) {
 
-    if (event.httpMethod === 'POST') {  
+    if (event.httpMethod === 'POST') {
         /* -------------------------------------------------------------------------- */
         /*                        1. grab submitted event data                        */
         /* -------------------------------------------------------------------------- */
 
         const eventBody = JSON.parse(event.body)
-        console.log("🚀 ~ file: submit-games-on-demand.js ~ line 15 ~ exports.handler=function ~ eventBody", eventBody)
-
-        
 
         /* -------------------------------------------------------------------------- */
         /*                        2. Submit data to google form                       */
@@ -49,20 +46,20 @@ exports.handler = async function(event, context) {
             
             const newUserMsg = {
                 to: eventBody.userEmail,
-                from: 'rpgs@bigbadcon.com',
-                subject: 'Thanks for Submitting to Games on Demand',
-                text: `Thank you ${eventBody.publicName} for submitting to Games on Demand! Our staff will review your submission and let you know about scheduling`,
-                html: `Thank you ${eventBody.publicName} for submitting to Games on Demand! Our staff will review your submission and let you know about scheduling`,
+                from: 'info@bigbadcon.com',
+                subject: 'Thanks for applying to be BBC Dealer',
+                text: `Thank you ${eventBody.publicName} for applying for BBC Scholarship! Our staff will review your submission and let you know about your application`,
+                html: `Thank you ${eventBody.publicName} for applying for BBC Scholarship! Our staff will review your submission and let you know about your application`,
             }
 
             await sgMail.send(newUserMsg);
             /* --------------------------- Admin user message --------------------------- */
             const newUserAdminMsg = {
-                to: 'rpgs@bigbadcon.com',
-                from: 'rpgs@bigbadcon.com',
-                subject: 'Games on Demand 2022 submission',
-                text: `User ${eventBody.publicName} (${eventBody.userEmail}) submitted to Games on Demand! You can find their submission on google sheets: https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0`,
-                html: `User ${eventBody.publicName} (${eventBody.userEmail}) submitted to Games on Demand! You can find their submission on <a href="https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0">google sheets</a>.`,
+                to: 'info@bigbadcon.com',
+                from: 'info@bigbadcon.com',
+                subject: 'BBC dealer application',
+                text: `User ${eventBody.publicName} (${eventBody.userEmail}) applied to be BBC Dealer! You can find their submission on google sheets: https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0`,
+                html: `User ${eventBody.publicName} (${eventBody.userEmail}) applied to be BBC Dealer! You can find their submission on <a href="https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0">google sheets</a>.`,
             }
             await sgMail.send(newUserAdminMsg);
 
