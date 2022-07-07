@@ -68,6 +68,10 @@ test.describe('Apply to be a Dealer', () => {
 
     await page.locator('textarea[name="product"]').fill('Game zines');
 
+    await page.locator('select[name="charitySupported"]').selectOption('Other');
+
+    await page.locator('input[name="charityOther"]').fill('World Crime Org');
+
     await page.locator('input[name="contactName"]').fill('Colin Fahrion');
 
     await page.locator('input[name="contactEmail"]').fill('colin@mirthpeddlers.com');
