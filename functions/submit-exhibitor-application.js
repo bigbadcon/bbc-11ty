@@ -58,8 +58,8 @@ exports.handler = async function(event, context) {
                 to: 'info@bigbadcon.com',
                 from: 'info@bigbadcon.com',
                 subject: 'BBC Exhibitor application',
-                text: `User ${eventBody.publicName} (${eventBody.userEmail}) applied to be BBC Exhibitor! You can find their submission on google sheets: https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0`,
-                html: `User ${eventBody.publicName} (${eventBody.userEmail}) applied to be BBC Exhibitor! You can find their submission on <a href="https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0">google sheets</a>.`,
+                text: `User ${eventBody.userEmail} applied to be BBC Exhibitor! You can find their submission on google sheets: https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0`,
+                html: `User ${eventBody.userEmail} applied to be BBC Exhibitor! You can find their submission on <a href="https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0">google sheets</a>.`,
             }
             await sgMail.send(newUserAdminMsg);
 
