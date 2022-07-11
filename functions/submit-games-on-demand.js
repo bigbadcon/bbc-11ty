@@ -4,7 +4,7 @@ const { GoogleSpreadsheet } = require('google-spreadsheet')
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-const googleSheetId = process.env.GOOGLE_SHEET_SCHOLARSHIP
+const googleSheetId = process.env.GOOGLE_SHEET_GAMES_ON_DEMAND
 
 exports.handler = async function(event, context) {
 
