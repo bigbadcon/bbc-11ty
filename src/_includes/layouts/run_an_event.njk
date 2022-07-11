@@ -130,12 +130,12 @@
                                     </select>
                                 </div>
                                 {# Only required for games #}
-                                <div x-show="isGame" class="required">
+                                <div x-show="isEventWithPeopleMax" class="required">
                                     <label for="minPlayers">Minimum players/attendees</label>
                                     <input id="minPlayers" name="minPlayers" type="text" value="" x-model="eventInfo.minPlayers" @blur="validate"/>
                                 </div>
                                 {# Only required for games #}
-                                <div x-show="isGame" class="required">
+                                <div x-show="isEventWithPeopleMax" class="required">
                                     <label for="maxPlayers" >Maximum players/attendees</label>
                                     <input id="maxPlayers" name="maxPlayers" type="text" value="" x-model="eventInfo.maxPlayers" @blur="validate"/>
                                 </div>
@@ -526,7 +526,7 @@
                     get isPlayerInfoComplete() {
                         const x = this.eventInfo;
                         let fields = [x.playerAge]
-                        if (this.isGame) 
+                        if (this.isEventWithPeopleMax) 
                             fields = [
                                 ...fields,
                                 x.minPlayers,
@@ -686,6 +686,9 @@
                             .find(e => e.name === name)
                             .id
                             .toString()
+                    },
+                    get isEventWithPeopleMax() {
+                        return ["RPG", "LARP", "Board/Card Game", "Workshops"].includes(this.eventInfo.format)
                     },
                     get isGame() {
                         return ["RPG", "LARP", "Board/Card Game"].includes(this.eventInfo.format)
