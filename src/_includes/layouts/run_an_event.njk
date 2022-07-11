@@ -130,12 +130,12 @@
                                     </select>
                                 </div>
                                 {# Only required for games #}
-                                <div x-show="isEventWithPeopleMax" class="required">
+                                <div class="required">
                                     <label for="minPlayers">Minimum players/attendees</label>
                                     <input id="minPlayers" name="minPlayers" type="text" value="" x-model="eventInfo.minPlayers" @blur="validate"/>
                                 </div>
                                 {# Only required for games #}
-                                <div x-show="isEventWithPeopleMax" class="required">
+                                <div class="required">
                                     <label for="maxPlayers" >Maximum players/attendees</label>
                                     <input id="maxPlayers" name="maxPlayers" type="text" value="" x-model="eventInfo.maxPlayers" @blur="validate"/>
                                 </div>
@@ -525,13 +525,7 @@
                     },
                     get isPlayerInfoComplete() {
                         const x = this.eventInfo;
-                        let fields = [x.playerAge]
-                        if (this.isEventWithPeopleMax) 
-                            fields = [
-                                ...fields,
-                                x.minPlayers,
-                                x.maxPlayers
-                            ]
+                        let fields = [x.playerAge, x.minPlayers, x.maxPlayers]
                         if (this.isRPGorLARP) 
                             fields = [
                                 ...fields,
