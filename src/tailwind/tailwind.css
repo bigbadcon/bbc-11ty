@@ -211,7 +211,7 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"] ~ label {
-  @apply inline-block font-normal m-0;
+  @apply inline-block font-normal m-0 leading-[1.1rem];
 }
 
 .required > label {
@@ -229,10 +229,17 @@ input[type="checkbox"] ~ label {
 .error-required[data-error]:after {
   content: attr(data-error);
 }
+[data-error] {
+  @apply bg-card p-sm rounded-md;
+}
+[data-error]:after {
+  @apply ml-xs text-highlight italic font-bold;
+  content: attr(data-error);
+}
 
 /* Used on Run an Event Additional Info */
 .checkbox-grid {
-  @apply grid gap-x-sm;
+  @apply grid gap-x-sm gap-y-sm;
   grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
 }
 /* transition opacity is applie for forms wist disabled sections */
