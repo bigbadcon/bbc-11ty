@@ -1,5 +1,5 @@
 ---
-layout: 'layouts/page.njk'
+layout: layouts/page.njk
 title: Hotel
 description: Big Bad Con will be hosted at the Hyatt Regency San Francisco Airport
 ogImage: "/images/hyatt-768x419.jpg"
@@ -36,3 +36,16 @@ Detailed maps with location of events coming soon.
 ### Internet Access
 
 Free wireless is available for all attendees!
+
+### Accessibility
+
+The Hotels' ADA compliance:
+
+* Emergency strobe light and strobe light smoke detector
+* Closed-captioned TV
+* Wide doors
+* Lowered thermostat and light switches
+* Lowered peephole and door latch
+* Accessible bathroom
+
+Additionally, half of their shuttles are equipped with wheelchair lifts/ramps, there is a lift to grant access to the foyer, and they have MERV-8 in public spaces and MERV-10 in sleeping/gaming rooms. The Atrium has MERV-15 filters pulling air up and exhausting it through the roof.
