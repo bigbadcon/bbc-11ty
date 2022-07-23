@@ -3,7 +3,7 @@
 name: Trigger Netlify Build
 on:
   schedule:
-    - cron: '0 7 * * *' # at the 7am aka midnight our time
+    - cron: '0 10 * * *' # at 3AM UTC, aka midnight PST
 jobs:
   build:
     name: Request Netlify Webhook

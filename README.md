@@ -1,4 +1,4 @@
-# Big Bad Con 11ty
+# Go Play NW 11ty
 
 Based on 11ty - Tailwind "JIT" _(Just In Time)_ CSS starter
 
