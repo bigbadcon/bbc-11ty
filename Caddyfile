@@ -10,13 +10,13 @@ localhost:8889 {
   }
 
   # First : the API
-  reverse_proxy /apidev/* https://admin.bigbadcon.com:8091 {
+  reverse_proxy /apidev/* https://api-dev.goplaynw.org {
     header_up Host                {host}
       header_up Origin              {host}
       header_up X-Real-IP           {remote}
       header_up X-Forwarded-Server  {host}
       header_up X-Forwarded-Port    {port}
-    header_down Access-Control-Allow-Origin       https://admin.bigbadcon.com
+      header_down Access-Control-Allow-Origin       https://admin.bigbadcon.com
       header_down Access-Control-Allow-Credentials  true
   }
   # Last : the dev server started by npm, yarn, ...
@@ -35,7 +35,7 @@ localhost:8091 {
       header_up X-Real-IP           {remote}
       header_up X-Forwarded-Server  {host}
       header_up X-Forwarded-Port    {port}
-    header_down Access-Control-Allow-Origin       https://api.logictwine.com
+      header_down Access-Control-Allow-Origin       https://api.logictwine.com
       header_down Access-Control-Allow-Credentials  true
   }
 }
@@ -46,14 +46,14 @@ localhost:8092 {
   }
 
   # First : the API
-  reverse_proxy https://admin.bigbadcon.com:8091 {
+  reverse_proxy https://api-dev.goplaynw.org {
     header_up Host                {host}
       header_up Origin              {host}
       header_up X-Real-IP           {remote}
       header_up X-Forwarded-Server  {host}
       header_up X-Forwarded-Port    {port}
       header_up X-Forwarded-Proto   {scheme}
-    header_down Access-Control-Allow-Origin       https://api.logictwine.com
+      header_down Access-Control-Allow-Origin       https://api.logictwine.com
       header_down Access-Control-Allow-Credentials  true
   }
 }

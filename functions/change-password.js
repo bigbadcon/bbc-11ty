@@ -2,7 +2,8 @@ const axios = require('axios');
 
 // TODO: change to Prod API
 // const apiBaseUrl = 'http://www.logictwine.com:8092/'
-const apiBaseUrl = 'https://admin.bigbadcon.com:8091/api/'
+//const apiBaseUrl = 'https://admin.bigbadcon.com:8091/api/'
+const apiBaseUrl = 'https://api-dev.goplaynw.org/'
 
 const apiKey = `ApiKey ${process.env.BBC_API_KEY}`
 // headers: {"x-api-key": apiKey}

@@ -67,7 +67,7 @@ const duration = (dateStart,dateEnd) => {
 
 // TODO: refactor all this to simpler global functions 
 
-const apiBaseUrl = 'https://admin.bigbadcon.com:8091/api'
+const apiBaseUrl = 'https://api-dev.goplaynw.org'
 // Dev API using Caddy server reverse proxy
 // const apiBaseUrl = '/apidev'
 

@@ -4,7 +4,8 @@ const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 const { GoogleSpreadsheet } = require('google-spreadsheet')
 
-const apiBaseUrl = 'https://admin.bigbadcon.com:8091/api/'
+// const apiBaseUrl = 'https://admin.bigbadcon.com:8091/api/'
+const apiBaseUrl = 'https://api-dev.goplaynw.org/'
 const apiKey = `ApiKey ${process.env.BBC_API_KEY}`
 
 exports.handler = async function(event, context) {

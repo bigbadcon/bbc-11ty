@@ -5,7 +5,8 @@ const axios = require('axios');
 // const apiKey = `ApiKey ${process.env.BBC_API_KEY}`
 // headers: {"x-api-key": apiKey}
 
-const apiBaseUrl = 'https://admin.bigbadcon.com:8091/api/'
+//const apiBaseUrl = 'https://admin.bigbadcon.com:8091/api/'
+const apiBaseUrl = 'https://api-dev.goplaynw.org/'
 
 const username = process.env.ADMIN_LOGIN
 const password = process.env.ADMIN_PASSWORD
