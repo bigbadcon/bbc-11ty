@@ -37,9 +37,10 @@ function formatEventDate(date, tz = 'America/Los_Angeles') {
 function getEventbriteToken() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const eventbriteCode = urlParams.get('code')
+  const eventbriteCode = urlParams.get('code');
+  const referrer = document.referrer;
   console.log(eventbriteCode);
-  alert(eventbriteCode);
+  alert(referrer);
 }
 
 
