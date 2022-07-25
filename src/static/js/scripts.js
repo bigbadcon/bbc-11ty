@@ -161,7 +161,7 @@ document.addEventListener('alpine:init', () => {
         token = token || this.authToken
         let user = await fetchData('/users/me',{}, token)
         const userMetadata = metadataArrayToObject(user.metadata)
-        const userRoles = [[capabilities].matchAll(/"([a-z]+)/g)].map( (match) => match[1])
+        const userRoles = [...capabilities.matchAll(/"([a-z]+)/g)].map( (match) => match[1])
         user = {
           ...user,
           metadata: userMetadata,
