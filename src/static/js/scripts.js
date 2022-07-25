@@ -27,6 +27,22 @@ function formatEventDate(date, tz = 'America/Los_Angeles') {
   return "<span style='white-space: nowrap;'>" + dayjs(date).tz(tz).format('MMM D, YYYY') + "</span> <span>" + dayjs(date).tz(tz).format('h:mm a') + "</span>"
 }
 
+
+/* -------------------------------------------------------------------------- */
+/*                       payment processor functions                          */
+/* -------------------------------------------------------------------------- */
+
+/* ----------------------------- Eventbrite --------------------------------- */
+
+function getEventbriteToken() {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const eventbriteCode = urlParams.get('code')
+  console.log(eventbriteCode);
+  alert(eventbriteCode);
+}
+
+
 /* -------------------------------------------------------------------------- */
 /*                            Misc Functions                                  */
 /* -------------------------------------------------------------------------- */
