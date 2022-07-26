@@ -69,7 +69,7 @@ const duration = (dateStart,dateEnd) => {
 // TODO: refactor all this to simpler global functions
 
 const apiBaseUrl = 'https://api-dev.goplaynw.org'
-const capabilities = 'wp_goplaynw_capabilities'
+const capabilities = 'userMetaData.wp_goplaynw_capabilities'
 // Dev API using Caddy server reverse proxy
 // const apiBaseUrl = '/apidev'
 
@@ -162,7 +162,7 @@ document.addEventListener('alpine:init', () => {
         token = token || this.authToken
         let user = await fetchData('/users/me',{}, token)
         const userMetadata = metadataArrayToObject(user.metadata)
-        const userRoles = [...userMetadata[capabilities].matchAll(/"([a-z]+)/g)].map( (match) => match[1])
+        const userRoles = [...capabilities.matchAll(/"([a-z]+)/g)].map( (match) => match[1])
         user = {
           ...user,
           metadata: userMetadata,
