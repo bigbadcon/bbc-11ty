@@ -14,8 +14,7 @@ async function getEventbriteToken() {
 
     if (referrer === eventBriteReferrer) {
         console.log("submit Eventbrite token: ", eventbriteCode)
-        let res = await fetch(apiBaseUrl + '/users/me', {
-            headers: {'Content-Type': 'application/json;charset=utf-8'},
+        let res = await fetchData(apiBaseUrl + '/users/me', {
             method: 'GET'
             // method: 'POST',
             // body: JSON.stringify({username: username, password: password})
