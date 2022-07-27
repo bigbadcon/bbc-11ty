@@ -16,7 +16,7 @@ async function getEventbriteToken() {
         console.log("submit Eventbrite token: ", eventbriteCode)
         let res = await fetchData('/payment/eventbrite/token', {
             method: 'POST',
-            body: JSON.stringify({code: eventbriteCode})
+            body: {code: eventbriteCode}
         })
         console.log("Eventbrite token submit response", res)
         if (res.status === 200) { //&& res.headers.get('authorization')) {
