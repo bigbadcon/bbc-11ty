@@ -1,11 +1,21 @@
 {
   "name": "gpnw-11ty",
   "version": "0.0.2",
-  "description": "Big Bad Con 11ty site",
-  "author": {
-    "name": "Colin Fahrion",
-    "url": "https://colinaut.com"
-  },
+  "description": "Go Play Northwest 11ty site",
+  "contributors": [
+    {
+      "name" : "Jeremy Tidwell",
+      "url" : "https://github.com/necanthrope/"
+    },
+    {
+      "name" : "Star West Morgan",
+      "url" : "https://github.com/hedgiespresso/"
+    },
+    {
+      "name": "Colin Fahrion",
+      "url": "https://colinaut.com"
+   }
+  ],
   "main": ".eleventy.js",
   "repository": {
     "type": "git",
