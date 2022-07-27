@@ -27,6 +27,7 @@ function formatEventDate(date, tz = 'America/Los_Angeles') {
   return "<span style='white-space: nowrap;'>" + dayjs(date).tz(tz).format('MMM D, YYYY') + "</span> <span>" + dayjs(date).tz(tz).format('h:mm a') + "</span>"
 }
 
+
 /* -------------------------------------------------------------------------- */
 /*                            Misc Functions                                  */
 /* -------------------------------------------------------------------------- */
@@ -65,21 +66,22 @@ const duration = (dateStart,dateEnd) => {
 /*                             API Fetch Functions                            */
 /* -------------------------------------------------------------------------- */
 
-// TODO: refactor all this to simpler global functions 
+// TODO: refactor all this to simpler global functions
 
 const apiBaseUrl = 'https://api-dev.goplaynw.org'
+const capabilities = 'userMetaData.wp_goplaynw_capabilities'
 // Dev API using Caddy server reverse proxy
 // const apiBaseUrl = '/apidev'
 
 // Global Fetch Function for API
 async function fetchData(url, options, authToken) {
   authToken = authToken || JSON.parse(localStorage.getItem('_x_authToken'))
-  options = { 
-    method: 'GET', 
-    headers: { 
+  options = {
+    method: 'GET',
+    headers: {
       'Content-Type': 'application/json;charset=utf-8',
       Authorization: authToken
-    }, 
+    },
     ...options
   }
   if (options.body) options.body = JSON.stringify(options.body)
@@ -160,7 +162,7 @@ document.addEventListener('alpine:init', () => {
         token = token || this.authToken
         let user = await fetchData('/users/me',{}, token)
         const userMetadata = metadataArrayToObject(user.metadata)
-        const userRoles = [...userMetadata.wp_tuiny5_capabilities.matchAll(/"([a-z]+)/g)].map( (match) => match[1])
+        const userRoles = [...capabilities.matchAll(/"([a-z]+)/g)].map( (match) => match[1])
         user = {
           ...user,
           metadata: userMetadata,

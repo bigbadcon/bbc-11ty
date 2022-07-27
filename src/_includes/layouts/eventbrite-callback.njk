@@ -1,0 +1,34 @@
+{% extends 'layouts/base.njk' %}
+
+{% block header %}
+    {% include 'components/header.njk' %}
+{% endblock %}
+
+{% block content %}
+    <main id="content">
+        <div class="mx-auto max-w-content p-base">
+            <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
+            <div class="prose">{{ content | safe }}</div>
+            <script type="text/javascript">
+                getEventbriteToken()
+            </script>
+            <div id="gpnw-eventbrite-widget-trigger"></div>
+        </div>
+
+        <script src="https://www.eventbrite.com/static/widgets/eb_widgets.js"></script>
+
+        <script type="text/javascript">
+            var exampleCallback = function () {
+                console.log('Order complete!');
+            };
+
+            window.EBWidgets.createWidget({
+                widgetType: 'checkout',
+                eventId: '391474790637',
+                iframeContainerId: 'gpnw-eventbrite-widget-trigger',
+                iframeContainerHeight: 425,
+                onOrderComplete: exampleCallback,
+            });
+        </script>
+    </main>
+{% endblock %}

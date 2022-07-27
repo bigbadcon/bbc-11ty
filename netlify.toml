@@ -1,9 +1,6 @@
 [functions]
   directory = "functions"
 
-[functions."submission-created"]
-  included_files = ["certs/bigbadcon-com-chain.pem"]
-
 [build]
   base = "./"
   command = "npm run build"
