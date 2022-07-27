@@ -1,9 +1,9 @@
 ---
 layout: layouts/staff.njk
-title: Our Staff
-description: The Big Bad Con staff of volunteers
+title: Our Organizers
+description: GPNW's Organizing Committee Volunteers
 tags: pages
 
 ---
 
-Big Bad Con would be nothing without it's amazing volunteer team!
+Go Play NW is a volunteer effort! Thank you to all of our event organizers and committee members.

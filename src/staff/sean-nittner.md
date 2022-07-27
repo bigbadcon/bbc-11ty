@@ -2,7 +2,7 @@
 title: Sean Nittner
 gender: "(he/him)"
 tags: staff
-published: true
+published: false
 twitter: seannittner
 website: http://www.seannittner.com
 image: "/images/sean_seattle.jpg"
