@@ -18,16 +18,12 @@
         <script src="https://www.eventbrite.com/static/widgets/eb_widgets.js"></script>
 
         <script type="text/javascript">
-            var exampleCallback = function () {
-                console.log('Order complete!');
-            };
-
             window.EBWidgets.createWidget({
                 widgetType: 'checkout',
                 eventId: '391474790637',
                 iframeContainerId: 'gpnw-eventbrite-widget-trigger',
                 iframeContainerHeight: 425,
-                onOrderComplete: exampleCallback,
+                onOrderComplete: eventbriteOrderCallback,
             });
         </script>
     </main>

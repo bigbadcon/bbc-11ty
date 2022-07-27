@@ -26,3 +26,9 @@ async function getEventbriteToken() {
         console.log("Call not referred by Eventbrite, ignoring token");
     }
 }
+
+var eventbriteOrderCallback = function () {
+    const paymentObj = arguments[0];
+    alert(paymentObj['orderId']);
+    console.log('Order complete!');
+};
