@@ -4,8 +4,8 @@ order: 2
 published: true
 
 ---
-[@bigbadcon](https://twitter.com/bigbadcon){.icon-twitter}
+[@GoPlayNW](https://twitter.com/GoPlayNW){.icon-twitter}
 
-[Join Our Discord](/community-discord){.icon-discord}
+[Join Our Discord](https://discord.gg/AqhayGFexQ){.icon-discord}
 
 [Contact Us](/contact-us){.icon-envelope}

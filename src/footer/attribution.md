@@ -7,4 +7,4 @@ title: ''
 Illustrations by [Eden Parkinson](https://eden-parkinson.com)  
 Website by [Colin Fahrion](http://www.twitter.com/colinaut)
 
-&copy; {% currentYear %} Big Bad Con
+&copy; {% currentYear %} Go Play NW

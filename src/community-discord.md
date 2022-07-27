@@ -6,8 +6,6 @@ tags: pages
 ogImage: "/images/join-our-community-discord.png"
 
 ---
-Want to stay connected with Big Bad Con year round?
+Want to stay connected with Go Play NW year round?
 
-[Join Our Discord](https://discord.gg/ZzPqYE3){.icon-discord}
-
-**_NOTE:_** _Big Bad Online 2022 will be hosted on a separate Discord that will only be open during the online event. You will need to_ [_Register_](/register) _to receive the invite for it._
+[Join Our Discord](https://discord.gg/AqhayGFexQ){.icon-discord}

@@ -1,53 +1,99 @@
 module.exports = [
 	{
-		"title": "Attend",
+		"title": "Go Play NW Online 2022",
 		"id": "attend",
 		"subnav": [
-			// {
-			// 	"title": "Register",
-			// 	"url": "/register",
-			// 	"icon": "badge"
-			// },
+			{
+			 	"title": "Register Now!",
+			 	"url": "/register",
+			 	"icon": "badge"
+			},
+			{
+				"title": "Run a Game",
+				"url": "/run-a-game",
+				"icon": "dice"
+			},
+			{
+				"title": "Events",
+			 	"url": "/events",
+			 	"icon": "calendar-clock"
+			},
+			//{
+			//	"title": "Hotel",
+			//	"url": "/hotel",
+			//	"icon": "hotel"
+			//},
+			//{
+			//	"title": "Games On Demand",
+			//	"url": "/games-on-demand",
+			//	"icon": "games-on-demand"
+			//},
+			{
+				"title": "Featured Facilitators",
+				"url": "/featured-facilitators",
+				"icon": "trophy"
+			},
+			{
+				"title": "The Donut",
+			 	"url": "/the-donut",
+			 	"icon": "sun"
+			},
+			{
+				"title": "Attendee Guide",
+				"url" : "/attendee-guide",
+				"icon": "book" 
+			},
+		    //{
+			//	"title": "Exhibitors",
+			//	"url": "/exhibitor-information",
+			//	"icon": "booth"
+			//},
+			//{
+			//	"title": "Past Events",
+			//	"url": "/past-events",
+			//	"icon": "library"
+			//},
 			{
 				"title": "FAQ",
 				"url": "/faq",
 				"icon": "faq"
-			},
-			// {
-			// 	"title": "Events",
-			// 	"url": "/events",
-			// 	"icon": "calendar-clock"
-			// },
+			}
+		]
+	},
+	{
+		"title": "About",
+		"id": "about",
+		"subnav": [
 			{
-				"title": "Hotel",
-				"url": "/hotel",
-				"icon": "hotel"
-			},
-			{
-				"title": "Run An Event",
-				"url": "/run-an-event",
-				"icon": "dice"
+				"title": "What We Do",
+				"url": "/about-us",
+				"icon": "light-bulb"
 			},
 			{
-				"title": "Games On Demand",
-				"url": "/games-on-demand",
+				"title": "Meet the Board",
+				"url": "/the-board",
+				"icon": "library"
+			},
+			{
+				"title": "Our Organizers",
+				"url": "/staff",
 				"icon": "games-on-demand"
 			},
 			{
-				"title": "Scholarship",
-				"url": "/big-bad-con-scholarship",
-				"icon": "gift"
+				"title": "Membership",
+				"url": "/membership",
+				"icon": "shield"
 			},
 			{
-				"title": "Exhibitors",
-				"url": "/exhibitor-information",
-				"icon": "booth"
+				"title": "Code of Conduct",
+				"url": "/code-of-conduct",
+				"icon": "scroll"
 			},
 			{
-				"title": "Past Events",
-				"url": "/past-events",
-				"icon": "library"
-			},
+				"title": "Feedback",
+				"url": "/morgan-ellis-awards",
+				"icon": "envelope"
+			}
 		]
 	},
 	{
@@ -57,7 +103,7 @@ module.exports = [
 			{
 				"title": "Join The Rangers",
 				"url": "/rangers",
-				"icon": "paw"
+				"icon": "parachute"
 			},
 			{
 				"title": "Volunteer Shifts",
@@ -67,33 +113,7 @@ module.exports = [
 		]
 	},
 	{
-		"title": "Community",
-		"id": "community",
-		"subnav": [
-			{
-				"title": "Community Standards",
-				"url": "/community-standards",
-				"icon": "scroll"
-			},
-			{
-				"title": "Anti-Harassment Policy",
-				"url": "/anti-harassment-policy",
-				"icon": "shield"
-			},
-			{
-				"title": "Community Discord",
-				"url": "/community-discord",
-				"icon": "discord"
-			},
-			{
-				"title": "Morgan Ellis Awards",
-				"url": "/morgan-ellis-awards",
-				"icon": "trophy"
-			}
-		]
-	},
-	{
-		"title": "Blog",
+		"title": "News",
 		"id": "blog",
 		"url": "/blog",
 		"icon": "star"
