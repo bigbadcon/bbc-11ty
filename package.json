@@ -14,7 +14,7 @@
     {
       "name": "Colin Fahrion",
       "url": "https://colinaut.com"
-   }
+    }
   ],
   "main": ".eleventy.js",
   "repository": {
