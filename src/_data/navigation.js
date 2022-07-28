@@ -90,8 +90,8 @@ module.exports = [
 				"icon": "scroll"
 			},
 			{
-				"title": "Feedback",
-				"url": "/morgan-ellis-awards",
+				"title": "Contact Us",
+				"url": "/contact-us",
 				"icon": "envelope"
 			}
 		]
@@ -101,8 +101,8 @@ module.exports = [
 		"id": "volunteer",
 		"subnav": [
 			{
-				"title": "Join The Rangers",
-				"url": "/rangers",
+				"title": "Become a Volunteer",
+				"url": "/volunteer",
 				"icon": "parachute"
 			},
 			{
@@ -113,7 +113,7 @@ module.exports = [
 		]
 	},
 	{
-		"title": "News",
+		"title": "Blog",
 		"id": "blog",
 		"url": "/blog",
 		"icon": "star"
