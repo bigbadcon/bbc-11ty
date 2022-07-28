@@ -49,3 +49,10 @@ The Hotels' ADA compliance:
 * Accessible bathroom
 
 Additionally, half of their shuttles are equipped with wheelchair lifts/ramps, there is a lift to grant access to the foyer, and they have MERV-8 in public spaces and MERV-10 in sleeping/gaming rooms. The Atrium has MERV-15 filters pulling air up and exhausting it through the roof.
+
+## Food and accommodations
+
+Seattle University has overnight rooms available for people who register early. Note that the rooms are University dorms with shared bathrooms. The rooms can get quite warm on sunny days, so consider opening your windows and bringing a fan.
+Lunch in the Seattle University cafeteria is included with your ticket. A range of dietary options are available, including gluten free and vegan. If you have purchased a dorm room, breakfast is also included.
+
+There are many place to get food within a short walk, including restaurants, fast food, and coffee. During the Friday Night dinner slot, Go Play folks will gather at the Rhein Haus, around the corner from campus. Please come join us, especially if you’re new!

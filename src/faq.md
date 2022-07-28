@@ -6,52 +6,38 @@ tags: pages
 ogImage: ''
 
 ---
-## Will Big Bad Con return in-person?
+## Will Go Play NW ever host in-person events again?
 
-Yes, we're coming back October 27-30. Join us!
+Yes! When that will happen exactly? We're not sure yet. Even with the relaxing of COVID policies there's.
 
-## Where will it be?
+## When is the next Go Play NW Online taking place?
 
-We'll be hosted by the Hyatt Regency San Francisco Airport
+The next Go Play NW Online event for 2022 is taking place from Friday September 20 - Sunday October 2, 2022.
 
-1333 Old Bayshore Hwy  
-Burlingame, CA 94010
+## How much does Go Play NW Online 2022 cost?
 
-Big Bad Con Group Rate: $139/night ([booking link](https://www.hyatt.com/en-US/group-booking/SFOBU/G-BBC3))
+The Sept/Oct 2022 online event is Pay What You Want for the entire weekend! We want to make our event as accessible for folks from various financial backgrounds as possible.
 
-[Hotel Information](/hotel){.icon-hotel}
+## What do you do with the money you collect from Go Play NW Online events?
 
-## What safety precautions are we taking?
 
-Find out about our COVID safety policies and risk mitigations efforts [here](/covid-safety).
 
-## Where can I find X feature?
+## Where will Go Play NW Online be hosted?
 
-There are a few features we're still developing for the new site. All of these should arrive later in June or early July 2022:
+Go Play NW Online 2022 will take place on our community [Discord Server](https://discord.gg/AqhayGFexQ). You will need a free [Discord](https://discord.com/) account to participate, which you can sign up for at [www.discord.com](https://discord.com/).
 
-* Games on Demand game submissions.
-* Small Press Showcase sign ups.
+Check out our Attendee Guide for more information.
 
-## Will there be a Dealer Room or Small Press Showcase?
+## How can I stay informed about the latest Go Play NW News and Events?
 
-Yes, you can find out more about each of those here:
+The best way to stay up to date on the latest and greatest from Go Play NW is to:
 
-[Exhibitor Information](/exhibitor-information){.icon-booth}
+[Join our mailing list](https://igg.me/at/bigbadcon2022){.icon-envelope}
 
-[Small Press Showcase sign ups](/small-press-showcase){.icon-book}
+[Join our Discord](https://discord.gg/AqhayGFexQ){.icon-discord}
 
-## <!-- Where are all the games at Big Bad Online? -->
-
-<!-- There are no scheduled games at Big Bad Online. We will have a Big Bad Online 2022 Discord the day of the event where people can chat and jump off into games if they like. You can register for the Big Bad Online Discord [here](/register). Note this is separate Discord from our year-round [Community Discord](/community-discord). -->
+[Follow us on Twitter](https://twitter.com/GoPlayNW){.icon-twitter}
 
 ## Is Big Bad Con an official non-profit? Are my donations tax deductible?
 
 Yes! Big Bad Con is an official 501(c)(3) non-profit! Donations are tax deductible and we count as a charitable organization for volunteering. For more information on our non-profit status see [Proof of 501(c)(3) Status](/non-profit).
-
-## Where did you get all the wonderful illustrations and graphics?
-
-The character illustrations of Red and The Wolf are done [Eden Parkinson](https://eden-parkinson.com)
-
-Logo design, web design and front-end web development by [Colin Fahrion](http://www.twitter.com/colinaut)
-
-Most of the SVG icons are thanks to [Font Awesome](https://fontawesome.com/license) and [Icomoon](https://icomoon.io) with some additional svg art by Colin Fahrion

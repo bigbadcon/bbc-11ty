@@ -11,8 +11,7 @@ Go Play NW is actively looking to expand and diversify our Board! If you know so
 
 Text Goes here.
 
-
-## Brandon Amancio (he/him), Vice President
+## John Powell (he/him), Vice President
 
 Text Goes here.
 
@@ -20,10 +19,6 @@ Text Goes here.
 
 Text Goes here.
 
-## John Powell (he/him)
-
-Text Goes here.
-
-## John Harper (he/him)
+## Brandon Amancio (he/him)
 
 Text Goes here.
