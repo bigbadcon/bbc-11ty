@@ -27,8 +27,17 @@ async function getEventbriteToken() {
     }
 }
 
-var eventbriteOrderCallback = function () {
+const eventbriteOrderCallback = async function () {
     const paymentObj = arguments[0];
-    alert(paymentObj['orderId']);
+    const orderCode = paymentObj['orderId'];
+    console.log("submit Eventbrite order code: ", orderCode)
+    let res = await fetchData('/payment/eventbrite/order', {
+        method: 'POST',
+        body: {orderId: orderCode}
+    })
+    console.log("Eventbrite order code submit response", res)
+    if (res.status === 200) { //&& res.headers.get('authorization')) {
+        console.log("Eventbrite order code stored")
+    }
     console.log('Order complete!');
 };
