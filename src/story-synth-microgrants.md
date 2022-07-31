@@ -8,6 +8,7 @@ tags: pages
 ogImage: "/images/story-synth-microgrants-twitter-card.png"
 
 ---
+<!--
 Hello!
 
 As award recipients from [Grant for the Web](https://www.grantfortheweb.org/), Big Bad Con and Randy Lubin (creator of [Story Synth](https://storysynth.org/)) are excited to announce a microgrant program focused on helping game designers from marginalized identities create, publish, and monetize games on the Story Synth platform!
@@ -143,3 +144,4 @@ A: We found that the initial funds and development for Interledger (the underlyi
 Interledger itself does not rely on a blockchain, and projects (like Story Synth) can use it without touching blockchains or cryptocurrencies. That being said, some organizations might use it with their blockchain or cryptocurrency projects.
 
 From an [interview](https://interledger.org/news/the-history-and-promise-of-interledger-qa-with-co-founder-stefan-thomas/) with Thomas in 2021 “My deep involvement in Bitcoin and Ripple gave me an appreciation for the strengths and weaknesses of blockchain, including the difficulty in upgrading such systems to keep up with new technologies. This in large part influenced the decision NOT to make Interledger a blockchain. Instead, we looked to the internet for inspiration on how to create a massive global interoperability system that can still remain flexible and evolve as new technologies become available. And thus, Interledger was born - a protocol for routing packets of money just like the internet routes packets of data.”
+-->

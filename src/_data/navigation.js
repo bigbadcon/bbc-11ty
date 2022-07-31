@@ -10,7 +10,7 @@ module.exports = [
 			},
 			{
 				"title": "Run a Game",
-				"url": "/run-a-game",
+				"url": "/run-an-event",
 				"icon": "dice"
 			},
 			{
@@ -40,7 +40,7 @@ module.exports = [
 			},
 			{
 				"title": "Attendee Guide",
-				"url" : "/attendee-guide",
+				"url" : "https://docs.google.com/document/d/1i29pOo4SCO7NKRHNQjBAflOCh1IzJAHZMw52fZUmEac",
 				"icon": "book" 
 			},
 		    //{

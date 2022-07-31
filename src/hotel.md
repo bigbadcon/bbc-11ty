@@ -1,13 +1,14 @@
 ---
 layout: layouts/page.njk
 title: Hotel
-description: Big Bad Con will be hosted at the Hyatt Regency San Francisco Airport
+description: Go Play NW will be hosted at Seattle University
 ogImage: "/images/hyatt-768x419.jpg"
 
 ---
-Big Bad Con will be hosted by the
+<!--
+Go Play NW will be hosted by...
 
-**Hyatt Regency San Francisco Airport**  
+**Seattle University**  
 1333 Old Bayshore Hwy  
 Burlingame, CA 94010
 
@@ -56,3 +57,4 @@ Seattle University has overnight rooms available for people who register early. 
 Lunch in the Seattle University cafeteria is included with your ticket. A range of dietary options are available, including gluten free and vegan. If you have purchased a dorm room, breakfast is also included.
 
 There are many place to get food within a short walk, including restaurants, fast food, and coffee. During the Friday Night dinner slot, Go Play folks will gather at the Rhein Haus, around the corner from campus. Please come join us, especially if you’re new!
+-->

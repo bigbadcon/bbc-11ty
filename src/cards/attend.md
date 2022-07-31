@@ -1,5 +1,5 @@
 ---
-title: How to Attend
+title: Attend
 order: -1
 tags: cards
 published: true
@@ -7,12 +7,10 @@ image: ''
 alt: ''
 
 ---
-Sign up now:
+Come and join us for our Sep/Oct online 2022 event!
 
-[Pledge for a Badge](https://igg.me/at/bigbadcon2022){.icon-badge}
+[Register Now!](/register){.icon-badge}
 
-[Book a Room](https://www.hyatt.com/en-US/group-booking/SFOBU/G-BBC3){.icon-hotel}
+[Join our Discord](https://discord.gg/AqhayGFexQ){.icon-discord}
 
 [FAQ](/faq){.icon-faq}
-
-[Scholarship](/big-bad-con-scholarship){.icon-gift}

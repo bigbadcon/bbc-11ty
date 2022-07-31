@@ -5,6 +5,7 @@ description: ''
 ogImage: ''
 
 ---
+<!--
 Big Bad Con is committed to cultivating and supporting a spectacular and diverse gaming community. Part of the way we do that is by collecting donations to our scholarship program.
 
 Our scholarship funds go towards helping women, people of color, disabled, and lgbtqia+ individuals attend the con. We use it to cover hotel rooms ($139+/night), convention badges ($75), and help with other fees. Depending on the number of applicants, we may be able cover full or partial costs.
@@ -36,3 +37,4 @@ We started the scholarship program in 2015. Here's the number of people we've be
 * 2015: 4 awards
 
 [Donate Now](https://www.paypal.com/us/fundraiser/charity/1653860){.icon-gift}
+-->

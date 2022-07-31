@@ -4,7 +4,8 @@ published: true
 title: ''
 
 ---
-Illustrations by [Eden Parkinson](https://eden-parkinson.com)  
 Website by [Colin Fahrion](http://www.twitter.com/colinaut)
 
-&copy; {% currentYear %} Go Play NW
+Go Play NW is a 501(c)(7) Non-Profit Organization
+
+&copy; {% currentYear %} Go Play NW. All rights reserved.

@@ -6,7 +6,7 @@ tags: pages
 permalink: false
 
 ---
-
+<!--
 This year, Big Bad is going online! We’re going to have 24 hours of panels and hangout time on Discord! Because of all the energy, joy, and passion our rangers poured into Big Bad Con in the past, 2019 was an incredible success. We want to foster that same joy this year for our online experience and would love to have you rejoin the ranks of the Rangers!
 
 Here’re the roles we’re looking for this year:
@@ -39,3 +39,4 @@ Here’re the roles we’re looking for this year:
 Training for all of these roles will be provided ahead of time by the Big Bad Con staff. We’ll ask that each Ranger attends a 1-hour training in late-September / early-October to review all the duties of the role, provide us feedback, and ask any questions.
 
 Would you like to be part of putting on Big Bad Online this year? Because, we would love to have you!
+-->

@@ -1,16 +1,14 @@
 ---
-title: Events
+title: Play
 tags: cards
 published: true
 order: 
 
 ---
-Submit an event for Big Bad Con 2022!
+Once you're registered, learn how to get into a game!
 
-[Run An Event](/run-an-event){.icon-dice}
+[Run a Game](/run-an-event){.icon-dice}
 
-[Games on Demand](/games-on-demand){.icon-games-on-demand}
+[Join a Scheduled Game](/events){.icon-calendar-clock}
 
-[Past Events](/past-events){.icon-library}
-
-[Exhibitors](/exhibitor-information){.icon-booth}
+[Join the Donut](/the-donut){.icon-sun}

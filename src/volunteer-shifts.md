@@ -1,10 +1,10 @@
 ---
 layout: layouts/volunteer-shifts.njk
 title: Volunteer Shifts
-description: 'Our Rangers are the folks that make Big Bad Online possible. To join, sign up for a shift!'
+description: 'Go Play NW runs on volunteers! To join, sign up for a shift!'
 tags: pages
 listing: volunteer
 ---
-Our Rangers are the folks that make Big Bad Con possible. To join, you must first [sign up as a volunteer](/rangers/#signup). Once you are registered you can book a shift below! *NOTE: You must be logged in to see shift availability*
+Go Play NW runs on volunteers! If you're interested in volunteering for one of our Go Play NW events, you must first [sign up as a volunteer](/volunteer/#signup). Once you're signed up as a volunteer and logged in you will be able to see the book volunteer shifts from the list below.
 
-[Learn more about the Rangers](/rangers){.icon-paw}
+[Learn more about becoming a volunteer](/volunteer){.icon-parachute}

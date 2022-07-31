@@ -4,7 +4,6 @@ title: What We Do
 description: ''
 tags: pages
 ---
-
 Go Play NW is an annual weekend event where folks come together to play indie tabletop role-playing, story, board, and card games.
 
 Meet new people! Play new games!
