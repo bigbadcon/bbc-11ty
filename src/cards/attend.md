@@ -9,7 +9,7 @@ alt: ''
 ---
 Sign up now:
 
-[Pledge for a Badge](https://igg.me/at/bigbadcon2022){.icon-badge}
+[Pledge for a Badge](https://big-bad-con-2022.backerkit.com/hosted_preorders){.icon-badge}
 
 [Book a Room](https://www.hyatt.com/en-US/group-booking/SFOBU/G-BBC3){.icon-hotel}
 
