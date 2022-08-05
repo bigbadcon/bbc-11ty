@@ -49,3 +49,7 @@ The Hotels' ADA compliance:
 * Accessible bathroom
 
 Additionally, half of their shuttles are equipped with wheelchair lifts/ramps, there is a lift to grant access to the foyer, and they have MERV-8 in public spaces and MERV-10 in sleeping/gaming rooms. The Atrium has MERV-15 filters pulling air up and exhausting it through the roof.
+
+### Safety & Wellbeing
+
+[Hyatt's safety policies](https://www.hyatt.com/info/care-and-cleanliness-americas).
