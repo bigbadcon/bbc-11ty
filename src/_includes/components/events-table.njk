@@ -1,8 +1,9 @@
-<section class="mt-md" x-data="{ filter: $persist({favsOnly: false,openOnly: false}) }">
+<section class="mt-md" x-data="eventsTable">
     <h2 class="font-serif text-3xl font-bold leading-none md:text-4xl text-header mb-2xs">Events List</h2>
-    {# {% include 'components/event-table-filter.njk' %} #}
+    {% include 'components/event-table-filter.njk' %}
     {# Testing: <button @click="getFavEvents">load favs</button> #}
     {# TODO: add filter by catagory and sort by name, system, gm, date #}
+
     <table class="events-table">
         <thead class="hidden sm:table-header-group">
             <tr>
@@ -22,7 +23,11 @@
         <tbody>
             {% for event in eventData.events %}
                 {# isFav is in Alpine.data("global") #}
-                <tr x-show="!filter.favsOnly || isFav({{event.eventId}})">
+                {# build event catagories array for filter button #}
+                <tr 
+                x-data="{category: [{{event.categoriesAlpineArray}}]}"
+                x-show="(filter.category === 'All' || category.includes(filter.category)) && (!filter.favsOnly || isFav({{event.eventId}}))" >
+
                     {# Event Name #}
                     <td>
                         <h3>
@@ -59,3 +64,13 @@
         </tbody>
     </table>
 </section>
+<script type="text/javascript">
+
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('eventsTable', function () {
+            return {
+                filter: this.$persist({favsOnly: false, openOnly: false, category: 'All'})
+            }
+        })
+    })
+</script>

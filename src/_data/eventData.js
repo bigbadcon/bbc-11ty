@@ -57,6 +57,8 @@ module.exports = async () => {
             // Create Javascript date objects
             const eventStartDateTime = dayjs(event.eventStartDate + "T" + event.eventStartTime + "-07:00").toDate()
             const eventEndDateTime = dayjs(event.eventEndDate + "T" + event.eventEndTime + "-07:00").toDate()
+
+            const arrayToStringForAlpine = () => event.categories.map(item => "'" + item.name + "'").toString()
  
             return {
                 ...event,
@@ -66,6 +68,7 @@ module.exports = async () => {
                 eventStartDateTime: eventStartDateTime, // native javascript date object
                 eventEndDateTime: eventEndDateTime, // native javascript date object
                 eventSlug: event.eventSlug.toLowerCase(), // force lowercase
+                categoriesAlpineArray: arrayToStringForAlpine()
             }
         })
 
