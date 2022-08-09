@@ -35,9 +35,9 @@ eleventyComputed:
         {{ event.metadata.GM }}
     </div>
     <div class="not-prose">
-        <ul class="flex justify-start gap-sm">
+        <ul class="flex justify-start text-sm gap-xs">
             {% for category in event.categories %}
-                <li class="rounded-full px-base py-2xs bg-card text-body">{{ category.name }}</li>
+                <li class="rounded-full px-sm py-[.15rem] bg-card text-body">{{ category.name }}</li>
             {% endfor %}
         </ul>
     </div>
