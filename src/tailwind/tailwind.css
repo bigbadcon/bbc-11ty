@@ -566,8 +566,22 @@ a[class^='icon-']:hover {
   @apply border-b-2 border-transparent mb-[-2px] hover:border-body;
 }
 
-.sort-btn.active {
+.active {
+  @apply flex justify-start items-center gap-2xs;
+}
+
+.active .sort-btn{
   @apply border-highlight
+}
+
+.ascending .active.sortable:after {
+  content: "\279C";
+  @apply text-subheader rotate-90 block text-xs;
+}
+
+.descending .active.sortable:after {
+  content: "\279C";
+  @apply text-subheader rotate-[-90deg] block text-xs;
 }
 
 /* -------------------------------------------------------------------------- */

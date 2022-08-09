@@ -6,13 +6,13 @@
 
     <table class="events-table" id="events-table">
         <caption class="italic text-left mb-xs">Table can be sorted by event or system</caption>
-        <thead>
+        <thead :class="sortAscending ? 'ascending' : 'descending'">
             <tr>
-                <th class="text-left">
-                    <button @click="sortTable(1)" class="sort-btn" :class="sortBy === 1 && 'active'">Event</button>
+                <th class="text-left sortable" :class="sortBy === 1 && 'active'">
+                    <button @click="sortTable(1)" class="sort-btn" >Event</button>
                 </th>
-                <th class="text-left">
-                    <button @click="sortTable(2)" class="sort-btn" :class="sortBy === 2 && 'active'">System</button>
+                <th class="text-left sortable" :class="sortBy === 2 && 'active'">
+                    <button @click="sortTable(2)" class="sort-btn" >System</button>
                 </th>
                 {# <th class="text-left ">Date Time</th>
                 <th class="text-center max-w-max">Dur</th> #}
@@ -91,12 +91,25 @@
         Alpine.data('eventsTable', function () {
             return {
                 init() {
-                    this.sortTable(this.sortBy)
+                    this.sortTable(this.sortBy, this.sortAscending)
                 },
                 filter: this.$persist({favsOnly: false, openOnly: false, category: 'All'}),
                 sortBy: this.$persist(1),
-                sortTable(colnum) {
-                    this.sortBy = colnum
+                sortAscending: this.$persist(true),
+                sortTable(colnum, direction) {
+                    // If this is the same column than switch direction
+                    if (direction === undefined) {
+                        if (this.sortBy === colnum) {
+                            this.sortAscending = !this.sortAscending
+                        } else {
+                            this.sortAscending = true
+                            this.sortBy = colnum
+                        }
+                    } else {
+                        this.sortAscending = direction
+                        this.sortBy = colnum
+                    }
+
                     const table = document.querySelector('#events-table tbody');
                     let rows = Array.from(table.querySelectorAll(`tr`));
 
@@ -109,7 +122,11 @@
                         let t2 = r2.querySelector(qs);
 
                         // and then effect sorting by comparing their content:
-                        return compareValues(t1.textContent, t2.textContent);
+                        if (this.sortAscending) {
+                            return compareValues(t1.textContent, t2.textContent);
+                        } else {
+                            return compareValues(t2.textContent, t1.textContent);
+                        }
                     });
 
                     // and then the magic part that makes the sorting appear on-page:
