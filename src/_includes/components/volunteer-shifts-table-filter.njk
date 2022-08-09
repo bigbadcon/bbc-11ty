@@ -13,25 +13,12 @@
             </svg>
             <span class="text-sm">Favs</span>
         </button>
-        {# <button @click="filter.openOnly = !filter.openOnly" 
+        <button @click="filter.openOnly = !filter.openOnly" 
         class="filter-btn group">
             <svg class="w-4 h-4 group-hover:fill-highlight" :class="(filter.openOnly) ? 'fill-highlight' : 'fill-body'">
                 <use xlink:href="/static/images/icons.svg#square-full"></use>
             </svg>
             <span class="text-sm">Open Spaces</span>
-        </button> #}
-    </div>
-    <div class="flex items-center justify-start gap-xs">
-        <h5 class="text-sm font-bold">Category:</h5>
-        <select class="mb-0 text-sm cursor-pointer px-xs py-2xs" @change="filter.category = $el.value" >
-            <option value="All">All</option>
-            <option value="RPG">RPG</option>
-            <option value="LARP">LARP</option>
-            <option value="Board/Card Game">Board/Card Game</option>
-            <option value="Playtest">Playtest</option>
-            <option value="Panel">Panel</option>
-            <option value="Workshop">Workshop</option>
-            <option value="All Ages">All Ages</option>
-        </select>
+        </button>
     </div>
 </div>

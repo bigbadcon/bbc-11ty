@@ -546,6 +546,10 @@ a[class^='icon-']:hover {
   @apply opacity-100 bg-highlight
 }
 
+.filter-btn {
+  @apply flex items-center transition-colors rounded gap-x-xs bg-main-gradient-bottom px-sm py-2xs hover:bg-primary;
+}
+
 /* -------------------------------------------------------------------------- */
 /*                                lite-youtube                                */
 /* -------------------------------------------------------------------------- */
