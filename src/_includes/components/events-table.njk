@@ -3,7 +3,8 @@
     {% include 'components/event-table-filter.njk' %}
     {# Testing: <button @click="getFavEvents">load favs</button> #}
     {# TODO: add filter by catagory and sort by name, system, gm, date #}
-
+    <button @click="filter.category = false">test</button>
+    <button @click="filter.category = true">test 2</button>
     <table class="events-table" id="events-table">
         <caption class="italic text-left mb-xs">Table can be sorted by event or system</caption>
         <thead :class="sortAscending ? 'ascending' : 'descending'">
@@ -35,7 +36,7 @@
                 {# build event catagories array for filter button #}
                 <tr 
                 x-data="{category: [{{event.categoriesAlpineArray}}]}"
-                x-show="(filter.category === 'All' || category.includes(filter.category)) && (!filter.favsOnly || isFav({{event.eventId}}))" >
+                x-show="(typeof filter.category !== 'string' || filter.category === 'All' || category.includes(filter.category)) && (!filter.favsOnly || isFav({{event.eventId}}))" >
 
                     {# Event Name #}
                     <td class="events-table-cell--name">
@@ -90,7 +91,10 @@
         Alpine.data('eventsTable', function () {
             return {
                 init() {
-                    this.sortTable(this.sortBy, this.sortAscending)
+                    if (this.sortAscending === undefined) {
+                        this.sortAscending = true
+                    }
+                    this.sortTable(this.sortBy || 1, this.sortAscending)
                 },
                 filter: this.$persist({favsOnly: false, openOnly: false, category: 'All'}),
                 sortBy: this.$persist(1),
