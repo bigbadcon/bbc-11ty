@@ -522,11 +522,23 @@ a[class^='icon-']:hover {
 }
 
 .events-table tr {
-  @apply w-full flex flex-col sm:table-row mb-base;
+  @apply w-full flex flex-col sm:table-row mb-base relative pr-8 sm:pr-0;
 }
 
 .events-table td {
   @apply block sm:table-cell sm:py-sm sm:pr-sm;
+}
+
+.events-table td.table-cell-fav-star {
+  @apply absolute sm:relative right-0 top-0;
+}
+
+.events-table thead tr {
+  @apply flex-row gap-sm;
+}
+
+.events-table th {
+  @apply pb-xs
 }
 
 .fav-star {
@@ -550,8 +562,12 @@ a[class^='icon-']:hover {
   @apply flex items-center transition-colors rounded gap-x-xs bg-main-gradient-bottom px-sm py-2xs hover:bg-primary;
 }
 
-.events-table .active {
-  @apply border-b-2 border-highlight mb-[-2px]
+.sort-btn {
+  @apply border-b-2 border-transparent mb-[-2px] hover:border-body;
+}
+
+.sort-btn.active {
+  @apply border-highlight
 }
 
 /* -------------------------------------------------------------------------- */
