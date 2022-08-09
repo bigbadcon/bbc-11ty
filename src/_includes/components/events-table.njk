@@ -38,7 +38,7 @@
                 x-show="(filter.category === 'All' || category.includes(filter.category)) && (!filter.favsOnly || isFav({{event.eventId}}))" >
 
                     {# Event Name #}
-                    <td>
+                    <td class="events-table-cell--name">
                         <h3>
                             <a href="/events/{{event.eventSlug}}" class="font-bold transition-colors text-header hover:text-highlight">{{event.eventName | safe }}</a>
                         </h3>
@@ -54,9 +54,9 @@
                         event.eventEndDateTime %}
                     </td> #}
                     {# System #}
-                    <td class="italic">{{event.metadata.System}}</td>
+                    <td class="events-table-cell--system">{{event.metadata.System}}</td>
                     {# Event Categories #}
-                    <td>
+                    <td class="events-table-cell--categories">
                         <div class="flex flex-wrap mt-2xs sm:mt-0 gap-2xs">
                             {% for category in event.categories %}
                                 <span class="text-xs rounded-full px-xs py-[.15rem] bg-card whitespace-nowrap">{{category.name | replace('Game', '') | trim}}</span>
@@ -64,7 +64,7 @@
                         </div>
                     </td>
                     {# Fav Event Icon #}
-                    <td x-cloak x-show="isAuth" class="table-cell-fav-star">
+                    <td x-cloak x-show="isAuth" class="events-table-cell--fav-star">
                         <button @click="toggleFav({{event.eventId}})" class="fav-star" :class="isFav({{event.eventId}}) && 'favved'">&starf;</button>
                     </td>
                 </tr>
