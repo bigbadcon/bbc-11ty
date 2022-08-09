@@ -517,6 +517,18 @@ a[class^='icon-']:hover {
 
 /* ------------------------- Event / Volunteer List ------------------------- */
 
+.events-table {
+  @apply w-full text-sm text-body;
+}
+
+.events-table tr {
+  @apply w-full flex flex-col sm:table-row mb-base;
+}
+
+.events-table td {
+  @apply block sm:table-cell sm:py-sm sm:pr-sm;
+}
+
 .fav-star {
   mask-image: url(/static/svgs/star.svg);
   mask-repeat: no-repeat;
