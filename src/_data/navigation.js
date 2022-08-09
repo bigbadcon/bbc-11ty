@@ -13,11 +13,11 @@ module.exports = [
 				"url": "/faq",
 				"icon": "faq"
 			},
-			// {
-			// 	"title": "Events",
-			// 	"url": "/events",
-			// 	"icon": "calendar-clock"
-			// },
+			{
+				"title": "Events",
+				"url": "/events",
+				"icon": "calendar-clock"
+			},
 			{
 				"title": "Hotel",
 				"url": "/hotel",
