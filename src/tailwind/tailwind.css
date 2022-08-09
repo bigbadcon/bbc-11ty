@@ -538,7 +538,7 @@ a[class^='icon-']:hover {
 }
 
 .events-table th {
-  @apply pb-xs
+  @apply pb-xs text-subheader;
 }
 
 .fav-star {
@@ -566,22 +566,22 @@ a[class^='icon-']:hover {
   @apply border-b-2 border-transparent mb-[-2px] hover:border-body;
 }
 
-.active {
-  @apply flex justify-start items-center gap-2xs;
+.sortable {
+  @apply inline-flex justify-start gap-2xs items-end;
 }
 
-.active .sort-btn{
+.active .sort-btn {
   @apply border-highlight
 }
 
 .ascending .active.sortable:after {
   content: "\279C";
-  @apply text-subheader rotate-90 block text-xs;
+  @apply text-hr rotate-90 block text-xs;
 }
 
 .descending .active.sortable:after {
   content: "\279C";
-  @apply text-subheader rotate-[-90deg] block text-xs;
+  @apply text-hr rotate-[-90deg] block text-xs;
 }
 
 /* -------------------------------------------------------------------------- */
