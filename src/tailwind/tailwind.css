@@ -550,6 +550,10 @@ a[class^='icon-']:hover {
   @apply flex items-center transition-colors rounded gap-x-xs bg-main-gradient-bottom px-sm py-2xs hover:bg-primary;
 }
 
+.events-table .active {
+  @apply border-b-2 border-highlight mb-[-2px]
+}
+
 /* -------------------------------------------------------------------------- */
 /*                                lite-youtube                                */
 /* -------------------------------------------------------------------------- */
