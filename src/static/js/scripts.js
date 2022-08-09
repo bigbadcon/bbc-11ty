@@ -160,6 +160,7 @@ document.addEventListener('alpine:init', () => {
         token = token || this.authToken
         let user = await fetchData('/users/me',{}, token)
         const userMetadata = metadataArrayToObject(user.metadata)
+        // TODO: not 
         const userRoles = [...userMetadata.wp_tuiny5_capabilities.matchAll(/"([a-z]+)/g)].map( (match) => match[1])
         user = {
           ...user,

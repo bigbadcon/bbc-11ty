@@ -1,0 +1,44 @@
+{% extends 'layouts/base.njk' %}
+
+{% block header %}
+    {% include 'components/header.njk' %}
+{% endblock %}
+
+{% block content %}
+    {{ prices | log }}
+
+    <main id="content">
+        <div class="mx-auto max-w-content p-base">
+            <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
+            <div class="prose mb-lg">{{ content | safe }}</div>
+            <section x-cloak x-show="!isAuth" class="prose">
+                <p>You must be logged in to purchase a badge.</p>
+            </section>
+            {% if prices.length %}
+                <section x-cloak x-show="isAuth" >
+                    {% for price in prices %}
+                        <div class="flex flex-wrap gap-x-base gap-y-sm">
+                            <h3 class="w-full text-xl font-bold text-subheader">{{ price.product.name }}</h3>
+                            <img src="{{ price.product.images[0]}}" alt="" class="object-cover object-center w-36 h-36"/>
+                            <div class="prose">
+                                <p>{{price.product.description }}</p>
+                                <p>Price: ${{price.unit_amount | convertCentsToDollars}}</p>
+                                {{ price.product.images | log }}
+                                <form action="/.netlify/functions/createCheckoutSession" method="POST">
+                                    <input type="hidden" name="userId" :value="user && user.id"/>
+                                    <input type="hidden" name="userEmail" :value="user && user.userEmail"/>
+                                    <input type="hidden" name="price_id" value="{{ price.id }}"/>
+                                    <button type="submit">Buy Now</button>
+                                </form>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </section>
+            {% else %}
+                <section x-cloak x-show="isAuth" class="prose">
+                    <p>There are no purchasable items at this time.</p>
+                </section
+            {% endif %}
+        </div>
+            </main>
+        {% endblock %}

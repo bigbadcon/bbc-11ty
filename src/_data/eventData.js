@@ -82,6 +82,7 @@ module.exports = async () => {
         const volunteer = data.filter(event => hasCategory(event, "volunteer-shift"))
 
         /* ------------------- Sort by start time& alphabetically ------------------- */
+        // TODO: why is alphabetically not sorting right
         function eventSort(events) {
             return events.sort((a,b) => a.eventStartDateTime - b.eventStartDateTime || a.eventName.localeCompare(b.eventName))
         }
