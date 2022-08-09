@@ -1,7 +1,21 @@
 <div class="flex flex-wrap items-center justify-start border-t-2 border-b-2 mb-base text-body gap-sm py-sm border-hr" >
-    <div class="flex flex-wrap items-center justify-start gap-xs">
+    {# <div class="flex flex-wrap items-center justify-start gap-xs">
         <h5 class="text-sm font-bold">Timezone:</h5>
         {% include 'components/timezone-select.njk' %}
+    </div> #}
+
+    <div class="flex items-center justify-start gap-xs">
+        <h5 class="text-sm font-bold">Category:</h5>
+        <select class="mb-0 text-sm cursor-pointer px-xs py-2xs" @change="filter.category = $el.value" >
+            <option value="All">All</option>
+            <option value="RPG">RPG</option>
+            <option value="LARP">LARP</option>
+            <option value="Board/Card Game">Board/Card Game</option>
+            <option value="Playtest">Playtest</option>
+            <option value="Panel">Panel</option>
+            <option value="Workshop">Workshop</option>
+            <option value="All Ages">All Ages</option>
+        </select>
     </div>
     <div class="flex items-center justify-start gap-xs" x-cloak x-show="isAuth">
         {# favsOnly data is in x-data="eventFilter" in wrapping div in base.njk #}
@@ -20,18 +34,5 @@
             </svg>
             <span class="text-sm">Open Spaces</span>
         </button> #}
-    </div>
-    <div class="flex items-center justify-start gap-xs">
-        <h5 class="text-sm font-bold">Category:</h5>
-        <select class="mb-0 text-sm cursor-pointer px-xs py-2xs" @change="filter.category = $el.value" >
-            <option value="All">All</option>
-            <option value="RPG">RPG</option>
-            <option value="LARP">LARP</option>
-            <option value="Board/Card Game">Board/Card Game</option>
-            <option value="Playtest">Playtest</option>
-            <option value="Panel">Panel</option>
-            <option value="Workshop">Workshop</option>
-            <option value="All Ages">All Ages</option>
-        </select>
     </div>
 </div>
