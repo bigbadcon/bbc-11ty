@@ -544,17 +544,21 @@ a[class^='icon-']:hover {
 .fav-star {
   mask-image: url(/static/svgs/star.svg);
   mask-repeat: no-repeat;
-  @apply block w-6 h-6 cursor-pointer opacity-30 hover:opacity-100 bg-body mx-auto;
+  @apply block w-6 h-6 cursor-pointer opacity-30 hover:opacity-100 bg-body indent-96;
 }
 
 .fav-star-header {
   mask-image: url(/static/svgs/star.svg);
   mask-repeat: no-repeat;
-  @apply block w-6 h-6 bg-body mx-auto;
+  @apply block w-6 h-6 bg-body indent-96;
+}
+
+.fav-star--event-page, .fav-star--event-page .iconlink__icon  {
+  @apply w-8 h-8;
 }
 
 /* Make sure favved are highlighted */
-.fav-star.favved {
+.fav-star.favved, .fav-star-header.favved {
   @apply opacity-100 bg-highlight
 }
 
