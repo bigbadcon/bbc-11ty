@@ -9,74 +9,59 @@
         <div class="mx-auto max-w-content p-base">
             <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
             <div class="prose">{{ content | safe }}</div>
-            <section class="my-md">
+            <section class="my-base">
                 {# START Submit Form: only show if logged in #}
                 <div x-cloak x-show="!isAuth" class="prose">
-                    <h2>Exhibitor Signup</h2>
                     <p>You must be <button @click.stop="modal = 'login'" class="font-bold underline text-highlight">logged in</button> to submit a form.</p>
                 </div>
 
                 <div x-cloak x-show="isAuth && user" x-data="formData">
                     <div x-show="!formSubmitted" id="submit-form">
                         <header class="prose">
-                            <h2>Exhibitor Signup</h2>
+                            <h2>Small Press Showcase Signup</h2>
                             <p>
                                 <span class="font-bold text-highlight">*</span>
                                 <em>required field</em>
                             </p>
                         </header>
-                        <form action="post" class="mt-base" id="form-exhibitor" @submit.prevent="submitForm">
+                        <form action="post" class="mt-base" id="form-dealer" @submit.prevent="submitForm">
                             {# TODO: add honeypot #}
                             <input type="hidden" x-model="formInfo.userDisplayName" x-init="formInfo.userDisplayName = user && user.displayName; $watch('user', value => formInfo.userDisplayName = value && value.displayName)">
                             <input type="hidden" x-model="formInfo.userId" x-init="formInfo.userId = user && user.id; $watch('user', value => formInfo.userId = value && value.id)">
                             <input type="hidden" x-model="formInfo.userEmail" x-init="formInfo.userEmail = user && user.userEmail; $watch('user', value => formInfo.userEmail = value && value.userEmail)">
                             {# Personal Info #}
-                            <fieldset x-init="console.log($valid.test('hi hi'))">
+                            <fieldset>
                                 <legend>Company Info</legend>
                                 <div class="required">
                                     <label for="companyName">Company Name</label>
-                                    <input id="companyName" name="companyName" type="text" value="" x-model="formInfo.companyName" x-validate.required/>
+                                    <input id="companyName" name="companyName" type="text" value="" x-model="formInfo.companyName" @blur="validate"/>
                                 </div>
-                                <div class="required">
+                                <div class="required" data-error="full url with https:// required">
                                     <label for="website">Website</label>
-                                    <input id="website" name="website" type="url" value="" x-model="formInfo.website" x-validate.required.website/>
+                                    <input id="website" name="website" type="url" value="" x-model="formInfo.website" @blur="validate"/>
                                 </div>
                                 <div >
                                     <label for="twitter">Twitter</label>
-                                    <input id="twitter" name="twitter" type="text" value="" x-model="formInfo.twitter"/>
+                                    <input id="twitter" name="twitter" type="text" value="" x-model="formInfo.twitter" @blur="validate"/>
                                 </div>
                                 <div class="required">
                                     <label for="product">Product or service your company provides</label>
-                                    <textarea cols="30" id="product" name="product" rows="3" x-model="formInfo.product" x-validate.required></textarea>
-                                </div>
-                                <div class="required">
-                                    <label for="charitySupported">Charity Supported</label>
-                                    <select id="charitySupported" name="charitySupported" x-model="formInfo.charitySupported" x-validate.required>
-                                        <option disabled selected value="">
-                                            -- Choose One --
-                                        </option>
-                                        <option>Big Bad Con Scholarship</option>
-                                        <option value="Other">Other (fill in below)</option>
-                                    </select>
-                                </div>
-                                <div x-show="formInfo.charitySupported === 'Other'" class="required">
-                                    <label for="charityOther">Other Charity</label>
-                                    <input id="charityOther" name="charityOther" type="text" value="" x-model="formInfo.charityOther" x-validate.required/>
+                                    <textarea cols="30" id="product" name="product" rows="3" x-model="formInfo.product" @blur="validate"></textarea>
                                 </div>
                             </fieldset>
                             <fieldset>
                                 <legend>Contact Person</legend>
                                 <div class="required">
                                     <label for="contactName">Name</label>
-                                    <input id="contactName" name="contactName" type="text" value="" x-model="formInfo.contactName" x-validate.required/>
+                                    <input id="contactName" name="contactName" type="text" value="" x-model="formInfo.contactName" @blur="validate"/>
                                 </div>
-                                <div class="required">
+                                <div class="required" data-error="email address required">
                                     <label for="contactEmail">Email</label>
-                                    <input id="contactEmail" name="contactEmail" type="email" value="" x-model="formInfo.contactEmail" x-validate.required.email/>
+                                    <input id="contactEmail" name="contactEmail" type="email" value="" x-model="formInfo.contactEmail" @blur="(e) => validate(e,{email: true})"/>
                                 </div>
-                                <div class="required">
+                                <div class="required" data-error="phone number required">
                                     <label for="contactPhone">Phone</label>
-                                    <input id="contactPhone" name="contactPhone" type="phone" value="" x-model="formInfo.contactPhone" x-validate.required.phone/>
+                                    <input id="contactPhone" name="contactPhone" type="phone" value="" x-model="formInfo.contactPhone" @blur="(e) => validate(e,{phone: true})"/>
                                 </div>
                             </fieldset>
                             <fieldset>
@@ -88,7 +73,7 @@
                                     </p>
                                 </div>
                                 <div class="required">
-                                    <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-model="formInfo.communityStandards" required x-validate.checked>
+                                    <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-model="formInfo.communityStandards" required>
                                     <label for="agree-to-community-standards" class="text-body-highlight"3324>
                                         Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Big Bad Con Community Standards
                                     </label>
@@ -101,8 +86,8 @@
                     {# END form submission div #}
                     {# form submitted #}
                     <div class="prose" x-show="formSubmitted" id="form-submitted">
-                        <h2>Thanks for submitting to be a dealer!</h2>
-                        <p>Our staff will review your submission, and let you know about your application soon.</p>
+                        <h2>Thanks for submitting for a scholarship!</h2>
+                        <p>Our staff will review your submission, and let you know how much our scholarship fund can help!</p>
                     </div>
                 </div>
 
@@ -117,39 +102,31 @@
 
         document.addEventListener('alpine:init', () => {
 
-            Alpine.magic("valid", () => ({
-                hi: 'hello',
-                required: () => `j`.trim() !== '',
-                test() {
-                    return this.hi
-                }
-            }))
-
             // Check if variable is a string with stuff in it or an array with stuff in it
             function isFull(val) {
-                if (!!val && typeof val === 'string' && val.trim().length !== 0)
+                if (!!val && typeof val === 'string' && val.trim().length !== 0) 
                     return true;
-                if (val && val.constructor === Array && val.length > 0
+                if (val && val.constructor === Array && val.length > 0) 
                     return true;
                 return false;
             }
 
-            const isEmail = (txt) => {
+            const validateEmail = (txt) => {
                 return String(txt)
                     .toLowerCase()
                     .match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
             };
 
-            const isPhone = (txt) => {
+            const validatePhone = (txt) => {
                 return String(txt)
                     .toLowerCase()
                     .match(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/);
             };
 
-            const isDomain = (txt) => {
+            const validateUrl = (txt) => {
                 return String(txt)
                     .toLowerCase()
-                    .match(/^(https?:\/\/)?(www\.)?([a-zA-Z0-9]+(-?[a-zA-Z0-9])*\.)+[\w]{2,}(\/\S*)?$/)
+                    .match(/^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)/)
             }
 
             Alpine.data('formData', function () {
@@ -158,14 +135,46 @@
                     formInfo: {},
                     get isFormComplete() {
                         const x = this.formInfo
-                        function isCharityComplete() {
-                            if (x.charitySupported === 'Other' && isFull(x.charityOther))
-                                return true
-                            if (x.charitySupported === 'Big Bad Con Scholarship')
-                                return true
-                            return false
+                        return x.communityStandards && [
+                            x.companyName,
+                            x.contactName,
+                            x.contactEmail,
+                            x.contactPhone,
+                            x.website,
+                            x.product
+                        ].every(isFull);
+                    },
+                    validate(event, options) {
+                        options = {
+                            required: true,
+                            email: false,
+                            phone: false,
+                            ...options
                         }
-                        return x.communityStandards && isEmail(x.contactEmail) && isPhone(x.contactPhone) && isDomain(x.website) && [x.companyName, x.contactName, x.product].every(isFull) && isCharityComplete();
+                        const target = event.target;
+                        const value = target.value;
+                        const parent = target.parentNode;
+
+                        let valid = true;
+
+                        if (options.required && !isFull(value)) 
+                            valid = false;
+                        if (options.email && !validateEmail(value)) 
+                            valid = false;
+                        if (options.phone && !validatePhone(value)) 
+                            valid = false;
+                        if (options.url && !validateUrl(value)) 
+                            valid = false;
+                        
+                        if (!valid) {
+                            parent
+                                .classList
+                                .add('error-required');
+                        } else {
+                            parent
+                                .classList
+                                .remove('error-required');
+                        }
                     },
                     submitForm() {
                         console.log("submitForm", this.formInfo)
@@ -220,12 +229,12 @@
 
                         console.log('formInfo JOSN string', JSON.stringify(formInfo));
 
-                        const url = "/.netlify/functions/submit-exhibitor-application"
+                        const url = "/.netlify/functions/submit-dealer-application"
 
                         try {
                             let response = await fetch(url, options)
                             console.log(`RESPONSE:fetch for ${url}`, response)
-                            if (response.status !== 200)
+                            if (response.status !== 200) 
                                 throw `fetch fail status: ${response.status}`
                             let result = await response.json()
                             console.log(`RESULT:fetch for ${url}`, result)

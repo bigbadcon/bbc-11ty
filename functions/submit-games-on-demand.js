@@ -8,7 +8,7 @@ const googleSheetId = process.env.GOOGLE_SHEET_GAMES_ON_DEMAND
 
 exports.handler = async function(event, context) {
 
-    if (event.httpMethod === 'POST') {  
+    if (event.httpMethod === 'POST') {
         /* -------------------------------------------------------------------------- */
         /*                        1. grab submitted event data                        */
         /* -------------------------------------------------------------------------- */
@@ -16,13 +16,12 @@ exports.handler = async function(event, context) {
         const eventBody = JSON.parse(event.body)
         console.log("🚀 ~ file: submit-games-on-demand.js ~ line 15 ~ exports.handler=function ~ eventBody", eventBody)
 
-        
-
         /* -------------------------------------------------------------------------- */
         /*                        2. Submit data to google form                       */
         /* -------------------------------------------------------------------------- */
 
         console.log('Try submit to Google Sheet');
+
         try {
             // Initialize the sheet - doc ID is the long id in the sheets URL
             const doc = new GoogleSpreadsheet(googleSheetId)
@@ -46,7 +45,7 @@ exports.handler = async function(event, context) {
             /* -------------------------------------------------------------------------- */
             /*                               3. email people                              */
             /* -------------------------------------------------------------------------- */
-            
+
             const newUserMsg = {
                 to: eventBody.userEmail,
                 from: 'rpgs@bigbadcon.com',

@@ -50,7 +50,6 @@ function createDateObject (date, time) {
   return dayjs(date + "T" + time + "-07:00").toDate()
 }
 
-
 /* -------------------------------------------------------------------------- */
 /*                     eleventyConfig Module Exports                          */
 /* -------------------------------------------------------------------------- */
@@ -168,7 +167,10 @@ module.exports = (eleventyConfig) => {
       return aEventStartDateTime - bEventStartDateTime;
     });
     return false;
-});
+  });
+
+  // eventStartDateTime
+  eleventyConfig.addFilter("convertCentsToDollars", (unit) => unit / 100);
   
 
   /* -------------------------------------------------------------------------- */
@@ -290,6 +292,7 @@ module.exports = (eleventyConfig) => {
     "node_modules/lite-youtube-embed/src/lite-yt-embed.css": "css/lite-youtube-embed.css",
     "node_modules/array-flat-polyfill/index.js": "js/array-flat-polyfill.js",
     "node_modules/@alpinejs/persist/dist/cdn.min.js": "js/alpine.persist.min.js",
+    "node_modules/@colinaut/alpinejs-plugin-simple-validate/dist/alpine.validate.min.js": "js/alpine.validate.min.js",
   })
 
   // Pass "static" things straight through from "src" to "dist"

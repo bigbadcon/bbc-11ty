@@ -3,8 +3,6 @@
     {% include 'components/event-table-filter.njk' %}
     {# Testing: <button @click="getFavEvents">load favs</button> #}
     {# TODO: add filter by catagory and sort by name, system, gm, date #}
-    <button @click="filter.category = false">test</button>
-    <button @click="filter.category = true">test 2</button>
     <table class="events-table" id="events-table">
         <caption class="italic text-left mb-xs">Table can be sorted by event or system</caption>
         <thead :class="sortAscending ? 'ascending' : 'descending'">

@@ -1,9 +1,6 @@
 [functions]
   directory = "functions"
 
-[functions."submission-created"]
-  included_files = ["certs/bigbadcon-com-chain.pem"]
-
 [build]
   base = "./"
   command = "npm run build"
@@ -13,6 +10,10 @@
   base = "./"
   command = "npm run dev"
   publish = "dist"
+[[plugins]]
+  package = "netlify-plugin-inline-functions"
+  [plugins.inputs]
+    include = ["CONTEXT"]
 [build.environment]
   # Use a local non-Git-tracked .env file to set this to "development"; 
   # "netlify dev" picks up ".env" and "netlify build" does not.
