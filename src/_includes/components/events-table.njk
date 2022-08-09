@@ -8,11 +8,15 @@
         <caption class="italic text-left mb-xs">Table can be sorted by event or system</caption>
         <thead :class="sortAscending ? 'ascending' : 'descending'">
             <tr>
-                <th class="text-left sortable" :class="sortBy === 1 && 'active'">
-                    <button @click="sortTable(1)" class="sort-btn" >Event</button>
+                <th class="text-left">
+                    <div class="sortable" :class="sortBy === 1 && 'active'">
+                        <button @click="sortTable(1)" class="sort-btn" title="Sort by event">Event</button>
+                    </div>
                 </th>
-                <th class="text-left sortable" :class="sortBy === 2 && 'active'">
-                    <button @click="sortTable(2)" class="sort-btn" >System</button>
+                <th class="text-left">
+                    <div class="sortable" :class="sortBy === 2 && 'active'">
+                        <button @click="sortTable(2)" class="sort-btn" title="Sort by system">System</button>
+                    </div>
                 </th>
                 {# <th class="text-left ">Date Time</th>
                 <th class="text-center max-w-max">Dur</th> #}
