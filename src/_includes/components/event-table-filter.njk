@@ -17,8 +17,8 @@
             <option value="All Ages">All Ages</option>
         </select>
     </div>
+    {# favsOnly data is in x-data="eventFilter" in wrapping div in base.njk #}
     <div class="flex items-center justify-start gap-xs" x-cloak x-show="isAuth">
-        {# favsOnly data is in x-data="eventFilter" in wrapping div in base.njk #}
         <h5 class="text-sm font-bold">Filter:</h5>
         <button @click="filter.favsOnly = !filter.favsOnly" 
         class="filter-btn group">
