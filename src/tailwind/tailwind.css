@@ -522,15 +522,27 @@ a[class^='icon-']:hover {
 }
 
 .events-table tr {
-  @apply w-full flex flex-col sm:table-row mb-base relative pr-8 sm:pr-0;
+  @apply w-full flex flex-wrap sm:table-row mb-base relative pr-8 sm:pr-0 gap-x-xs;
 }
 
 .events-table td {
   @apply block sm:table-cell sm:py-sm sm:pr-sm;
 }
 
-.events-table td.table-cell-fav-star {
+.events-table .events-table-cell--name {
+  @apply basis-full;
+}
+
+.events-table .events-table-cell--fav-star {
   @apply absolute sm:relative right-0 top-0;
+}
+
+.events-table .events-table-cell--categories {
+  @apply bg-transparent relative top-[-.2rem];
+}
+
+.events-table .events-table-cell--system {
+  @apply italic;
 }
 
 .events-table thead tr {
