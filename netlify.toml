@@ -11,7 +11,7 @@
   command = "npm run dev"
   publish = "dist"
 [[plugins]]
-  package = "netlify-plugin-inline-functions-env"
+package = "netlify-plugin-inline-functions-env"
   [plugins.inputs]
     include = ["CONTEXT"]
 [build.environment]
