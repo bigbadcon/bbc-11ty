@@ -7,9 +7,6 @@ pagination:
 permalink: "events/{{ event.eventSlug }}/"
 eleventyComputed:
     title: "{{ event.eventName | safe }}"
-    ogAPIImage: "https://v1.screenshot.11ty.dev/https%3A%2F%2Fwww.bigbadcon.com%2Fog%2Fevents%2F{{event.eventSlug}}%2F/opengraph/"
-    heroImage: "/event-images/{{ event.eventSlug }}.png"
-    heroImageAlt: "Speaker headshots"
 ---
 
 {# TODO: add more archive events. But use serverless eleventy #}
@@ -81,7 +78,7 @@ eleventyComputed:
         <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'outlook' %}">Outlook</a>
     </div> #}
     <div class="text-sm">
-        {% set tweeturl = "https://twitter.com/intent/tweet?text=Check+out+this+event+at+#BigBadOCon!+https://www.bigbadcon.com/events/" + event.eventSlug %}
+        {% set tweeturl = "https://twitter.com/intent/tweet?text=Check+out+this+event+at+BigBadCon!+https://www.bigbadcon.com/events/" + event.eventSlug %}
 
         <a class="inline-flex items-center gap-sm" href="{{tweeturl}}">
             <svg class="w-4 h-4 fill-body">
