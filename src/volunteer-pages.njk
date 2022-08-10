@@ -27,7 +27,7 @@ eleventyComputed:
         <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'outlook' %}">Outlook</a>
     </div>
     <div class="text-sm">
-        {% set tweeturl = "https://twitter.com/intent/tweet?text=Volunteer+at+#BigBadOnline+2021!+https://www.bigbadcon.com/events/" + event.eventSlug %}
+        {% set tweeturl = "https://twitter.com/intent/tweet?text=Volunteer+at+BigBadCon!+https://www.bigbadcon.com/events/" + event.eventSlug %}
 
         <a class="inline-flex items-center gap-sm" href="{{tweeturl}}">
             <svg class="w-4 h-4 fill-body">
