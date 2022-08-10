@@ -56,7 +56,6 @@
     "tailwindcss": "latest",
     "utf8": "^3.0.0",
     "windows-1252": "^1.0.0",
-    "netlify-plugin-inline-functions-env": "^1.0.9",
     "stripe": "^10.0.0"
   },
   "devDependencies": {
