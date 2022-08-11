@@ -29,7 +29,7 @@ The hotel offers parking for all attendees discounted from their rate of $36/day
 
 ### Hotel Map
 
-![](/images/first-floor.png)
+![](/images/ground-floor.png)
 
 ![](/images/first-floor.png)
 
