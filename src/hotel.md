@@ -29,9 +29,11 @@ The hotel offers parking for all attendees discounted from their rate of $36/day
 
 ### Hotel Map
 
-[**Hotel Floor Plan**](https://assets.hyatt.com/content/dam/hyatt/hyattdam/documents/2016/10/11/1828/SFOBU-Hyatt-Regency-San-Francisco-Airport-Floor-Plan-101116.pdf)
+![](/images/first-floor.png)
 
-Detailed maps with location of events coming soon.
+![](/images/first-floor.png)
+
+[**Hotel Floor Plan**](https://assets.hyatt.com/content/dam/hyatt/hyattdam/documents/2016/10/11/1828/SFOBU-Hyatt-Regency-San-Francisco-Airport-Floor-Plan-101116.pdf) **(PDF)**
 
 ### Internet Access
 
