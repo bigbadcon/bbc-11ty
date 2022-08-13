@@ -20,6 +20,7 @@ fields:
   description: Twitter/Facebook social image card
 pages:
 - src/big-bad-con-scholarship.md
+- src/big-bad-timeline.md
 - src/covid-safety.md
 - src/exhibitor-information.md
 - src/faq.md
