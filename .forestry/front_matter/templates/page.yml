@@ -19,6 +19,7 @@ fields:
   label: open graph image
   description: Twitter/Facebook social image card
 pages:
+- src/accessibility-policy.md
 - src/big-bad-con-scholarship.md
 - src/big-bad-timeline.md
 - src/covid-safety.md
