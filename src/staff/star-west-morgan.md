@@ -5,7 +5,7 @@ order: 4
 title: Star West-Morgan
 position: Technology Committee Co-Chair
 gender: "(he/him)"
-image: "/images/image000000002.png"
+image: "/images/staff/organizers_star_400x400.png"
 twitter: hedgiespresso
 website_name: The Caffeinated Hedgehog
 website_url: https://starwest.itch.io/
