@@ -6,7 +6,7 @@ title: Philip LaRose
 position: Board Treasurer & Organizing Committee Chair
 gender: "(he/him)"
 image: "/images/staff/organizers_phil_400x400.png"
-twitter: 
+twitter: philaros
 website_name: ''
 website_url: ''
 
