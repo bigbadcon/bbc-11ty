@@ -9,7 +9,7 @@ Our scholarship funds go towards helping women, people of color, disabled, and l
 
 ### Timeline
 
-* Scholarship applications are open until August 15, 2022.
+* Scholarship applications are now closed for 2022. We'll re-open applications for the next year in 2023.
 * Determinations and reward disbursement will start August 22, 2022.
 
 For more info including how you can donate to our Scholarship Fund visit [Big Bad Con Scholarship](/big-bad-con-scholarship)
