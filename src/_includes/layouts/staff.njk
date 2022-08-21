@@ -7,7 +7,7 @@
 
 {% block content %}
     <main id="content">
-      <div class="max-w-content mx-auto p-base">
+      <div class="mx-auto max-w-content p-base px-lg bg-card rounded-md shadow-md">
         <h1 class="font-serif text-4xl md:text-5xl text-header font-bold mb-base leading-none">{{title}}</h1>
         <div class="prose">{{ content | safe }}</div>
       </div>
@@ -16,13 +16,14 @@
           {{ staff.card(person)}}
         {% endfor %}
       </section>
-      {% if collections.staffEmeritus123ABC %}
+<!--      {% if collections.staffEmeritus123ABC %}
       <section class="max-w-content mx-auto p-base">
         <h1 class="text-header leading-none text-5xl font-serif mb-md">Staff Emeritus</h1>
         {% for person in collections.staffEmeritus123ABC %}
           {{ staff.card(person)}}
         {% endfor %}
       </section>
-      {% endif %}
+      {% endif %} -->
+
     </main>
 {% endblock %}

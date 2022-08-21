@@ -2,7 +2,7 @@
 title: Play
 tags: cards
 published: true
-order: 
+order: 2
 
 ---
 Once you're registered, learn how to get into a game!

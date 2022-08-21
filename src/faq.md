@@ -39,8 +39,6 @@ Check out our Attendee Guide for more information.
 
 The best way to stay up to date on the latest and greatest from Go Play NW is to:
 
-[Join our mailing list](https://igg.me/at/bigbadcon2022){.icon-envelope}
-
 [Join our Discord](https://discord.gg/AqhayGFexQ){.icon-discord}
 
 [Follow us on Twitter](https://twitter.com/GoPlayNW){.icon-twitter}

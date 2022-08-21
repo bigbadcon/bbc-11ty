@@ -56,7 +56,7 @@
                   x-transition:leave-end="transform opacity-0 scale-95"
                   class="right-0 z-20 mt-2 origin-top-right md:w-64 md:absolute"
                   aria-labelledby="{{ item.id }}">
-                    <div class="md:px-base md:py-base md:bg-main-gradient-top ring-2 ring-primary md:rounded-md md:shadow-lg mb-xs">
+                    <div class="md:px-base md:py-base md:bg-content ring-2 ring-primary md:rounded-md md:shadow-lg mb-xs">
                       <div class="grid grid-cols-1 gap-sm md:gap-base">
                         {% for link in item.subnav %}
                           <a href="{{link.url}}" class="icon-{{link.icon}}">{{link.title}}</a>
@@ -73,6 +73,10 @@
 
             {% endfor %}
           </nav>
+          <div class="flex-col">
+          {# Login / Account Button #}
+          <button @click.stop="modal = 'login'" class="top-0 font-bold uppercase transition-all transform border rounded cursor-pointer text-form right-base bg-highlight px-base pb-xs pt-xs ml-md hover:bg-highlight-2 border-highlight" x-text="(authToken) ? 'My Account' : 'Login'">Login</button>
+          </div>
         </div>
       </div>
     </div>

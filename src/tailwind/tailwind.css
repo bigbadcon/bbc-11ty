@@ -8,7 +8,7 @@
 
 :root, .light, [data-theme='light'] {
   /* ---------------------------- Base Light Theme ---------------------------- */
-  --primary: #AFCFDD;
+  --primary: #E4EFF2;
   --primary-2: #c4d0a0;
   --primary-3: #94a268;
   --primary-4: #849357;
@@ -18,6 +18,7 @@
   --highlightb: #e65800;
   --highlightb-2: #f22600;
   --card: rgba(255, 255, 255, 0.6);
+  --content: rgba(255, 255, 255, 1);
   --body: #313a3c;
   --body-highlight: #003312;
   --header: var(--secondary);
@@ -28,8 +29,8 @@
   --sunmoon: #fff965;
   --tree: #86815f;
   --tree-2: #aca57e;
-  --main-gradient-top: #E4EFF2;
-  --main-gradient-bottom: #E4EFF2;
+  --main-gradient-top: #849357;
+  --main-gradient-bottom: #dfd5bb;
   --bg-form: #fcf8f3;
   --hr: #6E897C;
   --fill-highlight: url(#highlight-gradient) var(--highlight);
@@ -47,6 +48,7 @@
     --highlight: #ffb53b;
     --highlight-2: #ff7f00;
     --card: rgba(37, 5, 46, 0.4);
+    --content: #274555;
     --body: #d5e3ed;
     --body-highlight: #fff;
     --header: var(--secondary);
@@ -74,6 +76,7 @@
   --highlight: #ffb53b;
   --highlight-2: #ff7f00;
   --card: rgba(37, 5, 46, 0.4);
+  --content: #274555;
   --body: #d5e3ed;
   --body-highlight: #fff;
   --header: var(--secondary);
@@ -270,6 +273,10 @@ fieldset {
 
 .page-wrapper {
   grid-template-rows: min-content auto;
+}
+
+code {
+  white-space: pre-wrap;
 }
 
 /* -------------------------- Light Dark Switch ----------------------------- */

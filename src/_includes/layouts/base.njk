@@ -9,17 +9,19 @@
   class="min-h-screen bg-primary"
   :style="(modal) && 'overflow: hidden; height: 100vh;'"
   >
-    <div class="relative z-10 grid min-h-screen shadow page-wrapper">
+    <div class="relative z-10 grid min-h-screen shadow page-wrapper border-b-1 border-highlight-2 ">
       {# Header with branding and nav #}
       <div class="header-wrapper">
         {% block header %}{% endblock %}
       </div>
-      <div class="relative content-wrapper bg-gradient-to-b from-main-gradient-top to-main-gradient-bottom pb-lg" >
-        {# Login / Account Button #}
-        <button @click.stop="modal = 'login'" class="absolute top-0 font-bold uppercase transition-all transform border rounded-b cursor-pointer text-form right-base bg-highlight px-base pb-xs pt-md hover:bg-highlight-2 hover:pt-lg border-highlight" 
-        x-text="(authToken) ? 'My Account' : 'Login'">Login</button>
-        {# Decorative underbrush svg #}
-        <div style="-webkit-mask: url(/static/images/underbrush.svg) repeat-x; mask: url(/static/images/underbrush.svg) repeat-x; pointer-events: none;" class="h-10 underbrush bg-primary mb-sm"></div>
+      {# Decorative underbrush svg #}
+      <div class="relative content-wrapper bg-primary" >
+        <div style="-webkit-mask: url(/static/images/underbrush.svg) repeat-x; mask: url(/static/images/underbrush.svg) repeat-x; pointer-events: none; -webkit-mask-position: bottom; mask-position: bottom" class="h-10 underbrush bg-main-gradient-top">
+        </div>
+      </div>
+      <div class="relative bg-main-gradient-top"  style="height: 1.5rem">
+      </div>
+      <div class="relative content-wrapper bg-main-gradient-top pb-lg" style="padding-top: 2rem">
         {# Main Content Area. <main> tag should live in content block #}
         {% block content %}{% endblock %}
       </div>

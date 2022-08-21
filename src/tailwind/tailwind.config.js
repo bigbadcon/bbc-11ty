@@ -24,6 +24,7 @@ const colors = {
   'header': 'var(--header)',
   'subheader': 'var(--subheader)',
   'card': 'var(--card)',
+  'content': 'var(--content)',
   'menu-icon': 'var(--menu-icon)',
   'main-gradient-top': 'var(--main-gradient-top)',
   'main-gradient-bottom': 'var(--main-gradient-bottom)',
@@ -130,7 +131,8 @@ module.exports = {
       },
       maxWidth: {
         'hero': '120ch',
-        'content': '70ch'
+        'content': '80ch',
+        'content2': '75ch',
       },
       maxHeight: {
         'blog-cover-image': '398px'

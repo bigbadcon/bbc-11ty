@@ -1,13 +1,13 @@
 ---
 title: Attend
-order: -1
+order: 1
 tags: cards
 published: true
 image: ''
 alt: ''
 
 ---
-Come and join us for our Sep/Oct online 2022 event!
+Join us for our Sep/Oct 2022 online event!
 
 [Register Now!](/register){.icon-badge}
 

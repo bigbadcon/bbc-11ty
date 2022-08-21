@@ -5,4 +5,4 @@ description: ''
 tags: pages
 
 ---
-We appreciate you reaching out and will endeavour to respond as soon as we can. Remember are a fully volunteer run organization, so we may not be able to respond immedaitely.
+Thank you for reaching out to us! We will do our best to respond as soon as we can; we are a fully volunteer run organization and we appreciate your patience and understanding that we may not be able to respond immedaitely.
