@@ -5,10 +5,10 @@ order: 1
 title: Philip LaRose
 position: Board Treasurer & Organizing Committee Chair
 gender: "(he/him)"
-image: "/images/staff/organizers_phil2_400x400.png"
+image: "/images/staff/organizers_phil_400x400.png"
 twitter: 
 website_name: ''
 website_url: ''
 
 ---
-Phil spends most of his time as the dedicated chef, house keeper, and head scratcher to feline perfection: Nimial. In the rare moments he's not catering to Nimial's every whim, Phil leads Go Play NW's Organizing Committee, serving as the liason between the Board and Go Play NW's day-to-day operations.
+Philip is a co-founder and Board member of Go Play NW, and currently leads the Organizing Committee as the liaison between the Board and Go Play NW’s day-to-day operations. He likes to claim this all got started because he joined the *Talislanta* RPG email list back in 1995, although really it starts even before that...it’s a long story. Philip has lived in Seattle long enough to age into adulthood a second time, but not yet as long as he lived in his native New England. Apart from Go Play NW, Philip is a passionate music fan and long-time [KEXP](https://www.kexp.org/) volunteer, a highly skilled editor, and a devoted caretaker of his cat Nimiel
