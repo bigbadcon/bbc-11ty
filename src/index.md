@@ -5,12 +5,10 @@ description: Go Play NW is an annual weekend event where folks come together to 
 tags: pages
 
 ---
-The rumors are true:
-## Go Play NW is running a second online event this year!
-
-* WHEN: Sep 30 - Oct 2, 2022
-* WHERE: The Go Play NW Discord Server
-* WHY: Meet old friends and new, and play games together!
-* HOW: 
+##### The rumors are true:
+## Go Play NW is Running a 2nd Online Event This Year!
+* **WHEN:** Sep 30 - Oct 2, 2022
+* **WHERE:** The Go Play NW Discord Server
+* **WHY:** Meet old friends, make new ones, and play games together!
 
 [Register Now!](/register){.icon-party}

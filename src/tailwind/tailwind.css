@@ -279,6 +279,10 @@ code {
   white-space: pre-wrap;
 }
 
+#home h2 {
+  margin-top: 0em;
+}
+
 /* -------------------------- Light Dark Switch ----------------------------- */
 
 .switch input[type="checkbox"]:checked ~ .thumb {

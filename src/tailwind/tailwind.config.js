@@ -85,6 +85,11 @@ module.exports = {
               marginBottom: '0.5em',
               marginTop: '1.2em'
             },
+            h5: {
+              fontFamily: 'var(--serif)',
+              fontSize: '1.60rem',
+              marginBottom: '0em',
+            },
             a:{
               color: 'var(--highlight)',
               transition: 'color 500ms',
