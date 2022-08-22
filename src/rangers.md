@@ -22,6 +22,8 @@ Here's all the work we do. If you're ready to engage with our community, conside
 
 **Games on Demand Host**: If you’d like to make gaming dreams come true for attendees, become a Games on Demand (GoD) host! GoD Hosts run a boarding pass system that allows attendees to queue up for two and four hour drop-in games in a stress-free manner. They manage the queue while also managing player and facilitator expectations.
 
+**Panel Room Host**: If you love the amazing panels put on by Big Bad Con attendees and want to help people get set up to present, sign up to be a panel room host! You'll be the one keeping the the panels running smoothly and making sure the speakers have everything the need.
+
 **Setup/Breakdown**: If you want to work behind the convention scenes, here is your opportunity! Those working Setup or Breakdown need to be able to take direction when offered and rapidly enact plans of action. They’ll be building or dismantling stanchions, putting up or taking down signage, and loading or unloading everything as needed.
 
 Plus, all Rangers have access to our Ranger Station, a place to relax behind the scenes!

@@ -29,9 +29,11 @@ The hotel offers parking for all attendees discounted from their rate of $36/day
 
 ### Hotel Map
 
-[**Hotel Floor Plan**](https://assets.hyatt.com/content/dam/hyatt/hyattdam/documents/2016/10/11/1828/SFOBU-Hyatt-Regency-San-Francisco-Airport-Floor-Plan-101116.pdf)
+![](/images/ground-floor.png)
 
-Detailed maps with location of events coming soon.
+![](/images/first-floor.png)
+
+[**Hotel Floor Plan**](https://assets.hyatt.com/content/dam/hyatt/hyattdam/documents/2016/10/11/1828/SFOBU-Hyatt-Regency-San-Francisco-Airport-Floor-Plan-101116.pdf) **(PDF)**
 
 ### Internet Access
 
@@ -46,10 +48,20 @@ The Hotels' ADA compliance:
 * Wide doors
 * Lowered thermostat and light switches
 * Lowered peephole and door latch
-* Accessible bathroom
+* Accessible bathrooms
 
 Additionally, half of their shuttles are equipped with wheelchair lifts/ramps, there is a lift to grant access to the foyer, and they have MERV-8 in public spaces and MERV-10 in sleeping/gaming rooms. The Atrium has MERV-15 filters pulling air up and exhausting it through the roof.
 
+### Gender Neutral Bathrooms
+
+During the event the bathrooms near the Sequoia Room and the Bayside Room will be converted to gender neutral bathrooms.
+
+### Respite Room
+
+During the con, Boardroom IV will be designated as a respite room. It will be a quiet and comfy place for relaxion, breast feeding, or quiet activates (like drawing or reading). The room will have comfy chairs, noise cancelling headphones, coloring books, pens, and pencils.
+
 ### Safety & Wellbeing
+
+[Big Bad Con Public Health Plan.](/covid-safety/)
 
 [Hyatt's safety policies](https://www.hyatt.com/info/care-and-cleanliness-americas).

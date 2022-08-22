@@ -43,3 +43,5 @@ Burlingame, CA 94010
 ### Cost
 
 $300 plus a donation of 10% of your proceeds to the Big Bad Con Scholarship Fund or another charity of your choice. Our scholarship fund helps folks at the intersection of marginalized identities attend the con.
+
+If you'd like to exhibit at Big Bad Con, please email info@bigbadcon.com
