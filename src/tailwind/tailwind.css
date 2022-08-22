@@ -179,7 +179,7 @@ select {
 }
 
 button[type="submit"], input[type="file"], .button {
-  @apply font-bold uppercase transition-colors duration-200 rounded shadow text-form bg-highlight hover:bg-highlight-2 py-xs px-base border border-highlight;
+  @apply font-bold uppercase transition-colors duration-200 rounded shadow text-form bg-highlight hover:bg-highlight-2 py-xs px-sm sm:px-base border border-highlight;
 }
 
 button[type="submit"]:disabled .button:disabled {
