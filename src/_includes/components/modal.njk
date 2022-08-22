@@ -206,14 +206,14 @@
             </template>
             <li x-show="bookedEvents && bookedEvents.length === 0" class="italic">You currently have no events</li>
         </ul>
-        <div class="flex items-center justify-between border-b-2 py-2xs gap-xs border-hr" x-data="{badgeRoles: compareArrays(user.roles,['gm','paidattendee','paidattendee','volunteer'])}" x-show="badgeRoles.length > 0">
+        <div class="flex items-center justify-between border-b-2 py-2xs gap-xs border-hr" x-show="user && user.badgeRoles.length > 0 ">
             <div class="flex flex-wrap items-center gap-x-xs gap-y-2xs">
                 <span>You have a badge!</span>
-                <template x-for="role in badgeRoles">
+                <template x-for="role in user?.badgeRoles">
                     <span x-text="role" class="py-[.1rem] text-xs font-bold uppercase rounded-full bg-hr text-primary px-xs"></span>
                 </template>
             </div>
-            <div class="text-sm" x-show="availableSlots < 100">QUOTA: <b x-text="availableSlots"></b>
+            <div class="text-sm" x-show="availableSlots && availableSlots < 100">QUOTA: <b x-text="availableSlots"></b>
             </div>
         </div>
 
