@@ -3,13 +3,15 @@
     <div x-cloak x-show="(modal)" x-transition 
     class="fixed inset-0 z-40 flex items-center justify-center bg-backdrop" 
     style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);"
+    @click.stop="modal = false"
     >
         {# Modal #}
         <div 
         id="authModal"
         class="transition-all rounded-md shadow h-fit p-base bg-primary"
         style="max-height: 90%; max-width: 90%"
-        @click.outside="modal = false">
+        @click.stop=""
+        >
             {{ login() }}
             {{ spinner() }}
             {{ userInfo() }}
@@ -23,8 +25,15 @@
 
 {# Login Panel #}
 {% macro login() %}
-    <div id="modal-login" class="x-cloak" x-show="!authToken && modal === 'login'" class="flex flex-col w-64 h-full">
-        <h2 class="-mt-1 font-serif text-3xl font-extrabold leading-none text-secondary">Login</h2>
+    <div id="modal-login" class="x-cloak" x-show="!authToken && modal === 'login'" class="flex flex-col h-full w-72">
+        <div class="flex justify-between gap-x-sm">
+            <h2 class="flex-grow -mt-1 font-serif text-3xl font-semibold leading-none text-header">
+                Login
+            </h2>
+            <div>
+                {{ closeBtn() }}
+            </div>
+        </div>
         <form action="post" class="flex flex-col flex-grow my-sm text-body gap-base" x-data="{username: '',password: ''}" @submit.prevent="submitLogin(username,password); username = '';password = ''">
             <div>
                 <label for="username" class="text-xs uppercase">User Name</label>
@@ -52,10 +61,10 @@
 
 {# Reset Password Panel #}
 {% macro resetPassword() %}
-    <div id="modal-reset-password" x-cloak x-show="!authToken && modal === 'resetPassword'" class="flex flex-col w-64 h-full" >
+    <div id="modal-reset-password" x-cloak x-show="!authToken && modal === 'resetPassword'" class="flex flex-col h-full w-72" >
         {# Header #}
         <div class="flex justify-between gap-x-sm">
-            <h2 class="flex-grow -mt-1 font-serif text-2xl font-semibold leading-none text-header">
+            <h2 class="flex-grow -mt-1 font-serif text-3xl font-semibold leading-none text-header">
                 Reset Password
             </h2>
             <div>
@@ -104,10 +113,10 @@
 
 {# Change Password Panel #}
 {% macro changePassword() %}
-    <div id="modal-change-password" x-cloak x-show="user && modal === 'changePassword'" class="flex flex-col w-64 h-full" >
+    <div id="modal-change-password" x-cloak x-show="user && modal === 'changePassword'" class="flex flex-col h-full w-72" >
         {# Header #}
         <div class="flex justify-between gap-x-sm">
-            <h2 class="flex-grow -mt-1 font-serif text-2xl font-semibold leading-none text-header">
+            <h2 class="flex-grow -mt-1 font-serif text-3xl font-semibold leading-none text-header">
                 Change Password
             </h2>
             <div>
@@ -191,7 +200,7 @@
         {# My Events #}
         <h3 class="font-serif text-2xl font-semibold text-body">My Events</h3>
         {# <div class="mb-sm">{% include 'components/timezone-select.njk' %}</div> #}
-        <ul class="flex-grow overflow-y-auto text-sm border-t-2 border-b-2 text-body border-hr py-xs" x-cloak x-show="bookedEvents">
+        <ul class="flex-grow overflow-y-auto text-sm border-t-2 border-b-2 text-body border-hr py-xs" x-cloak x-show="bookedEvents" x-transition>
             <template x-for="event in bookedEvents">
                 <li class="mb-xs">
                     <h4 class="font-bold">
@@ -206,7 +215,7 @@
             </template>
             <li x-show="bookedEvents && bookedEvents.length === 0" class="italic">You currently have no events</li>
         </ul>
-        <div class="flex items-center justify-between border-b-2 py-2xs gap-xs border-hr" x-show="user && user.badgeRoles.length > 0 ">
+        <div class="flex items-center justify-between border-b-2 py-2xs gap-xs border-hr" x-show="user && user.badgeRoles.length > 0 " x-transition>
             <div class="flex flex-wrap items-center gap-x-xs gap-y-2xs">
                 <span>You have a badge!</span>
                 <template x-for="role in user?.badgeRoles">
@@ -219,7 +228,7 @@
 
         {# Buttons #}
         <div class="flex gap-base pt-base">
-            <button class="button" @click="logout()">Logout</button>
+            <button class="button" @click="modal = false; logout()">Logout</button>
             <button class="button" @click="modal = 'changePassword'">Change Password</button>
         </div>
     </div>
