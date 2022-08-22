@@ -1,7 +1,7 @@
 ---
-tags: poc-scholar
+tags: poc-team-member
 order: 0
-title: Mario Ortegón-(copy)
+title: Mario Ortegón
 position: ''
 published: true
 gender: he/him
