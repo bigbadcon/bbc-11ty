@@ -1,6 +1,7 @@
 {# Timezones from here: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones #}
 {# timezone data is in x-data=in html element base.njk #}
-<select id="timezone" class="mb-0 text-sm cursor-pointer px-xs py-2xs" 
+{# TODO: make this moduler so it can be toggled on and off for online or in person events. Or better make it an account setting #}
+{# <select id="timezone" class="mb-0 text-sm cursor-pointer px-xs py-2xs" 
     @change="timezone = $el.value"
     x-init="$el.value = timezone"
     x-cloak x-show="timezone">
@@ -55,4 +56,4 @@
     <option value="Pacific/Chatham">Chatham Islands (+12:45/+12:45)</option>
     <option value="Pacific/Enderbury">Phoenix Islands (+13/+13)</option>
     <option value="Pacific/Kiritimati">Line Islands (+13/+13)</option>
-</select>
+</select> #}
