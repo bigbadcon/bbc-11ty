@@ -2,7 +2,7 @@
 tags: poc-scholar
 order: 0
 title: Morgan Nuncio
-position: Scholar
+position: ''
 published: true
 gender: they/she
 image: "/images/morgan-nuncio.jpg"

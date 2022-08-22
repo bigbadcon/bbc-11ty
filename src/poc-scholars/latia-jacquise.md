@@ -1,8 +1,8 @@
 ---
 tags: poc-scholar
-order: 0
+order: 
 title: LaTia Jacquise
-position: Scholar
+position: ''
 published: true
 gender: she/her
 image: "/images/latia-jacquise.jpg"
