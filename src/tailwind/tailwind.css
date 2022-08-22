@@ -611,6 +611,21 @@ a[class^='icon-']:hover {
   @apply text-hr rotate-[-90deg] block text-xs;
 }
 
+/* css to hide stuff */
+.spoilers-transparent {
+  @apply text-transparent;
+}
+.spoilers-transparent::selection {
+  @apply text-body bg-card;
+}
+
+.spoilers-black {
+  @apply text-transparent bg-black;
+}
+.spoilers-black::selection {
+  @apply text-slate-50 bg-slate-900;
+}
+
 /* -------------------------------------------------------------------------- */
 /*                                lite-youtube                                */
 /* -------------------------------------------------------------------------- */
