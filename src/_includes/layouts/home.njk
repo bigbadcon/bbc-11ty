@@ -33,7 +33,7 @@
             <ul class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
                 {% for card in collections.cards123ABC %}
                     <li class="rounded shadow-md bg-card px-base pt-sm pb-base">
-                        <h2 class="font-serif text-3xl text-header">{{ card.data.title }}</h2>
+                        <h2 class="font-serif text-3xl leading-none text-header">{{ card.data.title }}</h2>
                         <div class="prose">{{ card.templateContent | safe }}</div>
                     </li>
                 {% endfor %}
@@ -48,7 +48,7 @@
                             <img src="{{card.data.image}}" class="object-cover object-center" alt="{{card.data.alt}}">
                         </figure>
                         <div class="md:col-span-2 px-md pt-base pb-md">
-                            <h2 class="font-serif text-3xl text-header">{{ card.data.title }}</h2>
+                            <h2 class="font-serif text-3xl leading-none text-header">{{ card.data.title }}</h2>
                             <div class="prose">{{ card.templateContent | safe }}</div>
                         </div>
                     </li>
