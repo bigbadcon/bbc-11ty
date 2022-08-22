@@ -65,7 +65,10 @@ fields:
     required: false
   label: website url
 pages:
+- src/poc-scholars/aaron-catano-saez.md
 - src/poc-scholars/ajit-a.george.md
+- src/poc-scholars/alika-gupta.md
+- src/poc-scholars/anthony-joyce-rivera.md
 - src/poc-scholars/banana-c..md
 - src/poc-scholars/bianca-bickford.md
 - src/poc-scholars/carlos-cisco.md
@@ -83,3 +86,5 @@ pages:
 - src/poc-scholars/morgan-nuncio.md
 - src/poc-scholars/omar-najam.md
 - src/poc-scholars/raya-sarkar.md
+- src/poc-scholars/tan-shao-han.md
+- src/poc-scholars/taylor-navarro.md
