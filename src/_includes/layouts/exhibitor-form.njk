@@ -6,8 +6,12 @@
 
 {% block content %}
     <main id="content">
-        <div class="mx-auto max-w-content p-base">
+        <div class="mx-auto max-w-content p-base" x-data="formData">
             <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
+            <div class="prose" x-show="formSubmitted" id="form-submitted" >
+                <h2>Thanks for submitting to be a dealer!</h2>
+                <p>Our staff will review your submission, and let you know about your application soon.</p>
+            </div>
             <div class="prose">{{ content | safe }}</div>
             <section class="my-md">
                 {# START Submit Form: only show if logged in #}
@@ -16,7 +20,7 @@
                     <p>You must be <button @click.stop="modal = 'login'" class="font-bold underline text-highlight">logged in</button> to submit a form.</p>
                 </div>
 
-                <div x-cloak x-show="isAuth && user" x-data="formData">
+                <div x-cloak x-show="isAuth && user" >
                     <div x-show="!formSubmitted" id="submit-form">
                         <header class="prose">
                             <h2>Exhibitor Signup</h2>
@@ -126,144 +130,100 @@
                                 </table>
                                 <p>$validate.isComplete: <b x-text="$validate.isComplete($refs.formexhibitor)"></b>
                                 </p>
-                            </div>
-                        </form> #}
-                        </div>
-                        {# END form submission div #}
-                        {# form submitted #}
-                        <div class="prose" x-show="formSubmitted" id="form-submitted" >
-                            <h2>Thanks for submitting to be a dealer!</h2>
-                            <p>Our staff will review your submission, and let you know about your application soon.</p>
-                        </div>
+                            </div> #}
+                        </form>
                     </div>
+                    {# END form submission div #}
+                    {# form submitted #}
 
-                </section>
-            </div>
-        </main>
-    {% endblock %}
+                </div>
 
-    {% block pagebottom %}
+            </section>
+        </div>
+    </main>
+{% endblock %}
 
-        <script type="text/javascript">
+{% block pagebottom %}
 
-            document.addEventListener('alpine:init', () => {
+    <script type="text/javascript">
 
-                // Check if variable is a string with stuff in it or an array with stuff in it
-                function isFull(val) {
-                    if (!!val && typeof val === 'string' && val.trim().length !== 0) 
-                        return true;
-                    if (val && val.constructor === Array && val.length > 0) 
-                        return true;
-                    return false;
-                }
+        document.addEventListener('alpine:init', () => {
 
-                const isEmail = (txt) => {
-                    return String(txt)
-                        .toLowerCase()
-                        .match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-                };
+            Alpine.data('formData', function () {
+                return {
+                    formSubmitted: false,
+                    formInfo: {},
+                    submitForm() {
+                        console.log("submitForm", this.formInfo)
+                        const y = 0
 
-                const isPhone = (txt) => {
-                    return String(txt)
-                        .toLowerCase()
-                        .match(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/);
-                };
+                        const submitNow = () => {
+                            this.postFormInfo()
+                            this.formSubmitted = true
+                        }
 
-                const isDomain = (txt) => {
-                    return String(txt)
-                        .toLowerCase()
-                        .match(/^(https?:\/\/)?(www\.)?([a-zA-Z0-9]+(-?[a-zA-Z0-9])*\.)+[\w]{2,}(\/\S*)?$/)
-                }
-
-                Alpine.data('formData', function () {
-                    return {
-                        formSubmitted: false,
-                        formInfo: {},
-                        submitForm() {
-                            console.log("submitForm", this.formInfo)
-                            const y = 0
-
-                            const submitNow = () => {
-                                this.postFormInfo()
-                                this.formSubmitted = true
-                            }
-
-                            const scrollEventListener = () => {
-                                if (window.pageYOffset === 0) {
-                                    submitNow();
-                                    window.removeEventListener('scroll', scrollEventListener)
-                                }
-                            }
-                            function checkScrollEnd() {
-                                window.addEventListener('scroll', scrollEventListener);
-                            }
-                            checkScrollEnd()
-                            window.scroll({top: y, behavior: 'smooth'});
-                        },
-                        async postFormInfo() {
-
-                            console.log('postFormInfo')
-
-                            // Remove communityStandards before submitting
-                            let {
-                                communityStandards,
-                                ...formInfo
-                            } = this.formInfo
-                            // change arrays to strings
-
-                            // Convert any array to string and make empty string for anything else not a string
-                            Object
-                                .keys(formInfo)
-                                .forEach(key => {
-                                    if (formInfo[key] && formInfo[key].constructor === Array) {
-                                        formInfo[key] = formInfo[key].toString();
-                                    } else if (!formInfo[key] || typeof formInfo[key] !== 'string') {
-                                        formInfo[key] = ''
-                                    }
-                                })
-
-                            const options = {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json;charset=utf-8'
-                                },
-                                body: JSON.stringify(formInfo)
-                            }
-
-                            console.log('formInfo JOSN string', JSON.stringify(formInfo));
-
-                            const url = "/.netlify/functions/submit-exhibitor-application"
-
-                            try {
-                                let response = await fetch(url, options)
-                                console.log(`RESPONSE:fetch for ${url}`, response)
-                                if (response.status !== 200) 
-                                    throw `fetch fail status: ${response.status}`
-                                let result = await response.json()
-                                console.log(`RESULT:fetch for ${url}`, result)
-                                return result
-                            } catch (err) {
-                                console.error(`ERROR:fetch for ${url}`, err)
-                                return false
-                            }
-                        },
-                        setCheckboxArray(el, arrayName) {
-                            this.formInfo[arrayName] = this.formInfo[arrayName] || [];
-                            // if checked then add value to array; otherwise remove
-                            if (el.checked) {
-                                this.formInfo[arrayName] = [
-                                    ...this.formInfo[arrayName],
-                                    el.value
-                                ]
-                            } else {
-                                this.formInfo[arrayName] = this
-                                    .formInfo[arrayName]
-                                    .filter(item => item !== el.value)
+                        const scrollEventListener = () => {
+                            if (window.pageYOffset === 0) {
+                                submitNow();
+                                window.removeEventListener('scroll', scrollEventListener)
                             }
                         }
-                    }
-                })
-            })
-        </script>
+                        function checkScrollEnd() {
+                            window.addEventListener('scroll', scrollEventListener);
+                        }
+                        checkScrollEnd()
+                        window.scroll({top: y, behavior: 'smooth'});
+                    },
+                    async postFormInfo() {
 
-    {% endblock %}
+                        console.log('postFormInfo')
+
+                        // Remove communityStandards before submitting
+                        let {
+                            communityStandards,
+                            ...formInfo
+                        } = this.formInfo
+                        // change arrays to strings
+
+                        // Convert any array to string and make empty string for anything else not a string
+                        Object
+                            .keys(formInfo)
+                            .forEach(key => {
+                                if (formInfo[key] && formInfo[key].constructor === Array) {
+                                    formInfo[key] = formInfo[key].toString();
+                                } else if (!formInfo[key] || typeof formInfo[key] !== 'string') {
+                                    formInfo[key] = ''
+                                }
+                            })
+
+                        const options = {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json;charset=utf-8'
+                            },
+                            body: JSON.stringify(formInfo)
+                        }
+
+                        console.log('formInfo JOSN string', JSON.stringify(formInfo));
+
+                        const url = "/.netlify/functions/submit-exhibitor-application"
+
+                        try {
+                            let response = await fetch(url, options)
+                            console.log(`RESPONSE:fetch for ${url}`, response)
+                            if (response.status !== 200) 
+                                throw `fetch fail status: ${response.status}`
+                            let result = await response.json()
+                            console.log(`RESULT:fetch for ${url}`, result)
+                            return result
+                        } catch (err) {
+                            console.error(`ERROR:fetch for ${url}`, err)
+                            return false
+                        }
+                    }
+                }
+            })
+        })
+    </script>
+
+{% endblock %}
