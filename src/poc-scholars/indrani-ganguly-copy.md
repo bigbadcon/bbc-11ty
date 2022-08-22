@@ -1,7 +1,7 @@
 ---
-tags: poc-scholar
+tags: poc-team-member
 order: 0
-title: Indrani Ganguly-(copy)
+title: Indrani Ganguly
 position: ''
 published: true
 gender: she/they
