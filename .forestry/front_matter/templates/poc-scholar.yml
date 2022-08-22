@@ -44,8 +44,7 @@ fields:
     min: 
     max: 
     step: 
-  description: Order number to sort bio cards. Lower number ranks higher on the
-    page.
+  description: Order number to sort bio cards. Lower number ranks higher on the page.
 - name: image
   type: file
   config:
@@ -66,3 +65,5 @@ fields:
     required: false
   label: website url
 pages:
+- src/poc-scholars/eugenio-vargas-dm-jazzy-hands.md
+- src/poc-scholars/latia-jacquise.md
