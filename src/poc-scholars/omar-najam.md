@@ -2,7 +2,7 @@
 tags: poc-scholar
 order: 0
 title: Omar Najam
-position: Scholar
+position: ''
 published: true
 gender: he/him/any
 image: "/images/omar-najam.JPG"
