@@ -65,6 +65,7 @@ fields:
     required: false
   label: website url
 pages:
+- src/poc-scholars/ajit-a.george.md
 - src/poc-scholars/eugenio-vargas-dm-jazzy-hands.md
 - src/poc-scholars/gordon-mcalpin.md
 - src/poc-scholars/latia-jacquise.md
