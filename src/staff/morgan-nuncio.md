@@ -5,10 +5,10 @@ order:
 title: Morgan Nuncio
 position: Reg Desk Ranger Captain and Volunteer Coordinator
 gender: "(they/she)"
-image: "/images/b5y5iqjl_400x400.jpg"
+image: "/images/morgan-nuncio.jpg"
 twitter: SirenaBesos
 website_name: ''
 website_url: ''
 
 ---
-Morgan Nuncio (They/She) is a TTRPG player, Writer, Sensitivity Consultant and Game Master. In addition to GMing Powered by the Players they are also part of the Red Death podcast and frequent guest on Roll to Play Podcast, Victory Condition Gaming and Welcome to the Party. Morgan loves the color pink, a delicious cup of tea, pretty dice and making the gaming community a safer place for BIMPOCs.
+Morgan Nuncio (they/she) is a TTRPG Content Creator, writer, safety consultant, voice actor, and BIPOC Hype Human. Hailing from deep in the heart of Texas, Morgan (or Mo for short!), loves to dive into creative worlds and share stories with others. They are a Caretaker for [Huetopia](https://twitter.com/huetopiatv), a streaming platform and community for BIPOC folks in the TTRPG sphere, by BIPOC folks. She also loves hiking, playing with her pup, and food adventures!
