@@ -234,6 +234,7 @@ document.addEventListener('alpine:init', () => {
           const event = await this.getEvent(id)
           return event
         }))
+        myEvents = myEvents.filter(event => event.eventStatus === 1);
         this.bookedEvents = myEvents
         return myEvents
       },
