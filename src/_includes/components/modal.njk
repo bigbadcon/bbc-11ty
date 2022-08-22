@@ -7,8 +7,7 @@
         {# Modal #}
         <div 
         id="authModal"
-        class="transition-all rounded-md shadow h-80 p-base bg-primary" 
-        :class="user && 'h-96'"
+        class="transition-all rounded-md shadow h-fit p-base bg-primary"
         style="max-height: 90%; max-width: 90%"
         @click.outside="modal = false">
             {{ login() }}
@@ -150,6 +149,9 @@
                     </strong>
                 </p>
             </div>
+            <div>
+                <button class="button" @click="modal = 'accountInfo'">Account Info</button>
+            </div>
         </form>
     </div>
 {% endmacro %}
@@ -186,14 +188,9 @@
                 {{ closeBtn() }}
             </div>
         </div>
-        {# Quota #}
-        {# <div class="text-sm mb-sm">
-            <strong>Quota Slots Available:</strong>
-            <span x-text="availableSlots"></span>]
-        </div> #}
         {# My Events #}
         <h3 class="font-serif text-2xl font-semibold text-body">My Events</h3>
-        <div class="mb-sm">{% include 'components/timezone-select.njk' %}</div>
+        {# <div class="mb-sm">{% include 'components/timezone-select.njk' %}</div> #}
         <ul class="flex-grow overflow-y-auto text-sm border-t-2 border-b-2 text-body border-hr py-xs" x-cloak x-show="bookedEvents">
             <template x-for="event in bookedEvents">
                 <li class="mb-xs">
@@ -202,16 +199,26 @@
                     </h4>
                     {# Timezone data is in x-data in html #}
                     {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
-                    <p class="text-xs opacity-90" x-cloak x-show="timezone">
+                    <p class="text-xs opacity-90" x-cloak>
                         <span x-html="formatEventDate(event.eventStartDateTime, timezone)"></span> (<span x-text="event.eventDuration"></span> hrs)
                     </p>
                 </li>
             </template>
             <li x-show="bookedEvents && bookedEvents.length === 0" class="italic">You currently have no events</li>
         </ul>
+        <div class="flex items-center justify-between border-b-2 py-2xs gap-xs border-hr" x-data="{badgeRoles: compareArrays(user.roles,['gm','paidattendee','paid-attendee','volunteer'])}" x-show="badgeRoles.length > 0">
+            <div class="flex items-center gap-xs">
+                <span>You have a badge!</span>
+                <template x-for="role in badgeRoles">
+                    <span x-text="role" class="py-[.1rem] text-xs font-bold uppercase rounded-full bg-hr text-primary px-xs"></span>
+                </template>
+            </div>
+            <div class="text-sm" x-show="availableSlots < 100">QUOTA: <b x-text="availableSlots"></b>
+            </div>
+        </div>
 
         {# Buttons #}
-        <div class="flex pt-base gap-base">
+        <div class="flex gap-base pt-base">
             <button class="button" @click="logout()">Logout</button>
             <button class="button" @click="modal = 'changePassword'">Change Password</button>
         </div>

@@ -19,11 +19,17 @@ function isFullArray(arr) {
   return Array.isArray(arr) && arr.length
 }
 
+function compareArrays(arr1, arr2) {
+  return Array.isArray(arr1) && Array.isArray(arr2) && arr1.filter(val => arr2.indexOf(val) !== -1)
+}
+
 /* -------------------------------------------------------------------------- */
 /*                             dayjs event format                             */
 /* -------------------------------------------------------------------------- */
 
 function formatEventDate(date, tz = 'America/Los_Angeles') {
+  // TODO: this is a kludge forcing the timezone to be Pacific time until I make this work more modular for online vs in person.
+  tz = 'America/Los_Angeles'
   return "<span style='white-space: nowrap;'>" + dayjs(date).tz(tz).format('MMM D, YYYY') + "</span> <span>" + dayjs(date).tz(tz).format('h:mm a') + "</span>"
 }
 
