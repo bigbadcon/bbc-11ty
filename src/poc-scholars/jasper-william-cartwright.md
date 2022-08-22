@@ -1,13 +1,13 @@
 ---
 tags: poc-scholar
-order: 0
+order: 
 title: Jasper William Cartwright
 position: ''
 published: true
 gender: he/him
 image: "/images/jasper-william-cartwright.png"
 twitter: JW_Cartwright
-website_name: Jasper William Cartwright on Instagram
+website_name: Instagram
 website_url: https://www.instagram.com/JW_Cartwright/
 
 ---
