@@ -3,16 +3,16 @@
 /* -------------------------------------------------------------------------- */
 
 function slugify(text) {
-    return text
-        .toString()
-        .toLowerCase()
-        .trim()
-        .normalize('NFD') // separate accent from letter
-        .replace(/[\u0300-\u036f]/g, '') // remove all separated accents
-        .replace(/\s+/g, '-') // replace spaces with dash
-        .replace(/&/g, '-and-') // replace & with 'and'
-        .replace(/[^\w-]+/g, '') // remove all non-word chars
-        .replace(/--+/g, '-') // replace multiple dash with single
+  return text
+    .toString()
+    .toLowerCase()
+    .trim()
+    .normalize('NFD') // separate accent from letter
+    .replace(/[\u0300-\u036f]/g, '') // remove all separated accents
+    .replace(/\s+/g, '-') // replace spaces with dash
+    .replace(/&/g, '-and-') // replace & with 'and'
+    .replace(/[^\w-]+/g, '') // remove all non-word chars
+    .replace(/--+/g, '-') // replace multiple dash with single
 }
 
 function isFullArray(arr) {
@@ -119,7 +119,7 @@ document.addEventListener('alpine:init', () => {
     return {
       init() {
         // logout if it's been more than 24 hours
-        if (dayjs(this.lastLogin).diff(dayjs(),'hour') > 24) this.logout()
+        if (dayjs(this.lastLogin).diff(dayjs(),'hour') > 48) this.logout()
       },
       lastLogin: this.$persist(null),
       authToken: this.$persist(false),
@@ -152,11 +152,10 @@ document.addEventListener('alpine:init', () => {
         } else return false
       },
       logout () {
-        this.lastLogin = null
         this.authToken = null
         this.user = null
         this.favEvents = []
-        this.availableSlots = []
+        this.availableSlots = null
         this.bookedEvents = null
         this.isRegistered = null
         this.volunteerEventSpaces = []
@@ -168,10 +167,13 @@ document.addEventListener('alpine:init', () => {
         const userMetadata = metadataArrayToObject(user.metadata)
         // TODO: not 
         const userRoles = [...userMetadata.wp_tuiny5_capabilities.matchAll(/"([a-z]+)/g)].map( (match) => match[1])
+        const badgeRoles = compareArrays(userRoles,['gm','paidattendee','volunteer'])
+        console.log("🚀 ~ file: scripts.js ~ line 172 ~ getUserData ~ badgeRoles", badgeRoles)
         user = {
           ...user,
           metadata: userMetadata,
-          roles: userRoles
+          roles: userRoles,
+          badgeRoles: badgeRoles,
         }
         console.log("user data transformed",user);
         this.user = user
