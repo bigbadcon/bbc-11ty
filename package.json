@@ -25,6 +25,7 @@
     "@11ty/eleventy-img": "^0.9.0",
     "@11ty/eleventy-plugin-rss": "^1.1.1",
     "@alpinejs/persist": "^3.10.2",
+    "@colinaut/alpinejs-plugin-simple-validate": "^1.7.6",
     "@netlify/functions": "^0.7.2",
     "@sendgrid/mail": "^7.4.6",
     "@slack/bolt": "^3.5.0",

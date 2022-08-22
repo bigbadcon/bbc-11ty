@@ -166,7 +166,7 @@
 /*                                    Forms                                   */
 /* -------------------------------------------------------------------------- */
 
-input[type="text"], input[type="password"], input[type="email"], input[type="phone"], input[type="url"] {
+input[type="text"], input[type="password"], input[type="email"], input[type="phone"], input[type="tel"], input[type="url"] {
   @apply px-sm py-xs border rounded-md bg-form border-body text-body focus:ring-highlight focus:border-highlight;
 }
 
@@ -199,7 +199,11 @@ textarea {
 }
 
 fieldset {
-  @apply border-t-4 border-solid border-hr pt-base my-md flex flex-col gap-sm;
+  @apply border-t-4 border-solid border-hr pt-base my-md space-y-4 transition-opacity;
+}
+
+fieldset > legend + * {
+@apply !mt-0
 }
 
 legend {
@@ -237,14 +241,21 @@ input[type="checkbox"] ~ label {
   content: attr(data-error);
 }
 
+.error-msg {
+  @apply ml-sm text-highlight italic font-bold;
+}
+
+/* Hide the error message for forms that use x-validate */
+/* TODO: fix all forms and then get rid of this and remove the data-error:after */
+.latest-validate [data-error]:after {
+  content: "";
+  @apply hidden;
+}
+
 /* Used on Run an Event Additional Info */
 .checkbox-grid {
   @apply grid gap-x-sm gap-y-sm;
   grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
-}
-/* transition opacity is applie for forms wist disabled sections */
-fieldset {
-  @apply transition-opacity;
 }
 
 .fieldset-disabled {
