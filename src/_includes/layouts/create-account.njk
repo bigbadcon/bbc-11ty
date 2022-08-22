@@ -13,7 +13,7 @@
                 x-data="createAccount"
                 x-effect="displayName = (howToDisplay === 'nickname') ? nickname : firstName + ' ' + lastName;">
                 <div class="prose" x-cloak x-show="isAuth && user">
-                    <p>Hi, you are signed in as <span x-text="$user && user.displayName" class="font-bold"></span>. If you would like to create a new account please logout first.
+                    <p>Hi, you are signed in as <span x-text="user && user.displayName" class="font-bold"></span>. If you would like to create a new account please logout first.
                     </p>
                     <p>
                         <button class="button" @click="logout()">Logout</button>
