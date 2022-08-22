@@ -1,8 +1,8 @@
 ---
 tags: poc-scholar
 order: 
-title: Eugenio Vargas (DM Jazzy Hands)
-position: ''
+title: Eugenio Varga
+position: DM Jazzy Hands
 published: true
 gender: he/him
 image: "/images/eugenio-vargas.jpg"
