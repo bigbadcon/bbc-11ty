@@ -6,7 +6,7 @@ tags: pages
 ogImage: ''
 
 ---
-![Image](/images/go-play-nw-2012-the-donut-instructions_7500555158_o.jpg)
+![Image](/images/donut-instructions_2-3.png)
 
 If you’ve never been to Go Play NW before, perhaps you’ve been wondering about all this talk about donuts. Here’s all the details!
 

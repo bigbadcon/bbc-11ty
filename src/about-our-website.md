@@ -9,6 +9,7 @@ tags: pages
 * Fonts
     * Open Sans, Helvetica, Rokkitt
 * Icons
+    * Donut © [Delapouite](https://delapouite.com/). [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
 * Illustrations by [Star West-Morgan](https://starwest.itch.io/)
 * Website theme by [Colin Fahrion](http://www.twitter.com/colinaut)
 * Event Management Engine by [Jerry Tidwell]()

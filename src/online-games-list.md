@@ -26,4 +26,4 @@ Now that you've got some games you can facilitate why don't you...
 
 [Sign up to Run a Game!](/run-an-event){.icon-dice}
 
-[Learn all about the Donut!](/the-donut){.icon-sun}
+[Learn all about the Donut!](/the-donut){.icon-donut}

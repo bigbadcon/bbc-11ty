@@ -528,6 +528,14 @@ a[class^='icon-']:hover {
   mask-image: url(/static/svgs/youtube.svg)
 }
 
+.icon-goplaynw:before {
+  mask-image: url(/static/svgs/goplaynw.svg)
+}
+
+.icon-donut:before {
+  mask-image: url(/static/svgs/donut.svg)
+}
+
 /* ------------------------- Event / Volunteer List ------------------------- */
 
 .fav-star {

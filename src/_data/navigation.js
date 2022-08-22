@@ -36,7 +36,7 @@ module.exports = [
 			{
 				"title": "The Donut",
 			 	"url": "/the-donut",
-			 	"icon": "sun"
+			 	"icon": "donut"
 			},
 			{
 				"title": "Attendee Guide",
