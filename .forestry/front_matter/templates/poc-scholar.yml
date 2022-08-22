@@ -1,0 +1,67 @@
+---
+label: PoC Scholars
+hide_body: false
+fields:
+- type: text
+  name: title
+  label: Name
+  description: "<em>Your chosen name</em>"
+  config:
+    required: true
+- type: text
+  name: position
+  label: Position Title
+- name: tags
+  type: select
+  default: []
+  config:
+    required: true
+    options:
+    - poc-scholar
+    source:
+      type: simple
+      section: 
+      file: 
+      path: 
+  label: tags
+- name: published
+  type: boolean
+  label: published
+  default: false
+- type: text
+  name: gender
+  label: gender
+  config:
+    required: true
+  description: "(they/them), (she/her), (he/him), etc."
+- name: order
+  type: number
+  label: order
+  default: 0
+  required: true
+  config:
+    min: 
+    max: 
+    step: 
+  description: Order number to sort bio cards. Lower number ranks higher on the
+    page.
+- name: image
+  type: file
+  config:
+    maxSize: 64
+  label: image
+- type: text
+  name: twitter
+  label: twitter handle
+  description: handle without the @ symbol
+- name: website_name
+  type: text
+  config:
+    required: false
+  label: website name
+- name: website_url
+  type: text
+  config:
+    required: false
+  label: website url
+pages:

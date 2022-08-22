@@ -105,6 +105,11 @@ module.exports = (eleventyConfig) => {
     return collectionApi.getFilteredByTag("staff-emeritus").filter(c => c.template.frontMatter.data.published === true).sort((a,b) => sortByOrder(a,b));
   });
 
+  // Staff sorted by order number and then alphabetically
+  eleventyConfig.addCollection("pocscholar123ABC", function(collectionApi) {
+    return collectionApi.getFilteredByTag("poc-scholar").filter(c => c.template.frontMatter.data.published === true).sort((a,b) => sortByOrder(a,b));
+  });
+
   // Home Page Cards published and sorted by order number and then alphabetically
   eleventyConfig.addCollection("cards123ABC", function(collectionApi) {
     return collectionApi.getFilteredByTag("cards").filter(c => c.template.frontMatter.data.published === true).sort((a,b) => sortByOrder(a,b));
