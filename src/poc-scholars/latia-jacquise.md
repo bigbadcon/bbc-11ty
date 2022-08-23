@@ -5,7 +5,7 @@ title: LaTia Jacquise
 position: ''
 published: true
 gender: she/her
-image: "/images/latia-jacquise.jpg"
+image: "/images/latia-jacquise_2.jpg"
 twitter: LaTiaJacquise
 website_name: LaTia Jacquise
 website_url: https://latiajacquise.com
