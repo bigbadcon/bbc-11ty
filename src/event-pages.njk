@@ -62,10 +62,11 @@ eleventyComputed:
 </div>
 
 {# Event Image: bit of a kludge. Must be added to event-images folder and named the same as the eventSlug #}
-{# <div class="rounded-md bg-card mb-md">
-    {% image heroImage,
-    heroImageAlt %}
-</div> #}
+{% if event.metadata.event_image %}
+    <div class="w-full rounded-md bg-card my-base" style="aspect-ratio: 16/9">
+        <img src="https://admin.bigbadcon.com:8091/images/{{event.metadata.event_image}}" alt="" class="object-cover w-full rounded-md" style="aspect-ratio: 16/9"/>
+    </div>
+{% endif %}
 {# Description #}
 <div class="prose">{{event.postContent | nl2br | safe }}</div>
 {# Event links #}
@@ -91,6 +92,14 @@ eleventyComputed:
                 <use xlink:href="/static/images/icons.svg#image"></use>
             </svg>Social Image Card</a>
     </div>
+</div>
+<div x-show="isAdmin" class="prose rounded my-base p-base bg-card">
+    <h3>Admin Only</h3>
+    <form action="post" x-data="{file: null}" @submit.prevent="uploadImage('{{event.eventId}}', file)">
+        <label for="file">Event Image Upload</label>
+        <input type="file" name="file" id="file" class="mr-base" x-model="file">
+        <button type="submit">Upload</button>
+    </form>
 </div>
 <div class="prose py-base">Back to <a href="/events/">List of Events</a>
 </div>

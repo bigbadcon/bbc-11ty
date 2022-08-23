@@ -185,6 +185,9 @@ document.addEventListener('alpine:init', () => {
       get isVolunteer() {
         return this.user && this.user.roles && this.user.roles.includes('volunteer')
       },
+      get isAdmin() {
+        return this.user && this.user.roles && this.user.roles.includes('administrator')
+      },
       async checkRegistration () {
         // Used for Big Bad Online
         const url = `/.netlify/functions/check-registration/${this.user.id}/${this.user.userNicename}`
@@ -273,6 +276,10 @@ document.addEventListener('alpine:init', () => {
       },
       async changePassword(userId,password) {
         let data = await fetchData('/users/setMyPassword',{ method: 'POST', body: { userId: userId, password: password }})
+        return data
+      },
+      async uploadImage(eventId,file) {
+        let data = await fetchData('/events/image',{ method: 'POST', body: { file: file, eventId: eventId }})
         return data
       },
       // Toast notifications
