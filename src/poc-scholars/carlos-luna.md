@@ -6,7 +6,7 @@ position: ''
 published: true
 gender: he/him
 image: "/images/carlos-luna.jpg"
-twitter: "@CarlosCrit"
+twitter: CarlosCrit
 website_name: Carlos Luna
 website_url: https://www.carlosluna.info/
 
