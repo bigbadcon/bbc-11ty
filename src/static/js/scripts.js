@@ -278,9 +278,31 @@ document.addEventListener('alpine:init', () => {
         let data = await fetchData('/users/setMyPassword',{ method: 'POST', body: { userId: userId, password: password }})
         return data
       },
-      async uploadImage(eventId,file) {
-        let data = await fetchData('/events/image',{ method: 'POST', body: { file: file, eventId: eventId }})
+      async uploadImage(event) {
+        console.log("🚀 ~ file: scripts.js ~ line 282 ~ uploadImage ~ event", event)
+        console.log('uploadImage', event.target.eventId.value, event.target.file.value);
+        const options = { 
+          method: 'POST', 
+          headers: { 
+            Authorization: this.authToken
+          },
+          body: { 
+            eventId: event.target.eventId.value,
+            file: event.target.file.value
+          }
+        }
+        let data = await fetchData('/events/image',options)
         return data
+      },
+      showPreview(event) {
+        if (event.target.files.length > 0) {
+          const src = URL.createObjectURL(event.target.files[0]);
+          const preview = document.getElementById("image-preview");
+          const button = document.getElementById("upload-button");
+          preview.src = src;
+          preview.style.display = "block";
+          button.style.display = "inline-block";
+        }
       },
       // Toast notifications
       toast: null,

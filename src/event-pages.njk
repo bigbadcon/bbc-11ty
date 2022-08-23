@@ -93,13 +93,18 @@ eleventyComputed:
             </svg>Social Image Card</a>
     </div>
 </div>
+{# ADMIN ONLY SECTION #}
 <div x-cloak x-show="isAdmin" class="prose rounded my-base p-base bg-card">
     <h3>Admin Only</h3>
-    <form action="post" x-data="{file: null}" @submit.prevent="uploadImage('{{event.eventId}}', file)">
+    <form action="post" @submit.prevent="uploadImage">
+        <input type="hidden" name="eventId" value="{{event.eventId}}">
         <label for="file">Event Image Upload</label>
-        <input type="file" name="file" id="file" class="mr-base" x-model="file">
-        <button type="submit">Upload</button>
+        <input type="file" name="file" id="file" accept="image/*" class="mr-base" @change="showPreview">
+        <img id="image-preview" class="hidden my-sm" x-ref="preview"/>
+        <button type="submit" class="hidden" id="upload-button">Upload</button>
     </form>
 </div>
 <div class="prose py-base">Back to <a href="/events/">List of Events</a>
 </div>
+
+<script
