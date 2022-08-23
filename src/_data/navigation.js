@@ -14,7 +14,7 @@ module.exports = [
 				"icon": "dice"
 			},
 			{
-				"title": "Events",
+				"title": "Event Schedule",
 			 	"url": "/events",
 			 	"icon": "calendar-clock"
 			},
@@ -65,9 +65,9 @@ module.exports = [
 		"id": "about",
 		"subnav": [
 			{
-				"title": "What We Do",
+				"title": "About Go Play NW",
 				"url": "/about-us",
-				"icon": "light-bulb"
+				"icon": "goplaynw"
 			},
 			{
 				"title": "Meet the Board",
