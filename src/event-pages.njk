@@ -63,7 +63,7 @@ eleventyComputed:
 
 {# Event Image: bit of a kludge. Must be added to event-images folder and named the same as the eventSlug #}
 {% if event.metadata.event_image %}
-    <div class="w-full rounded-md bg-card my-base" style="aspect-ratio: 16/9">
+    <div class="w-full rounded-md bg-card my-base" style="aspect-ratio: 16/9" x-cloak x-show="isAdmin">
         <img src="https://admin.bigbadcon.com:8091/images/{{event.metadata.event_image}}" alt="" class="object-cover w-full rounded-md" style="aspect-ratio: 16/9"/>
     </div>
 {% endif %}
@@ -93,7 +93,7 @@ eleventyComputed:
             </svg>Social Image Card</a>
     </div>
 </div>
-<div x-show="isAdmin" class="prose rounded my-base p-base bg-card">
+<div x-cloak x-show="isAdmin" class="prose rounded my-base p-base bg-card">
     <h3>Admin Only</h3>
     <form action="post" x-data="{file: null}" @submit.prevent="uploadImage('{{event.eventId}}', file)">
         <label for="file">Event Image Upload</label>
