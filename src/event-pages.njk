@@ -24,7 +24,8 @@ eleventyComputed:
 
 {# {% include 'components/event-date-time.njk'%} #}
 
-<div class="w-full rounded-md bg-card my-base" style="aspect-ratio: 16/9" x-data="{img:'{{event.metadata.event_image}}'}" x-init="img=events['{{event.eventId}}'].metadata.event_image" x-cloak x-show="img">
+{# TODO: make so it only updates src if it changes #}
+<div class="w-full rounded-md bg-card my-base" style="aspect-ratio: 16/9" x-data="{img:'{{event.metadata.event_image}}'}" x-init="if (img !== events['{{event.eventId}}'].metadata.event_image) img=events['{{event.eventId}}'].metadata.event_image" x-cloak x-show="img">
     <img src="https://admin.bigbadcon.com:8091/images/{{event.metadata.event_image}}" :src="'https://admin.bigbadcon.com:8091/images/' + img" alt="" class="object-cover w-full rounded-md" style="aspect-ratio: 16/9"/>
 </div>
 
@@ -100,7 +101,7 @@ eleventyComputed:
         <input type="hidden" name="eventId" value="{{event.eventId}}">
         <label for="file">Event Image Upload</label>
         <input type="file" name="file" id="file" accept="image/*" class="mr-base" @change="showPreview">
-        <img id="image-preview" class="hidden my-sm" x-ref="preview"/>
+        <img id="image-preview" class="hidden object-cover object-center my-sm" x-ref="preview" style="aspect-ratio: 16/9"/>
         <button type="submit" class="hidden" id="upload-button">Upload</button>
     </form>
 </div>
