@@ -13,3 +13,9 @@ tags: pages
 We've started pledge management and preorders on [BackerKit](https://big-bad-con-2022.backerkit.com/). Head over there to get a badge and more!
 
 [Sign up to attend on BackerKit](https://big-bad-con-2022.backerkit.com/hosted_preorders){.icon-party}
+
+### Upcoming dates:
+
+* Event submissions close 9/1
+* Schedule of events published 9/16
+* Sign ups begin 9/25 at 12PM PST
