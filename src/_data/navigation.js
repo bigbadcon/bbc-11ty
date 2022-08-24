@@ -89,6 +89,11 @@ module.exports = [
 				"title": "Morgan Ellis Awards",
 				"url": "/morgan-ellis-awards",
 				"icon": "trophy"
+			},
+			{
+				"title": "PoC Scholars",
+				"url": "/poc-scholars",
+				"icon": "scholar"
 			}
 		]
 	},
