@@ -24,7 +24,13 @@ eleventyComputed:
 
 {# {% include 'components/event-date-time.njk'%} #}
 
-<div class="relative flex flex-col prose border-t-2 border-b-2 mb-base text-body gap-sm border-hr pr-md py-sm">
+<div class="w-full rounded-md bg-card my-base" style="aspect-ratio: 16/9" x-data="{img:'{{event.metadata.event_image}}'}" x-init="img=events['{{event.eventId}}'].metadata.event_image" x-cloak x-show="img">
+    <img src="https://admin.bigbadcon.com:8091/images/{{event.metadata.event_image}}" :src="'https://admin.bigbadcon.com:8091/images/' + img" alt="" class="object-cover w-full rounded-md" style="aspect-ratio: 16/9"/>
+</div>
+
+{# TODO: add time when it is ready #}
+
+<div class="relative flex flex-col w-full prose border-t-2 border-b-2 mb-base text-body gap-sm border-hr pr-md py-sm">
     <div x-cloak x-show="isAuth" class="absolute right-0 top-sm">
         <span @click="toggleFav({{event.eventId}})" class="fav-star fav-star--event-page" :class="isFav({{event.eventId}}) && 'favved'">&starf;</span>
     </div>
@@ -61,12 +67,6 @@ eleventyComputed:
 
 </div>
 
-{# Event Image: bit of a kludge. Must be added to event-images folder and named the same as the eventSlug #}
-{% if event.metadata.event_image %}
-    <div class="w-full rounded-md bg-card my-base" style="aspect-ratio: 16/9" x-cloak x-show="isAdmin">
-        <img src="https://admin.bigbadcon.com:8091/images/{{event.metadata.event_image}}" alt="" class="object-cover w-full rounded-md" style="aspect-ratio: 16/9"/>
-    </div>
-{% endif %}
 {# Description #}
 <div class="prose">{{event.postContent | nl2br | safe }}</div>
 {# Event links #}
