@@ -50,6 +50,7 @@ module.exports = {
       typography: {
         DEFAULT: {
           css: {
+            maxWidth: '70rem',
             color: 'var(--body)',
             lineHeight: '1.45',
             h1: {

@@ -88,6 +88,7 @@ async function fetchData(url, options, authToken) {
     }, 
     ...options
   }
+
   if (options.body) options.body = JSON.stringify(options.body)
 
   try {
@@ -279,19 +280,38 @@ document.addEventListener('alpine:init', () => {
         return data
       },
       async uploadImage(event) {
-        console.log("🚀 ~ file: scripts.js ~ line 282 ~ uploadImage ~ event", event)
-        console.log('uploadImage', event.target.eventId.value, event.target.file.value);
-        const options = { 
-          method: 'POST', 
-          headers: { 
-            Authorization: this.authToken
-          },
-          body: { 
-            eventId: event.target.eventId.value,
-            file: event.target.file.value
+
+        if (!this.isAdmin) return false
+        
+        const formData = new FormData(event.target)
+
+        async function customFetch(url, authToken) {
+          const options = {
+            method: 'POST',
+            headers: {
+              Authorization: authToken
+            },
+            body: formData
+          }
+
+          console.log(options);
+
+          try {
+            let response = await fetch(apiBaseUrl + url, options)
+            console.log(`RESPONSE:fetch for ${url}`, response)
+            if (response.status !== 200) throw `fetch fail status: ${response.status}`
+            let result = await response.json()
+            console.log(`RESULT:fetch for ${url}`, result)
+            return result
+          } catch (err) {
+            console.error(`ERROR:fetch for ${url}`,err)
+            return false
           }
         }
-        let data = await fetchData('/events/image',options)
+
+        console.log('uploadImage', event.target.eventId.value, event.target.file.value);
+        let data = await customFetch('/events/image', this.authToken)
+        location.reload()
         return data
       },
       showPreview(event) {
@@ -321,55 +341,56 @@ document.addEventListener('alpine:init', () => {
 
   /* -------------------------- eventInfo panel data -------------------------- */
 
-  Alpine.data('eventInfo', () => ({
-    spacesTotal: null,
-    spacesOpen: null,
-    owner: null,
-    gm: null,
-    bookings: [], // bookings minus all GMs
-    async getEventBooking(id) {
-      // Check localStorage first to quickly populate this
-      let eventsLS = localStorage.getItem("events")
-      let events = (eventsLS) ? JSON.parse(eventsLS) : false
-      if (events[id]) {
-        // set Alpine 'eventInfo' variables
-        this.owner = events[id].owner
-        this.gm = events[id].gm
-        this.bookings = events[id].bookings
-        this.spacesTotal = events[id].spacesTotal
-        this.spacesOpen = events[id].spacesOpen
+  Alpine.data('eventInfo', function () {
+    return {
+      spacesTotal: null,
+      spacesOpen: null,
+      owner: null,
+      gm: null,
+      bookings: [], // bookings minus all GMs
+      events: this.$persist({}),
+      async getEventBooking(id) {
+        // Check localStorage first to quickly populate this
+        let events = this.events
+        if (events[id]) {
+          // set Alpine 'eventInfo' variables
+          this.owner = events[id].owner
+          this.gm = events[id].gm
+          this.bookings = events[id].bookings
+          this.spacesTotal = events[id].spacesTotal
+          this.spacesOpen = events[id].spacesOpen
+        }
+        // fetch new data from server
+        const data = await fetchData('/events/find',{ method: 'POST', body: { id: id }})
+        if (data) {
+          // Convert metadata array to object
+          const metadata = metadataArrayToObject(data.metadata)
+          // set Alpine 'eventInfo' variables
+          this.owner = data.eventOwner.displayName
+          this.gm = metadata.GM
+          // filter out all cancelled bookings and GM roles
+          const bookings = data.bookings.filter(booking => booking.bookingStatus === 1 && booking.bookingComment !== "GM")
+          this.bookings = bookings
+          this.spacesTotal = parseInt(metadata.Players)
+          this.spacesOpen = parseInt(metadata.Players) - bookings.length
+
+          // add to events store
+          events = {...events, [id]:{
+            owner: this.owner,
+            gm: this.gm,
+            bookings: this.bookings,
+            spacesTotal: this.spacesTotal,
+            spacesOpen: this.spacesOpen,
+            metadata: metadata
+          }}
+          this.events = events
+        }
+      },
+      showTimezone(date,tz) {
+        // console.log(dayjs(date).tz(tz))
       }
-      // fetch new data from server
-      const data = await fetchData('/events/find',{ method: 'POST', body: { id: id }})
-      if (data) {
-        // Convert metadata array to object
-        const metadata = metadataArrayToObject(data.metadata)
-        // set Alpine 'eventInfo' variables
-        this.owner = data.eventOwner.displayName
-        this.gm = metadata.GM
-        // filter out all cancelled bookings and GM roles
-        const bookings = data.bookings.filter(booking => booking.bookingStatus === 1 && booking.bookingComment !== "GM")
-        this.bookings = bookings
-        this.spacesTotal = parseInt(metadata.Players)
-        this.spacesOpen = parseInt(metadata.Players) - bookings.length
-        
-        // get and reset localStorage with new data
-        eventsLS = localStorage.getItem("events")
-        events = (eventsLS) ? JSON.parse(eventsLS) : {}
-        events = {...events, [id]:{
-          owner: this.owner,
-          gm: this.gm,
-          bookings: this.bookings,
-          spacesTotal: this.spacesTotal,
-          spacesOpen: this.spacesOpen
-        }}
-        localStorage.setItem("events",JSON.stringify(events))
-      }
-    },
-    showTimezone(date,tz) {
-      // console.log(dayjs(date).tz(tz))
     }
-  }))
+  })
 
   Alpine.data('createAccount',() => ({
     agree: false,
@@ -402,7 +423,7 @@ document.addEventListener('alpine:init', () => {
     userEmail: '',
     resetPasswordFormState: "empty",
     async resetPassword() {
-      resetPasswordFormState = "working"
+      this.resetPasswordFormState = "working"
       if (this.userEmail) {
         const paramSafeEmail = this.userEmail.replace(/\+/gi, '%2B') // replace + symbols for URLSearchParams
         // TODO: change to fetch
