@@ -494,6 +494,10 @@ a[class^='icon-']:hover {
   mask-image: url(/static/svgs/settings.svg)
 }
 
+.icon-scholar:before {
+  mask-image: url(/static/svgs/scholar.svg)
+}
+
 .icon-shield:before {
   mask-image: url(/static/svgs/shield.svg)
 }
