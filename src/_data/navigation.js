@@ -14,24 +14,9 @@ module.exports = [
 				"icon": "faq"
 			},
 			{
-				"title": "Events",
-				"url": "/events",
-				"icon": "calendar-clock"
-			},
-			{
 				"title": "Hotel",
 				"url": "/hotel",
 				"icon": "hotel"
-			},
-			{
-				"title": "Run An Event",
-				"url": "/run-an-event",
-				"icon": "dice"
-			},
-			{
-				"title": "Games On Demand",
-				"url": "/games-on-demand",
-				"icon": "games-on-demand"
 			},
 			{
 				"title": "Scholarship",
@@ -42,6 +27,27 @@ module.exports = [
 				"title": "Exhibitors",
 				"url": "/exhibitor-information",
 				"icon": "booth"
+			}
+		]
+	},
+	{
+		"title": "Events",
+		"id": "events",
+		"subnav": [
+			{
+				"title": "Events",
+				"url": "/events",
+				"icon": "calendar-clock"
+			},
+			{
+				"title": "Run An Event",
+				"url": "/run-an-event",
+				"icon": "dice"
+			},
+			{
+				"title": "Games On Demand",
+				"url": "/games-on-demand",
+				"icon": "games-on-demand"
 			},
 			{
 				"title": "Past Events",
