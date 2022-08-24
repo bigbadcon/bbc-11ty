@@ -18,4 +18,4 @@ We've started pledge management and preorders on [BackerKit](https://big-bad-con
 
 * Event submissions close 9/1
 * Schedule of events published 9/16
-* Sign ups begin 9/25 at 12PM PST
+* Sign ups begin 9/25 at 12PM PT
