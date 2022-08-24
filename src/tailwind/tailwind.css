@@ -571,7 +571,7 @@ a[class^='icon-']:hover {
 .fav-star {
   mask-image: url(/static/svgs/star.svg);
   mask-repeat: no-repeat;
-  @apply block w-6 h-6 cursor-pointer opacity-30 hover:opacity-100 bg-body indent-96;
+  @apply block w-6 h-6 cursor-pointer opacity-30 hover:opacity-100 bg-body text-transparent;
 }
 
 .fav-star-header {
