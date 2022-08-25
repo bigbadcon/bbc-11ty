@@ -37,19 +37,19 @@
                                     x-init="eventInfo.publicName = user && user.displayName; $watch('user', value => eventInfo.publicName = value && value.displayName)" 
                                     x-model="eventInfo.publicName" @blur="validate"/>
                                 </div>
-                                <div class="required">
-                                    <label for="yourAge">
-                                        Your age at start of con
-                                        <span>{{sitemeta.eventDate}}</span>
-                                    </label>
-                                    <select id="yourAge" name="yourAge" x-model="eventInfo.yourAge" @change="if (eventInfo.yourAge === '13+') eventInfo.playerAge = '13+'" @blur="validate">
-                                        <option :disabled="eventInfo.yourAge !== ''" selected value="">
-                                            -- Choose One --
-                                        </option>
-                                        <option>13+</option>
-                                        <option>18+</option>
-                                    </select>
-                                </div>
+<!--                                <div class="required">-->
+<!--                                    <label for="yourAge">-->
+<!--                                        Your age at start of con-->
+<!--                                        <span>{{sitemeta.eventDate}}</span>-->
+<!--                                    </label>-->
+<!--                                    <select id="yourAge" name="yourAge" x-model="eventInfo.yourAge" @change="if (eventInfo.yourAge === '13+') eventInfo.playerAge = '13+'" @blur="validate">-->
+<!--                                        <option :disabled="eventInfo.yourAge !== ''" selected value="">-->
+<!--                                            &#45;&#45; Choose One &#45;&#45;-->
+<!--                                        </option>-->
+<!--                                        <option>13+</option>-->
+<!--                                        <option>18+</option>-->
+<!--                                    </select>-->
+<!--                                </div>-->
 
                             </fieldset>
                             <fieldset>
@@ -114,21 +114,21 @@
                             {# Player/Attendee Info - all above must be completed #}
                             <fieldset class="transition-opacity" :class="(isEventInfoComplete) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
                                 <legend>Player/Attendee Info</legend>
-                                <div x-show="eventInfo.playerAge === '13+'" class="prose mb-base">
-                                    <p class="italic">Event designed for people aged 13+</p>
-                                </div>
-                                <div x-show="eventInfo.yourAge === '18+'" class="required">
-                                    <label for="playerAge">
-                                        Player/Attendee Age
-                                    </label>
-                                    <select id="playerAge" name="playerAge" x-model="eventInfo.playerAge" @blur="validate">
-                                        <option :disabled="eventInfo.playerAge !== ''" selected value="">
-                                            -- Choose One --
-                                        </option>
-                                        <option>13+</option>
-                                        <option>18+</option>
-                                    </select>
-                                </div>
+<!--                                <div x-show="eventInfo.playerAge === '13+'" class="prose mb-base">-->
+<!--                                    <p class="italic">Event designed for people aged 13+</p>-->
+<!--                                </div>-->
+<!--                                <div x-show="eventInfo.yourAge === '18+'" class="required">-->
+<!--                                    <label for="playerAge">-->
+<!--                                        Player/Attendee Age-->
+<!--                                    </label>-->
+<!--                                    <select id="playerAge" name="playerAge" x-model="eventInfo.playerAge" @blur="validate">-->
+<!--                                        <option :disabled="eventInfo.playerAge !== ''" selected value="">-->
+<!--                                            &#45;&#45; Choose One &#45;&#45;-->
+<!--                                        </option>-->
+<!--                                        <option>13+</option>-->
+<!--                                        <option>18+</option>-->
+<!--                                    </select>-->
+<!--                                </div>-->
                                 {# Only required for games #}
                                 <div class="required">
                                     <label for="minPlayers">Minimum players/attendees</label>
@@ -698,23 +698,27 @@
                             "id": 10,
                             "name": "Board/Card Game",
                             "slug": "board-game"
-                        }, {
+                        },
+                        {
                             "id": 9,
                             "name": "LARP",
                             "slug": "larp"
-                        }, {
-                            "id": 154,
-                            "name": "Panel",
-                            "slug": "panel"
-                        }, {
+                        },
+                        // {
+                        //     "id": 154,
+                        //     "name": "Panel",
+                        //     "slug": "panel"
+                        // },
+                        {
                             "id": 8,
                             "name": "RPG",
                             "slug": "rpg"
-                        }, {
-                            "id": 11,
-                            "name": "Workshops",
-                            "slug": "workshops"
-                        }
+                        },
+                        // {
+                        //     "id": 11,
+                        //     "name": "Workshops",
+                        //     "slug": "workshops"
+                        // }
                     ],
                     panelTopic: [
                         {
