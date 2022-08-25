@@ -242,15 +242,16 @@
                             {# Content Advisory & Safety Tools - show only if scheduling is completed #}
                             <fieldset class="transition-opacity" :class="(isSchedulingInfoComplete) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
                                 <legend>Content Advisory &amp; Safety Tools</legend>
-                                <div x-show="eventInfo.playerAge === '13+'" class="prose mb-base">
-                                    <p class="italic">Event designed for people aged 13+</p>
-                                </div>
-                                <div x-show="eventInfo.playerAge === '18+'" class="prose mb-base">
-                                    <p class="italic">Event designed for people aged 18+</p>
-                                </div>
+<!--                                <div x-show="eventInfo.playerAge === '13+'" class="prose mb-base">-->
+<!--                                    <p class="italic">Event designed for people aged 13+</p>-->
+<!--                                </div>-->
+<!--                                <div x-show="eventInfo.playerAge === '18+'" class="prose mb-base">-->
+<!--                                    <p class="italic">Event designed for people aged 18+</p>-->
+<!--                                </div>-->
                                 {# Break out to Maturity level and other stuff #}
                                 {# No Content Advisory vs Adult themes. Then add new list which is meta #}
-                                <div x-show="eventInfo.playerAge === '18+'" class="required">
+<!--                                <div x-show="eventInfo.playerAge === '18+'" class="required">-->
+                                <div class="required">
                                     <label>Content Advisory</label>
                                     <select id="contentAdvisory" name="contentAdvisory" x-model="eventInfo.contentAdvisory" @blur="validate">
                                         <option :disabled="eventInfo.contentAdvisory !== ''" selected value="">
@@ -261,7 +262,8 @@
                                     </select>
 
                                 </div>
-                                <div x-show="eventInfo.playerAge === '18+' && eventInfo.contentAdvisory === 'Yes'">
+<!--                                <div x-show="eventInfo.playerAge === '18+' && eventInfo.contentAdvisory === 'Yes'">-->
+                                <div class="required">
                                     <label>Types of Content Advisory</label>
                                     <template x-for="(type, i) in contentAdvisoryOptions">
                                         <div class="flex items-center">
@@ -270,7 +272,8 @@
                                         </div>
                                     </template>
                                 </div>
-                                <div x-show="eventInfo.playerAge === '18+' && eventInfo.contentAdvisory === 'Yes'">
+                                <div class="required">
+<!--                                <div x-show="eventInfo.playerAge === '18+' && eventInfo.contentAdvisory === 'Yes'">-->
                                     <label for="triggerWarnings">Potential trigger warnings</label>
                                     <input id="triggerWarnings" name="triggerWarnings" type="text" value="" x-model="eventInfo.triggerWarnings" class="w-full max-w-md"/>
                                 </div>
@@ -383,11 +386,11 @@
         ], // need to combine multiple
         "eventName": "string", // used
         "gm": "string", // need to convert from publicName?
-        "gmAge": "string", //need to convert from yourAge
+//        "gmAge": "string", //need to convert from yourAge
         "length": "string", // used but named eventLength
         "minPlayers": "string", //used
         "otherInfo": "string", //used
-        "playerAge": "string", //used
+//        "playerAge": "string", //used
         "players": "string", // this is maxPlayers
         "playtest": "string", //used
         "requestMediaEquipment": "string", // used
@@ -437,11 +440,11 @@
                     eventName: eventInfo.eventName,
                     format: eventInfo.format,
                     gm: eventInfo.publicName,
-                    gmAge: eventInfo.yourAge,
+//                    gmAge: eventInfo.yourAge,
                     length: eventInfo.eventLength,
                     minPlayers: eventInfo.minPlayers,
                     otherInfo: eventInfo.otherInfo,
-                    playerAge: eventInfo.playerAge,
+//                    playerAge: eventInfo.playerAge,
                     players: eventInfo.maxPlayers,
                     playtest: (eventInfo.playtest === 'Yes')
                         ? 1
@@ -470,7 +473,7 @@
                     eventInfo: {
                         // -- Personal Info
                         publicName: '', //required
-                        yourAge: '', //required
+                        //yourAge: '', //required
                         communityStandards: false,
                         // -- Event Info
                         eventName: '', //required
@@ -481,7 +484,7 @@
                         otherInfo: '',
                         // imageUpload not working yet
                         // -- Player Info
-                        playerAge: '', //required if yourAge = "18+"
+                        //playerAge: '', //required if yourAge = "18+"
                         minPlayers: '', //required if isGame
                         maxPlayers: '', //required if isGame
                         characters: '', //not required
@@ -509,7 +512,8 @@
                     },
                     get isPersonalInfoComplete() {
                         const x = this.eventInfo;
-                        return [x.publicName, x.yourAge].every(isFull) && x.communityStandards;
+                        //return [x.publicName, x.yourAge].every(isFull) && x.communityStandards;
+                        return [x.publicName].every(isFull) && x.communityStandards;
                     },
                     get isEventInfoComplete() {
                         const x = this.eventInfo;
@@ -525,8 +529,9 @@
                     },
                     get isPlayerInfoComplete() {
                         const x = this.eventInfo;
-                        let fields = [x.playerAge, x.minPlayers, x.maxPlayers]
-                        if (this.isRPGorLARP) 
+                        //let fields = [x.playerAge, x.minPlayers, x.maxPlayers]
+                        let fields = [x.minPlayers, x.maxPlayers]
+                        if (this.isRPGorLARP)
                             fields = [
                                 ...fields,
                                 x.characters
