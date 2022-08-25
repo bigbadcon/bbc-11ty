@@ -3,7 +3,7 @@
     <table class="w-full text-sm text-body">
         <tbody>
             {% for event in eventsArchive[year] | sortEvents %}
-                <tr x-show="filterEvent({{event.eventId}})">
+                <tr>
                     {# Event Name #}
                     <td class="py-sm pr-sm">
                         <h3>
