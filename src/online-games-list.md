@@ -9,22 +9,23 @@ ogImage: ''
 
 Interested in facilitating a game, but not sure of what you could run effectively online? Here are a few games that work great for online play and require minimal up-front preparation.
 
-* City of Winter (Demo): https://screentop.gg/@Deernicorn/cow-b01 
-* Danger Patrol (Pocket Edition): http://www.dangerpatrol.com/dangerpatrol_pocket.pdf 
+* [City of Winter (Demo) by Ross Cowman](https://screentop.gg/@Deernicorn/cow-b01)
+* [Danger Patrol (Pocket Edition) by John Harper](http://www.dangerpatrol.com/dangerpatrol_pocket.pdf)
+* [Downfall by Caroline Hobbs](https://www.lessthanthreegames.com/downfall.html) (Can be played online using [Google Slides](https://docs.google.com/presentation/u/0/) or [Miro](miro.com/))
+* [Fall of Magic by Ross Cowman](https://screentop.gg/@Deernicorn/fall-of-magic-r)
+* [Ghost/Echo by John Harper](http://www.onesevendesign.com/ghostecho/ghostecho_021909.pdf)
+* [i'm sorry did you say street magic by Caro Asercion](https://seaexcursion.itch.io/street-magic) (Can be played online using [Google Slides](https://docs.google.com/presentation/u/0/) or [Miro](miro.com/))
+* [Lasers and Feelings by John Harper](https://johnharper.itch.io/lasers-feelings)
+* [Market Magic by Moss Bosch](https://beatingthebinary.itch.io/market-magic-expanded-playsets)
+* [Microscope by Ben Robbins](https://www.lamemage.com/store.html) (Can be played online at [Utgars Chronicles](https://utgars-chronicles.app) or using [Google Slides](https://docs.google.com/presentation/u/0/) or [Miro](miro.com/))
+* [Murderous Ghosts by Meg and Vincent Baker](https://lumpley.itch.io/murderous-ghosts)
+* [Psi-Run by Meg and Vincent Baker](https://lumpley.itch.io/psirun)
+* [This Party Sucks by Moss Bosh](https://beatingthebinary.itch.io/this-party-sucks) (An online character generator is also available [here](https://beatingthebinary.itch.io/this-party-sucks-character-generator))
+* [World of Dungeons by John Harper](http://www.onesevendesign.com/dw/world_of_dungeons_1979_bw.pdf)
+* [The Zone by Raph D'Amico and Laughing Kaiju](https://play.thezonerpg.com/)
 
-* Downfall: https://www.lessthanthreegames.com/downfall.html 
-Is easily played online using Google Slides or Miro.com
+Now that you've got some games you can facilitate why don't you...
 
-* Psi-Run: https://lumpley.itch.io/psirun 
+[Sign up to Run a Game!](/run-an-event){.icon-dice}
 
-* For the Queen: https://www.evilhat.com/home/for-the-queen/ 
-While a Roll20 version is available, you can also play with your physical copy and your computer video! Have whoever has the deck of cards facilitate the game by drawing the card for folks and holding up for whoever’s turn it is to view. Also, have everyone take an index card and draw an X onto it, so they can simply hold the X up to the screen to indicate that they want to X a card out.
-
-* Ghost/Echo: http://www.onesevendesign.com/ghostecho/ghostecho_021909.pdf 
-* Lasers and Feelings: https://johnharper.itch.io/lasers-feelings 
-* Market Magic: https://beatingthebinary.itch.io/market-magic-expanded-playsets 
-* Microscope 
-Can be played online at https://utgars-chronicles.app/ (Note, it requires the Microscope rulebook to play which can be purchased here: https://www.lamemage.com/store.html) 
-* Murderous Ghosts: https://lumpley.itch.io/murderous-ghosts
-* The Zone: https://play.thezonerpg.com/ 
-* World of Dungeons: http://www.onesevendesign.com/dw/world_of_dungeons_1979_bw.pdf 
+[Learn all about the Donut!](/the-donut){.icon-donut}

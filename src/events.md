@@ -1,13 +1,11 @@
 ---
 layout: layouts/events.njk
-title: Events
+title: Fall 2022 Event Schedule
 description: ''
 tags: pages
 listing: events
 ---
 
-Go Play NW Online 2022 was wonderful! We thank all of our panelist and volunteers as well as all of our attendees on Discord and Twitch!
+Check out all of the games and activites we have scheduled for our Go Play NW Online Fall 2022 event below! If you see a game you'd like to be a part of, sign up now!
 
-## Go Play NW Sep 30 - Oct 2, 2022
-
-
+Or, if you there's something you'd like to see included on our schedule, consider [submitting a game](/run-an-event) you would like to run during the weekend!

@@ -2,7 +2,7 @@
 tags: staff
 published: true
 title: Jeremy Tidwell
-position: Technology Committee Co-Chair
+position: Technology Committee
 gender: "(he/him)"
 image: "/images/staff/organizers_jeremy-tidwell_400x400.jpg"
 twitter: jeremy_tidwell

@@ -1,6 +1,6 @@
 {% macro card(person) %}
-    <article class="shadow mb-lg rounded-xl bg-card ">
-        <header class="relative z-10 grid gap-6 sm:grid-cols-3 bg-gradient-to-br from-primary to-primary-2 p-base rounded-t-xl">
+    <article class="mx-auto max-w-content shadow mb-lg rounded-xl bg-card">
+        <header class="mx-auto relative z-10 grid gap-6 sm:grid-cols-3 bg-gradient-to-br from-primary to-primary-2 p-base rounded-t-xl">
             <div>
                 <figure class="aspect-w-1 aspect-h-1" style="clip-path: circle(50% at 50% 50%);" >
                     <img class="block object-cover object-center w-full h-full rounded-md "  src="{{person.data.image}}" alt="image of {{ person.data.name }}">
@@ -20,7 +20,7 @@
             </div>
         </header>
         <div class="py-base px-base">
-            <div class="prose ">{{ person.templateContent | safe }}</div>
+            <div class="prose max-w-content2">{{ person.templateContent | safe }}</div>
         </div>
     </article>
 {% endmacro %}

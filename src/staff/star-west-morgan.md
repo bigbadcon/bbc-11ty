@@ -3,7 +3,7 @@ tags: staff
 published: true
 order: 4
 title: Star West-Morgan
-position: Technology Committee Co-Chair
+position: Technology Committee
 gender: "(he/him)"
 image: "/images/staff/organizers_star_400x400.png"
 twitter: hedgiespresso

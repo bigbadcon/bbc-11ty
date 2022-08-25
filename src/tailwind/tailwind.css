@@ -279,6 +279,10 @@ code {
   white-space: pre-wrap;
 }
 
+#home h2 {
+  margin-top: 0em;
+}
+
 /* -------------------------- Light Dark Switch ----------------------------- */
 
 .switch input[type="checkbox"]:checked ~ .thumb {
@@ -522,6 +526,22 @@ a[class^='icon-']:hover {
 
 .icon-youtube:before {
   mask-image: url(/static/svgs/youtube.svg)
+}
+
+.icon-goplaynw:before {
+  mask-image: url(/static/svgs/goplaynw.svg)
+}
+
+.icon-donut:before {
+  mask-image: url(/static/svgs/donut.svg)
+}
+
+.icon-people-group:before {
+  mask-image: url(/static/svgs/people-group.svg)
+}
+
+.icon-info:before {
+  mask-image: url(/static/svgs/circle-info.svg)
 }
 
 /* ------------------------- Event / Volunteer List ------------------------- */
