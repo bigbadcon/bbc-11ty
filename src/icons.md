@@ -94,3 +94,7 @@ If you are using WYSIWIG mode in Forestry just add the {.icon-hotel} immediately
 .icon-goplaynw{.icon-goplaynw}
 
 .icon-donut{.icon-donut}
+
+.icon-people-group{.icon-people-group}
+
+.icon-info{.icon-info}
