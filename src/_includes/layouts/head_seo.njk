@@ -18,7 +18,8 @@
 {% elif ogAPIImage %}
     {% set og = ogAPIImage | ogCacheBuster %}
 {% else %}
-    {% set og = sitemeta.url + "/static/images/og.jpg" %}
+    {% set ogImg = ["og-red.jpg", "og-wolf.jpg"] | random %}
+    {% set og = sitemeta.url + "/static/images/" + ogImg %}
 {% endif %}
 
 <meta name="image" content="{{ og }}">

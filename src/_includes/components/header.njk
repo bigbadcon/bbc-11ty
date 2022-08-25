@@ -28,7 +28,7 @@
           </div>
           {# Main Nav #}
           <nav :class="{'flex': open, 'hidden': !open}"
-            class="flex-col flex-grow hidden pb-4 md:pb-0 md:flex md:justify-end md:flex-row md:space-x-sm xl:space-x-base space-y-xs md:space-y-0" aria-labelledby="mobile-menu">
+            class="relative z-10 flex-col flex-grow hidden pb-4 md:pb-0 md:flex md:justify-end md:flex-row md:space-x-sm xl:space-x-base space-y-xs md:space-y-0" aria-labelledby="mobile-menu">
             {# Nav for loop using navigation.json #}
             {% for item in navigation %}
               {% if item.subnav %}
