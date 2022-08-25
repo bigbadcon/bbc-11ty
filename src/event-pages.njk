@@ -117,7 +117,7 @@ eleventyComputed:
     <h3>Admin Only</h3>
     <form action="post" @submit.prevent="uploadImage">
         <input type="hidden" name="eventId" value="{{event.eventId}}">
-        <label for="file">Event Image Upload</label>
+        <label for="file">Event Image Upload Add/Replace</label>
         <p class="text-sm my-sm">Images are cropped automatically at 16/9 ratio and centered. Images should be mininum 760x428 px and maximum 1,520x856 px (or there abouts) and formatted with jpg or webp (png or gif accepted but generally the former compress better).</p>
         <input type="file" name="file" id="file" accept="image/*" class="mr-base" @change="showPreview">
         <img id="image-preview" class="hidden object-cover object-center rounded-md my-sm" x-ref="preview" style="aspect-ratio: 16/9"/>
