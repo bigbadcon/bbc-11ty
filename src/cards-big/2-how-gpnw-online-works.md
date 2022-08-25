@@ -8,4 +8,4 @@ alt: Stack of cards with Story Synth logo
 ---
 Wondering what a Discord server is? Got questions about how to schedule a game or sign up for one? We’ll tell you all you need to know to join us for our next online event!
 
-[Learn more about Go Play NW Online](/blog/2022-05-06-2/){.icon-website}
+[Learn more about Go Play NW Online](/blog/2022-05-06-2/){.icon-info}

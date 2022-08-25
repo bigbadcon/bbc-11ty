@@ -103,7 +103,7 @@ module.exports = [
 			{
 				"title": "Become a Volunteer",
 				"url": "/volunteer",
-				"icon": "parachute"
+				"icon": "people-group"
 			},
 			{
 				"title": "Volunteer Shifts",

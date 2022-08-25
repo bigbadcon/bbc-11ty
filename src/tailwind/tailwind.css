@@ -536,6 +536,14 @@ a[class^='icon-']:hover {
   mask-image: url(/static/svgs/donut.svg)
 }
 
+.icon-people-group:before {
+  mask-image: url(/static/svgs/people-group.svg)
+}
+
+.icon-info:before {
+  mask-image: url(/static/svgs/circle-info.svg)
+}
+
 /* ------------------------- Event / Volunteer List ------------------------- */
 
 .fav-star {
