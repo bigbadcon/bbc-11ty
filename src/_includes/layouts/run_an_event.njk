@@ -223,18 +223,27 @@
                                         <option value="1">1 hour</option>
                                         <option value="2">2 hours</option>
                                         <option value="4">4 hours</option>
-                                        <option value="6">6 hours</option>
-                                        <option value="8">8 hours</option>
+<!--                                        <option value="6">6 hours</option>-->
+<!--                                        <option value="8">8 hours</option>-->
                                     </select>
                                 </div>
                                 <div x-show="eventInfo.eventLength">
-                                    <label for="schedulePref">Schedule Preferences</label>
+                                    <label for="schedulePrefBlock">Schedule Preferences</label>
                                     <template x-for="(time, i) in scheduleTimes[eventInfo.eventLength]">
-                                        <div class="flex items-center">
+                                        <div id="schedulePrefBlock" class="flex items-center">
                                             <input type="checkbox" :name="'time' + i" :id="'time' + i" :value="time" @change="setCheckboxArray($el,'schedulePref')">
                                             <label :for="'time' + i" x-text="time"></label>
                                         </div>
                                     </template>
+
+                                    <br/>
+
+                                    <select id="schedulePrefSel" name="schedulePrefSel" x-model="eventInfo.schedulePref" @blur="validate">
+                                        <option :disabled="eventInfo.format !== ''" selected value="">-- Choose One --</option>
+                                        <template x-for="(time, i) in scheduleTimes[eventInfo.eventLength]">
+                                            <option :value="time" x-text="time"></option>
+                                        </template>
+                                    </select>
 
                                 </div>
                             </fieldset>
@@ -263,7 +272,7 @@
 
                                 </div>
 <!--                                <div x-show="eventInfo.playerAge === '18+' && eventInfo.contentAdvisory === 'Yes'">-->
-                                <div class="required">
+                                    <div x-show="eventInfo.contentAdvisory === 'Yes'">
                                     <label>Types of Content Advisory</label>
                                     <template x-for="(type, i) in contentAdvisoryOptions">
                                         <div class="flex items-center">
@@ -274,6 +283,7 @@
                                 </div>
                                 <div class="required">
 <!--                                <div x-show="eventInfo.playerAge === '18+' && eventInfo.contentAdvisory === 'Yes'">-->
+                                    <div x-show="eventInfo.contentAdvisory === 'Yes'">-->
                                     <label for="triggerWarnings">Potential trigger warnings</label>
                                     <input id="triggerWarnings" name="triggerWarnings" type="text" value="" x-model="eventInfo.triggerWarnings" class="w-full max-w-md"/>
                                 </div>
