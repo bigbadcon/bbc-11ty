@@ -28,17 +28,24 @@ eleventyComputed:
 
 {% set src = "" %}
 {% if (event.metadata.event_image) %}
+    {# If it has a image than put it in place and replace it if a different image is available #}
     {% set src = "https://admin.bigbadcon.com:8091/images/" + event.metadata.event_image %}
-{% endif %}
-
-<img src="{{src}}" class="object-cover w-full transition-opacity rounded-md bg-card mb-base"
-    x-cloak
-    x-data="{defaultImg:'{{event.metadata.event_image}}', newImg: events['{{event.eventId}}'].metadata.event_image || '', src: '{{src}}'}"
-    x-init="src = (defaultImg !== newImg) ? 'https://admin.bigbadcon.com:8091/images/' + newImg : src"
-    x-show="src"
-    :src="src"
-    style="aspect-ratio: 16/9;"
+    <div class="w-full rounded-md bg-card mb-base" style="aspect-ratio: 16/9;"
+    x-data="{src: '{{src}}', defaultImg: 'event.metadata.event_image', newImg: events['{{event.eventId}}']?.metadata?.event_image}">
+        <img src="{{src}}" class="object-cover w-full rounded-md event-image" style="aspect-ratio: 16/9;"
+        x-init="if (newImg && newImg !== defaultImg) $el.setAttribute('src', 'https://admin.bigbadcon.com:8091/images/' + newImg)"
 />
+    </div>
+{% else %}
+    {# If there is no image than make it hidden unless there is an image available #}
+    <div class="w-full rounded-md bg-card mb-base" style="aspect-ratio: 16/9;"
+    x-data="{newImg: events['{{event.eventId}}']?.metadata?.event_image}"
+    x-cloak x-show="newImg" x-transitition.opacity>
+        <img class="object-cover w-full rounded-md event-image" style="aspect-ratio: 16/9;"
+        x-init="if (newImg) $el.setAttribute('src', 'https://admin.bigbadcon.com:8091/images/' + newImg)"
+/>
+    </div>
+{% endif %}
 
 {# TODO: add time when it is ready #}
 
@@ -113,7 +120,7 @@ eleventyComputed:
         <label for="file">Event Image Upload</label>
         <p class="text-sm my-sm">Images are cropped automatically at 16/9 ratio and centered. Images should be mininum 760x428 px and maximum 1,520x856 px (or there abouts) and formatted with jpg or webp (png or gif accepted but generally the former compress better).</p>
         <input type="file" name="file" id="file" accept="image/*" class="mr-base" @change="showPreview">
-        <img id="image-preview" class="hidden object-cover object-center my-sm" x-ref="preview" style="aspect-ratio: 16/9"/>
+        <img id="image-preview" class="hidden object-cover object-center rounded-md my-sm" x-ref="preview" style="aspect-ratio: 16/9"/>
         <button type="submit" class="hidden" id="upload-button">Upload</button>
     </form>
 </div>

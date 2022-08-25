@@ -279,51 +279,6 @@ document.addEventListener('alpine:init', () => {
         let data = await fetchData('/users/setMyPassword',{ method: 'POST', body: { userId: userId, password: password }})
         return data
       },
-      async uploadImage(event) {
-
-        if (!this.isAdmin) return false
-        
-        const formData = new FormData(event.target)
-
-        async function customFetch(url, authToken) {
-          const options = {
-            method: 'POST',
-            headers: {
-              Authorization: authToken
-            },
-            body: formData
-          }
-
-          console.log(options);
-
-          try {
-            let response = await fetch(apiBaseUrl + url, options)
-            console.log(`RESPONSE:fetch for ${url}`, response)
-            if (response.status !== 200) throw `fetch fail status: ${response.status}`
-            let result = await response.json()
-            console.log(`RESULT:fetch for ${url}`, result)
-            return result
-          } catch (err) {
-            console.error(`ERROR:fetch for ${url}`,err)
-            return false
-          }
-        }
-
-        console.log('uploadImage', event.target.eventId.value, event.target.file.value);
-        let data = await customFetch('/events/image', this.authToken)
-        location.reload()
-        return data
-      },
-      showPreview(event) {
-        if (event.target.files.length > 0) {
-          const src = URL.createObjectURL(event.target.files[0]);
-          const preview = document.getElementById("image-preview");
-          const button = document.getElementById("upload-button");
-          preview.src = src;
-          preview.style.display = "block";
-          button.style.display = "inline-block";
-        }
-      },
       // Toast notifications
       toast: null,
       makeToast(notification) {
@@ -386,9 +341,58 @@ document.addEventListener('alpine:init', () => {
           this.events = events
         }
       },
-      showTimezone(date,tz) {
-        // console.log(dayjs(date).tz(tz))
-      }
+      async uploadImage(e) {
+
+        if (!this.isAdmin) return false
+
+        const eventId = e.target.eventId.value
+        const formData = new FormData(e.target)
+
+        async function customFetch(url, authToken) {
+          const options = {
+            method: 'POST',
+            headers: {
+              Authorization: authToken
+            },
+            body: formData
+          }
+
+          console.log(options);
+
+          try {
+            let response = await fetch(apiBaseUrl + url, options)
+            console.log(`RESPONSE:fetch for ${url}`, response)
+            if (response.status !== 200) throw `fetch fail status: ${response.status}`
+            let result = await response.json()
+            console.log(`RESULT:fetch for ${url}`, result)
+            return result
+          } catch (err) {
+            console.error(`ERROR:fetch for ${url}`,err)
+            return false
+          }
+        }
+
+        let data = await customFetch('/events/image', this.authToken)
+
+        if (data) {
+          // if data update event data with new image
+          let event = this.events[eventId]
+          event.metadata.event_image = data.fileName
+          this.events = {...this.events, [eventId]: event}
+        }
+        location.reload()
+        return data
+      },
+      showPreview(e) {
+        if (e.target.files.length > 0) {
+          const src = URL.createObjectURL(e.target.files[0]);
+          const preview = document.getElementById("image-preview");
+          const button = document.getElementById("upload-button");
+          preview.src = src;
+          preview.style.display = "block";
+          button.style.display = "inline-block";
+        }
+      },
     }
   })
 
