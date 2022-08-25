@@ -16,7 +16,7 @@ The next Go Play NW Online event for 2022 is taking place from Friday, September
 
 ## How much does Go Play NW Online 2022 cost?
 
-The Sep/Oct 2022 online event is Pay What You Want for the entire weekend! We want to make our event as accessible for folks from various financial backgrounds as possible.
+The Fall 2022 online event is Pay What You Want for the entire weekend! We want to make our event as accessible for folks from various financial backgrounds as possible.
 
 ## What do you do with the money you collect from Go Play NW Online events?
 
@@ -45,8 +45,4 @@ The best way to stay up to date on the latest and greatest from Go Play NW is to
 
 ## Is Go Play NW an official non-profit? Are my donations tax deductible?
 
-Go Play NW is an official 501(c)(7) non-profit Social Club. While we welcome your donation, donations to Social Clubs like ours are **NOT** tax deductible. All of our organization's funding comes from our members.
-
-Learn more about becoming a member of Go Play NW here:
-
-[Membership](/membership){.icon-shield}
+Go Play NW is an official 501(c)(7) non-profit Social Club. While we welcome your donation, donations to Social Clubs like ours are **NOT** tax deductible. Our organization's funding comes from our members.
