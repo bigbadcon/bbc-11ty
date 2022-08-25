@@ -288,15 +288,15 @@
                             {# Additional Info - not required #}
                             <fieldset class="transition-opacity" :class="(isSchedulingInfoComplete) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
                                 <legend>Additional Info</legend>
-                                <div x-show="eventInfo.format === formatId('Panel')" class="checkbox-grid">
-                                    <label>Panel Topic</label>
-                                    <template x-for="(type, i) in panelTopic">
-                                        <div class="flex items-center">
-                                            <input type="checkbox" :name="'panelTopic' + i" :id="'panelTopic' + i" :value="type.id" @change="setCheckboxArray($el,'panelTopic')">
-                                            <label :for="'panelTopic' + i" x-text="type.name"></label>
-                                        </div>
-                                    </template>
-                                </div>
+<!--                                <div x-show="eventInfo.format === formatId('Panel')" class="checkbox-grid">-->
+<!--                                    <label>Panel Topic</label>-->
+<!--                                    <template x-for="(type, i) in panelTopic">-->
+<!--                                        <div class="flex items-center">-->
+<!--                                            <input type="checkbox" :name="'panelTopic' + i" :id="'panelTopic' + i" :value="type.id" @change="setCheckboxArray($el,'panelTopic')">-->
+<!--                                            <label :for="'panelTopic' + i" x-text="type.name"></label>-->
+<!--                                        </div>-->
+<!--                                    </template>-->
+<!--                                </div>-->
                                 <div x-show="isGame">
                                     <label>Game Focus</label>
                                     <div class="checkbox-grid">
