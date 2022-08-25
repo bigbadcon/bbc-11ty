@@ -1,6 +1,6 @@
 module.exports = [
 	{
-		"title": "Go Play NW Online 2022",
+		"title": "Attend",
 		"id": "attend",
 		"subnav": [
 			{
@@ -42,7 +42,7 @@ module.exports = [
 				"title": "Attendee Guide",
 				"url" : "https://docs.google.com/document/d/1i29pOo4SCO7NKRHNQjBAflOCh1IzJAHZMw52fZUmEac",
 				"icon": "book" 
-			},
+			}
 		    //{
 			//	"title": "Exhibitors",
 			//	"url": "/exhibitor-information",
@@ -53,11 +53,6 @@ module.exports = [
 			//	"url": "/past-events",
 			//	"icon": "library"
 			//},
-			{
-				"title": "FAQ",
-				"url": "/faq",
-				"icon": "faq"
-			}
 		]
 	},
 	{
@@ -69,25 +64,30 @@ module.exports = [
 				"url": "/about-us",
 				"icon": "goplaynw"
 			},
-			{
-				"title": "Meet the Board",
-				"url": "/the-board",
-				"icon": "library"
-			},
+			///{
+			///	"title": "Meet the Board",
+			///	"url": "/the-board",
+			///	"icon": "library"
+			///},
 			{
 				"title": "Our Organizers",
 				"url": "/staff",
 				"icon": "games-on-demand"
 			},
-			{
-				"title": "Membership",
-				"url": "/membership",
-				"icon": "shield"
-			},
+			///{
+			///	"title": "Membership",
+			///	"url": "/membership",
+			///	"icon": "shield"
+			///},
 			{
 				"title": "Code of Conduct",
 				"url": "/code-of-conduct",
 				"icon": "scroll"
+			},
+			{
+				"title": "FAQ",
+				"url": "/faq",
+				"icon": "faq"
 			},
 			{
 				"title": "Contact Us",

@@ -7,7 +7,7 @@ image: ''
 alt: ''
 
 ---
-Join us for our Sep/Oct 2022 online event!
+Join us for our Fall 2022 online event!
 
 [Register Now!](/register){.icon-badge}
 

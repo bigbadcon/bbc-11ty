@@ -9,6 +9,26 @@ tags: pages
 * Fonts
     * Open Sans, Helvetica, Rokkitt
 * Icons
+Font Awesome
+Art
+Hotel
+Image
+itch
+kickstarter
+pencil-square
+scroll
+settings
+half-shield
+twitch
+twitter
+website
+youtube
+dice
+
+IcoMoon Keyamoon CC BY 4.0)
+Book, Bullhorn
+
+Game-icons.net
     * Donut © [Delapouite](https://delapouite.com/). [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
 * Illustrations by [Star West-Morgan](https://starwest.itch.io/)
 * Website theme by [Colin Fahrion](http://www.twitter.com/colinaut)
