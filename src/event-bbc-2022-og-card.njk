@@ -1,0 +1,34 @@
+---
+layout: layouts/og-card.njk
+pagination:
+    data: eventData.events
+    size: 1
+    alias: event
+permalink: "og/events/{{ event.eventSlug }}/"
+eleventyComputed:
+    title: "{{ event.eventName | safe }}"
+---
+{# TODO: make this more modular #}
+<div class="grid w-full h-full" style="grid-template-columns: 240px 960px; grid-template-rows: 480px">
+    <div class="flex flex-col bg-primary-4">
+        <div class="h-72 p-base">{% include 'components/bigbadonline-logo-vert.njk' %}</div>
+        <div class="flex flex-col items-center font-bold text-primary">
+            <div class="text-2xl">Oct 6-7</div>
+            <div class="text-5xl">2022</div>
+        </div>
+    </div>
+    <div class="overflow-hidden bg-primary">
+        {% if (event.metadata.event_image) %}
+            {% set src = "https://admin.bigbadcon.com:8091/images/" + event.metadata.event_image %}
+        {% else %}
+            {% set src = "/static/images/og-event-image-generic-red-2022.jpg" %}
+        {% endif %}
+        <img src="{{src}}" class="object-cover w-full" style="aspect-ratio: 16/9;"/>
+    </div>
+    <div class="bg-secondary text-form col-span-full">
+        <div class="col-span-9 px-md py-base ">
+            <h1 class="font-serif text-4xl font-bold leading-8">{{ event.eventName | safe }}</h1>
+            <div class="text-2xl font-bold text-red-100 mt-2xs">{{event.metadata.GM}}</div>
+        </div>
+    </div>
+</div>

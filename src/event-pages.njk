@@ -7,24 +7,10 @@ pagination:
 permalink: "events/{{ event.eventSlug }}/"
 eleventyComputed:
     title: "{{ event.eventName | safe }}"
+    ogAPIImage: "https://v1.screenshot.11ty.dev/https%3A%2F%2Fwww.bigbadcon.com%2Fog%2Fevents%2F{{event.eventSlug}}%2F/opengraph/"
 ---
 
-{# TODO: add more archive events. But use serverless eleventy #}
-
-{# Speakers #}
-{# Time #}
-{# Time at their timezone #}
-{# Panel or seminar #}
-{# Image at what ratio? Make a Photoshop template for 1-6 speaker heads #}
-{# Look into autogen twitter cards #}
-{# Volunteer events need to be seperated from the rest #}
-{# If possible set up booking for volunteer shifts #}
-
-{# Categories and Facilitator/GM #}
-
 {# {% include 'components/event-date-time.njk'%} #}
-
-{# TODO: make so it only updates src if it changes #}
 
 {% set src = "" %}
 {% if (event.metadata.event_image) %}
