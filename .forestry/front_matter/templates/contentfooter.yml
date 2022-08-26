@@ -1,0 +1,17 @@
+---
+label: Content Footer
+hide_body: false
+fields:
+- type: text
+  name: title
+  label: title
+- type: text
+  name: location
+  label: location
+  description: page slug location for footer
+- type: number
+  name: order
+  label: order
+  default: 0
+pages:
+- src/contentfooter/poc-scholars.md
