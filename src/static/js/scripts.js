@@ -171,7 +171,7 @@ document.addEventListener('alpine:init', () => {
         const userMetadata = metadataArrayToObject(user.metadata)
         // TODO: not 
         const userRoles = [...userMetadata.wp_tuiny5_capabilities.matchAll(/"([a-z]+)/g)].map( (match) => match[1])
-        const badgeRoles = compareArrays(userRoles,['gm','paidattendee','volunteer'])
+        const badgeRoles = compareArrays(userRoles,['gm','paidattendee','volunteer','comp','staff'])
         console.log("🚀 ~ file: scripts.js ~ line 172 ~ getUserData ~ badgeRoles", badgeRoles)
         user = {
           ...user,
@@ -242,7 +242,7 @@ document.addEventListener('alpine:init', () => {
           const event = await this.getEvent(id)
           return event
         }))
-        myEvents = myEvents.filter(event => event.eventStatus === 1);
+        myEvents = myEvents;
         this.bookedEvents = myEvents
         return myEvents
       },
