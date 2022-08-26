@@ -228,22 +228,21 @@
                                     </select>
                                 </div>
                                 <div x-show="eventInfo.eventLength">
-                                    <label for="schedulePrefBlock">Schedule Preferences</label>
-                                    <template x-for="(time, i) in scheduleTimes[eventInfo.eventLength]">
-                                        <div id="schedulePrefBlock" class="flex items-center">
-                                            <input type="checkbox" :name="'time' + i" :id="'time' + i" :value="time" @change="setCheckboxArray($el,'schedulePref')">
-                                            <label :for="'time' + i" x-text="time"></label>
-                                        </div>
-                                    </template>
-
-                                    <br/>
-
-                                    <select id="schedulePrefSel" name="schedulePrefSel" x-model="eventInfo.schedulePref" @blur="validate">
-                                        <option :disabled="eventInfo.format !== ''" selected value="">-- Choose One --</option>
-                                        <template x-for="(time, i) in scheduleTimes[eventInfo.eventLength]">
-                                            <option :value="time" x-text="time"></option>
-                                        </template>
-                                    </select>
+                                    <label for="schedulePrefBlock">Scheduled Slot</label>
+<!--                                    <template x-for="(time, i) in scheduleTimes[eventInfo.eventLength]">-->
+<!--                                        <div id="schedulePrefBlock" class="flex items-center">-->
+<!--                                            <input type="checkbox" :name="'time' + i" :id="'time' + i" :value="time" @change="setCheckboxArray($el,'schedulePref')">-->
+<!--                                            <label :for="'time' + i" x-text="time"></label>-->
+<!--                                        </div>-->
+<!--                                    </template>-->
+                                    <div id="schedulePrefBlock" class="flex items-center">-->
+                                        <select id="schedulePrefSel" name="schedulePrefSel" x-model="eventInfo.schedulePref" @blur="validate">
+                                            <option :disabled="eventInfo.format !== ''" selected value="">-- Choose One --</option>
+                                            <template x-for="(time, i) in scheduleTimes['-1']">
+                                                <option :value="time" x-text="time"></option>
+                                            </template>
+                                        </select>
+                                    </div>
 
                                 </div>
                             </fieldset>
@@ -286,6 +285,7 @@
                                     <div x-show="eventInfo.contentAdvisory === 'Yes'">-->
                                     <label for="triggerWarnings">Potential trigger warnings</label>
                                     <input id="triggerWarnings" name="triggerWarnings" type="text" value="" x-model="eventInfo.triggerWarnings" class="w-full max-w-md"/>
+                                    </div>
                                 </div>
                                 <div x-show="isGame">
                                     <label>Safety Tools</label>
@@ -293,6 +293,15 @@
                                         <div class="flex items-center">
                                             <input type="checkbox" :name="'safetyTools' + i" :id="'safetyTools' + i" :value="type" @change="setCheckboxArray($el,'safetyTools')">
                                             <label :for="'safetyTools' + i" x-text="type"></label>
+                                        </div>
+                                    </template>
+                                </div>
+                                <div x-show="isGame">
+                                    <label>Safety Tools</label>
+                                    <template x-for="(type, i) in accessibilityOptions">
+                                        <div class="flex items-center">
+                                            <input type="checkbox" :name="'accessibilityOptions' + i" :id="'accessibilityOptions' + i" :value="type" @change="setCheckboxArray($el,'accessibilityOptions')">
+                                            <label :for="'accessibilityOptions' + i" x-text="type"></label>
                                         </div>
                                     </template>
                                 </div>
@@ -311,49 +320,60 @@
 <!--                                    </template>-->
 <!--                                </div>-->
                                 <div x-show="isGame">
-                                    <label>Game Focus</label>
+                                    <label>Game Tags</label>
                                     <div class="checkbox-grid">
-                                        <template x-for="(type, i) in gameFocus">
+                                        <template x-for="(type, i) in gameTags">
                                             <div class="flex items-center">
-                                                <input type="checkbox" :name="'gameFocus' + i" :id="'gameFocus' + i" :value="type.id"  @change="setCheckboxArray($el,'gameFocus')">
-                                                <label :for="'gameFocus' + i" x-text="type.name"></label>
+                                                <input type="checkbox" :name="'gameTags' + i" :id="'gameTags' + i" :value="type.id"  @change="setCheckboxArray($el,'gameTags')">
+                                                <label :for="'gameTags' + i" x-text="type.name"></label>
                                             </div>
                                         </template>
                                     </div>
                                 </div>
-                                <div x-show="isGame">
-                                    <label>Player Contributions</label>
-                                    <div class="checkbox-grid">
-                                        <template x-for="(type, i) in playerContributions">
-                                            <div class="flex items-center">
-                                                <input type="checkbox" :name="'playerContributions' + i" :id="'playerContributions' + i" :value="type.id" @change="setCheckboxArray($el,'playerContributions')">
-                                                <label :for="'playerContributions' + i" x-text="type.name"></label>
-                                            </div>
-                                        </template>
-                                    </div>
-                                </div>
-                                <div x-show="isGame">
-                                    <label>Game Genre</label>
-                                    <div class="checkbox-grid">
-                                        <template x-for="(type, i) in gameGenre">
-                                            <div class="flex items-center">
-                                                <input type="checkbox" :name="'gameGenre' + i" :id="'gameGenre' + i" :value="type.id" @change="setCheckboxArray($el,'gameGenre')">
-                                                <label :for="'gameGenre' + i" x-text="type.name"></label>
-                                            </div>
-                                        </template>
-                                    </div>
-                                </div>
-                                <div x-show="isGame">
-                                    <label>Game Mood</label>
-                                    <div class="checkbox-grid">
-                                        <template x-for="(type, i) in gameMood">
-                                            <div class="flex items-center">
-                                                <input type="checkbox" :name="'gameMood' + i" :id="'gameMood' + i" :value="type.id" @change="setCheckboxArray($el,'gameMood')">
-                                                <label :for="'gameMood' + i" x-text="type.name"></label>
-                                            </div>
-                                        </template>
-                                    </div>
-                                </div>
+<!--                                <div x-show="isGame">-->
+<!--                                    <label>Game Focus</label>-->
+<!--                                    <div class="checkbox-grid">-->
+<!--                                        <template x-for="(type, i) in gameFocus">-->
+<!--                                            <div class="flex items-center">-->
+<!--                                                <input type="checkbox" :name="'gameFocus' + i" :id="'gameFocus' + i" :value="type.id"  @change="setCheckboxArray($el,'gameFocus')">-->
+<!--                                                <label :for="'gameFocus' + i" x-text="type.name"></label>-->
+<!--                                            </div>-->
+<!--                                        </template>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div x-show="isGame">-->
+<!--                                    <label>Player Contributions</label>-->
+<!--                                    <div class="checkbox-grid">-->
+<!--                                        <template x-for="(type, i) in playerContributions">-->
+<!--                                            <div class="flex items-center">-->
+<!--                                                <input type="checkbox" :name="'playerContributions' + i" :id="'playerContributions' + i" :value="type.id" @change="setCheckboxArray($el,'playerContributions')">-->
+<!--                                                <label :for="'playerContributions' + i" x-text="type.name"></label>-->
+<!--                                            </div>-->
+<!--                                        </template>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div x-show="isGame">-->
+<!--                                    <label>Game Genre</label>-->
+<!--                                    <div class="checkbox-grid">-->
+<!--                                        <template x-for="(type, i) in gameGenre">-->
+<!--                                            <div class="flex items-center">-->
+<!--                                                <input type="checkbox" :name="'gameGenre' + i" :id="'gameGenre' + i" :value="type.id" @change="setCheckboxArray($el,'gameGenre')">-->
+<!--                                                <label :for="'gameGenre' + i" x-text="type.name"></label>-->
+<!--                                            </div>-->
+<!--                                        </template>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div x-show="isGame">-->
+<!--                                    <label>Game Mood</label>-->
+<!--                                    <div class="checkbox-grid">-->
+<!--                                        <template x-for="(type, i) in gameMood">-->
+<!--                                            <div class="flex items-center">-->
+<!--                                                <input type="checkbox" :name="'gameMood' + i" :id="'gameMood' + i" :value="type.id" @change="setCheckboxArray($el,'gameMood')">-->
+<!--                                                <label :for="'gameMood' + i" x-text="type.name"></label>-->
+<!--                                            </div>-->
+<!--                                        </template>-->
+<!--                                    </div>-->
+<!--                                </div>-->
                                 <div>
                                     <label for="additionalGMs">List any additional GMs/facilitators</label>
                                     <textarea cols="30" id="additionalGMs" name="additionalGMs" rows="3" x-model="eventInfo.additionalGMs"></textarea>
@@ -430,15 +450,18 @@
             function convertToCreateEventAPI(eventInfo) {
                 const eventMetadataIds = [
                     ...eventInfo.playerContributions,
-                    ...eventInfo.gameFocus,
-                    ...eventInfo.gameMood,
-                    ...eventInfo.gameGenre,
+                    ...eventInfo.gameTags,
+                    // ...eventInfo.gameFocus,
+                    // ...eventInfo.gameMood,
+                    // ...eventInfo.gameGenre,
                     ...eventInfo.contentAdvisoryOptions,
-                    ...eventInfo.panelTopic
+                    // ...eventInfo.panelTopic
                 ].map(id => parseInt(id));
 
                 eventInfo = {
-                    //accessabilityOptions: eventInfo.accessabilityOptions,
+                    accessabilityOptions: eventInfo
+                        .accessibilityOptions
+                        .toString(),
                     additionalGms: eventInfo.additionalGMs,
                     additionalRequirements: eventInfo.additionalRequirements, // + " Room Request: " + eventInfo.locationPref,
                     characters: eventInfo.characters,
@@ -450,11 +473,11 @@
                     eventName: eventInfo.eventName,
                     format: eventInfo.format,
                     gm: eventInfo.publicName,
-//                    gmAge: eventInfo.yourAge,
+                    gmAge: '18+', //dummy value
                     length: eventInfo.eventLength,
                     minPlayers: eventInfo.minPlayers,
                     otherInfo: eventInfo.otherInfo,
-//                    playerAge: eventInfo.playerAge,
+                    playerAge: '18+', //dummy value
                     players: eventInfo.maxPlayers,
                     playtest: (eventInfo.playtest === 'Yes')
                         ? 1
@@ -462,7 +485,7 @@
                     requestMediaEquipment: eventInfo.requestMediaEquipment === "Yes",
                     requestMediaRoom: eventInfo.requestMediaRoom === "Yes",
 //                    requestPrivateRoom: eventInfo.locationPref !== "No Preference", // add extra to additionalRequirements for now
-//                    runNumberOfTimes: parseInt(eventInfo.runNumberOfTimes),
+                    runNumberOfTimes: 1, //dummy value
                     safetyTools: eventInfo
                         .safetyTools
                         .toString(),
@@ -513,10 +536,11 @@
                         safetyTools: '', //not required
                         // -- Additional Info
                         panelTopic: '', //not required
-                        gameFocus: '', //not required
-                        playerContributions: '', //not required
-                        gameGenre: '', //not required
-                        gameMood: '', //not required
+                        gameTags: '', //not required
+                        // gameFocus: '', //not required
+                        // playerContributions: '', //not required
+                        // gameGenre: '', //not required
+                        // gameMood: '', //not required
                         additionalGMs: '', //not required
                         additionalRequirements: '', //not required
                     },
@@ -685,7 +709,18 @@
                             "Sunday 9AM-3PM",
                             "Sunday 2PM-8PM"
                         ],
-                        "8": ["Friday 10AM-6PM", "Friday 2PM-10PM", "Saturday 10AM-6PM", "Saturday 2PM-10PM", "Sunday 10AM-6PM"]
+                        "8": [
+                            "Friday 10AM-6PM",
+                            "Friday 2PM-10PM",
+                            "Saturday 10AM-6PM",
+                            "Saturday 2PM-10PM",
+                            "Sunday 10AM-6PM"],
+                        "-1": [
+                            "Friday Morning",
+                            "Friday Afternoon",
+                            "Saturday Morning",
+                            "Saturday Afternoon"
+                        ]
                     },
                     findName(array, name) {
                         return array.find(e => e.name === name)
@@ -711,234 +746,71 @@
                     },
                     format: [
                         {
-                            "id": 10,
+                            "id": 27,
                             "name": "Board/Card Game",
-                            "slug": "board-game"
+                            "slug": "board-card-game"
                         },
                         {
-                            "id": 9,
+                            "id": 28,
                             "name": "LARP",
                             "slug": "larp"
                         },
                         // {
-                        //     "id": 154,
+                        //     "id": 30,
                         //     "name": "Panel",
                         //     "slug": "panel"
                         // },
                         {
-                            "id": 8,
+                            "id": 29,
                             "name": "RPG",
                             "slug": "rpg"
                         },
                         // {
-                        //     "id": 11,
+                        //     "id": 31,
                         //     "name": "Workshops",
                         //     "slug": "workshops"
                         // }
                     ],
-                    panelTopic: [
+                    // panelTopic: [],
+                    gameTags: [
                         {
-                            "id": 160,
-                            "name": "GMing Advice",
-                            "slug": "gming-advice"
+                            "id": 35,
+                            "name": "Diceless",
+                            "slug": "diceless"
                         }, {
-                            "id": 159,
-                            "name": "Literature",
-                            "slug": "literature"
+                            "id": 34,
+                            "name": "GMless",
+                            "slug": "gmless"
                         }, {
-                            "id": 161,
-                            "name": "Player Advice",
-                            "slug": "player-advice"
+                            "id": 36,
+                            "name": "Map-Building",
+                            "slug": "map-building"
                         }, {
-                            "id": 163,
-                            "name": "Safety Tools",
-                            "slug": "safety-tools"
+                            "id": 37,
+                            "name": "Non-Violent",
+                            "slug": "non-violent"
                         }, {
-                            "id": 162,
-                            "name": "Social Contracts",
-                            "slug": "social-contracts"
+                            "id": 39,
+                            "name": "Other",
+                            "slug": "other"
                         }, {
-                            "id": 158,
-                            "name": "Social Justice",
-                            "slug": "social-justice"
+                            "id": 32,
+                            "name": "Playtest",
+                            "slug": "playtest"
+                        }, {
+                            "id": 33,
+                            "name": "Run by Designer",
+                            "slug": "run-by-designer"
+                        }, {
+                            "id": 38,
+                            "name": "World Building",
+                            "slug": "world-building"
                         }
                     ],
-                    gameFocus: [
-                        {
-                            "id": 55,
-                            "name": "Adventure",
-                            "slug": "adventure"
-                        }, {
-                            "id": 62,
-                            "name": "Combat",
-                            "slug": "combat"
-                        }, {
-                            "id": 59,
-                            "name": "Drama",
-                            "slug": "drama"
-                        }, {
-                            "id": 56,
-                            "name": "Exploration",
-                            "slug": "exploration"
-                        }, {
-                            "id": 61,
-                            "name": "Hijinx",
-                            "slug": "hijinx"
-                        }, {
-                            "id": 191,
-                            "name": "Improv",
-                            "slug": "improv"
-                        }, {
-                            "id": 58,
-                            "name": "Intrigue",
-                            "slug": "intrigue"
-                        }, {
-                            "id": 57,
-                            "name": "Investigation",
-                            "slug": "investigation"
-                        }, {
-                            "id": 181,
-                            "name": "LGBTQ themes",
-                            "slug": "lgbtq-themes"
-                        }, {
-                            "id": 167,
-                            "name": "Mystery",
-                            "slug": "mystery"
-                        }, {
-                            "id": 60,
-                            "name": "Romance",
-                            "slug": "romance"
-                        }
-                    ],
-                    playerContributions: [
-                        {
-                            "id": 66,
-                            "name": "Collaborative",
-                            "slug": "collaborative"
-                        }, {
-                            "id": 188,
-                            "name": "Freeform",
-                            "slug": "freeform"
-                        }, {
-                            "id": 67,
-                            "name": "GM-less",
-                            "slug": "gm-less"
-                        }, {
-                            "id": 64,
-                            "name": "Play to find out",
-                            "slug": "play-to-find-out"
-                        }, {
-                            "id": 65,
-                            "name": "Player antagonism",
-                            "slug": "player-antagonism"
-                        }, {
-                            "id": 68,
-                            "name": "Rotating authority",
-                            "slug": "rotating-authority"
-                        }, {
-                            "id": 63,
-                            "name": "Strong storyline",
-                            "slug": "strong-storyline"
-                        }
-                    ],
-                    gameGenre: [
-                        {
-                            "id": 171,
-                            "name": "Aliens",
-                            "slug": "aliens"
-                        }, {
-                            "id": 73,
-                            "name": "Alternate History",
-                            "slug": "alternate-history"
-                        }, {
-                            "id": 76,
-                            "name": "Apocalyptic",
-                            "slug": "apocalyptic"
-                        }, {
-                            "id": 156,
-                            "name": "Cyberpunk",
-                            "slug": "cyberpunk"
-                        }, {
-                            "id": 77,
-                            "name": "Espionage",
-                            "slug": "espionage"
-                        }, {
-                            "id": 71,
-                            "name": "Fantasy",
-                            "slug": "fantasy"
-                        }, {
-                            "id": 69,
-                            "name": "Horror",
-                            "slug": "horror"
-                        }, {
-                            "id": 78,
-                            "name": "Military",
-                            "slug": "military"
-                        }, {
-                            "id": 72,
-                            "name": "Modern",
-                            "slug": "modern"
-                        }, {
-                            "id": 167,
-                            "name": "Mystery",
-                            "slug": "mystery"
-                        }, {
-                            "id": 75,
-                            "name": "Noir",
-                            "slug": "noir"
-                        }, {
-                            "id": 74,
-                            "name": "Pulp",
-                            "slug": "pulp"
-                        }, {
-                            "id": 70,
-                            "name": "Sci-Fi",
-                            "slug": "sci-fi"
-                        }, {
-                            "id": 120,
-                            "name": "Super Powers",
-                            "slug": "super-powers"
-                        }
-                    ],
-                    gameMood: [
-                        {
-                            "id": 80,
-                            "name": "Comical",
-                            "slug": "comical"
-                        }, {
-                            "id": 175,
-                            "name": "Cute",
-                            "slug": "cute"
-                        }, {
-                            "id": 82,
-                            "name": "Dark",
-                            "slug": "dark"
-                        }, {
-                            "id": 83,
-                            "name": "Emotional",
-                            "slug": "emotional"
-                        }, {
-                            "id": 81,
-                            "name": "Light",
-                            "slug": "light"
-                        }, {
-                            "id": 133,
-                            "name": "Melancholy",
-                            "slug": "melancholy"
-                        }, {
-                            "id": 79,
-                            "name": "Serious",
-                            "slug": "serious"
-                        }, {
-                            "id": 187,
-                            "name": "Silly",
-                            "slug": "silly"
-                        }, {
-                            "id": 84,
-                            "name": "Suspenseful",
-                            "slug": "suspenseful"
-                        }
-                    ],
+                    // gameFocus: [],
+                    // playerContributions: [],
+                    // gameGenre: [],
+                    // gameMood: [],
                     contentAdvisoryOptions: [
                         {
                             "id": 91,
@@ -960,10 +832,19 @@
                     ],
                     safetyTools: [
                         'X-card',
-                        'Lines/Veils',
-                        'Cut/Brake',
-                        'Open Door Policy',
                         'Script Change',
+                        'Stoplight',
+                        'Support Flower',
+                        'Lines and Veils',
+                        'Palette',
+                        'Pause/Retcon/Fade to Black',
+                        'Other'
+                    ],
+                    accessibilityOptions: [
+                        'Text Only',
+                        'Outside Portal/Site',
+                        'Video',
+                        'Audio/Voice',
                         'Other'
                     ]
                 }
