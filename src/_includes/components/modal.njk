@@ -217,9 +217,16 @@
                     </h4>
                     {# Timezone data is in x-data in html #}
                     {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
-                    <p class="text-xs opacity-90" x-cloak>
-                        <span x-html="formatEventDate(event.eventStartDateTime, timezone)"></span> (<span x-text="event.eventDuration"></span> hrs)
-                    </p>
+                    <template x-if="Number(event.eventDuration) > 0">
+                        <p class="text-xs opacity-90">
+                            <span x-html="formatEventDate(event.eventStartDateTime, timezone)"></span> (<span x-text="event.eventDuration"></span> hrs)
+                        </p>
+                    </template>
+                    <template x-if="Number(event.eventDuration) === 0">
+                        <p class="text-xs opacity-90">
+                            date/time not yet scheduled
+                        </p>
+                    </template>
                 </li>
             </template>
             <li x-show="bookedEvents && bookedEvents.length === 0" class="italic">You currently have no events</li>
