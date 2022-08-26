@@ -14,8 +14,7 @@
                 <div x-cloak x-show="!isAuth" class="prose">
                     <p>You must be <button @click.stop="modal = 'login'" class="font-bold underline text-highlight">logged in</button> to submit a game</p>
                 </div>
-
-                <div x-cloak x-show="isAuth && user" x-data="runAnEventData">
+                <div x-cloak x-show="isAuth && user" x-data="runAnEventData" x-init="getUserData()">
                     <div x-show="!eventSubmitted" id="submit-your-event">
                         <header class="prose">
                             <h2>Submit Your Event</h2>
