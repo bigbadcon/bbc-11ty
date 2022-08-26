@@ -10,7 +10,6 @@ coverImageAlt: ''
 ogImage: ''
 
 ---
-
 The Big Bad Con 2022 POC Programming is extending our international reach! We are continuing our work to support POCs at Big Bad Con through financial aid, a community dinner, and an industry meet and greet event. This year we’re also working with local gamers in India, South East Asia, and Latin America to bring more international POCs to the con!
 
 Here is the programming for 2022:
@@ -42,9 +41,30 @@ Here is the amazing team organizing the scholarship and putting these events tog
 * Anthony Joyce-Rivera
 * Sean Nittner
 
+### Sponsors
+
+Several generous sponsors have made individual and corporate contributions to make our POC Programming possible. Their support of transformative change in games is so important, and we are grateful for their generous contributions. We would like to add a special thanks to our major donors:
+
+#### $5,000+
+
+[The Adventure Zone](https://maximumfun.org/podcasts/adventure-zone/)
+
+[Dropout TV](https://www.dropout.tv/)
+
+[Quest Portal](https://www.questportal.com/)
+
+#### $10,000+
+
+[Critical Role](https://critrole.com/)
+
+[Darrington Press](https://darringtonpress.com/)
+
+[MCDM Productions](https://www.mcdmproductions.com/)
+
+[Wizards of the Coast](https://company.wizards.com/en)
+
 ### **Would you like to contribute?**
 
 If you would like to support our efforts, please consider donating below. All funds sent to this link will go directly to our POC programing. All donations are tax deductible as Big Bad Con is a [501c3 Non-Profit](https://www.bigbadcon.com/proof-of-501c3-status/).
-
 
 [Donate Now](https://www.paypal.com/us/fundraiser/charity/1653860){.icon-gift}
