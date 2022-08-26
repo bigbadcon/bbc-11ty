@@ -120,7 +120,7 @@ document.addEventListener('alpine:init', () => {
     return {
       init() {
         // logout if it's been more than 24 hours
-        if (dayjs(this.lastLogin).diff(dayjs(),'hour') > 48) this.logout()
+        if (!dayjs(this.lastLogin).isValid() || dayjs(this.lastLogin).diff(dayjs(),'hour') < -48) this.logout()
       },
       lastLogin: this.$persist(null),
       authToken: this.$persist(false),
