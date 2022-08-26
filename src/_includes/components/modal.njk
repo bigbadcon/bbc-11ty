@@ -1,6 +1,7 @@
 {% macro authModal() %}
     {# Backdrop #}
-    <div x-cloak x-show="(modal)" x-transition 
+    <div x-cloak x-show="(modal)" x-transition
+    x-init="$watch('modal',val => { if (val && isAuth) { getUserData(); getBookedEvents() } })"
     class="fixed inset-0 z-40 flex items-center justify-center bg-backdrop" 
     style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);"
     @click.stop="modal = false"
