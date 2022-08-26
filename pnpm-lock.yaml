@@ -5,6 +5,7 @@ specifiers:
   '@11ty/eleventy-cache-assets': ^2.2.1
   '@11ty/eleventy-img': ^0.9.0
   '@11ty/eleventy-plugin-rss': ^1.1.1
+  '@alpinejs/intersect': ^3.10.3
   '@alpinejs/persist': ^3.10.2
   '@colinaut/alpinejs-plugin-simple-validate': ^1.7.6
   '@netlify/functions': ^0.7.2
@@ -45,6 +46,7 @@ dependencies:
   '@11ty/eleventy-cache-assets': 2.3.0
   '@11ty/eleventy-img': 0.9.0
   '@11ty/eleventy-plugin-rss': 1.1.1_@11ty+eleventy@1.0.2
+  '@alpinejs/intersect': 3.10.3
   '@alpinejs/persist': 3.10.2
   '@colinaut/alpinejs-plugin-simple-validate': 1.7.6
   '@netlify/functions': 0.7.2
@@ -178,6 +180,10 @@ packages:
       - bufferutil
       - supports-color
       - utf-8-validate
+    dev: false
+
+  /@alpinejs/intersect/3.10.3:
+    resolution: {integrity: sha512-vMRvhbMJzS1tupb2a/3GF5H+gLxxWaXJpcxJlfSHrV2JTb+RFWOJIkL/63JpPPGibtpaNBDrx3hsRN0CJ4d5mw==}
     dev: false
 
   /@alpinejs/persist/3.10.2:
