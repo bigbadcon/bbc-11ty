@@ -1,6 +1,6 @@
 ---
 layout: layouts/run_games_on_demand.njk
-title: GM in Games On Demand
+title: Games On Demand
 description: ''
 tags: pages
 
