@@ -133,8 +133,8 @@
                 <p>Submit your email address and a reset password email will be sent which will allow you to change your password.</p>
             </div>
             <div>
-                <label for="userEmail" autocapitalize="off" class="text-xs uppercase">Email <span class="font-bold text-highlight">*</span></label>
-                <input class="w-64" id="userEmail" name="userEmail" required type="email" autocapitalize="off" autocorrect="off" spellcheck="false" value="" x-model="userEmail"/>
+                <label for="userEmailChange" autocapitalize="off" class="text-xs uppercase">Email <span class="font-bold text-highlight">*</span></label>
+                <input class="w-64" id="userEmailChange" name="userEmailChange" required type="email" autocapitalize="off" autocorrect="off" spellcheck="false" value="" x-model="userEmail"/>
             </div>
             {# TODO: make it gray out disabled when submitting #}
             <div>
@@ -204,8 +204,16 @@
         <ul class="flex-grow overflow-y-auto text-sm border-t-2 border-b-2 text-body border-hr py-xs" x-cloak x-show="bookedEvents" x-transition>
             <template x-for="event in bookedEvents">
                 <li class="mb-xs">
-                    <h4 class="font-bold">
-                        <a :href="(event.isVolunteer) ? '/volunteer/'+ event.eventSlug : '/events/'+ event.eventSlug" class="text-header hover:text-highlight" x-html="event.eventName"></a>
+                    <h4>
+                        <template x-if="(event.eventStatus === 1)">
+                            <a :href="(event.isVolunteer) ? '/volunteer/'+ event.eventSlug : '/events/'+ event.eventSlug" class="font-bold text-header hover:text-highlight" x-html="event.eventName"></a>
+                        </template>
+                        <template x-if="(event.eventStatus === 0)">
+                            <span class="text-body">
+                                <b x-html="event.eventName"></b>
+                                <i>In Review</i>
+                            </span>
+                        </template>
                     </h4>
                     {# Timezone data is in x-data in html #}
                     {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
