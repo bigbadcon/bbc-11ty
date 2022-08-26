@@ -161,6 +161,7 @@ document.addEventListener('alpine:init', () => {
         this.isRegistered = null
         this.volunteerEventSpaces = []
         this.bboDiscordInvite = null
+        this.makeToast('You have been logged out')
       },
       async getUserData(token) {
         token = token || this.authToken
