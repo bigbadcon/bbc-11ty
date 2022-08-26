@@ -69,7 +69,13 @@ module.exports = [
 				"title": "Volunteer Shifts",
 				"url": "/volunteer-shifts",
 				"icon": "calendar-clock"
-			}
+			},
+			{
+				"title": "Our Staff",
+				"url": "/staff",
+				"icon": "wolf"
+			},
+
 		]
 	},
 	{
