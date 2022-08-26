@@ -163,22 +163,28 @@ document.addEventListener('alpine:init', () => {
         this.bboDiscordInvite = null
       },
       async getUserData(token) {
+        console.log('hihi');
         token = token || this.authToken
         let user = await fetchData('/users/me',{}, token)
-        const userMetadata = metadataArrayToObject(user.metadata)
-        // TODO: not 
-        const userRoles = [...userMetadata.wp_tuiny5_capabilities.matchAll(/"([a-z]+)/g)].map( (match) => match[1])
-        const badgeRoles = compareArrays(userRoles,['gm','paidattendee','volunteer'])
-        console.log("🚀 ~ file: scripts.js ~ line 172 ~ getUserData ~ badgeRoles", badgeRoles)
-        user = {
-          ...user,
-          metadata: userMetadata,
-          roles: userRoles,
-          badgeRoles: badgeRoles,
+        if (user) {
+          const userMetadata = metadataArrayToObject(user.metadata)
+          // TODO: not 
+          const userRoles = [...userMetadata.wp_tuiny5_capabilities.matchAll(/"([a-z]+)/g)].map( (match) => match[1])
+          const badgeRoles = compareArrays(userRoles,['gm','paidattendee','volunteer'])
+          console.log("🚀 ~ file: scripts.js ~ line 172 ~ getUserData ~ badgeRoles", badgeRoles)
+          user = {
+            ...user,
+            metadata: userMetadata,
+            roles: userRoles,
+            badgeRoles: badgeRoles,
+          }
+          console.log("user data transformed",user);
+          this.user = user
+          return user
+        } else {
+          this.logout();
+          return false
         }
-        console.log("user data transformed",user);
-        this.user = user
-        return user
       },
       hasUserRole(role) {
         return this.user && this.user.roles && this.user.roles.includes(role)
