@@ -14,19 +14,19 @@ The Big Bad Con 2022 POC Programming is extending our international reach! We ar
 
 Here is the programming for 2022:
 
-### POC Scholarship
+## POC Scholarship
 
 Working with individual and industry donors we hope to raise $40,000+ to aid people of color in attending the con by paying for travel, boarding, admission, and related expenses. This program will complement our crowdfunding campaign and the Big Bad Con Scholarship program to give financial assistance to as many would-be attendees as we can.
 
-### POC Dinner
+## POC Dinner
 
 The POC Programming team is planning another POC Dinner at the start of the convention. Last time we hosted the dinner in 2019, it was a great opportunity for folks to meet and mingle with other amazing people of color. All POC scholarship recipients, staff, and volunteers will be granted free admission to the dinner, and we'll subsidize the ticket prices for other attendees as well.
 
-### POC Meet & Greet
+## POC Meet & Greet
 
 We're also hosting another meet and greet for POC writers, artists, editors, and creators to their fellow peers and industry contacts. Non-POC industry attendees will also be invited with the specific goal to offer mentorship, publishing, or employment opportunities to the attendees of color.
 
-### Programming Team
+## Programming Team
 
 Here is the amazing team organizing the scholarship and putting these events together.
 
@@ -41,29 +41,24 @@ Here is the amazing team organizing the scholarship and putting these events tog
 * Anthony Joyce-Rivera
 * Sean Nittner
 
-### Sponsors
+## Sponsors
 
 Several generous sponsors have made individual and corporate contributions to make our POC Programming possible. Their support of transformative change in games is so important, and we are grateful for their generous contributions. We would like to add a special thanks to our major donors:
 
-#### $5,000+
+### $5,000+
 
-[The Adventure Zone](https://maximumfun.org/podcasts/adventure-zone/)
+* [The Adventure Zone](https://maximumfun.org/podcasts/adventure-zone/)
+* [Dropout TV](https://www.dropout.tv/)
+* [Quest Portal](https://www.questportal.com/)
 
-[Dropout TV](https://www.dropout.tv/)
+### $10,000+
 
-[Quest Portal](https://www.questportal.com/)
+* [Critical Role](https://critrole.com/)
+* [Darrington Press](https://darringtonpress.com/)
+* [MCDM Productions](https://www.mcdmproductions.com/)
+* [Wizards of the Coast](https://company.wizards.com/en)
 
-#### $10,000+
-
-[Critical Role](https://critrole.com/)
-
-[Darrington Press](https://darringtonpress.com/)
-
-[MCDM Productions](https://www.mcdmproductions.com/)
-
-[Wizards of the Coast](https://company.wizards.com/en)
-
-### **Would you like to contribute?**
+## Would you like to contribute?
 
 If you would like to support our efforts, please consider donating below. All funds sent to this link will go directly to our POC programing. All donations are tax deductible as Big Bad Con is a [501c3 Non-Profit](https://www.bigbadcon.com/proof-of-501c3-status/).
 
