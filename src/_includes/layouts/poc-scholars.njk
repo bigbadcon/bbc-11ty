@@ -1,5 +1,5 @@
 {% extends 'layouts/base.njk' %}
-{% import 'components/staff-card.njk' as biocard %}
+{% import 'components/bio-card.njk' as biocard %}
 
 {% block header %}
   {% include 'components/header.njk' %}
@@ -11,13 +11,13 @@
       <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
       <div class="prose">{{ content | safe }}</div>
     </div>
-    <section class="mx-auto max-w-content p-base">
+    <section class="flex flex-col mx-auto max-w-content p-base gap-lg">
       {% for person in collections.pocscholar123ABC %}
         {{ biocard.card(person)}}
       {% endfor %}
     </section>
     {% if collections.pocTeam123ABC %}
-      <section class="mx-auto max-w-content p-base">
+      <section class="flex flex-col mx-auto max-w-content p-base gap-lg">
         <h1 class="font-serif text-5xl leading-none text-header mb-md">Team Members</h1>
         {% for person in collections.pocTeam123ABC %}
           {{ biocard.card(person)}}
