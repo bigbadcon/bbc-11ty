@@ -163,28 +163,25 @@ document.addEventListener('alpine:init', () => {
         this.bboDiscordInvite = null
       },
       async getUserData(token) {
-        console.log('hihi');
         token = token || this.authToken
         let user = await fetchData('/users/me',{}, token)
-        if (user) {
-          const userMetadata = metadataArrayToObject(user.metadata)
-          // TODO: not 
-          const userRoles = [...userMetadata.wp_tuiny5_capabilities.matchAll(/"([a-z]+)/g)].map( (match) => match[1])
-          const badgeRoles = compareArrays(userRoles,['gm','paidattendee','volunteer'])
-          console.log("🚀 ~ file: scripts.js ~ line 172 ~ getUserData ~ badgeRoles", badgeRoles)
-          user = {
-            ...user,
-            metadata: userMetadata,
-            roles: userRoles,
-            badgeRoles: badgeRoles,
-          }
-          console.log("user data transformed",user);
-          this.user = user
-          return user
-        } else {
-          this.logout();
-          return false
+
+        if (!user) {this.logout(); return false;}
+
+        const userMetadata = metadataArrayToObject(user.metadata)
+        // TODO: not 
+        const userRoles = [...userMetadata.wp_tuiny5_capabilities.matchAll(/"([a-z]+)/g)].map( (match) => match[1])
+        const badgeRoles = compareArrays(userRoles,['gm','paidattendee','volunteer'])
+        console.log("🚀 ~ file: scripts.js ~ line 172 ~ getUserData ~ badgeRoles", badgeRoles)
+        user = {
+          ...user,
+          metadata: userMetadata,
+          roles: userRoles,
+          badgeRoles: badgeRoles,
         }
+        console.log("user data transformed",user);
+        this.user = user
+        return user
       },
       hasUserRole(role) {
         return this.user && this.user.roles && this.user.roles.includes(role)
@@ -223,7 +220,7 @@ document.addEventListener('alpine:init', () => {
         const eventStartDateTime = dayjs(data.eventStartDate + "T" + data.eventStartTime + "-07:00").toDate()
         const eventEndDateTime = dayjs(data.eventEndDate + "T" + data.eventEndTime + "-07:00").toDate()
         
-        return {...data, 
+        return {...data,
           // Convert to keyed object
           metadata: metadataArrayToObject(data.metadata),
           // strip out status 0 which are canceled attendees
@@ -239,6 +236,7 @@ document.addEventListener('alpine:init', () => {
       async getBookedEvents() {
         // 1. Get ID array of my events
         let myEvents = await fetchData('/events/me/',{})
+        if (myEvents === false) {this.logout(); return false;}
         // 2. Get event data for each ID
         myEvents = await Promise.all(myEvents.map( async id => {
           const event = await this.getEvent(id)
@@ -260,6 +258,7 @@ document.addEventListener('alpine:init', () => {
       },
       async getFavEvents() {
         let data = await fetchData('/events/me/favorites')
+        if (!data)
         this.favEvents = data && data.map(item => item.eventId)
         return data && data.map(item => item.eventId)
       },
