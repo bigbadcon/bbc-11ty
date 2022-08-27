@@ -44,9 +44,9 @@
     {# data in global #}
     {# TODO: add colors: error, info, success #}
     <div class="fixed z-50 flex justify-center w-full bottom-8" 
-    x-data={toast:null}
+    x-data="{toast:null,timeout:5000,type: 'info'}"
     x-cloak x-show="toast" x-transition 
-    @toast.window="() => { toast = event.detail; setTimeout(() => toast = null, 5000); }"
+    @toast.window="() => { toast = event.detail; setTimeout(() => toast = null, timeout); }"
     @click.outside="toast = null">
       <div class="flex px-3 text-sm border-4 rounded-lg shadow-lg w-80 bg-body text-primary border-primary py-sm gap-base">
         <p x-html="toast" class="flex-grow"></p>
