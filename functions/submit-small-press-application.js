@@ -48,8 +48,8 @@ exports.handler = async function(event, context) {
                 to: eventBody.userEmail,
                 from: 'info@bigbadcon.com',
                 subject: 'Thanks for applying for BBC Small Press',
-                text: `Thank you ${eventBody.publicName} for applying for BBC Small Press! Our staff will review your submission and let you know about your application`,
-                html: `Thank you ${eventBody.publicName} for applying for BBC Small Press! Our staff will review your submission and let you know about your application`,
+                text: `Thank you ${eventBody.displayName} for applying for BBC Small Press! Our staff will review your submission and let you know about your application`,
+                html: `Thank you ${eventBody.displayName} for applying for BBC Small Press! Our staff will review your submission and let you know about your application`,
             }
 
             await sgMail.send(newUserMsg);
@@ -58,8 +58,8 @@ exports.handler = async function(event, context) {
                 to: 'info@bigbadcon.com',
                 from: 'info@bigbadcon.com',
                 subject: 'BBC dealer application',
-                text: `User ${eventBody.publicName} (${eventBody.userEmail}) applied to be BBC Small Press! You can find their submission on google sheets: https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0`,
-                html: `User ${eventBody.publicName} (${eventBody.userEmail}) applied to be BBC Small Press! You can find their submission on <a href="https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0">google sheets</a>.`,
+                text: `User ${eventBody.displayName} (${eventBody.userEmail}) applied to be BBC Small Press! You can find their submission on google sheets: https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0`,
+                html: `User ${eventBody.displayName} (${eventBody.userEmail}) applied to be BBC Small Press! You can find their submission on <a href="https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0">google sheets</a>.`,
             }
             await sgMail.send(newUserAdminMsg);
 

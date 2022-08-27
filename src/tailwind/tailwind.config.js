@@ -93,6 +93,9 @@ module.exports = {
                 color: 'var(--body)'
               }
             },
+            code: {
+              color: 'var(--body)',
+            },
             strong: {
               color: 'inherit',
               fontWeight: '700'

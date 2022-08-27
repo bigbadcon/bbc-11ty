@@ -250,8 +250,8 @@ input[type="checkbox"] ~ label {
 }
 
 /* Hide the error message for forms that use x-validate */
-/* TODO: fix all forms and then get rid of this and remove the data-error:after */
-.latest-validate [data-error]:after {
+/* TODO: fix all forms and then get rid of this and remove the [data-error]:after */
+form[x-validate] [data-error]:after {
   content: "";
   @apply hidden;
 }

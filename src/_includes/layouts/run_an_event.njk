@@ -351,6 +351,15 @@
                             </fieldset>
                             <button type="submit" :disabled="!isSchedulingInfoComplete">Submit</button>
                         </form>
+                        {# Testing form fields #}
+                        {# <div class="fixed text-xs rounded-md w-60 my-lg bg-card p-base left-4 top-4 text-body">
+                            <template x-for="field in eventInfoArray">
+                                <div>
+                                    <span x-text="field.key"></span>: <span x-text="field.value"></span>
+                                </div>
+                            </template>
+                            <div>MetadataIds: <span x-text="metadataIds"></span></div>
+                        </div> #}
                     </div>
                     {# END event submission div #}
                     {# event submitted #}
@@ -505,6 +514,23 @@
                         gameMood: '', //not required
                         additionalGMs: '', //not required
                         additionalRequirements: '', //not required
+                    },
+                    get eventInfoArray() {
+                        return Object
+                            .keys(this.eventInfo)
+                            .map(key => {
+                                return {key: key, value: this.eventInfo[key]}
+                            })
+                    },
+                    get metadataIds() {
+                        return [
+                            ...this.eventInfo.playerContributions,
+                            ...this.eventInfo.gameFocus,
+                            ...this.eventInfo.gameMood,
+                            ...this.eventInfo.gameGenre,
+                            ...this.eventInfo.contentAdvisoryOptions,
+                            ...this.eventInfo.panelTopic
+                        ].map(id => parseInt(id))
                     },
                     get isPersonalInfoComplete() {
                         const x = this.eventInfo;
