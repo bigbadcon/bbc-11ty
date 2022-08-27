@@ -61,7 +61,7 @@ exports.handler = async function(event, context) {
             const newUserAdminMsg = {
                 to: 'info@bigbadcon.com',
                 from: 'info@bigbadcon.com',
-                subject: 'BBC dealer application',
+                subject: 'BBC Small Press application',
                 text: `User ${eventBody.displayName} (${eventBody.userEmail}) applied to be BBC Small Press! You can find their submission on google sheets: https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0`,
                 html: `User ${eventBody.displayName} (${eventBody.userEmail}) applied to be BBC Small Press! You can find their submission on <a href="https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0">google sheets</a>.`,
             }
