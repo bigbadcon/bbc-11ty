@@ -4,6 +4,10 @@ const { GoogleSpreadsheet } = require('google-spreadsheet')
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
+// BBC API
+const apiBaseUrl = 'https://admin.bigbadcon.com:8091/api/'
+const apiKey = `ApiKey ${process.env.BBC_API_KEY}`
+
 const googleSheetId = process.env.GOOGLE_SHEET_SMALL_PRESS
 
 exports.handler = async function(event, context) {
@@ -38,7 +42,7 @@ exports.handler = async function(event, context) {
 
             const dateAdded = new Date().toLocaleDateString()
             const addedRow = await sheet.addRow({...eventBody, dateAdded: dateAdded})
-            console.log("addedRow", addedRow);
+            console.log(`added google sheet row for ${eventBody.displayName}`);
 
             /* -------------------------------------------------------------------------- */
             /*                               3. email people                              */
@@ -63,9 +67,39 @@ exports.handler = async function(event, context) {
             }
             await sgMail.send(newUserAdminMsg);
 
-            return {
-                statusCode: 200,
-                body: 'Success!',
+            /* -------------------------------------------------------------------------- */
+            /*                        4. add small-press-vendor role to use                        */
+            /* -------------------------------------------------------------------------- */
+            
+            const body = {
+                "role": "small-press-vendor",
+                "userId": parseInt(eventBody.userId)
+            }
+            
+            const headers = { headers: {"x-api-key": apiKey} }
+            console.log("addRoleToUser API POST", headers, body);
+
+            try {
+            
+                const res = await axios.post(apiBaseUrl + `users/addRoleToUser`, body, headers)
+            
+                if (res.status === 200) {
+                    return {
+                        statusCode: 200,
+                        body: "user added volunteer role",
+                    }
+                } else {
+                    return {
+                        statusCode: 500,
+                        body: "failed"
+                    }
+                }
+            } catch (err) {
+                console.log("add user role for small-press-vendor failed", err.toString());
+                return {
+                    statusCode: 200,
+                    body: "add user role for small-press-vendor failed"
+                }
             }
 
         } catch (e) {
