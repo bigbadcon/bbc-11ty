@@ -113,6 +113,7 @@
                     submitForm(e) {
                         let formData = {}
 
+                        // Create formData object from $validate.data with simple name/value pairs
                         this
                             .$validate
                             .data(e.target)

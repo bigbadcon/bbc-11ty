@@ -285,11 +285,8 @@ document.addEventListener('alpine:init', () => {
         let data = await fetchData('/users/setMyPassword',{ method: 'POST', body: { userId: userId, password: password }})
         return data
       },
-      // Toast notifications
-      toast: null,
       makeToast(notification) {
-        this.toast = notification
-        setTimeout(() => this.toast = null, 4000);
+        this.$dispatch('toast', notification)
       }
     }
   })
