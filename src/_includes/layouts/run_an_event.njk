@@ -598,7 +598,6 @@
 
                         const submitNow = () => {
                             this.createEvent()
-                            this.eventSubmitted = true
                         }
 
                         const scrollEventListener = () => {
@@ -620,6 +619,12 @@
                             method: 'PUT',
                             body: convertToCreateEventAPI(this.eventInfo)
                         })
+                        if (data) {
+                            this.$dispatch('toast', 'Event submitted!!')
+                            this.eventSubmitted = true
+                        } else {
+                            this.$dispatch('toast', 'Event submission failed')
+                        }
                         return data
                     },
                     setCheckboxArray(el, arrayName) {
