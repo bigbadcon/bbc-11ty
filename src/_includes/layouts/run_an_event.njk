@@ -390,10 +390,10 @@
 <!--                                        </template>-->
 <!--                                    </div>-->
 <!--                                </div>-->
-                                <div>
-                                    <label for="additionalGMs">List any additional GMs/facilitators</label>
-                                    <textarea cols="30" id="additionalGMs" name="additionalGMs" rows="3" x-model="eventInfo.additionalGMs"></textarea>
-                                </div>
+<!--                                <div>-->
+<!--                                    <label for="additionalGMs">List any additional GMs/facilitators</label>-->
+<!--                                    <textarea cols="30" id="additionalGMs" name="additionalGMs" rows="3" x-model="eventInfo.additionalGMs"></textarea>-->
+<!--                                </div>-->
                                 <div>
                                     <label for="additionalRequirements">Additional Information</label>
                                     <textarea cols="30" id="additionalRequirements" name="additionalRequirements" rows="3" x-model="eventInfo.additionalRequirements"></textarea>
@@ -478,7 +478,7 @@
                     accessabilityOptions: eventInfo
                         .accessibilityOptions
                         .toString(),
-                    additionalGms: eventInfo.additionalGMs,
+                    additionalGms: null, //eventInfo.additionalGMs,
                     additionalRequirements: eventInfo.additionalRequirements, // + " Room Request: " + eventInfo.locationPref,
                     characters: eventInfo.characters,
                     contentAdvisory: 0, //eventInfo.contentAdvisory !== "Yes", // this is a boolean in the API so we are using 1000000 is no-content-advisory; selection info goes into the eventMetadataIds
@@ -560,7 +560,7 @@
                         // playerContributions: '', //not required
                         // gameGenre: '', //not required
                         // gameMood: '', //not required
-                        additionalGMs: '', //not required
+                        // additionalGMs: '', //not required
                         additionalRequirements: '', //not required
                         eventTags: '', //not required
                     },
