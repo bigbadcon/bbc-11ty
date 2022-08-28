@@ -282,8 +282,9 @@
 <!--                                </div>-->
                                 <div class="required">
 <!--                                <div x-show="eventInfo.playerAge === '18+' && eventInfo.contentAdvisory === 'Yes'">-->
-                                    <div x-show="eventInfo.contentAdvisory === 'Yes'">
+<!--                                    <div x-show="eventInfo.contentAdvisory === 'Yes'">-->
 <!--                                    <label for="triggerWarnings">Potential trigger warnings</label>-->
+                                    <div>
                                     <label for="triggerWarnings">Content Warnings</label>
                                     <input id="triggerWarnings" name="triggerWarnings" type="text" value="" x-model="eventInfo.triggerWarnings" class="w-full max-w-md"/>
                                     </div>
@@ -324,17 +325,17 @@
 <!--                                        </div>-->
 <!--                                    </template>-->
 <!--                                </div>-->
-                                <div x-show="isGame">
-                                    <label>Game Tags</label>
-                                    <div class="checkbox-grid">
-                                        <template x-for="(type, i) in gameTags">
-                                            <div class="flex items-center">
-                                                <input type="checkbox" :name="'gameTags' + i" :id="'gameTags' + i" :value="type.id"  @change="setCheckboxArray($el,'gameTags')">
-                                                <label :for="'gameTags' + i" x-text="type.name"></label>
-                                            </div>
-                                        </template>
-                                    </div>
-                                </div>
+<!--                                <div x-show="isGame">-->
+<!--                                    <label>Game Tags</label>-->
+<!--                                    <div class="checkbox-grid">-->
+<!--                                        <template x-for="(type, i) in gameTags">-->
+<!--                                            <div class="flex items-center">-->
+<!--                                                <input type="checkbox" :name="'gameTags' + i" :id="'gameTags' + i" :value="type.id"  @change="setCheckboxArray($el,'gameTags')">-->
+<!--                                                <label :for="'gameTags' + i" x-text="type.name"></label>-->
+<!--                                            </div>-->
+<!--                                        </template>-->
+<!--                                    </div>-->
+<!--                                </div>-->
                                 <div x-show="isGame">
                                     <label>Game Tags</label>
                                     <div class="checkbox-grid">
@@ -464,15 +465,15 @@
             }
 
             function convertToCreateEventAPI(eventInfo) {
-                const eventMetadataIds = [
+                // const eventMetadataIds = [
                     //...eventInfo.playerContributions,
-                    ...eventInfo.gameTags,
+                    // ...eventInfo.gameTags,
                     // ...eventInfo.gameFocus,
                     // ...eventInfo.gameMood,
                     // ...eventInfo.gameGenre,
                     // ...eventInfo.contentAdvisoryOptions,
                     // ...eventInfo.panelTopic
-                ].map(id => parseInt(id));
+                // ].map(id => parseInt(id));
 
                 eventInfo = {
                     accessabilityOptions: eventInfo
@@ -485,7 +486,7 @@
                     eventCategoryId: parseInt(eventInfo.format),
                     eventDescription: eventInfo.eventDescription,
                     //eventFacilitators: eventInfo.facilitators,
-                    eventMetadataIds: eventMetadataIds,
+                    eventMetadataIds: [], //eventMetadataIds,
                     eventName: eventInfo.eventName,
                     format: eventInfo.format,
                     gm: eventInfo.publicName,
@@ -792,41 +793,41 @@
                         // }
                     ],
                     // panelTopic: [],
-                    gameTags: [
-                        {
-                            "id": 35,
-                            "name": "Diceless",
-                            "slug": "diceless"
-                        }, {
-                            "id": 34,
-                            "name": "GMless",
-                            "slug": "gmless"
-                        }, {
-                            "id": 36,
-                            "name": "Map-Building",
-                            "slug": "map-building"
-                        }, {
-                            "id": 37,
-                            "name": "Non-Violent",
-                            "slug": "non-violent"
-                        }, {
-                            "id": 39,
-                            "name": "Other",
-                            "slug": "other"
-                        }, {
-                            "id": 32,
-                            "name": "Playtest",
-                            "slug": "playtest"
-                        }, {
-                            "id": 33,
-                            "name": "Run by Designer",
-                            "slug": "run-by-designer"
-                        }, {
-                            "id": 38,
-                            "name": "World Building",
-                            "slug": "world-building"
-                        }
-                    ],
+                    // gameTags: [
+                    //     {
+                    //         "id": 35,
+                    //         "name": "Diceless",
+                    //         "slug": "diceless"
+                    //     }, {
+                    //         "id": 34,
+                    //         "name": "GMless",
+                    //         "slug": "gmless"
+                    //     }, {
+                    //         "id": 36,
+                    //         "name": "Map-Building",
+                    //         "slug": "map-building"
+                    //     }, {
+                    //         "id": 37,
+                    //         "name": "Non-Violent",
+                    //         "slug": "non-violent"
+                    //     }, {
+                    //         "id": 39,
+                    //         "name": "Other",
+                    //         "slug": "other"
+                    //     }, {
+                    //         "id": 32,
+                    //         "name": "Playtest",
+                    //         "slug": "playtest"
+                    //     }, {
+                    //         "id": 33,
+                    //         "name": "Run by Designer",
+                    //         "slug": "run-by-designer"
+                    //     }, {
+                    //         "id": 38,
+                    //         "name": "World Building",
+                    //         "slug": "world-building"
+                    //     }
+                    // ],
                     // gameFocus: [],
                     // playerContributions: [],
                     // gameGenre: [],
