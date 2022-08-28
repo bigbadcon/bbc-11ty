@@ -235,7 +235,7 @@
 <!--                                            <label :for="'time' + i" x-text="time"></label>-->
 <!--                                        </div>-->
 <!--                                    </template>-->
-                                    <div id="schedulePrefBlock" class="flex items-center">-->
+                                    <div id="schedulePrefBlock" class="flex items-center">
                                         <select id="schedulePrefSel" name="schedulePrefSel" x-model="eventInfo.schedulePref" @blur="validate">
                                             <option :disabled="eventInfo.format !== ''" selected value="">-- Choose One --</option>
                                             <template x-for="(time, i) in scheduleTimes['-1']">
@@ -249,7 +249,7 @@
                             {# END Scheduling Info #}
                             {# Content Advisory & Safety Tools - show only if scheduling is completed #}
                             <fieldset class="transition-opacity" :class="(isSchedulingInfoComplete) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
-                                <legend>Content Advisory &amp; Safety Tools</legend>
+                                <legend>Content Warnings &amp; Safety Tools</legend>
 <!--                                <div x-show="eventInfo.playerAge === '13+'" class="prose mb-base">-->
 <!--                                    <p class="italic">Event designed for people aged 13+</p>-->
 <!--                                </div>-->
@@ -259,57 +259,62 @@
                                 {# Break out to Maturity level and other stuff #}
                                 {# No Content Advisory vs Adult themes. Then add new list which is meta #}
 <!--                                <div x-show="eventInfo.playerAge === '18+'" class="required">-->
-                                <div class="required">
-                                    <label>Content Advisory</label>
-                                    <select id="contentAdvisory" name="contentAdvisory" x-model="eventInfo.contentAdvisory" @blur="validate">
-                                        <option :disabled="eventInfo.contentAdvisory !== ''" selected value="">
-                                            -- Choose One --
-                                        </option>
-                                        <option value="No">No content advisory needed</option>
-                                        <option value="Yes">Yes, contains strong content</option>
-                                    </select>
+<!--                                <div class="required">-->
+<!--                                    <label>Content Warnings</label>-->
+<!--                                    <select id="contentAdvisory" name="contentAdvisory" x-model="eventInfo.contentAdvisory" @blur="validate">-->
+<!--                                        <option :disabled="eventInfo.contentAdvisory !== ''" selected value="">-->
+<!--                                            &#45;&#45; Choose One &#45;&#45;-->
+<!--                                        </option>-->
+<!--                                        <option value="No">No content advisory needed</option>-->
+<!--                                        <option value="Yes">Yes, contains strong content</option>-->
+<!--                                    </select>-->
 
-                                </div>
+<!--                                </div>-->
+<!--                                <div x-show="eventInfo.playerAge === '18+' && eventInfo.contentAdvisory === 'Yes'">-->
+<!--                                    <div x-show="eventInfo.contentAdvisory === 'Yes'">-->
+<!--                                    <label>Types of Content Advisory</label>-->
+<!--                                    <template x-for="(type, i) in contentAdvisoryOptions">-->
+<!--                                        <div class="flex items-center">-->
+<!--                                            <input type="checkbox" :name="'contentAdvisoryOptions' + i" :id="'contentAdvisoryOptions' + i" :value="type.id" @change="setCheckboxArray($el,'contentAdvisoryOptions')">-->
+<!--                                            <label :for="'contentAdvisoryOptions' + i" x-text="type.name"></label>-->
+<!--                                        </div>-->
+<!--                                    </template>-->
+<!--                                </div>-->
+                                <div class="required">
 <!--                                <div x-show="eventInfo.playerAge === '18+' && eventInfo.contentAdvisory === 'Yes'">-->
                                     <div x-show="eventInfo.contentAdvisory === 'Yes'">
-                                    <label>Types of Content Advisory</label>
-                                    <template x-for="(type, i) in contentAdvisoryOptions">
-                                        <div class="flex items-center">
-                                            <input type="checkbox" :name="'contentAdvisoryOptions' + i" :id="'contentAdvisoryOptions' + i" :value="type.id" @change="setCheckboxArray($el,'contentAdvisoryOptions')">
-                                            <label :for="'contentAdvisoryOptions' + i" x-text="type.name"></label>
-                                        </div>
-                                    </template>
-                                </div>
-                                <div class="required">
-<!--                                <div x-show="eventInfo.playerAge === '18+' && eventInfo.contentAdvisory === 'Yes'">-->
-                                    <div x-show="eventInfo.contentAdvisory === 'Yes'">-->
-                                    <label for="triggerWarnings">Potential trigger warnings</label>
+<!--                                    <label for="triggerWarnings">Potential trigger warnings</label>-->
+                                    <label for="triggerWarnings">Content Warnings</label>
                                     <input id="triggerWarnings" name="triggerWarnings" type="text" value="" x-model="eventInfo.triggerWarnings" class="w-full max-w-md"/>
                                     </div>
                                 </div>
                                 <div x-show="isGame">
                                     <label>Safety Tools</label>
-                                    <template x-for="(type, i) in safetyTools">
-                                        <div class="flex items-center">
-                                            <input type="checkbox" :name="'safetyTools' + i" :id="'safetyTools' + i" :value="type" @change="setCheckboxArray($el,'safetyTools')">
-                                            <label :for="'safetyTools' + i" x-text="type"></label>
-                                        </div>
-                                    </template>
+                                    <div class="checkbox-grid">
+                                        <template x-for="(type, i) in safetyTools">
+                                            <div class="flex items-center">
+                                                <input type="checkbox" :name="'safetyTools' + i" :id="'safetyTools' + i" :value="type" @change="setCheckboxArray($el,'safetyTools')">
+                                                <label :for="'safetyTools' + i" x-text="type"></label>
+                                            </div>
+                                        </template>
+                                    </div>
                                 </div>
                                 <div x-show="isGame">
-                                    <label>Safety Tools</label>
-                                    <template x-for="(type, i) in accessibilityOptions">
-                                        <div class="flex items-center">
-                                            <input type="checkbox" :name="'accessibilityOptions' + i" :id="'accessibilityOptions' + i" :value="type" @change="setCheckboxArray($el,'accessibilityOptions')">
-                                            <label :for="'accessibilityOptions' + i" x-text="type"></label>
-                                        </div>
-                                    </template>
+                                    <label>Accessibility Options</label>
+                                        <div class="checkbox-grid">
+                                            <template x-for="(type, i) in accessibilityOptions">
+                                            <div class="flex items-center">
+                                                <input type="checkbox" :name="'accessibilityOptions' + i" :id="'accessibilityOptions' + i" :value="type" @change="setCheckboxArray($el,'accessibilityOptions')">
+                                                <label :for="'accessibilityOptions' + i" x-text="type"></label>
+                                            </div>
+                                        </template>
+                                    </div>
                                 </div>
-                            </fieldset>
-                            {# END Content Advisory & Safety Tools #}
-                            {# Additional Info - not required #}
-                            <fieldset class="transition-opacity" :class="(isSchedulingInfoComplete) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
-                                <legend>Additional Info</legend>
+<!--                            </fieldset>-->
+<!--                            {# END Content Advisory & Safety Tools #}-->
+<!--                            {# Additional Info - not required #}-->
+<!--                            <fieldset class="transition-opacity" :class="(isSchedulingInfoComplete) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">-->
+<!--                                <legend>Additional Info</legend>-->
 <!--                                <div x-show="eventInfo.format === formatId('Panel')" class="checkbox-grid">-->
 <!--                                    <label>Panel Topic</label>-->
 <!--                                    <template x-for="(type, i) in panelTopic">-->
@@ -326,6 +331,17 @@
                                             <div class="flex items-center">
                                                 <input type="checkbox" :name="'gameTags' + i" :id="'gameTags' + i" :value="type.id"  @change="setCheckboxArray($el,'gameTags')">
                                                 <label :for="'gameTags' + i" x-text="type.name"></label>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+                                <div x-show="isGame">
+                                    <label>Game Tags</label>
+                                    <div class="checkbox-grid">
+                                        <template x-for="(type, i) in eventTags">
+                                            <div class="flex items-center">
+                                                <input type="checkbox" :name="'eventTags' + i" :id="'eventTags' + i" :value="type" @change="setCheckboxArray($el,'eventTags')">
+                                                <label :for="'eventTags' + i" x-text="type"></label>
                                             </div>
                                         </template>
                                     </div>
@@ -379,7 +395,7 @@
                                     <textarea cols="30" id="additionalGMs" name="additionalGMs" rows="3" x-model="eventInfo.additionalGMs"></textarea>
                                 </div>
                                 <div>
-                                    <label for="additionalRequirements">List any special requirements</label>
+                                    <label for="additionalRequirements">Additional Information</label>
                                     <textarea cols="30" id="additionalRequirements" name="additionalRequirements" rows="3" x-model="eventInfo.additionalRequirements"></textarea>
                                 </div>
                             </fieldset>
@@ -454,7 +470,7 @@
                     // ...eventInfo.gameFocus,
                     // ...eventInfo.gameMood,
                     // ...eventInfo.gameGenre,
-                    ...eventInfo.contentAdvisoryOptions,
+                    // ...eventInfo.contentAdvisoryOptions,
                     // ...eventInfo.panelTopic
                 ].map(id => parseInt(id));
 
@@ -465,7 +481,7 @@
                     additionalGms: eventInfo.additionalGMs,
                     additionalRequirements: eventInfo.additionalRequirements, // + " Room Request: " + eventInfo.locationPref,
                     characters: eventInfo.characters,
-                    contentAdvisory: eventInfo.contentAdvisory !== "Yes", // this is a boolean in the API so we are using 1000000 is no-content-advisory; selection info goes into the eventMetadataIds
+                    contentAdvisory: 0, //eventInfo.contentAdvisory !== "Yes", // this is a boolean in the API so we are using 1000000 is no-content-advisory; selection info goes into the eventMetadataIds
                     eventCategoryId: parseInt(eventInfo.format),
                     eventDescription: eventInfo.eventDescription,
                     //eventFacilitators: eventInfo.facilitators,
@@ -491,6 +507,9 @@
                         .toString(),
                     schedulingPref: eventInfo
                         .schedulePref
+                        .toString(),
+                    eventTags: eventInfo
+                        .eventTags
                         .toString(),
                     system: eventInfo.system,
 //                    tableType: eventInfo.tableType,
@@ -543,6 +562,7 @@
                         // gameMood: '', //not required
                         additionalGMs: '', //not required
                         additionalRequirements: '', //not required
+                        eventTags: '', //not required
                     },
                     get isPersonalInfoComplete() {
                         const x = this.eventInfo;
@@ -846,6 +866,16 @@
                         'Video',
                         'Audio/Voice',
                         'Other'
+                    ],
+                    eventTags: [
+                        'Diceless',
+                        'GMless',
+                        'Map-Building',
+                        'Non-Violent',
+                        'Other',
+                        'Playtest',
+                        'Run by Designer',
+                        'World Building',
                     ]
                 }
             })
