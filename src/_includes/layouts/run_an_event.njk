@@ -356,8 +356,10 @@
                             <button type="submit" :disabled="!$validate.isComplete('form-run-an-event')">Submit</button>
                         </form>
                         {# x-validate form log #}
-                        {# {% import 'components/x-validate-form-validator.njk' as validate %}
-            {{ validate.log('form-run-an-event') }} #}
+                        {% if (sitemeta.environment === 'dev') %}
+                            {% import 'components/x-validate-form-validator.njk' as validate %}
+                            {{ validate.log('form-run-an-event') }}
+                        {% endif %}
                         {# Testing form fields #}
                         {# <div class="fixed text-xs rounded-md w-60 my-lg bg-card p-base left-4 top-4 text-body">
                             <template x-for="field in eventInfoArray">
