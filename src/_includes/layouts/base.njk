@@ -46,7 +46,7 @@
     <div class="fixed z-50 flex justify-center w-full bottom-8"
     x-data="{toast: {msg:'',duration: 6000}}"
     x-cloak x-show="toast.msg" x-transition
-    x-init="toast = {msg:'We are having issues with login. Please be patient',duration: 100000}"
+    x-init="toast = {msg:'ERROR: We are having login issues. Please be patient while we sort out the issue.',duration: 100000}"
     @toast.window="() => { toast = {...toast, ...event.detail}; setTimeout(() => toast.msg = '', toast.duration); }"
     @click.outside="toast.msg = ''; toast.duration = 6000">
       <div class="flex px-3 text-sm font-bold border-4 rounded-lg shadow-lg w-80 border-primary py-sm gap-base" :class="(toast.msg.startsWith('ERROR')) ? 'bg-red-900 text-white' : 'bg-body text-primary'">
