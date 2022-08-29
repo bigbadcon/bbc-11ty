@@ -475,53 +475,74 @@
                     // ...eventInfo.panelTopic
                 // ].map(id => parseInt(id));
 
-                eventInfo = {
-                    accessabilityOptions: eventInfo
-                        .accessibilityOptions
-                        .toString(),
-                    additionalGms: null, //eventInfo.additionalGMs,
-                    additionalRequirements: eventInfo.additionalRequirements, // + " Room Request: " + eventInfo.locationPref,
-                    characters: eventInfo.characters,
-                    contentAdvisory: 0, //eventInfo.contentAdvisory !== "Yes", // this is a boolean in the API so we are using 1000000 is no-content-advisory; selection info goes into the eventMetadataIds
-                    eventCategoryId: parseInt(eventInfo.format),
-                    eventDescription: eventInfo.eventDescription,
-                    //eventFacilitators: eventInfo.facilitators,
-                    eventMetadataIds: [], //eventMetadataIds,
-                    eventName: eventInfo.eventName,
-                    format: eventInfo.format,
-                    gm: eventInfo.publicName,
-                    gmAge: '18+', //dummy value
-                    length: eventInfo.eventLength,
-                    minPlayers: eventInfo.minPlayers,
-                    otherInfo: eventInfo.otherInfo,
-                    playerAge: '18+', //dummy value
-                    players: eventInfo.maxPlayers,
-                    playtest: 0,
-                    // playtest: (eventInfo.playtest === 'Yes')
-                    //     ? 1
-                    //     : 0,
-                    requestMediaEquipment: eventInfo.requestMediaEquipment === "Yes",
-                    requestMediaRoom: eventInfo.requestMediaRoom === "Yes",
+
+                var scheduleTimeDetails = {
+                        "Saturday Morning": {
+                            "date": "2022-10-01",
+                            "time": "09:30:00"
+                        },
+                        "Saturday Afternoon": {
+                            "date": "2022-10-01",
+                            "time": "14:00:00"
+                        },
+                        "Saturday Evening": {
+                            "date": "2022-10-01",
+                            "time": "19:00:00"
+                        },
+                        "Sunday Morning": {
+                            "date": "2022-10-02",
+                            "time": "11:00:00"
+                        },
+                        "Sunday Afternoon": {
+                            "date": "2022-10-02",
+                            "time": "16:00:00"
+                        }
+                    },
+                    eventInfo = {
+                        accessabilityOptions: eventInfo
+                            .accessibilityOptions
+                            .toString(),
+                        additionalGms: null, //eventInfo.additionalGMs,
+                        additionalRequirements: eventInfo.additionalRequirements, // + " Room Request: " + eventInfo.locationPref,
+                        characters: eventInfo.characters,
+                        contentAdvisory: 0, //eventInfo.contentAdvisory !== "Yes", // this is a boolean in the API so we are using 1000000 is no-content-advisory; selection info goes into the eventMetadataIds
+                        eventCategoryId: parseInt(eventInfo.format),
+                        eventDescription: eventInfo.eventDescription,
+                        //eventFacilitators: eventInfo.facilitators,
+                        eventMetadataIds: [], //eventMetadataIds,
+                        eventName: eventInfo.eventName,
+                        format: eventInfo.format,
+                        gm: eventInfo.publicName,
+                        gmAge: '18+', //dummy value
+                        length: eventInfo.eventLength,
+                        minPlayers: eventInfo.minPlayers,
+                        otherInfo: eventInfo.otherInfo,
+                        playerAge: '18+', //dummy value
+                        players: eventInfo.maxPlayers,
+                        playtest: 0,
+                        // playtest: (eventInfo.playtest === 'Yes')
+                        //     ? 1
+                        //     : 0,
+                        requestMediaEquipment: eventInfo.requestMediaEquipment === "Yes",
+                        requestMediaRoom: eventInfo.requestMediaRoom === "Yes",
 //                    requestPrivateRoom: eventInfo.locationPref !== "No Preference", // add extra to additionalRequirements for now
-                    runNumberOfTimes: 1, //dummy value
-                    safetyTools: eventInfo
-                        .safetyTools
-                        .toString(),
-                    schedulingPref: eventInfo
-                        .schedulePref
-                        .toString(),
-                    eventStartDate: eventInfo.scheduleTimeDetails[
-                        eventInfo.schedulePref.date],
-                    eventStartTime: eventInfo.scheduleTimeDetails[
-                        eventInfo.schedulePref.time],
-                    eventTags: eventInfo
-                        .eventTags
-                        .toString(),
-                    system: eventInfo.system,
+                        runNumberOfTimes: 1, //dummy value
+                        safetyTools: eventInfo
+                            .safetyTools
+                            .toString(),
+                        schedulingPref: eventInfo
+                            .schedulePref
+                            .toString(),
+                        eventStartDate: scheduleTimeDetails[eventInfo.schedulePref].date,
+                        eventStartTime: scheduleTimeDetails[eventInfo.schedulePref].time,
+                        eventTags: eventInfo
+                            .eventTags
+                            .toString(),
+                        system: eventInfo.system,
 //                    tableType: eventInfo.tableType,
-                    triggerWarnings: eventInfo.triggerWarnings,
-                    userDisplayName: eventInfo.userDisplayName
-                }
+                        triggerWarnings: eventInfo.triggerWarnings,
+                        userDisplayName: eventInfo.userDisplayName
+                    }
                 return eventInfo;
             }
 
@@ -748,28 +769,6 @@
                             "Sunday Morning",
                             "Sunday Afternoon"
                         ],
-                    },
-                    scheduleTimeDetails: {
-                        "Saturday Morning": {
-                            "date": "2022-10-01",
-                            "time": "09:30:00"
-                        },
-                        "Saturday Afternoon": {
-                            "date": "2022-10-01",
-                            "time": "14:00:00"
-                        },
-                        "Saturday Evening": {
-                            "date": "2022-10-01",
-                            "time": "19:00:00"
-                        },
-                        "Sunday Morning": {
-                            "date": "2022-10-02",
-                            "time": "11:00:00"
-                        },
-                        "Sunday Afternoon": {
-                            "date": "2022-10-02",
-                            "time": "16:00:00"
-                        }
                     },
                     findName(array, name) {
                         return array.find(e => e.name === name)
