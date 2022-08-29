@@ -84,8 +84,10 @@
 
                             <button type="submit" :disabled="!$validate.isComplete('form-small-press')" class="btn btn-primary">Submit</button>
                         </form>
-                        {# {% import 'components/x-validate-form-validator.njk' as validate %}
-                        {{ validate.log('form-small-press') }} #}
+                        {% if (sitemeta.environment === 'dev') %}
+                            {% import 'components/x-validate-form-validator.njk' as validate %}
+                            {{ validate.log('form-small-press') }}
+                        {% endif %}
                     </div>
                     {# END form submission div #}
                     {# form submitted #}
