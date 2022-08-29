@@ -286,7 +286,7 @@ document.addEventListener('alpine:init', () => {
         return data
       },
       makeToast(notification) {
-        this.$dispatch('toast', notification)
+        this.$dispatch('toast', {msg:notification})
       }
     }
   })
