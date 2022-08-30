@@ -13,13 +13,17 @@ exports.handler = async function(event, context) {
     console.log(uuid,email,password);
 
     const body = {
-        "email": email
+        "emailAddress": email,
+        "password": password,
+        "uuid": uuid
     }
     const headers = { headers: {"x-api-key": apiKey} }
 
     try {
 
-        const res = await axios.post(apiBaseUrl + `users/resetPasswordRequest`, body, headers)
+        const res = await axios.post(apiBaseUrl + `password/reset`, body, headers)
+
+        console.log("response status: " + res.status)
 
         if (res.status === 200) {
             return {

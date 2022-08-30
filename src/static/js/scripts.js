@@ -438,7 +438,10 @@ document.addEventListener('alpine:init', () => {
         const paramSafeEmail = this.userEmail.replace(/\+/gi, '%2B') // replace + symbols for URLSearchParams
         // TODO: change to fetch
         const res = await fetch(`/.netlify/functions/change-password/?uuid=${this.uuid}&email=${paramSafeEmail}&password=${this.userPass}`)
-        if (res && res.data === "password changed") {
+            .then(function(response) {return response.text()})
+            .then(function(data)
+            {return data})
+        if (res && res === "password changed") {
           console.log("password change succeeded");
           this.passwordChangedState = 'succeeded'
         } else {
