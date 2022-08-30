@@ -114,8 +114,8 @@ document.addEventListener('alpine:init', () => {
   Alpine.data('global', function () {
     return {
       init() {
-        // logout if it's been more than 24 hours
-        if (dayjs(this.lastLogin).diff(dayjs(),'hour') > 24) this.logout()
+        // logout if it's been more than 10 days
+        if (!dayjs(this.lastLogin).isValid() || dayjs(this.lastLogin).diff(dayjs(),'hour') < - 240) this.logout()
       },
       lastLogin: this.$persist(null),
       authToken: this.$persist(false),
@@ -134,7 +134,6 @@ document.addEventListener('alpine:init', () => {
         if (res.status === 200 && res.headers.get('authorization')) {
           const token = res.headers.get('authorization')
           this.authToken = token
-          // this.makeToast('You are logged in!')
           this.lastLogin = dayjs()
           if (token) {
             // Need to pass token for first couple since there is a delay with the $persist code storing it
@@ -148,7 +147,6 @@ document.addEventListener('alpine:init', () => {
         } else return false
       },
       logout () {
-        this.lastLogin = null
         this.authToken = null
         this.user = null
         this.favEvents = []
@@ -157,6 +155,7 @@ document.addEventListener('alpine:init', () => {
         this.isRegistered = null
         this.volunteerEventSpaces = []
         this.bboDiscordInvite = null
+        this.makeToast('You have been logged out')
       },
       async getUserData(token) {
         token = token || this.authToken
@@ -267,11 +266,8 @@ document.addEventListener('alpine:init', () => {
         let data = await fetchData('/users/setMyPassword',{ method: 'POST', body: { userId: userId, password: password }})
         return data
       },
-      // Toast notifications
-      toast: null,
       makeToast(notification) {
-        this.toast = notification
-        setTimeout(() => this.toast = null, 4000);
+        this.$dispatch('toast', notification)
       }
     }
   })
