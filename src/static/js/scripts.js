@@ -411,7 +411,7 @@ document.addEventListener('alpine:init', () => {
       if (this.userEmail) {
         const paramSafeEmail = this.userEmail.replace(/\+/gi, '%2B') // replace + symbols for URLSearchParams
         // TODO: change to fetch
-        const res = await fetch(`/.netlify/functions/forgot-password/?email=${paramSafeEmail}`)
+        const res = await fetch(`/.netlify/functions/forgot-password/?email=${paramSafeEmail}`).then(function(response) {return value;})
         if (res && res.data === "forgot password email sent") {
           this.resetPasswordFormState = "succeeded"
           console.log("email address found. Sent reset email");
