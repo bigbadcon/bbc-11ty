@@ -155,7 +155,7 @@ document.addEventListener('alpine:init', () => {
         this.isRegistered = null
         this.volunteerEventSpaces = []
         this.bboDiscordInvite = null
-        this.makeToast('You have been logged out')
+        this.$dispatch('toast', 'You have been logged out')
       },
       async getUserData(token) {
         token = token || this.authToken
@@ -251,7 +251,7 @@ document.addEventListener('alpine:init', () => {
         } else { 
           data = await fetchData('/events/me/favorite/create',{ method: 'POST', body:{eventId: id} })
         }
-        if (data && data.status === 'FAILURE') this.makeToast(data.message)
+        if (data && data.status === 'FAILURE') this.$dispatch('toast', data.message)
         if (data && data.status === 'SUCCESS') {
           this.getFavEvents()
         }
@@ -265,9 +265,6 @@ document.addEventListener('alpine:init', () => {
       async changePassword(userId,password) {
         let data = await fetchData('/users/setMyPassword',{ method: 'POST', body: { userId: userId, password: password }})
         return data
-      },
-      makeToast(notification) {
-        this.$dispatch('toast', notification)
       }
     }
   })
