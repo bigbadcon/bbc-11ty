@@ -1,12 +1,12 @@
 ---
 tags: poc-team-member
-order: 0
+order: 
 title: Carlos Luna
 position: ''
 published: true
 gender: he/him
 image: "/images/carlos-luna.jpg"
-twitter: CarlosCrit
+twitter: CarlosCrits
 website_name: Carlos Luna
 website_url: https://www.carlosluna.info/
 
