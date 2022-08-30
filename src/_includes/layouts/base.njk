@@ -12,7 +12,9 @@
     <div class="relative z-10 grid min-h-screen shadow page-wrapper">
       {# Header with branding and nav #}
       <div class="header-wrapper">
-        {% block header %}{% endblock %}
+        {% block header %}
+          {% include 'components/header.njk' %}
+        {% endblock %}
       </div>
       <div class="relative content-wrapper bg-gradient-to-b from-main-gradient-top to-main-gradient-bottom pb-lg" >
         {# Login / Account Button #}
@@ -41,24 +43,7 @@
     {# Model Popup #}
     {{ authModal() }}
     {# Toast Notification #}
-    {# data in global #}
-    {# TODO: add colors: error, info, success #}
-    <div class="fixed z-50 flex justify-center w-full bottom-8"
-    x-data="{toast: {msg:'',duration: 6000}}"
-    x-cloak x-show="toast.msg" x-transition
-    @toast.window="() => { toast = {...toast, ...event.detail}; setTimeout(() => toast.msg = '', toast.duration); }"
-    @click.outside="toast.msg = ''; toast.duration = 6000">
-      <div class="flex px-3 text-sm font-bold border-4 rounded-lg shadow-lg w-80 border-primary py-sm gap-base" :class="(toast.msg.startsWith('ERROR')) ? 'bg-red-900 text-white' : 'bg-body text-primary'">
-        <p x-text="toast.msg" class="flex-grow"></p>
-        <div>
-          <button @click="toast.msg = ''" class="flex items-center justify-center w-6 h-6 border-2 border-solid rounded border-body bg-primary">
-            <svg class="w-3 h-3 fill-body">
-              <use xlink:href="/static/images/icons.svg#close"></use>
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
+    {% include 'components/toast.njk' %}
   </body>
 
 </html>
