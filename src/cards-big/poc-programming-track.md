@@ -4,6 +4,6 @@ title: POC Programming Track
 published: false
 
 ---
-The Big Bad Con 2022 POC Programming team is continuing our work to support POCs at Big Bad Con through financial aid, a community dinner, and an industry meet and greet event. This year we’re also working with local gamers in India, South East Asia, and Latin America to bring more international POCs to the con! 
+The POC Programming team is continuing our work to support POCs at Big Bad Con through financial aid, a community dinner, and an industry meet and greet event. This year we’re also working with local gamers in India, South East Asia, and Latin America to bring more international POCs to the con!
 
 More information about the [POC Scholars](/poc-scholars), [Meet & Greet](/events/poc-meet-greet), and our [goals for 2022]().
