@@ -23,7 +23,7 @@ exports.handler = async function(event, context) {
     console.log(headers, body);
     try {
 
-        const res = await axios.post(apiBaseUrl + `password/request`, body, headers)
+        const res = await axios.post(apiBaseUrl + `users/resetPasswordRequest`, body, headers)
 
         if (res.status === 200) {
             return {

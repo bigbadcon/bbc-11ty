@@ -392,7 +392,7 @@ document.addEventListener('alpine:init', () => {
     // TODO: change to fetch
     async checkUsername() {
       try {
-        const res = await axios.get(`/.netlify/functions/check-user/${this.userNicename}`)
+        const res = await fetch(`/.netlify/functions/check-user/${this.userNicename}`)
         if (res && res.data === "user exists") {
           this.userNicenameExists = true;
         }
@@ -434,7 +434,7 @@ document.addEventListener('alpine:init', () => {
       if (this.uuid) {
         const paramSafeEmail = this.userEmail.replace(/\+/gi, '%2B') // replace + symbols for URLSearchParams
         // TODO: change to fetch
-        const res = await axios.get(`/.netlify/functions/change-password/?uuid=${this.uuid}&email=${paramSafeEmail}&password=${this.userPass}`)
+        const res = await fetch(`/.netlify/functions/change-password/?uuid=${this.uuid}&email=${paramSafeEmail}&password=${this.userPass}`)
         if (res && res.data === "password changed") {
           console.log("password change succeeded");
           this.passwordChangedState = 'succeeded'
