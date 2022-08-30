@@ -414,8 +414,8 @@ document.addEventListener('alpine:init', () => {
         const res = await fetch(`/.netlify/functions/forgot-password/?email=${paramSafeEmail}`)
             .then(function(response) {return response.text()})
             .then(function(data)
-            {console.log(data)})
-        if (res && res.data === "forgot password email sent") {
+            {return data})
+        if (res && res === "forgot password email sent") {
           this.resetPasswordFormState = "succeeded"
           console.log("email address found. Sent reset email");
         } else {
