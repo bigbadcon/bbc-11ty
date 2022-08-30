@@ -17,7 +17,7 @@ const decodeText = text => {
 /* ---------------------------- Main url for API ---------------------------- */
 
 //const url = "https://admin.bigbadcon.com:8091/api/events/all/public"
-const url = "https://https://api-dev.goplaynw.org/api/events/all/public"
+const url = "https://api-dev.goplaynw.org/api/events/all/public"
 // const url = "https://admin.bigbadcon.com/apidev/events/all/public"
 
 /* -------- Convert metadata array to object to make it easier to use ------- */
