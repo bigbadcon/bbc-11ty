@@ -45,7 +45,7 @@ sections:
   create: documents
   match: "**/*.md"
   templates:
-  - home-page-cards
+  - home-page-cards-big
 - type: directory
   path: src/contentfooter
   label: Content Footer
