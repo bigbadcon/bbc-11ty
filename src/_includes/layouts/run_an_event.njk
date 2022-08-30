@@ -24,7 +24,7 @@
                             </p>
                         </header>
                         {# TODO: update this to use x-validate #}
-                        <form action="post" class="mt-base" id="form-run-an-event" @submit.prevent="submitEvent" x-validate>
+                        <form action="post" class="mt-base" id="form" @submit.prevent="submitEvent" x-validate>
                             {# TODO: add honeypot #}
                             <input type="hidden" name="displayName" :value="user && user.displayName" x-model="eventInfo.userDisplayName" x-init="eventInfo.userDisplayName = user && user.displayName" x-validate>
                             {# Personal Info #}
@@ -229,10 +229,10 @@
                                 </div>
                                 <div x-show="eventInfo.eventLength">
                                     <label for="schedulePref">Schedule Preferences</label>
-                                    <div class="checkbox-grid">
+                                    <div class="flex flex-col gap-xs">
                                         <template x-for="(time, i) in scheduleTimes[eventInfo.eventLength]">
                                             <div>
-                                                <input type="checkbox" :name="'time' + i" :id="'time' + i" :value="time" @change="setCheckboxArray($el,'schedulePref')">
+                                                <input type="checkbox" :name="'time' + i" :id="'time' + i" :value="time" x-validate @change="setCheckboxArray($el,'schedulePref')">
                                                 <label :for="'time' + i" x-text="time"></label>
                                             </div>
                                         </template>
@@ -266,7 +266,7 @@
                                     <label>Types of Content Advisory</label>
                                     <template x-for="(type, i) in contentAdvisoryOptions">
                                         <div class="flex items-center">
-                                            <input type="checkbox" :name="'contentAdvisoryOptions' + i" :id="'contentAdvisoryOptions' + i" :value="type.id" @change="setCheckboxArray($el,'contentAdvisoryOptions')">
+                                            <input type="checkbox" name="contentAdvisoryOptions" :id="'contentAdvisoryOptions' + i" :value="type.id" x-validate @change="setCheckboxArray($el,'contentAdvisoryOptions')">
                                             <label :for="'contentAdvisoryOptions' + i" x-text="type.name"></label>
                                         </div>
                                     </template>
@@ -279,7 +279,7 @@
                                     <label>Safety Tools</label>
                                     <template x-for="(type, i) in safetyTools">
                                         <div class="flex items-center">
-                                            <input type="checkbox" :name="'safetyTools' + i" :id="'safetyTools' + i" :value="type" @change="setCheckboxArray($el,'safetyTools')">
+                                            <input type="checkbox" name="safetyTools" :id="'safetyTools' + i" :value="type" x-validate @change="setCheckboxArray($el,'safetyTools')">
                                             <label :for="'safetyTools' + i" x-text="type"></label>
                                         </div>
                                     </template>
@@ -289,12 +289,12 @@
                             {# Additional Info - not required #}
                             <fieldset x-ref="additional" class="transition-opacity" :class="($validate.isComplete($refs.scheduling)) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
                                 <legend>Additional Info</legend>
-                                <div x-show="eventInfo.format === 'Panel'" class="checkbox-grid">
+                                <div x-show="eventInfo.format === 'Panel'">
                                     <label>Panel Topic</label>
                                     <div class="checkbox-grid">
                                         <template x-for="(type, i) in panelTopic">
                                             <div class="flex items-center">
-                                                <input type="checkbox" :name="'panelTopic' + i" :id="'panelTopic' + i" :value="type.id" @change="setCheckboxArray($el,'panelTopic')">
+                                                <input type="checkbox" name="panelTopic" :id="'panelTopic' + i" :value="type.id" x-validate @change="setCheckboxArray($el,'panelTopic')">
                                                 <label :for="'panelTopic' + i" x-text="type.name"></label>
                                             </div>
                                         </template>
@@ -305,7 +305,7 @@
                                     <div class="checkbox-grid">
                                         <template x-for="(type, i) in gameFocus">
                                             <div class="flex items-center">
-                                                <input type="checkbox" :name="'gameFocus' + i" :id="'gameFocus' + i" :value="type.id"  @change="setCheckboxArray($el,'gameFocus')">
+                                                <input type="checkbox" name="gameFocus" :id="'gameFocus' + i" :value="type.id" x-validate @change="setCheckboxArray($el,'gameFocus')">
                                                 <label :for="'gameFocus' + i" x-text="type.name"></label>
                                             </div>
                                         </template>
@@ -316,7 +316,7 @@
                                     <div class="checkbox-grid">
                                         <template x-for="(type, i) in playerContributions">
                                             <div class="flex items-center">
-                                                <input type="checkbox" :name="'playerContributions' + i" :id="'playerContributions' + i" :value="type.id" @change="setCheckboxArray($el,'playerContributions')">
+                                                <input type="checkbox" name="playerContributions" :value="type.id" x-validate @change="setCheckboxArray($el,'playerContributions')">
                                                 <label :for="'playerContributions' + i" x-text="type.name"></label>
                                             </div>
                                         </template>
@@ -327,7 +327,7 @@
                                     <div class="checkbox-grid">
                                         <template x-for="(type, i) in gameGenre">
                                             <div class="flex items-center">
-                                                <input type="checkbox" :name="'gameGenre' + i" :id="'gameGenre' + i" :value="type.id" @change="setCheckboxArray($el,'gameGenre')">
+                                                <input type="checkbox" name="gameGenre" :id="'gameGenre' + i" :value="type.id" x-validate @change="setCheckboxArray($el,'gameGenre')">
                                                 <label :for="'gameGenre' + i" x-text="type.name"></label>
                                             </div>
                                         </template>
@@ -338,7 +338,7 @@
                                     <div class="checkbox-grid">
                                         <template x-for="(type, i) in gameMood">
                                             <div class="flex items-center">
-                                                <input type="checkbox" :name="'gameMood' + i" :id="'gameMood' + i" :value="type.id" @change="setCheckboxArray($el,'gameMood')">
+                                                <input type="checkbox" name="gameMood" :id="'gameMood' + i" :value="type.id" x-validate @change="setCheckboxArray($el,'gameMood')">
                                                 <label :for="'gameMood' + i" x-text="type.name"></label>
                                             </div>
                                         </template>
@@ -353,12 +353,12 @@
                                     <textarea cols="30" id="additionalRequirements" name="additionalRequirements" rows="3" x-model="eventInfo.additionalRequirements"></textarea>
                                 </div>
                             </fieldset>
-                            <button type="submit" :disabled="!$validate.isComplete('form-run-an-event')">Submit</button>
+                            <button type="submit" :disabled="!$validate.isComplete('form')">Submit</button>
                         </form>
                         {# x-validate form log #}
                         {% if (sitemeta.environment === 'dev') %}
                             {% import 'components/x-validate-form-validator.njk' as validate %}
-                            {{ validate.log('form-run-an-event') }}
+                            {{ validate.log('form') }}
                         {% endif %}
                         {# Testing form fields #}
                         {# <div class="fixed text-xs rounded-md w-60 my-lg bg-card p-base left-4 top-4 text-body">
