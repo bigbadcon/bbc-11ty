@@ -33,14 +33,16 @@ eleventyComputed:
 
 {# TODO: add time when it is ready #}
 
-<div class="relative flex flex-col w-full prose border-t-2 border-b-2 mb-base text-body gap-sm border-hr pr-md py-sm">
+<div class="relative flex flex-col w-full prose border-t-2 mb-base text-body gap-sm border-hr pr-md py-sm">
     <div x-cloak x-show="isAuth" class="absolute right-0 top-sm">
         <span @click="toggleFav({{event.eventId}})" class="fav-star fav-star--event-page" :class="isFav({{event.eventId}}) && 'favved'">&starf;</span>
     </div>
 
+    <div class="flex flex-wrap justify-between max-w-full prose border-t-2 border-b-2 mt-md border-hr py-sm gap-base">
     {# Description #}
     <div class="prose">
         {{event.postContent | nl2br | safe }}
+    </div>
     </div>
 
 <!--    <div class="text-2xl font-semibold leading-snug text-body-highlight">-->
