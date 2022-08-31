@@ -12,7 +12,6 @@ eleventyComputed:
 {# {% include 'components/event-date-time.njk'%} #}
 
 {% set src = "" %}
-{% console.log(event) %}
 {% if (event.metadata.event_image) %}
     {# If it has a image than put it in place and replace it if a different image is available #}
     {% set src = "https://api-dev.goplaynw.org/images/" + event.metadata.event_image %}
