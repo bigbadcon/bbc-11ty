@@ -15,13 +15,15 @@ Go Play NW runs on volunteers! You help us greet folks when they arrive, get the
 Here's all the work we do. If you're ready to engage with our community, consider one of these roles!
 
 ### Online events
+As a volunteer at our online event, we may ask you to make a one-to-two-hour commitment prior to the convention. This is so that we can familiarize you with the flow of the event, your role within it, and any skills you’ll need to perform your volunteer role.
+
 **Friendly Faces**: If you’d like to share your excitement about Go Play NW, become a Friendly Face! Our Friendly Faces welcome attendees as they enter the convention, answer their questions (or connect them to staff for more assistance), and help them feel comfortable. A Friendly Face is often an attendee’s first point of contact with convention staff, and helps set the tone for the weekend.
 
-**Donut Master of Ceremonies**: As the Donut MC, you’ll be front and center running the show: calling the Donut to order, providing instructions to facilitators, steering the flow of pitches, and concluding the Donut when pitches are finished. You’ll also be in communication with the Donut Chat Mod and Bot PIC during the Donut.
+[//]: # (**Donut Master of Ceremonies**: As the Donut MC, you’ll be front and center running the show: calling the Donut to order, providing instructions to facilitators, steering the flow of pitches, and concluding the Donut when pitches are finished. You’ll also be in communication with the Donut Chat Mod and Bot PIC during the Donut.)
 
 **Donut Chat Mod**: As a Donut Chat Mod, you’ll be facilitating communication between attendees, the Donut MCs, and the Bot PICs.
 
-**Technology Team**: As a Bot PIC, you’ll help ensure the Discord bots we use to manage the Donut all function smoothly. Technical Support
+[//]: # (**Technology Team**: As a Bot PIC, you’ll help ensure the Discord bots we use to manage the Donut all function smoothly. Technical Support)
 
 ### In-person events
 
