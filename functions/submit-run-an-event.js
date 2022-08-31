@@ -44,11 +44,11 @@ exports.handler = async function(event, context) {
 
             return {
                 statusCode: 200,
-                body: 'Success!',
+                body: JSON.stringify({msg:'Success!'}),
             }
 
         } catch (e) {
-            console.log('Google Sheet and/or emails failed', e)
+            console.log('Google Sheet failed', e)
             return {
                 statusCode: 500,
                 body: e.toString(),
