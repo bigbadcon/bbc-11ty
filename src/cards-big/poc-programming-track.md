@@ -1,7 +1,7 @@
 ---
 order: 
 title: POC Programming Track
-published: false
+published: true
 image: "/images/bbc-website-image.png"
 alt: PoC Game Industry Professionals Programming
 
