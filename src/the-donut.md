@@ -6,7 +6,7 @@ tags: pages
 ogImage: ''
 
 ---
-![Image](/images/donut-instructions_2-3.png)
+![Image](/images/what-is-the-donut.png)
 
 If you’ve never been to Go Play NW before, perhaps you’ve been wondering about all this talk about donuts. Here’s all the details!
 

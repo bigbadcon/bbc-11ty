@@ -1,0 +1,16 @@
+<picture class="red-barbarian">
+    <source type="image/webp" srcset="/static/images/go_sitting.webp">
+    <source type="image/png" media="(min-width: 1000px)" srcset="/static/images/go_sitting.png">
+    <img src="/static/images/go_sitting.png" style="width: 100%;" alt="Go, chilling and hanging out in the forest!">
+</picture>
+
+<style>
+    @media (prefers-color-scheme: dark) {
+        .red-barbarian img {
+            filter: brightness(.75) contrast(1.5);
+        }
+    }
+    .dark .red-barbarian img {
+            filter: brightness(.75) contrast(1.5);
+        }
+</style>
