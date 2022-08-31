@@ -24,7 +24,7 @@
                             </p>
                         </header>
                         {# TODO: update this to use x-validate #}
-                        <form action="post" class="mt-base" id="form" @submit.prevent="submitEvent" x-validate>
+                        <form action="post" class="mt-base" id="form" x-ref="form" @submit.prevent="submitEvent" x-validate>
                             {# TODO: add honeypot #}
                             <input type="hidden" name="userDisplayName" :value="user && user.displayName" x-validate>
                             {# Personal Info #}
@@ -108,9 +108,13 @@
                                     <label for="otherInfo">Other info we should know (this will not go in the program)</label>
                                     <textarea cols="30" id="otherInfo" name="otherInfo" rows="3" ></textarea>
                                 </div>
-                                {# <div>
-                                    <label for="imageUpload">Image Upload (NOT CURRENTLY WORKING)</label>
-                                    <input id="imageUpload" name="imageUpload" type="text" value="" />
+                                {# <div x-data="{src: ''}">
+                                    <label for="file">Event Image Upload Add/Replace</label>
+                                    <p class="text-sm my-sm">Images are cropped automatically at 16/9 ratio and centered. Images should be mininum 760x428 px and maximum 1,520x856 px (or there abouts) and formatted with jpg or webp (png or gif accepted but generally the former compress better).</p>
+                                    <input type="file" name="file" id="file" accept="image/*" class="mr-base" 
+                                    @change="if ($el.files.length > 0) src = URL.createObjectURL($el.files[0])">
+                                    <img id="image-preview" class="hidden object-cover object-center rounded-md my-sm" style="aspect-ratio: 16/9"
+                                    :src="src" :style="src && 'display:block'"/>
                                 </div> #}
                             </fieldset>
                             {# END Event Info #}
@@ -218,7 +222,7 @@
                                 <div class="required">
                                     <label for="eventLength">Event Length</label>
                                     <select id="eventLength" name="eventLength" required>
-                                        <option disabled selected value="0">
+                                        <option disabled selected value="">
                                             -- Choose One --
                                         </option>
                                         <option value="1">1 hour</option>
@@ -228,7 +232,7 @@
                                         <option value="8">8 hours</option>
                                     </select>
                                 </div>
-                                <div x-show="$validate.data('eventLength').value !== '0'">
+                                <div x-show="$validate.data('eventLength').value">
                                     <label>Scheduling Preferences</label>
                                     <div class="flex flex-col gap-2xs">
                                         <div>
@@ -720,8 +724,8 @@
                     eventCategoryId: formData.eventCategoryId.value || 0,
                     eventDescription: formData.eventDescription.value,
                     //eventFacilitators: formData.facilitators,  not used
-                    eventMetadataIds: eventMetadataIds,
-                    eventMetadataNames: eventMetadataNames, // This is not used in create event API; only for Google Sheet
+                    eventMetadataIds: eventMetadataIds || [],
+                    eventMetadataNames: eventMetadataNames || [], // This is not used in create event API; only for Google Sheet
                     eventName: formData.eventName.value,
                     format: formData.format.value,
                     gm: formData.publicName.value,
@@ -768,18 +772,31 @@
                         const formData = this
                             .$validate
                             .formData(e.target)
-                        const createEventAPIData = convertFormDataToCreateEventAPI(formData)
+                        let createEventAPIData = convertFormDataToCreateEventAPI(formData)
                         console.log("submit", createEventAPIData)
 
                         const submitNow = async () => {
                             const createEventAPI = await this.createEvent(createEventAPIData)
+                            // Returns eventId
+                            // Add event id and formData object if created for image upload
+                            if (typeof createEventAPI === 'number') {
+                                createEventAPIData = {
+                                    createEventAPIData,
+                                    eventId: createEventAPI
+                                }
+                            }
                             const googleSheet = await this.postFormInfo(createEventAPIData)
-                            if (createEventAPI) 
+                            // TODO: test to make sure google sheet also worked
+                            if (createEventAPI) {
                                 this.eventSubmitted = true
+                                //this.uploadEventImage(e.target, createEventAPI)
+                            }
                         }
 
                         const scrollEventListener = () => {
                             if (window.pageYOffset === 0) {
+                                //this.uploadEventImage(e.target, 3236)
+                                //this.uploadEventImage(e.target, 3083)
                                 submitNow();
                                 window.removeEventListener('scroll', scrollEventListener)
                             }
@@ -796,6 +813,7 @@
                             body: createEventAPIData
                         })
                         if (data) {
+                            // upload image data
                             this.$dispatch('toast', 'Event submitted!!')
                         } else {
                             this.$dispatch('toast', 'ERROR: Event submission failed')
@@ -839,6 +857,31 @@
                             return false
                         }
 
+                    },
+                    async uploadEventImage(form, eventId) {
+                        const formDataObject = new FormData(form)
+
+                        async function customFetch(url, options) {
+                            try {
+                                let response = await fetch(url, options)
+                                console.log(`RESPONSE:fetch for ${url}`, response)
+                                if (response.status !== 200) 
+                                    throw `fetch fail status: ${response.status}`
+                                let result = await response.json()
+                                console.log(`RESULT:fetch for ${url}`, result)
+                                return result
+                            } catch (err) {
+                                console.error(`ERROR:fetch for ${url}`, err)
+                                return false
+                            }
+                        }
+                        formDataObject.append('eventId', eventId)
+
+                        let data = await customFetch('/.netlify/functions/submit-event-image', {
+                            method: 'POST',
+                            body: formDataObject
+                        })
+                        return data
                     },
                     times1hr: [
                         "Friday afternoon (between 2PM-6PM)",
