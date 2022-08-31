@@ -3,7 +3,7 @@ title: What is the Donut?
 order: 3
 published: true
 tags: bigcards
-image: "/images/donut-instructions_2-3.png"
+image: "/images/what-is-the-donut.png"
 alt: Handwritten Donut Instructions
 
 ---
