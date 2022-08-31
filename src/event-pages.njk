@@ -27,8 +27,7 @@ eleventyComputed:
     x-data="{newImg: events['{{event.eventId}}']?.metadata?.event_image}"
     x-cloak x-show="newImg" x-transitition.opacity>
         <img class="object-cover w-full rounded-md event-image" style="aspect-ratio: 16/9;"
-        x-init="if (newImg) $el.setAttribute('src', 'https://api-dev.goplaynw.org/images/' + newImg)"
-/>
+        x-init="if (newImg) $el.setAttribute('src', 'https://api-dev.goplaynw.org/images/' + newImg)" />
     </div>
 {% endif %}
 
@@ -38,8 +37,15 @@ eleventyComputed:
     <div x-cloak x-show="isAuth" class="absolute right-0 top-sm">
         <span @click="toggleFav({{event.eventId}})" class="fav-star fav-star--event-page" :class="isFav({{event.eventId}}) && 'favved'">&starf;</span>
     </div>
-    <div class="text-2xl font-semibold leading-snug text-body-highlight">
-        {{ event.metadata.GM }}
+
+    {# Description #}
+    <div class="prose">
+        {{event.postContent | nl2br | safe }}
+    </div>
+
+<!--    <div class="text-2xl font-semibold leading-snug text-body-highlight">-->
+    <div>
+        <strong>GM/Facilitator: </strong>{{ event.metadata.GM }}
     </div>
     <div class="not-prose">
         <ul class="flex justify-start text-sm gap-xs">
@@ -48,31 +54,44 @@ eleventyComputed:
             {% endfor %}
         </ul>
     </div>
-    {% if event.metadata.Players %}
-        <div>
-            <strong>System:</strong>
-            {{event.metadata.System}}</div>
-    {% endif %}
     <div>
-        <strong>Length:</strong>
-        {{event.metadata.Length}} hour</div>
+        <strong>Duration:</strong> {{event.metadata.Length}}
+        {% if (event.metadata.Length == "1") %}
+            hour
+        {% else %}
+            hours
+        {% endif %}
+    </div>
     {% if event.metadata.Players %}
         <div class="">
             <strong>Spaces:</strong>
             <span x-text="(spacesTotal) ? spacesOpen + ' out of ' + spacesTotal : '{{event.metadata.Players}}'">{{event.metadata.Players}}</span>
         </div>
+        <div>
+            <strong>Minimum Players:</strong>
+            {{event.metadata.Min_Players}}
+        </div>
+    {% endif %}
+
+    <div>
+        <strong>Game Tags:</strong>
+    </div>
+    {% if event.metadata.Players %}
+        <div>
+            <strong>System & Mechanics:</strong>
+            {{event.metadata.System}}
+        </div>
     {% endif %}
     <div>
-        <strong>Player Age:</strong>
-        {{event.metadata.player_age}}</div>
+        <strong>Content Warnings:</strong>
+    </div>
     <div>
         <strong>Safety Tools:</strong>
-        {{event.metadata.safety_tools}}</div>
+        {{event.metadata.safety_tools}}
+    </div>
 
 </div>
 
-{# Description #}
-<div class="prose">{{event.postContent | nl2br | safe }}</div>
 {# Event links #}
 <div class="flex flex-wrap justify-between max-w-full prose border-t-2 border-b-2 mt-md border-hr py-sm gap-base">
     {# <div class="flex text-sm gap-xs">
