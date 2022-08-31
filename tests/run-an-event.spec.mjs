@@ -65,7 +65,7 @@ test.describe('Submit Run An Event Form', () => {
 
         page.on('console', msg => console.log(msg.text()))
 
-        await expect(page.locator('#form-run-an-event')).toBeVisible()
+        await expect(page.locator('#form')).toBeVisible()
 
         // await expect(page.locator('#form-run-an-event button[type="submit"]')).not.toBeEnabled();
 
@@ -187,9 +187,9 @@ test.describe('Submit Run An Event Form', () => {
 
         await expect(page.locator('#event-submitted')).toBeVisible();
 
-        await expect(page.locator('#event-submitted span[x-text="eventInfo.format"]')).toHaveText('RPG')
+        await expect(page.locator('#event-submitted span#submit-format')).toHaveText('RPG')
         
-        await expect(page.locator('#event-submitted span[x-text="eventInfo.eventName"]')).toHaveText(eventName)
+        await expect(page.locator('#event-submitted span#submit-name')).toHaveText(eventName)
 
     });
 })
