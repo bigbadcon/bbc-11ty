@@ -1,5 +1,5 @@
 ---
-layout: layouts/event.njk
+layout: layouts/page.njk
 pagination:
     data: eventsArchive.2021
     size: 1
@@ -15,22 +15,11 @@ eleventyComputed:
 {# TODO: make this modular for more years #}
 {# TODO: add more archive events. But use serverless eleventy #}
 
-{# Speakers #}
-{# Time #}
-{# Time at their timezone #}
-{# Panel or seminar #}
-{# Image at what ratio? Make a Photoshop template for 1-6 speaker heads #}
-{# Look into autogen twitter cards #}
-{# Volunteer events need to be seperated from the rest #}
-{# If possible set up booking for volunteer shifts #}
-
 {# Categories and Facilitator/GM #}
 
 <div class="text-lg prose border-t-2 border-b-2 text-body mb-base space-y-xs border-hr py-sm">
     {# Event Day #}
     <div class="flex flex-wrap justify-between">
-        {# timezone data is in x-data="eventFilter" in wrapping div in base.njk #}
-        {# formatEventDate is in .eleventy.js and returns html with date and time in separate span tags #}
         <div>
             <strong>Date:</strong>
             <span>{{ event | eventStartDateTime | formatEventDate | safe }} (PST)</span>
