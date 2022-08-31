@@ -10,17 +10,13 @@ Go Play NW runs on volunteers! If you're interested in volunteering for one of o
 [Learn more about becoming a volunteer](/volunteer){.icon-people-group}
 
 ### Volunteer Shift Schedule (Pending)
- * **Friday**
-   * Lobby Con
-     * Doors at 6 PM
-     * 5:30 PM - 8:30 PM
- * **Saturday**
-   * Doors open at 09:00 AM
-     * 8:50 AM - 1:00 PM
-     * 01:50 PM - 06:00 PM
-     * 06:50 PM - 11:00 PM
- * **Sunday**
+ * **Friday, Sep. 30th - Lobby Con** (Doors at 6 PM)
+   * 5:30 PM - 8:30 PM
+ * **Saturday, Oct. 1st** (Doors open at 09:00 AM)
+   * 8:50 AM - 1:00 PM
+   * 01:50 PM - 06:00 PM
+   * 06:50 PM - 11:00 PM
+ * **Sunday, Oct. 2nd** (Doors open at 10:30 AM)
    * 09:00 AM - 11:00 AM live social hour 
-     * Doors open at 10:30 AM
-     * 11:00 AM - 3:00 PM
-     * 03:50 PM - 08:00 PM
+   * 11:00 AM - 3:00 PM
+   * 03:50 PM - 08:00 PM
