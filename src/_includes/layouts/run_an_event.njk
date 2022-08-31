@@ -710,7 +710,9 @@
                     ...formData.panelTopic.array
                 ].map(id => parseInt(id));
 
-                const eventMetadataNames = eventMetadataIds.map(id => getMetadataName(id));
+                const eventMetadataNames = eventMetadataIds
+                    ? eventMetadataIds.map(id => getMetadataName(id))
+                    : [];
 
                 // TODO: review this stuff for improving this API later
                 formData = {
@@ -726,6 +728,7 @@
                     //eventFacilitators: formData.facilitators,  not used
                     eventMetadataIds: eventMetadataIds || [],
                     eventMetadataNames: eventMetadataNames || [], // This is not used in create event API; only for Google Sheet
+                    eventMetadataNamesString: eventMetadataNames.toString(),
                     eventName: formData.eventName.value,
                     format: formData.format.value,
                     gm: formData.publicName.value,
@@ -829,10 +832,10 @@
                             eventMetadataIds: data
                                 .eventMetadataIds
                                 .toString(),
-                            eventMetadataNames: data
-                                .eventMetadataNames
-                                .toString()
+                            eventMetadataNames: data.eventMetadataNamesString
                         }
+                        // TODO: fix this later
+                        delete data['eventMetadataNamesString']
 
                         const options = {
                             method: 'POST',
