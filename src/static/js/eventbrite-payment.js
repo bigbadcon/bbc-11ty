@@ -22,6 +22,7 @@ async function getEventbriteToken() {
         if (res.status === 200) { //&& res.headers.get('authorization')) {
             console.log("Eventbrite token stored")
         }
+        window.location.replace("/eventbrite-purchase/");
     } else {
         console.log("Call not referred by Eventbrite, ignoring token");
     }
