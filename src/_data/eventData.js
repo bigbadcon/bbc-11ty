@@ -1,8 +1,6 @@
 const Cache = require("@11ty/eleventy-cache-assets");
 const windows1252 = require('windows-1252');
 const utf8 = require('utf8')
-const { v4: uuidv4 } = require('uuid');
-const slugify = require('slugify')
 // const rootCas = require('ssl-root-cas').create();
 var dayjs = require('dayjs')
 var utc = require('dayjs/plugin/utc')
