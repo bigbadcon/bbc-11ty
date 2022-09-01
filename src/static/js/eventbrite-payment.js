@@ -17,12 +17,13 @@ function getEventbriteToken() {
         let res = fetchData('/payment/eventbrite/token', {
             method: 'POST',
             body: {code: eventbriteCode}
-        })
+        }).then(function(response) {
+                window.location.replace("/eventbrite-purchase/");
+            })
         console.log("Eventbrite token submit response", res)
         if (res.status === 200) { //&& res.headers.get('authorization')) {
             console.log("Eventbrite token stored")
         }
-        window.location.replace("/eventbrite-purchase/");
     } else {
         console.log("Call not referred by Eventbrite, ignoring token");
     }
