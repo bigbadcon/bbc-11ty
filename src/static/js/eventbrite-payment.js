@@ -4,7 +4,7 @@
 
 const eventBriteReferrer = 'https://www.eventbrite.com/';
 
-async function getEventbriteToken() {
+function getEventbriteToken() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const eventbriteCode = urlParams.get('code');
