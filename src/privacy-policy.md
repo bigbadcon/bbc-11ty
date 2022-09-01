@@ -4,7 +4,7 @@ title: Privacy Policy
 description: ''
 tags: pages
 ---
-
+<!--
 ## Conditional Photography Release
 Attendees agree to a Coniditonal Photography Release when registering for Go Play NW events recognizing that Go Play NW Staff and other attendees may be taking photographs of the event. While we encourage attendees to ask permission before taking photographs of eachother, we cannot guarantee that 
 
@@ -51,73 +51,4 @@ Revisions of Privacy Policay and PII Policy
 
 
 For additional information, please [contact us!](/contact-us)
-
-.icon-art{.icon-art}
-
-.icon-badge{.icon-badge}
-
-.icon-book{.icon-book}
-
-.icon-booth{.icon-booth}
-
-.icon-bullhorn{.icon-bullhorn}
-
-.icon-calendar-clock{.icon-calendar-clock}
-
-.icon-calendar-star{.icon-calendar-star}
-
-.icon-dice{.icon-dice}
-
-.icon-envelope{.icon-envelope}
-
-.icon-faq{.icon-faq}
-
-.icon-games-on-demand{.icon-games-on-demand}
-
-.icon-gift{.icon-gift}
-
-.icon-hotel{.icon-hotel}
-
-.icon-image{.icon-image}
-
-.icon-itch-io{.icon-itch-io}
-
-.icon-kickstarter{.icon-kickstarter}
-
-.icon-library{.icon-library}
-
-.icon-light-bulb{.icon-light-bulb}
-
-.icon-list{.icon-list}
-
-.icon-parachute{.icon-parachute}
-
-.icon-party{.icon-party}
-
-.icon-paw{.icon-paw}
-
-.icon-pencil-square{.icon-pencil-square}
-
-.icon-pig{.icon-pig}
-
-.icon-price-tags{.icon-price-tags}
-
-.icon-scroll{.icon-scroll}
-
-.icon-settings{.icon-settings}
-
-.icon-shield{.icon-shield}
-
-.icon-star{.icon-star}
-
-.icon-trophy{.icon-trophy}
-
-.icon-twitch{.icon-twitch}
-
-.icon-twitter{.icon-twitter}
-
-.icon-website{.icon-website}
-
-.icon-wolf{.icon-wolf}
-
-.icon-youtube{.icon-youtube}
+-->

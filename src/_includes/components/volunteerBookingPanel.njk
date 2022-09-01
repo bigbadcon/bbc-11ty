@@ -17,7 +17,7 @@
             </ul>
         </div>
         {# Booking buttons #}
-        <div class="text-sm italic" x-show="!isVolunteer">You must <a href="/rangers/#signup" class="underline text-highlight">sign up as a volunteer</a> to add a volunteer shift</div>
+        <div class="text-sm italic" x-show="!isVolunteer">You must <a href="/volunteer/#signup" class="underline text-highlight">sign up as a volunteer</a> to add a volunteer shift</div>
         <div class="flex gap-sm" x-show="isVolunteer">
             <button class="button" x-show="spacesOpen > 0 && !isBooked({{event.eventId}})" @click="bookEvent({{event.eventId}})">Volunteer</button>
             <span x-show="spacesOpen <= 0 && !isBooked({{event.eventId}})" class="font-bold">Shift is full</span>

@@ -14,7 +14,7 @@ module.exports = [
 				"icon": "dice"
 			},
 			{
-				"title": "Event Schedule",
+				"title": "Game Schedule",
 			 	"url": "/events",
 			 	"icon": "calendar-clock"
 			},

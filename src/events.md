@@ -1,6 +1,6 @@
 ---
 layout: layouts/events.njk
-title: Fall 2022 Event Schedule
+title: Fall 2022 Game Schedule
 description: ''
 tags: pages
 listing: events

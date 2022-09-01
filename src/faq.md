@@ -6,6 +6,14 @@ tags: pages
 ogImage: ''
 
 ---
+## I registered for Go Play NW Online, but where are all the games?
+
+At Go Play NW, almost all the activities and games are hosted by attendees like you!
+
+* You can see the schedule of games and activities that other attendees and guests have submitted on our [Game Schedule](/events).
+* Don’t see anything you like? You can be the power that runs Go Play NW and sign up to [Run a Game](/run-an-event).
+* Or, you can join the Go Play NW pitch circle (aka [the Donut](/the-donut)), which we run at the start of each Game Session.
+
 ## Will Go Play NW ever host in-person events again?
 
 Yes! When will that happen exactly? We're not sure yet. Even with the relaxing of state and federally mandated restrictions, we’re still concerned about the ongoing COVID-19 pandemic and doing our best to ensure the safety of our attendees and volunteers.
