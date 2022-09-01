@@ -30,6 +30,11 @@
           <nav :class="{'flex': open, 'hidden': !open}"
             class="relative z-20 flex-col flex-grow hidden pb-4 md:pb-0 md:flex md:justify-end md:flex-row md:space-x-sm xl:space-x-base space-y-xs md:space-y-0" aria-labelledby="mobile-menu">
             {# Nav for loop using navigation.json #}
+            <div>
+              {% for item in collections.navAttend %}
+                <div>{{item.data.title}}</div>
+              {% endfor %}
+            </div>
             {% for item in navigation %}
               {% if item.subnav %}
                 {# Primary Button with subnav #}
