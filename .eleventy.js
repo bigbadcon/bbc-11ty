@@ -127,6 +127,19 @@ module.exports = (eleventyConfig) => {
     return collectionApi.getFilteredByTag("footer").filter(c => c.template.frontMatter.data.published === true).sort((a,b) => sortByOrder(a,b));
   });
 
+  eleventyConfig.addCollection("navAttend", function(collectionApi) {
+    return collectionApi.getAll().filter(c => c.template.frontMatter.data.nav === 'Attend').sort((a,b) => sortByOrder(a,b))
+  })
+  eleventyConfig.addCollection("navEvents", function(collectionApi) {
+    return collectionApi.getAll().filter(c => c.template.frontMatter.data.nav === 'Events').sort((a,b) => sortByOrder(a,b))
+  })
+  eleventyConfig.addCollection("navVolunteer", function(collectionApi) {
+    return collectionApi.getAll().filter(c => c.template.frontMatter.data.nav === 'Volunteer').sort((a,b) => sortByOrder(a,b))
+  })
+  eleventyConfig.addCollection("navCommunity", function(collectionApi) {
+    return collectionApi.getAll().filter(c => c.template.frontMatter.data.nav === 'Community').sort((a,b) => sortByOrder(a,b))
+  })
+
 /* -------------------------------------------------------------------------- */
 /*                                   Filters                                  */
 /* -------------------------------------------------------------------------- */
