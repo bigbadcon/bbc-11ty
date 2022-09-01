@@ -13,10 +13,10 @@ Go Play NW runs on volunteers! If you're interested in volunteering for one of o
  * **Friday, Sep. 30th** (Doors at 6 PM)
    * 5:30 PM - 8:30 PM - Lobby Con
  * **Saturday, Oct. 1st** (Doors open at 09:00 AM)
-   * 8:50 AM - 1:00 PM - Morning Game
-   * 01:50 PM - 06:00 PM - Afternoon Game
-   * 06:50 PM - 11:00 PM - Evening Game
+   * 8:50 AM - 1:00 PM - Morning Session
+   * 1:50 PM - 6:00 PM - Afternoon Session
+   * 6:50 PM - 11:00 PM - Evening Session
  * **Sunday, Oct. 2nd** (Doors open at 10:30 AM)
-   * 09:00 AM - 11:00 AM - Live Social Hour 
-   * 11:00 AM - 3:00 PM - Morning Game
-   * 03:50 PM - 08:00 PM - Evening Game
+   * 9:00 AM - 11:00 AM - Live Social Hour 
+   * 11:00 AM - 3:00 PM - Morning Session
+   * 3:50 PM - 8:00 PM - Evening Session
