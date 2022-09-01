@@ -58,6 +58,7 @@
     "stripe": "^10.3.0",
     "tailwindcss": "latest",
     "utf8": "^3.0.0",
+    "uuid": "^8.3.2",
     "windows-1252": "^1.0.0"
   },
   "devDependencies": {
