@@ -1,0 +1,77 @@
+{% extends 'layouts/plain.njk' %}
+
+{% block content %}
+    <main id="content">
+        <div class="mx-auto max-w-content p-base">
+            <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
+            <div class="prose">{{ content | safe }}</div>
+            {# Grab user data on load to check for paidattendee status #}
+            <section class="my-base" x-data="{formSubmitted:false}" x-init="if (isAuth) getUserData()">
+                {# START Submit Form: only show if logged in #}
+                <div x-cloak x-show="!isAuth" class="prose">
+                    <p>You must be <button @click.stop="modal = 'login'" class="font-bold underline text-highlight">logged in</button> to activate a gift badge</p>
+                </div>
+                <div class="prose" x-cloak x-show="isAuth && user && user.badgeRoles && user.badgeRoles.length > 0" x-transition>
+                    <p>Welcome <b x-text="user && user.displayName"></b> you have a badge!</p>
+                    <p class="italic">NOTE: If you were gifted a badge and you already have one, you can contact us at <a href="mailto:info@bigbadcon.com">info@bigbadcon.com</a> about gifting it to someone else.</p>
+                </div>
+                <div x-cloak x-show="isAuth && user && !user.badgeRoles.includes('paidattendee')" class="my-base">
+                    {# <div x-cloak x-show="isAuth && user" class="prose my-base"> #}
+                    <div x-show="!formSubmitted" id="submit-form">
+                        <p class="italic">The gift code must be associated with the your account email. If the code is associated with a different email address please contact us at <a href="mailto:info@bigbadcon.com">info@bigbadcon.com</a>.</p>
+                        <form class="mt-base" id="form" x-validate action="/.netlify/functions/activateGiftBadge" method="POST">
+                            {# TODO: add honeypot #}
+                            {# x-init required to add value after the fact for these hidden fields #}
+                            <input type="hidden" name="userDisplayName" :value="user && user.displayName" x-validate>
+                            <input type="hidden" name="userId" :value="user && user.id" x-validate>
+                            <input type="hidden" name="userEmail" :value="user && user.userEmail" x-validate>
+                            {# Personal Info #}
+                            <fieldset>
+                                <legend>Gift Code</legend>
+                                <div>
+                                    <label>Email</label>
+                                    <div x-text="user && user.userEmail"></div>
+                                </div>
+                                <div class="required">
+                                    <label for="code">Gift Code</label>
+                                    <input id="code" name="code" type="text" value="" required/>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <legend>Community Standards Agreement</legend>
+                                <div class="prose mb-sm">
+                                    <p>Big Bad Con is committed to cultivating a culture of respect, support, and kindness at both our in-person and online events. We ask that all of our attendees agree to abide by our Community Standards, please take a moment to read them before answering yes below.</p>
+                                    <p>
+                                        <a href="/community-standards" class="icon-scroll">Community Standards</a>
+                                    </p>
+                                </div>
+                                <div class="required">
+                                    <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" required>
+                                    <label for="agree-to-community-standards" class="text-body-highlight"3324>
+                                        Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Big Bad Con Community Standards
+                                    </label>
+                                    <span class="error-msg"></span>
+                                </div>
+                            </fieldset>
+
+                            <button type="submit" :disabled="!$validate.isComplete('form')" class="btn btn-primary">Submit</button>
+                        </form>
+                        {# x-validate form log #}
+                        {% if (sitemeta.environment === 'dev') %}
+                            {% import 'components/x-validate-form-validator.njk' as validate %}
+                            {{ validate.log('form') }}
+                        {% endif %}
+                    </div>
+                    {# END form submission div #}
+                    {# form submitted #}
+                    {# TODO: change this to show badge #}
+                    <div class="prose" x-show="formSubmitted" id="form-submitted">
+                        <h2>Thanks for activating your Badge!</h2>
+                        <p>Lorem ipsum!</p>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </main>
+{% endblock %}

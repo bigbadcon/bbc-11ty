@@ -3,6 +3,7 @@ require('dotenv').config();
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 const { GoogleSpreadsheet } = require('google-spreadsheet')
+const environment = process.env.CONTEXT
 
 const apiBaseUrl = 'https://admin.bigbadcon.com:8091/api/'
 const apiKey = `ApiKey ${process.env.BBC_API_KEY}`
@@ -183,7 +184,7 @@ exports.handler = async function(event, context) {
                     text: `The user ${displayName} attempted but failed to create an account due to the same username ${userNicename} already being in the system. They have been emailed explaining this. Email: ${userEmail}; Full name: ${firstName} ${lastName}; userNicename: ${userNicename}`,
                     html: `The user ${displayName} attempted but failed to create an account due to the same username ${userNicename} already being in the system. They have been emailed explaining this. Email: ${userEmail}; Full name: ${firstName} ${lastName}; userNicename: ${userNicename}`,
                 }
-                await sgMail.send(newUserAdminMsg);
+                if (environment === "production") await sgMail.send(newUserAdminMsg);
 
                 // finalize function
                 return {

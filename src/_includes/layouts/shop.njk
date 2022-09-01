@@ -1,12 +1,6 @@
-{% extends 'layouts/base.njk' %}
-
-{% block header %}
-    {% include 'components/header.njk' %}
-{% endblock %}
+{% extends 'layouts/page.njk' %}
 
 {% block content %}
-    {{ prices | log }}
-
     <main id="content">
         <div class="mx-auto max-w-content p-base">
             <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
@@ -15,24 +9,86 @@
                 <p>You must be logged in to purchase a badge.</p>
             </section>
             {% if prices.length %}
-                <section x-cloak x-show="isAuth" >
-                    {% for price in prices %}
-                        <div class="flex flex-wrap gap-x-base gap-y-sm">
-                            <h3 class="w-full text-xl font-bold text-subheader">{{ price.product.name }}</h3>
-                            <img src="{{ price.product.images[0]}}" alt="" class="object-cover object-center w-36 h-36"/>
-                            <div class="prose">
-                                <p>{{price.product.description }}</p>
-                                <p>Price: ${{price.unit_amount | convertCentsToDollars}}</p>
-                                {{ price.product.images | log }}
-                                <form action="/.netlify/functions/createCheckoutSession" method="POST">
-                                    <input type="hidden" name="userId" :value="user && user.id"/>
-                                    <input type="hidden" name="userEmail" :value="user && user.userEmail"/>
-                                    <input type="hidden" name="price_id" value="{{ price.id }}"/>
-                                    <button type="submit">Buy Now</button>
-                                </form>
+                <section x-cloak x-show="isAuth">
+                    <form class="latest-validate" id="form" x-validate x-data x-ref="form" action="/.netlify/functions/createCheckoutSession" method="POST">
+                        {# <form class="latest-validate" id="form" x-validate x-data="form" x-ref="form" @submit.prevent="submit"> #}
+                        <input type="hidden" name="userId" :value="user && user.id" x-validate/>
+                        <input type="hidden" name="userEmail" :value="user && user.userEmail" x-validate/>
+                        <input type="hidden" name="userDisplayName" :value="user && user.displayName" x-validate>
+                        <input type="hidden" name="price_id" value="" x-validate/>
+                        <fieldset x-ref="badgepurchase">
+                            <legend>Badge Purchase</legend>
+                            <div class="prose" >
+                                <label for="badge-type">Badge Type</label>
+                                <select name="badge-type" id="badge-type" @change="$validate.updateData('price_id',{value:$el.value})" required>
+                                    <option value="" disabled selected>-- Choose One --</option>
+                                    {% for price in prices %}
+                                        <option value="{{ price.id }}">{{ price.product.name }} &mdash; ${{price.unit_amount | convertCentsToDollars}}</option>
+                                    {% endfor %}
+                                </select>
                             </div>
+                            {# build html for all badges but only show the one selected in badge-type #}
+                            <div class="grid grid-cols-1 mt-base">
+                                {% for price in prices %}
+                                    <div class="flex flex-wrap rounded-md shadow gap-y-sm bg-card p-base col-span-full row-span-full" id="{{ price.id }}" x-ref="{{ price.id }}" 
+                                    x-show="$validate.value('badge-type') === '{{ price.id }}'" x-transition>
+                                        <div class="basis-1/4"><img src="{{ price.product.images[0]}}" alt="" class="object-cover object-center aspect-square"/></div>
+                                        <div class="basis-3/4 pl-base">
+                                            <h3 class="w-full font-serif text-2xl font-bold text-subheader">{{ price.product.name }}</h3>
+                                            <p class="prose">{{price.product.description }}</p>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div class="prose" x-show="$validate.isComplete('badge-type')">
+                                <label>Who is the badge for?</label>
+                                <div class="flex flex-col items-start">
+                                    <label class="inline-flex items-center justify-start gap-xs"><input type="radio" name="recipient" value="for me" required> Me</label>
+                                    <label class="inline-flex items-center justify-start gap-xs"><input type="radio" name="recipient" value="for someone else" required> Someone Else</label>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="prose" x-cloak x-show="$validate.data('recipient').value === 'for someone else'" x-transition x-ref="giftbadge">
+                            <legend>Gift Badge</legend>
+                            <div>
+                                <label for="anon">Is this an anonymous gift?</label>
+                                <select value="" name="anon" id="anon" x-required:recipient="'for someone else'" data-error-msg="required">
+                                    <option value="" disabled selected>-- Choose One --</option>
+                                    <option value="known">Let them know who sent it</option>
+                                    <option value="anonymous">Keep my purchase anonymous</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="recipientEmail">Other Person's Email Address</label>
+                                <input type="email" value="" name="recipientEmail" id="recipientEmail" x-required:recipient="'for someone else'" data-error-msg="recipient email required">
+                            </div>
+                        </fieldset>
+                        <fieldset class="prose" x-show="$validate.isComplete($refs.badgepurchase) && $validate.isComplete($refs.giftbadge)" x-transition>
+                            <legend>Community Standards</legend>
+                            <div class="flex flex-wrap items-center">
+                                <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-validate.required x-ref="agree">
+                                <label for="agree-to-community-standards" class="text-body-highlight">
+                                    Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Big Bad Con <a href="/community-standards/">Community Standards</a>.
+                                    </label>
+                                <span class="error-msg basis-full pt-sm">Agreeing to our <a href="/community-standards/">Community Standards</a> is required</span>
+                            </div>
+                        </fieldset>
+                        {# build html for all badges but only show the one selected in badge-type #}
+                        <div class="grid grid-cols-1 mt-base">
+                            {% for price in prices %}
+                                <div class="prose rounded-md shadow bg-card p-base col-span-full row-span-full" id="{{ price.id }}" x-ref="{{ price.id }}" x-show="$validate.isComplete('form') && $validate.value('badge-type') === '{{ price.id }}'" x-transition>
+                                    <h3>{{ price.product.name }}</h3>
+                                    <p>{{price.product.description }}</p>
+                                    <div class="basis-full">
+                                        <button type="submit" :disabled="!$validate.isComplete('form') && !($validate.value('badge-type') === '{{ price.id }}')">Buy Now &nbsp; ${{price.unit_amount | convertCentsToDollars}}</button>
+                                    </div>
+                                </div>
+                            {% endfor %}
                         </div>
-                    {% endfor %}
+                        {# x-validate form log #}
+                        {% import 'components/x-validate-form-validator.njk' as validate %}
+                        {{ validate.log('form') }}
+                    </form>
                 </section>
             {% else %}
                 <section x-cloak x-show="isAuth" class="prose">

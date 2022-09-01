@@ -29,7 +29,7 @@
                                 <em>required field</em>
                             </p>
                         </header>
-                        <form action="post" class="mt-base latest-validate" id="form-exhibitor" x-ref="formexhibitor" x-validate @submit.prevent="submitForm" x-data>
+                        <form class="mt-base latest-validate" id="form-exhibitor" x-ref="formexhibitor" x-validate @submit.prevent="submitForm" x-data>
                             {# TODO: add honeypot #}
                             <input name="user-display-name" type="hidden" x-model="formInfo.userDisplayName" x-init="formInfo.userDisplayName = user && user.displayName; $watch('user', value => formInfo.userDisplayName = value && value.displayName)">
                             <input name="user-id" type="hidden" x-model="formInfo.userId" x-init="formInfo.userId = user && user.id; $watch('user', value => formInfo.userId = value && value.id)">

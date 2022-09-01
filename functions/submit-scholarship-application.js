@@ -3,6 +3,7 @@ require('dotenv').config();
 const { GoogleSpreadsheet } = require('google-spreadsheet')
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+const environment = process.env.CONTEXT
 
 const googleSheetId = process.env.GOOGLE_SHEET_SCHOLARSHIP
 
@@ -64,7 +65,7 @@ exports.handler = async function(event, context) {
                 text: `User ${eventBody.publicName} (${eventBody.userEmail}) applied for BBC Scholarship! You can find their submission on google sheets: https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0`,
                 html: `User ${eventBody.publicName} (${eventBody.userEmail}) applied for BBC Scholarship! You can find their submission on <a href="https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0">google sheets</a>.`,
             }
-            await sgMail.send(newUserAdminMsg);
+            if (environment === "production") await sgMail.send(newUserAdminMsg);
 
             return {
                 statusCode: 200,
