@@ -18,5 +18,5 @@ Go Play NW runs on volunteers! If you're interested in volunteering for one of o
    * 6:50 PM - 11:00 PM - Evening Session
  * **Sunday, Oct. 2nd** (Doors open at 10:30 AM)
    * 9:00 AM - 11:00 AM - Live Social Hour 
-   * 11:00 AM - 3:00 PM - Morning Session
+   * 10:50 AM - 3:00 PM - Morning Session
    * 3:50 PM - 8:00 PM - Evening Session
