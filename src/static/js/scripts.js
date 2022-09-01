@@ -127,6 +127,7 @@ document.addEventListener('alpine:init', () => {
       volunteerEventSpaces: this.$persist([]),
       bboDiscordInvite: null,
       get isAuth() { return (typeof this.authToken === "string") },
+      get notAuth() { return (typeof this.authToken === "object" || typeof this.authToken === "undefined") },
       async submitLogin(username, password) {
         console.log("submitLogin", username)
         let res = await fetch(apiBaseUrl + '/login', { headers: { 'Content-Type': 'application/json;charset=utf-8' }, method: 'POST', body:JSON.stringify({ username: username, password: password })})
