@@ -56,9 +56,6 @@ function createDateObject (date, time) {
 
 module.exports = (eleventyConfig) => {
 
-  // Register if running in dev or prod
-  let env = process.env.ELEVENTY_ENV;
-
   // See if this helps with things that do not refresh
   module.exports = function (eleventyConfig) {
     eleventyConfig.setUseGitIgnore(false);
