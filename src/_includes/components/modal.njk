@@ -35,7 +35,7 @@
                 {{ closeBtn() }}
             </div>
         </div>
-        <form action="post" class="flex flex-col flex-grow my-sm text-body gap-base" x-data="{username: '',password: ''}" @submit.prevent="submitLogin(username,password); username = '';password = ''">
+        <form class="flex flex-col flex-grow my-sm text-body gap-base" x-data="{username: '',password: ''}" @submit.prevent="submitLogin(username,password); username = '';password = ''">
             <div>
                 <label for="username" class="text-xs uppercase">User Name</label>
                 <input class="w-full" autocapitalize="off" id="username" name="username" required type="text" x-model="username" value=""/>
@@ -76,7 +76,7 @@
             <p>Our current website's password reset function is currently broken.</p>
             <p>Please visit our old site <a href="https://admin.bigbadcon.com">admin.bigbadcon.com</a> which uses the same user database to reset your password. Once you change it on the old site it will work on our new site.</p>
         </div> #}
-        <form action="post" class="flex flex-col flex-grow my-sm text-body gap-base" x-data="resetPasswordForm" @submit.prevent="resetPassword();" >
+        <form class="flex flex-col flex-grow my-sm text-body gap-base" x-data="resetPasswordForm" @submit.prevent="resetPassword();" >
             <div class="text-sm prose">
                 <p>Submit your email address to reset your password.</p>
             </div>
@@ -128,7 +128,7 @@
             <p>Our current website's password change function is currently broken.</p>
             <p>Please visit our old site <a href="https://admin.bigbadcon.com">admin.bigbadcon.com</a> which uses the same user database to reset your password. Once you change it on the old site it will work on our new site.</p>
         </div> #}
-        <form action="post" class="flex flex-col flex-grow my-sm text-body gap-base" x-data="resetPasswordForm" @submit.prevent="resetPassword();" >
+        <form class="flex flex-col flex-grow my-sm text-body gap-base" x-data="resetPasswordForm" @submit.prevent="resetPassword();" >
             <div class="text-sm prose">
                 <p>Submit your email address and a reset password email will be sent which will allow you to change your password.</p>
             </div>

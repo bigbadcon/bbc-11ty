@@ -3,6 +3,7 @@ require('dotenv').config();
 const { GoogleSpreadsheet } = require('google-spreadsheet')
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+const environment = process.env.CONTEXT
 
 // BBC API
 const apiBaseUrl = 'https://admin.bigbadcon.com:8091/api/'
@@ -65,7 +66,7 @@ exports.handler = async function(event, context) {
                 text: `User ${eventBody.displayName} (${eventBody.userEmail}) applied to be BBC Small Press! You can find their submission on google sheets: https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0`,
                 html: `User ${eventBody.displayName} (${eventBody.userEmail}) applied to be BBC Small Press! You can find their submission on <a href="https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0">google sheets</a>.`,
             }
-            await sgMail.send(newUserAdminMsg);
+            if (environment === "production") await sgMail.send(newUserAdminMsg);
 
             /* -------------------------------------------------------------------------- */
             /*                        4. add small-press-vendor role to use                        */

@@ -24,7 +24,7 @@
                                 <em>required field</em>
                             </p>
                         </header>
-                        <form action="post" class="mt-base" id="form-scholarship" @submit.prevent="submitForm">
+                        <form class="mt-base" id="form-scholarship" @submit.prevent="submitForm">
                             {# TODO: add honeypot #}
                             <input type="hidden" x-model="formInfo.userDisplayName" x-init="formInfo.userDisplayName = user && user.displayName; $watch('user', value => formInfo.userDisplayName = value && value.displayName)">
                             <input type="hidden" x-model="formInfo.userId" x-init="formInfo.userId = user && user.id; $watch('user', value => formInfo.userId = value && value.id)">
