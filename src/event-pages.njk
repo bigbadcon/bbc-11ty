@@ -102,13 +102,13 @@ eleventyComputed:
 <div class="flex flex-wrap justify-between max-w-full prose border-t-2 border-b-2 mt-md border-hr py-sm gap-base">
     {# <div class="flex text-sm gap-xs">
         <strong>Add to calendar:</strong>
-        {% set calendarDescription = "Big Bad Online 2022: " + event.eventName | safe + " https://www.bigbadcon.com/events/" + event.eventSlug %}
+        {% set calendarDescription = "Go Play NW Online 2022: " + event.eventName | safe + " https://goplaynw.org/events/" + event.eventSlug %}
         <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'google' %}">Google</a>
         <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'ics' %}">iCal</a>
         <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'outlook' %}">Outlook</a>
     </div> #}
     <div class="text-sm">
-        {% set tweeturl = "https://twitter.com/intent/tweet?text=Check+out+this+event+at+BigBadCon!+https://www.bigbadcon.com/events/" + event.eventSlug %}
+        {% set tweeturl = "https://twitter.com/intent/tweet?text=Check+out+this+event+at+Go+Play+NW!+https://goplaynw.org/events/" + event.eventSlug %}
 
         <a class="inline-flex items-center gap-sm" href="{{tweeturl}}">
             <svg class="w-4 h-4 fill-body">
@@ -134,7 +134,7 @@ eleventyComputed:
         <button type="submit" class="hidden" id="upload-button">Upload</button>
     </form>
 </div>
-<div class="prose py-base">Back to <a href="/events/">List of Events</a>
+<div class="prose py-base">Back to our<a href="/events/">Game Schedule</a>
 </div>
 
 <script

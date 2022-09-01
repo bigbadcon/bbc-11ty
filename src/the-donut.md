@@ -51,4 +51,4 @@ Although the donut is spontaneous in concept, it definitely helps everything run
     _The Friday evening social (LobbyCon) 6:00 PM to 8:30 PM PST is open to all attendees. In addition to letting you meet up with old friends and make new ones, it helps our event volunteers by getting everyone checked in early. Then, on Saturday and Sunday we can jump quickly into the donuts and get games going!_
 
 ---
-Photo by Philip LaRose, 2012
+Illustration by Star West-Morgan, 2022

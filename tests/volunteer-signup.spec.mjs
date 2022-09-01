@@ -25,7 +25,7 @@ test.describe('Submit Volunteer Signup Form', () => {
 
         // await chromium.launch({ headless: false, slowMo: 100, devtools: true });
 
-        await page.goto('http://localhost:8888/rangers/');
+        await page.goto('http://localhost:8888/volunteer/');
 
         // Click text=login
         await page.click('text=Login');
