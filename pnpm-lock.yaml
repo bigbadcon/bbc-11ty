@@ -41,6 +41,7 @@ specifiers:
   svg-sprite-generator: ^0.0.7
   tailwindcss: latest
   utf8: ^3.0.0
+  uuid: ^8.3.2
   windows-1252: ^1.0.0
 
 dependencies:
@@ -82,6 +83,7 @@ dependencies:
   stripe: 10.3.0
   tailwindcss: 3.1.8_postcss@8.4.16
   utf8: 3.0.0
+  uuid: 8.3.2
   windows-1252: 1.1.0
 
 devDependencies:
@@ -836,7 +838,7 @@ packages:
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
     engines: {node: '>= 6.0.0'}
     dependencies:
-      debug: 4.3.2
+      debug: 4.3.4
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -4970,6 +4972,11 @@ packages:
   /utils-merge/1.0.1:
     resolution: {integrity: sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=}
     engines: {node: '>= 0.4.0'}
+    dev: false
+
+  /uuid/8.3.2:
+    resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
+    hasBin: true
     dev: false
 
   /vary/1.1.2:
