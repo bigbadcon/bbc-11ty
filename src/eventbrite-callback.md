@@ -1,9 +1,10 @@
 ---
 layout: layouts/eventbrite-callback.njk
-title: Ticket purchased
+title: Purchase Your Ticket for Go Play NW
 description: ''
 tags: pages
 listing: events
 ---
-## Thank you!
-Thank you for purchasing a ticket for Go Play NW, October 2022!
+
+Please use the form below to buy your ticket!
+
