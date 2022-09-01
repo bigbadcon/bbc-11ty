@@ -149,7 +149,11 @@ document.addEventListener('alpine:init', () => {
             // this.checkRegistration()  this was for Big Bad Online
           }
           return token
-        } else return false
+        } else {
+          // TODO: better error message to say if password is wrong
+          this.$dispatch('toast', 'ERROR: login failed')
+          return false
+        }
       },
       logout () {
         this.authToken = null
