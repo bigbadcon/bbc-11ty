@@ -42,7 +42,7 @@ const eventbriteOrderCallback = async function () {
             if (response.status === 200) { //&& res.headers.get('authorization')) {
                 console.log("Eventbrite order code stored");
                 console.log('Order complete!');
-                window.location.replace("/ticket-thank-you/");
+                window.location.replace("/create-account-thank-you/");
             }
         })
 };
