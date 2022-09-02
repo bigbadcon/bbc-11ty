@@ -17,9 +17,9 @@ async function getEventbriteToken() {
         let res = fetchData('/payment/eventbrite/token', {
             method: 'POST',
             body: {code: eventbriteCode}
-        }).then(function (response) {
-            window.location.replace("/eventbrite-purchase/");
-        })
+        }).then(function(response) {
+                window.location.replace("/eventbrite-purchase/");
+            })
         console.log("Eventbrite token submit response", res)
         if (res.status === 200) { //&& res.headers.get('authorization')) {
             console.log("Eventbrite token stored")
@@ -34,20 +34,17 @@ const eventbriteOrderCallback = async function () {
     const orderCode = paymentObj['orderId'];
     console.log("submit Eventbrite order code: ", orderCode)
     let res = await function postOrder() {
-        const orderRes = fetchData('/payment/eventbrite/order', {
+        fetchData('/payment/eventbrite/order', {
             method: 'POST',
             body: {orderId: orderCode}
         })
-        return orderRes;
+        console.log("Eventbrite order code submit response ", res.status);
+        if (res.status === 200) { //&& res.headers.get('authorization')) {
+            console.log("Eventbrite order code stored");
+            console.log('Order complete!');
+        }
+        window.location.replace("/create-account-thank-you/");
+        return res;
     }
-        .then(function buyResponse(response) {
-            console.log("Eventbrite order code submit response", response);
-            if (response.status === 200) { //&& res.headers.get('authorization')) {
-                console.log("Eventbrite order code stored");
-                console.log('Order complete!');
-            }
-            window.location.replace("/create-account-thank-you/");
-            return response;
-        })
 
 };
