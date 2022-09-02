@@ -34,7 +34,7 @@ const eventbriteOrderCallback = async function () {
     const orderCode = paymentObj['orderId'];
     console.log("submit Eventbrite order code: ", orderCode)
     let res = await function postOrder() {
-        fetchData('/payment/eventbrite/order', {
+        let res = fetchData('/payment/eventbrite/order', {
             method: 'POST',
             body: {orderId: orderCode}
         })
