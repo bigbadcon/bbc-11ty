@@ -43,6 +43,6 @@ const eventbriteOrderCallback = async function () {
         console.log("Eventbrite order code stored");
         console.log('Order complete!');
     }
-    window.location.replace("/create-account-thank-you/");
+    window.location.replace("/eventbrite-purchase-thank-you/");
     return res;
 };
