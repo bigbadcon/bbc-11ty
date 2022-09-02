@@ -1,6 +1,6 @@
 ---
 layout: layouts/run_an_event.njk
-title: Run and Event (late submission)
+title: Run an Event (late submission)
 description: ''
 ogImage: ''
 
