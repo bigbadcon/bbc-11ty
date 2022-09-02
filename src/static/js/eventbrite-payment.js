@@ -38,7 +38,7 @@ const eventbriteOrderCallback = async function () {
         body: {orderId: orderCode}
     })
         .then(function buyResponse(response){
-            console.log("Eventbrite order code submit response", res);
+            console.log("Eventbrite order code submit response", response);
             if (response.status === 200) { //&& res.headers.get('authorization')) {
                 console.log("Eventbrite order code stored");
                 console.log('Order complete!');
