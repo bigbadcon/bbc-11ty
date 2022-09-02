@@ -23,3 +23,24 @@
     </div>
 </main>
 {% endblock %}
+
+{% block pagebottom %}
+
+<script type="text/javascript">
+
+    document.addEventListener('alpine:init', () => {
+
+        const user = getUserData()
+            .then(function(response) {return response.text()})
+            .then(function(data)
+            {return data})
+
+        Alpine.data('eventbritePurchase', function () {
+            return {
+            }
+
+        })
+    })
+</script>
+
+{% endblock %}
