@@ -28,11 +28,11 @@ module.exports = [
 				"url": "/exhibitor-information",
 				"icon": "booth"
 			},
-			// {
-			// 	"title": "Buy a Badge",
-			// 	"url": "/buy-a-badge",
-			// 	"icon": "badge"
-			// }
+			{
+				"title": "Buy a Badge",
+				"url": "/buy-a-badge",
+				"icon": "badge"
+			}
 		]
 	},
 	{
@@ -44,11 +44,11 @@ module.exports = [
 				"url": "/events",
 				"icon": "calendar-clock"
 			},
-			{
-				"title": "Run An Event",
-				"url": "/run-an-event",
-				"icon": "dice"
-			},
+			// {
+			// 	"title": "Run An Event",
+			// 	"url": "/run-an-event",
+			// 	"icon": "dice"
+			// },
 			{
 				"title": "Games On Demand",
 				"url": "/games-on-demand",
