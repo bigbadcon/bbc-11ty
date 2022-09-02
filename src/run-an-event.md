@@ -1,5 +1,5 @@
 ---
-layout: layouts/run_an_event.njk
+layout: layouts/page.njk
 title: Run An Event
 description: ''
 tags: pages
