@@ -98,3 +98,15 @@ If you are using WYSIWIG mode in Forestry just add the {.icon-hotel} immediately
 .icon-people-group{.icon-people-group}
 
 .icon-info{.icon-info}
+
+.icon-checkmark{.icon-checkmark}
+
+.icon-login{.icon-login}
+
+.icon-new-user{.icon-new-user}
+
+.icon-eventbrite{.icon-eventbrite}
+
+.icon-ticket-solid{.icon-ticket-solid}
+
+.icon-login{.icon-login}
