@@ -544,6 +544,26 @@ a[class^='icon-']:hover {
   mask-image: url(/static/svgs/circle-info.svg)
 }
 
+.icon-checkmark:before {
+  mask-image: url(/static/svgs/checkmark.svg)
+}
+
+.icon-eventbrite:before {
+  mask-image: url(/static/svgs/eventbrite.svg)
+}
+
+.icon-ticket-solid:before {
+  mask-image: url(/static/svgs/ticket-solid.svg)
+}
+
+.icon-new-user:before {
+  mask-image: url(/static/svgs/new-user.svg)
+}
+
+.icon-login:before {
+  mask-image: url(/static/svgs/login.svg)
+}
+
 /* ------------------------- Event / Volunteer List ------------------------- */
 
 .fav-star {
