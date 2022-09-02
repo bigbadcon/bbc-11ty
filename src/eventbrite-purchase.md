@@ -1,10 +1,10 @@
 ---
 layout: layouts/eventbrite-purchase.njk
-title: Purchase Your Ticket for Go Play NW
+title: Buy Your Ticket!
 description: ''
 tags: pages
 listing: events
 ---
+Buy your ticket to Go Play NW using the form below.
 
-Please use the form below to buy your ticket!
-
+[Need Help? Contact us](/contact-us){.icon-envelope}
