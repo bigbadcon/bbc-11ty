@@ -33,18 +33,16 @@ const eventbriteOrderCallback = async function () {
     const paymentObj = arguments[0];
     const orderCode = paymentObj['orderId'];
     console.log("submit Eventbrite order code: ", orderCode)
-    let res = await function postOrder() {
-        let res = fetchData('/payment/eventbrite/order', {
-            method: 'POST',
-            body: {orderId: orderCode}
-        })
-        console.log("Eventbrite order code submit response ", res.status);
-        if (res.status === 200) { //&& res.headers.get('authorization')) {
-            console.log("Eventbrite order code stored");
-            console.log('Order complete!');
-        }
-        window.location.replace("/create-account-thank-you/");
-        return res;
-    }
 
+    let res = fetchData('/payment/eventbrite/order', {
+        method: 'POST',
+        body: {orderId: orderCode}
+    })
+    console.log("Eventbrite order code submit response ", res.status);
+    if (res.status === 200) { //&& res.headers.get('authorization')) {
+        console.log("Eventbrite order code stored");
+        console.log('Order complete!');
+    }
+    window.location.replace("/create-account-thank-you/");
+    return res;
 };
