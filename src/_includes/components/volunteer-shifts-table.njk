@@ -9,7 +9,7 @@
                 <th class="text-center pb-sm max-w-max">Dur</th>
                 <th class="text-center pb-sm max-w-max">Spaces</th>
                 <th class="w-8 text-center pb-sm" x-cloak x-show="isAuth">
-                    <span class="fav-star-header"></span>
+                    <span class="cursor-pointer fav-star-header hover:bg-highlight" @click="filter.favsOnly = !filter.favsOnly" :class="filter.favsOnly && 'favved'"></span>
                 </th>
             </tr>
         </thead>
