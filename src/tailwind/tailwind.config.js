@@ -59,7 +59,7 @@ module.exports = {
               fontSize: '3rem',
               lineHeight: '1.20',
               marginBottom: '0.5em',
-              marginTop: '1.4em',
+              marginTop: '1.4rem',
             },
             h2: {
               color: 'var(--header)',
@@ -67,7 +67,7 @@ module.exports = {
               fontSize: '2.25rem',
               lineHeight: '1.10',
               marginBottom: '0.5em',
-              marginTop: '1.4em'
+              marginTop: '1.3rem'
             },
             h3: {
               color: 'var(--subheader)',
@@ -75,7 +75,7 @@ module.exports = {
               fontSize: '1.75rem',
               lineHeight: '1.05',
               marginBottom: '0.5em',
-              marginTop: '1.4em'
+              marginTop: '1.1rem'
             },
             h4: {
               color: 'var(--subheader)',
@@ -83,7 +83,7 @@ module.exports = {
               fontSize: '1.60rem',
               lineHeight: '1.00',
               marginBottom: '0.5em',
-              marginTop: '1.2em'
+              marginTop: '1em'
             },
             a:{
               color: 'var(--highlight)',
@@ -99,6 +99,9 @@ module.exports = {
             strong: {
               color: 'inherit',
               fontWeight: '700'
+            },
+            ul: {
+              marginBottom: '1.618rem',
             },
             'ul > li::marker': {
                 color: 'var(--secondary)'
