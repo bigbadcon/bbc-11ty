@@ -28,11 +28,11 @@ module.exports = [
 				"url": "/exhibitor-information",
 				"icon": "booth"
 			},
-			// {
-			// 	"title": "Buy a Badge",
-			// 	"url": "/buy-a-badge",
-			// 	"icon": "badge"
-			// }
+			{
+				"title": "Buy a Badge",
+				"url": "/buy-a-badge",
+				"icon": "badge"
+			}
 		]
 	},
 	{

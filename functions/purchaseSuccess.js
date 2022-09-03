@@ -73,7 +73,6 @@ exports.handler = async function (event, context) {
             /* -------------------------------------------------------------------------- */
             /*                    Update user role if not a gift                          */
             /* -------------------------------------------------------------------------- */
-
             const isGift = metadata.recipient === 'for someone else'
 
             if (!isGift) {
@@ -86,6 +85,18 @@ exports.handler = async function (event, context) {
                         headers: {"x-api-key": bbcApiKey}
                     }
                 )
+                // TODO: double check that the product is a teen badge?
+                if (metadata.age === 'teen') {
+                    const res2 = await axios.post(bbcApiBaseUrl + `users/addRoleToUser`,
+                        {
+                            "role": "teen",
+                            "userId": parseInt(client_reference_id)
+                        },
+                        {
+                            headers: {"x-api-key": bbcApiKey}
+                        }
+                    )
+                }
             }
 
             /* -------------------------------------------------------------------------- */
@@ -108,8 +119,6 @@ exports.handler = async function (event, context) {
             const addedRow = await sheet.addRow(purchaseData)
             console.log(`added google sheet row for ${metadata.userDisplayName} purchase of ${name}`);
 
-            // TODO: add special purchase link to send to other user
-
             /* -------------------------------------------------------------------------- */
             /*                                Email People                                */
             /* -------------------------------------------------------------------------- */
@@ -126,16 +135,15 @@ exports.handler = async function (event, context) {
 
             await sgMail.send(newUserMsg);
 
-            // TODO: make html emails better with a links
             /* ------------------ Sent to other person if it is a gift ------------------ */
             if (isGift && metadata.recipientEmail) {
-                const msgIntro = (metadata.anonymous === 'known') ? `You have received a gift ${name} for Big Bad Con from ${metadata.userDisplayName}!` : `You have received an anonymous gift ${name} for Big Bad Con!`
+                const msgIntro = (metadata.anon === 'known') ? `You have received a gift ${name} for Big Bad Con from ${metadata.userDisplayName}!` : `You have received an anonymous gift ${name} for Big Bad Con!`
                 const newUserMsg = {
                     to: metadata.recipientEmail,
                     from: 'info@bigbadcon.com',
                     subject: 'Big Bad Con Gift Badge',
-                    text: `${msgIntro} To activate your gift badge visit https://www.bigbadcon.com/activate-git-badge and enter the gift code '${id}'. To activate the card you must have a Big Bad Con account with the matching email address (${metadata.recipientEmail}). If you have a Big Bad Con account already with a different email address please email us so we can help. If you already have a badge and want to gift this to another person please contact us.`,
-                    html: `${msgIntro} To activate your gift badge visit our <a href="https://www.bigbadcon.com/activate-git-badge">badge activation</a> page and enter the gift code <b>${id}</a>. To activate the card you must have a Big Bad Con account with the matching email address (${metadata.recipientEmail}). If you have a Big Bad Con account already with a different email address please email us so we can help. If you already have a badge and want to gift this to another person please contact us.`,
+                    text: `${msgIntro} To activate your gift badge visit https://www.bigbadcon.com/activate-gift-badge and enter the gift code '${id}'. To activate the card you must have a Big Bad Con account with the matching email address (${metadata.recipientEmail}). If you have a Big Bad Con account already with a different email address please email us so we can help. If you already have a badge and want to gift this to another person please contact us.`,
+                    html: `${msgIntro} To activate your gift badge visit our <a href="https://www.bigbadcon.com/activate-gift-badge">badge activation</a> page and enter the gift code:<br><br><b>${id}</b><br><br>To activate the card you must have a Big Bad Con account with the matching email address (${metadata.recipientEmail}). If you have a Big Bad Con account already with a different email address please email us so we can help. If you already have a badge and want to gift this to another person please contact us.`,
                 }
     
                 await sgMail.send(newUserMsg);

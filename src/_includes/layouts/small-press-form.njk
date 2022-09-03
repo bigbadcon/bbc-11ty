@@ -14,15 +14,21 @@
                 <div x-cloak x-show="!isAuth" class="prose">
                     <p>You must be <button @click.stop="modal = 'login'" class="font-bold underline text-highlight">logged in</button> and have a badge to submit a form.</p>
                 </div>
-                <div x-cloak x-show="isAuth && user && user.badgeRoles.length === 0" class="prose">
+                <div x-cloak x-show="isAuth && !hasBadge" class="prose">
                     <p>Hello <b x-text="user.displayName"></b> you must be have a badge to submit the Small Press signup form.</p>
                 </div>
-                {# TODO: add welcome and badge display here #}
-                <div class="prose" x-show="user && user.badgeRoles && user.badgeRoles.length > 0 " x-transition>
-                    <p>Welcome <b x-text="user.displayName"></b> you have a badge! You are welcome to fill out the Small Press Showcase Signup form below.</p>
+                <div class="prose" x-cloak x-show="isAuth && hasBadge" x-transition>
+                    <p>Welcome <b x-text="user && user.displayName"></b>
+                You have a <span class="inline-flex items-center gap-2xs">
+                            <template x-for="role in badgeRoles">
+                                <span x-text="(role === 'paidattendee') ? 'paid' : role" class="py-[.1rem] text-xs font-bold uppercase rounded-full bg-hr text-primary px-xs"></span>
+                            </template>
+                        </span>
+                badge! You are welcome to fill out the Small Press Showcase Signup form below.
+                    </p>
                 </div>
 
-                <div x-cloak x-show="isAuth && user && user.badgeRoles.length > 0" x-data="formData" class="my-base">
+                <div x-cloak x-show="isAuth && hasBadge" x-data="formData" class="my-base">
                     <div x-show="!formSubmitted" id="submit-form">
                         <header class="prose">
                             <h2>Small Press Showcase Signup</h2>

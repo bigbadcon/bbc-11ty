@@ -24,6 +24,7 @@
 
 {# Front Panel Content #}
 
+{# TODO: give error if data service is down #}
 {# Login Panel #}
 {% macro login() %}
     <div id="modal-login" class="x-cloak" x-show="!authToken && modal === 'login'" class="flex flex-col h-full w-72">
@@ -231,11 +232,11 @@
             </template>
             <li x-show="bookedEvents && bookedEvents.length === 0" class="italic">You currently have no events</li>
         </ul>
-        <div class="flex items-center justify-between border-b-2 py-2xs gap-xs border-hr" x-show="user && user.badgeRoles && user.badgeRoles.length > 0 " x-transition>
-            <div class="flex flex-wrap items-center gap-x-xs gap-y-2xs">
-                <span>You have a badge!</span>
-                <template x-for="role in user?.badgeRoles">
-                    <span x-text="role" class="py-[.1rem] text-xs font-bold uppercase rounded-full bg-hr text-primary px-xs"></span>
+        <div class="flex items-center justify-between border-b-2 py-2xs gap-xs border-hr" x-show="user && hasBadge" x-transition>
+            <div class="flex flex-wrap items-center gap-2xs">
+                <span>You have a <span x-show="isTeen">Teen</span> badge!</span>
+                <template x-for="role in badgeRoles">
+                    <span x-text="(role === 'paidattendee') ? 'paid' : role" class="py-[.1rem] text-xs font-bold uppercase rounded-full bg-hr text-primary px-xs"></span>
                 </template>
             </div>
             <div class="text-sm" x-show="availableSlots && availableSlots < 100">QUOTA: <b x-text="availableSlots"></b>

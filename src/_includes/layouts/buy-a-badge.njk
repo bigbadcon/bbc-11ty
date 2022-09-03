@@ -1,0 +1,130 @@
+{% extends 'layouts/page.njk' %}
+
+{% block content %}
+    <main id="content">
+        <div class="mx-auto max-w-content p-base">
+            <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
+            <div class="prose mb-md">{{ content | safe }}</div>
+            <section x-cloak x-show="!isAuth" class="prose">
+                <p>You must be logged in to purchase a badge.</p>
+            </section>
+            <div class="prose rounded-md bg-card p-base" x-cloak x-show="isAuth && hasBadge" x-transition>
+                <p>Welcome <b x-text="user && user.displayName"></b>
+                You have a <span class="inline-flex items-center gap-2xs">
+                        <template x-for="role in badgeRoles">
+                            <span x-text="(role === 'paidattendee') ? 'paid' : role" class="py-[.1rem] text-xs font-bold uppercase rounded-full bg-hr text-primary px-xs"></span>
+                        </template>
+                    </span>
+                badge! <span x-show="isPaid">While you already have a badge, you can purchase a gift badge for someone else below.</span>
+                    <span x-show="!isPaid">While you already have a badge, you can still purchase one for yourself or a gift badge for someone else below.</span>
+                </p>
+            </div>
+            {% if prices.length %}
+                <section x-cloak x-show="isAuth">
+                    <form class="latest-validate" id="form" action="/.netlify/functions/createCheckoutSession" method="POST"
+                    x-validate x-ref="form" x-data="{price_id: ''}" >
+                        <input type="hidden" name="userId" :value="user && user.id" x-validate/>
+                        <input type="hidden" name="userEmail" :value="user && user.userEmail" x-validate/>
+                        <input type="hidden" name="userDisplayName" :value="user && user.displayName" x-validate>
+                        <fieldset x-ref="badgepurchase">
+                            <legend>Badge Purchase</legend>
+                            <div x-text="price_id"></div>
+                            <div class="prose">
+                                <label>Who is the badge for?</label>
+                                <div class="flex flex-col items-start">
+                                    <label x-show="!isPaid" class="inline-flex items-center justify-start gap-xs"><input type="radio" name="recipient" value="for me" required x-validate> Me</label>
+                                    <label class="inline-flex items-center justify-start gap-xs"><input type="radio" name="recipient" value="for someone else" :checked="isPaid" required x-validate> Someone Else</label>
+                                </div>
+                            </div>
+                            <div class="prose required">
+                                <label for="yourAge">
+                                    <span x-text="($validate.value('recipient') === 'for me') ? 'Your' : 'Their'">Your</span> age at start of con
+                                        <span>{{sitemeta.eventDate}}</span>
+                                </label>
+                                <select id="age" name="age" required @change="price_id = ''">
+                                    <option disabled selected value="">
+                                            -- Choose One --
+                                        </option>
+                                    <option value="teen">13+</option>
+                                    <option value="adult">18+</option>
+                                </select>
+                            </div>
+                            <div class="prose required" x-show="$validate.isComplete('age')">
+                                <label for="price_id">Badge Type</label>
+                                {# $watch added so that x-validate also updates it's data along with the x-model #}
+                                <select name="price_id" id="price_id" x-ref="price_id" x-model="price_id" required
+                                x-init="$watch('price_id', val => $validate.updateData('price_id'))">
+                                    <option value="" disabled selected>-- Choose One --</option>
+                                    {% for price in prices %}
+                                        <option value="{{ price.id }}" :disabled="(/^adult/i.test('{{price.product.name}}') && $formData.age.value === 'teen') || (/^teen/i.test('{{price.product.name}}') && $formData.age.value === 'adult')">{{ price.product.name }} &mdash; ${{price.unit_amount | convertCentsToDollars}}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+
+                            </div>
+                            {# build html for all badges but only show the one selected in badge #}
+                            <div class="grid grid-cols-1 mt-base">
+                                {% for price in prices %}
+                                    <div class="flex flex-wrap rounded-md shadow gap-y-sm bg-card p-base col-span-full row-span-full"
+                                    x-show="price_id === '{{ price.id }}'" x-transition>
+                                        <div class="basis-1/4"><img src="{{ price.product.images[0]}}" alt="" class="object-cover object-center aspect-square"/></div>
+                                        <div class="basis-3/4 pl-base">
+                                            <h3 class="w-full font-serif text-2xl font-bold text-subheader">{{ price.product.name }}</h3>
+                                            <p class="prose">{{price.product.description }}</p>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </fieldset>
+                        <fieldset class="prose" x-cloak x-show="$validate.isComplete($refs.badgepurchase) && $formData.recipient.value === 'for someone else'" x-transition x-ref="giftbadge">
+                            <legend>Gift Badge</legend>
+                            <div class="required">
+                                <label for="anon">Is this an anonymous gift?</label>
+                                <select value="" name="anon" id="anon" x-required:recipient="'for someone else'" data-error-msg="required">
+                                    <option value="" disabled selected>-- Choose One --</option>
+                                    <option value="known">Let them know who sent it</option>
+                                    <option value="anonymous">Keep my purchase anonymous</option>
+                                </select>
+                            </div>
+                            <div class="required">
+                                <label for="recipientEmail">Other Person's Email Address</label>
+                                <input type="email" value="" name="recipientEmail" id="recipientEmail" x-required:recipient="'for someone else'" data-error-msg="recipient email required">
+                            </div>
+                        </fieldset>
+                        <fieldset class="prose" x-show="$validate.isComplete($refs.badgepurchase) && $validate.isComplete($refs.giftbadge)" x-transition>
+                            <legend>Community Standards</legend>
+                            <div class="flex flex-wrap items-center required">
+                                <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-validate.required x-ref="agree">
+                                <label for="agree-to-community-standards" class="text-body-highlight">
+                                    Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Big Bad Con <a href="/community-standards/">Community Standards</a>.
+                                    </label>
+                                <span class="error-msg basis-full pt-sm">Agreeing to our <a href="/community-standards/">Community Standards</a> is required</span>
+                            </div>
+                        </fieldset>
+                        {# build html for all badges but only show the one selected in price_id #}
+                        <div class="grid grid-cols-1 mt-base" x-show="$validate.isComplete('form')">
+                            {% for price in prices %}
+                                <div class="prose rounded-md shadow bg-card p-base col-span-full row-span-full" x-show="price_id === '{{ price.id }}'" x-transition>
+                                    <h3>{{ price.product.name }}</h3>
+                                    <p>{{price.product.description }}</p>
+                                    <div class="basis-full">
+                                        <button type="submit" :disabled="price_id !== '{{ price.id }}'">Buy Now &nbsp; ${{price.unit_amount | convertCentsToDollars}}</button>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        {# x-validate form log #}
+                        {% if (sitemeta.environment === 'dev') %}
+                            {% import 'components/x-validate-form-validator.njk' as validate %}
+                            {{ validate.log('form') }}
+                        {% endif %}
+                    </form>
+                </section>
+            {% else %}
+                <section x-cloak x-show="isAuth" class="prose">
+                    <p>There are no purchasable items at this time.</p>
+                </section
+            {% endif %}
+        </div>
+            </main>
+        {% endblock %}

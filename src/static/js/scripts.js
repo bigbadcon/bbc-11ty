@@ -175,26 +175,38 @@ document.addEventListener('alpine:init', () => {
         const userMetadata = metadataArrayToObject(user.metadata)
         // TODO: not 
         const userRoles = [...userMetadata.wp_tuiny5_capabilities.matchAll(/"([a-z]+)/g)].map( (match) => match[1])
-        const badgeRoles = compareArrays(userRoles,['gm','paidattendee','volunteer','comp','staff'])
-        console.log("🚀 ~ file: scripts.js ~ line 172 ~ getUserData ~ badgeRoles", badgeRoles)
         user = {
           ...user,
           metadata: userMetadata,
           roles: userRoles,
-          badgeRoles: badgeRoles,
         }
         console.log("user data transformed",user);
         this.user = user
         return user
       },
-      hasUserRole(role) {
-        return this.user && this.user.roles && this.user.roles.includes(role)
+      get badgeRoles() {
+        return compareArrays(this.user.roles,['gm','paidattendee','volunteer','comp','staff'])
+      },
+      get hasBadge() {
+        return this.user && Array.isArray(this.badgeRoles) && this.badgeRoles.length > 0
+      },
+      isRole(role) {
+        return this.user && Array.isArray(this.user.roles) && this.user.roles.includes(role)
       },
       get isVolunteer() {
-        return this.user && this.user.roles && this.user.roles.includes('volunteer')
+        return this.isRole('volunteer')
       },
       get isAdmin() {
-        return this.user && this.user.roles && this.user.roles.includes('administrator')
+        return this.isRole('administrator')
+      },
+      get isTeen() {
+        return this.isRole('teen')
+      },
+      get isTeen() {
+        return this.isRole('teen')
+      },
+      get isPaid() {
+        return this.isRole('paidattendee')
       },
       async checkRegistration () {
         // Used for Big Bad Online
