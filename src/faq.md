@@ -25,12 +25,9 @@ Big Bad Con Group Rate: $139/night ([booking link](https://www.hyatt.com/en-US/g
 
 Find out about our COVID safety policies and risk mitigations efforts [here](/covid-safety).
 
-## Where can I find X feature?
+## Are teens welcome?
 
-There are a few features we're still developing for the new site. All of these should arrive later in June or early July 2022:
-
-* Games on Demand game submissions.
-* Small Press Showcase sign ups.
+We invite all gamers 13 and older. Teens 13-17 can sign up for events marked "All Ages".
 
 ## Will there be a Dealer Room or Small Press Showcase?
 
