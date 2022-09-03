@@ -9,8 +9,7 @@ eleventyComputed:
     title: "{{ event.eventName | safe }}"
     ogAPIImage: "https://v1.screenshot.11ty.dev/https%3A%2F%2Fwww.bigbadcon.com%2Fog%2Fevents%2F{{event.eventSlug}}%2F/opengraph/"
 ---
-
-{# {% include 'components/event-date-time.njk'%} #}
+{% set categoryArray = event.categories | simpleCategoryArray %}
 
 {% set src = "" %}
 {% if (event.metadata.event_image) %}
@@ -53,6 +52,18 @@ eleventyComputed:
         <div>
             <strong>System:</strong>
             {{event.metadata.System}}</div>
+    {% endif %}
+    {% if ('Early Signup' in categoryArray) %}
+        {# Event Day #}
+        <div class="flex flex-wrap justify-between">
+            {# timezone data is in x-data="eventFilter" in wrapping div in base.njk #}
+            {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
+            <div>
+                <strong>Date:</strong>
+                <span x-cloak x-show="timezone" x-html="formatEventDate('{{event.eventStartDateTime}}',timezone)">{{ event.eventStartDateTime | formatEventDate | safe }}</span>
+            </div>
+            <div>{% include 'components/timezone-select.njk' %}</div>
+        </div>
     {% endif %}
     <div>
         <strong>Length:</strong>

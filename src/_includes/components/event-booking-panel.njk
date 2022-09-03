@@ -3,8 +3,18 @@
     <h2 class="-mt-1 font-serif text-2xl font-bold leading-none md:text-4xl text-header mb-sm">Event Booking</h2>
     {# Event Name, spaces open, and list of players; only show if logged in and has event data #}
     <div x-cloak x-show="isAuth" class="flex flex-col gap-sm">
+        <div class="flex flex-wrap justify-between">
+            {# timezone data is in x-data="eventFilter" in wrapping div in base.njk #}
+            {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
+            <div>
+                <strong>Date:</strong>
+                <span x-cloak x-show="timezone" x-html="formatEventDate('{{event.eventStartDateTime}}',timezone)">{{ event.eventStartDateTime | formatEventDate | safe }}</span>
+                <span>
+                    ({{event.metadata.Length}} hour)</span>
+            </div>
+        </div>
         <div>
-            <span>Spaces Open:</span>
+            <strong>Spaces Open:</strong>
             <span x-text="spacesOpen"></span> out of <span x-text="spacesTotal"></span>
         </div>
 
