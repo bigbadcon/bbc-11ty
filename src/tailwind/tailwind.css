@@ -619,6 +619,15 @@ a[class^='icon-']:hover {
   @apply text-hr rotate-[-90deg] block text-xs;
 }
 
+/* -------------------------------------------------------------------------- */
+/*                                 Event Pages                                */
+/* -------------------------------------------------------------------------- */
+
+.event-description h3 + br,
+.event-description ul + br,
+.event-description li + br {
+  display: none;
+}
 /* css to hide stuff */
 .spoilers-transparent {
   @apply text-transparent;
