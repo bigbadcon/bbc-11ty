@@ -23,8 +23,8 @@
                 {# <th class="w-8 text-center">
                     <span class="flex items-center justify-end pl-xs">{% icon 'square-check', 'fill-body' %}</span>
                 </th> #}
-                <th class="hidden w-8 text-left sm:table-cell" x-cloak x-show="isAuth">
-                    <button class="fav-star-header" @click="filter.favsOnly = !filter.favsOnly" :class="filter.favsOnly && 'favved'" title="Filter by favorites">&starf;</button>
+                <th class="w-8 text-center pb-sm" x-cloak x-show="isAuth">
+                    <span class="cursor-pointer fav-star-header hover:bg-highlight" @click="filter.favsOnly = !filter.favsOnly" :class="filter.favsOnly && 'favved'"></span>
                 </th>
             </tr>
         </thead>
@@ -63,8 +63,8 @@
                         </div>
                     </td>
                     {# Fav Event Icon #}
-                    <td x-cloak x-show="isAuth" class="events-table-cell--fav-star">
-                        <button @click="toggleFav({{event.eventId}})" class="fav-star" :class="isFav({{event.eventId}}) && 'favved'">&starf;</button>
+                    <td x-cloak x-show="isAuth">
+                        <span @click="toggleFav({{event.eventId}})" class="fav-star" :class="isFav({{event.eventId}}) && 'favved'"></span>
                     </td>
                 </tr>
             {% endfor %}
