@@ -25,7 +25,7 @@ Big Bad Con Group Rate: $139/night ([booking link](https://www.hyatt.com/en-US/g
 
 Find out about our COVID safety policies and risk mitigations efforts [here](/covid-safety).
 
-## What is the Age Policy
+## Are teens welcome?
 
 We invite all gamers 13 and older. Teens 13-17 can sign up for events marked "All Ages".
 
