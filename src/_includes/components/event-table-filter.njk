@@ -6,7 +6,7 @@
 
     <div class="flex items-center justify-start gap-xs">
         <h5 class="text-sm font-bold">Category:</h5>
-        <select class="mb-0 text-sm cursor-pointer px-xs py-2xs" @change="filter.category = $el.value" >
+        <select class="mb-0 text-sm cursor-pointer px-xs py-2xs" x-model="filter.category" >
             <option value="All">All</option>
             <option value="RPG">RPG</option>
             <option value="LARP">LARP</option>
