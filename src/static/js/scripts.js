@@ -240,7 +240,7 @@ document.addEventListener('alpine:init', () => {
           // Convert to keyed object
           metadata: metadataArrayToObject(data.metadata),
           // strip out status 0 which are canceled attendees
-          bookings: data.bookings.filter(booking => booking.bookingStatus === 1),
+          bookings: data.bookings.filter(booking => booking.bookingStatus === 1).filter(event => dayjs(event.eventStartDate).isAfter(dayjs('2022-09-01'))),
           // add simple isVolunteer boolean
           isVolunteer: data.categories.some(cat => cat.slug === "volunteer-shift"),
           // add javascript date objects and duration
@@ -320,6 +320,13 @@ document.addEventListener('alpine:init', () => {
       gm: null,
       bookings: [], // bookings minus all GMs
       events: this.$persist({}),
+      categories: [],
+      get isAllAges() {
+        return this.categories.includes("All Ages")
+      },
+      get isEarlySignup() {
+        return this.categories.includes("All Ages")
+      },
       async getEventBooking(id) {
         // Check localStorage first to quickly populate this
         let events = this.events
@@ -330,9 +337,11 @@ document.addEventListener('alpine:init', () => {
           this.bookings = events[id].bookings
           this.spacesTotal = events[id].spacesTotal
           this.spacesOpen = events[id].spacesOpen
+          this.categories = events[id].categories
         }
         // fetch new data from server
         const data = await fetchData('/events/find',{ method: 'POST', body: { id: id }})
+        console.log("🚀 ~ file: scripts.js ~ line 338 ~ getEventBooking ~ data", data)
         if (data) {
           // Convert metadata array to object
           const metadata = metadataArrayToObject(data.metadata)
@@ -344,6 +353,7 @@ document.addEventListener('alpine:init', () => {
           this.bookings = bookings
           this.spacesTotal = parseInt(metadata.Players)
           this.spacesOpen = parseInt(metadata.Players) - bookings.length
+          this.categories = data.categories.map(val => val.name)
 
           // add to events store
           events = {...events, [id]:{
@@ -352,7 +362,8 @@ document.addEventListener('alpine:init', () => {
             bookings: this.bookings,
             spacesTotal: this.spacesTotal,
             spacesOpen: this.spacesOpen,
-            metadata: metadata
+            metadata: metadata,
+            categories: this.categories
           }}
           this.events = events
         }
