@@ -179,6 +179,9 @@ module.exports = (eleventyConfig) => {
   // eventStartDateTime
   eleventyConfig.addFilter("convertCentsToDollars", (unit) => unit / 100);
   
+  // convert categories object to simple array
+  eleventyConfig.addFilter("simpleCategoryArray", (array) => array.map(val => val.name));
+  
 
   /* -------------------------------------------------------------------------- */
   /*                                 Shortcodes                                 */

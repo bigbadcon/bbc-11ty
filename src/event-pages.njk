@@ -74,6 +74,12 @@ eleventyComputed:
 
 {# Description #}
 <div class="prose">{{event.postContent | nl2br | safe }}</div>
+{# Event Signup / Booking #}
+{# TODO: make this visible for all when events open. Figure out a way to set this automatically. #}
+{% set categoryArray = event.categories | simpleCategoryArray %}
+{% if ('Early Signup' in categoryArray) %}
+    {% include 'components/EventBookingPanel.njk' %}
+{% endif %}
 {# Event links #}
 <div class="flex flex-wrap justify-between max-w-full prose border-t-2 border-b-2 mt-md border-hr py-sm gap-base">
     {# <div class="flex text-sm gap-xs">
