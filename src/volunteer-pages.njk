@@ -13,7 +13,7 @@ eleventyComputed:
 {% include 'components/event-date-time.njk'%}
 
 {# Description #}
-<div class="prose">{{event.postContent | nl2br | safe }}</div>
+<div class="prose event-description">{{event.postContent | nl2br | safe }}</div>
 
 {# Event Signup / Booking #}
 {% include 'components/volunteerBookingPanel.njk'%}

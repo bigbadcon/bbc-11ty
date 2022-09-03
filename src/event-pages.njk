@@ -84,7 +84,7 @@ eleventyComputed:
 </div>
 
 {# Description #}
-<div class="prose">{{event.postContent | nl2br | safe }}</div>
+<div class="prose event-description">{{event.postContent | nl2br | safe }}</div>
 {# Event Signup / Booking #}
 {# TODO: make this visible for all when events open. Figure out a way to set this automatically. #}
 {% set categoryArray = event.categories | simpleCategoryArray %}
