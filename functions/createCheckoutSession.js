@@ -32,22 +32,12 @@ exports.handler = async function (event, context) {
     const entries = urlParams.entries()
     const params = paramsToObject(entries)
     console.log("🚀 ~ file: createCheckoutSession.js ~ line 30 ~ params", params)
-    
-
-    // const price_id = params.get('price_id');
-    // const client_reference_id = params.get('userId');
-    // const customer_email = params.get('userEmail');
-    // const userDisplayName = params.get('userDisplayName');
-    // // get gift badge information
-    // const recipient = params.get('recipient');
-    // const anon = params.get('anon');
-    // const recipientEmail = params.get('recipientEmail');
 
     try {
         const session = await stripe.checkout.sessions.create({
             line_items: [
                 {
-                    price: params['badge-type'],
+                    price: params.price_id,
                     quantity: 1,
                 }
             ],
@@ -55,9 +45,10 @@ exports.handler = async function (event, context) {
             client_reference_id: params.userId,
             metadata: {
                 userDisplayName: params.userDisplayName,
+                age: params.age,
                 recipient: params.recipient,
                 anon: params.anon,
-                recipientEmail: params.recipientEmail,
+                recipientEmail: params.recipientEmail.trim(),
             },
             mode: "payment",
             // TODO: customize thanks page with order details
