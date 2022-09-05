@@ -9,7 +9,7 @@ eleventyComputed:
     title: "{{ event.eventName | safe }}"
 ---
 
-{# {% include 'components/event-date-time.njk'%} #}
+{% include 'components/event-date-time.njk'%}
 
 {% set src = "" %}
 {% if (event.metadata.event_image) %}
