@@ -265,11 +265,13 @@ document.addEventListener('alpine:init', () => {
       },
       async bookEvent(id) {
         let data = await fetchData('/bookings/bookMeIntoGame',{method: 'POST',body: { gameId: id }})
+        if (!data) this.$dispatch('toast', 'ERROR: booking change failed. Data service might be down.')
         this.getBookedEvents()
         return data
       },
       async cancelBooking(id) {
         let data = await fetchData('/bookings/removeMeFromGame',{method: 'DELETE',body: { gameId: id, guid: id }})
+        if (!data) this.$dispatch('toast', 'ERROR: booking change failed. Data service might be down.')
         this.getBookedEvents()
         return data
       },
@@ -285,7 +287,7 @@ document.addEventListener('alpine:init', () => {
         } else { 
           data = await fetchData('/events/me/favorite/create',{ method: 'POST', body:{eventId: id} })
         }
-        if (!data) this.$dispatch('toast', 'ERROR: favoriting failed')
+        if (!data) this.$dispatch('toast', 'ERROR: favoriting failed. Data service might be down.')
         if (data && data.status === 'SUCCESS') {
           this.getFavEvents()
         }
