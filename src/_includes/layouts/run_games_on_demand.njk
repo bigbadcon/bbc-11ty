@@ -130,6 +130,14 @@
                                     <label for="gameDescription">Elevator Pitch</label>
                                     <textarea cols="30" id="gameDescription" name="gameDescription" rows="3" x-model="eventInfo.gameDescription1" @blur="validate"></textarea>
                                 </div>
+                                <div class="required">
+                                    <label for="minPlayers">Mininum Players</label>
+                                    <input type="text" id="minPlayers" name="minPlayers" x-model="eventInfo.minPlayers1" @blur="validate">
+                                </div>
+                                <div class="required">
+                                    <label for="maxPlayers">Maximum Players</label>
+                                    <input type="text" id="maxPlayers" name="maxPlayers" x-model="eventInfo.maxPlayers1" @blur="validate">
+                                </div>
                                 {# TODO: Get image upload working #}
                                 {# <div class="prose">
                                     <label for="eventImage">Game Image</label>
@@ -183,6 +191,14 @@
                                 <div class="required">
                                     <label for="gameDescription2">Elevator Pitch</label>
                                     <textarea cols="30" id="gameDescription2" name="gameDescription2" rows="3" x-model="eventInfo.gameDescription2" @blur="validate"></textarea>
+                                </div>
+                                <div class="required">
+                                    <label for="minPlayers">Mininum Players</label>
+                                    <input type="text" id="minPlayers" name="minPlayers" x-model="eventInfo.minPlayers2" @blur="validate">
+                                </div>
+                                <div class="required">
+                                    <label for="maxPlayers">Maximum Players</label>
+                                    <input type="text" id="maxPlayers" name="maxPlayers" x-model="eventInfo.maxPlayers2" @blur="validate">
                                 </div>
                                 {# <div>
                                     <label for="eventImage2">Game Image</label>
@@ -295,11 +311,25 @@
                     },
                     get isGameOneComplete() {
                         const x = this.eventInfo
-                        return this.isGeneralInfoComplete && [x.gameName1, x.system1, x.playtest1, x.gameDescription1].every(isFull) && (x.playerAge === '13+' || isFull(x.contentAdvisory1));
+                        return this.isGeneralInfoComplete && [
+                            x.gameName1,
+                            x.system1,
+                            x.playtest1,
+                            x.gameDescription1,
+                            x.minPlayers1,
+                            x.maxPlayers1
+                        ].every(isFull) && (x.playerAge === '13+' || isFull(x.contentAdvisory1));
                     },
                     get isGameTwoComplete() {
                         const x = this.eventInfo
-                        return this.isGameOneComplete && [x.gameName2, x.system2, x.playtest2, x.gameDescription2].every(isFull) && (x.playerAge === '13+' || isFull(x.contentAdvisory2));
+                        return this.isGameOneComplete && [
+                            x.gameName2,
+                            x.system2,
+                            x.playtest2,
+                            x.gameDescription2,
+                            x.minPlayers2,
+                            x.maxPlayers2
+                        ].every(isFull) && (x.playerAge === '13+' || isFull(x.contentAdvisory2));
                     },
                     validate(event) {
                         const target = event.target;
