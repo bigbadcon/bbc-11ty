@@ -275,7 +275,6 @@ document.addEventListener('alpine:init', () => {
       },
       async getFavEvents() {
         let data = await fetchData('/events/me/favorites')
-        if (!data)
         this.favEvents = data && data.map(item => item.eventId)
         return data && data.map(item => item.eventId)
       },
@@ -286,7 +285,7 @@ document.addEventListener('alpine:init', () => {
         } else { 
           data = await fetchData('/events/me/favorite/create',{ method: 'POST', body:{eventId: id} })
         }
-        if (data && data.status === 'FAILURE') this.$dispatch('toast', data.message)
+        if (!data) this.$dispatch('toast', 'ERROR: favoriting failed')
         if (data && data.status === 'SUCCESS') {
           this.getFavEvents()
         }
@@ -341,7 +340,6 @@ document.addEventListener('alpine:init', () => {
         }
         // fetch new data from server
         const data = await fetchData('/events/find',{ method: 'POST', body: { id: id }})
-        console.log("🚀 ~ file: scripts.js ~ line 338 ~ getEventBooking ~ data", data)
         if (data) {
           // Convert metadata array to object
           const metadata = metadataArrayToObject(data.metadata)
