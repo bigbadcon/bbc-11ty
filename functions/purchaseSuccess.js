@@ -123,14 +123,14 @@ exports.handler = async function (event, context) {
             /*                                Email People                                */
             /* -------------------------------------------------------------------------- */
 
-            let recipientType = (isGift) ? `for ${metadata.recipientEmail}` : `for yourself`
+            let recipientType = (isGift) ? ` for ${metadata.recipientEmail}` : ``
 
             /* ------------------------------ Send to buyer ----------------------------- */
             const newUserMsg = {
                 to: customer_email,
                 from: 'info@bigbadcon.com',
                 subject: 'Thanks for your purchase!',
-                text: `Thank you ${metadata.userDisplayName} for purchasing a ${name} ${recipientType}!`,
+                text: `Thank you ${metadata.userDisplayName} for purchasing a ${name}${recipientType}!`,
             }
 
             await sgMail.send(newUserMsg);
@@ -154,8 +154,8 @@ exports.handler = async function (event, context) {
                 to: 'info@bigbadcon.com',
                 from: 'info@bigbadcon.com',
                 subject: 'Badge Purchase',
-                text: `${metadata.userDisplayName} has purchased a ${name} ${recipientType}! You can find their purchase on google sheets: https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0`,
-                html: `${metadata.userDisplayName} has purchased a ${name} ${recipientType}! You can find their purchase on google sheets: <a href="https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0">BBC Badge Sheet</a>`,
+                text: `${metadata.userDisplayName} has purchased a ${name}${recipientType}! You can find their purchase on google sheets: https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0`,
+                html: `${metadata.userDisplayName} has purchased a ${name}${recipientType}! You can find their purchase on google sheets: <a href="https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0">BBC Badge Sheet</a>`,
             }
             
             // Only fire off admin email if production
