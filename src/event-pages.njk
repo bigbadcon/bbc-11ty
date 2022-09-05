@@ -8,11 +8,7 @@ permalink: "events/{{ event.eventSlug }}/"
 eleventyComputed:
     title: "{{ event.eventName | safe }}"
 ---
-<div class="not-prose">
-    <ul class="flex justify-start text-sm gap-xs">
-        <li class="rounded-full px-sm py-[.15rem] bg-card text-body">{{event.metadata.format}}</li>
-    </ul>
-</div>
+
 {# {% include 'components/event-date-time.njk'%} #}
 
 {% set src = "" %}
@@ -63,7 +59,10 @@ eleventyComputed:
         <strong>GM/Facilitator: </strong>{{ event.metadata.GM }}
     </div>
     <div>
-        <strong>Duration:</strong> {{event.metadata.Length}}
+        <strong>Category: </strong>{{event.metadata.format}}</li>
+    </div>
+    <div>
+        <strong>Duration: </strong>{{event.metadata.Length}}
         {% if (event.metadata.Length == "1") %}
             hour
         {% else %}
