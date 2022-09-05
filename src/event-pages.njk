@@ -8,7 +8,16 @@ permalink: "events/{{ event.eventSlug }}/"
 eleventyComputed:
     title: "{{ event.eventName | safe }}"
 ---
-
+<div class="flex flex-wrap justify-between">
+    {# timezone data is in x-data="eventFilter" in wrapping div in base.njk #}
+    {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
+    <div>
+        <strong>Date:</strong>
+        <span x-cloak x-show="timezone" x-html="formatEventDate('{{event.eventStartDateTime}}',timezone)">{{ event.eventStartDateTime | formatEventDate | safe }}</span>
+    </div>
+    <div>{% include 'components/timezone-select.njk' %}</div>
+</div>
+{# Event Day #}
 {# {% include 'components/event-date-time.njk'%} #}
 
 {% set src = "" %}
@@ -38,10 +47,6 @@ eleventyComputed:
         <span @click="toggleFav({{event.eventId}})" class="fav-star fav-star--event-page" :class="isFav({{event.eventId}}) && 'favved'">&starf;</span>
     </div>
 
-    <div>
-        <strong>Date:</strong> {{ event.event_start_date.value | dateFilter if event.event_start_date.value.getTime else event.event_start_date.value}}
-    </div>
-
     {# Event Day #}
     {# timezone data is in x-data="eventFilter" in wrapping div in base.njk #}
     {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
@@ -61,11 +66,6 @@ eleventyComputed:
 <!--    <div class="text-2xl font-semibold leading-snug text-body-highlight">-->
     <div>
         <strong>GM/Facilitator: </strong>{{ event.metadata.GM }}
-    </div>
-    <div class="not-prose">
-        <ul class="flex justify-start text-sm gap-xs">
-            <li class="rounded-full px-sm py-[.15rem] bg-card text-body">{{event.metadata.format}}</li>
-        </ul>
     </div>
     <div>
         <strong>Duration:</strong> {{event.metadata.Length}}
