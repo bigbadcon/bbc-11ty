@@ -9,7 +9,7 @@ eleventyComputed:
     title: "{{ event.eventName | safe }}"
 ---
 
-{% include 'components/event-date-time.njk'%}
+{# {% include 'components/event-date-time.njk'%} #}
 
 {% set src = "" %}
 {% if (event.metadata.event_image) %}
@@ -41,6 +41,15 @@ eleventyComputed:
     <div>
         <strong>Date:</strong> {{ event.event_start_date.value | dateFilter if event.event_start_date.value.getTime else event.event_start_date.value}}
     </div>
+
+    {# Event Day #}
+    {# timezone data is in x-data="eventFilter" in wrapping div in base.njk #}
+    {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
+    <div>
+        <strong>Date:</strong>
+        <span x-cloak x-show="timezone" x-html="formatEventDate('{{event.eventStartDateTime}}',timezone)">{{ event.eventStartDateTime | formatEventDate | safe }}</span>
+    </div>
+    <div>{% include 'components/timezone-select.njk' %}</div>
 
     <div class="flex flex-wrap justify-between max-w-full prose border-t-2 border-b-2 mt-md border-hr py-sm gap-base">
     {# Description #}
