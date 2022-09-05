@@ -19,6 +19,7 @@
                     <span x-show="!isPaid">While you already have a badge, you can still purchase one for yourself or a gift badge for someone else below.</span>
                 </p>
             </div>
+            {# TODO: only allow buying teen badge for self if they are a teen #}
             {% if prices.length %}
                 <section x-cloak x-show="isAuth">
                     <form class="latest-validate" id="form" action="/.netlify/functions/createCheckoutSession" method="POST"
