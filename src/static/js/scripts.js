@@ -40,6 +40,7 @@ function alertMsg(msg = 'error') {
 
 /* ------------ Transform metadata from events to a keyed object ------------ */
 function metadataArrayToObject(arr) {
+  if (!Array.isArray(arr)) return false;
   const object = arr.reduce(function(result, item) {
     result[item.metaKey] = item.metaValue;
     return result;
@@ -172,11 +173,23 @@ document.addEventListener('alpine:init', () => {
         this.user = user
         return user
       },
-      hasUserRole(role) {
-        return this.user && this.user.roles && this.user.roles.includes(role)
+      isRole(role) {
+        return this.user && Array.isArray(this.user.roles) && this.user.roles.includes(role)
       },
       get isVolunteer() {
-        return this.user && this.user.roles && this.user.roles.includes('volunteer')
+        return this.isRole('volunteer')
+      },
+      get isAdmin() {
+        return this.isRole('administrator')
+      },
+      get isTeen() {
+        return this.isRole('teen')
+      },
+      get isTeen() {
+        return this.isRole('teen')
+      },
+      get isPaid() {
+        return this.isRole('paidattendee')
       },
       async checkRegistration () {
         // Used for Big Bad Online
@@ -210,9 +223,9 @@ document.addEventListener('alpine:init', () => {
           // Convert to keyed object
           metadata: metadataArrayToObject(data.metadata),
           // strip out status 0 which are canceled attendees
-          bookings: data.bookings.filter(booking => booking.bookingStatus === 1),
+          bookings: data?.bookings?.filter(booking => booking.bookingStatus === 1),
           // add simple isVolunteer boolean
-          isVolunteer: data.categories.some(cat => cat.slug === "volunteer-shift"),
+          isVolunteer: data?.categories?.some(cat => cat.slug === "volunteer-shift"),
           // add javascript date objects and duration
           eventStartDateTime: eventStartDateTime,
           eventEndDateTime: eventEndDateTime,
@@ -278,104 +291,107 @@ document.addEventListener('alpine:init', () => {
 
   /* -------------------------- eventInfo panel data -------------------------- */
 
-  Alpine.data('eventInfo', () => ({
-    spacesTotal: null,
-    spacesOpen: null,
-    owner: null,
-    gm: null,
-    bookings: [], // bookings minus all GMs
-    async getEventBooking(id) {
-      // Check localStorage first to quickly populate this
-      let eventsLS = localStorage.getItem("events")
-      let events = (eventsLS) ? JSON.parse(eventsLS) : false
-      if (events[id]) {
-        // set Alpine 'eventInfo' variables
-        this.owner = events[id].owner
-        this.gm = events[id].gm
-        this.bookings = events[id].bookings
-        this.spacesTotal = events[id].spacesTotal
-        this.spacesOpen = events[id].spacesOpen
-      }
-      // fetch new data from server
-      const data = await fetchData('/events/find',{ method: 'POST', body: { id: id }})
-      if (data) {
-        // Convert metadata array to object
-        const metadata = metadataArrayToObject(data.metadata)
-        // set Alpine 'eventInfo' variables
-        this.owner = data.eventOwner.displayName
-        this.gm = metadata.GM
-        // filter out all cancelled bookings and GM roles
-        const bookings = data.bookings.filter(booking => booking.bookingStatus === 1 && booking.bookingComment !== "GM")
-        this.bookings = bookings
-        this.spacesTotal = parseInt(metadata.Players)
-        this.spacesOpen = parseInt(metadata.Players) - bookings.length
-        
-        // get and reset localStorage with new data
-        eventsLS = localStorage.getItem("events")
-        events = (eventsLS) ? JSON.parse(eventsLS) : {}
-        events = {...events, [id]:{
-          owner: this.owner,
-          gm: this.gm,
-          bookings: this.bookings,
-          spacesTotal: this.spacesTotal,
-          spacesOpen: this.spacesOpen
-        }}
-        localStorage.setItem("events",JSON.stringify(events))
-      }
-    },
-    async uploadImage(e) {
+  Alpine.data('eventInfo', function () {
+    return {
+      spacesTotal: null,
+      spacesOpen: null,
+      owner: null,
+      gm: null,
+      bookings: [], // bookings minus all GMs
+      events: this.$persist({}),
+      async getEventBooking(id) {
+        // Check localStorage first to quickly populate this
+        let eventsLS = localStorage.getItem("events")
+        let events = (eventsLS) ? JSON.parse(eventsLS) : false 
+        if (events[id]) {
+          // set Alpine 'eventInfo' variables
+          this.owner = events[id].owner
+          this.gm = events[id].gm
+          this.bookings = events[id].bookings
+          this.spacesTotal = events[id].spacesTotal
+          this.spacesOpen = events[id].spacesOpen
+        }
+        // fetch new data from server
+        const data = await fetchData('/events/find',{ method: 'POST', body: { id: id }})
+        if (data) {
+          // Convert metadata array to object
+          const metadata = metadataArrayToObject(data.metadata)
+          // set Alpine 'eventInfo' variables
+          this.owner = data.eventOwner.displayName
+          this.gm = metadata.GM
+          // filter out all cancelled bookings and GM roles
+          const bookings = data.bookings.filter(booking => booking.bookingStatus === 1 && booking.bookingComment !== "GM")
+          this.bookings = bookings
+          this.spacesTotal = parseInt(metadata.Players)
+          this.spacesOpen = parseInt(metadata.Players) - bookings.length
+          
+          // get and reset localStorage with new data
+          eventsLS = localStorage.getItem("events")
+          events = (eventsLS) ? JSON.parse(eventsLS) : {}
+          events = {...events, [id]:{
+            owner: this.owner,
+            gm: this.gm,
+            bookings: this.bookings,
+            spacesTotal: this.spacesTotal,
+            spacesOpen: this.spacesOpen
+          }}
+          localStorage.setItem("events",JSON.stringify(events))
+        }
+      },
+      async uploadImage(e) {
 
-      if (!this.isAdmin) return false
+        if (!this.isAdmin) return false
 
-      const eventId = e.target.eventId.value
-      const formData = new FormData(e.target)
+        const eventId = e.target.eventId.value
+        const formData = new FormData(e.target)
 
-      async function customFetch(url, authToken) {
-        const options = {
-          method: 'POST',
-          headers: {
-            Authorization: authToken
-          },
-          body: formData
+        async function customFetch(url, authToken) {
+          const options = {
+            method: 'POST',
+            headers: {
+              Authorization: authToken
+            },
+            body: formData
+          }
+
+          console.log(options);
+
+          try {
+            let response = await fetch(apiBaseUrl + url, options)
+            console.log(`RESPONSE:fetch for ${url}`, response)
+            if (response.status !== 200) throw `fetch fail status: ${response.status}`
+            let result = await response.json()
+            console.log(`RESULT:fetch for ${url}`, result)
+            return result
+          } catch (err) {
+            console.error(`ERROR:fetch for ${url}`,err)
+            return false
+          }
         }
 
-        console.log(options);
+        let data = await customFetch('/events/image', this.authToken)
 
-        try {
-          let response = await fetch(apiBaseUrl + url, options)
-          console.log(`RESPONSE:fetch for ${url}`, response)
-          if (response.status !== 200) throw `fetch fail status: ${response.status}`
-          let result = await response.json()
-          console.log(`RESULT:fetch for ${url}`, result)
-          return result
-        } catch (err) {
-          console.error(`ERROR:fetch for ${url}`,err)
-          return false
+        if (data) {
+          // if data update event data with new image
+          let event = this.events[eventId]
+          event.metadata.event_image = data.fileName
+          this.events = {...this.events, [eventId]: event}
         }
-      }
-
-      let data = await customFetch('/events/image', this.authToken)
-
-      if (data) {
-        // if data update event data with new image
-        let event = this.events[eventId]
-        event.metadata.event_image = data.fileName
-        this.events = {...this.events, [eventId]: event}
-      }
-      location.reload()
-      return data
-    },
-    showPreview(e) {
-      if (e.target.files.length > 0) {
-        const src = URL.createObjectURL(e.target.files[0]);
-        const preview = document.getElementById("image-preview");
-        const button = document.getElementById("upload-button");
-        preview.src = src;
-        preview.style.display = "block";
-        button.style.display = "inline-block";
-      }
-    },
-  }))
+        location.reload()
+        return data
+      },
+      showPreview(e) {
+        if (e.target.files.length > 0) {
+          const src = URL.createObjectURL(e.target.files[0]);
+          const preview = document.getElementById("image-preview");
+          const button = document.getElementById("upload-button");
+          preview.src = src;
+          preview.style.display = "block";
+          button.style.display = "inline-block";
+        }
+      },
+    }
+})
 
   Alpine.data('createAccount',() => ({
     agree: false,

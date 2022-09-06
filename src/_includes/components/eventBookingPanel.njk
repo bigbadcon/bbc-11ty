@@ -1,6 +1,4 @@
-<div class="rounded-md shadow mt-md text-body p-base bg-card" 
-x-data="eventInfo" 
-x-init="getEvent({{event.eventId}}); $watch('isAuth', value => {if (value === true) getEvent({{event.eventId}})}); $watch('bookedEvents', value => { getEvent({{event.eventId}}) } )">
+<div class="rounded-md shadow mt-md text-body p-base bg-card" >
     <h2 class="-mt-1 font-serif text-2xl font-bold leading-none md:text-4xl text-header mb-sm">Event Booking</h2>
     {# Event Name, spaces open, and list of players; only show if logged in and has event data #}
     <div x-cloak x-show="isAuth && spacesTotal">
@@ -8,7 +6,7 @@ x-init="getEvent({{event.eventId}}); $watch('isAuth', value => {if (value === tr
             <span>Spaces Open:</span>
             <span x-text="spacesOpen"></span> out of <span x-text="spacesTotal"></span>
         </div>
-        <div x-cloak x-show="booking && bookings.length > 0">
+        <div x-cloak x-show="bookings && bookings.length > 0">
             <h4 class="font-serif text-2xl font-semibold mt-sm">Player List</h4>
             <ul class="list-disc pl-md">
                 <template x-for="booking in bookings">

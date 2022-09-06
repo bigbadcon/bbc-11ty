@@ -16,7 +16,7 @@ eleventyComputed:
     {# If it has a image than put it in place and replace it if a different image is available #}
     {% set src = "https://api-dev.goplaynw.org/images/" + event.metadata.event_image %}
     <div class="w-full rounded-md bg-card mb-base" style="aspect-ratio: 16/9;"
-    x-data="{src: '{{src}}', defaultImg: 'event.metadata.event_image', newImg: events['{{event.eventId}}']?.metadata?.event_image}">
+    x-data="{src: '{{src}}', defaultImg: 'event.metadata.event_image', newImg:events && events['{{event.eventId}}']?.metadata?.event_image}">
         <img src="{{src}}" class="object-cover w-full rounded-md event-image" style="aspect-ratio: 16/9;"
         x-init="if (newImg && newImg !== defaultImg) $el.setAttribute('src', 'https://api-dev.goplaynw.org/images/' + newImg)"
 />
@@ -24,10 +24,10 @@ eleventyComputed:
 {% else %}
     {# If there is no image than make it hidden unless there is an image available #}
     <div class="w-full rounded-md bg-card mb-base" style="aspect-ratio: 16/9;"
-    x-data="{newImg: events['{{event.eventId}}']?.metadata?.event_image}"
+    x-data="{newImg: events && events['{{event.eventId}}']?.metadata?.event_image}"
     x-cloak x-show="newImg" x-transitition.opacity>
         <img class="object-cover w-full rounded-md event-image" style="aspect-ratio: 16/9;"
-        x-init="if (newImg) $el.setAttribute('src', 'https://api-dev.goplaynw.org/images/' + newImg)" />
+        x-init="if (newImg) $el.setAttribute('src', 'https://api-dev.goplaynw.org/images/' + newImg)"/>
     </div>
 {% endif %}
 
@@ -48,56 +48,56 @@ eleventyComputed:
     <div>{% include 'components/timezone-select.njk' %}</div>
 
     <div class="flex flex-wrap justify-between max-w-full prose border-t-2 border-b-2 mt-md border-hr py-sm gap-base">
-    {# Description #}
-    <div class="prose">
-        {{event.postContent | nl2br | safe }}
-    </div>
+        {# Description #}
+        <div class="prose">
+            {{event.postContent | nl2br | safe }}
+        </div>
     </div>
 
-<!--    <div class="text-2xl font-semibold leading-snug text-body-highlight">-->
+    <!--    <div class="text-2xl font-semibold leading-snug text-body-highlight">-->
     <div>
         <strong>GM/Facilitator: </strong>{{ event.metadata.GM }}
     </div>
     <div>
         <strong>Category: </strong>{{event.metadata.format}}</li>
-    </div>
-    <div>
-        <strong>Duration: </strong>{{event.metadata.Length}}
-        {% if (event.metadata.Length == "1") %}
+</div>
+<div>
+    <strong>Duration: </strong>{{event.metadata.Length}}
+    {% if (event.metadata.Length == "1") %}
             hour
         {% else %}
             hours
         {% endif %}
+</div>
+{% if event.metadata.Players %}
+    <div class="">
+        <strong>Spaces:</strong>
+        <span x-text="(spacesTotal) ? spacesOpen + ' out of ' + spacesTotal : '{{event.metadata.Players}}'">{{event.metadata.Players}}</span>
     </div>
-    {% if event.metadata.Players %}
-        <div class="">
-            <strong>Spaces:</strong>
-            <span x-text="(spacesTotal) ? spacesOpen + ' out of ' + spacesTotal : '{{event.metadata.Players}}'">{{event.metadata.Players}}</span>
-        </div>
-        <div>
-            <strong>Minimum Players:</strong>
-            {{event.metadata.Min_Players}}
-        </div>
-    {% endif %}
+    <div>
+        <strong>Minimum Players:</strong>
+        {{event.metadata.Min_Players}}
+    </div>
+{% endif %}
 
+<div>
+    <strong>Game Tags:</strong>
+    {{event.metadata.event_tags}}
+</div>
+{% if event.metadata.Players %}
     <div>
-        <strong>Game Tags:</strong>
-        {{event.metadata.event_tags}}
+        <strong>System & Mechanics:</strong>
+        {{event.metadata.System}}
     </div>
-    {% if event.metadata.Players %}
-        <div>
-            <strong>System & Mechanics:</strong>
-            {{event.metadata.System}}
-        </div>
-    {% endif %}
-    <div>
-        <strong>Content Warnings:</strong>
-        {{event.metadata.trigger_warnings}}
-    </div>
-    <div>
-        <strong>Safety Tools:</strong>
-        {{event.metadata.safety_tools}}
-    </div>
+{% endif %}
+<div>
+    <strong>Content Warnings:</strong>
+    {{event.metadata.trigger_warnings}}
+</div>
+<div>
+    <strong>Safety Tools:</strong>
+    {{event.metadata.safety_tools}}
+</div>
 
 </div>
 
@@ -105,39 +105,39 @@ eleventyComputed:
 
 {# Event links #}
 <div class="flex flex-wrap justify-between max-w-full prose border-t-2 border-b-2 mt-md border-hr py-sm gap-base">
-    {# <div class="flex text-sm gap-xs">
+{# <div class="flex text-sm gap-xs">
         <strong>Add to calendar:</strong>
         {% set calendarDescription = "Go Play NW Online 2022: " + event.eventName | safe + " https://goplaynw.org/events/" + event.eventSlug %}
         <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'google' %}">Google</a>
         <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'ics' %}">iCal</a>
         <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'outlook' %}">Outlook</a>
     </div> #}
-    <div class="text-sm">
-        {% set tweeturl = "https://twitter.com/intent/tweet?text=Check+out+this+event+at+Go+Play+NW!+https://goplaynw.org/events/" + event.eventSlug %}
+<div class="text-sm">
+    {% set tweeturl = "https://twitter.com/intent/tweet?text=Check+out+this+event+at+Go+Play+NW!+https://goplaynw.org/events/" + event.eventSlug %}
 
-        <a class="inline-flex items-center gap-sm" href="{{tweeturl}}">
-            <svg class="w-4 h-4 fill-body">
-                <use xlink:href="/static/images/icons.svg#twitter"></use>
-            </svg>Tweet This!</a>
-    </div>
-    <div class="text-sm">
-        <a href="{{ogAPIImage | ogCacheBuster }}" class="inline-flex items-center gap-sm">
-            <svg class="w-4 h-4 fill-body">
-                <use xlink:href="/static/images/icons.svg#image"></use>
-            </svg>Social Image Card</a>
-    </div>
+    <a class="inline-flex items-center gap-sm" href="{{tweeturl}}">
+        <svg class="w-4 h-4 fill-body">
+            <use xlink:href="/static/images/icons.svg#twitter"></use>
+        </svg>Tweet This!</a>
+</div>
+<div class="text-sm">
+    <a href="{{ogAPIImage | ogCacheBuster }}" class="inline-flex items-center gap-sm">
+        <svg class="w-4 h-4 fill-body">
+            <use xlink:href="/static/images/icons.svg#image"></use>
+        </svg>Social Image Card</a>
+</div>
 </div>
 {# ADMIN ONLY SECTION #}
 <div x-cloak x-show="isAdmin" class="prose rounded my-base p-base bg-card">
-    <h3>Admin Only</h3>
-    <form action="post" @submit.prevent="uploadImage">
-        <input type="hidden" name="eventId" value="{{event.eventId}}">
-        <label for="file">Event Image Upload Add/Replace</label>
-        <p class="text-sm my-sm">Images are cropped automatically at 16/9 ratio and centered. Images should be mininum 760x428 px and maximum 1,520x856 px (or there abouts) and formatted with jpg or webp (png or gif accepted but generally the former compress better).</p>
-        <input type="file" name="file" id="file" accept="image/*" class="mr-base" @change="showPreview">
-        <img id="image-preview" class="hidden object-cover object-center rounded-md my-sm" x-ref="preview" style="aspect-ratio: 16/9"/>
-        <button type="submit" class="hidden" id="upload-button">Upload</button>
-    </form>
+<h3>Admin Only</h3>
+<form action="post" @submit.prevent="uploadImage">
+    <input type="hidden" name="eventId" value="{{event.eventId}}">
+    <label for="file">Event Image Upload Add/Replace</label>
+    <p class="text-sm my-sm">Images are cropped automatically at 16/9 ratio and centered. Images should be mininum 760x428 px and maximum 1,520x856 px (or there abouts) and formatted with jpg or webp (png or gif accepted but generally the former compress better).</p>
+    <input type="file" name="file" id="file" accept="image/*" class="mr-base" @change="showPreview">
+    <img id="image-preview" class="hidden object-cover object-center rounded-md my-sm" x-ref="preview" style="aspect-ratio: 16/9"/>
+    <button type="submit" class="hidden" id="upload-button">Upload</button>
+</form>
 </div>
 <div class="prose py-base">Back to our <a href="/events/">Game Schedule</a>
 </div>
