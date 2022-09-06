@@ -1,7 +1,5 @@
 const axios = require('axios');
 require('dotenv').config();
-const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 const { GoogleSpreadsheet } = require('google-spreadsheet')
 
 // const apiBaseUrl = 'https://admin.goplaynw.com:8091/api/'
@@ -82,120 +80,13 @@ exports.handler = async function(event, context) {
                 // console.log("put response", res);
                 console.log("New user successfully created for", userNicename, userEmail, displayName);
 
-                /* -------------------------------------------------------------------------- */
-                /*                     If successful try above send emails                    */
-                /* -------------------------------------------------------------------------- */
-                try {
-                    /* --------------------------- New user message ---------------------------- */
-                    const newUserMsg = {
-                        to: userEmail,
-                        from: 'info@goplaynw.com',
-                        subject: 'Go Play NW New User Account',
-                        text: `Welcome ${displayName}! Your new user account has been created. You can now return to goplaynw.com to log in!`,
-                        html: `Welcome ${displayName}! Your new user account has been created. You can now return to <a href="http://www.goplaynw.com">goplaynw.com</a> to log in!`,
-                    }
-
-                    await sgMail.send(newUserMsg);
-                    /* --------------------------- Admin user message --------------------------- */
-                    const newUserAdminMsg = {
-                        to: 'info@goplaynw.com',
-                        from: 'info@goplaynw.com',
-                        subject: 'New User added',
-                        text: `New user ${displayName} added! Email: ${userEmail}; Full name: ${firstName} ${lastName}; userNicename: ${userNicename}`,
-                        html: `New user ${displayName} added! Email: ${userEmail}; Full name: ${firstName} ${lastName}; userNicename: ${userNicename}`,
-                    }
-                    await sgMail.send(newUserAdminMsg);
-
-                    // finalize function
-                    return {
-                        statusCode: 200,
-                        body: "account submitted and emails sent"
-                    }
-                } catch (e) {
-                    return {
-                        statusCode: e.response.status,
-                        body: "Account error with sending emails"
-                    }
-                }
-
             } catch(e) {
                 /* -------------------------------------------------------------------------- */
                 /*                      Catch for failed Account creation                     */
                 /* -------------------------------------------------------------------------- */
                 console.log("account submission error", e);
 
-                /* -------------------------------------------------------------------------- */
-                /*                    Send emails for failed account creation                */
-                /* -------------------------------------------------------------------------- */
-                try {
-                    /* --------------------------- New user message ---------------------------- */
-                    const newUserMsg = {
-                        to: userEmail,
-                        from: 'info@goplaynw.com',
-                        subject: 'Go Play NW New User Account',
-                        text: `Hello ${displayName}, Unfortunately there was a problem adding your account. It's possible that you already have an account with us if you had an account on our old site. As our reset password is broken right now you can go to our old site at https://admin.goplaynw.com and reset it there. Once reset it will work on our new site. If you have any questions you can reply to this message.`,
-                        html: `Hello ${displayName}, Unfortunately there was a problem adding your account. It's possible that you already have an account with us if you had an account on our old site. As our reset password is broken right now you can go to our old site at https://admin.goplaynw.com and reset it there. Once reset it will work on our new site. An email has been sent to our admin staff to see what is wrong. If you have any questions you can reply to this message.`,
-                    }
 
-                    await sgMail.send(newUserMsg);
-                    /* --------------------------- Admin user message --------------------------- */
-                    const newUserAdminMsg = {
-                        to: 'info@goplaynw.com',
-                        from: 'info@goplaynw.com',
-                        subject: 'New User Account Creation Failed',
-                        text: `The user ${displayName} attempted but failed to create an account. Not sure why it failed. Email: ${userEmail}; Full name: ${firstName} ${lastName}; userNicename: ${userNicename}`,
-                        html: `The user ${displayName} attempted but failed to create an account. Not sure why it failed. Email: ${userEmail}; Full name: ${firstName} ${lastName}; userNicename: ${userNicename}`,
-                    }
-                    await sgMail.send(newUserAdminMsg);
-
-                    // finalize function
-                    return {
-                        statusCode: 500,
-                        body: "account creation failed and emails sent"
-                    }
-                } catch (e) {
-                    return {
-                        statusCode: e.response.status,
-                        body: "account creation failed. now emails sent"
-                    }
-                }
-                
-            }
-        } else {
-            /* ------------- Send email that user exists with that username ------------- */
-            try {
-                console.log("3b. user exists send email");
-                /* --------------------------- New user message ---------------------------- */
-                const newUserMsg = {
-                    to: userEmail,
-                    from: 'info@goplaynw.com',
-                    subject: 'Go Play NW New User Account',
-                    text: `Hello ${displayName}, there is already an account set up with the username ${userNicename}. If you had an account on the old Go Play NW site with this username you can login with the same login/password on the new account! If you did not have an account then please choose a different password.`,
-                    html: `Hello ${displayName}, there is already an account set up with the username ${userNicename}. If you had an account on the old Go Play NW site with this username you can login with the same login/password on the new account! If you did not have an account then please choose a different password.`,
-                }
-
-                await sgMail.send(newUserMsg);
-
-                /* --------------------------- Admin user message --------------------------- */
-                const newUserAdminMsg = {
-                    to: 'info@goplaynw.com',
-                    from: 'info@goplaynw.com',
-                    subject: 'New User Account Creation Failed',
-                    text: `The user ${displayName} attempted but failed to create an account due to the same username ${userNicename} already being in the system. They have been emailed explaining this. Email: ${userEmail}; Full name: ${firstName} ${lastName}; userNicename: ${userNicename}`,
-                    html: `The user ${displayName} attempted but failed to create an account due to the same username ${userNicename} already being in the system. They have been emailed explaining this. Email: ${userEmail}; Full name: ${firstName} ${lastName}; userNicename: ${userNicename}`,
-                }
-                await sgMail.send(newUserAdminMsg);
-
-                // finalize function
-                return {
-                    statusCode: 500,
-                    body: "account creation failed due to same username and emails sent"
-                }
-            } catch (e) {
-                return {
-                    statusCode: e.response.status,
-                    body: "account creation failed due to same username and emails failed to send"
-                }
             }
         }
  
