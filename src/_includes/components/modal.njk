@@ -3,6 +3,7 @@
     <div x-cloak x-show="(modal)" x-transition 
     class="fixed inset-0 z-40 flex items-center justify-center bg-backdrop" 
     style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);"
+    @click.stop="modal = false"
     >
         {# Modal #}
         <div 
@@ -10,7 +11,7 @@
         class="transition-all rounded-md shadow h-80 p-base bg-primary" 
         :class="user && 'h-96'"
         style="max-height: 90%; max-width: 90%"
-        @click.outside="modal = false">
+        @click.stop="">
             {{ login() }}
             {{ spinner() }}
             {{ userInfo() }}
