@@ -246,6 +246,9 @@ document.addEventListener('alpine:init', () => {
       async bookEvent(id) {
         let data = await fetchData('/bookings/bookMeIntoGame',{method: 'POST',body: { gameId: id }})
         if (!data) this.$dispatch('toast', 'ERROR: booking change failed')
+        if (data.status != null && data.status === 'FAILURE') {
+          if (!data) this.$dispatch('toast', 'ERROR: ' + data.message)
+        }
         if (data) this.getBookedEvents()
         return data
       },
