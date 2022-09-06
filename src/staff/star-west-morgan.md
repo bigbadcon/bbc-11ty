@@ -1,7 +1,7 @@
 ---
 tags: staff
 published: true
-order: 4
+order: 5
 title: Star West-Morgan
 position: Technology Committee
 gender: "(he/him)"
