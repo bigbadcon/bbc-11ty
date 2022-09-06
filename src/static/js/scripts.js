@@ -245,12 +245,14 @@ document.addEventListener('alpine:init', () => {
       },
       async bookEvent(id) {
         let data = await fetchData('/bookings/bookMeIntoGame',{method: 'POST',body: { gameId: id }})
-        this.getBookedEvents()
+        if (!data) this.$dispatch('toast', 'ERROR: booking change failed')
+        if (data) this.getBookedEvents()
         return data
       },
       async cancelBooking(id) {
         let data = await fetchData('/bookings/removeMeFromGame',{method: 'DELETE',body: { gameId: id, guid: id }})
-        this.getBookedEvents()
+        if (!data) this.$dispatch('toast', 'ERROR: booking change failed')
+        if (data) this.getBookedEvents()
         return data
       },
       async getFavEvents() {

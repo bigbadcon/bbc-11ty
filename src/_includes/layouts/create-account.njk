@@ -6,14 +6,14 @@
 
 {% block content %}
     <main id="content">
-        <div class="mx-auto max-w-content p-base px-lg bg-card rounded-md shadow-md">
+        <div class="mx-auto rounded-md shadow-md max-w-content p-base px-lg bg-card">
             <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
             <div class="prose">{{ content | safe }}</div>
             <section class="my-base text-body"
                 x-data="createAccount"
                 x-effect="displayName = (howToDisplay === 'nickname') ? nickname : firstName + ' ' + lastName;">
                 <div class="prose" x-cloak x-show="isAuth && user">
-                    <p>Hi, you are signed in as <span x-text="$user && user.displayName" class="font-bold"></span>. If you would like to create a new account please logout first.
+                    <p>Hi, you are signed in as <span x-text="user && user.displayName" class="font-bold"></span>. If you would like to create a new account please logout first.
                     </p>
                     <p>
                         <button class="button" @click="logout()">Logout</button>
@@ -45,7 +45,8 @@
                         <div class="flex items-center">
                             <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-model="agree" required>
                             <label for="agree-to-community-standards" class="text-body-highlight"3324>
-                                Yes &mdash; I agree to the Go Play NW <a href="/code-of-conduct">Code of Conduct</a> <span class="font-bold text-highlight">*</span>
+                                Yes &mdash; I agree to the Go Play NW <a href="/code-of-conduct">Code of Conduct</a>
+                                <span class="font-bold text-highlight">*</span>
                             </label>
                         </div>
                     </fieldset>
@@ -60,8 +61,8 @@
                                 <div x-show="userNicenameExists" class="italic font-bold text-highlight">user name already exists</div>
                             </div>
                             <div>
-                                <label for="userEmail" class="text-xs uppercase">Email <span class="font-bold text-highlight">*</span></label>
-                                <input class="w-64" id="userEmail" name="userEmail" required type="email" value="" x-model="userEmail" autocapitalize="off" autocorrect="off" spellcheck="false"/>
+                                <label for="userEmailCreateAccount" class="text-xs uppercase">Email <span class="font-bold text-highlight">*</span></label>
+                                <input class="w-64" id="userEmailCreateAccount" name="userEmail" required type="email" value="" x-model="userEmail" autocapitalize="off" autocorrect="off" spellcheck="false"/>
                             </div>
                             <div>
                                 <label for="userPass" class="text-xs uppercase">Password <span class="font-bold text-highlight">*</span></label>
