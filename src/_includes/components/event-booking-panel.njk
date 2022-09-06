@@ -32,6 +32,9 @@
             <span x-show="spacesOpen <= 0 && !isBooked({{event.eventId}})" class="font-bold">Event is full</span>
             <button class="button" x-show="isBooked({{event.eventId}}) && user && user.displayName !== owner" @click="cancelBooking({{event.eventId}})">Cancel Booking</span>
         </div>
+        <div x-show="user.displayName === owner">
+            You are the owner of this event. If you need to cancel this event please contact us.
+        </div>
         <div x-show="(isTeen && !isAllAges) ? true : false" class="italic mt-base">
             This is an 18+ only event. Teens are only allowed in All Ages events.
         </div>
