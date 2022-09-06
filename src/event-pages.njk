@@ -9,7 +9,7 @@ eleventyComputed:
     title: "{{ event.eventName | safe }}"
     ogAPIImage: "https://v1.screenshot.11ty.dev/https%3A%2F%2Fwww.bigbadcon.com%2Fog%2Fevents%2F{{event.eventSlug}}%2F/opengraph/"
 ---
-{% set categoryArray = event.categories | simpleCategoryArray %}
+{% set categoryArray = event.categories %}
 
 {% set src = "" %}
 {% if (event.metadata.event_image) %}
@@ -44,7 +44,7 @@ eleventyComputed:
     <div class="not-prose">
         <ul class="flex justify-start text-sm gap-xs">
             {% for category in event.categories %}
-                <li class="rounded-full px-sm py-[.15rem] bg-card text-body">{{ category.name }}</li>
+                <li class="rounded-full px-sm py-[.15rem] bg-card text-body">{{ category }}</li>
             {% endfor %}
         </ul>
     </div>
@@ -87,9 +87,17 @@ eleventyComputed:
 <div class="prose event-description">{{event.postContent | nl2br | safe }}</div>
 {# Event Signup / Booking #}
 {# TODO: make this visible for all when events open. Figure out a way to set this automatically. #}
-{% set categoryArray = event.categories | simpleCategoryArray %}
-{% if ('Early Signup' in categoryArray) %}
-    {% include 'components/event-booking-panel.njk' %}
+{# TODO: when do we want event signups to start? 9/25 12pm PT #}
+{# TODO: If this is a Small Press event then make sure they sign up on the form #}
+
+{# Ad hoc form for PoC Dinner 3263 #}
+{% if event.id == 3263 %}
+    {% include 'components/poc-dinner-form.njk' %}
+{% else %}
+    {% set categoryArray = event.categories %}
+    {% if ('Early Signup' in categoryArray) %}
+        {% include 'components/event-booking-panel.njk' %}
+    {% endif %}
 {% endif %}
 {# Event links #}
 <div class="flex flex-wrap justify-between max-w-full prose border-t-2 border-b-2 mt-md border-hr py-sm gap-base">

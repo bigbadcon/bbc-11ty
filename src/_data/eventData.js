@@ -7,6 +7,7 @@ var utc = require('dayjs/plugin/utc')
 var timezone = require('dayjs/plugin/timezone')
 dayjs.extend(utc)
 dayjs.extend(timezone)
+const environment = process.env.CONTEXT
 
 /* ------------------------- Convert odd characters ------------------------- */
 const decodeText = text => {
@@ -43,7 +44,7 @@ module.exports = async () => {
         // TODO: figure out a better way to handle this for main vs drafts
         // 0: draft or pending, 1: published, -1: trashed
         // TODO: issue found is that eventStatus = null when it is moved to trash back to drafts?
-        data = data.filter(event => event.eventStatus === 1);
+        if (environment === "production") data = data.filter(event => event.eventStatus === 1);
         // TODO: fix this as it is a kludge as we are hard coding the date
         data = data.filter(event => dayjs(event.eventStartDate).isAfter(dayjs('2022-09-01')));
 
@@ -72,18 +73,14 @@ module.exports = async () => {
                 eventStartDateTime: eventStartDateTime, // native javascript date object
                 eventEndDateTime: eventEndDateTime, // native javascript date object
                 eventSlug: event.eventSlug.toLowerCase(), // force lowercase
-                categoriesAlpineArray: arrayToStringForAlpine()
+                categories: event.categories.map(val => val.name) // convert to simple array
             }
         })
 
-        /* -------------------- Function to check for categories -------------------- */
-        function hasCategory(event, type) {
-            return event.categories.some(category => category.slug === type)
-        }
         /* ------------------ Separate Events from Volunteer shifts ----------------- */
-        const events = data.filter(event => !hasCategory(event, "volunteer-shift"))
+        const events = data.filter(event => !event.categories.some(category => category === "Volunteer Shift"))
         // console.log(events);
-        const volunteer = data.filter(event => hasCategory(event, "volunteer-shift"))
+        const volunteer = data.filter(event => event.categories.some(category => category === "Volunteer Shift"))
 
         /* ------------------- Sort by start time& alphabetically ------------------- */
         // TODO: why is alphabetically not sorting right

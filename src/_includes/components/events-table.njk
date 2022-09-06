@@ -33,8 +33,8 @@
                 {# isFav is in Alpine.data("global") #}
                 {# build event catagories array for filter button #}
                 <tr 
-                x-data="{category: [{{event.categoriesAlpineArray}}]}"
-                x-show="(typeof filter.category !== 'string' || filter.category === 'All' || category.includes(filter.category)) && (!filter.favsOnly || isFav({{event.eventId}}))" >
+                x-data="{categories: [{{event.categories | alpineArray}}]}"
+                x-show="(typeof filter.category !== 'string' || filter.category === 'All' || categories.includes(filter.category)) && (!filter.favsOnly || isFav({{event.eventId}}))" >
 
                     {# Event Name #}
                     <td class="events-table-cell--name">
@@ -58,7 +58,7 @@
                     <td class="events-table-cell--categories">
                         <div class="flex flex-wrap mt-2xs sm:mt-0 gap-2xs">
                             {% for category in event.categories %}
-                                <span class="text-xs rounded-full px-xs py-[.15rem] bg-card whitespace-nowrap">{{category.name | replace('Game', '') | trim}}</span>
+                                <span class="text-xs rounded-full px-xs py-[.15rem] bg-card whitespace-nowrap">{{category | replace('Game', '') | trim}}</span>
                             {% endfor %}
                         </div>
                     </td>
