@@ -1,7 +1,7 @@
 ---
 tags: staff
 published: true
-order: 5
+order: 3
 title: Angela Lemus-Mogrovejo
 position: Diversity and Equity Consultant
 gender: "(she/her)"
