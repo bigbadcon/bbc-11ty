@@ -7,7 +7,7 @@ const apiBaseUrl = 'https://api-dev.goplaynw.org/'
 const apiKey = `ApiKey ${process.env.BBC_API_KEY}`
 // headers: {"x-api-key": apiKey}
 
-exports.handler = async function(event, context) {
+exports.handler = async function (event, context) {
 
     if (event.httpMethod === 'POST') {
         // grab all queries
@@ -41,10 +41,11 @@ exports.handler = async function(event, context) {
             system,
             tableType,
             triggerWarnings,
-            userDisplayName
+            userDisplayName,
+            eventImage
         } = eventBody
 
-        const headers = { 
+        const headers = {
             'Content-Type': 'application/json;charset=utf-8',
             // Authorization: authToken,
             "x-api-key": apiKey
@@ -77,7 +78,8 @@ exports.handler = async function(event, context) {
             system,
             tableType,
             triggerWarnings,
-            userDisplayName
+            userDisplayName,
+            eventImage
         }
 
         // const headers = { headers: {"x-api-key": apiKey} }
@@ -87,14 +89,23 @@ exports.handler = async function(event, context) {
             const res = await axios.post(apiBaseUrl + `/events/create`, body, headers)
 
             if (res.status === 200) {
-                return {
-                    statusCode: 200,
-                    body: `events/create sent for ${eventName}`,
-                }
-            } else {
-                return {
-                    statusCode: 500,
-                    body: `events/create failed for ${eventName}`
+                if (event.eventImage != null) {
+                    const imgRes = await axios.post(apiBaseUrl + `/events/image`, body.eventImage, headers)
+                    if (imgRes.status === 500) {
+                        return {
+                            statusCode: 500,
+                            body: `events/image (image upload) failed for ${eventName}`
+                        }
+                    }
+                    return {
+                        statusCode: 200,
+                        body: `events/create sent for ${eventName}`,
+                    }
+                } else {
+                    return {
+                        statusCode: 500,
+                        body: `events/create failed for ${eventName}`
+                    }
                 }
             }
         } catch (err) {
