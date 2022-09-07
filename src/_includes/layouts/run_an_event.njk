@@ -340,7 +340,8 @@
                         system: eventInfo.system,
 //                    tableType: eventInfo.tableType,
                         triggerWarnings: eventInfo.triggerWarnings,
-                        userDisplayName: eventInfo.userDisplayName
+                        userDisplayName: eventInfo.userDisplayName,
+                        eventImage: eventInfo.eventImage,
                     }
                 return eventInfo;
             }
@@ -389,6 +390,7 @@
                         // additionalGMs: '', //not required
                         additionalRequirements: '', //not required
                         eventTags: '', //not required
+                        eventImage: '', //not required
                     },
                     get isPersonalInfoComplete() {
                         const x = this.eventInfo;
@@ -458,8 +460,10 @@
                         const y = 0
 
                         const submitNow = () => {
-                            this.createEvent()
+                            let data = this.createEvent()
                             this.eventSubmitted = true
+                            alert(data)
+                            //this.uploadEventImage(data)
                         }
 
                         const scrollEventListener = () => {
@@ -480,6 +484,35 @@
                         let data = await fetchData('/events/create', {
                             method: 'PUT',
                             body: convertToCreateEventAPI(this.eventInfo)
+                        })
+                        return data
+                    },
+                    async uploadEventImage(eventId) {
+                        let imageData = {
+                            eventImage: this.eventInfo.eventImage,
+                            eventId: eventId
+                        }
+                        const formDataObject = new FormData(this.eventInfo)
+
+                        async function customFetch(url, options) {
+                            try {
+                                let response = await fetch(url, options)
+                                console.log(`RESPONSE:fetch for ${url}`, response)
+                                if (response.status !== 200)
+                                    throw `fetch fail status: ${response.status}`
+                                let result = await response.json()
+                                console.log(`RESULT:fetch for ${url}`, result)
+                                return result
+                            } catch (err) {
+                                console.error(`ERROR:fetch for ${url}`, err)
+                                return false
+                            }
+                        }
+                        formDataObject.append('eventId', eventId)
+
+                        let data = await customFetch('/.netlify/functions/submit-event-image', {
+                            method: 'POST',
+                            body: formDataObject
                         })
                         return data
                     },
