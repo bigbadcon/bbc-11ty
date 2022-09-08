@@ -19,7 +19,7 @@ exports.handler = async function(event, context) {
         /*                        2. upload to BBC                       */
         /* -------------------------------------------------------------------------- */
         
-        const headers = { headers: {"x-api-key": apiKey} }
+        const headers = { headers: {"x-api-key": apiKey, "Content-Type": "multipart/form-data",} }
         try {
     
             const res = await axios.post(apiBaseUrl + `events/image`, body, headers)
