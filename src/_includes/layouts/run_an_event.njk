@@ -6,7 +6,7 @@
 
 {% block content %}
     <main id="content">
-        <div class="mx-auto max-w-content p-base px-lg bg-card rounded-md shadow-md">
+        <div class="mx-auto rounded-md shadow-md max-w-content p-base px-lg bg-card">
             <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
             <div class="prose max-w-content2">{{ content | safe }}</div>
             <section class="my-base">
@@ -24,7 +24,7 @@
                                 <em>required field</em>
                             </p>
                         </header>
-                        <form action="post" class="mt-base" id="form-run-an-event" @submit.prevent="submitEvent">
+                        <form id="form" action="post" class="mt-base" id="form-run-an-event" @submit.prevent="submitEvent">
                             {# TODO: add honeypot #}
                             <input type="hidden" x-model="eventInfo.userDisplayName" x-init="eventInfo.userDisplayName = user && user.displayName; $watch('user', value => eventInfo.userDisplayName = value && value.displayName)">
                             {# Personal Info #}
@@ -156,8 +156,8 @@
                                 {# No Content Advisory vs Adult themes. Then add new list which is meta #}
                                 <div class="required">
                                     <div>
-                                    <label for="triggerWarnings">Content Warnings</label>
-                                    <input id="triggerWarnings" name="triggerWarnings" type="text" value="" x-model="eventInfo.triggerWarnings" class="w-full max-w-md"/>
+                                        <label for="triggerWarnings">Content Warnings</label>
+                                        <input id="triggerWarnings" name="triggerWarnings" type="text" value="" x-model="eventInfo.triggerWarnings" class="w-full max-w-md"/>
                                     </div>
                                 </div>
                                 <div x-show="isGame">
@@ -173,8 +173,8 @@
                                 </div>
                                 <div x-show="isGame">
                                     <label>Accessibility Options</label>
-                                        <div class="checkbox-grid">
-                                            <template x-for="(type, i) in accessibilityOptions">
+                                    <div class="checkbox-grid">
+                                        <template x-for="(type, i) in accessibilityOptions">
                                             <div class="flex items-center">
                                                 <input type="checkbox" :name="'accessibilityOptions' + i" :id="'accessibilityOptions' + i" :value="type" @change="setCheckboxArray($el,'accessibilityOptions')">
                                                 <label :for="'accessibilityOptions' + i" x-text="type"></label>
@@ -264,85 +264,84 @@
 
             function convertToCreateEventAPI(eventInfo) {
                 // const eventMetadataIds = [
-                    //...eventInfo.playerContributions,
-                    // ...eventInfo.gameTags,
-                    // ...eventInfo.gameFocus,
-                    // ...eventInfo.gameMood,
-                    // ...eventInfo.gameGenre,
-                    // ...eventInfo.contentAdvisoryOptions,
-                    // ...eventInfo.panelTopic
+                //...eventInfo.playerContributions,
+                // ...eventInfo.gameTags,
+                // ...eventInfo.gameFocus,
+                // ...eventInfo.gameMood,
+                // ...eventInfo.gameGenre,
+                // ...eventInfo.contentAdvisoryOptions,
+                // ...eventInfo.panelTopic
                 // ].map(id => parseInt(id));
 
-
                 const scheduleTimeDetails = {
-                        "Saturday Morning": {
-                            "date": "2022-10-01",
-                            "time": "09:30:00"
-                        },
-                        "Saturday Afternoon": {
-                            "date": "2022-10-01",
-                            "time": "14:00:00"
-                        },
-                        "Saturday Evening": {
-                            "date": "2022-10-01",
-                            "time": "19:00:00"
-                        },
-                        "Sunday Morning": {
-                            "date": "2022-10-02",
-                            "time": "11:00:00"
-                        },
-                        "Sunday Afternoon": {
-                            "date": "2022-10-02",
-                            "time": "16:00:00"
-                        }
-                    };
-
-                    eventInfo = {
-                        accessabilityOptions: eventInfo
-                            .accessibilityOptions
-                            .toString(),
-                        additionalGms: null, //eventInfo.additionalGMs,
-                        additionalRequirements: eventInfo.additionalRequirements, // + " Room Request: " + eventInfo.locationPref,
-                        characters: eventInfo.characters,
-                        contentAdvisory: 0, //eventInfo.contentAdvisory !== "Yes", // this is a boolean in the API so we are using 1000000 is no-content-advisory; selection info goes into the eventMetadataIds
-                        eventCategoryId: parseInt(eventInfo.format),
-                        eventDescription: eventInfo.eventDescription,
-                        //eventFacilitators: eventInfo.facilitators,
-                        eventMetadataIds: [], //eventMetadataIds,
-                        eventName: eventInfo.eventName,
-                        format: eventInfo.format,
-                        gm: eventInfo.publicName,
-                        gmAge: '18+', //dummy value
-                        length: eventInfo.eventLength,
-                        minPlayers: eventInfo.minPlayers,
-                        otherInfo: eventInfo.otherInfo,
-                        playerAge: '18+', //dummy value
-                        players: eventInfo.maxPlayers,
-                        playtest: 0,
-                        // playtest: (eventInfo.playtest === 'Yes')
-                        //     ? 1
-                        //     : 0,
-                        requestMediaEquipment: eventInfo.requestMediaEquipment === "Yes",
-                        requestMediaRoom: eventInfo.requestMediaRoom === "Yes",
-//                    requestPrivateRoom: eventInfo.locationPref !== "No Preference", // add extra to additionalRequirements for now
-                        runNumberOfTimes: 1, //dummy value
-                        safetyTools: eventInfo
-                            .safetyTools
-                            .toString(),
-                        schedulingPref: eventInfo
-                            .schedulePref
-                            .toString(),
-                        eventStartDate: scheduleTimeDetails[eventInfo.schedulePref].date,
-                        eventStartTime: scheduleTimeDetails[eventInfo.schedulePref].time,
-                        eventTags: eventInfo
-                            .eventTags
-                            .toString(),
-                        system: eventInfo.system,
-//                    tableType: eventInfo.tableType,
-                        triggerWarnings: eventInfo.triggerWarnings,
-                        userDisplayName: eventInfo.userDisplayName,
-                        eventImage: eventInfo.eventImage,
+                    "Saturday Morning": {
+                        "date": "2022-10-01",
+                        "time": "09:30:00"
+                    },
+                    "Saturday Afternoon": {
+                        "date": "2022-10-01",
+                        "time": "14:00:00"
+                    },
+                    "Saturday Evening": {
+                        "date": "2022-10-01",
+                        "time": "19:00:00"
+                    },
+                    "Sunday Morning": {
+                        "date": "2022-10-02",
+                        "time": "11:00:00"
+                    },
+                    "Sunday Afternoon": {
+                        "date": "2022-10-02",
+                        "time": "16:00:00"
                     }
+                };
+
+                eventInfo = {
+                    accessabilityOptions: eventInfo
+                        .accessibilityOptions
+                        .toString(),
+                    additionalGms: null, //eventInfo.additionalGMs,
+                    additionalRequirements: eventInfo.additionalRequirements, // + " Room Request: " + eventInfo.locationPref,
+                    characters: eventInfo.characters,
+                    contentAdvisory: 0, //eventInfo.contentAdvisory !== "Yes",  this is a boolean in the API so we are using 1000000 is no-content-advisory; selection info goes into the eventMetadataIds
+                    eventCategoryId: parseInt(eventInfo.format),
+                    eventDescription: eventInfo.eventDescription,
+                    //eventFacilitators: eventInfo.facilitators,
+                    eventMetadataIds: [], //eventMetadataIds,
+                    eventName: eventInfo.eventName,
+                    format: eventInfo.format,
+                    gm: eventInfo.publicName,
+                    gmAge: '18+', //dummy value
+                    length: eventInfo.eventLength,
+                    minPlayers: eventInfo.minPlayers,
+                    otherInfo: eventInfo.otherInfo,
+                    playerAge: '18+', //dummy value
+                    players: eventInfo.maxPlayers,
+                    playtest: 0,
+                    // playtest: (eventInfo.playtest === 'Yes')
+                    //     ? 1
+                    //     : 0,
+                    requestMediaEquipment: eventInfo.requestMediaEquipment === "Yes",
+                    requestMediaRoom: eventInfo.requestMediaRoom === "Yes",
+                    //                    requestPrivateRoom: eventInfo.locationPref !== "No Preference",  add extra to additionalRequirements for now
+                    runNumberOfTimes: 1, //dummy value
+                    safetyTools: eventInfo
+                        .safetyTools
+                        .toString(),
+                    schedulingPref: eventInfo
+                        .schedulePref
+                        .toString(),
+                    eventStartDate: scheduleTimeDetails[eventInfo.schedulePref].date,
+                    eventStartTime: scheduleTimeDetails[eventInfo.schedulePref].time,
+                    eventTags: eventInfo
+                        .eventTags
+                        .toString(),
+                    system: eventInfo.system,
+                    //                    tableType: eventInfo.tableType,
+                    triggerWarnings: eventInfo.triggerWarnings,
+                    userDisplayName: eventInfo.userDisplayName,
+                    eventImage: eventInfo.eventImage
+                }
                 return eventInfo;
             }
 
@@ -352,27 +351,27 @@
                     eventInfo: {
                         // -- Personal Info
                         publicName: '', //required
-                        //yourAge: '', //required
+                        //yourAge: '', required
                         communityStandards: false,
                         // -- Event Info
                         eventName: '', //required
                         format: '', //required
                         system: '', //required only isGame
-//                        playtest: '', //required only isGame
+                        //                        playtest: '', required only isGame
                         eventDescription: '', //required
                         otherInfo: '',
                         // imageUpload not working yet
                         // -- Player Info
-                        //playerAge: '', //required if yourAge = "18+"
+                        //playerAge: '', required if yourAge = "18+"
                         minPlayers: '', //required if isGame
                         maxPlayers: '', //required if isGame
                         characters: '', //not required
                         // -- Scheduling Info
-//                        runNumberOfTimes: '', //required
-//                        locationPref: '', //required if isTabletop
-//                        tableType: '', //required if Board/Card game
-//                        mediaEquipment: '', //required if not isGame
-//                        mediaEquipmentRequested: '', //required if mediaEquipment = "Equipment Requested"
+                        //                        runNumberOfTimes: '', required
+                        //                        locationPref: '', required if isTabletop
+                        //                        tableType: '', required if Board/Card game
+                        //                        mediaEquipment: '', required if not isGame
+                        //                        mediaEquipmentRequested: '', required if mediaEquipment = "Equipment Requested"
                         eventLength: null, //required
                         schedulePref: '', // not required
                         // -- Content Advisory
@@ -383,11 +382,11 @@
                         // -- Additional Info
                         panelTopic: '', //not required
                         gameTags: '', //not required
-                        // gameFocus: '', //not required
-                        // playerContributions: '', //not required
-                        // gameGenre: '', //not required
-                        // gameMood: '', //not required
-                        // additionalGMs: '', //not required
+                        // gameFocus: '', not required
+                        // playerContributions: '', not required
+                        // gameGenre: '', not required
+                        // gameMood: '', not required
+                        // additionalGMs: '', not required
                         additionalRequirements: '', //not required
                         eventTags: '', //not required
                         eventImage: '', //not required
@@ -404,7 +403,7 @@
                             fields = [
                                 ...fields,
                                 x.system //,
-//                                x.playtest
+                                //                                x.playtest
                             ]
                             // otherInfo and image upload not required
                         return (this.isPersonalInfoComplete && fields.every(isFull));
@@ -413,7 +412,7 @@
                         const x = this.eventInfo;
                         //let fields = [x.playerAge, x.minPlayers, x.maxPlayers]
                         let fields = [x.minPlayers, x.maxPlayers]
-                        if (this.isRPGorLARP)
+                        if (this.isRPGorLARP) 
                             fields = [
                                 ...fields,
                                 x.characters
@@ -489,16 +488,15 @@
                         return id;
                     },
                     async uploadEventImage(eventId) {
-                        const imageData = {
-                            eventImage: this.eventInfo.eventImage,
-                            eventId: eventId.toString()
-                        }
+                        const form = getElementById('form')
+                        const formData = new FormData(form)
+                        formData.append('eventId', eventId.toString());
 
                         async function customFetch(url, options) {
                             try {
                                 let response = await fetch(url, options)
                                 console.log(`RESPONSE:fetch for ${url}`, response)
-                                if (response.status !== 200)
+                                if (response.status !== 200) 
                                     throw `fetch fail status: ${response.status}`
                                 let result = await response.json()
                                 console.log(`RESULT:fetch for ${url}`, result)
@@ -511,7 +509,7 @@
 
                         let data = await customFetch('/.netlify/functions/submit-event-image', {
                             method: 'POST',
-                            body: imageData
+                            body: formData
                         })
                         return data
                     },
@@ -593,13 +591,7 @@
                         //     "Saturday 10AM-6PM",
                         //     "Saturday 2PM-10PM",
                         //     "Sunday 10AM-6PM"],
-                        "-1": [
-                            "Saturday Morning",
-                            "Saturday Afternoon",
-                            "Saturday Evening",
-                            "Sunday Morning",
-                            "Sunday Afternoon"
-                        ],
+                        "-1": ["Saturday Morning", "Saturday Afternoon", "Saturday Evening", "Sunday Morning", "Sunday Afternoon"]
                     },
                     findName(array, name) {
                         return array.find(e => e.name === name)
@@ -628,8 +620,7 @@
                             "id": 27,
                             "name": "Board/Card Game",
                             "slug": "board-card-game"
-                        },
-                        {
+                        }, {
                             "id": 28,
                             "name": "LARP",
                             "slug": "larp"
@@ -720,11 +711,7 @@
                         'Other'
                     ],
                     accessibilityOptions: [
-                        'Text Only',
-                        'Outside Portal/Site',
-                        'Video',
-                        'Audio/Voice',
-                        'Other'
+                        'Text Only', 'Outside Portal/Site', 'Video', 'Audio/Voice', 'Other'
                     ],
                     eventTags: [
                         'Diceless',
@@ -734,7 +721,7 @@
                         'Other',
                         'Playtest',
                         'Run by Designer',
-                        'World Building',
+                        'World Building'
                     ]
                 }
             })
