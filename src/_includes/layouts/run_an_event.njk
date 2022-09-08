@@ -485,15 +485,15 @@
                         });
                         const id = await data
                         alert(id)
-                        //this.uploadEventImage(id)
+                        await this.uploadEventImage(id)
                         return id;
                     },
                     async uploadEventImage(eventId) {
-                        let imageData = {
+                        const imageData = {
                             eventImage: this.eventInfo.eventImage,
                             eventId: eventId
                         }
-                        const formDataObject = new FormData(this.eventInfo)
+                        const formDataObject = new FormData(imageData)
 
                         async function customFetch(url, options) {
                             try {
