@@ -460,10 +460,8 @@
                         const y = 0
 
                         const submitNow = () => {
-                            let data = this.createEvent()
+                            this.createEvent()
                             this.eventSubmitted = true
-                            alert(data)
-                            //this.uploadEventImage(data)
                         }
 
                         const scrollEventListener = () => {
@@ -481,13 +479,16 @@
                     async createEvent() {
                         const eventInfo = convertToCreateEventAPI(this.eventInfo)
                         console.log(eventInfo);
-                        let data = await fetchData('/events/create', {
+                        const data = await fetchData('/events/create', {
                             method: 'PUT',
                             body: convertToCreateEventAPI(this.eventInfo)
                         })
                             .then(function(response) {return response.text()})
-                            .then(function(data)
-                            {return data});
+                            .then(function(data){
+                                alert(data)
+                                //this.uploadEventImage(data)
+                                return data
+                            });
                         return data;
                     },
                     async uploadEventImage(eventId) {
