@@ -480,12 +480,15 @@
                     },
                     async createEvent() {
                         const eventInfo = convertToCreateEventAPI(this.eventInfo)
-                        console.log(eventInfo)
+                        console.log(eventInfo);
                         let data = await fetchData('/events/create', {
                             method: 'PUT',
                             body: convertToCreateEventAPI(this.eventInfo)
                         })
-                        return data
+                            .then(function(response) {return response.text()})
+                            .then(function(data)
+                            {return data});
+                        return data;
                     },
                     async uploadEventImage(eventId) {
                         let imageData = {
