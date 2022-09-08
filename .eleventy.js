@@ -157,6 +157,9 @@ module.exports = (eleventyConfig) => {
   // event year
   eleventyConfig.addFilter("eventYear", (event) => event.eventStartDate.slice(0,4));
 
+  // check to see if date is in the past; used for turning on/off parts based on date like the game booking
+  eleventyConfig.addFilter("isPastDate", (date) => dayjs().isAfter(dayjs(date)));
+
   // decode text
   eleventyConfig.addFilter("decodeText", (text) => decodeText(text))
   
@@ -204,7 +207,6 @@ module.exports = (eleventyConfig) => {
     const today = new Date();
     return dayjs(today).format("YYYYMMDD");
   });
-
 
   // SVG Sprite Shortcode
   eleventyConfig.addShortcode("icon", function(icon = "star", fill="fill-highlight") {
