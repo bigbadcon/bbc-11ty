@@ -17,12 +17,12 @@ Let’s meet new people and play fun games!
 
 At Go Play NW, games are important, but people are more important. Our fun should not come at the cost of another’s safety and comfort. Let’s take care of ourselves and those around us by respecting the identity, presentation, and autonomy of all people in our space.
 
-* Respect yourself! And others
+* Respect yourself! And others.
 * Welcome new people enthusiastically. Everyone has the power to both play and run games. We can contribute by actively creating fun games.
 * Acknowledge the larger context in which our games operate.
 
 #### Anti-Racism Statement
-Like society in general, racism permeates geek culture and geek spaces, making them less welcoming and safe for POC (People of Color). At Go Play NW, we commit ourselves to prioritizing the voices of people who are often spoken over or erased in geek spaces, and make Go Play NW as accessible as we can to people from all racial backgrounds. We stand united against white supremacy, neo-Nazis, and the “alt-right.” We denounce their toxic hate, fear, and violence.
+Like society in general, racism permeates geek culture and geek spaces, making them less welcoming and safe for People of Color (POC). At Go Play NW, we commit ourselves to prioritizing the voices of people who are often spoken over or erased in geek spaces, and make Go Play NW as accessible as we can to people from all racial backgrounds. We stand united against white supremacy, neo-Nazis, and the “alt-right.” We denounce their toxic hate, fear, and violence.
 
 #### Iconography Policy
 As we strive to provide a welcoming, safe environment for all attendees, symbols associated with historical atrocities, current hate groups, or material promoting bigotry are strictly forbidden from the convention. This includes (but is not limited to) swastikas, Nazi uniforms, and paraphernalia associated with these organizations. This also extends to any memes, jokes, or off-hand comments made in Discord channels which promote bigotry including (but not limited to) neo-facscism, anti-trans or transphobic rhetoric, xenophobia, anti-Semitism, ableism, fatphobia, or classism.
@@ -57,7 +57,7 @@ If you are being harassed or have any other concerns, please reach out to a memb
 
 Participate in Go Play NW events with empathy and patience.
 
-* Events like the donut may have limited space, and the games on offer are not guaranteed. _It’s okay to be disappointed, but it’s not okay to be rude to Go Play NW staff._
+* Events like the Donut may have limited space, and the games on offer are not guaranteed. _It’s okay to be disappointed, but it’s not okay to be rude to Go Play NW staff._
 * Go Play NW staff work hard, but during peak times, they can have limited capacity. _We can support them by approaching waits patiently and requesting attention politely._
 * Not every conversation is appropriate for every space. _Staff may request that online conversation be moved to a different channel, or off of the public Discord._
 
