@@ -6,4 +6,4 @@ tags: pages
 
 ---
 
-Thank you for contributing to the PoC Dinner!
+Thank you for contributing to the [PoC Dinner](/events/poc-dinner/)!

@@ -11,7 +11,7 @@
             <input type="hidden" name="userId" :value="user && user.id" x-validate/>
             <input type="hidden" name="userEmail" :value="user && user.userEmail" x-validate/>
             <input type="hidden" name="userDisplayName" :value="user && user.displayName" x-validate>
-            <input type="hidden" name="productType" value="poc dinner" x-validate>
+            <input type="hidden" name="productType" value="poc-dinner" x-validate>
             {# There should be only one PoC Dinner product which we incluse as a hidden field #}
             {% for price in prices %}
                 {% if "PoC Dinner" in price.product.name %}
