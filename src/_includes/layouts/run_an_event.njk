@@ -80,9 +80,9 @@
                                     <textarea cols="30" id="eventDescription" name="eventDescription" rows="3" x-model="eventInfo.eventDescription" @blur="validate"></textarea>
                                 </div>
                                 <div>
-                                    <label for="eventImage">Event Image</label>
+                                    <label for="file">Event Image</label>
                                     <p class="text-sm my-sm">Images are cropped automatically at 16/9 ratio and centered. Images should be mininum 760x428 px and maximum 1,520x856 px (or there abouts) and formatted with jpg or webp (png or gif accepted but generally the former compress better).</p>
-                                    <input type="file" name="eventImage" id="eventImage" accept="image/*" class="mr-base" @change="showPreview">
+                                    <input type="file" name="file" id="file" accept="image/*" class="mr-base" @change="showPreview">
                                     <img id="image-preview" class="hidden object-cover object-center rounded-md my-sm" x-ref="preview" style="aspect-ratio: 16/9"/>
                                 </div>
                                 <div>
@@ -297,7 +297,7 @@
                 };
 
                 eventInfo = {
-                    accessabilityOptions: eventInfo
+                    accessabilityOptions: eventInfo.accessibilityOptions && eventInfo
                         .accessibilityOptions
                         .toString(),
                     additionalGms: null, //eventInfo.additionalGMs,
@@ -325,15 +325,17 @@
                     requestMediaRoom: eventInfo.requestMediaRoom === "Yes",
                     //                    requestPrivateRoom: eventInfo.locationPref !== "No Preference",  add extra to additionalRequirements for now
                     runNumberOfTimes: 1, //dummy value
-                    safetyTools: eventInfo
+                    safetyTools: eventInfo.safetyTools && eventInfo
                         .safetyTools
                         .toString(),
-                    schedulingPref: eventInfo
+                    schedulingPref: eventInfo.schedulePref && eventInfo
                         .schedulePref
                         .toString(),
-                    eventStartDate: scheduleTimeDetails[eventInfo.schedulePref].date,
-                    eventStartTime: scheduleTimeDetails[eventInfo.schedulePref].time,
-                    eventTags: eventInfo
+                    eventStartDate: scheduleTimeDetails[eventInfo.schedulePref]
+                        ?.date,
+                    eventStartTime: scheduleTimeDetails[eventInfo.schedulePref]
+                        ?.time,
+                    eventTags: eventInfo.eventTags && eventInfo
                         .eventTags
                         .toString(),
                     system: eventInfo.system,
@@ -348,6 +350,7 @@
             Alpine.data('runAnEventData', function () {
                 return {
                     eventSubmitted: false,
+                    authToken: this.$persist(""),
                     eventInfo: {
                         // -- Personal Info
                         publicName: '', //required
@@ -483,14 +486,28 @@
                             body: convertToCreateEventAPI(this.eventInfo)
                         });
                         const id = await data
-                        alert(id)
                         await this.uploadEventImage(id)
                         return id;
                     },
                     async uploadEventImage(eventId) {
+                        console.log("🚀 ~ file: run_an_event.njk ~ line 493 ~ uploadEventImage ~ eventId", eventId)
                         const form = document.getElementById('form')
                         const formData = new FormData(form)
-                        formData.append('eventId', eventId.toString());
+                        formData.append('eventId', Number(eventId));
+                        formData.delete('publicName')
+                        formData.delete('agree-to-community-standards')
+                        formData.delete('eventName')
+                        formData.delete('format')
+                        formData.delete('system')
+                        formData.delete('eventDescription')
+                        formData.delete('otherInfo')
+                        formData.delete('minPlayers')
+                        formData.delete('maxPlayers')
+                        formData.delete('characters')
+                        formData.delete('eventLength')
+                        formData.delete('triggerWarnings')
+                        formData.delete('additionalRequirements')
+                        formData.delete('schedulePrefSel')
 
                         async function customFetch(url, options) {
                             try {
@@ -507,11 +524,22 @@
                             }
                         }
 
-                        let data = await customFetch('/.netlify/functions/submit-event-image', {
+                        let data = await customFetch('https://api-dev.goplaynw.org/events/image', {
                             method: 'POST',
-                            body: formData
+                            body: formData,
+                            headers: {
+                                Authorization: this.authToken
+                            }
                         })
                         return data
+                    },
+                    showPreview(e) {
+                        if (e.target.files.length > 0) {
+                            const src = URL.createObjectURL(e.target.files[0]);
+                            const preview = document.getElementById("image-preview");
+                            preview.src = src;
+                            preview.style.display = "block";
+                        }
                     },
                     setCheckboxArray(el, arrayName) {
                         this.eventInfo[arrayName] = this.eventInfo[arrayName] || [];
