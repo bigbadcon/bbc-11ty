@@ -65,8 +65,8 @@
             {% endif %} #}
         </form>
     </section>
-    <div x-cloak x-show="isTeen" class="prose">
-        <p>The PoC Dinner is an 18+ event.</p>
+    <div x-cloak x-show="isTeen" class="font-bold prose rounded-md mt-base bg-card p-base">
+        <p>The PoC Dinner is an 18+ only event.</p>
     </div>
     {# If booked than just show booking panel #}
     <div x-cloak x-show="isBooked({{event.eventId}})">
