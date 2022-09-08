@@ -6,7 +6,7 @@
 
 {% block content %}
 <main id="content">
-    <div class="mx-auto max-w-content p-base px-lg bg-card rounded-md shadow-md">
+    <div class="mx-auto max-w-content p-base px-lg bg-card rounded-md shadow-md" x-show="isAuth">
         <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
         <div class="prose max-w-content2">{{ content | safe }}</div>
         <br />
@@ -21,6 +21,12 @@
             });
         </script>
         <div id="gpnw-eventbrite-widget-trigger"></div>
+    </div>
+    <div class="mx-auto max-w-content p-base px-lg bg-card rounded-md shadow-md" x-show="isAuth">
+        <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
+        <div x-cloak x-show="!isAuth" class="prose">
+            <p>You must be <button @click.stop="modal = 'login'" class="font-bold underline text-highlight">logged in</button> to register for the event.</p>
+        </div>
     </div>
 </main>
 {% endblock %}
