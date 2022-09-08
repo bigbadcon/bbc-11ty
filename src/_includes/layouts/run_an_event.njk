@@ -491,7 +491,7 @@
                     async uploadEventImage(eventId) {
                         const imageData = {
                             eventImage: this.eventInfo.eventImage,
-                            eventId: eventId
+                            eventId: eventId.toString()
                         }
 
                         async function customFetch(url, options) {
