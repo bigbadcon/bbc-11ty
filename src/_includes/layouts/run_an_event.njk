@@ -18,7 +18,7 @@
                 <div x-cloak x-show="isAuth && user" x-data="runAnEventData">
                     <div x-show="!eventSubmitted" id="submit-your-event">
                         <header class="prose">
-                            <h2>Submit Your Event</h2>
+                            <h2>Submit your game</h2>
                             <p>
                                 <span class="font-bold text-highlight">*</span>
                                 <em>required field</em>
@@ -29,9 +29,9 @@
                             <input type="hidden" x-model="eventInfo.userDisplayName" x-init="eventInfo.userDisplayName = user && user.displayName; $watch('user', value => eventInfo.userDisplayName = value && value.displayName)">
                             {# Personal Info #}
                             <fieldset>
-                                <legend>Personal Info</legend>
+                                <legend>Personal info</legend>
                                 <div class="required">
-                                    <label for="publicName">Public Badge Name</label>
+                                    <label for="publicName">Public badge name</label>
                                     <p class="text-xs mb-sm text-body">We encourage attendees to list their first and last names. However, if for privacy reasons you would like to use another name, enter it here.</p>
                                     <input id="publicName" name="publicName" type="text" value=""
                                     x-init="eventInfo.publicName = user && user.displayName; $watch('user', value => eventInfo.publicName = value && value.displayName)"
@@ -39,7 +39,7 @@
                                 </div>
                             </fieldset>
                             <fieldset>
-                                <legend>Community Standards Agreement</legend>
+                                <legend>Code of Conduct agreement</legend>
                                 <div class="prose mb-sm">
                                     <p>Go Play NW is committed to cultivating a culture of respect, support, and kindness at both our in-person and online events. We ask that all of our attendees agree to abide by our Community Standards, please take a moment to read them before answering yes below.</p>
                                     <p>
@@ -57,9 +57,9 @@
                             {# END Personal Info #}
                             {# Event Info - Personal Info must be complete before showing #}
                             <fieldset class="transition-opacity" :class="(isPersonalInfoComplete) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
-                                <legend>Event Info</legend>
+                                <legend>Game info</legend>
                                 <div class="required">
-                                    <label for="eventName">Event Name</label>
+                                    <label for="eventName">Game name</label>
                                     <input id="eventName" name="eventName" type="text" value="" x-model="eventInfo.eventName" @blur="validate" class="w-full max-w-md"/>
                                 </div>
                                 <div class="required">
@@ -80,7 +80,7 @@
                                     <textarea cols="30" id="eventDescription" name="eventDescription" rows="3" x-model="eventInfo.eventDescription" @blur="validate"></textarea>
                                 </div>
                                 <div>
-                                    <label for="file">Event Image</label>
+                                    <label for="file">Game image</label>
                                     <p class="text-sm my-sm">Images are cropped automatically at 16/9 ratio and centered. Images should be mininum 760x428 px and maximum 1,520x856 px (or there abouts) and formatted with jpg or webp (png or gif accepted but generally the former compress better).</p>
                                     <input type="file" name="file" id="file" accept="image/*" class="mr-base" @change="showPreview">
                                     <img id="image-preview" class="hidden object-cover object-center rounded-md my-sm" x-ref="preview" style="aspect-ratio: 16/9"/>
@@ -97,15 +97,15 @@
                             {# END Event Info #}
                             {# Player/Attendee Info - all above must be completed #}
                             <fieldset class="transition-opacity" :class="(isEventInfoComplete) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
-                                <legend>Player/Attendee Info</legend>
+                                <legend>Player info</legend>
                                 {# Only required for games #}
                                 <div class="required">
-                                    <label for="minPlayers">Minimum players/attendees</label>
+                                    <label for="minPlayers">Minimum players</label>
                                     <input id="minPlayers" name="minPlayers" type="text" value="" x-model="eventInfo.minPlayers" @blur="validate"/>
                                 </div>
                                 {# Only required for games #}
                                 <div class="required">
-                                    <label for="maxPlayers" >Maximum players/attendees</label>
+                                    <label for="maxPlayers" >Maximum players</label>
                                     <input id="maxPlayers" name="maxPlayers" type="text" value="" x-model="eventInfo.maxPlayers" @blur="validate"/>
                                 </div>
                                 <div x-show="isRPGorLARP" class="required">
@@ -123,9 +123,9 @@
                             {# END Player Attendee Info #}
                             {# Scheduling Info - player age must be completed #}
                             <fieldset class="transition-opacity" :class="(isPlayerInfoComplete) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
-                                <legend>Scheduling Info</legend>
+                                <legend>Scheduling info</legend>
                                 <div class="required">
-                                    <label for="eventLength">Event Length</label>
+                                    <label for="eventLength">Event length</label>
                                     <select id="eventLength" name="eventLength" x-model="eventInfo.eventLength" @blur="validate">
                                         <option :disabled="eventInfo.eventLength !== '0'" selected value="0">
                                             -- Choose One --
@@ -151,12 +151,12 @@
                             {# END Scheduling Info #}
                             {# Content Advisory & Safety Tools - show only if scheduling is completed #}
                             <fieldset class="transition-opacity" :class="(isSchedulingInfoComplete) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
-                                <legend>Content Warnings &amp; Safety Tools</legend>
+                                <legend>Content warnings &amp; safety tools</legend>
                                 {# Break out to Maturity level and other stuff #}
                                 {# No Content Advisory vs Adult themes. Then add new list which is meta #}
                                 <div class="required">
                                     <div>
-                                        <label for="triggerWarnings">Content Warnings</label>
+                                        <label for="triggerWarnings">Content warnings</label>
                                         <input id="triggerWarnings" name="triggerWarnings" type="text" value="" x-model="eventInfo.triggerWarnings" class="w-full max-w-md"/>
                                     </div>
                                 </div>
@@ -194,7 +194,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <label for="additionalRequirements">Additional Information</label>
+                                    <label for="additionalRequirements">Additional information</label>
                                     <textarea cols="30" id="additionalRequirements" name="additionalRequirements" rows="3" x-model="eventInfo.additionalRequirements"></textarea>
                                 </div>
                             </fieldset>
