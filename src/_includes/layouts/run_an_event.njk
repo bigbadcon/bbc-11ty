@@ -482,14 +482,11 @@
                         const data = await fetchData('/events/create', {
                             method: 'PUT',
                             body: convertToCreateEventAPI(this.eventInfo)
-                        })
-                            .then(function(response) {return response.text()})
-                            .then(function(data){
-                                alert(data)
-                                //this.uploadEventImage(data)
-                                return data
-                            });
-                        return data;
+                        });
+                        const id = await data.text()
+                        alert(id)
+                        //this.uploadEventImage(id)
+                        return id;
                     },
                     async uploadEventImage(eventId) {
                         let imageData = {
