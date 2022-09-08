@@ -12,7 +12,7 @@ At Go Play NW, almost all the activities and games are hosted by attendees like 
 
 * You can see the schedule of games and activities that other attendees and guests have submitted on our [Game Schedule](/events).
 * Don’t see anything you like? You can be the power that runs Go Play NW and sign up to [Run a Game](/run-an-event).
-* Or, you can join the Go Play NW pitch circle (aka [the Donut](/the-donut)), which we run at the start of each Game Session.
+* Or, you can join the Go Play NW pitch circle (aka [the Donut](/the-donut)), which we run at the start of each game session.
 
 ## Will Go Play NW ever host in-person events again?
 
@@ -37,7 +37,7 @@ All funding from our events are used to support Go Play NW's ongoing operations 
 
 ## Where will Go Play NW Online be hosted?
 
-Go Play NW Online 2022 will take place on our community [Discord Server](https://discord.gg/AqhayGFexQ). You will need a free [Discord](https://discord.com/) account to participate, which you can sign up for at [www.discord.com](https://discord.com/).
+Go Play NW Online 2022 will take place on our community [Discord server](https://discord.gg/AqhayGFexQ). You will need a free [Discord](https://discord.com/) account to participate, which you can sign up for at [www.discord.com](https://discord.com/).
 
 Check out our Attendee Guide for more information.
 
