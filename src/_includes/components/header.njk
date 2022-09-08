@@ -4,8 +4,8 @@
     <div class="">
       <div class="text-body">
         <div x-data="{ open: false }"
-          class="flex flex-col md:items-center md:justify-between md:flex-row ">
-          <div class="flex flex-row items-center justify-between py-base space-x-base md:space-x-lg">
+          class="flex flex-col md:items-center md:justify-between md:flex-row gap-x-base">
+          <div class="flex flex-row items-center justify-between py-base gap-base md:gap-lg">
             {# Branding Logo Area with event date #}
             <div class="grid grid-cols-1 w-36 sm:w-42 lg:w-56">
               <a href="/" class="block md:mt-sm">{% include 'components/logo.njk' %}</a>
@@ -28,7 +28,7 @@
           </div>
           {# Main Nav #}
           <nav :class="{'flex': open, 'hidden': !open}"
-            class="flex-col flex-grow hidden pb-4 md:pb-0 md:flex md:justify-end md:flex-row md:space-x-sm xl:space-x-base space-y-xs md:space-y-0" aria-labelledby="mobile-menu">
+            class="flex-col flex-wrap flex-grow hidden pb-4 md:pb-0 md:flex md:justify-end md:flex-row md:gap-x-sm xl:gap-x-base gap-y-xs md:gap-y-0" aria-labelledby="mobile-menu">
             {# Nav for loop using navigation.json #}
             {% for item in navigation %}
               {% if item.subnav %}
@@ -67,15 +67,15 @@
                 </div>
               {% else %}
                 {# Primany Link without subpanel #}
-                <a href="{{item.url}}" class="flex flex-row items-center w-full text-left rounded py-2xs md:w-auto md:inline md:mt-0 md:ml-4 focus:outline-none focus:ring-2 focus:ring-primary-4">
+                <a href="{{item.url}}" class="flex flex-row items-center w-full text-left rounded py-2xs md:w-auto md:inline md:mt-0 focus:outline-none focus:ring-2 focus:ring-primary-4">
                   <span class="font-bold md:font-normal">{{item.title}}</span></a>
               {% endif %}
 
             {% endfor %}
           </nav>
-          <div class="flex-col">
-          {# Login / Account Button #}
-          <button @click.stop="modal = 'login'" class="top-0 font-bold uppercase transition-all transform border rounded cursor-pointer text-form right-base bg-highlight px-base pb-xs pt-xs ml-md hover:bg-highlight-2 border-highlight" x-text="(authToken) ? 'My Account' : 'Login'">Login</button>
+          <div>
+            {# Login / Account Button #}
+            <button @click.stop="modal = 'login'" class="top-0 font-bold uppercase transition-all transform border rounded cursor-pointer text-form right-base bg-highlight px-base pb-xs pt-xs hover:bg-highlight-2 border-highlight whitespace-nowrap" x-text="(authToken) ? 'My Account' : 'Login'">Login</button>
           </div>
         </div>
       </div>
