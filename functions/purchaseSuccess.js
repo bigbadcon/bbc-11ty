@@ -48,6 +48,8 @@ exports.handler = async function (event, context) {
             } = stripeEvent.data.object
 
             // Future Proof
+            // Get session data
+            const session = await stripe.checkout.sessions.retrieve( id )
             // Make API call to get all line items for products when there is multiple products
             const items = await stripe.checkout.sessions.listLineItems(
                 id,
@@ -60,6 +62,7 @@ exports.handler = async function (event, context) {
             const purchaseData = {
                 date: new Date().toLocaleDateString(),
                 product: name,
+                productType: metadata.productType,
                 userDisplayName: metadata.userDisplayName,
                 userId: client_reference_id,
                 userEmail: customer_email,
@@ -67,7 +70,8 @@ exports.handler = async function (event, context) {
                 zip: customer_details.address.postal_code,
                 recipient: metadata.recipient,
                 recipientEmail: metadata.recipientEmail,
-                anonymous: metadata.anon
+                anonymous: metadata.anon,
+                amount_total: session.amount_total / 100
             }
 
             /* -------------------------------------------------------------------------- */
@@ -76,7 +80,7 @@ exports.handler = async function (event, context) {
             const isGift = metadata.recipient === 'for someone else'
 
             if (!isGift) {
-                const res = await axios.post(bbcApiBaseUrl + `users/addRoleToUser`,
+                await axios.post(bbcApiBaseUrl + `users/addRoleToUser`,
                     {
                         "role": "paidattendee",
                         "userId": parseInt(client_reference_id)
@@ -85,9 +89,18 @@ exports.handler = async function (event, context) {
                         headers: {"x-api-key": bbcApiKey}
                     }
                 )
+                await axios.post(bbcApiBaseUrl + `users/removeRoleFromUser`,
+                    {
+                        "role": "subscriber",
+                        "userId": parseInt(client_reference_id)
+                    },
+                    {
+                        headers: {"x-api-key": bbcApiKey}
+                    }
+                )
                 // TODO: double check that the product is a teen badge?
                 if (metadata.age === 'teen') {
-                    const res2 = await axios.post(bbcApiBaseUrl + `users/addRoleToUser`,
+                    await axios.post(bbcApiBaseUrl + `users/addRoleToUser`,
                         {
                             "role": "teen",
                             "userId": parseInt(client_reference_id)
@@ -96,6 +109,29 @@ exports.handler = async function (event, context) {
                             headers: {"x-api-key": bbcApiKey}
                         }
                     )
+                }
+            }
+
+            /* -------------------------------------------------------------------------- */
+            /*          If this is the PoC Dinner 3263 then check them into the event     */
+            /* -------------------------------------------------------------------------- */
+
+            if (metadata.productType === 'poc dinner') {
+                console.log('Attempt to Book PoC Dinner')
+                try {
+                    const bookEvent = await axios.post(bbcApiBaseUrl + 'bookings/addUserToGame',
+                        {
+                            "eventId": 3263,
+                            "isGm": false,
+                            "userId": parseInt(client_reference_id)
+                        },
+                        {
+                            headers: {"x-api-key": bbcApiKey}
+                        }
+                    )
+                    console.log('Book PoC Dinner Post',bookEvent)
+                } catch (err) {
+                    console.log(err)
                 }
             }
 
@@ -115,7 +151,6 @@ exports.handler = async function (event, context) {
 
             /* ---------------------- Take submit event and add row --------------------- */
 
-            const dateAdded = new Date().toLocaleDateString()
             const addedRow = await sheet.addRow(purchaseData)
             console.log(`added google sheet row for ${metadata.userDisplayName} purchase of ${name}`);
 
@@ -124,13 +159,15 @@ exports.handler = async function (event, context) {
             /* -------------------------------------------------------------------------- */
 
             let recipientType = (isGift) ? ` for ${metadata.recipientEmail}` : ``
+            const userMsg = (metadata.productType === 'poc dinner') ? `Thank you ${metadata.userDisplayName} for contributing to the ${name}!` : `Thank you ${metadata.userDisplayName} for purchasing a ${name}${recipientType}!` 
 
             /* ------------------------------ Send to buyer ----------------------------- */
             const newUserMsg = {
                 to: customer_email,
                 from: 'info@bigbadcon.com',
                 subject: 'Thanks for your purchase!',
-                text: `Thank you ${metadata.userDisplayName} for purchasing a ${name}${recipientType}!`,
+                text: userMsg,
+                html: userMsg,
             }
 
             await sgMail.send(newUserMsg);

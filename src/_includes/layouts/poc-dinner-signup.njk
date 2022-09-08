@@ -1,0 +1,98 @@
+{% extends 'layouts/page.njk' %}
+
+{% block content %}
+    <main id="content">
+        <div class="mx-auto max-w-content p-base">
+            <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
+            <div class="prose mb-md">{{ content | safe }}</div>
+            <section x-cloak x-show="!isAuth || !hasBadge" class="prose">
+                <p>You must be logged in and have a badge to sign up for the PoC Dinner.</p>
+            </section>
+            <div class="prose rounded-md bg-card p-base" x-cloak x-show="isAuth && hasBadge" x-transition>
+                <p>Welcome <b x-text="user && user.displayName"></b>
+                You have a <span class="inline-flex items-center gap-2xs">
+                        <template x-for="role in badgeRoles">
+                            <span x-text="(role === 'paidattendee') ? 'paid' : role" class="py-[.1rem] text-xs font-bold uppercase rounded-full bg-hr text-primary px-xs"></span>
+                        </template>
+                    </span>
+                badge! You can sign up for the PoC Dinner below.
+                </p>
+            </div>
+            {# TODO: hide this and display copy if they are a teen #}
+            {% if prices.length %}
+                <section x-cloak x-show="isAuth">
+                    <form id="form" action="/.netlify/functions/createCheckoutSession" method="POST"
+                    x-validate x-ref="form" x-data="{price_id: ''}" >
+                        <input type="hidden" name="userId" :value="user && user.id" x-validate/>
+                        <input type="hidden" name="userEmail" :value="user && user.userEmail" x-validate/>
+                        <input type="hidden" name="userDisplayName" :value="user && user.displayName" x-validate>
+                        <fieldset class="prose">
+                            <legend>Attendance Information</legend>
+                            <div class="flex flex-wrap items-center required">
+                                <input type="checkbox" id="poc" name="poc" value="Yes" x-validate.required x-ref="agree">
+                                <label for="poc" class="text-body-highlight">
+                                    I, <span x-text="user && user.displayName"></span>, am a person of color.
+                                    </label>
+                                <span class="error-msg basis-full pt-sm">Only people of color are allowed at the PoC Dinner</span>
+                            </div>
+                            {# TODO: Change it to I want to contribute #}
+                            <div class="required">
+                                <label for="badge_type">Contribution</label>
+                                <div class="italic mb-xs">If you are a Big Big Bad Con POC Scholar, Scholarship recipient, staff member, or volunteer Ranger your dinner costs are covered. Otherwise we request that you contribute for the dinner. Even if your costs are covered, we welcome any contributions you would like to offer.</div>
+                                <select value="" name="badge_type" id="badge_type" required>
+                                    <option value="" disabled selected>-- Choose One --</option>
+                                    <option value="Yes">I would like to contribute for the dinner</option>
+                                    <option value="No">My costs are covered</option>
+                                </select>
+                            </div>
+                        </fieldset>
+                        <fieldset class="prose" x-show="$validate.isComplete($el.previousElementSibling)" x-transition>
+                            <legend>Community Standards</legend>
+                            <div class="flex flex-wrap items-center required">
+                                <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-validate.required x-ref="agree">
+                                <label for="agree-to-community-standards" class="text-body-highlight">
+                                    Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Big Bad Con <a href="/community-standards/">Community Standards</a>.
+                                    </label>
+                                <span class="error-msg basis-full pt-sm">Agreeing to our <a href="/community-standards/">Community Standards</a> is required</span>
+                            </div>
+                        </fieldset>
+                        {# only show this if they were not comped a badge as a volunteer or scholar #}
+                        <div class="grid grid-cols-1 mt-base" x-show="$validate.isComplete('form') && $formData.badge_type.value === 'No'">
+                            {% for price in prices %}
+                                {% if "PoC Dinner" in price.product.name %}
+                                    <div class="prose rounded-md shadow bg-card p-base col-span-full row-span-full">
+                                        <h3>{{ price.product.name }}</h3>
+                                        <p>{{price.product.description }}</p>
+                                        <div class="basis-full">
+                                            <button type="submit">Buy Now &nbsp; (Sliding Scale)</button>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        {# TODO: add button that registers them for the event 3263 if they select all the above #}
+                        <div x-show="$validate.isComplete('form') && $formData.badge_type.value === 'Yes'">
+                            <div class="flex mt-base gap-sm" x-show="!isTeen">
+                                <button class="button" x-show="spacesOpen > 0 && !isBooked(3263)" @click.prevent="bookEvent(3263)">Book Event</button>
+                                <span x-show="spacesOpen <= 0 && !isBooked(3263)" class="font-bold">Event is full</span>
+                                <button class="button" x-show="isBooked(3263) && user && user.displayName !== owner" @click.prevent="cancelBooking(3263)">Cancel Booking</span>
+                            </div>
+                            <div x-show="isTeen" class="italic mt-base">
+                                This is an 18+ only event. Teens are only allowed in All Ages events.
+                            </div>
+                        </div>
+                        {# x-validate form log #}
+                        {% if (sitemeta.environment === 'dev') %}
+                            {% import 'components/x-validate-form-validator.njk' as validate %}
+                            {{ validate.log('form') }}
+                        {% endif %}
+                    </form>
+                </section>
+            {% else %}
+                <section x-cloak x-show="isAuth" class="prose">
+                    <p>There are no purchasable items at this time.</p>
+                </section
+            {% endif %}
+        </div>
+            </main>
+        {% endblock %}

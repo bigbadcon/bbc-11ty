@@ -14,7 +14,7 @@ eleventyComputed:
 
 {# Description #}
 <div class="prose event-description">{{event.postContent | nl2br | safe }}</div>
-
+{# TODO: Merge Volunteer event signup form with the volunteer event booking so that it forces the user to enter the form if they are not a volunteer before booking #}
 {# Event Signup / Booking #}
 {% include 'components/volunteerBookingPanel.njk'%}
 {# Event links #}

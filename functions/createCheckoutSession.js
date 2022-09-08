@@ -33,6 +33,11 @@ exports.handler = async function (event, context) {
     const params = paramsToObject(entries)
     console.log("🚀 ~ file: createCheckoutSession.js ~ line 30 ~ params", params)
 
+    // TODO: make this more automated
+    let successUrl = "https://www.bigbadcon.com/thanks-for-your-purchase/"
+    if (params.productType === "badge") successUrl = "https://www.bigbadcon.com/buy-a-badge-thanks/"
+    if (params.productType === "poc-dinner") successUrl = "https://www.bigbadcon.com/poc-dinner-contribution-thanks/"
+
     try {
         const session = await stripe.checkout.sessions.create({
             line_items: [
@@ -48,11 +53,12 @@ exports.handler = async function (event, context) {
                 age: params.age,
                 recipient: params.recipient,
                 anon: params.anon,
-                recipientEmail: params.recipientEmail.trim(),
+                recipientEmail: params.recipientEmail && params.recipientEmail.trim(),
+                productType: params.productType // "badge" or "poc dinner"
             },
             mode: "payment",
             // TODO: customize thanks page with order details
-            success_url: "https://www.bigbadcon.com/buy-a-badge-thanks/",
+            success_url: successUrl,
             cancel_url: referer,
             // TODO: add metadata with other person's email address
         })
