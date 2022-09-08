@@ -5,7 +5,7 @@ description: ''
 tags: pages
 
 ---
-We're stoaked to have you join us! It's attendees like you that make Go Play NW great!
+We're stoked to have you join us! It's attendees like you that make Go Play NW great!
 Now that you've got your ticket, let's help you get the most out of your Go Play NW experience!
 
 [Join our Community Discord](https://discord.gg/AqhayGFexQ){.icon-discord}
