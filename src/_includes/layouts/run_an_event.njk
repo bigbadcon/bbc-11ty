@@ -493,7 +493,6 @@
                             eventImage: this.eventInfo.eventImage,
                             eventId: eventId
                         }
-                        const formDataObject = new FormData(imageData)
 
                         async function customFetch(url, options) {
                             try {
@@ -513,7 +512,7 @@
 
                         let data = await customFetch('/.netlify/functions/submit-event-image', {
                             method: 'POST',
-                            body: formDataObject
+                            body: imageData
                         })
                         return data
                     },
