@@ -508,7 +508,6 @@
                                 return false
                             }
                         }
-                        formDataObject.append('eventId', eventId)
 
                         let data = await customFetch('/.netlify/functions/submit-event-image', {
                             method: 'POST',
