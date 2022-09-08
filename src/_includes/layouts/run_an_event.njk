@@ -488,7 +488,7 @@
                         return id;
                     },
                     async uploadEventImage(eventId) {
-                        const form = getElementById('form')
+                        const form = document.getElementById('form')
                         const formData = new FormData(form)
                         formData.append('eventId', eventId.toString());
 
