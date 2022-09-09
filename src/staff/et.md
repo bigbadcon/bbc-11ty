@@ -3,7 +3,7 @@ tags: staff
 published: true
 order: 2
 title: E.T.
-position: Volunteer Coordinator and Organizing Committee Project Manager
+position: Volunteer Coordinator & Organizing Committee Project Manager
 gender: "(they/them, he/him, she/her in preference order)"
 image: "/images/staff/organizers_et_400x400.png"
 twitter: ''

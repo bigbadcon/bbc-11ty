@@ -39,6 +39,6 @@ As a volunteer at our online event, we may ask you to make a one-to-two-hour com
 
 **Technology Team**: If you’d like to make gaming dreams come true for attendees, become a Games on Demand (GoD) host! GoD Hosts run a boarding pass system that allows attendees to queue up for two and four hour drop-in games in a stress-free manner. They manage the queue while also managing player and facilitator expectations.
 
-Once you're set up as a Volunteer you'll be able to sign up for our available Volunteer Shifts.
+Once you're set up as a Volunteer you'll be able to sign up for our available Volunteer shifts.
 
-[Volunteer Shifts](/volunteer-shifts){.icon-calendar-clock}
+[Volunteer shifts](/volunteer-shifts){.icon-calendar-clock}
