@@ -540,8 +540,25 @@ a[class^='icon-']:hover {
   @apply w-full text-sm text-body;
 }
 
-.events-table tr {
-  @apply w-full flex flex-wrap sm:table-row mb-base relative pr-8 sm:pr-0 gap-x-xs;
+.events-table thead tr {
+  @apply w-full flex flex-wrap justify-between sm:table-row relative border-b-2 border-card;
+}
+
+.events-table thead th {
+  @apply text-left;
+}
+
+.events-table .events-table-header--categories {
+  @apply hidden sm:table-cell;
+}
+
+.events-table .events-table-header--fav {
+  @apply w-8 pb-sm justify-self-end;
+}
+
+.events-table tbody tr {
+  /* pr-8 leaves room for absolute placed fav star in mobile */
+  @apply w-full flex flex-wrap sm:table-row py-sm relative pr-8 sm:pr-0 gap-x-xs border-b-2 border-card;
 }
 
 .events-table td {
@@ -552,17 +569,24 @@ a[class^='icon-']:hover {
   @apply basis-full;
 }
 
-.events-table .events-table-cell--fav-star {
-  @apply absolute sm:relative right-0 top-0;
-}
-
-.events-table .events-table-cell--categories {
-  @apply bg-transparent relative top-[-.2rem];
-}
-
 .events-table .events-table-cell--system {
   @apply italic;
 }
+
+.events-table .events-table-cell--date {
+  @apply basis-full;
+}
+
+.events-table .events-table-cell--duration {
+  @apply font-bold text-center;
+}
+.events-table .events-table-cell--categories {
+
+}
+.events-table .events-table-cell--fav {
+  @apply absolute sm:static right-0 top-sm;
+}
+
 
 .events-table thead tr {
   @apply flex-row gap-sm;
@@ -605,18 +629,25 @@ a[class^='icon-']:hover {
   @apply inline-flex justify-start gap-2xs items-end;
 }
 
+.sortable:after {
+  content: "\279C";
+  @apply text-transparent block text-xs;
+}
+
+.active.sortable:after {
+  @apply text-hr;
+}
+
 .active .sort-btn {
-  @apply border-highlight
+  @apply border-highlight;
 }
 
 .ascending .active.sortable:after {
-  content: "\279C";
-  @apply text-hr rotate-90 block text-xs;
+  @apply rotate-90;
 }
 
 .descending .active.sortable:after {
-  content: "\279C";
-  @apply text-hr rotate-[-90deg] block text-xs;
+  @apply rotate-[-90deg];
 }
 
 /* -------------------------------------------------------------------------- */
