@@ -2,12 +2,20 @@ const Cache = require("@11ty/eleventy-cache-assets");
 const windows1252 = require('windows-1252');
 const utf8 = require('utf8')
 // const rootCas = require('ssl-root-cas').create();
-var dayjs = require('dayjs')
-var utc = require('dayjs/plugin/utc')
-var timezone = require('dayjs/plugin/timezone')
+const dayjs = require('dayjs')
+const utc = require('dayjs/plugin/utc')
+const timezone = require('dayjs/plugin/timezone')
+const duration = require('dayjs/plugin/duration')
+const relativeTime = require('dayjs/plugin/relativeTime')
 dayjs.extend(utc)
 dayjs.extend(timezone)
+dayjs.extend(duration)
+dayjs.extend(relativeTime)
 const environment = process.env.CONTEXT
+
+/* -------------------------------------------------------------------------- */
+/*                              Helper Functions                              */
+/* -------------------------------------------------------------------------- */
 
 /* ------------------------- Convert odd characters ------------------------- */
 const decodeText = text => {
@@ -28,6 +36,10 @@ function metadataArrayToObject(arr) {
     return object
 }
 
+/* --------------------------- Event Duration ------------------------------ */
+// If duration is more than 0 it returns a string of the hrs
+
+const getDurationInHours = (dateStart,dateEnd) => (Math.abs(dateEnd - dateStart) / 1000) / 3600 % 24;
 
 /* -------------------------------------------------------------------------- */
 /*                                 Main Export                                */
@@ -62,8 +74,6 @@ module.exports = async () => {
             // Create Javascript date objects
             const eventStartDateTime = dayjs(event.eventStartDate + "T" + event.eventStartTime + "-07:00").toDate()
             const eventEndDateTime = dayjs(event.eventEndDate + "T" + event.eventEndTime + "-07:00").toDate()
-
-            const arrayToStringForAlpine = () => event.categories.map(item => "'" + item.name + "'").toString()
  
             return {
                 ...event,
@@ -72,6 +82,8 @@ module.exports = async () => {
                 metadata: metadata, // replace with keyed object
                 eventStartDateTime: eventStartDateTime, // native javascript date object
                 eventEndDateTime: eventEndDateTime, // native javascript date object
+                // eventDuration: getDuration(eventStartDateTime,eventEndDateTime), // duration in hours and minutes
+                eventDuration: getDurationInHours(eventStartDateTime,eventEndDateTime), // duration in hours and minutes
                 eventSlug: event.eventSlug.toLowerCase(), // force lowercase
                 categories: event.categories.map(val => val.name) // convert to simple array
             }

@@ -54,6 +54,7 @@ function metadataArrayToObject(arr) {
 
 
 /* --------------------------- Event Duration ------------------------------ */
+// TODO: return hours and minutes
 
 const duration = (dateStart,dateEnd) => {
   // calculate hours

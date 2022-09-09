@@ -1,30 +1,36 @@
 <section class="mt-md" x-data="eventsTable">
     <h2 class="font-serif text-3xl font-bold leading-none md:text-4xl text-header mb-2xs">Events List</h2>
     {% include 'components/event-table-filter.njk' %}
+    {# TODO: add filter by date #}
     {# Testing: <button @click="getFavEvents">load favs</button> #}
-    {# TODO: add filter by catagory and sort by name, system, gm, date #}
     <table class="events-table" id="events-table">
-        <caption class="italic text-left mb-xs">Table can be sorted by event or system</caption>
+        <caption class="italic text-left mb-xs">Table can be sorted by event, system, or date</caption>
+        {# TODO: fix style for responsive mobile headers so they don't jump around when active #}
         <thead :class="sortAscending ? 'ascending' : 'descending'">
             <tr>
-                <th class="text-left">
+                <th>
                     <div class="sortable" :class="sortBy === 1 && 'active'">
                         <button @click="sortTable(1)" class="sort-btn" title="Sort by event">Event</button>
                     </div>
                 </th>
-                <th class="text-left">
+                <th>
                     <div class="sortable" :class="sortBy === 2 && 'active'">
                         <button @click="sortTable(2)" class="sort-btn" title="Sort by system">System</button>
                     </div>
                 </th>
-                {# <th class="text-left ">Date Time</th>
-                <th class="text-center max-w-max">Dur</th> #}
-                <th class="hidden text-left sm:table-cell">Categories</th>
+                <th>
+                    <div class="sortable" :class="sortBy === 3 && 'active'">
+                        <button @click="sortTable(3)" class="sort-btn" title="Sort by Date/Time">Date/Time</button>
+                    </div>
+                </th>
+                <th class="events-table-header--categories">Categories</th>
                 {# <th class="w-8 text-center">
                     <span class="flex items-center justify-end pl-xs">{% icon 'square-check', 'fill-body' %}</span>
                 </th> #}
-                <th class="w-8 text-center pb-sm" x-cloak x-show="isAuth">
-                    <span class="cursor-pointer fav-star-header hover:bg-highlight" @click="filter.favsOnly = !filter.favsOnly" :class="filter.favsOnly && 'favved'"></span>
+                <th class="events-table-header--fav" x-cloak x-show="isAuth">
+                    <div class="flex justify-end">
+                        <span class="cursor-pointer fav-star-header hover:bg-highlight" @click="filter.favsOnly = !filter.favsOnly" :class="filter.favsOnly && 'favved'"></span>
+                    </div>
                 </th>
             </tr>
         </thead>
@@ -43,27 +49,35 @@
                         </h3>
                         <p>{{event.metadata.GM | safe}}</p>
                     </td>
+                    {# System #}
+                    <td class="events-table-cell--system">{{event.metadata.System}}</td>
                     {# Event Start Date/Time #}
                     {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
                     {# formatEventDate filter is in eleventy.js and returns html with date and time in seperate span tags #}
                     {# <td class="flex flex-col py-sm gap-x-2xs" x-cloak x-show="timezone" x-html="formatEventDate('{{event.eventStartDateTime}}', timezone)">{{ event.eventStartDateTime | formatEventDate | safe }}</td> #}
-                    {# Event Duration #}
-                    {# <td class="font-bold text-center align-top py-sm px-xs">
-                        {% eventDuration event.eventStartDateTime,
-                        event.eventEndDateTime %}
-                    </td> #}
-                    {# System #}
-                    <td class="events-table-cell--system">{{event.metadata.System}}</td>
+                    <td class="events-table-cell--date">
+                        {% if (event.eventDuration > 0) %}
+                            <div class="sm:flex sm:flex-col">
+                                <span class="whitespace-nowrap">{{ event.eventStartDateTime | formatDate }}</span>
+                                <span class="whitespace-nowrap">{{ event.eventStartDateTime | formatTime }}
+                                    <b class="whitespace-nowrap">{{ event.eventDuration }}hr</b>
+                                </span>
+                            </div>
+                        {% else %}
+                            <span class="opacity-50">TBD</span>
+                        {% endif %}
+                    </td>
+
                     {# Event Categories #}
                     <td class="events-table-cell--categories">
-                        <div class="flex flex-wrap mt-2xs sm:mt-0 gap-2xs">
+                        <div class="flex flex-wrap justify-start gap-2xs">
                             {% for category in event.categories %}
-                                <span class="text-xs rounded-full px-xs py-[.15rem] bg-card whitespace-nowrap">{{category | replace('Game', '') | trim}}</span>
+                                <span class="text-xs rounded-full px-xs py-[.1rem] bg-card whitespace-nowrap">{{category | replace('Game', '') | trim}}</span>
                             {% endfor %}
                         </div>
                     </td>
                     {# Fav Event Icon #}
-                    <td x-cloak x-show="isAuth">
+                    <td class="events-table-cell--fav" x-cloak x-show="isAuth">
                         <span @click="toggleFav({{event.eventId}})" class="fav-star" :class="isFav({{event.eventId}}) && 'favved'"></span>
                     </td>
                 </tr>

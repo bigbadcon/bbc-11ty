@@ -136,8 +136,14 @@ module.exports = (eleventyConfig) => {
 
   // Format date for event start
   const tz= 'America/Los_Angeles'
-  eleventyConfig.addFilter( "formatEventDate", (date) => "<span style='white-space: nowrap;'>" + dayjs(date).tz(tz).format('MMM D, YYYY') + "</span> <span>" + dayjs(date).tz(tz).format('h:mm a') + "</span>");
+  eleventyConfig.addFilter( "formatEventDate", (date) => "<span style='white-space: nowrap;'>" + dayjs(date).tz(tz).format('MMM D, YYYY') + "</span> <span style='white-space: nowrap;'>" + dayjs(date).tz(tz).format('h:mm a') + "</span>");
 
+  // Format date
+  eleventyConfig.addFilter( "formatDate", (date) => dayjs(date).tz(tz).format('MMM D'))
+  
+  // Format date
+  eleventyConfig.addFilter( "formatTime", (date) => dayjs(date).tz(tz).format('h:mma'))
+  
   // Remove seconds from times
   eleventyConfig.addFilter( "stripSeconds", (val) => val.slice(0,5));
 
@@ -148,11 +154,7 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addFilter("eventStartDateTime", (event) => createDateObject(event.eventStartDate, event.eventStartTime));
   
   // event Duration
-  eleventyConfig.addFilter("eventDuration", (event) => {
-    const eventStartDateTime = createDateObject(event.eventStartDate, event.eventStartTime)
-    const eventEndDateTime = createDateObject(event.eventEndDate, event.eventEndTime)
-    return getDuration(eventStartDateTime,eventEndDateTime)
-  });
+  eleventyConfig.addFilter("eventDuration", (event) => getDuration(event.eventStartDateTime,event.eventEndDateTime));
   
   // event year
   eleventyConfig.addFilter("eventYear", (event) => event.eventStartDate.slice(0,4));
