@@ -61,7 +61,7 @@
                         </div>
                         <div class="required" data-error="phone number required">
                             <label for="phone">Phone</label>
-                            <input id="phone" name="phone" type="phone" value="" x-model="formData.phone" @blur="(e) => validate(e,{phone: true})"/>
+                            <input id="phone" name="phone" type="tel" value="" x-model="formData.phone" @blur="(e) => validate(e,{phone: true})"/>
                         </div>
                         <div>
                             <label for="discord">Discord Handle</label>
@@ -114,7 +114,7 @@
             const validatePhone = (txt) => {
                 return String(txt)
                     .toLowerCase()
-                    .match(/^([+]?\d{1,2}[-\s]?|)\d{3}[-\s]?\d{3}[-\s]?\d{4}$/);
+                    .match(/^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/);
             };
 
             // Used to void variables
