@@ -1,7 +1,6 @@
 const axios = require('axios');
 require('dotenv').config();
 
-//const apiBaseUrl = 'https://api-dev.goplaynw.org/'
 const apiBaseUrl = `${process.env.API_BASE_URI}`
 const apiKey = `ApiKey ${process.env.BBC_API_KEY}`
 

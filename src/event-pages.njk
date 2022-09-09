@@ -14,11 +14,11 @@ eleventyComputed:
 {% set src = "" %}
 {% if (event.metadata.event_image) %}
     {# If it has a image than put it in place and replace it if a different image is available #}
-    {% set src = "https://api-dev.goplaynw.org/images/" + event.metadata.event_image %}
+    {% set src = "https://api-prod.goplaynw.org/images/" + event.metadata.event_image %}
     <div class="w-full rounded-md bg-card mb-base" style="aspect-ratio: 16/9;"
     x-data="{src: '{{src}}', defaultImg: 'event.metadata.event_image', newImg:events && events['{{event.eventId}}']?.metadata?.event_image}">
         <img src="{{src}}" class="object-cover w-full rounded-md event-image" style="aspect-ratio: 16/9;"
-        x-init="if (newImg && newImg !== defaultImg) $el.setAttribute('src', 'https://api-dev.goplaynw.org/images/' + newImg)"
+        x-init="if (newImg && newImg !== defaultImg) $el.setAttribute('src', 'https://api-prod.goplaynw.org/images/' + newImg)"
 />
     </div>
 {% else %}
@@ -27,7 +27,7 @@ eleventyComputed:
     x-data="{newImg: events && events['{{event.eventId}}']?.metadata?.event_image}"
     x-cloak x-show="newImg" x-transitition.opacity>
         <img class="object-cover w-full rounded-md event-image" style="aspect-ratio: 16/9;"
-        x-init="if (newImg) $el.setAttribute('src', 'https://api-dev.goplaynw.org/images/' + newImg)"/>
+        x-init="if (newImg) $el.setAttribute('src', 'https://api-prod.goplaynw.org/images/' + newImg)"/>
     </div>
 {% endif %}
 

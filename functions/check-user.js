@@ -1,12 +1,8 @@
 const axios = require('axios');
 
-// const apiBaseUrl = 'http://www.logictwine.com:8092/'
-
 // const apiKey = `ApiKey ${process.env.BBC_API_KEY}`
 // headers: {"x-api-key": apiKey}
 
-//const apiBaseUrl = 'https://admin.bigbadcon.com:8091/api/'
-//const apiBaseUrl = 'https://api-dev.goplaynw.org/'
 const apiBaseUrl = `${process.env.API_BASE_URI}`
 
 const username = process.env.ADMIN_LOGIN
