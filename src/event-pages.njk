@@ -38,7 +38,7 @@ eleventyComputed:
   <div x-cloak x-show="isAuth" class="absolute right-0 top-sm">
     <span @click="toggleFav({{event.eventId}})" class="fav-star fav-star--event-page" :class="isFav({{event.eventId}}) && 'favved'">&starf;</span>
   </div>
-  <div class="text-2xl font-semibold leading-snug text-body-highlight">
+  <div class="text-2xl font-semibold leading-snug text-body-highlight pr-base">
     {{ event.metadata.GM }}
   </div>
   <div class="not-prose">
