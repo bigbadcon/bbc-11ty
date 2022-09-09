@@ -81,9 +81,9 @@
                                 </div>
                                 <div>
                                     <label for="file">Event Image</label>
-                                    <p class="text-sm my-sm">Images are cropped automatically at 16/9 ratio and centered. Images should be mininum 760x428 px and maximum 1,520x856 px (or there abouts) and formatted with jpg or webp (png or gif accepted but generally the former compress better).</p>
                                     <input type="file" name="file" id="file" accept="image/*" class="mr-base" @change="showPreview">
                                     <img id="image-preview" class="hidden object-cover object-center rounded-md my-sm" x-ref="preview" style="aspect-ratio: 16/9"/>
+                                    <p class="text-sm my-sm prose">Images are cropped automatically at 16/9 ratio and centered. Images should be mininum 760x428 px and maximum 1,520x856 px (or there abouts) and formatted with jpg or webp (png or gif accepted but generally the former compress better).</p>
                                 </div>
                                 <div>
                                     <label for="otherInfo">Other info we should know (this will not go in the program)</label>
