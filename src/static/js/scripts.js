@@ -69,7 +69,7 @@ const duration = (dateStart,dateEnd) => {
 
 // TODO: refactor all this to simpler global functions
 
-const apiBaseUrl = 'https://api-dev.goplaynw.org'
+const apiBaseUrl = 'https://api-prod.goplaynw.org'
 const capabilities = 'userMetaData.wp_goplaynw_capabilities'
 // Dev API using Caddy server reverse proxy
 // const apiBaseUrl = '/apidev'
