@@ -1,6 +1,6 @@
-<div x-data="{height: 300}" x-init="setTimeout(() => { height = $refs.footer.offsetHeight }, 200); " x-on:resize.window.debounce="height = $refs.footer.offsetHeight" >
+<div x-data="{height: 450}" x-init="setTimeout(() => { height = $refs.footer.offsetHeight }, 200); " x-on:resize.window.debounce="height = $refs.footer.offsetHeight" >
     {# TODO: add no javascript fallback #}
-    <div style="height: 300px" :style="`height: ${height}px`" ></div>
+    <div style="height: 450px" :style="`height: ${height}px`" ></div>
     <div x-ref="footer" class="fixed bottom-0 z-0 w-full bg-gradient-to-br from-primary to-primary-2">
         <div class="relative flex flex-col justify-end mx-auto max-w-hero text-body px-base pt-md md:flex-row md:justify-between space-y-sm md:space-y-0 md:space-x-base">
             {% for card in collections.footer123ABC %}
