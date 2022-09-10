@@ -79,7 +79,7 @@ exports.handler = async function (event, context) {
             /* -------------------------------------------------------------------------- */
             const isGift = metadata.recipient === 'for someone else'
 
-            if (!isGift) {
+            if (metadata.productType !== 'poc-dinner' && !isGift) {
                 await axios.post(bbcApiBaseUrl + `users/addRoleToUser`,
                     {
                         "role": "paidattendee",
