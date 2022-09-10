@@ -309,6 +309,7 @@ module.exports = (eleventyConfig) => {
     "node_modules/@alpinejs/intersect/dist/cdn.min.js": "js/alpine.intersect.min.js",
     "node_modules/@colinaut/alpinejs-plugin-simple-validate/dist/alpine.validate.min.js": "js/alpine.validate.min.js",
     "node_modules/@colinaut/alpinejs-plugin-simple-validate/examples/alpine.validate.js": "js/alpine.validate.js",
+    "node_modules/utf8/utf8.js": "js/utf8.js",
   })
 
   // Pass "static" things straight through from "src" to "dist"
