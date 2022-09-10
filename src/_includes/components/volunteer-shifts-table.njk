@@ -1,15 +1,24 @@
-<section class="mt-md" x-data="{ filter: $persist({favsOnly: false,openOnly: false}) }">
+<section class="mt-md" x-data="eventsTable">
     <h2 class="font-serif text-3xl font-bold leading-none md:text-4xl text-header mb-base">Volunteer Shift List</h2>
     {% include 'components/volunteer-shifts-table-filter.njk' %}
-    <table class="w-full text-sm leading-tight text-body">
-        <thead>
+    <table class="events-table volunteer-shifts-table" id="events-table">
+        <thead :class="sortAscending ? 'ascending' : 'descending'">
             <tr>
-                <th class="text-left pb-sm">Event Name</th>
-                <th class="text-left pb-sm">Date Time</th>
-                <th class="text-center pb-sm max-w-max">Dur</th>
-                <th class="text-center pb-sm max-w-max">Spaces</th>
-                <th class="w-8 text-center pb-sm" x-cloak x-show="isAuth">
-                    <span class="cursor-pointer fav-star-header hover:bg-highlight" @click="filter.favsOnly = !filter.favsOnly" :class="filter.favsOnly && 'favved'"></span>
+                <th>
+                    <div class="sortable" :class="sortBy === 1 && 'active'">
+                        <button @click="sortTable(1)" class="sort-btn" title="Sort by event">Event</button>
+                    </div>
+                </th>
+                <th>
+                    <div class="sortable" :class="sortBy === 2 && 'active'">
+                        <button @click="sortTable(2)" class="sort-btn" title="Sort by Date/Time">Date/Time</button>
+                    </div>
+                </th>
+                <th class="events-table-header--spaces">Spaces</th>
+                <th class="events-table-header--fav" x-cloak x-show="isAuth">
+                    <div class="flex justify-end">
+                        <span class="cursor-pointer fav-star-header hover:bg-highlight" @click="filter.favsOnly = !filter.favsOnly" :class="filter.favsOnly && 'favved'"></span>
+                    </div>
                 </th>
             </tr>
         </thead>
@@ -17,45 +26,118 @@
             {# favsOnly and timezone in x-data in html #}
             {% for event in eventData.volunteer %}
                 {# isFav is in Alpine.data("global") #}
-                {# TODO: test openOnly #}
                 {# If only showing favs and is fav then show #}
                 {# If only showing open and is open then show #}
-                <tr x-data="eventInfo"
-                x-cloak
-                x-show="(!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || spacesOpen > 0)"
-                x-init="if (isAuth) getEventBooking({{event.eventId}}); $watch('isAuth', value => {if (value === true) getEvent({{event.eventId}})});">
+                {% set spacesOpen = "'Any'" %}
+                {% if event.metadata.Players > 0 %}
+                    {% set spacesOpen = event.metadata.Players %}
+                {% endif %}
+                <tr 
+                x-data="eventInfo"
+                x-init="spacesOpen = {{ spacesOpen }}; id = {{event.eventId}}; if (isAuth) getEventInfo({{event.eventId}}); $watch('isAuth', val => {if (val) getEventInfo({{event.eventId}})})"
+                x-show="(!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || isSpacesOpen)" >
                     {# Event Name #}
-                    <td class="py-sm pr-sm">
-                        <a href="/volunteer/{{event.eventSlug}}" class="font-bold transition-colors text-header hover:text-highlight">{{event.eventName | safe }}</a>
+                    <td class="events-table-cell--name">
+                        <h3>
+                            <a href="/volunteer/{{event.eventSlug}}" class="font-bold transition-colors text-header hover:text-highlight">{{event.eventName | safe }}</a>
+                        </h3>
                     </td>
                     {# Event Start Date/Time #}
                     {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
                     {# formatEventDate filter is in eleventy.js and returns html with date and time in seperate span tags #}
-                    <td x-cloak x-show="timezone" x-html="formatEventDate('{{event.eventStartDateTime}}', timezone)">
-                        <div class="flex flex-col py-sm gap-x-2xs sm:flex-row">{{ event.eventStartDateTime | formatEventDate | safe }}</div>
-                    </td>
-                    {# Event Duration #}
-                    <td class="font-bold text-center py-sm px-xs">
-                        {% eventDuration event.eventStartDateTime,
-                        event.eventEndDateTime %}
-                    </td>
-                    {# Spaces #}
-                    <td>
-                        {# If booked add check mark, otherwise list number of spaces open #}
-                        <div class="flex items-center justify-center py-sm">
-                            <span 
-                            style="width: 1.375rem; height: 1.375rem" 
-                            class="block text-center border-2 rounded border-body" 
-                            :class="spacesOpen === 0 && 'bg-card opacity-40'" 
-                            x-text="(isBooked({{event.eventId}})) ? '&#10004;' : (typeof spacesOpen === 'number') ? spacesOpen : '{{event.metadata.Players}}'">{{ event.metadata.Players }}</span>
+                    <td class="events-table-cell--date">
+                        <div class="sm:flex sm:flex-col">
+                            {% include 'components/event-date-time-duration.njk' %}
                         </div>
                     </td>
+                    {# Spaces #}
+                    <td class="events-table-cell--spaces">
+                        {# If booked add check mark, otherwise list number of spaces open #}
+                        {% if (event.metadata.Players > 0) %}
+                            <div class="flex items-center justify-center py-sm">
+                                <span 
+                                class="block text-center border-2 rounded border-body h-[1.45rem] w-[2.2rem]" 
+                                :class="spacesOpen === 0 && 'bg-card opacity-40'" 
+                                x-text="(isBooked({{event.eventId}})) ? '&#10004;' : (typeof spacesOpen === 'number') ? spacesOpen : '{{event.metadata.Players}}'">{{ event.metadata.Players }}</span>
+                            </div>
+                        {% else %}
+                            Any
+                        {% endif %}
+                    </td>
                     {# Fav Event Icon #}
-                    <td x-cloak x-show="isAuth">
-                        <span @click="toggleFav({{event.eventId}})" class="fav-star" :class="isFav({{event.eventId}}) && 'favved'"></span>
+                    <td class="events-table-cell--fav" x-cloak x-show="isAuth">
+                        <div class="flex justify-end">
+                            <span @click="toggleFav({{event.eventId}})" class="fav-star" :class="isFav({{event.eventId}}) && 'favved'"></span>
+                        </div>
                     </td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
 </section>
+<script type="text/javascript">
+
+    document.addEventListener('alpine:init', () => {
+        function compareValues(a, b) {
+            // return -1/0/1 based on what you "know" a and b
+            // are here. Numbers, text, some custom case-insensitive
+            // and natural number ordering, etc. That's up to you.
+            // A typical "do whatever JS would do" is:
+            return (a < b)
+                ? -1
+                : (a > b)
+                    ? 1
+                    : 0;
+        }
+
+        Alpine.data('eventsTable', function () {
+            return {
+                init() {
+                    if (this.sortAscending === undefined) {
+                        this.sortAscending = true
+                    }
+                    this.sortTable(this.sortBy || 1, this.sortAscending)
+                },
+                filter: this.$persist({favsOnly: false, openOnly: false, category: 'All'}),
+                sortBy: this.$persist(1),
+                sortAscending: this.$persist(true),
+                sortTable(colnum, direction) {
+                    // If this is the same column than switch direction
+                    if (direction === undefined) {
+                        if (this.sortBy === colnum) {
+                            this.sortAscending = !this.sortAscending
+                        } else {
+                            this.sortAscending = true
+                            this.sortBy = colnum
+                        }
+                    } else {
+                        this.sortAscending = direction
+                        this.sortBy = colnum
+                    }
+
+                    const table = document.querySelector('#events-table tbody');
+                    let rows = Array.from(table.querySelectorAll(`tr`));
+
+                    let qs = colnum === 1
+                        ? `td:nth-child(${colnum}) h3`
+                        : `td:nth-child(${colnum})`;
+                    rows.sort((r1, r2) => {
+                        // get each row's relevant column
+                        let t1 = r1.querySelector(qs);
+                        let t2 = r2.querySelector(qs);
+
+                        // and then effect sorting by comparing their content:
+                        if (this.sortAscending) {
+                            return compareValues(t1.textContent, t2.textContent);
+                        } else {
+                            return compareValues(t2.textContent, t1.textContent);
+                        }
+                    });
+
+                    // and then the magic part that makes the sorting appear on-page:
+                    rows.forEach(row => table.appendChild(row));
+                }
+            }
+        })
+    })
+</script>

@@ -5,12 +5,8 @@ const utf8 = require('utf8')
 const dayjs = require('dayjs')
 const utc = require('dayjs/plugin/utc')
 const timezone = require('dayjs/plugin/timezone')
-const duration = require('dayjs/plugin/duration')
-const relativeTime = require('dayjs/plugin/relativeTime')
 dayjs.extend(utc)
 dayjs.extend(timezone)
-dayjs.extend(duration)
-dayjs.extend(relativeTime)
 const environment = process.env.CONTEXT
 
 /* -------------------------------------------------------------------------- */
@@ -19,7 +15,9 @@ const environment = process.env.CONTEXT
 
 /* ------------------------- Convert odd characters ------------------------- */
 const decodeText = text => {
-    return utf8.decode(windows1252.encode(text))
+    return utf8.decode(windows1252.encode(text,{
+        mode: 'html'
+    }))
 }
 
 /* ---------------------------- Main url for API ---------------------------- */
@@ -82,10 +80,9 @@ module.exports = async () => {
                 metadata: metadata, // replace with keyed object
                 eventStartDateTime: eventStartDateTime, // native javascript date object
                 eventEndDateTime: eventEndDateTime, // native javascript date object
-                // eventDuration: getDuration(eventStartDateTime,eventEndDateTime), // duration in hours and minutes
                 eventDuration: getDurationInHours(eventStartDateTime,eventEndDateTime), // duration in hours and minutes
                 eventSlug: event.eventSlug.toLowerCase(), // force lowercase
-                categories: event.categories.map(val => val.name) // convert to simple array
+                categories: event.categories.map(val => val.name), // convert to simple array
             }
         })
 

@@ -545,11 +545,15 @@ a[class^='icon-']:hover {
 }
 
 .events-table thead th {
-  @apply text-left;
+  @apply text-left last:pr-0 pb-base;
 }
 
 .events-table .events-table-header--categories {
   @apply hidden sm:table-cell;
+}
+
+.events-table .events-table-header--spaces {
+  @apply hidden sm:table-cell text-center;
 }
 
 .events-table .events-table-header--fav {
@@ -560,10 +564,14 @@ a[class^='icon-']:hover {
   /* pr-8 leaves room for absolute placed fav star in mobile */
   @apply w-full flex flex-wrap sm:table-row py-sm relative pr-8 sm:pr-0 gap-x-xs border-b-2 border-card;
 }
+.volunteer-shifts-table tbody tr {
+  /* pr-8 leaves room for absolute placed fav star in mobile */
+  @apply w-full flex flex-wrap sm:table-row py-sm relative pr-lg sm:pr-0 gap-x-xs border-b-2 border-card;
+}
 
 .events-table td {
-  @apply block sm:table-cell sm:py-sm sm:pr-sm;
-}
+  @apply block sm:table-cell sm:py-sm sm:pr-sm last:pr-0;
+}`
 
 .events-table .events-table-cell--name {
   @apply basis-full;
@@ -582,6 +590,12 @@ a[class^='icon-']:hover {
 }
 .events-table .events-table-cell--categories {
 
+}
+.events-table .events-table-cell--spaces {
+  @apply absolute sm:static bottom-0 right-0 text-center; 
+}
+.volunteer-shifts-table .events-table-cell--spaces {
+  @apply absolute sm:static top-sm right-lg text-center; 
 }
 .events-table .events-table-cell--fav {
   @apply absolute sm:static right-0 top-sm;
@@ -618,7 +632,7 @@ a[class^='icon-']:hover {
 }
 
 .filter-btn {
-  @apply flex items-center transition-colors rounded gap-x-xs bg-main-gradient-bottom px-sm py-2xs hover:bg-primary;
+  @apply flex items-center transition-colors rounded gap-x-xs bg-card px-sm py-2xs hover:bg-primary;
 }
 
 .sort-btn {
