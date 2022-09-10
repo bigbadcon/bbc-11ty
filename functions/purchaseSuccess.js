@@ -116,7 +116,7 @@ exports.handler = async function (event, context) {
             /*          If this is the PoC Dinner 3263 then check them into the event     */
             /* -------------------------------------------------------------------------- */
 
-            if (metadata.productType === 'poc dinner') {
+            if (metadata.productType === 'poc-dinner') {
                 console.log('Attempt to Book PoC Dinner')
                 try {
                     const bookEvent = await axios.post(bbcApiBaseUrl + 'bookings/addUserToGame',
