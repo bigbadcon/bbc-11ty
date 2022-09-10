@@ -1,7 +1,7 @@
 {% if prices.length %}
     {# Only show form is they are not booked and not a teen #}
     {# Get booked events when loading this form as it might have been set by the purchase serverless function #}
-    <section x-cloak x-show="isAuth && hasBadge && !isTeen && !isBooked({{event.eventId}})" class="rounded-md mt-base bg-card pt-sm pb-base px-base" x-init="getBookedEvents()">
+    <section x-cloak x-show="isAuth && hasBadge && !isTeen && !isBooked({{event.eventId}})" class="rounded-md mt-base bg-card pt-sm pb-base px-base" x-init="if (isAuth) getBookedEvents()">
         <header class="prose">
             <h2>PoC Dinner Signup</h2>
             <p>Please fill out this form to sign up for the PoC Dinner.</p>
