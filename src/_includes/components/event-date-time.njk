@@ -20,7 +20,7 @@
     {% if event.metadata.Players %}
         <div>
             <strong>Spaces:</strong>
-            <span x-text="(spacesTotal) ? spacesOpen + ' out of ' + spacesTotal : '{{event.metadata.Players}}'">{{event.metadata.Players}}</span>
+            <span x-text="(spacesOpen) ? spacesOpen + ' out of {{event.metadata.Players}}' : '{{event.metadata.Players}}'">{{event.metadata.Players}}</span>
         </div>
     {% endif %}
 </div>

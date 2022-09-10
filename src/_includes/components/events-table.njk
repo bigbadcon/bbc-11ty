@@ -2,7 +2,6 @@
     <h2 class="font-serif text-3xl font-bold leading-none md:text-4xl text-header mb-2xs">Events List</h2>
     {% include 'components/event-table-filter.njk' %}
     {# TODO: add filter by date #}
-    {# Testing: <button @click="getFavEvents">load favs</button> #}
     <table class="events-table" id="events-table">
         <caption class="italic text-left mb-xs">Table can be sorted by event, system, or date</caption>
         {# TODO: fix style for responsive mobile headers so they don't jump around when active #}
@@ -24,9 +23,7 @@
                     </div>
                 </th>
                 <th class="events-table-header--categories">Categories</th>
-                {# <th class="w-8 text-center">
-                    <span class="flex items-center justify-end pl-xs">{% icon 'square-check', 'fill-body' %}</span>
-                </th> #}
+                <th class="events-table-header--spaces">Spaces</th>
                 <th class="events-table-header--fav" x-cloak x-show="isAuth">
                     <div class="flex justify-end">
                         <span class="cursor-pointer fav-star-header hover:bg-highlight" @click="filter.favsOnly = !filter.favsOnly" :class="filter.favsOnly && 'favved'"></span>
@@ -38,9 +35,15 @@
             {% for event in eventData.events %}
                 {# isFav is in Alpine.data("global") #}
                 {# build event catagories array for filter button #}
+                {% set spacesOpen = "'Any'" %}
+                {% if event.metadata.Players > 0 %}
+                    {% set spacesOpen = event.metadata.Players %}
+                {% endif %}
+                {# spacesOpen defaults to number of players #}
                 <tr 
-                x-data="{categories: [{{event.categories | alpineArray}}]}"
-                x-show="(typeof filter.category !== 'string' || filter.category === 'All' || categories.includes(filter.category)) && (!filter.favsOnly || isFav({{event.eventId}}))" >
+                x-data="eventInfo"
+                x-init="spacesOpen = {{ spacesOpen }}; id = {{event.eventId}}; categories = [{{event.categories | alpineArray}}]; if (isAuth) getEventInfo({{event.eventId}}); $watch('isAuth', val => {if (val) getEventInfo({{event.eventId}})})"
+                x-show="(typeof filter.category !== 'string' || filter.category === 'All' || categories.includes(filter.category)) && (!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || isSpacesOpen)" >
 
                     {# Event Name #}
                     <td class="events-table-cell--name">
@@ -56,16 +59,9 @@
                     {# formatEventDate filter is in eleventy.js and returns html with date and time in seperate span tags #}
                     {# <td class="flex flex-col py-sm gap-x-2xs" x-cloak x-show="timezone" x-html="formatEventDate('{{event.eventStartDateTime}}', timezone)">{{ event.eventStartDateTime | formatEventDate | safe }}</td> #}
                     <td class="events-table-cell--date">
-                        {% if (event.eventDuration > 0) %}
-                            <div class="sm:flex sm:flex-col">
-                                <span class="whitespace-nowrap">{{ event.eventStartDateTime | formatDate }}</span>
-                                <span class="whitespace-nowrap">{{ event.eventStartDateTime | formatTime }}
-                                    <b class="whitespace-nowrap">{{ event.eventDuration }}hr</b>
-                                </span>
-                            </div>
-                        {% else %}
-                            <span class="opacity-50">TBD</span>
-                        {% endif %}
+                        <div class="sm:flex sm:flex-col">
+                            {% include 'components/event-date-time-duration.njk' %}
+                        </div>
                     </td>
 
                     {# Event Categories #}
@@ -76,9 +72,25 @@
                             {% endfor %}
                         </div>
                     </td>
+                    {# Spaces #}
+                    <td class="events-table-cell--spaces">
+                        {# If booked add check mark, otherwise list number of spaces open #}
+                        {% if (event.metadata.Players > 0) %}
+                            <div class="flex items-center justify-center py-sm">
+                                <span 
+                                class="block text-center border-2 rounded border-body h-[1.45rem] w-[2.2rem]" 
+                                :class="spacesOpen === 0 && 'bg-card opacity-40'" 
+                                x-text="(isBooked({{event.eventId}})) ? '&#10004;' : (typeof spacesOpen === 'number') ? spacesOpen : '{{event.metadata.Players}}'">{{ event.metadata.Players }}</span>
+                            </div>
+                        {% else %}
+                            Any
+                        {% endif %}
+                    </td>
                     {# Fav Event Icon #}
                     <td class="events-table-cell--fav" x-cloak x-show="isAuth">
-                        <span @click="toggleFav({{event.eventId}})" class="fav-star" :class="isFav({{event.eventId}}) && 'favved'"></span>
+                        <div class="flex justify-end">
+                            <span @click="toggleFav({{event.eventId}})" class="fav-star" :class="isFav({{event.eventId}}) && 'favved'"></span>
+                        </div>
                     </td>
                 </tr>
             {% endfor %}

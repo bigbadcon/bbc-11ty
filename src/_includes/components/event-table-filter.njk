@@ -24,17 +24,17 @@
         <h5 class="text-sm font-bold">Filter:</h5>
         <button @click="filter.favsOnly = !filter.favsOnly" 
         class="filter-btn group">
-            <svg class="w-4 h-4 group-hover:fill-highlight" :class="(filter.favsOnly) ? 'fill-highlight' : 'fill-body'">
+            <svg class="w-4 h-4 group-hover:fill-secondary" :class="(filter.favsOnly) ? 'fill-highlight' : 'fill-body'">
                 <use xlink:href="/static/images/icons.svg#star"></use>
             </svg>
             <span class="text-sm">Favs</span>
         </button>
-        {# <button @click="filter.openOnly = !filter.openOnly" 
+        <button @click="filter.openOnly = !filter.openOnly" 
         class="filter-btn group">
-            <svg class="w-4 h-4 group-hover:fill-highlight" :class="(filter.openOnly) ? 'fill-highlight' : 'fill-body'">
+            <svg class="w-4 h-4 group-hover:fill-secondary" :class="(filter.openOnly) ? 'fill-highlight' : 'fill-body'">
                 <use xlink:href="/static/images/icons.svg#square-full"></use>
             </svg>
             <span class="text-sm">Open Spaces</span>
-        </button> #}
+        </button>
     </div>
 </div>

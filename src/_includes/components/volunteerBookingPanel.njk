@@ -4,8 +4,8 @@
     {# Event Name, spaces open, and list of players; only show if logged in and has event data #}
     <div x-cloak x-show="isAuth" class="flex flex-col gap-sm">
         <div>
-            <span>Spaces Open:</span>
-            <span x-text="spacesOpen"></span> out of <span x-text="spacesTotal"></span>
+            <strong>Spaces Open:</strong>
+            <span x-text="spacesOpen"></span> out of {{event.metadata.Players}}
         </div>
 
         <div x-cloak x-show="bookings && bookings.length">

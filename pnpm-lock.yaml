@@ -42,7 +42,7 @@ specifiers:
   tailwindcss: latest
   utf8: ^3.0.0
   uuid: ^8.3.2
-  windows-1252: ^1.0.0
+  windows-1252: ^1.1.0
 
 dependencies:
   '@11ty/eleventy': 1.0.2

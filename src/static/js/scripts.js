@@ -174,7 +174,6 @@ document.addEventListener('alpine:init', () => {
         if (!user) {this.logout(); return false;}
 
         const userMetadata = metadataArrayToObject(user.metadata)
-        // TODO: not 
         const userRoles = [...userMetadata.wp_tuiny5_capabilities.matchAll(/"([a-z]+)/g)].map( (match) => match[1])
         user = {
           ...user,
@@ -186,7 +185,7 @@ document.addEventListener('alpine:init', () => {
         return user
       },
       get badgeRoles() {
-        return compareArrays(this.user.roles,['gm','paidattendee','volunteer','comp','staff'])
+        return this.user && compareArrays(this.user.roles,['gm','paidattendee','volunteer','comp','staff'])
       },
       get hasBadge() {
         return this.user && Array.isArray(this.badgeRoles) && this.badgeRoles.length > 0
@@ -310,64 +309,54 @@ document.addEventListener('alpine:init', () => {
   /* -------------------------------------------------------------------------- */
   /*                            Alpine Component Data                           */
   /* -------------------------------------------------------------------------- */
-  
 
-  /* -------------------------- eventInfo panel data -------------------------- */
+  /* ----------- eventInfo Used for Event Table Rows and Event Pages ---------- */
 
   Alpine.data('eventInfo', function () {
+    // See init on page
     return {
-      spacesTotal: null,
-      spacesOpen: null,
-      owner: null,
-      gm: null,
-      bookings: [], // bookings minus all GMs
-      events: this.$persist({}),
-      categories: [],
-      get isAllAges() {
-        return this.categories.includes("All Ages")
-      },
-      get isEarlySignup() {
-        return this.categories.includes("All Ages")
-      },
-      async getEventBooking(id) {
-        // Check localStorage first to quickly populate this
-        let events = this.events
-        if (events[id]) {
-          // set Alpine 'eventInfo' variables
-          this.owner = events[id].owner
-          this.gm = events[id].gm
-          this.bookings = events[id].bookings
-          this.spacesTotal = events[id].spacesTotal
-          this.spacesOpen = events[id].spacesOpen
-          this.categories = events[id].categories
+      id: 0, // this is filled in in nunjucks
+      categories: [], // this is filled in in nunjucks
+      spacesOpen: 0, // this is temp filled in in nunjucks
+      bookings: [],
+      gm: {},
+      async getEventInfo(id) {
+        id = id || this.id
+        // let spacesLS = JSON.parse(localStorage.getItem('spaces')) || {}
+        let eventsLS = JSON.parse(localStorage.getItem('events')) || {}
+        // this.spacesOpen = spacesLS[id]
+        if (eventsLS[id]) {
+          this.spacesOpen = eventsLS[id].spacesOpen
+          this.bookings = eventsLS[id].bookings
+          this.gm = eventsLS[id].gm
         }
-        // fetch new data from server
-        const data = await fetchData('/events/find',{ method: 'POST', body: { id: id }})
-        if (data) {
-          // Convert metadata array to object
+        
+        try {
+          // TODO: replace this with simpler API call when Jerry builds it
+          const data = await fetchData('/events/find',{ method: 'POST', body: { id: id }})
           const metadata = metadataArrayToObject(data.metadata)
-          // set Alpine 'eventInfo' variables
-          this.owner = data.eventOwner.displayName
-          this.gm = metadata.GM
-          // filter out all cancelled bookings and GM roles
-          const bookings = data.bookings.filter(booking => booking.bookingStatus === 1 && booking.bookingComment !== "GM")
-          this.bookings = bookings
-          this.spacesTotal = parseInt(metadata.Players)
-          this.spacesOpen = parseInt(metadata.Players) - bookings.length
-          this.categories = data.categories.map(val => val.name)
-
-          // add to events store
-          events = {...events, [id]:{
-            owner: this.owner,
-            gm: this.gm,
-            bookings: this.bookings,
-            spacesTotal: this.spacesTotal,
-            spacesOpen: this.spacesOpen,
-            metadata: metadata,
-            categories: this.categories
-          }}
-          this.events = events
+          // gm defaults to empty object when there isn't a gm
+          this.gm = data.bookings.find(booking => booking.bookingComment === "GM") || {}
+          // get only active bookings that are not gms
+          this.bookings = data.bookings.filter(booking => booking.bookingStatus === 1 && booking.bookingComment !== "GM")
+          // spacesOpen is based on number of players - bookings unless players is not set as a number then it defaults to 'Any'
+          // TODO: We might want to revisit this as it's a bit ugly
+          this.spacesOpen = Number(metadata.Players) ? Number(metadata.Players) - this.bookings.length : 'Any'
+        } catch (e) {
+          console.log(e)
         }
+        // this.spaces[id] = this.spacesOpen
+        // spacesLS[id] = this.spacesOpen
+        eventsLS[id] = {
+          spacesOpen: this.spacesOpen,
+          bookings: this.bookings,
+          gm: this.gm
+        }
+        // localStorage.setItem('spaces', JSON.stringify(spacesLS))
+        localStorage.setItem('events', JSON.stringify(eventsLS))
+      },
+      get isSpacesOpen() {
+        return this.spacesOpen > 0 || isNaN(this.spacesOpen)
       },
       async uploadImage(e) {
 
@@ -423,6 +412,7 @@ document.addEventListener('alpine:init', () => {
       },
     }
   })
+
 
   Alpine.data('createAccount',() => ({
     agree: false,

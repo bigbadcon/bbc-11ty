@@ -15,7 +15,7 @@
         </div>
         <div>
             <strong>Spaces Open:</strong>
-            <span x-text="spacesOpen"></span> out of <span x-text="spacesTotal"></span>
+            <span x-text="spacesOpen"></span> out of {{event.metadata.Players}}
         </div>
 
         <div x-cloak x-show="bookings && bookings.length">
@@ -30,10 +30,11 @@
         <div class="flex mt-base gap-sm" x-show="(isTeen && !isAllAges) ? false : true">
             <button class="button" x-show="spacesOpen > 0 && !isBooked({{event.eventId}})" @click="bookEvent({{event.eventId}})">Book Event</button>
             <span x-show="spacesOpen <= 0 && !isBooked({{event.eventId}})" class="font-bold">Event is full</span>
-            <button class="button" x-show="isBooked({{event.eventId}}) && user && user.displayName !== owner" @click="cancelBooking({{event.eventId}})">Cancel Booking</span>
+            {# Show Cancel #}
+            <button class="button" x-show="isBooked({{event.eventId}}) && user && user.id !== gm.id" @click="cancelBooking({{event.eventId}})">Cancel Booking</span>
         </div>
-        <div x-show="user && user.displayName === owner">
-            You are the owner of this event. If you need to cancel this event please contact us.
+        <div x-show="user && user.id === gm.id">
+            You are the person running this event. If you need to cancel this event please contact us at <a href="mailto:info@bigbadcon.com">info@bigbadcon.com</a>.
         </div>
         <div x-show="(isTeen && !isAllAges) ? true : false" class="italic mt-base">
             This is an 18+ only event. Teens are only allowed in All Ages events.

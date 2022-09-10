@@ -53,25 +53,17 @@ eleventyComputed:
       <strong>System:</strong>
       {{event.metadata.System}}</div>
   {% endif %}
-  {% if ('Early Signup' in categoryArray) %}
-    {# Event Day #}
-    <div class="flex flex-wrap justify-between">
-      {# timezone data is in x-data="eventFilter" in wrapping div in base.njk #}
-      {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
-      <div>
-        <strong>Date:</strong>
-        <span x-cloak x-show="timezone" x-html="formatEventDate('{{event.eventStartDateTime}}',timezone)">{{ event.eventStartDateTime | formatEventDate | safe }}</span>
-      </div>
-      <div>{% include 'components/timezone-select.njk' %}</div>
+  {# Event Day #}
+  <div class="flex flex-wrap justify-between">
+    <div>
+      <strong>Date:</strong>
+      {% include 'components/event-date-time-duration.njk' %}
     </div>
-  {% endif %}
-  <div>
-    <strong>Length:</strong>
-    {{event.metadata.Length}} hour</div>
+  </div>
   {% if event.metadata.Players %}
     <div class="">
       <strong>Spaces:</strong>
-      <span x-text="(spacesTotal) ? spacesOpen + ' out of ' + spacesTotal : '{{event.metadata.Players}}'">{{event.metadata.Players}}</span>
+      <span x-text="(spacesOpen) ? spacesOpen + ' out of {{event.metadata.Players}}' : '{{event.metadata.Players}}'">{{event.metadata.Players}}</span>
     </div>
   {% endif %}
   <div>
@@ -107,13 +99,13 @@ eleventyComputed:
 {% endif %}
 {# Event links #}
 <div class="flex flex-wrap justify-between max-w-full prose border-t-2 border-b-2 mt-md border-hr py-sm gap-base">
-  {# <div class="flex text-sm gap-xs">
-        <strong>Add to calendar:</strong>
-        {% set calendarDescription = "Big Bad Online 2022: " + event.eventName | safe + " https://www.bigbadcon.com/events/" + event.eventSlug %}
-        <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'google' %}">Google</a>
-        <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'ics' %}">iCal</a>
-        <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'outlook' %}">Outlook</a>
-    </div> #}
+  <div class="flex text-sm gap-xs">
+    <strong>Add to calendar:</strong>
+    {% set calendarDescription = "Big Bad Online 2022: " + event.eventName | safe + " https://www.bigbadcon.com/events/" + event.eventSlug %}
+    <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'google' %}">Google</a>
+    <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'ics' %}">iCal</a>
+    <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'outlook' %}">Outlook</a>
+  </div>
   <div class="text-sm">
     {% set tweeturl = "https://twitter.com/intent/tweet?text=Check+out+this+event+at+BigBadCon!+https://www.bigbadcon.com/events/" + event.eventSlug %}
 
