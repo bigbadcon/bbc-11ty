@@ -23,6 +23,13 @@ function compareArrays(arr1, arr2) {
   return Array.isArray(arr1) && Array.isArray(arr2) && arr1.filter(val => arr2.indexOf(val) !== -1)
 }
 
+/* ------------------------- Convert odd characters ------------------------- */
+const decodeText = text => {
+  return text && utf8.decode(windows1252.encode(text,{
+      mode: 'html'
+  }))
+}
+
 /* -------------------------------------------------------------------------- */
 /*                             dayjs event format                             */
 /* -------------------------------------------------------------------------- */
@@ -179,6 +186,7 @@ document.addEventListener('alpine:init', () => {
           ...user,
           metadata: userMetadata,
           roles: userRoles,
+          displayName: decodeText(user.displayName) || user.displayName
         }
         console.log("user data transformed",user);
         this.user = user
@@ -335,10 +343,12 @@ document.addEventListener('alpine:init', () => {
           // TODO: replace this with simpler API call when Jerry builds it
           const data = await fetchData('/events/find',{ method: 'POST', body: { id: id }})
           const metadata = metadataArrayToObject(data.metadata)
+          // filter out canceled bookings and fix name issues with odd characters
+          const bookings = data.bookings.filter(booking => booking.bookingStatus === 1).map(booking => {return { ...booking, user: {...booking.user, displayName: decodeText(booking.user.displayName)}}})
           // gm defaults to empty object when there isn't a gm
-          this.gm = data.bookings.find(booking => booking.bookingComment === "GM") || {}
+          this.gm = bookings.find(booking => booking.bookingComment === "GM") || {}
           // get only active bookings that are not gms
-          this.bookings = data.bookings.filter(booking => booking.bookingStatus === 1 && booking.bookingComment !== "GM")
+          this.bookings = bookings.filter(booking => booking.bookingComment !== "GM")
           // spacesOpen is based on number of players - bookings unless players is not set as a number then it defaults to 'Any'
           // TODO: We might want to revisit this as it's a bit ugly
           this.spacesOpen = Number(metadata.Players) ? Number(metadata.Players) - this.bookings.length : 'Any'
