@@ -128,7 +128,7 @@ eleventyComputed:
 </div>
 </div>
 {# ADMIN ONLY SECTION #}
-<div x-cloak x-show="isAdmin" class="prose rounded my-base p-base bg-card">
+<div x-cloak x-init="getUserData()" x-show="isAdmin" class="prose rounded my-base p-base bg-card">
 <h3>Admin Only</h3>
 <form action="post" @submit.prevent="uploadImage">
     <input type="hidden" name="eventId" value="{{event.eventId}}">
