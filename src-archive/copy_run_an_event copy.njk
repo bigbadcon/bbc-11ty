@@ -60,11 +60,10 @@
                                 <legend>Game info</legend>
                                 <div class="required">
                                     <label for="eventName">Game name</label>
-                                    <span>Please do not use emojis in your Game Name.</span>
                                     <input id="eventName" name="eventName" type="text" value="" x-model="eventInfo.eventName" @blur="validate" class="w-full max-w-md"/>
                                 </div>
                                 <div class="required">
-                                    <label for="format">Format</label>                               
+                                    <label for="format">Format</label>
                                     <select id="format" name="format" x-model="eventInfo.format" @blur="validate">
                                         <option :disabled="eventInfo.format !== ''" selected value="">-- Choose One --</option>
                                         <template x-for="type in format">
@@ -74,12 +73,10 @@
                                 </div>
                                 <div x-show="isGame" class="required">
                                     <label for="system">System</label>
-                                    <span>Please do not use emojis in the System field.</span><br />                                    
                                     <input id="system" name="system" type="text" value="" x-model="eventInfo.system" @blur="validate"/>
                                 </div>
                                 <div class="required">
                                     <label for="eventDescription">Description</label>
-                                    <span>Please do not use emojis in your Description.</span>                                         
                                     <textarea cols="30" id="eventDescription" name="eventDescription" rows="3" x-model="eventInfo.eventDescription" @blur="validate"></textarea>
                                 </div>
                                 <div>
@@ -90,7 +87,6 @@
                                 </div>
                                 <div>
                                     <label for="otherInfo">Other info we should know (this will not go in the program)</label>
-                                    <span>Please do not use emojis in this field.</span>                                     
                                     <textarea cols="30" id="otherInfo" name="otherInfo" rows="3" x-model="eventInfo.otherInfo"></textarea>
                                 </div>
                                 {# <div>
@@ -104,13 +100,13 @@
                                 <legend>Player info</legend>
                                 {# Only required for games #}
                                 <div class="required">
-                                    <label for="minPlayers">Minimum players</label>                                         
-                                    <input id="minPlayers" name="minPlayers" type="number" step="1" value="" x-model="eventInfo.minPlayers" @blur="validate"/>
+                                    <label for="minPlayers">Minimum players</label>
+                                    <input id="minPlayers" name="minPlayers" type="text" value="" x-model="eventInfo.minPlayers" @blur="validate"/>
                                 </div>
                                 {# Only required for games #}
                                 <div class="required">
                                     <label for="maxPlayers" >Maximum players</label>
-                                    <input id="maxPlayers" name="maxPlayers" type="number" step="1" value="" x-model="eventInfo.maxPlayers" @blur="validate"/>
+                                    <input id="maxPlayers" name="maxPlayers" type="text" value="" x-model="eventInfo.maxPlayers" @blur="validate"/>
                                 </div>
                                 <div x-show="isRPGorLARP" class="required">
                                     <label for="characters">Characters</label>
@@ -139,7 +135,7 @@
                                         <option value="4">4 hours</option>
                                     </select>
                                 </div>
-                                <div x-show="eventInfo.eventLength" class="required">
+                                <div x-show="eventInfo.eventLength">
                                     <label for="schedulePrefBlock">Scheduled Slot</label>
                                     <div id="schedulePrefBlock" class="flex items-center">
                                         <select id="schedulePrefSel" name="schedulePrefSel" x-model="eventInfo.schedulePref" @blur="validate">
@@ -161,7 +157,6 @@
                                 <div class="required">
                                     <div>
                                         <label for="triggerWarnings">Content warnings</label>
-                                        <span>Please do not use emojis in your content warnings.</span>                                             
                                         <input id="triggerWarnings" name="triggerWarnings" type="text" value="" x-model="eventInfo.triggerWarnings" class="w-full max-w-md"/>
                                     </div>
                                 </div>
@@ -200,11 +195,10 @@
                                 </div>
                                 <div>
                                     <label for="additionalRequirements">Additional information</label>
-                                    <span>Please do not use emojis in this field.</span>                                         
                                     <textarea cols="30" id="additionalRequirements" name="additionalRequirements" rows="3" x-model="eventInfo.additionalRequirements"></textarea>
                                 </div>
                             </fieldset>
-                            <button type="submit" :disabled="!isSchedulingInfoComplete">Submit</button>
+                            <button type="submit" :disabled="!isSchedulingInfoComplete || !isValid(eventInfo.eventName) || !isValid(eventInfo.eventDescription)">Submit</button>
                         </form>
                     </div>
                     {# END event submission div #}
@@ -461,11 +455,27 @@
                             parent
                                 .classList
                                 .remove('error-required');
-                        } //TODO: add test to see if isNumber
+                        }
+                        //TODO: add test to see if isNumber
+                    },
+                    isValid(textInp) {
+                        console.log(textInp)
+                        var re = /\S+@\S+\.\S+/; // t@x.com
+                        return re.test(textInp);
                     },
                     submitEvent() {
                         console.log("submit", convertToCreateEventAPI(this.eventInfo))
                         const y = 0
+
+                        var textFields = document.querySelectorAll("#form input[type=text]") || document.querySelectorAll("#form textarea");
+                        console.log(textFields)
+                        for (var i=0; i<textFields.length; i++) {
+                            if (textFields[i].value !== "") {
+                                console.log(textFields[i].value)
+                            } else {
+                                return "empty";
+                            }
+                        }
 
                         const submitNow = () => {
                             this.createEvent()
@@ -481,8 +491,8 @@
                         function checkScrollEnd() {
                             window.addEventListener('scroll', scrollEventListener);
                         }
-                        checkScrollEnd()
-                        window.scroll({top: y, behavior: 'smooth'});
+                         checkScrollEnd()
+                            window.scroll({top: y, behavior: 'smooth'});
                     },
                     async createEvent() {
                         const eventInfo = convertToCreateEventAPI(this.eventInfo)
