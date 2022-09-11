@@ -14,7 +14,6 @@
         @click.stop=""
         >
             {{ login() }}
-            {{ spinner() }}
             {{ userInfo() }}
             {{ changePassword() }}
             {{ resetPassword() }}
@@ -169,7 +168,7 @@
 
 {# Loading Spinner. When logging in but user info not yet loaded #}
 {% macro spinner() %}
-    <div x-cloak x-show="authToken && !user" class="flex items-center justify-center gap-sm animate-pulse py-md">
+    <div x-cloak x-show="isAuth && !user" class="flex items-center justify-center gap-sm animate-pulse py-md">
         <div class="w-8 h-8 rounded-full bg-body"></div>
         <div class="w-8 h-8 rounded-full bg-body"></div>
         <div class="w-8 h-8 rounded-full bg-body"></div>
