@@ -578,7 +578,7 @@ a[class^='icon-']:hover {
 }
 
 .events-table .events-table-cell--system {
-  @apply italic;
+  @apply italic basis-full;
 }
 
 .events-table .events-table-cell--date {
