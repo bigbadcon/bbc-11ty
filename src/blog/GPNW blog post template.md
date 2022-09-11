@@ -1,0 +1,44 @@
+---
+title: "Announcing: Go Play NW 2022 Event 2: Sep 30–Oct 2"
+tags: blog
+published: true
+date: 2022-08-20
+---
+
+We’re excited to announce our *second* Go Play NW Online event for 2022 will be the weekend of **Friday, September 30 through Sunday, October 2!** And, we’re extending the schedule on Saturday to fit three Game Sessions!
+
+## Event Schedule
+### Friday, Sep 30
+* **Lobby Con:** 6:00 PM PST\
+_We're kicking things off with our usual Friday evening social giving you time to catch up with old friends and meet new ones._
+
+### Saturday, Oct 1
+* **Doors Open**: 9:00 AM PST
+* **Morning Game Session:** 9:30 AM PST
+* **Afternoon Game Session:** 2:00 PM PST
+* **Evening Game Session:** 7:00 PM PST
+
+### Sunday, Oct 2
+* **Doors Open**: 9:00 AM PST
+* **Morning Game Session:** 11:00 AM PST
+* **Afternoon Game Session:** 4:00 PM PST
+
+## Event Details
+### Where's it happening?
+We’re continuing to host the event on our dedicated [Discord](https://discord.gg/AqhayGFexQ) server with video, audio-only, and text-only channels available.
+
+### What activities are you hosting?
+Once again we’ll be organizing games in two ways:
+
+1. Each session we’ll be holding the pitch circle, [The Donut](/the-donut), which is great for getting people into games at the spur of the moment. 
+2. We’ll also have a scheduling system set up on our website, for those of you who like to plan a game in advance and know that you’ll have players already at the table when the session starts.
+
+### How much will it cost?
+Our 2022 Fall online event will be Pay What You Want just like our 2022 Summer online event.
+
+### How do I register?
+In the next couple weeks, we’ll be ready to open up registration—(spoilers) including a shiny new website design (spoilers)—and we’ll have further details on the event, including new [Featured Facilitators](/featured-facilitators).
+
+For now, save the dates **Friday, September 30 through Sunday, October 2,** and start thinking about the games you’d like to play!
+
+We hope you’ll join us!
