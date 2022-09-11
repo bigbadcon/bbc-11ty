@@ -7,6 +7,7 @@ pagination:
 permalink: "events/{{ event.eventSlug }}/"
 eleventyComputed:
     title: "{{ event.eventName | safe }}"
+    ogAPIImage: "https://v1.screenshot.11ty.dev/https%3A%2F%2Fgoplaynw.org/%2Fog%2Fevents%2F{{event.eventSlug}}%2F/opengraph/"
 ---
 
 {# {% include 'components/event-date-time.njk'%} #}

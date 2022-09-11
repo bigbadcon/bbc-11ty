@@ -4,12 +4,12 @@
   "description": "Go Play Northwest 11ty site",
   "contributors": [
     {
-      "name" : "Jeremy Tidwell",
-      "url" : "https://github.com/necanthrope/"
+      "name": "Jeremy Tidwell",
+      "url": "https://github.com/necanthrope/"
     },
     {
-      "name" : "Star West Morgan",
-      "url" : "https://github.com/hedgiespresso/"
+      "name": "Star West Morgan",
+      "url": "https://github.com/hedgiespresso/"
     },
     {
       "name": "Colin Fahrion",
@@ -35,6 +35,7 @@
     "@11ty/eleventy-img": "^0.9.0",
     "@11ty/eleventy-plugin-rss": "^1.1.1",
     "@alpinejs/persist": "^3.10.2",
+    "@colinaut/alpinejs-plugin-simple-validate": "^1.7.10",
     "@netlify/functions": "^0.7.2",
     "@sendgrid/mail": "^7.4.6",
     "@slack/bolt": "^3.5.0",
@@ -64,7 +65,7 @@
     "ssl-root-cas": "^1.3.1",
     "tailwindcss": "latest",
     "utf8": "^3.0.0",
-    "windows-1252": "^1.0.0"
+    "windows-1252": "1.1.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.22.2",

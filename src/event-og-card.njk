@@ -1,0 +1,38 @@
+---
+layout: layouts/og-card.njk
+pagination:
+    data: eventData.events
+    size: 1
+    alias: event
+permalink: "og/events/{{ event.eventSlug }}/"
+eleventyComputed:
+    title: "{{ event.eventName | safe }}"
+---
+
+<div class="grid w-full h-full" style="grid-template-columns: 347px 853px; grid-template-rows: 480px">
+    <div class="flex flex-col items-center bg-primary-4 pb-base">
+        {# TODO: replace GPNW with logo #}
+        <div class="text-4xl font-bold pt-base text-primary" style="height: 380px">GO PLAY NW</div>
+        <div class="flex flex-col items-center font-bold text-primary gap-sm">
+            <div class="">
+                <span class="text-2xl">Sep 30&ndash;Oct 2</span>
+            </div>
+            <div class="text-6xl">2022</div>
+        </div>
+    </div>
+    <div class="overflow-hidden bg-primary">
+        {% if (event.metadata.event_image) %}
+            {% set src = "https://api-prod.goplaynw.org/images/" + event.metadata.event_image %}
+        {% else %}
+            {# TODO: replace with 16/9 ratio default GPNW image #}
+            {% set src = "/static/images/og.jpg" %}
+        {% endif %}
+        <img src="{{src}}" class="object-cover w-full" style="aspect-ratio: 16/9;"/>
+    </div>
+    <div class="bg-secondary text-form col-span-full">
+        <div class="col-span-9 px-md py-base ">
+            <h1 class="font-serif text-4xl font-bold leading-8">{{ event.eventName | safe }}</h1>
+            <div class="text-2xl font-bold text-red-100 mt-2xs">{{event.metadata.GM}}</div>
+        </div>
+    </div>
+</div>
