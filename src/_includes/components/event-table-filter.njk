@@ -22,17 +22,18 @@
     {# favsOnly data is in x-data="eventFilter" in wrapping div in base.njk #}
     <div class="flex items-center justify-start gap-xs" x-cloak x-show="isAuth">
         <h5 class="text-sm font-bold">Filter:</h5>
-        <button @click="filter.favsOnly = !filter.favsOnly" 
-        class="filter-btn group">
-            <svg class="w-4 h-4 group-hover:fill-secondary" :class="(filter.favsOnly) ? 'fill-highlight' : 'fill-body'">
-                <use xlink:href="/static/images/icons.svg#star"></use>
+        <button @click="filter.favsOnly = !filter.favsOnly" class="filter-btn group">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-4 h-4 group-hover:fill-secondary" :class="(filter.favsOnly) ? 'fill-highlight' : 'fill-body'">
+                <title>star</title>
+                <path d="M32 12.408l-11.056-1.607-4.944-10.018-4.944 10.018-11.056 1.607 8 7.798-1.889 11.011 9.889-5.199 9.889 5.199-1.889-11.011 8-7.798z"></path>
             </svg>
             <span class="text-sm">Favs</span>
         </button>
         <button @click="filter.openOnly = !filter.openOnly" 
         class="filter-btn group">
-            <svg class="w-4 h-4 group-hover:fill-secondary" :class="(filter.openOnly) ? 'fill-highlight' : 'fill-body'">
-                <use xlink:href="/static/images/icons.svg#square-full"></use>
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 28" class="w-4 h-4 group-hover:fill-secondary" :class="(filter.openOnly) ? 'fill-highlight' : 'fill-body'">
+                <title>square</title>
+                <path d="M24 6.5v15c0 2.484-2.016 4.5-4.5 4.5h-15c-2.484 0-4.5-2.016-4.5-4.5v-15c0-2.484 2.016-4.5 4.5-4.5h15c2.484 0 4.5 2.016 4.5 4.5z"></path>
             </svg>
             <span class="text-sm">Open Spaces</span>
         </button>
