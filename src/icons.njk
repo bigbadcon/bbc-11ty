@@ -24,8 +24,10 @@ description: List of icons
 </div>
 <h2>List of Icons</h2>
 
-<div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-base">
+<div class="sm:columns-2 lg:columns-3 xl:columns-4 gap-base">
     {% for icon in svgIcons %}
-        <div class="icon-{{icon.name}}">.icon-{{icon.name}}</div>
+        <div class="break-inside-avoid py-sm">
+            <div class="icon-{{icon.name}}">.icon-{{icon.name}}</div>
+        </div>
     {% endfor %}
 </div>
