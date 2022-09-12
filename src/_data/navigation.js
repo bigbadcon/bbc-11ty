@@ -98,6 +98,11 @@ module.exports = [
 				"icon": "shield"
 			},
 			{
+				"title": "Accessibility Policy",
+				"url": "/accessibility-policy",
+				"icon": "accessibility"
+			},
+			{
 				"title": "Community Discord",
 				"url": "/community-discord",
 				"icon": "discord"
