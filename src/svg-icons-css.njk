@@ -1,0 +1,30 @@
+---
+permalink: svg-icons.css
+---
+
+{% if svgIcons %}
+
+[class^='icon-']:before {
+    display: block;
+    height: 1.5rem;
+    width: 1.5rem;
+    background-color: var(--highlight);
+    background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
+    --tw-gradient-from: var(--highlight);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+    --tw-gradient-to: rgb(255 255 255 / 0);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--highlight), var(--tw-gradient-to);
+    --tw-gradient-to: var(--highlight-2);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    content: " ";
+}
+
+{% for icon in svgIcons %}
+.icon-{{icon.name}}:before {
+    -webkit-mask-image: url({{icon.filePath}});
+    mask-image: url({{icon.filePath}});
+}
+{% endfor %}
+
+{% endif %}
