@@ -10,9 +10,9 @@ As part of our principles of respect, support, and kindness, Big Bad Con works t
 * We do not discriminate in any way against attendees or staff with disabilities.
 * We ensure our venue provides ADA accessible sleeping rooms and ADA accessible stalls in all shared bathrooms.
 * We provide ramp, user-operated lift, or elevator access to all event spaces.
-* We provide accessible gaming gear (link to a section below on what we have and where to find it)
+* We provide accessible gaming gear (link to a section below on what we have and where to find it).
 * We keep pathways clear, wide enough, and usable by people with visual, mobility, and other needs.
-* We provide priority access to services as needed (see below)
+* We provide priority access to services as needed (see below).
 * We have a respite room with noise canceling headphones, quiet activities, and a privacy screen for lactation.
 * Our website aligns with the W3C accessibility standards, including our gaming schedule.
 * We grant free badges to caregivers and companions.
@@ -33,16 +33,18 @@ If you find that we are not upholding our goals or there are ways we can improve
 * Lowered peephole and door latch
 * Accessible bathrooms
 * Lift access to the foyer
-* MERV-10 in the rooms.
+* MERV-10 air filters in the rooms
 
 **Conference space accessibility features:**
 
 * Accessible bathrooms
 * Lift access to the foyer
-* The facility is wheelchair accessible under the ADA, via ramps and/or lifts.
-* The hotel is approximately 300’ across. Map including distances [here](https://www.bigbadcon.com/hotel/).
-* Half of their shuttles are equipped with wheelchair lifts/ramps
-* MERV-8 in all public spaces. The Atrium has 4x MERV-15 filters pulling air up and exhausting it through the roof.
+* Wheelchair accessible under the ADA provisions
+* Shuttles are equipped with wheelchair lifts/ramps
+* MERV-8 air filters in all public spaces
+* Atrium has 4x MERV-15 filters pulling air up and exhausting it through the roof
+
+The Hyatt is approximately 300’ across. Map including distances [here](https://www.bigbadcon.com/hotel/)
 
 ## Accessible Gaming Gear
 
@@ -61,7 +63,7 @@ Below is a list of our current accessible gaming gear. You can find this gear at
 * Dice rollers
 * High contrast dice
 * Masks with clear windows (to facilitate lip-reading)
-* Large format versions of our programs and schedules.
+* Large format versions of our programs and schedules
 
 ## Priority Access
 
