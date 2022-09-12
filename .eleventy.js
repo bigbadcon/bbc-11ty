@@ -210,31 +210,6 @@ module.exports = (eleventyConfig) => {
     return dayjs(today).format("YYYYMMDD");
   });
 
-  // SVG Sprite Shortcode
-  eleventyConfig.addShortcode("icon", function(icon = "star", fill="fill-highlight") {
-    return `<span class="icon"><svg class="iconlink__icon ${fill}">
-      <use xlink:href="/static/images/icons.svg#${icon}"></use>
-    </svg></span>`
-  });
-
-  // SVG Sprite Link Shortcode
-  eleventyConfig.addShortcode("iconLink", function(link, title, icon = "star", fill="fill-highlight") {
-    // check for markdown link due to Forestry WYSIWYG issue
-    if (link.startsWith("[")) link = link.match( /\[(.*)\]/)[1];
-    return `<a href="${link}" class="iconlink"><svg class="iconlink__icon ${fill}">
-      <use xlink:href="/static/images/icons.svg#${icon}"></use>
-    </svg><span class="iconlink__title">${title}</span></a>`
-  });
-
-  /* -------- Convert metadata array to object to make it easier to use ------- */
-  function metadataArrayToObject(arr) {
-    const object = arr.reduce(function(result, item) {
-      result[item.metaKey] = item.metaValue;
-      return result;
-    }, {});
-    return object
-  }
-
   // Find Metadata Value By Key
   eleventyConfig.addShortcode("metaValue", function(metadata, key) {
     let value = Array.isArray(metadata) && metadata.find(item => item.metaKey === key ).metaValue
