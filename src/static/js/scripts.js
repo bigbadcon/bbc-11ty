@@ -328,6 +328,7 @@ document.addEventListener('alpine:init', () => {
       spacesOpen: 0, // this is temp filled in in nunjucks
       bookings: [],
       gm: {},
+      event_image: "",
       async getEventInfo(id) {
         id = id || this.id
         // let spacesLS = JSON.parse(localStorage.getItem('spaces')) || {}
@@ -337,14 +338,19 @@ document.addEventListener('alpine:init', () => {
           this.spacesOpen = eventsLS[id].spacesOpen
           this.bookings = eventsLS[id].bookings
           this.gm = eventsLS[id].gm
+          this.event_image = eventsLS[id].event_image
         }
         
         try {
           // TODO: replace this with simpler API call when Jerry builds it
+          /* ------------------------ Get data from events/find ----------------------- */
           const data = await fetchData('/events/find',{ method: 'POST', body: { id: id }})
+          // convert metadata to object
           const metadata = metadataArrayToObject(data.metadata)
           // filter out canceled bookings and fix name issues with odd characters
           const bookings = data.bookings.filter(booking => booking.bookingStatus === 1).map(booking => {return { ...booking, user: {...booking.user, displayName: decodeText(booking.user.displayName)}}})
+         
+          /* ------------------------ Update all data variables ----------------------- */
           // gm defaults to empty object when there isn't a gm
           this.gm = bookings.find(booking => booking.bookingComment === "GM") || {}
           // get only active bookings that are not gms
@@ -352,18 +358,21 @@ document.addEventListener('alpine:init', () => {
           // spacesOpen is based on number of players - bookings unless players is not set as a number then it defaults to 'Any'
           // TODO: We might want to revisit this as it's a bit ugly
           this.spacesOpen = Number(metadata.Players) ? Number(metadata.Players) - this.bookings.length : 'Any'
+          // get event_image
+          this.event_image = metadata.event_image
+
+          /* -------------------------- Update Local Storage -------------------------- */
+          eventsLS[id] = {
+            spacesOpen: this.spacesOpen,
+            bookings: this.bookings,
+            gm: this.gm,
+            event_image: this.event_image
+          }
+          localStorage.setItem('events', JSON.stringify(eventsLS))
+
         } catch (e) {
           console.log(e)
         }
-        // this.spaces[id] = this.spacesOpen
-        // spacesLS[id] = this.spacesOpen
-        eventsLS[id] = {
-          spacesOpen: this.spacesOpen,
-          bookings: this.bookings,
-          gm: this.gm
-        }
-        // localStorage.setItem('spaces', JSON.stringify(spacesLS))
-        localStorage.setItem('events', JSON.stringify(eventsLS))
       },
       get isSpacesOpen() {
         return this.spacesOpen > 0 || isNaN(this.spacesOpen)
@@ -403,11 +412,20 @@ document.addEventListener('alpine:init', () => {
 
         if (data) {
           // if data update event data with new image
-          let event = this.events[eventId]
-          event.metadata.event_image = data.fileName
-          this.events = {...this.events, [eventId]: event}
+          let eventsLS = JSON.parse(localStorage.getItem('events')) || {}
+          if (eventsLS[eventId]) {
+            this.event_image = data.fileName
+          }
+          eventsLS[eventId] = {
+            spacesOpen: this.spacesOpen,
+            bookings: this.bookings,
+            gm: this.gm,
+            event_image: this.event_image
+          }
+          localStorage.setItem('events', JSON.stringify(eventsLS))
+          location.reload()
         }
-        location.reload()
+
         return data
       },
       showPreview(e) {
