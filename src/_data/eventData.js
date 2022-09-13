@@ -52,11 +52,11 @@ module.exports = async () => {
 
         /* -------------- Filter out unpublished events by eventStatus -------------- */
         // TODO: figure out a better way to handle this for main vs drafts
-        // 0: draft or pending, 1: published, -1: trashed
+        // 0: draft or pending, 1: published, -1 or null: trashed
         // TODO: issue found is that eventStatus = null when it is moved to trash back to drafts?
         if (environment === "production") data = data.filter(event => event.eventStatus === 1);
-        // TODO: fix this as it is a kludge as we are hard coding the date
-        data = data.filter(event => dayjs(event.eventStartDate).isAfter(dayjs('2022-09-01')));
+        // Only show dates in the future (minus 1 month)
+        data = data.filter(event => dayjs(event.eventStartDate).isAfter(dayjs().subtract(1,'month')));
 
         /* ---------------- fix data if missing slug and decode text ---------------- */
         data = data.map(event => {
