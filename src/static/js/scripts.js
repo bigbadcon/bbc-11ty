@@ -261,14 +261,17 @@ document.addEventListener('alpine:init', () => {
       async getBookedEvents() {
         // 1. Get ID array of my events
         let myEvents = await fetchData('/events/me/',{})
+        // Logout if this fails as it indicates we are offline. This is necessary because we had issues with  people submitting forms and it didn't work.
+        // TODO: change this so it tests if you are offline before submitting any api call and warns
         if (myEvents === false) {this.logout(); return false;}
         // 2. Get event data for each ID
         myEvents = await Promise.all(myEvents.map( async id => {
+          // TODO: ideally this is a smaller JSON call
           const event = await this.getEvent(id)
           return event
         }))
-        // remove any trashed events
-        myEvents = myEvents.filter(event => event.eventStatus >= 0);
+        // only show published events that are in the future (minus 1 month ago)
+        myEvents = myEvents.filter(event => event.eventStatus >= 0).filter(event => dayjs(event.eventStartDate).isAfter(dayjs().subtract(1,'month')));
         // TODO: filter old events
         this.bookedEvents = myEvents
         return myEvents
