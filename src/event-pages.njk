@@ -115,8 +115,9 @@ eleventyComputed:
   </div>
 </div>
 {# ADMIN ONLY SECTION #}
-<div x-cloak x-show="isAdmin" class="max-w-full overflow-auto prose rounded my-base p-base bg-card">
-  <h3>Admin Only</h3>
+<div x-cloak x-show="isAdmin || (isAuth && user && user.id === gm.id)" class="max-w-full overflow-auto prose rounded my-base p-base bg-card">
+  <h3>Image Upload</h3>
+  <p class="italics">Only Available for Admins &amp; Event GM/Facilitator.</p>
   <form @submit.prevent="uploadImage">
     <input type="hidden" name="eventId" value="{{event.eventId}}">
     <label for="file">Event Image Upload Add/Replace</label>
