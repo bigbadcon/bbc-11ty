@@ -308,36 +308,9 @@ form[x-validate] [data-error]:after {
   /* @apply shadow-outline; */
 }
 
-/* --------------------------- Icon Link Shortcode -------------------------- */
-.iconlink, .icon {
-  @apply flex items-center space-x-sm text-highlight;
-  text-decoration: none !important;
-}
-.iconlink:hover {
-  text-decoration: underline !important;
-}
-.iconlink__icon,
-.light .icon-link__icon {
-  @apply w-6 h-6 flex-shrink-0;
-  filter: drop-shadow(0 0.1rem 0.1rem rgba(230, 255, 230, 0.4))
-}
-@media (prefers-color-scheme: dark) {
-  .iconlink__icon {
-    filter: drop-shadow(0 0.1rem 0.1rem rgba(0, 0, 50, 0.4))
-  }
-}
-.dark .iconlink__icon {
-  filter: drop-shadow(0 0.1rem 0.1rem rgba(0, 0, 50, 0.4))
-}
-.iconlink__title {
-  @apply text-body-highlight font-serif;
-  font-size: 1.3em;
-  line-height: 0.9;
-}
-/* Needed for cards on homepage */
-.prose p .iconlink {
-  margin: -.4em 0 0;
-}
+/* -------------------------------------------------------------------------- */
+/*                                    SVGS                                    */
+/* -------------------------------------------------------------------------- */
 
 .fill-highlight {
   fill: var(--highlight);
@@ -347,7 +320,9 @@ form[x-validate] [data-error]:after {
   fill: var(--body);
 }
 
-/* ------------------------------ Icon Link V2 ------------------------------ */
+/* -------------------------------------------------------------------------- */
+/*                                 Icon Links                                 */
+/* -------------------------------------------------------------------------- */
 
 [class^='icon-'] {
   @apply text-body-highlight font-serif no-underline flex items-center gap-sm;
@@ -368,7 +343,9 @@ a[class^='icon-']:hover {
 
 /* all icon-svgname classes are dynamically generated in svg-icons.css from svg-icons-css.njk using all svgs in the static/icons folder */
 
-/* ------------------------- Event / Volunteer List ------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                           Event / Volunteer List                           */
+/* -------------------------------------------------------------------------- */
 
 .events-table {
   @apply w-full text-sm text-body;
@@ -445,13 +422,13 @@ a[class^='icon-']:hover {
 }
 
 .fav-star {
-  mask-image: url(/static/svgs/star.svg);
+  mask-image: url(/static/icons/star.svg);
   mask-repeat: no-repeat;
   @apply block w-6 h-6 cursor-pointer opacity-30 hover:opacity-100 bg-body text-transparent;
 }
 
 .fav-star-header {
-  mask-image: url(/static/svgs/star.svg);
+  mask-image: url(/static/icons/star.svg);
   mask-repeat: no-repeat;
   @apply block w-6 h-6 bg-body indent-96;
 }
