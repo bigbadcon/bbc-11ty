@@ -1,10 +1,8 @@
 <section class="mt-md" x-data="eventsTable">
     <h2 class="font-serif text-3xl font-bold leading-none md:text-4xl text-header mb-2xs">Events List</h2>
     {% include 'components/event-table-filter.njk' %}
-    {# TODO: add filter by date #}
     <table class="events-table" id="events-table">
         <caption class="italic text-left mb-xs">Table can be sorted by event, system, or date</caption>
-        {# TODO: fix style for responsive mobile headers so they don't jump around when active #}
         <thead :class="sortAscending ? 'ascending' : 'descending'">
             <tr>
                 <th>
@@ -43,7 +41,7 @@
                 <tr 
                 x-data="eventInfo"
                 x-init="spacesOpen = {{ spacesOpen }}; id = {{event.eventId}}; categories = [{{event.categories | alpineArray}}]; if (isAuth) getEventInfo({{event.eventId}}); $watch('isAuth', val => {if (val) getEventInfo({{event.eventId}})})"
-                x-show="(typeof filter.category !== 'string' || filter.category === 'All' || categories.includes(filter.category)) && (!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || isSpacesOpen)" >
+                x-show="(typeof filter.category !== 'string' || filter.category === 'all' || categories.some(cat => cat.toLowerCase() === filter.category)) && (!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || isSpacesOpen)" >
 
                     {# Event Name #}
                     <td class="events-table-cell--name">
@@ -119,10 +117,23 @@
                         this.sortAscending = true
                     }
                     this.sortTable(this.sortBy || 1, this.sortAscending)
+                    this.searchUrlParams()
                 },
                 filter: this.$persist({favsOnly: false, openOnly: false, category: 'All'}),
                 sortBy: this.$persist(1),
                 sortAscending: this.$persist(true),
+                allCategories: [
+                    'all',
+                    'rpg',
+                    'board/card game',
+                    'playtest',
+                    'panel',
+                    'workshop',
+                    'god',
+                    'all ages',
+                    'early signup',
+                    'vending'
+                ],
                 sortTable(colnum, direction) {
                     // If this is the same column than switch direction
                     if (direction === undefined) {
@@ -158,6 +169,16 @@
 
                     // and then the magic part that makes the sorting appear on-page:
                     rows.forEach(row => table.appendChild(row));
+                },
+                searchUrlParams() {
+                    if (location.search) {
+                        const params = new URLSearchParams(location.search);
+                        let cat = params.get('cat')
+                        cat = cat.replace("-", " ")
+                        if (cat && this.allCategories.includes(cat)) {
+                            this.filter.category = cat
+                        }
+                    }
                 }
             }
         })

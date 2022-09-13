@@ -6,17 +6,18 @@
 
     <div class="flex items-center justify-start gap-xs">
         <h5 class="text-sm font-bold">Category:</h5>
-        <select class="mb-0 text-sm cursor-pointer px-xs py-2xs" x-model="filter.category" >
-            <option value="All">All</option>
-            <option value="RPG">RPG</option>
-            <option value="LARP">LARP</option>
-            <option value="Board/Card Game">Board/Card Game</option>
-            <option value="Playtest">Playtest</option>
-            <option value="Panel">Panel</option>
-            <option value="Workshop">Workshop</option>
-            <option value="GoD">GoD</option>
-            <option value="All Ages">All Ages</option>
-            <option value="Early Signup">Early Signup</option>
+        <select class="mb-0 text-sm cursor-pointer pl-xs py-2xs" x-model="filter.category" >
+            <option value="all">All</option>
+            <option value="rpg">RPG</option>
+            <option value="larp">LARP</option>
+            <option value="board/card game">Board/Card Game</option>
+            <option value="playtest">Playtest</option>
+            <option value="panel">Panel</option>
+            <option value="workshop">Workshop</option>
+            <option value="god">GoD</option>
+            <option value="all ages">All Ages</option>
+            <option value="early signup">Early Signup</option>
+            <option value="vending">Vending</option>
         </select>
     </div>
     {# favsOnly data is in x-data="eventFilter" in wrapping div in base.njk #}
