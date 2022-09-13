@@ -46,10 +46,18 @@
                     {# Event Name #}
                     <td class="events-table-cell--name">
                         <h3>
+                            {% if (sitemeta.context === "dev" and event.eventStatus !== 1) %}
+                                {% if event.eventStatus === 0 %}
+                                    <b>PENDING:</b>
+                                {% else %}
+                                    <b>UNPUBLISHED ({{event.eventStatus}}):</b>
+                                {% endif %}
+                            {% endif %}
                             <a href="/events/{{event.eventSlug}}" class="font-bold transition-colors text-header hover:text-highlight">{{event.eventName | safe }}</a>
                         </h3>
                         <p>{{event.metadata.GM | safe}}</p>
                     </td>
+
                     {# System #}
                     <td class="events-table-cell--system">{{event.metadata.System}}</td>
                     {# Event Start Date/Time #}
