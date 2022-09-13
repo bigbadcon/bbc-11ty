@@ -9,7 +9,6 @@ eleventyComputed:
     title: "{{ event.eventName | safe }}"
     ogAPIImage: "https://v1.screenshot.11ty.dev/https%3A%2F%2Fwww.bigbadcon.com%2Fog%2Fevents%2F{{event.eventSlug}}%2F/opengraph/"
 ---
-{% set categoryArray = event.categories %}
 
 {% set src = "" %}
 {% if (event.metadata.event_image) %}
@@ -71,7 +70,11 @@ eleventyComputed:
   <div>
     <strong>Safety Tools:</strong>
     {{event.metadata.safety_tools}}</div>
-
+  {% if (sitemeta.environment === 'dev') %}
+    <div>
+      <strong>Event ID:</strong>
+      {{event.eventId}}</div>
+  {% endif %}
 </div>
 
 {# Description #}
@@ -82,13 +85,13 @@ eleventyComputed:
 {# TODO: If this is a Small Press event then make sure they sign up on the form #}
 
 {# Ad hoc form for PoC Dinner 3263 #}
-{% set categoryArray = event.categories %}
 {% if event.eventId == 3263 %}
   {% include 'components/poc-dinner-form.njk' %}
-{% elif('Early Signup' in categoryArray) %}
-
+{% elif('Early Signup' in event.categories) %}
   {% include 'components/event-booking-panel.njk' %}
-{% elif('GoD' in categoryArray) %}
+{% elif('Vending' in event.categories) %}
+  {% include 'components/vending-booking-panel.njk' %}
+{% elif('GoD' in event.categories) %}
   <div class="prose rounded-md bg-card p-base mt-base">
     <h2>Games On Demand Booking</h2>
     <p>All seats are <a href="/games-on-demand-how-it-works/">assigned on site</a>, just show up to our Games on Demand room at least 10 minutes before the games start and you can get in!</p>
