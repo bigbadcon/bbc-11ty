@@ -79,7 +79,7 @@ exports.handler = async function (event, context) {
             /* -------------------------------------------------------------------------- */
             const isGift = metadata.recipient === 'for someone else'
 
-            if (metadata.productType !== 'poc-dinner' && !isGift) {
+            if (metadata.productType === 'badge' && !isGift) {
                 await axios.post(bbcApiBaseUrl + `users/addRoleToUser`,
                     {
                         "role": "paidattendee",
@@ -129,6 +129,7 @@ exports.handler = async function (event, context) {
                             headers: {"x-api-key": bbcApiKey}
                         }
                     )
+                    if (bookEvent.status !== 200) throw "Status !== 200; Book PoC event failed"
                     console.log('Book PoC Dinner Post',bookEvent)
                 } catch (err) {
                     console.log(err)
