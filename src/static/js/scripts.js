@@ -177,11 +177,12 @@ document.addEventListener('alpine:init', () => {
       async getUserData(token) {
         token = token || this.authToken
         let user = await fetchData('/users/me',{}, token)
+        console.log("🚀 ~ file: scripts.js ~ line 180 ~ getUserData ~ user", user)
 
         if (!user) {this.logout(); return false;}
 
         const userMetadata = metadataArrayToObject(user.metadata)
-        const userRoles = [...userMetadata.wp_tuiny5_capabilities.matchAll(/"([a-z]+)/g)].map( (match) => match[1])
+        const userRoles = [...userMetadata.wp_tuiny5_capabilities.matchAll(/"([a-z\-]+)/g)].map( (match) => match[1])
         user = {
           ...user,
           metadata: userMetadata,
@@ -210,8 +211,8 @@ document.addEventListener('alpine:init', () => {
       get isTeen() {
         return this.isRole('teen')
       },
-      get isTeen() {
-        return this.isRole('teen')
+      get isSmallPressVendor() {
+        return this.isRole('small-press-vendor')
       },
       get isPaid() {
         return this.isRole('paidattendee')
