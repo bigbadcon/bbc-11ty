@@ -211,8 +211,8 @@ document.addEventListener('alpine:init', () => {
       get isTeen() {
         return this.isRole('teen')
       },
-      get isSmallPressVendor() {
-        return this.isRole('small-press-vendor')
+      get isVendor() {
+        return this.isRole('vendor')
       },
       get isPaid() {
         return this.isRole('paidattendee')
@@ -269,6 +269,7 @@ document.addEventListener('alpine:init', () => {
         }))
         // remove any trashed events
         myEvents = myEvents.filter(event => event.eventStatus >= 0);
+        // TODO: filter old events
         this.bookedEvents = myEvents
         return myEvents
       },
@@ -438,7 +439,7 @@ document.addEventListener('alpine:init', () => {
           preview.style.display = "block";
           button.style.display = "inline-block";
         }
-      },
+      }
     }
   })
 
