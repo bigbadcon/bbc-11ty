@@ -345,8 +345,7 @@ module.exports = async () => {
                 eventSlug: event.eventSlug.toLowerCase(), // force lowercase
                 categories: categories, // convert to simple array
                 isVolunteer: categories.includes('volunteer'),
-                tags: tags,
-                contentAdvisory: tags.length > 0 && tags.every(val => ["Gore","Graphic Violence","Provocative","Sex and Sexuality"].includes(val)) // Kludge until we get it from the api
+                tags: tags, // Kludge until we get it from the api
             }
         })
 
@@ -363,8 +362,6 @@ module.exports = async () => {
                 dur: event.eventDuration,
                 status: event.eventStatus,
                 isV: event.isVolunteer ? 1 : 0,
-                contentAdvisory: event.contentAdvisory,
-                tags: event.tags
             }
         })
 

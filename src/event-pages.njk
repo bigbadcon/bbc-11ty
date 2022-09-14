@@ -89,9 +89,17 @@ eleventyComputed:
 
 {# Content Advisory #}
 
-{% if event.contentAdvisory %}
-  <div class="text-lg font-bold prose mt-base text-header">Content Advisory!</div>
+{% if event.metadata.content_advisory %}
+  <div class="prose mt-base">
+    <div class="text-lg font-bold text-header">Content Advisory!</div>
+    {% if event.metadata.trigger_warnings %}
+      <div>{{event.metadata.trigger_warnings}}</div>
+    {% else %}
+      <div>Potential adult themes</div>
+    {% endif %}
+  </div>
 {% endif %}
+
 {# Event Tags #}
 {% if event.tags | length %}
   <div class="flex flex-wrap items-center prose gap-xs mt-base">
