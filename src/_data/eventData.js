@@ -332,6 +332,8 @@ module.exports = async () => {
                 }
                 return [...acc]
             },[])
+
+            const hasContentAdvisoryTags = tags.length > 0 && tags.every(val => ["Gore","Graphic Violence","Provocative","Sex and Sexuality"].includes(val)) 
  
             /* ----------------------- Return modified event data ----------------------- */
             return {
@@ -346,6 +348,7 @@ module.exports = async () => {
                 categories: categories, // convert to simple array
                 isVolunteer: categories.includes('volunteer'),
                 tags: tags, // Kludge until we get it from the api
+                contentAdvisory: hasContentAdvisoryTags || typeof metadata.trigger_warnings === 'string'
             }
         })
 
@@ -375,7 +378,7 @@ module.exports = async () => {
             if (err) {
               console.log(err);
             } else {
-              console.log("eventData.json written successfully");
+              console.log("events.json written successfully");
             }
         })
 
