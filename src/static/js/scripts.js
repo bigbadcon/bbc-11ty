@@ -177,7 +177,6 @@ document.addEventListener('alpine:init', () => {
       async getUserData(token) {
         token = token || this.authToken
         let user = await fetchData('/users/me',{}, token)
-        console.log("🚀 ~ file: scripts.js ~ line 180 ~ getUserData ~ user", user)
 
         if (!user) {this.logout(); return false;}
 
@@ -264,16 +263,30 @@ document.addEventListener('alpine:init', () => {
         // Logout if this fails as it indicates we are offline. This is necessary because we had issues with  people submitting forms and it didn't work.
         // TODO: change this so it tests if you are offline before submitting any api call and warns
         if (myEvents === false) {this.logout(); return false;}
-        // 2. Get event data for each ID
-        myEvents = await Promise.all(myEvents.map( async id => {
-          // TODO: ideally this is a smaller JSON call
-          const event = await this.getEvent(id)
-          return event
-        }))
+        // 2. Get event data from local JSON
+        let eventData = {}
+        try {
+          const response = await fetch('/eventData.json')
+          eventData = await response.json()
+        } catch(err) {
+          console.error(`ERROR: fetch for ${url}`,err)
+          return false
+        }
+        //create array from eventData.json and remove all undefined cancelled events
+        myEvents = myEvents.map( id => eventData[id]).filter( event => event).map( event => { 
+          // Make javascript date objects
+          const eventStartDateTime = new Date(event.eventStartDateTime)
+          const eventEndDateTime = new Date(event.eventEndDateTime)
+          return {
+            ...event, 
+            eventStartDateTimeJS: eventStartDateTime,
+            eventEndDateTimeJS: eventEndDateTime,
+            eventDuration: duration(eventStartDateTime,eventEndDateTime)
+          }
+        })
         // only show published events that are in the future (minus 1 month ago)
-        myEvents = myEvents.filter(event => event.eventStatus >= 0).filter(event => dayjs(event.eventStartDate).isAfter(dayjs().subtract(1,'month')));
-        // TODO: filter old events
         this.bookedEvents = myEvents
+        console.log("🚀 ~ file: scripts.js ~ line 279 ~ getBookedEvents ~ myEvents", myEvents)
         return myEvents
       },
       async bookEvent(id) {
