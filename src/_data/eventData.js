@@ -273,6 +273,8 @@ const metadataTags = {
     ]
 }
 
+/* ----------------- Build metadata object with ids as keys ----------------- */
+
 let metadataTagsObj = {}
 
 Object.keys(metadataTags).forEach(type => {
@@ -308,20 +310,20 @@ module.exports = async () => {
             // if it is missing the eventSlug then use the eventId
             if (!event.eventSlug) event.eventSlug = event.eventId.toString()
 
-            // Convert metadata array to a more usable keyed object
+            /* ---------- Convert metadata array to a more usable keyed object ---------- */
             let metadata = metadataArrayToObject(event.metadata)
             // decode GM field text to proper format
             // TODO: refactor so that both this and the past events works the same? Right now we convert this to an object here but with past events we use a filter. Might be nice if we did it on the server API side though.
             metadata = {...metadata, GM: (metadata.GM) && decodeText(metadata.GM), System: (metadata.System) && decodeText(metadata.System) }
 
-            // Create date string with timezone
+            /* -------------------- Create date string with timezone -------------------- */
             const tz = 'America/Los_Angeles'
-            const eventStartDateTime = dayjs(event.eventStartDate + "T" + event.eventStartTime).tz(tz).toISOString()
-            const eventEndDateTime = dayjs(event.eventEndDate + "T" + event.eventEndTime).tz(tz).toISOString()
+            const eventStartDateTime = dayjs(event.eventStartDate + "T" + event.eventStartTime + "-07:00").tz(tz).toString()
+            const eventEndDateTime = dayjs(event.eventEndDate + "T" + event.eventEndTime + "-07:00").tz(tz).toISOString()
             // convert to simple array
             const categories = event.categories.map(val => val.name) 
 
-            // Tags
+            /* ------------------ Build tags list from eventMetadataIds ----------------- */
             const tags = event.eventMetadataIds.reduce((acc, val) => {
                 if (Object.keys(metadataTagsObj).includes(val.termTaxonomyId.toString())) {
                     const tag = metadataTagsObj[val.termTaxonomyId].name
@@ -330,6 +332,7 @@ module.exports = async () => {
                 return [...acc]
             },[])
  
+            /* ----------------------- Return modified event data ----------------------- */
             return {
                 ...event,
                 eventName: decodeText(event.eventName), // change to proper format
@@ -345,11 +348,15 @@ module.exports = async () => {
             }
         })
 
+        /* -------------------------------------------------------------------------- */
+        /*                Create simplified event data for events.json                */
+        /* -------------------------------------------------------------------------- */
         const simpleData = data.map(event => {
             return {
                 id: event.eventId,
                 name: event.eventName,
                 slug: event.eventSlug,
+                eventStartDateTime: event.eventStartDateTime,
                 date: event.eventStartDateTime,
                 dur: event.eventDuration,
                 status: event.eventStatus,
@@ -362,6 +369,7 @@ module.exports = async () => {
             return {...acc, [id]: event}
         }, {})
 
+        // This is used for My Events so it's not hitting the API
         fs.outputFile('./dist/events.json', JSON.stringify(simpleDataObject), (err) => {
             if (err) {
               console.log(err);
