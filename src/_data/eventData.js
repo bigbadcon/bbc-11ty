@@ -72,6 +72,8 @@ module.exports = async () => {
             // Create Javascript date objects
             const eventStartDateTime = dayjs(event.eventStartDate + "T" + event.eventStartTime + "-07:00").toDate()
             const eventEndDateTime = dayjs(event.eventEndDate + "T" + event.eventEndTime + "-07:00").toDate()
+            // convert to simple array
+            const categories = event.categories.map(val => val.name) 
  
             return {
                 ...event,
@@ -82,7 +84,8 @@ module.exports = async () => {
                 eventEndDateTime: eventEndDateTime, // native javascript date object
                 eventDuration: getDurationInHours(eventStartDateTime,eventEndDateTime), // duration in hours and minutes
                 eventSlug: event.eventSlug.toLowerCase(), // force lowercase
-                categories: event.categories.map(val => val.name), // convert to simple array
+                categories: categories, // convert to simple array
+                isVolunteer: categories.includes('volunteer')
             }
         })
 
@@ -100,7 +103,8 @@ module.exports = async () => {
         /* ------------------- Return object with events separated ------------------ */
         return {
             events: eventSort(events),
-            volunteer: eventSort(volunteer)
+            volunteer: eventSort(volunteer),
+            all: eventSort(data)
         }
 
     } catch(error) {

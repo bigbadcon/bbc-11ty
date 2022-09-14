@@ -1,0 +1,34 @@
+---
+permalink: eventData.json
+---
+{
+{%- for event in eventData.all -%}
+    {%- set eventStatus = event.eventStatus %}
+    {%- if not eventStatus %}
+        {%- set eventStatus = -1 %}
+    {%- endif %}
+    {%- if loop.last -%}
+    "{{ event.eventId }}" : {
+        "eventId" : "{{event.eventId}}",
+        "eventName" : "{{event.eventName}}",
+        "eventSlug" : "{{event.eventSlug}}",
+        "eventStatus" : {{eventStatus}},
+        "eventStartDate" : "{{event.eventStartDate}}",
+        "eventStartDateTime" : "{{event.eventStartDate}}T{{event.eventStartTime}}-07:00",
+        "eventEndDateTime" : "{{event.eventEndDate}}T{{event.eventEndTime}}-07:00",
+        "isVolunteer" : {{event.isVolunteer}}
+    }
+    {%- else -%}
+    "{{ event.eventId }}" : {
+        "eventId" : "{{event.eventId}}",
+        "eventName" : "{{event.eventName}}",
+        "eventSlug" : "{{event.eventSlug}}",
+        "eventStatus" : {{eventStatus}},
+        "eventStartDate" : "{{event.eventStartDate}}",
+        "eventStartDateTime" : "{{event.eventStartDate}}T{{event.eventStartTime}}-07:00",
+        "eventEndDateTime" : "{{event.eventEndDate}}T{{event.eventEndTime}}-07:00",
+        "isVolunteer" : {{event.isVolunteer}}
+    },
+    {%- endif -%}
+{%- endfor -%}
+}
