@@ -318,6 +318,7 @@ module.exports = async () => {
 
             /* -------------------- Create date string with timezone -------------------- */
             const tz = 'America/Los_Angeles'
+            // TODO: need to sort out Daylight Savings Time. This is locking it to PDT; PST is -08:00
             const eventStartDateTime = dayjs(event.eventStartDate + "T" + event.eventStartTime + "-07:00").tz(tz).toString()
             const eventEndDateTime = dayjs(event.eventEndDate + "T" + event.eventEndTime + "-07:00").tz(tz).toISOString()
             // convert to simple array
