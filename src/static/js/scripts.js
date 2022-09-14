@@ -35,9 +35,13 @@ const decodeText = text => {
 /* -------------------------------------------------------------------------- */
 
 function formatEventDate(date, tz = 'America/Los_Angeles') {
-  // TODO: this is a kludge forcing the timezone to be Pacific time until I make this work more modular for online vs in person.
-  tz = 'America/Los_Angeles'
-  return "<span style='white-space: nowrap;'>" + dayjs(date).tz(tz).format('MMM D, YYYY') + "</span> <span>" + dayjs(date).tz(tz).format('h:mm a') + "</span>"
+  return dayjs(date).tz(tz).format('MMM D')
+}
+function formatEventDateWithYear(date, tz = 'America/Los_Angeles') {
+  return dayjs(date).tz(tz).format('MMM D, YYYY')
+}
+function formatEventTime(date, tz = 'America/Los_Angeles') {
+  return dayjs(date).tz(tz).format('h:mma')
 }
 
 /* -------------------------------------------------------------------------- */
@@ -61,19 +65,12 @@ function metadataArrayToObject(arr) {
 
 
 /* --------------------------- Event Duration ------------------------------ */
-// TODO: return hours and minutes
 
-const duration = (dateStart,dateEnd) => {
-  // calculate hours
-  let diffInMilliSeconds = Math.abs(dateEnd - dateStart) / 1000;
-  const hours = Math.floor(diffInMilliSeconds / 3600) % 24;
-
-  diffInMilliSeconds -= hours * 3600;
-  // calculate minutes
-  const minutes = Math.floor(diffInMilliSeconds / 60) % 60;
-  diffInMilliSeconds -= minutes * 60;
-  return hours.toString()
-};
+const getDurationInHours = (dateStart,dateEnd) => {
+  dateStart = new Date(dateStart)
+  dateEnd = new Date(dateEnd)
+  return (Math.abs(dateEnd - dateStart) / 1000) / 3600 % 24;
+}
 
 /* -------------------------------------------------------------------------- */
 /*                             API Fetch Functions                            */
@@ -237,26 +234,6 @@ document.addEventListener('alpine:init', () => {
         const data = await fetchData('/events/all/public')
         console.log('getEvents', data)
       },
-      async getEvent(id) {
-        const data = await fetchData('/events/find',{method: 'POST',body: {id: id}})
-        
-        // Create Javascript date object
-        const eventStartDateTime = dayjs(data.eventStartDate + "T" + data.eventStartTime + "-07:00").toDate()
-        const eventEndDateTime = dayjs(data.eventEndDate + "T" + data.eventEndTime + "-07:00").toDate()
-        
-        return {...data,
-          // Convert to keyed object
-          metadata: metadataArrayToObject(data.metadata),
-          // strip out status 0 which are canceled attendees
-          bookings: data.bookings.filter(booking => booking.bookingStatus === 1).filter(event => dayjs(event.eventStartDate).isAfter(dayjs('2022-09-01'))),
-          // add simple isVolunteer boolean
-          isVolunteer: data.categories.some(cat => cat.slug === "volunteer-shift"),
-          // add javascript date objects and duration
-          eventStartDateTime: eventStartDateTime,
-          eventEndDateTime: eventEndDateTime,
-          eventDuration: duration(eventStartDateTime,eventEndDateTime)
-        }
-      },
       async getBookedEvents() {
         // 1. Get ID array of my events
         let myEvents = await fetchData('/events/me/',{})
@@ -266,24 +243,14 @@ document.addEventListener('alpine:init', () => {
         // 2. Get event data from local JSON
         let eventData = {}
         try {
-          const response = await fetch('/eventData.json')
+          const response = await fetch('/events.json')
           eventData = await response.json()
         } catch(err) {
           console.error(`ERROR: fetch for ${url}`,err)
           return false
         }
         //create array from eventData.json and remove all undefined cancelled events
-        myEvents = myEvents.map( id => eventData[id]).filter( event => event).map( event => { 
-          // Make javascript date objects
-          const eventStartDateTime = new Date(event.eventStartDateTime)
-          const eventEndDateTime = new Date(event.eventEndDateTime)
-          return {
-            ...event, 
-            eventStartDateTimeJS: eventStartDateTime,
-            eventEndDateTimeJS: eventEndDateTime,
-            eventDuration: duration(eventStartDateTime,eventEndDateTime)
-          }
-        })
+        myEvents = myEvents.map( id => eventData[id]).filter(event => event)
         // only show published events that are in the future (minus 1 month ago)
         this.bookedEvents = myEvents
         console.log("🚀 ~ file: scripts.js ~ line 279 ~ getBookedEvents ~ myEvents", myEvents)

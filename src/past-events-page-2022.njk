@@ -20,13 +20,14 @@ eleventyComputed:
     <div class="flex flex-wrap justify-between">
         <div>
             <strong>Date:</strong>
-            <span>{{ event | eventStartDateTime | formatEventDate | safe }} (PST)</span>
+            <span>{{ event | eventStartDateTime | formatDateWithYear }}</span>
+            <span>{{ event | eventStartDateTime | formatTime }} (PST)</span>
         </div>
     </div>
     {# Event Time #}
     <div class="">
         <strong>Duration:</strong>
-        <span>{{ event | eventDuration | safe }}</span>
+        <span>{{ event | eventDuration | hoursToHHMM }}</span>
     </div>
 </div>
 

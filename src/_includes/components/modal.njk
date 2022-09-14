@@ -1,3 +1,6 @@
+{# TODO: convert this to normal partial #}
+{# TODO: add focus trapping #}
+{# TODO: Add account management panel or link to page for that #}
 {% macro authModal() %}
     {# Backdrop #}
     <div x-cloak x-show="(modal)" x-transition
@@ -206,24 +209,27 @@
             <template x-for="event in bookedEvents">
                 <li class="mb-xs">
                     <h4>
-                        <template x-if="(event.eventStatus === 1)">
-                            <a :href="(event.isVolunteer) ? '/volunteer/'+ event.eventSlug : '/events/'+ event.eventSlug" class="font-bold text-header hover:text-highlight" x-html="event.eventName"></a>
+                        <template x-if="(event.status === 1)">
+                            <a :href="(event.isV) ? '/volunteer/'+ event.slug : '/events/'+ event.slug" class="font-bold text-header hover:text-highlight" x-html="event.name"></a>
                         </template>
-                        <template x-if="(event.eventStatus === 0)">
+                        <template x-if="(event.status === 0)">
                             <a class="text-body">
-                                <b x-html="event.eventName"></b>
+                                <b x-html="event.name"></b>
                                 <i>In Review</i>
                             </a>
                         </template>
                     </h4>
                     {# Timezone data is in x-data in html #}
                     {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
-                    <template x-if="Number(event.eventDuration) > 0">
+                    {# TODO: allow half hours #}
+                    <template x-if="Number(event.dur) > 0">
                         <p class="text-xs opacity-90">
-                            <span x-html="formatEventDate(event.eventStartDateTime, timezone)"></span> (<span x-text="event.eventDuration"></span> hrs)
+                            <span x-html="formatEventDateWithYear(event.date)"></span>
+                            <span x-html="formatEventTime(event.date)"></span>
+                            (<span x-text="event.dur"></span> hours)
                         </p>
                     </template>
-                    <template x-if="Number(event.eventDuration) === 0">
+                    <template x-if="Number(event.dur) === 0">
                         <p class="text-xs opacity-90">
                             date/time not yet scheduled
                         </p>
