@@ -45,6 +45,246 @@ const getDurationInHours = (dateStart,dateEnd) => {
 }
 
 /* -------------------------------------------------------------------------- */
+/*                              Metadata Tag Ids                              */
+/* -------------------------------------------------------------------------- */
+
+const metadataTags = {
+    panelTopic: [
+        {
+            "id": 160,
+            "name": "GMing Advice",
+            "slug": "gming-advice"
+        }, {
+            "id": 159,
+            "name": "Literature",
+            "slug": "literature"
+        }, {
+            "id": 161,
+            "name": "Player Advice",
+            "slug": "player-advice"
+        }, {
+            "id": 163,
+            "name": "Safety Tools",
+            "slug": "safety-tools"
+        }, {
+            "id": 162,
+            "name": "Social Contracts",
+            "slug": "social-contracts"
+        }, {
+            "id": 158,
+            "name": "Social Justice",
+            "slug": "social-justice"
+        }
+    ],
+    gameFocus: [
+        {
+            "id": 55,
+            "name": "Adventure",
+            "slug": "adventure"
+        }, {
+            "id": 62,
+            "name": "Combat",
+            "slug": "combat"
+        }, {
+            "id": 59,
+            "name": "Drama",
+            "slug": "drama"
+        }, {
+            "id": 56,
+            "name": "Exploration",
+            "slug": "exploration"
+        }, {
+            "id": 61,
+            "name": "Hijinx",
+            "slug": "hijinx"
+        }, {
+            "id": 191,
+            "name": "Improv",
+            "slug": "improv"
+        }, {
+            "id": 58,
+            "name": "Intrigue",
+            "slug": "intrigue"
+        }, {
+            "id": 57,
+            "name": "Investigation",
+            "slug": "investigation"
+        }, {
+            "id": 181,
+            "name": "LGBTQ themes",
+            "slug": "lgbtq-themes"
+        }, {
+            "id": 167,
+            "name": "Mystery",
+            "slug": "mystery"
+        }, {
+            "id": 60,
+            "name": "Romance",
+            "slug": "romance"
+        }
+    ],
+    playerContributions: [
+        {
+            "id": 66,
+            "name": "Collaborative",
+            "slug": "collaborative"
+        }, {
+            "id": 188,
+            "name": "Freeform",
+            "slug": "freeform"
+        }, {
+            "id": 67,
+            "name": "GM-less",
+            "slug": "gm-less"
+        }, {
+            "id": 64,
+            "name": "Play to find out",
+            "slug": "play-to-find-out"
+        }, {
+            "id": 65,
+            "name": "Player antagonism",
+            "slug": "player-antagonism"
+        }, {
+            "id": 68,
+            "name": "Rotating authority",
+            "slug": "rotating-authority"
+        }, {
+            "id": 63,
+            "name": "Strong storyline",
+            "slug": "strong-storyline"
+        }
+    ],
+    gameGenre: [
+        {
+            "id": 171,
+            "name": "Aliens",
+            "slug": "aliens"
+        }, {
+            "id": 73,
+            "name": "Alternate History",
+            "slug": "alternate-history"
+        }, {
+            "id": 76,
+            "name": "Apocalyptic",
+            "slug": "apocalyptic"
+        }, {
+            "id": 156,
+            "name": "Cyberpunk",
+            "slug": "cyberpunk"
+        }, {
+            "id": 77,
+            "name": "Espionage",
+            "slug": "espionage"
+        }, {
+            "id": 71,
+            "name": "Fantasy",
+            "slug": "fantasy"
+        }, {
+            "id": 69,
+            "name": "Horror",
+            "slug": "horror"
+        }, {
+            "id": 78,
+            "name": "Military",
+            "slug": "military"
+        }, {
+            "id": 72,
+            "name": "Modern",
+            "slug": "modern"
+        }, {
+            "id": 167,
+            "name": "Mystery",
+            "slug": "mystery"
+        }, {
+            "id": 75,
+            "name": "Noir",
+            "slug": "noir"
+        }, {
+            "id": 74,
+            "name": "Pulp",
+            "slug": "pulp"
+        }, {
+            "id": 70,
+            "name": "Sci-Fi",
+            "slug": "sci-fi"
+        }, {
+            "id": 120,
+            "name": "Super Powers",
+            "slug": "super-powers"
+        }
+    ],
+    gameMood: [
+        {
+            "id": 80,
+            "name": "Comical",
+            "slug": "comical"
+        }, {
+            "id": 175,
+            "name": "Cute",
+            "slug": "cute"
+        }, {
+            "id": 82,
+            "name": "Dark",
+            "slug": "dark"
+        }, {
+            "id": 83,
+            "name": "Emotional",
+            "slug": "emotional"
+        }, {
+            "id": 81,
+            "name": "Light",
+            "slug": "light"
+        }, {
+            "id": 133,
+            "name": "Melancholy",
+            "slug": "melancholy"
+        }, {
+            "id": 79,
+            "name": "Serious",
+            "slug": "serious"
+        }, {
+            "id": 187,
+            "name": "Silly",
+            "slug": "silly"
+        }, {
+            "id": 84,
+            "name": "Suspenseful",
+            "slug": "suspenseful"
+        }
+    ],
+    contentAdvisoryOptions: [
+        {
+            "id": 91,
+            "name": "Gore",
+            "slug": "gore"
+        }, {
+            "id": 90,
+            "name": "Graphic Violence",
+            "slug": "graphic-violence"
+        }, {
+            "id": 88,
+            "name": "Provocative",
+            "slug": "provocative"
+        }, {
+            "id": 89,
+            "name": "Sex and Sexuality",
+            "slug": "sex-and-sexuality"
+        }
+    ]
+}
+
+let metadataTagsObj = {}
+
+Object.keys(metadataTags).forEach(type => {
+    const tempObj = metadataTags[type].reduce((acc,tag) => {
+        const {id} = tag;
+        return {...acc, [id]: tag}
+    }, {})
+    metadataTagsObj = {...metadataTagsObj, ...tempObj}
+})
+
+
+/* -------------------------------------------------------------------------- */
 /*                                 Main Export                                */
 /* -------------------------------------------------------------------------- */
 
@@ -80,6 +320,15 @@ module.exports = async () => {
             const eventEndDateTime = dayjs(event.eventEndDate + "T" + event.eventEndTime).tz(tz).toISOString()
             // convert to simple array
             const categories = event.categories.map(val => val.name) 
+
+            // Tags
+            const tags = event.eventMetadataIds.reduce((acc, val) => {
+                if (Object.keys(metadataTagsObj).includes(val.termTaxonomyId.toString())) {
+                    const tag = metadataTagsObj[val.termTaxonomyId].name
+                    return [...acc, tag]
+                }
+                return [...acc]
+            },[])
  
             return {
                 ...event,
@@ -91,7 +340,8 @@ module.exports = async () => {
                 eventDuration: getDurationInHours(eventStartDateTime,eventEndDateTime), // duration in hours and minutes
                 eventSlug: event.eventSlug.toLowerCase(), // force lowercase
                 categories: categories, // convert to simple array
-                isVolunteer: categories.includes('volunteer')
+                isVolunteer: categories.includes('volunteer'),
+                tags: tags
             }
         })
 
@@ -103,7 +353,8 @@ module.exports = async () => {
                 date: event.eventStartDateTime,
                 dur: event.eventDuration,
                 status: event.eventStatus,
-                isV: event.isVolunteer ? 1 : 0
+                isV: event.isVolunteer ? 1 : 0,
+                tags: event.tags
             }
         })
 

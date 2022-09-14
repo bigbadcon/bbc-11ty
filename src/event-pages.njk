@@ -86,6 +86,15 @@ eleventyComputed:
 
 {# Description #}
 <div class="prose event-description">{{event.postContent | nl2br | safe }}</div>
+
+{# Event Tags #}
+<div class="flex flex-wrap items-center prose gap-xs mt-base">
+  <strong>Tags:</strong>
+  {% for tag in event.tags %}
+    <span class="rounded-full bg-card px-sm py-[.05rem] text-sm">{{tag}}</span>
+  {% endfor %}
+</div>
+
 {# Event Signup / Booking #}
 {# TODO: make this visible for all when events open. Figure out a way to set this automatically. #}
 {# TODO: when do we want event signups to start? 9/25 12pm PT #}
