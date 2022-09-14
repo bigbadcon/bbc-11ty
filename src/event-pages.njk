@@ -87,13 +87,20 @@ eleventyComputed:
 {# Description #}
 <div class="prose event-description">{{event.postContent | nl2br | safe }}</div>
 
+{# Content Advisory #}
+
+{% if event.contentAdvisory %}
+  <div class="text-lg font-bold prose mt-base text-header">Content Advisory!</div>
+{% endif %}
 {# Event Tags #}
-<div class="flex flex-wrap items-center prose gap-xs mt-base">
-  <strong>Tags:</strong>
-  {% for tag in event.tags %}
-    <span class="rounded-full bg-card px-sm py-[.05rem] text-sm">{{tag}}</span>
-  {% endfor %}
-</div>
+{% if event.tags | length %}
+  <div class="flex flex-wrap items-center prose gap-xs mt-base">
+    <strong>Tags:</strong>
+    {% for tag in event.tags %}
+      <span class="rounded-full bg-card px-sm py-[.05rem] text-sm">{{tag}}</span>
+    {% endfor %}
+  </div>
+{% endif %}
 
 {# Event Signup / Booking #}
 {# TODO: make this visible for all when events open. Figure out a way to set this automatically. #}
