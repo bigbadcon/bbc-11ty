@@ -15,7 +15,7 @@ eleventyComputed:
   {# If it has a image than put it in place and replace it if a different image is available #}
   {% set src = "https://admin.bigbadcon.com:8091/images/" + event.metadata.event_image %}
   <div class="w-full rounded-md bg-card mb-base" style="aspect-ratio: 16/9;"
-    x-data="{src: '{{src}}', defaultImg: '{{event.metadata.event_image}}'">
+    x-data="{src: '{{src}}', defaultImg: '{{event.metadata.event_image}}'}">
     <img src="{{src}}" class="object-cover w-full rounded-md event-image" style="aspect-ratio: 16/9;"
         x-init="if (event_image && event_image !== defaultImg) $el.setAttribute('src', 'https://admin.bigbadcon.com:8091/images/' + event_image)"
 />
