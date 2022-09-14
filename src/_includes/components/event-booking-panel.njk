@@ -12,9 +12,14 @@
             {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
             <div>
                 <strong>Date:</strong>
-                <span x-cloak x-show="timezone" x-html="formatEventDate('{{event.eventStartDateTime}}',timezone)">{{ event.eventStartDateTime | formatEventDate | safe }}</span>
-                <span>
-                    ({{event.metadata.Length}} hour)</span>
+                {% if (event.eventDuration > 0) %}
+                    <span class="whitespace-nowrap">{{ event.eventStartDateTime | formatDateWithYear }}</span>
+                    <span class="whitespace-nowrap">{{ event.eventStartDateTime | formatTime }}
+                        <span class="whitespace-nowrap">({{ event.eventDuration }} hours)</span>
+                    </span>
+                {% else %}
+                    <span class="opacity-50">TBD</span>
+                {% endif %}
             </div>
         </div>
         <div>

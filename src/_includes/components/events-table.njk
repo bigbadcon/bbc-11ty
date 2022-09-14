@@ -63,7 +63,6 @@
                     {# Event Start Date/Time #}
                     {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
                     {# formatEventDate filter is in eleventy.js and returns html with date and time in seperate span tags #}
-                    {# <td class="flex flex-col py-sm gap-x-2xs" x-cloak x-show="timezone" x-html="formatEventDate('{{event.eventStartDateTime}}', timezone)">{{ event.eventStartDateTime | formatEventDate | safe }}</td> #}
                     <td class="events-table-cell--date">
                         <div class="sm:flex sm:flex-col">
                             {% include 'components/event-date-time-duration.njk' %}
