@@ -103,8 +103,7 @@ module.exports = async () => {
                 date: event.eventStartDateTime,
                 dur: event.eventDuration,
                 status: event.eventStatus,
-                isV: event.isVolunteer ? 1 : 0,
-                gm: event.metadata.GM
+                isV: event.isVolunteer ? 1 : 0
             }
         })
 
