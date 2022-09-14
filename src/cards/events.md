@@ -13,4 +13,6 @@ Submit an event for Big Bad Con 2022!
 
 [Exhibitors](/exhibitor-information){.icon-booth}
 
+[Small Press Showcase](https://www.bigbadcon.com/small-press-showcase/){.icon-price-tags}
+
 [Past Events](/past-events){.icon-library}
