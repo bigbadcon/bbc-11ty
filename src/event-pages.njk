@@ -55,7 +55,14 @@ eleventyComputed:
   <div class="flex flex-wrap justify-between">
     <div>
       <strong>Date:</strong>
-      {% include 'components/event-date-time-duration.njk' %}
+      {% if (event.eventDuration > 0) %}
+        <span class="whitespace-nowrap">{{ event.eventStartDateTime | formatDateWithYear }}</span>
+        <span class="whitespace-nowrap">{{ event.eventStartDateTime | formatTime }}
+          <span class="whitespace-nowrap">({{ event.eventDuration }} hours)</span>
+        </span>
+      {% else %}
+        <span class="opacity-50">TBD</span>
+      {% endif %}
     </div>
   </div>
   {% if event.metadata.Players %}

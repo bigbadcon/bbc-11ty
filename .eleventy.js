@@ -3,8 +3,12 @@ const pluginRss = require("@11ty/eleventy-plugin-rss");
 const dayjs = require('dayjs')
 const utc = require('dayjs/plugin/utc')
 const timezone = require('dayjs/plugin/timezone') // dependent on utc plugin
+const duration = require('dayjs/plugin/duration') // dependent on utc plugin
+const relativeTime = require('dayjs/plugin/relativeTime') // dependent on utc plugin
 dayjs.extend(utc)
 dayjs.extend(timezone)
+dayjs.extend(duration)
+dayjs.extend(relativeTime)
 const Image = require("@11ty/eleventy-img");
 const { google, outlook, office365, yahoo, ics } = require("calendar-link");
 const windows1252 = require('windows-1252');
@@ -15,7 +19,7 @@ const utf8 = require('utf8')
 /* -------------------------------------------------------------------------- */
 
 /* ---------------- Get Duration Between Two Javascript Dates --------------- */
-function getDuration( dateStart, dateEnd, accuracy = "minutes") {
+function getHours( dateStart, dateEnd, accuracy = "minutes") {
   // calculate hours
   let diffInMilliSeconds = Math.abs(dateEnd - dateStart) / 1000;
   const hours = Math.floor(diffInMilliSeconds / 3600) % 24;
@@ -33,6 +37,18 @@ function getDuration( dateStart, dateEnd, accuracy = "minutes") {
   return false
 }
 
+const getDurationInHours = (dateStart,dateEnd) => {
+  dateStart = new Date(dateStart)
+  dateEnd = new Date(dateEnd)
+  return (Math.abs(dateEnd - dateStart) / 1000) / 3600 % 24;
+}
+
+function hoursToHHMM(hours) {
+  var h = String(Math.trunc(hours)).padStart(2, '0');
+  var m = String(Math.abs(Math.round((hours - h) * 60))).padStart(2, '0');
+  return h + ':' + m;
+}
+
 /* ----- Sort by order frontmatter field then by fileSlug alphabetically ---- */
 function sortByOrder(a,b) {
   return a.template.frontMatter.data.order - b.template.frontMatter.data.order || a.template.fileSlugStr.localeCompare(b.template.fileSlugStr)
@@ -44,10 +60,10 @@ const decodeText = text => {
 }
 
 /* --------------------------- Create Date Object --------------------------- */
-// TODO: make sure this is right with Daylite Savings Time
+const tz = 'America/Los_Angeles'
 
-function createDateObject (date, time) {
-  return dayjs(date + "T" + time + "-07:00").toDate()
+function createISODate (date, time) {
+  return dayjs(date + "T" + time).tz(tz).toISOString()
 }
 
 /* -------------------------------------------------------------------------- */
@@ -131,51 +147,55 @@ module.exports = (eleventyConfig) => {
 /*                                   Filters                                  */
 /* -------------------------------------------------------------------------- */
 
+/* ------------------------------ Date Filters ------------------------------ */
+
   // Format date for Blog list
   eleventyConfig.addFilter( "formatBlogDate", (date) => dayjs(date).format("MMM D, YYYY"));
 
   // Format date for event start
-  const tz= 'America/Los_Angeles'
-  eleventyConfig.addFilter( "formatEventDate", (date) => "<span style='white-space: nowrap;'>" + dayjs(date).tz(tz).format('MMM D, YYYY') + "</span> <span style='white-space: nowrap;'>" + dayjs(date).tz(tz).format('h:mm a') + "</span>");
+  const tz = 'America/Los_Angeles'
+  eleventyConfig.addFilter( "formatEventDate", (date) => "<span style='white-space: nowrap;'>" + dayjs(date).format('MMM D, YYYY') + "</span> <span style='white-space: nowrap;'>" + dayjs(date).tz(tz).format('h:mm a') + "</span>");
 
-  // Format date
+  // Format date; used for event list
   eleventyConfig.addFilter( "formatDate", (date) => dayjs(date).tz(tz).format('MMM D'))
-  
-  // Format date
-  eleventyConfig.addFilter( "formatTime", (date) => dayjs(date).tz(tz).format('h:mma'))
-  
-  // Remove seconds from times
-  eleventyConfig.addFilter( "stripSeconds", (val) => val.slice(0,5));
 
-  // Convert unix time to ISO format
+  // Format date with year
+  eleventyConfig.addFilter( "formatDateWithYear", (date) => dayjs(date).tz(tz).format('MMM D, YYYY'))
+  
+  // Format time
+  eleventyConfig.addFilter( "formatTime", (date) => dayjs(date).tz(tz).format('h:mma'))
+
+  // Convert unix time to ISO format; used in sitemap
   eleventyConfig.addFilter("unixToISO", (date) => new Date(date).toISOString());
 
-  // eventStartDateTime
-  eleventyConfig.addFilter("eventStartDateTime", (event) => createDateObject(event.eventStartDate, event.eventStartTime));
+  // eventStartDateTime; used only in past events for now
+  eleventyConfig.addFilter("eventStartDateTime", (event) => createISODate(event.eventStartDate, event.eventStartTime));
   
-  // event Duration
-  eleventyConfig.addFilter("eventDuration", (event) => getDuration(event.eventStartDateTime,event.eventEndDateTime));
+  // event Duration; Used only for past events for now
+  eleventyConfig.addFilter("eventDuration", (event) => getDurationInHours(createISODate(event.eventStartDate, event.eventStartTime),createISODate(event.eventEndDate, event.eventEndTime)));
   
-  // event year
-  eleventyConfig.addFilter("eventYear", (event) => event.eventStartDate.slice(0,4));
-
+  //Used only for past events for now
+  eleventyConfig.addFilter("hoursToHHMM", (hours) => hoursToHHMM(hours))
+  
   // check to see if date is in the past; used for turning on/off parts based on date like the game booking
   eleventyConfig.addFilter("isPastDate", (date) => dayjs().isAfter(dayjs(date)));
 
+  /* ------------------------------ Other Filters ----------------------------- */
   // decode text
   eleventyConfig.addFilter("decodeText", (text) => decodeText(text))
   
-  // Add date for og cachebuster
+  // Add date for og cachebuster; used for css cache busting purposes
   eleventyConfig.addFilter("ogCacheBuster", (text) => {
     const today = new Date();
     const date = dayjs(today).format("YYYYMMDDHHmm");
     return text + "_" + date
   })
 
+  // Sort events used for Event Archives Table for now
   eleventyConfig.addFilter('sortEvents', function(events) {
     if (events) return events.sort((a,b) => {
-      const aEventStartDateTime = createDateObject(a.eventStartDate, a.eventStartTime)
-      const bEventStartDateTime = createDateObject(b.eventStartDate, b.eventStartTime)
+      const aEventStartDateTime = new Date(createISODate(a.eventStartDate, a.eventStartTime))
+      const bEventStartDateTime = new Date(createISODate(b.eventStartDate, b.eventStartTime))
       return aEventStartDateTime - bEventStartDateTime;
     });
     return false;

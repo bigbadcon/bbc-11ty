@@ -8,6 +8,7 @@ const timezone = require('dayjs/plugin/timezone')
 dayjs.extend(utc)
 dayjs.extend(timezone)
 const environment = process.env.CONTEXT
+const fs = require('fs-extra')
 
 /* -------------------------------------------------------------------------- */
 /*                              Helper Functions                              */
@@ -37,7 +38,11 @@ function metadataArrayToObject(arr) {
 /* --------------------------- Event Duration ------------------------------ */
 // If duration is more than 0 it returns a string of the hrs
 
-const getDurationInHours = (dateStart,dateEnd) => (Math.abs(dateEnd - dateStart) / 1000) / 3600 % 24;
+const getDurationInHours = (dateStart,dateEnd) => {
+    dateStart = new Date(dateStart)
+    dateEnd = new Date(dateEnd)
+    return (Math.abs(dateEnd - dateStart) / 1000) / 3600 % 24;
+}
 
 /* -------------------------------------------------------------------------- */
 /*                                 Main Export                                */
@@ -69,9 +74,10 @@ module.exports = async () => {
             // TODO: refactor so that both this and the past events works the same? Right now we convert this to an object here but with past events we use a filter. Might be nice if we did it on the server API side though.
             metadata = {...metadata, GM: (metadata.GM) && decodeText(metadata.GM), System: (metadata.System) && decodeText(metadata.System) }
 
-            // Create Javascript date objects
-            const eventStartDateTime = dayjs(event.eventStartDate + "T" + event.eventStartTime + "-07:00").toDate()
-            const eventEndDateTime = dayjs(event.eventEndDate + "T" + event.eventEndTime + "-07:00").toDate()
+            // Create date string with timezone
+            const tz = 'America/Los_Angeles'
+            const eventStartDateTime = dayjs(event.eventStartDate + "T" + event.eventStartTime).tz(tz).toISOString()
+            const eventEndDateTime = dayjs(event.eventEndDate + "T" + event.eventEndTime).tz(tz).toISOString()
             // convert to simple array
             const categories = event.categories.map(val => val.name) 
  
@@ -86,6 +92,32 @@ module.exports = async () => {
                 eventSlug: event.eventSlug.toLowerCase(), // force lowercase
                 categories: categories, // convert to simple array
                 isVolunteer: categories.includes('volunteer')
+            }
+        })
+
+        const simpleData = data.map(event => {
+            return {
+                id: event.eventId,
+                name: event.eventName,
+                slug: event.eventSlug,
+                date: event.eventStartDateTime,
+                dur: event.eventDuration,
+                status: event.eventStatus,
+                isV: event.isVolunteer ? 1 : 0,
+                gm: event.metadata.GM
+            }
+        })
+
+        const simpleDataObject = simpleData.reduce((acc,event) => {
+            const {id} = event;
+            return {...acc, [id]: event}
+        }, {})
+
+        fs.outputFile('./dist/events.json', JSON.stringify(simpleDataObject), (err) => {
+            if (err) {
+              console.log(err);
+            } else {
+              console.log("eventData.json written successfully");
             }
         })
 
