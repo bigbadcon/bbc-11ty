@@ -353,8 +353,7 @@ module.exports = async () => {
                 date: event.eventStartDateTime,
                 dur: event.eventDuration,
                 status: event.eventStatus,
-                isV: event.isVolunteer ? 1 : 0,
-                tags: event.tags
+                isV: event.isVolunteer ? 1 : 0
             }
         })
 
