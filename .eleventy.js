@@ -155,6 +155,8 @@ module.exports = (eleventyConfig) => {
   // Format date for event start
   const tz = 'America/Los_Angeles'
 
+  eleventyConfig.addFilter( "unixtime", (date) => dayjs(date).tz(tz).unix())
+
   // Format date; used for event list
   eleventyConfig.addFilter( "formatDate", (date) => dayjs(date).tz(tz).format('MMM D'))
 
