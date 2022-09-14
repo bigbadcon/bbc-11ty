@@ -10,7 +10,7 @@ As part of our principles of respect, support, and kindness, Big Bad Con works t
 * We do not discriminate in any way against attendees or staff with disabilities.
 * We ensure our venue provides ADA accessible sleeping rooms and ADA accessible stalls in all shared bathrooms.
 * We provide ramp, user-operated lift, or elevator access to all event spaces.
-* We provide accessible gaming gear (link to a section below on what we have and where to find it).
+* We provide accessible gaming gear (see below).
 * We keep pathways clear, wide enough, and usable by people with visual, mobility, and other needs.
 * We provide priority access to services as needed (see below).
 * We have a respite room with noise canceling headphones, quiet activities, and a privacy screen for lactation.
