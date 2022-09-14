@@ -63,9 +63,16 @@
                     {# Event Start Date/Time #}
                     {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
                     {# formatEventDate filter is in eleventy.js and returns html with date and time in seperate span tags #}
-                    <td class="events-table-cell--date">
+                    <td class="events-table-cell--date" data-sort="{{ event.eventStartDateTime | unixtime }}">
                         <div class="sm:flex sm:flex-col">
-                            {% include 'components/event-date-time-duration.njk' %}
+                            {% if (event.eventDuration > 0) %}
+                                <span class="whitespace-nowrap">{{ event.eventStartDateTime | formatDate }}</span>
+                                <span class="whitespace-nowrap">{{ event.eventStartDateTime | formatTime }}
+                                    <b class="whitespace-nowrap">{{ event.eventDuration }}hr</b>
+                                </span>
+                            {% else %}
+                                <span class="opacity-50">TBD</span>
+                            {% endif %}
                         </div>
                     </td>
 
@@ -158,19 +165,29 @@
                     const table = document.querySelector('#events-table tbody');
                     let rows = Array.from(table.querySelectorAll(`tr`));
 
+                    // first column is name which is in h3 tag
                     let qs = colnum === 1
                         ? `td:nth-child(${colnum}) h3`
                         : `td:nth-child(${colnum})`;
+
                     rows.sort((r1, r2) => {
                         // get each row's relevant column
                         let t1 = r1.querySelector(qs);
                         let t2 = r2.querySelector(qs);
 
+                        // if it has data-sort attribute than use that
+                        t1 = (t1.dataset.sort)
+                            ? t1.dataset.sort
+                            : t1.textContent
+                        t2 = (t2.dataset.sort)
+                            ? t2.dataset.sort
+                            : t2.textContent
+
                         // and then effect sorting by comparing their content:
                         if (this.sortAscending) {
-                            return compareValues(t1.textContent, t2.textContent);
+                            return compareValues(t1, t2);
                         } else {
-                            return compareValues(t2.textContent, t1.textContent);
+                            return compareValues(t2, t1);
                         }
                     });
 
