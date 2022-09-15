@@ -9,229 +9,59 @@
         <div class="mx-auto max-w-content p-base px-lg bg-card rounded-md shadow-md">
             <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
             <div class="prose max-w-content2">{{ content | safe }}</div>
-            <section class="border-t-4 mt-lg pt-base mb-base text-body border-hr" x-data="volunteerSignup" x-init="formSubmitted = isVolunteer; $watch('user', v => formSubmitted = isVolunteer)">
-                {# State Machine:
-                1. Not logged in: display login link. When logged in check volunteer status
-                2. Logged in but not volunteer: display signup form.
-                3. Logged in and registered: display thank you 
-                #}
-                {# Login disclaimer: only show if not logged in #}
-                <header class="prose">
-                    <h2 id="signup">Volunteer signup form</h2>
-                </header>
-                <div x-cloak x-show="!isAuth" class="prose">
-                    <p>You must <button @click="modal = 'login'" class="font-bold text-highlight">login</button> to signup as a volunteer.</p>
-                </div>
-                {# Register form; only show if logged in #}
-                {# TODO: make this only show if not already a volunteer. Not sure if this is possible with API #}
-                <form x-cloak x-show="isAuth && !formSubmitted"
-                method="POST" name="volunteer-signup" 
-                class="prose"
-                id="volunteer-signup" 
-                @submit.prevent="() => { submit(user); getUserData(); }">
-                    <p class="hidden">
-                        <label>Don't fill this out if you're human: <input name="bot-field"/></label>
-                    </p>
-                    <input type="hidden" id="displayName" name="displayName" value="" :value="user && user.displayName">
-                    <input type="hidden" id="userEmail" name="userEmail" value="" :value="user && user.userEmail">
-                    <input type="hidden" id="userNicename" name="userNicename" value="" :value="user && user.userNicename">
-                    <input type="hidden" id="userId" name="userId" value="" :value="user && user.id">
-                    <input type="hidden" id="formName" name="formName" value="volunteer-signup">
-                    <p>
-                        <span class="font-bold text-highlight">*</span>
-                        <em>required field</em>
-                    </p>
+            <section class="my-base text-body">
+
+                <form  
+                data-netlify="true" 
+                netlify-honeypot="bot-field"
+                {# data-netlify-recaptcha="true" #}
+                method="POST" 
+                name="contact-us"  
+                action="/volunteer-thank-you"
+                >
+                    <div class="prose">
+                        <p class="hidden">
+                            <label>Don’t fill this out if you’re human: <input name="bot-field"/></label>
+                        </p>
+                    </div>
                     <fieldset>
-                        <legend>Personal info</legend>
-                        <div class="prose">
-                            <strong>Name:</strong>
-                            <span x-text="user.displayName"></span></div>
-                        <div class="required">
-                            <label for="yourAge">
-                                        Your age at start of con
-                                        <span>{{sitemeta.eventDate}}</span>
-                            </label>
-                            <select id="yourAge" name="yourAge" x-model="formData.yourAge" @blur="validate">
-                                <option :disabled="formData.yourAge !== ''" selected value="">
-                                            -- Choose One --
-                                        </option>
-                                <option>13+</option>
-                                <option>18+</option>
-                            </select>
-                        </div>
-                        <div class="required" data-error="phone number required">
-                            <label for="phone">Phone</label>
-                            <input id="phone" name="phone" type="phone" value="" x-model="formData.phone" @blur="(e) => validate(e,{phone: true})"/>
-                        </div>
-                        <div>
-                            <label for="discord">Discord handle</label>
-                            <input id="discord" name="discord" type="text" value="" x-model="formData.discord"/>
-                        </div>
-                        <div>
-                            <label for="otherInfo">Other info we should know</label>
-                            <textarea cols="30" id="otherInfo" name="otherInfo" rows="3" x-model="formData.otherInfo"></textarea>
+                        <legend>Contact form</legend>
+                        <div class="space-y-sm">
+                            <p class="text-body mb-base">
+                                <span class="font-bold text-highlight">*</span> Required</p>
+                            {# Name #}
+                            <div>
+                                <label for="name" class="text-xs uppercase">Name <span class="font-bold text-highlight">*</span></label>
+                                <input class="w-64" id="name" name="name" required type="text" value=""/>
+                            </div>
+                            {# Email #}
+                            <div>
+                                <label for="userEmail" class="text-xs uppercase">Email <span class="font-bold text-highlight">*</span></label>
+                                <input class="w-64" id="userEmail" name="userEmail" required type="email" value=""/>
+                            </div>
+
+                            {# Subject #}
+                            <div>
+                                <label for="subject" class="text-xs uppercase">Subject <span class="font-bold text-highlight">*</span></label>
+                                <select class="w-64" id="subject" name="subject" required value="">
+                                    <option>Volunteer for Go Play NW!</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="message" class="text-xs uppercase">Message <span class="font-bold text-highlight">*</span></label>
+                                <textarea class="w-96" id="message" name="message" required value="" rows="4"></textarea>
+                            </div>
+                            <input type="hidden" value="contact-us" name="formName" id="formName"/>
                         </div>
                     </fieldset>
-                    <p>Go Play NW is committed to cultivating a culture of respect, support, and kindness at both our in-person and online events. We ask that all of our attendees agree to abide by our Code of Conduct; please take a moment to read it before answering yes below.</p>
-                    <p>
-                        <a href="/code-of-conduct" class="icon-scroll">Code of Conduct</a>
-                    </p>
-                    <fieldset>
-                        <legend>Code of Conduct agreement</legend>
-                        <div class="flex items-center required">
-                            <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-model="formData.communityStandards" required>
-                            <label for="agree-to-community-standards" class="text-body-highlight"3324>
-                                Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Go Play NW Code of Conduct
-                            </label>
-                        </div>
-                    </fieldset>
-                    <p>
-                        <button type="submit" :disabled="!isFormComplete">Submit</button>
+                    {# <div data-netlify-recaptcha="true"></div> #}
+                    <p class="mt-base">
+                        <button type="submit" >Submit</button>
                     </p>
                 </form>
-
-                {# You are signed up notification. Show only when signed up and logged in.  #}
-                <div x-cloak x-show="isAuth && formSubmitted === true" class="prose">
-                    <h3>Thank you for signing up as a volunteer!</h3>
-                    <p>Head on over to our <a href="/volunteer-shifts">Volunteer Shifts</a> page and book a shift!</p>
-                </div>
             </section>
         </div>
     </main>
 {% endblock %}
 
-{% block pagebottom %}
-
-    <script type="text/javascript">
-
-        document.addEventListener('alpine:init', () => {
-
-            // Check if variable is a string with stuff in it
-            function isNotEmpty(value) {
-                return value && value !== ''
-            }
-
-            const validatePhone = (txt) => {
-                return String(txt)
-                    .toLowerCase()
-                    .match(/^([+]?\d{1,2}[-\s]?|)\d{3}[-\s]?\d{3}[-\s]?\d{4}$/);
-            };
-
-            // Used to void variables
-            const volunteerSignUpDefault = {
-                yourAge: '', //required
-                phone: '', //required
-                discord: '', //required
-                otherInfo: '', //not required
-                communityStandards: false
-            }
-
-            Alpine.data('volunteerSignup', function () {
-                return {
-                    formSubmitted: false,
-                    formData: {
-                        yourAge: '', //required
-                        phone: '', //required
-                        discord: '', //required
-                        otherInfo: '', //not required
-                        communityStandards: false
-                    },
-                    get isFormComplete() {
-                        return [this.formData.yourAge, this.formData.phone].every(isNotEmpty) && this.formData.communityStandards;
-                    },
-                    validate(event, options) {
-                        options = {
-                            required: true,
-                            email: false,
-                            phone: false,
-                            ...options
-                        }
-                        const target = event.target;
-                        const value = target.value;
-                        const parent = target.parentNode;
-
-                        let valid = true;
-
-                        if (options.required && !isNotEmpty(value)) 
-                            valid = false;
-                        if (options.email && !validateEmail(value)) 
-                            valid = false;
-                        if (options.phone && !validatePhone(value)) 
-                            valid = false;
-                        
-                        if (!valid) {
-                            parent
-                                .classList
-                                .add('error-required');
-                        } else {
-                            parent
-                                .classList
-                                .remove('error-required');
-                        }
-                    },
-                    submit(user) {
-                        const submitData = {
-                            ...this.formData,
-                            userEmail: user.userEmail,
-                            displayName: user.displayName,
-                            userId: user.id
-                        }
-                        console.log("submit", submitData)
-                        this.submitForm(submitData)
-                        this.formSubmitted = true
-                    },
-                    async submitForm(submitData) {
-                        // TODO: add fetch POST to serverless function
-                        const options = {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json;charset=utf-8'
-                            },
-                            body: JSON.stringify(submitData)
-                        }
-
-                        const url = "/.netlify/functions/volunteer-signup"
-
-                        try {
-                            let response = await fetch(url, options)
-                            console.log(`RESPONSE:fetch for ${url}`, response)
-                            if (response.status !== 200) 
-                                throw `fetch fail status: ${response.status}`
-                            let result = await response.json()
-                            console.log(`RESULT:fetch for ${url}`, result)
-                            return result
-                        } catch (err) {
-                            console.error(`ERROR:fetch for ${url}`, err)
-                            return false
-                        }
-                    },
-                    zeroFormData() {
-                        // Zero out all the form fields
-                        this.formData = {
-                            ...this.formData,
-                            ...volunteerSignUpDefault
-                        }
-                        // Bring back form
-                        this.formSubmitted = false
-                    },
-                    setCheckboxArray(el, arrayName) {
-                        this.eventInfo[arrayName] = this.eventInfo[arrayName] || [];
-                        // if checked then add value to array; otherwise remove
-                        if (el.checked) {
-                            this.eventInfo[arrayName] = [
-                                ...this.eventInfo[arrayName],
-                                el.value
-                            ]
-                        } else {
-                            this.eventInfo[arrayName] = this
-                                .eventInfo[arrayName]
-                                .filter(item => item !== el.value)
-                        }
-
-                    }
-                }
-            })
-        })
-    </script>
-
-{% endblock %}
+{# user	{"value":{"id":493,"userNicename":"colinaut","userEmail":"colin.fahrion@gmail.com","userUrl":"","userRegistered":1347009101000,"displayName":"Colin Fahrion","bookingComment":null,"lastUpdated":null,"metadata":[{"umetaId":64878,"metaKey":"facebook","metaValue":"","userId":493},{"umetaId":7740,"metaKey":"first_name","metaValue":"Colin","userId":493},{"umetaId":7741,"metaKey":"last_name","metaValue":"Fahrion","userId":493},{"umetaId":7742,"metaKey":"nickname","metaValue":"colinaut","userId":493},{"umetaId":64882,"metaKey":"parentemail","metaValue":"","userId":493},{"umetaId":64881,"metaKey":"parentname","metaValue":"","userId":493},{"umetaId":64879,"metaKey":"twitter","metaValue":"@colinaut","userId":493},{"umetaId":85774,"metaKey":"wp_[prefix]_capabilities","metaValue":"a:2:{s:13:\"administrator\";b:1;s:5:\"staff\";b:1;}","userId":493}],"bbcUserFavorites":[{"bbcUserFavoritesId":7987,"userId":493,"eventId":2659,"createDate":1568848882000,"updateDate":1568848882000,"status":1},{"bbcUserFavoritesId":7998,"userId":493,"eventId":2547,"createDate":1568863479000,"updateDate":1568863479000,"status":1},{"bbcUserFavoritesId":8521,"userId":493,"eventId":2845,"createDate":1628183203000,"updateDate":1628183203000,"status":1}]},"expiry":1628910026402} #}
