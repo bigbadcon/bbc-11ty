@@ -44,11 +44,11 @@ module.exports = [
 				"url": "/events",
 				"icon": "calendar-clock"
 			},
-			// {
-			// 	"title": "Run An Event",
-			// 	"url": "/run-an-event",
-			// 	"icon": "dice"
-			// },
+			{
+				"title": "Run An Event",
+				"url": "/run-an-event",
+				"icon": "dice"
+			},
 			{
 				"title": "Games On Demand",
 				"url": "/games-on-demand",
