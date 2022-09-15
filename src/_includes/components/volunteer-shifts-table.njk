@@ -35,7 +35,7 @@
                 <tr 
                 x-data="eventInfo"
                 x-init="spacesOpen = {{ spacesOpen }}; id = {{event.eventId}}; if (isAuth) getEventInfo({{event.eventId}}); $watch('isAuth', val => {if (val) getEventInfo({{event.eventId}})})"
-                x-show="(!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || isSpacesOpen)" >
+                x-show="(!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || isSpacesOpen) && (filter.day === 'All' || $refs.date{{event.eventId}}.textContent === filter.day)" >
                     {# Event Name #}
                     <td class="events-table-cell--name">
                         <h3>
@@ -45,10 +45,15 @@
                     {# Event Start Date/Time #}
                     {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
                     {# formatEventDate filter is in eleventy.js and returns html with date and time in seperate span tags #}
-                    <td class="events-table-cell--date">
-                        <div class="sm:flex sm:flex-col">
-                            {% include 'components/event-date-time-duration.njk' %}
-                        </div>
+                    <td class="events-table-cell--date" data-sort="{{ event.eventStartDateTime | unixtime }}">
+                        {% if (event.eventDuration > 0) %}
+                            <span class="whitespace-nowrap" x-ref="date{{event.eventId}}">{{ event.eventStartDateTime | formatDate }}</span>
+                            <span class="whitespace-nowrap">{{ event.eventStartDateTime | formatTime }}
+                                <b class="whitespace-nowrap">{{ event.eventDuration }}hr</b>
+                            </span>
+                        {% else %}
+                            <span class="opacity-50">TBD</span>
+                        {% endif %}
                     </td>
                     {# Spaces #}
                     <td class="events-table-cell--spaces">
@@ -98,7 +103,7 @@
                     }
                     this.sortTable(this.sortBy || 1, this.sortAscending)
                 },
-                filter: this.$persist({favsOnly: false, openOnly: false, category: 'All'}),
+                filter: this.$persist({favsOnly: false, openOnly: false, day: "All"}),
                 sortBy: this.$persist(1),
                 sortAscending: this.$persist(true),
                 sortTable(colnum, direction) {
@@ -126,11 +131,19 @@
                         let t1 = r1.querySelector(qs);
                         let t2 = r2.querySelector(qs);
 
+                        // if it has data-sort attribute than use that
+                        t1 = (t1.dataset.sort)
+                            ? t1.dataset.sort
+                            : t1.textContent
+                        t2 = (t2.dataset.sort)
+                            ? t2.dataset.sort
+                            : t2.textContent
+
                         // and then effect sorting by comparing their content:
                         if (this.sortAscending) {
-                            return compareValues(t1.textContent, t2.textContent);
+                            return compareValues(t1, t2);
                         } else {
-                            return compareValues(t2.textContent, t1.textContent);
+                            return compareValues(t2, t1);
                         }
                     });
 
