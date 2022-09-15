@@ -41,7 +41,7 @@
                 <tr 
                 x-data="eventInfo"
                 x-init="spacesOpen = {{ spacesOpen }}; id = {{event.eventId}}; categories = [{{event.categories | alpineArray}}]; if (isAuth) getEventInfo({{event.eventId}}); $watch('isAuth', val => {if (val) getEventInfo({{event.eventId}})})"
-                x-show="(typeof filter.category !== 'string' || filter.category === 'all' || categories.some(cat => cat.toLowerCase() === filter.category)) && (!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || isSpacesOpen)" >
+                x-show="(typeof filter.category !== 'string' || filter.category === 'all' || categories.some(cat => cat.toLowerCase() === filter.category)) && (!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || isSpacesOpen) && (filter.day === 'All' || $refs.date{{event.eventId}}.textContent === filter.day)" >
 
                     {# Event Name #}
                     <td class="events-table-cell--name">
@@ -60,13 +60,14 @@
 
                     {# System #}
                     <td class="events-table-cell--system">{{event.metadata.System}}</td>
+
                     {# Event Start Date/Time #}
                     {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
                     {# formatEventDate filter is in eleventy.js and returns html with date and time in seperate span tags #}
                     <td class="events-table-cell--date" data-sort="{{ event.eventStartDateTime | unixtime }}">
                         <div class="sm:flex sm:flex-col">
                             {% if (event.eventDuration > 0) %}
-                                <span class="whitespace-nowrap">{{ event.eventStartDateTime | formatDate }}</span>
+                                <span class="whitespace-nowrap" x-ref="date{{event.eventId}}">{{ event.eventStartDateTime | formatDate }}</span>
                                 <span class="whitespace-nowrap">{{ event.eventStartDateTime | formatTime }}
                                     <b class="whitespace-nowrap">{{ event.eventDuration }}hr</b>
                                 </span>
@@ -133,7 +134,7 @@
                     this.sortTable(this.sortBy || 1, this.sortAscending)
                     this.searchUrlParams()
                 },
-                filter: this.$persist({favsOnly: false, openOnly: false, category: 'all'}),
+                filter: this.$persist({favsOnly: false, openOnly: false, category: 'all', day: 'All'}),
                 sortBy: this.$persist(1),
                 sortAscending: this.$persist(true),
                 allCategories: [
