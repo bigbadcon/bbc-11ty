@@ -14,6 +14,6 @@ tags: pages
 
 ### Upcoming dates:
 
-* Scheduled event submissions closed
-* Schedule of events published 9/16
-* Sign ups begin 9/25 at 12PM PT
+* Schedule of events [published now](https://www.bigbadcon.com/events/)!
+* [POC Dinner](https://www.bigbadcon.com/events/poc-dinner) and [Meet & Greet](https://www.bigbadcon.com/events/poc-meet-greet) sign ups open now!
+* Events sign ups begin 9/25 at 12PM PT
