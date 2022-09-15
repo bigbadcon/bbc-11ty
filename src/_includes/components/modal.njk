@@ -1,3 +1,6 @@
+{# TODO: convert this to normal partial #}
+{# TODO: add focus trapping #}
+{# TODO: Add account management panel or link to page for that #}
 {% macro authModal() %}
     {# Backdrop #}
     <div x-cloak x-show="(modal)" x-transition
@@ -14,7 +17,6 @@
         @click.stop=""
         >
             {{ login() }}
-            {{ spinner() }}
             {{ userInfo() }}
             {{ changePassword() }}
             {{ resetPassword() }}
@@ -24,6 +26,7 @@
 
 {# Front Panel Content #}
 
+{# TODO: give error if data service is down #}
 {# Login Panel #}
 {% macro login() %}
     <div id="modal-login" class="x-cloak" x-show="!authToken && modal === 'login'" class="flex flex-col h-full w-72">
@@ -168,7 +171,7 @@
 
 {# Loading Spinner. When logging in but user info not yet loaded #}
 {% macro spinner() %}
-    <div x-cloak x-show="authToken && !user" class="flex items-center justify-center gap-sm animate-pulse py-md">
+    <div x-cloak x-show="isAuth && !user" class="flex items-center justify-center gap-sm animate-pulse py-md">
         <div class="w-8 h-8 rounded-full bg-body"></div>
         <div class="w-8 h-8 rounded-full bg-body"></div>
         <div class="w-8 h-8 rounded-full bg-body"></div>
@@ -177,9 +180,10 @@
 
 {# Close button #}
 {% macro closeBtn() %}
-    <button @click="modal = false" class="flex items-center justify-center border-2 border-solid rounded close-btn w-7 h-7 border-body bg-card hover:border-highlight">
-        <svg class="w-4 h-4 fill-body hover:fill-highlight">
-            <use xlink:href="/static/images/icons.svg#close"></use>
+    <button @click="modal = false" class="flex items-center justify-center border-2 border-solid rounded close-btn w-7 h-7 border-body bg-card hover:border-highlight group">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-4 h-4 fill-body group-hover:fill-highlight">
+            <title>close</title>
+            <path d="M31.708 25.708c-0-0-0-0-0-0l-9.708-9.708 9.708-9.708c0-0 0-0 0-0 0.105-0.105 0.18-0.227 0.229-0.357 0.133-0.356 0.057-0.771-0.229-1.057l-4.586-4.586c-0.286-0.286-0.702-0.361-1.057-0.229-0.13 0.048-0.252 0.124-0.357 0.228 0 0-0 0-0 0l-9.708 9.708-9.708-9.708c-0-0-0-0-0-0-0.105-0.104-0.227-0.18-0.357-0.228-0.356-0.133-0.771-0.057-1.057 0.229l-4.586 4.586c-0.286 0.286-0.361 0.702-0.229 1.057 0.049 0.13 0.124 0.252 0.229 0.357 0 0 0 0 0 0l9.708 9.708-9.708 9.708c-0 0-0 0-0 0-0.104 0.105-0.18 0.227-0.229 0.357-0.133 0.355-0.057 0.771 0.229 1.057l4.586 4.586c0.286 0.286 0.702 0.361 1.057 0.229 0.13-0.049 0.252-0.124 0.357-0.229 0-0 0-0 0-0l9.708-9.708 9.708 9.708c0 0 0 0 0 0 0.105 0.105 0.227 0.18 0.357 0.229 0.356 0.133 0.771 0.057 1.057-0.229l4.586-4.586c0.286-0.286 0.362-0.702 0.229-1.057-0.049-0.13-0.124-0.252-0.229-0.357z"></path>
         </svg>
     </button>
 {% endmacro %}
@@ -205,24 +209,27 @@
             <template x-for="event in bookedEvents">
                 <li class="mb-xs">
                     <h4>
-                        <template x-if="(event.eventStatus === 1)">
-                            <a :href="(event.isVolunteer) ? '/volunteer/'+ event.eventSlug : '/events/'+ event.eventSlug" class="font-bold text-header hover:text-highlight" x-html="event.eventName"></a>
+                        <template x-if="(event.status === 1)">
+                            <a :href="(event.isV) ? '/volunteer/'+ event.slug : '/events/'+ event.slug" class="font-bold text-header hover:text-highlight" x-html="event.name"></a>
                         </template>
-                        <template x-if="(event.eventStatus === 0)">
+                        <template x-if="(event.status === 0)">
                             <a class="text-body">
-                                <b x-html="event.eventName"></b>
+                                <b x-html="event.name"></b>
                                 <i>In Review</i>
                             </a>
                         </template>
                     </h4>
                     {# Timezone data is in x-data in html #}
                     {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
-                    <template x-if="Number(event.eventDuration) > 0">
+                    {# TODO: allow half hours #}
+                    <template x-if="Number(event.dur) > 0">
                         <p class="text-xs opacity-90">
-                            <span x-html="formatEventDate(event.eventStartDateTime, timezone)"></span> (<span x-text="event.eventDuration"></span> hrs)
+                            <span x-html="formatEventDateWithYear(event.date)"></span>
+                            <span x-html="formatEventTime(event.date)"></span>
+                            (<span x-text="event.dur"></span> hours)
                         </p>
                     </template>
-                    <template x-if="Number(event.eventDuration) === 0">
+                    <template x-if="Number(event.dur) === 0">
                         <p class="text-xs opacity-90">
                             date/time not yet scheduled
                         </p>
@@ -231,11 +238,11 @@
             </template>
             <li x-show="bookedEvents && bookedEvents.length === 0" class="italic">You currently have no events</li>
         </ul>
-        <div class="flex items-center justify-between border-b-2 py-2xs gap-xs border-hr" x-show="user && user.badgeRoles && user.badgeRoles.length > 0 " x-transition>
-            <div class="flex flex-wrap items-center gap-x-xs gap-y-2xs">
-                <span>You have a badge!</span>
-                <template x-for="role in user?.badgeRoles">
-                    <span x-text="role" class="py-[.1rem] text-xs font-bold uppercase rounded-full bg-hr text-primary px-xs"></span>
+        <div class="flex items-center justify-between border-b-2 py-2xs gap-xs border-hr" x-show="user && hasBadge" x-transition>
+            <div class="flex flex-wrap items-center gap-2xs">
+                <span>You have a <span x-show="isTeen">Teen</span> badge!</span>
+                <template x-for="role in badgeRoles">
+                    <span x-text="(role === 'paidattendee') ? 'paid' : role" class="py-[.1rem] text-xs font-bold uppercase rounded-full bg-hr text-primary px-xs"></span>
                 </template>
             </div>
             <div class="text-sm" x-show="availableSlots && availableSlots < 100">QUOTA: <b x-text="availableSlots"></b>

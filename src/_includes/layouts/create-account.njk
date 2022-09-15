@@ -1,9 +1,6 @@
-{% extends 'layouts/base.njk' %}
+{% extends 'layouts/page.njk' %}
 
-{% block header %}
-    {% include 'components/header.njk' %}
-{% endblock %}
-
+{# TODO: add are you a teen field #}
 {% block content %}
     <main id="content">
         <div class="mx-auto max-w-content p-base">
@@ -103,7 +100,7 @@
                             <input type="hidden" value="create-account" name="formName" id="formName"/>
                         </div>
                     </fieldset>
-                    {# // TODO: add opt in for mailing list? #}
+                    {# TODO: add opt in for mailing list? #}
                     <div data-netlify-recaptcha="true"></div>
                     <p class="mt-base">
                         <button type="submit" :disabled="!agree" disabled>Submit</button>

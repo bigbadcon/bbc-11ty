@@ -308,36 +308,9 @@ form[x-validate] [data-error]:after {
   /* @apply shadow-outline; */
 }
 
-/* --------------------------- Icon Link Shortcode -------------------------- */
-.iconlink, .icon {
-  @apply flex items-center space-x-sm text-highlight;
-  text-decoration: none !important;
-}
-.iconlink:hover {
-  text-decoration: underline !important;
-}
-.iconlink__icon,
-.light .icon-link__icon {
-  @apply w-6 h-6 flex-shrink-0;
-  filter: drop-shadow(0 0.1rem 0.1rem rgba(230, 255, 230, 0.4))
-}
-@media (prefers-color-scheme: dark) {
-  .iconlink__icon {
-    filter: drop-shadow(0 0.1rem 0.1rem rgba(0, 0, 50, 0.4))
-  }
-}
-.dark .iconlink__icon {
-  filter: drop-shadow(0 0.1rem 0.1rem rgba(0, 0, 50, 0.4))
-}
-.iconlink__title {
-  @apply text-body-highlight font-serif;
-  font-size: 1.3em;
-  line-height: 0.9;
-}
-/* Needed for cards on homepage */
-.prose p .iconlink {
-  margin: -.4em 0 0;
-}
+/* -------------------------------------------------------------------------- */
+/*                                    SVGS                                    */
+/* -------------------------------------------------------------------------- */
 
 .fill-highlight {
   fill: var(--highlight);
@@ -347,7 +320,9 @@ form[x-validate] [data-error]:after {
   fill: var(--body);
 }
 
-/* ------------------------------ Icon Link V2 ------------------------------ */
+/* -------------------------------------------------------------------------- */
+/*                                 Icon Links                                 */
+/* -------------------------------------------------------------------------- */
 
 [class^='icon-'] {
   @apply text-body-highlight font-serif no-underline flex items-center gap-sm;
@@ -366,203 +341,77 @@ a[class^='icon-']:hover {
   content: " ";
 }
 
-.icon-add:before {
-  mask-image: url(/static/svgs/add.svg)
-}
+/* all icon-svgname classes are dynamically generated in svg-icons.css from svg-icons-css.njk using all svgs in the static/icons folder */
 
-.icon-art:before {
-  mask-image: url(/static/svgs/art.svg)
-}
-
-.icon-badge:before {
-  mask-image: url(/static/svgs/badge.svg)
-}
-
-.icon-book:before {
-  mask-image: url(/static/svgs/book.svg)
-}
-
-.icon-booth:before {
-  mask-image: url(/static/svgs/booth.svg)
-}
-
-.icon-bullhorn:before {
-  mask-image: url(/static/svgs/bullhorn.svg)
-}
-
-.icon-calendar-clock:before {
-  mask-image: url(/static/svgs/calendar-clock.svg)
-}
-
-.icon-calendar-star:before {
-  mask-image: url(/static/svgs/calendar-star.svg)
-}
-
-.icon-close:before {
-  mask-image: url(/static/svgs/close.svg)
-}
-
-.icon-dice:before {
-  mask-image: url(/static/svgs/dice.svg)
-}
-
-.icon-discord:before {
-  mask-image: url(/static/svgs/discord.svg)
-}
-
-.icon-envelope:before {
-  mask-image: url(/static/svgs/envelope.svg)
-}
-
-.icon-faq:before {
-  mask-image: url(/static/svgs/faq.svg)
-}
-
-.icon-games-on-demand:before {
-  mask-image: url(/static/svgs/games-on-demand.svg)
-}
-
-.icon-gift:before {
-  mask-image: url(/static/svgs/gift.svg)
-}
-
-.icon-hotel:before {
-  mask-image: url(/static/svgs/hotel.svg)
-}
-
-.icon-image:before {
-  mask-image: url(/static/svgs/image.svg)
-}
-
-.icon-itch-io:before {
-  mask-image: url(/static/svgs/itch-io.svg)
-}
-
-.icon-kickstarter:before {
-  mask-image: url(/static/svgs/kickstarter.svg)
-}
-
-.icon-library:before {
-  mask-image: url(/static/svgs/library.svg)
-}
-
-.icon-light-bulb:before {
-  mask-image: url(/static/svgs/light-bulb.svg)
-}
-
-.icon-list:before {
-  mask-image: url(/static/svgs/list.svg)
-}
-
-.icon-menu:before {
-  mask-image: url(/static/svgs/menu.svg)
-}
-
-.icon-moon:before {
-  mask-image: url(/static/svgs/moon.svg)
-}
-
-.icon-parachute:before {
-  mask-image: url(/static/svgs/parachute.svg)
-}
-
-.icon-party:before {
-  mask-image: url(/static/svgs/party.svg)
-}
-
-.icon-paw:before {
-  mask-image: url(/static/svgs/paw.svg)
-}
-
-.icon-pencil-square:before {
-  mask-image: url(/static/svgs/pencil-square.svg)
-}
-
-.icon-pig:before {
-  mask-image: url(/static/svgs/pig.svg)
-}
-
-.icon-price-tags:before {
-  mask-image: url(/static/svgs/price-tags.svg)
-}
-
-.icon-scroll:before {
-  mask-image: url(/static/svgs/scroll.svg)
-}
-
-.icon-settings:before {
-  mask-image: url(/static/svgs/settings.svg)
-}
-
-.icon-scholar:before {
-  mask-image: url(/static/svgs/scholar.svg)
-}
-
-.icon-shield:before {
-  mask-image: url(/static/svgs/shield.svg)
-}
-
-.icon-star:before {
-  mask-image: url(/static/svgs/star.svg)
-}
-
-.icon-sun:before {
-  mask-image: url(/static/svgs/sun.svg)
-}
-
-.icon-trophy:before {
-  mask-image: url(/static/svgs/trophy.svg)
-}
-
-.icon-twitch:before {
-  mask-image: url(/static/svgs/twitch.svg)
-}
-
-.icon-twitter:before {
-  mask-image: url(/static/svgs/twitter.svg)
-}
-
-.icon-website:before {
-  mask-image: url(/static/svgs/website.svg)
-}
-
-.icon-wolf:before {
-  mask-image: url(/static/svgs/wolf.svg)
-}
-
-.icon-youtube:before {
-  mask-image: url(/static/svgs/youtube.svg)
-}
-
-/* ------------------------- Event / Volunteer List ------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                           Event / Volunteer List                           */
+/* -------------------------------------------------------------------------- */
 
 .events-table {
   @apply w-full text-sm text-body;
 }
 
-.events-table tr {
-  @apply w-full flex flex-wrap sm:table-row mb-base relative pr-8 sm:pr-0 gap-x-xs;
+.events-table thead tr {
+  @apply w-full flex flex-wrap justify-between sm:table-row relative border-b-2 border-card;
+}
+
+.events-table thead th {
+  @apply text-left last:pr-0 pb-base;
+}
+
+.events-table .events-table-header--categories {
+  @apply hidden sm:table-cell;
+}
+
+.events-table .events-table-header--spaces {
+  @apply hidden sm:table-cell text-center;
+}
+
+.events-table .events-table-header--fav {
+  @apply w-8 pb-sm justify-self-end;
+}
+
+.events-table tbody tr {
+  /* pr-8 leaves room for absolute placed fav star in mobile */
+  @apply w-full flex flex-wrap sm:table-row py-sm relative pr-8 sm:pr-0 gap-x-xs border-b-2 border-card;
+}
+.volunteer-shifts-table tbody tr {
+  /* pr-8 leaves room for absolute placed fav star in mobile */
+  @apply w-full flex flex-wrap sm:table-row py-sm relative pr-lg sm:pr-0 gap-x-xs border-b-2 border-card;
 }
 
 .events-table td {
-  @apply block sm:table-cell sm:py-sm sm:pr-sm;
-}
+  @apply block sm:table-cell sm:py-sm sm:pr-sm last:pr-0;
+}`
 
 .events-table .events-table-cell--name {
   @apply basis-full;
 }
 
-.events-table .events-table-cell--fav-star {
-  @apply absolute sm:relative right-0 top-0;
-}
-
-.events-table .events-table-cell--categories {
-  @apply bg-transparent relative top-[-.2rem];
-}
-
 .events-table .events-table-cell--system {
-  @apply italic;
+  @apply italic basis-full;
 }
+
+.events-table .events-table-cell--date {
+  @apply basis-full;
+}
+
+.events-table .events-table-cell--duration {
+  @apply font-bold text-center;
+}
+.events-table .events-table-cell--categories {
+
+}
+.events-table .events-table-cell--spaces {
+  @apply absolute sm:static bottom-0 right-0 text-center; 
+}
+.volunteer-shifts-table .events-table-cell--spaces {
+  @apply absolute sm:static top-sm right-lg text-center; 
+}
+.events-table .events-table-cell--fav {
+  @apply absolute sm:static right-0 top-sm;
+}
+
 
 .events-table thead tr {
   @apply flex-row gap-sm;
@@ -573,13 +422,13 @@ a[class^='icon-']:hover {
 }
 
 .fav-star {
-  mask-image: url(/static/svgs/star.svg);
+  mask-image: url(/static/icons/star.svg);
   mask-repeat: no-repeat;
   @apply block w-6 h-6 cursor-pointer opacity-30 hover:opacity-100 bg-body text-transparent;
 }
 
 .fav-star-header {
-  mask-image: url(/static/svgs/star.svg);
+  mask-image: url(/static/icons/star.svg);
   mask-repeat: no-repeat;
   @apply block w-6 h-6 bg-body indent-96;
 }
@@ -594,7 +443,7 @@ a[class^='icon-']:hover {
 }
 
 .filter-btn {
-  @apply flex items-center transition-colors rounded gap-x-xs bg-main-gradient-bottom px-sm py-2xs hover:bg-primary;
+  @apply flex items-center transition-colors rounded gap-x-xs bg-card px-sm py-2xs hover:bg-primary;
 }
 
 .sort-btn {
@@ -605,20 +454,38 @@ a[class^='icon-']:hover {
   @apply inline-flex justify-start gap-2xs items-end;
 }
 
+.sortable:after {
+  content: "\279C";
+  @apply text-transparent block text-xs;
+}
+
+.active.sortable:after {
+  @apply text-hr;
+}
+
 .active .sort-btn {
-  @apply border-highlight
+  @apply border-highlight;
 }
 
 .ascending .active.sortable:after {
-  content: "\279C";
-  @apply text-hr rotate-90 block text-xs;
+  @apply rotate-90;
 }
 
 .descending .active.sortable:after {
-  content: "\279C";
-  @apply text-hr rotate-[-90deg] block text-xs;
+  @apply rotate-[-90deg];
 }
 
+/* -------------------------------------------------------------------------- */
+/*                                 Event Pages                                */
+/* -------------------------------------------------------------------------- */
+
+.event-description h2 + br,
+.event-description h3 + br,
+.event-description li + br,
+.event-description ul + br,
+.event-description ul > br {
+  display: none;
+}
 /* css to hide stuff */
 .spoilers-transparent {
   @apply text-transparent;

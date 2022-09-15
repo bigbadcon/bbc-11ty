@@ -32,22 +32,17 @@ exports.handler = async function (event, context) {
     const entries = urlParams.entries()
     const params = paramsToObject(entries)
     console.log("🚀 ~ file: createCheckoutSession.js ~ line 30 ~ params", params)
-    
 
-    // const price_id = params.get('price_id');
-    // const client_reference_id = params.get('userId');
-    // const customer_email = params.get('userEmail');
-    // const userDisplayName = params.get('userDisplayName');
-    // // get gift badge information
-    // const recipient = params.get('recipient');
-    // const anon = params.get('anon');
-    // const recipientEmail = params.get('recipientEmail');
+    // TODO: make this more automated
+    let successUrl = "https://www.bigbadcon.com/thanks-for-your-purchase/"
+    if (params.productType === "badge") successUrl = "https://www.bigbadcon.com/buy-a-badge-thanks/"
+    if (params.productType === "poc-dinner") successUrl = "https://www.bigbadcon.com/poc-dinner-contribution-thanks/"
 
     try {
         const session = await stripe.checkout.sessions.create({
             line_items: [
                 {
-                    price: params['badge-type'],
+                    price: params.price_id,
                     quantity: 1,
                 }
             ],
@@ -55,13 +50,15 @@ exports.handler = async function (event, context) {
             client_reference_id: params.userId,
             metadata: {
                 userDisplayName: params.userDisplayName,
+                age: params.age,
                 recipient: params.recipient,
                 anon: params.anon,
-                recipientEmail: params.recipientEmail,
+                recipientEmail: params.recipientEmail && params.recipientEmail.trim(),
+                productType: params.productType // "badge" or "poc dinner"
             },
             mode: "payment",
             // TODO: customize thanks page with order details
-            success_url: "https://www.bigbadcon.com/buy-a-badge-thanks/",
+            success_url: successUrl,
             cancel_url: referer,
             // TODO: add metadata with other person's email address
         })

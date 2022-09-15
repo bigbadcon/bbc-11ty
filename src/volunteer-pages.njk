@@ -10,11 +10,29 @@ eleventyComputed:
 ---
 
 {# Date and Time #}
-{% include 'components/event-date-time.njk'%}
+<div class="text-lg prose border-t-2 border-b-2 text-body mb-base space-y-xs border-hr py-sm">
+    {# Event Day #}
+    <div class="flex flex-wrap justify-between">
+        {# timezone data is in x-data="eventFilter" in wrapping div in base.njk #}
+        {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
+        <div>
+            <strong>Date:</strong>
+            {% include 'components/event-date-time-duration.njk' %}
+        </div>
+    </div>
+    {# Spaces #}
+    {# spacesOpen is in eventInfo which is in event.njk #}
+    {% if event.metadata.Players %}
+        <div>
+            <strong>Spaces:</strong>
+            <span x-text="(spacesOpen) ? spacesOpen + ' out of {{event.metadata.Players}}' : '{{event.metadata.Players}}'">{{event.metadata.Players}}</span>
+        </div>
+    {% endif %}
+</div>
 
 {# Description #}
-<div class="prose">{{event.postContent | nl2br | safe }}</div>
-
+<div class="prose event-description">{{event.postContent | nl2br | safe }}</div>
+{# TODO: Merge Volunteer event signup form with the volunteer event booking so that it forces the user to enter the form if they are not a volunteer before booking #}
 {# Event Signup / Booking #}
 {% include 'components/volunteerBookingPanel.njk'%}
 {# Event links #}
@@ -29,10 +47,7 @@ eleventyComputed:
     <div class="text-sm">
         {% set tweeturl = "https://twitter.com/intent/tweet?text=Volunteer+at+BigBadCon!+https://www.bigbadcon.com/events/" + event.eventSlug %}
 
-        <a class="inline-flex items-center gap-sm" href="{{tweeturl}}">
-            <svg class="w-4 h-4 fill-body">
-                <use xlink:href="/static/images/icons.svg#twitter"></use>
-            </svg>Tweet This!</a>
+        <a class="icon-twitter" href="{{tweeturl}}">Tweet This!</a>
     </div>
 </div>
 

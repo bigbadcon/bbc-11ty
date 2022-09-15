@@ -23,14 +23,25 @@ function compareArrays(arr1, arr2) {
   return Array.isArray(arr1) && Array.isArray(arr2) && arr1.filter(val => arr2.indexOf(val) !== -1)
 }
 
+/* ------------------------- Convert odd characters ------------------------- */
+const decodeText = text => {
+  return text && utf8.decode(windows1252.encode(text,{
+      mode: 'html'
+  }))
+}
+
 /* -------------------------------------------------------------------------- */
 /*                             dayjs event format                             */
 /* -------------------------------------------------------------------------- */
 
 function formatEventDate(date, tz = 'America/Los_Angeles') {
-  // TODO: this is a kludge forcing the timezone to be Pacific time until I make this work more modular for online vs in person.
-  tz = 'America/Los_Angeles'
-  return "<span style='white-space: nowrap;'>" + dayjs(date).tz(tz).format('MMM D, YYYY') + "</span> <span>" + dayjs(date).tz(tz).format('h:mm a') + "</span>"
+  return dayjs(date).tz(tz).format('MMM D')
+}
+function formatEventDateWithYear(date, tz = 'America/Los_Angeles') {
+  return dayjs(date).tz(tz).format('MMM D, YYYY')
+}
+function formatEventTime(date, tz = 'America/Los_Angeles') {
+  return dayjs(date).tz(tz).format('h:mma')
 }
 
 /* -------------------------------------------------------------------------- */
@@ -55,17 +66,11 @@ function metadataArrayToObject(arr) {
 
 /* --------------------------- Event Duration ------------------------------ */
 
-const duration = (dateStart,dateEnd) => {
-  // calculate hours
-  let diffInMilliSeconds = Math.abs(dateEnd - dateStart) / 1000;
-  const hours = Math.floor(diffInMilliSeconds / 3600) % 24;
-
-  diffInMilliSeconds -= hours * 3600;
-  // calculate minutes
-  const minutes = Math.floor(diffInMilliSeconds / 60) % 60;
-  diffInMilliSeconds -= minutes * 60;
-  return hours.toString()
-};
+const getDurationInHours = (dateStart,dateEnd) => {
+  dateStart = new Date(dateStart)
+  dateEnd = new Date(dateEnd)
+  return (Math.abs(dateEnd - dateStart) / 1000) / 3600 % 24;
+}
 
 /* -------------------------------------------------------------------------- */
 /*                             API Fetch Functions                            */
@@ -149,7 +154,11 @@ document.addEventListener('alpine:init', () => {
             // this.checkRegistration()  this was for Big Bad Online
           }
           return token
-        } else return false
+        } else {
+          // TODO: better error message to say if password is wrong
+          this.$dispatch('toast', 'ERROR: login failed')
+          return false
+        }
       },
       logout () {
         this.authToken = null
@@ -169,28 +178,40 @@ document.addEventListener('alpine:init', () => {
         if (!user) {this.logout(); return false;}
 
         const userMetadata = metadataArrayToObject(user.metadata)
-        // TODO: not 
-        const userRoles = [...userMetadata.wp_tuiny5_capabilities.matchAll(/"([a-z]+)/g)].map( (match) => match[1])
-        const badgeRoles = compareArrays(userRoles,['gm','paidattendee','volunteer','comp','staff'])
-        console.log("🚀 ~ file: scripts.js ~ line 172 ~ getUserData ~ badgeRoles", badgeRoles)
+        const userRoles = [...userMetadata.wp_tuiny5_capabilities.matchAll(/"([a-z\-]+)/g)].map( (match) => match[1])
         user = {
           ...user,
           metadata: userMetadata,
           roles: userRoles,
-          badgeRoles: badgeRoles,
+          displayName: decodeText(user.displayName) || user.displayName
         }
         console.log("user data transformed",user);
         this.user = user
         return user
       },
-      hasUserRole(role) {
-        return this.user && this.user.roles && this.user.roles.includes(role)
+      get badgeRoles() {
+        return this.user && compareArrays(this.user.roles,['gm','paidattendee','volunteer','comp','staff'])
+      },
+      get hasBadge() {
+        return this.user && Array.isArray(this.badgeRoles) && this.badgeRoles.length > 0
+      },
+      isRole(role) {
+        return this.user && Array.isArray(this.user.roles) && this.user.roles.includes(role)
       },
       get isVolunteer() {
-        return this.user && this.user.roles && this.user.roles.includes('volunteer')
+        return this.isRole('volunteer')
       },
       get isAdmin() {
-        return this.user && this.user.roles && this.user.roles.includes('administrator')
+        return this.isRole('administrator')
+      },
+      get isTeen() {
+        return this.isRole('teen')
+      },
+      get isVendor() {
+        return this.isRole('vendor')
+      },
+      get isPaid() {
+        return this.isRole('paidattendee')
       },
       async checkRegistration () {
         // Used for Big Bad Online
@@ -213,53 +234,42 @@ document.addEventListener('alpine:init', () => {
         const data = await fetchData('/events/all/public')
         console.log('getEvents', data)
       },
-      async getEvent(id) {
-        const data = await fetchData('/events/find',{method: 'POST',body: {id: id}})
-        
-        // Create Javascript date object
-        const eventStartDateTime = dayjs(data.eventStartDate + "T" + data.eventStartTime + "-07:00").toDate()
-        const eventEndDateTime = dayjs(data.eventEndDate + "T" + data.eventEndTime + "-07:00").toDate()
-        
-        return {...data,
-          // Convert to keyed object
-          metadata: metadataArrayToObject(data.metadata),
-          // strip out status 0 which are canceled attendees
-          bookings: data.bookings.filter(booking => booking.bookingStatus === 1),
-          // add simple isVolunteer boolean
-          isVolunteer: data.categories.some(cat => cat.slug === "volunteer-shift"),
-          // add javascript date objects and duration
-          eventStartDateTime: eventStartDateTime,
-          eventEndDateTime: eventEndDateTime,
-          eventDuration: duration(eventStartDateTime,eventEndDateTime)
-        }
-      },
       async getBookedEvents() {
         // 1. Get ID array of my events
         let myEvents = await fetchData('/events/me/',{})
+        // Logout if this fails as it indicates we are offline. This is necessary because we had issues with  people submitting forms and it didn't work.
+        // TODO: change this so it tests if you are offline before submitting any api call and warns
         if (myEvents === false) {this.logout(); return false;}
-        // 2. Get event data for each ID
-        myEvents = await Promise.all(myEvents.map( async id => {
-          const event = await this.getEvent(id)
-          return event
-        }))
-        // remove any trashed events
-        myEvents = myEvents.filter(event => event.eventStatus >= 0);
+        // 2. Get event data from local JSON
+        let eventData = {}
+        try {
+          const response = await fetch('/events.json')
+          eventData = await response.json()
+        } catch(err) {
+          console.error(`ERROR: fetch for ${url}`,err)
+          return false
+        }
+        //create array from eventData.json and remove all undefined cancelled events
+        myEvents = myEvents.map( id => eventData[id]).filter(event => event)
+        // only show published events that are in the future (minus 1 month ago)
         this.bookedEvents = myEvents
+        console.log("🚀 ~ file: scripts.js ~ line 279 ~ getBookedEvents ~ myEvents", myEvents)
         return myEvents
       },
       async bookEvent(id) {
         let data = await fetchData('/bookings/bookMeIntoGame',{method: 'POST',body: { gameId: id }})
+        if (!data) this.$dispatch('toast', 'ERROR: booking change failed. Data service might be down.')
         this.getBookedEvents()
         return data
       },
       async cancelBooking(id) {
         let data = await fetchData('/bookings/removeMeFromGame',{method: 'DELETE',body: { gameId: id, guid: id }})
+        if (!data) this.$dispatch('toast', 'ERROR: booking change failed. Data service might be down.')
         this.getBookedEvents()
         return data
       },
       async getFavEvents() {
         let data = await fetchData('/events/me/favorites')
-        if (!data)
         this.favEvents = data && data.map(item => item.eventId)
         return data && data.map(item => item.eventId)
       },
@@ -270,7 +280,7 @@ document.addEventListener('alpine:init', () => {
         } else { 
           data = await fetchData('/events/me/favorite/create',{ method: 'POST', body:{eventId: id} })
         }
-        if (data && data.status === 'FAILURE') this.$dispatch('toast', data.message)
+        if (!data) this.$dispatch('toast', 'ERROR: favoriting failed. Data service might be down.')
         if (data && data.status === 'SUCCESS') {
           this.getFavEvents()
         }
@@ -292,54 +302,65 @@ document.addEventListener('alpine:init', () => {
   /* -------------------------------------------------------------------------- */
   /*                            Alpine Component Data                           */
   /* -------------------------------------------------------------------------- */
-  
 
-  /* -------------------------- eventInfo panel data -------------------------- */
+  /* ----------- eventInfo Used for Event Table Rows and Event Pages ---------- */
 
   Alpine.data('eventInfo', function () {
+    // See init on page
     return {
-      spacesTotal: null,
-      spacesOpen: null,
-      owner: null,
-      gm: null,
-      bookings: [], // bookings minus all GMs
-      events: this.$persist({}),
-      async getEventBooking(id) {
-        // Check localStorage first to quickly populate this
-        let events = this.events
-        if (events[id]) {
-          // set Alpine 'eventInfo' variables
-          this.owner = events[id].owner
-          this.gm = events[id].gm
-          this.bookings = events[id].bookings
-          this.spacesTotal = events[id].spacesTotal
-          this.spacesOpen = events[id].spacesOpen
+      id: 0, // this is filled in in nunjucks
+      categories: [], // this is filled in in nunjucks
+      spacesOpen: 0, // this is temp filled in in nunjucks
+      bookings: [],
+      gm: {},
+      event_image: "",
+      async getEventInfo(id) {
+        id = id || this.id
+        // let spacesLS = JSON.parse(localStorage.getItem('spaces')) || {}
+        let eventsLS = JSON.parse(localStorage.getItem('events')) || {}
+        // this.spacesOpen = spacesLS[id]
+        if (eventsLS[id]) {
+          this.spacesOpen = eventsLS[id].spacesOpen
+          this.bookings = eventsLS[id].bookings
+          this.gm = eventsLS[id].gm
+          this.event_image = eventsLS[id].event_image
         }
-        // fetch new data from server
-        const data = await fetchData('/events/find',{ method: 'POST', body: { id: id }})
-        if (data) {
-          // Convert metadata array to object
+        
+        try {
+          // TODO: replace this with simpler API call when Jerry builds it
+          /* ------------------------ Get data from events/find ----------------------- */
+          const data = await fetchData('/events/find',{ method: 'POST', body: { id: id }})
+          // convert metadata to object
           const metadata = metadataArrayToObject(data.metadata)
-          // set Alpine 'eventInfo' variables
-          this.owner = data.eventOwner.displayName
-          this.gm = metadata.GM
-          // filter out all cancelled bookings and GM roles
-          const bookings = data.bookings.filter(booking => booking.bookingStatus === 1 && booking.bookingComment !== "GM")
-          this.bookings = bookings
-          this.spacesTotal = parseInt(metadata.Players)
-          this.spacesOpen = parseInt(metadata.Players) - bookings.length
+          // filter out canceled bookings and fix name issues with odd characters
+          const bookings = data.bookings.filter(booking => booking.bookingStatus === 1).map(booking => {return { ...booking, user: {...booking.user, displayName: decodeText(booking.user.displayName)}}})
+         
+          /* ------------------------ Update all data variables ----------------------- */
+          // gm defaults to empty object when there isn't a gm
+          this.gm = bookings.find(booking => booking.bookingComment === "GM") || {}
+          // get only active bookings that are not gms
+          this.bookings = bookings.filter(booking => booking.bookingComment !== "GM")
+          // spacesOpen is based on number of players - bookings unless players is not set as a number then it defaults to 'Any'
+          // TODO: We might want to revisit this as it's a bit ugly
+          this.spacesOpen = Number(metadata.Players) ? Number(metadata.Players) - this.bookings.length : 'Any'
+          // get event_image
+          this.event_image = metadata.event_image
 
-          // add to events store
-          events = {...events, [id]:{
-            owner: this.owner,
-            gm: this.gm,
-            bookings: this.bookings,
-            spacesTotal: this.spacesTotal,
+          /* -------------------------- Update Local Storage -------------------------- */
+          eventsLS[id] = {
             spacesOpen: this.spacesOpen,
-            metadata: metadata
-          }}
-          this.events = events
+            bookings: this.bookings,
+            gm: this.gm,
+            event_image: this.event_image
+          }
+          localStorage.setItem('events', JSON.stringify(eventsLS))
+
+        } catch (e) {
+          console.log(e)
         }
+      },
+      get isSpacesOpen() {
+        return this.spacesOpen > 0 || isNaN(this.spacesOpen)
       },
       async uploadImage(e) {
 
@@ -376,11 +397,20 @@ document.addEventListener('alpine:init', () => {
 
         if (data) {
           // if data update event data with new image
-          let event = this.events[eventId]
-          event.metadata.event_image = data.fileName
-          this.events = {...this.events, [eventId]: event}
+          let eventsLS = JSON.parse(localStorage.getItem('events')) || {}
+          if (eventsLS[eventId]) {
+            this.event_image = data.fileName
+          }
+          eventsLS[eventId] = {
+            spacesOpen: this.spacesOpen,
+            bookings: this.bookings,
+            gm: this.gm,
+            event_image: this.event_image
+          }
+          localStorage.setItem('events', JSON.stringify(eventsLS))
+          location.reload()
         }
-        location.reload()
+
         return data
       },
       showPreview(e) {
@@ -392,9 +422,10 @@ document.addEventListener('alpine:init', () => {
           preview.style.display = "block";
           button.style.display = "inline-block";
         }
-      },
+      }
     }
   })
+
 
   Alpine.data('createAccount',() => ({
     agree: false,

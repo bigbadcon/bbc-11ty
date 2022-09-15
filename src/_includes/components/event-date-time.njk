@@ -5,9 +5,15 @@
         {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
         <div>
             <strong>Date:</strong>
-            <span x-cloak x-show="timezone" x-html="formatEventDate('{{event.eventStartDateTime}}',timezone)">{{ event.eventStartDateTime | formatEventDate | safe }}</span>
+            {% if (event.eventDuration > 0) %}
+                <span class="whitespace-nowrap">{{ event.eventStartDateTime | formatDateWithYear }}</span>
+                <span class="whitespace-nowrap">{{ event.eventStartDateTime | formatTime }}
+                    <span class="whitespace-nowrap">({{ event.eventDuration }} hours)</span>
+                </span>
+            {% else %}
+                <span class="opacity-50">TBD</span>
+            {% endif %}
         </div>
-        <div>{% include 'components/timezone-select.njk' %}</div>
     </div>
     {# Event Time #}
     <div class="">
@@ -20,7 +26,7 @@
     {% if event.metadata.Players %}
         <div>
             <strong>Spaces:</strong>
-            <span x-text="(spacesTotal) ? spacesOpen + ' out of ' + spacesTotal : '{{event.metadata.Players}}'">{{event.metadata.Players}}</span>
+            <span x-text="(spacesOpen) ? spacesOpen + ' out of {{event.metadata.Players}}' : '{{event.metadata.Players}}'">{{event.metadata.Players}}</span>
         </div>
     {% endif %}
 </div>

@@ -1,4 +1,4 @@
-{% extends 'layouts/plain.njk' %}
+{% extends 'layouts/page.njk' %}
 
 {% block content %}
     <main id="content">
@@ -11,14 +11,24 @@
                 <div x-cloak x-show="!isAuth" class="prose">
                     <p>You must be <button @click.stop="modal = 'login'" class="font-bold underline text-highlight">logged in</button> to activate a gift badge</p>
                 </div>
-                <div class="prose" x-cloak x-show="isAuth && user && user.badgeRoles && user.badgeRoles.length > 0" x-transition>
-                    <p>Welcome <b x-text="user && user.displayName"></b> you have a badge!</p>
-                    <p class="italic">NOTE: If you were gifted a badge and you already have one, you can contact us at <a href="mailto:info@bigbadcon.com">info@bigbadcon.com</a> about gifting it to someone else.</p>
+                <div class="prose rounded-md bg-card p-base" x-cloak x-show="isAuth && hasBadge" x-transition>
+                    <p>Welcome <b x-text="user && user.displayName"></b>
+            
+                    You have a <span class="inline-flex items-center gap-xs">
+                            <template x-for="role in badgeRoles">
+                                <span x-text="(role === 'paidattendee') ? 'paid' : role" class="py-[.1rem] text-xs font-bold uppercase rounded-full bg-hr text-primary px-xs"></span>
+                            </template>
+                        </span>
+                    badge!</p>
+                    <p class="italic">NOTE: If you were gifted a Paid Attendee badge and you already have one, you can contact us at <a href="mailto:info@bigbadcon.com">info@bigbadcon.com</a> about gifting it to someone else.</p>
                 </div>
-                <div x-cloak x-show="isAuth && user && !user.badgeRoles.includes('paidattendee')" class="my-base">
+                {# TODO: Add client code that auto registers the code #}
+                <div x-cloak x-show="isAuth && user && !isPaid" class="my-base">
                     {# <div x-cloak x-show="isAuth && user" class="prose my-base"> #}
                     <div x-show="!formSubmitted" id="submit-form">
-                        <p class="italic">The gift code must be associated with the your account email. If the code is associated with a different email address please contact us at <a href="mailto:info@bigbadcon.com">info@bigbadcon.com</a>.</p>
+                        <div class="prose">
+                            <p class="italic">The gift code must be associated with the your account email. If the code is associated with a different email address please contact us at <a href="mailto:info@bigbadcon.com">info@bigbadcon.com</a>.</p>
+                        </div>
                         <form class="mt-base" id="form" x-validate action="/.netlify/functions/activateGiftBadge" method="POST">
                             {# TODO: add honeypot #}
                             {# x-init required to add value after the fact for these hidden fields #}
