@@ -29,13 +29,13 @@ The Hyatt offers a free shuttle that runs ever 10-15 minutes. At SFO, go to the 
 
 The hotel offers parking for all attendees discounted from their rate of $36/day to $12/day for Big Bad Con.
 
-### Hotel Map
+### Hotel Map 
 
 ![](/images/ground-floor.png)
 
 ![](/images/first-floor.png)
 
-[**Hotel Floor Plan**](https://assets.hyatt.com/content/dam/hyatt/hyattdam/documents/2016/10/11/1828/SFOBU-Hyatt-Regency-San-Francisco-Airport-Floor-Plan-101116.pdf) **(PDF)**
+[**Hotel Floor Plan**](https://assets.hyatt.com/content/dam/hyatt/hyattdam/documents/2016/10/11/1828/SFOBU-Hyatt-Regency-San-Francisco-Airport-Floor-Plan-101116.pdf) **(PDF) and** [**Capacity Chart**](https://assets.hyatt.com/content/dam/hyatt/hyattdam/documents/2018/07/09/1023/Hyatt-Regency-San-Francisco-Airport-Capacity-Charts-English-070918.pdf) **(PDF)**
 
 ### Internet Access
 

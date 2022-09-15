@@ -28,11 +28,11 @@ module.exports = [
 				"url": "/exhibitor-information",
 				"icon": "booth"
 			},
-			// {
-			// 	"title": "Buy a Badge",
-			// 	"url": "/buy-a-badge",
-			// 	"icon": "badge"
-			// }
+			{
+				"title": "Buy a Badge",
+				"url": "/buy-a-badge",
+				"icon": "badge"
+			}
 		]
 	},
 	{
@@ -96,6 +96,11 @@ module.exports = [
 				"title": "Anti-Harassment Policy",
 				"url": "/anti-harassment-policy",
 				"icon": "shield"
+			},
+			{
+				"title": "Accessibility Policy",
+				"url": "/accessibility-policy",
+				"icon": "accessibility"
 			},
 			{
 				"title": "Community Discord",

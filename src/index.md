@@ -10,12 +10,10 @@ tags: pages
 
 **Big Bad Con is returning October 27-30** at the Hyatt Regency near San Francisco Airport. We're so excited to see our friends, meet new people, and play games together!
 
-We've started pledge management and preorders on [BackerKit](https://big-bad-con-2022.backerkit.com/). Head over there to get a badge and more!
-
-[Sign up to attend on BackerKit](https://big-bad-con-2022.backerkit.com/hosted_preorders){.icon-party}
+[Sign up to attend](/buy-a-badge){.icon-badge}
 
 ### Upcoming dates:
 
-* Event submissions close 9/1
-* Schedule of events published 9/16
-* Sign ups begin 9/25 at 12PM PT
+* Schedule of events [published now](https://www.bigbadcon.com/events/)!
+* [POC Dinner](https://www.bigbadcon.com/events/poc-dinner) and [Meet & Greet](https://www.bigbadcon.com/events/poc-meet-greet) sign ups open now!
+* Events sign ups begin 9/25 at 12PM PT

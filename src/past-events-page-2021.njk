@@ -22,13 +22,14 @@ eleventyComputed:
     <div class="flex flex-wrap justify-between">
         <div>
             <strong>Date:</strong>
-            <span>{{ event | eventStartDateTime | formatEventDate | safe }} (PST)</span>
+            <span>{{ event | eventStartDateTime | formatDateWithYear }}</span>
+            <span>{{ event | eventStartDateTime | formatTime }} (PST)</span>
         </div>
     </div>
     {# Event Time #}
     <div class="">
         <strong>Duration:</strong>
-        <span>{{ event | eventDuration | safe }}</span>
+        <span>{{ event | eventDuration | hoursToHHMM }}</span>
     </div>
 </div>
 
@@ -56,16 +57,10 @@ eleventyComputed:
     <div class="text-sm">
         {% set tweeturl = "https://twitter.com/intent/tweet?text=Check+out+this+panel+at+#BigBadOnline+2021!+https://www.bigbadcon.com/events/" + event.eventSlug %}
 
-        <a class="inline-flex items-center gap-sm" href="{{tweeturl}}">
-            <svg class="w-4 h-4 fill-body">
-                <use xlink:href="/static/images/icons.svg#twitter"></use>
-            </svg>Tweet This!</a>
+        <a class="icon-twitter" href="{{tweeturl}}">Tweet This!</a>
     </div>
     <div class="text-sm">
-        <a href="{{ogAPIImage | ogCacheBuster}}" class="inline-flex items-center gap-sm">
-            <svg class="w-4 h-4 fill-body">
-                <use xlink:href="/static/images/icons.svg#image"></use>
-            </svg>Social Image Card</a>
+        <a href="{{ogAPIImage | ogCacheBuster}}" class="icon-image">Social Image Card</a>
     </div>
 </div>
 <div class="prose py-base">Back to <a href="/past-events/big-bad-online-2021/">List of 2021 Online Events</a>

@@ -2,6 +2,10 @@ const axios = require('axios');
 require('dotenv').config();
 const environment = process.env.CONTEXT
 
+// Google Sheet logger
+const { GoogleSpreadsheet } = require('google-spreadsheet')
+const googleSheetId = process.env.GOOGLE_SHEET_BADGE_PURCHASE
+
 // Send Grid
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
@@ -19,7 +23,6 @@ const bbcApiKey = `ApiKey ${process.env.BBC_API_KEY}`
 
 exports.handler = async function (event, context) {
     const referer = event.headers.referer
-    console.log("🚀 ~ file: activateGiftBadge.js ~ line 16 ~ referer", referer)
     const params = new URLSearchParams(event.body)
     const userEmail = params.get('userEmail')
     const userDisplayName = params.get('userDisplayName')
@@ -29,10 +32,20 @@ exports.handler = async function (event, context) {
 
     try {
         const session = await stripe.checkout.sessions.retrieve( id )
-        console.log("🚀 ~ file: activateGiftBadge.js ~ line 19 ~ session", session)
+        console.log("🚀 ~ file: activateGiftBadge.js ~ session.metadata", session.metadata)
+        // Make API call to get all line items for products when there is multiple products
+        const items = await stripe.checkout.sessions.listLineItems(
+            id,
+            { expand: ["data.price.product"] }
+        )
+        
+        // Get first product as right now there is only one product
+        const {name,metadata} = items.data[0]["price"]["product"]
+
+        /* ----------------- If user email matches then add a badge ----------------- */
         if (userEmail === session.metadata.recipientEmail) {
             // if email matches the one indicated in the purchase then add the paidattendee role
-            const res = await axios.post(bbcApiBaseUrl + `users/addRoleToUser`,
+            await axios.post(bbcApiBaseUrl + `users/addRoleToUser`,
                 {
                     "role": "paidattendee",
                     "userId": parseInt(userId)
@@ -42,7 +55,46 @@ exports.handler = async function (event, context) {
                 }
             )
 
-            // TODO update Google Sheet row to show that they activated their gift badge
+            /* ------ If the session metadata is age:teen than update user to teen. ----- */
+            // TODO: maybe double check that the product metadata is also teen?
+            if (session.metadata.age === 'teen') {
+                await axios.post(bbcApiBaseUrl + `users/addRoleToUser`,
+                    {
+                        "role": "teen",
+                        "userId": parseInt(userId)
+                    },
+                    {
+                        headers: {"x-api-key": bbcApiKey}
+                    }
+                )
+            }
+
+            /* -------------------------------------------------------------------------- */
+            /*    update Google Sheet row to show that they activated their gift badge    */
+            /* -------------------------------------------------------------------------- */
+
+            const doc = new GoogleSpreadsheet(googleSheetId)
+
+            await doc.useServiceAccountAuth({
+                client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+                private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"),
+            });
+            await doc.loadInfo() // loads document properties and worksheets
+            console.log(doc.title);
+            const sheet = doc.sheetsByIndex[0]
+            const rows = await sheet.getRows()
+
+            const giftBadgeIndex = rows.findIndex((row) => row.recipientEmail === userEmail)
+
+            const date = new Date().toLocaleDateString()
+
+            if (giftBadgeIndex) {
+                rows[giftBadgeIndex].giftActivated = date
+                await rows[giftBadgeIndex].save();
+            }
+
+            console.log(`google sheet updated for ${userEmail}`, date)
+
             /* -------------------------------------------------------------------------- */
             /*                                Email People                                */
             /* -------------------------------------------------------------------------- */

@@ -48,6 +48,8 @@ exports.handler = async function (event, context) {
             } = stripeEvent.data.object
 
             // Future Proof
+            // Get session data
+            const session = await stripe.checkout.sessions.retrieve( id )
             // Make API call to get all line items for products when there is multiple products
             const items = await stripe.checkout.sessions.listLineItems(
                 id,
@@ -60,6 +62,7 @@ exports.handler = async function (event, context) {
             const purchaseData = {
                 date: new Date().toLocaleDateString(),
                 product: name,
+                productType: metadata.productType,
                 userDisplayName: metadata.userDisplayName,
                 userId: client_reference_id,
                 userEmail: customer_email,
@@ -67,17 +70,17 @@ exports.handler = async function (event, context) {
                 zip: customer_details.address.postal_code,
                 recipient: metadata.recipient,
                 recipientEmail: metadata.recipientEmail,
-                anonymous: metadata.anon
+                anonymous: metadata.anon,
+                amount_total: session.amount_total / 100
             }
 
             /* -------------------------------------------------------------------------- */
             /*                    Update user role if not a gift                          */
             /* -------------------------------------------------------------------------- */
-
             const isGift = metadata.recipient === 'for someone else'
 
-            if (!isGift) {
-                const res = await axios.post(bbcApiBaseUrl + `users/addRoleToUser`,
+            if (metadata.productType === 'badge' && !isGift) {
+                await axios.post(bbcApiBaseUrl + `users/addRoleToUser`,
                     {
                         "role": "paidattendee",
                         "userId": parseInt(client_reference_id)
@@ -86,6 +89,51 @@ exports.handler = async function (event, context) {
                         headers: {"x-api-key": bbcApiKey}
                     }
                 )
+                await axios.post(bbcApiBaseUrl + `users/removeRoleFromUser`,
+                    {
+                        "role": "subscriber",
+                        "userId": parseInt(client_reference_id)
+                    },
+                    {
+                        headers: {"x-api-key": bbcApiKey}
+                    }
+                )
+                // TODO: double check that the product is a teen badge?
+                if (metadata.age === 'teen') {
+                    await axios.post(bbcApiBaseUrl + `users/addRoleToUser`,
+                        {
+                            "role": "teen",
+                            "userId": parseInt(client_reference_id)
+                        },
+                        {
+                            headers: {"x-api-key": bbcApiKey}
+                        }
+                    )
+                }
+            }
+
+            /* -------------------------------------------------------------------------- */
+            /*          If this is the PoC Dinner 3263 then check them into the event     */
+            /* -------------------------------------------------------------------------- */
+
+            if (metadata.productType === 'poc-dinner') {
+                console.log('Attempt to Book PoC Dinner')
+                try {
+                    const bookEvent = await axios.post(bbcApiBaseUrl + 'bookings/addUserToGame',
+                        {
+                            "eventId": 3263,
+                            "isGm": false,
+                            "userId": parseInt(client_reference_id)
+                        },
+                        {
+                            headers: {"x-api-key": bbcApiKey}
+                        }
+                    )
+                    if (bookEvent.status !== 200) throw "Status !== 200; Book PoC event failed"
+                    console.log('Book PoC Dinner Post',bookEvent)
+                } catch (err) {
+                    console.log(err)
+                }
             }
 
             /* -------------------------------------------------------------------------- */
@@ -104,38 +152,36 @@ exports.handler = async function (event, context) {
 
             /* ---------------------- Take submit event and add row --------------------- */
 
-            const dateAdded = new Date().toLocaleDateString()
             const addedRow = await sheet.addRow(purchaseData)
             console.log(`added google sheet row for ${metadata.userDisplayName} purchase of ${name}`);
-
-            // TODO: add special purchase link to send to other user
 
             /* -------------------------------------------------------------------------- */
             /*                                Email People                                */
             /* -------------------------------------------------------------------------- */
 
-            let recipientType = (isGift) ? `for ${metadata.recipientEmail}` : `for yourself`
+            let recipientType = (isGift) ? ` for ${metadata.recipientEmail}` : ``
+            const userMsg = (metadata.productType === 'poc dinner') ? `Thank you ${metadata.userDisplayName} for contributing to the ${name}!` : `Thank you ${metadata.userDisplayName} for purchasing a ${name}${recipientType}!` 
 
             /* ------------------------------ Send to buyer ----------------------------- */
             const newUserMsg = {
                 to: customer_email,
                 from: 'info@bigbadcon.com',
                 subject: 'Thanks for your purchase!',
-                text: `Thank you ${metadata.userDisplayName} for purchasing a ${name} ${recipientType}!`,
+                text: userMsg,
+                html: userMsg,
             }
 
             await sgMail.send(newUserMsg);
 
-            // TODO: make html emails better with a links
             /* ------------------ Sent to other person if it is a gift ------------------ */
             if (isGift && metadata.recipientEmail) {
-                const msgIntro = (metadata.anonymous === 'known') ? `You have received a gift ${name} for Big Bad Con from ${metadata.userDisplayName}!` : `You have received an anonymous gift ${name} for Big Bad Con!`
+                const msgIntro = (metadata.anon === 'known') ? `You have received a gift ${name} for Big Bad Con from ${metadata.userDisplayName}!` : `You have received an anonymous gift ${name} for Big Bad Con!`
                 const newUserMsg = {
                     to: metadata.recipientEmail,
                     from: 'info@bigbadcon.com',
                     subject: 'Big Bad Con Gift Badge',
-                    text: `${msgIntro} To activate your gift badge visit https://www.bigbadcon.com/activate-git-badge and enter the gift code '${id}'. To activate the card you must have a Big Bad Con account with the matching email address (${metadata.recipientEmail}). If you have a Big Bad Con account already with a different email address please email us so we can help. If you already have a badge and want to gift this to another person please contact us.`,
-                    html: `${msgIntro} To activate your gift badge visit our <a href="https://www.bigbadcon.com/activate-git-badge">badge activation</a> page and enter the gift code <b>${id}</a>. To activate the card you must have a Big Bad Con account with the matching email address (${metadata.recipientEmail}). If you have a Big Bad Con account already with a different email address please email us so we can help. If you already have a badge and want to gift this to another person please contact us.`,
+                    text: `${msgIntro} To activate your gift badge visit https://www.bigbadcon.com/activate-gift-badge and enter the gift code '${id}'. To activate the card you must have a Big Bad Con account with the matching email address (${metadata.recipientEmail}). If you have a Big Bad Con account already with a different email address please email us so we can help. If you already have a badge and want to gift this to another person please contact us.`,
+                    html: `${msgIntro} To activate your gift badge visit our <a href="https://www.bigbadcon.com/activate-gift-badge">badge activation</a> page and enter the gift code:<br><br><b>${id}</b><br><br>To activate the card you must have a Big Bad Con account with the matching email address (${metadata.recipientEmail}). If you have a Big Bad Con account already with a different email address please email us so we can help. If you already have a badge and want to gift this to another person please contact us.`,
                 }
     
                 await sgMail.send(newUserMsg);
@@ -146,8 +192,8 @@ exports.handler = async function (event, context) {
                 to: 'info@bigbadcon.com',
                 from: 'info@bigbadcon.com',
                 subject: 'Badge Purchase',
-                text: `${metadata.userDisplayName} has purchased a ${name} ${recipientType}! You can find their purchase on google sheets: https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0`,
-                html: `${metadata.userDisplayName} has purchased a ${name} ${recipientType}! You can find their purchase on google sheets: <a href="https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0">BBC Badge Sheet</a>`,
+                text: `${metadata.userDisplayName} has purchased a ${name}${recipientType}! You can find their purchase on google sheets: https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0`,
+                html: `${metadata.userDisplayName} has purchased a ${name}${recipientType}! You can find their purchase on google sheets: <a href="https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0">BBC Badge Sheet</a>`,
             }
             
             // Only fire off admin email if production
