@@ -41,7 +41,7 @@
                 <tr 
                 x-data="eventInfo"
                 x-init="spacesOpen = {{ spacesOpen }}; id = {{event.eventId}}; categories = [{{event.categories | alpineArray}}]; if (isAuth) getEventInfo({{event.eventId}}); $watch('isAuth', val => {if (val) getEventInfo({{event.eventId}})})"
-                x-show="(typeof filter.category !== 'string' || filter.category === 'all' || categories.some(cat => cat.toLowerCase() === filter.category)) && (!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || isSpacesOpen) && (filter.day === 'All' || $refs.date{{event.eventId}}.textContent === filter.day)" >
+                x-show="(typeof filter.category !== 'string' || filter.category.toLowerCase() === 'all' || !categories.every(cat => cat.toLowerCase() !== filter.category.toLowerCase()) || categories.some(cat => cat.toLowerCase() === filter.category.toLowerCase())) && (!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || isSpacesOpen) && (!filter.day || filter.day.toLowerCase() === 'all' || $refs.date{{event.eventId}}.textContent === filter.day)" >
 
                     {# Event Name #}
                     <td class="events-table-cell--name">
@@ -72,7 +72,7 @@
                                     <b class="whitespace-nowrap">{{ event.eventDuration }}hr</b>
                                 </span>
                             {% else %}
-                                <span class="opacity-50">TBD</span>
+                                <span class="opacity-50" x-ref="date{{event.eventId}}">TBD</span>
                             {% endif %}
                         </div>
                     </td>
