@@ -7,8 +7,10 @@ order:
 ---
 Submit an event for Big Bad Con 2022!
 
-[Events](/events){.icon-calendar-clock}
-<!--[Run An Event](/run-an-event){.icon-dice}-->
+[Events](/events){.icon-calendar-clock} 
+
+[Run An Event](/run-an-event){.icon-dice}
+
 [Games on Demand](/games-on-demand){.icon-games-on-demand}
 
 [Exhibitors](/exhibitor-information){.icon-booth}
