@@ -42,7 +42,7 @@ fields:
   label: open graph image
   description: Twitter/Facebook social image card
 - type: select
-  name: nav group
+  name: navGroup
   label: navGroup
   config:
     options:
@@ -52,7 +52,7 @@ fields:
     - Community
     - Blog
 - type: text
-  name: nav title
+  name: navTitle
   label: navTitle
   description: If the nav items title is different than the page title add it here
 - type: number
