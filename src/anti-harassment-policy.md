@@ -3,6 +3,9 @@ layout: layouts/page.njk
 title: Anti-Harassment Policy
 description: ''
 tags: pages
+navGroup: Community
+order: 1
+icon: shield
 ---
 We want you to have the best time you possibly can at Big Bad Con. However, if having that fun comes at the cost of someone else’s safety, happiness, or comfort, you must stop. Period.
 

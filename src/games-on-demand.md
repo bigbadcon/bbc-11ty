@@ -3,7 +3,10 @@ layout: layouts/run_games_on_demand.njk
 title: Games On Demand
 description: ''
 tags: pages
-
+navGroup: Events
+navTitle: Games On Demand
+order: 2
+icon: games-on-demand
 ---
 We're looking for GMs to run in the Games On Demand room for the Goats Gruff and possibly a few other adventurous players.
 

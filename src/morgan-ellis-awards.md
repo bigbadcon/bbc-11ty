@@ -3,7 +3,9 @@ layout: layouts/page.njk
 title: Morgan Ellis Award
 description: ''
 tags: pages
-
+navGroup: Community
+order: 4
+icon: trophy
 ---
 Morgan Ellis was a dear friend and treasured member of Big Bad Con who died earlier this year. Morgan brought out the absolute best in people. That is part of what made him such a good GM, he always found a spotlight to help his players shine. Morgan’s graciousness extended well beyond the game table. He celebrated people for who they are and connected people together based on whatever interests they shared, no matter how obscure.
 

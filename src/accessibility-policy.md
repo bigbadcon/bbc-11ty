@@ -3,7 +3,9 @@ layout: layouts/page.njk
 title: Accessibility Policy
 description: ''
 ogImage: ''
-
+navGroup: Community
+order: 2
+icon: accessibility
 ---
 As part of our principles of respect, support, and kindness, Big Bad Con works to provide games, events, and social spaces that are accessible to as many people as possible, specifically:
 

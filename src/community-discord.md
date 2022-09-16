@@ -4,7 +4,9 @@ title: Discord
 description: ''
 tags: pages
 ogImage: "/images/join-our-community-discord.png"
-
+navGroup: Community
+order: 3
+icon: discord
 ---
 Want to stay connected with Big Bad Con year round?
 
