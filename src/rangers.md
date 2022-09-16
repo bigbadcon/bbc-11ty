@@ -8,7 +8,6 @@ navGroup: Volunteer
 navTitle: Join The Rangers
 order: 0
 icon: paw
-nav group: Volunteer
 nav title: ''
 
 ---
