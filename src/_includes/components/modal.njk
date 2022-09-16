@@ -30,7 +30,7 @@
         <h2 class="-mt-1 font-serif text-3xl font-extrabold leading-none text-secondary">Login</h2>
         <form action="post" class="flex flex-col flex-grow my-sm text-body gap-base" x-data="{username: '',password: ''}" @submit.prevent="submitLogin(username,password); username = '';password = ''">
             <div>
-                <label for="username" class="text-xs uppercase">User Name</label>
+                <label for="username" class="text-xs uppercase">User Name or Email</label>
                 <input class="w-full" autocapitalize="off" id="username" name="username" required type="text" x-model="username" value=""/>
             </div>
             <div>
