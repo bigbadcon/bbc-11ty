@@ -8,27 +8,27 @@ fields:
   default: layouts/page.njk
   config:
     options:
-      - layouts/events.njk
-      - layouts/events-archive.njk
-      - layouts/home.njk
-      - layouts/page.njk
-      - layouts/page-wide.njk
-      - layouts/form-activate-gift-badge.njk
-      - layouts/form-apply-for-scholarship.njk
-      - layouts/form-buy-a-badge.njk
-      - layouts/form-change-password.njk
-      - layouts/form-contact-us.njk
-      - layouts/form-create-account.njk
-      - layouts/form-exhibitor.njk
-      - layouts/form-register.njk
-      - layouts/form-run-games-on-demand.njk
-      - layouts/form-run-an-event.njk
-      - layouts/form-suggest-event.njk
-      - layouts/form-volunteer-signup.njk
-      - layouts/poc-scholars.njk
-      - layouts/register-thank-you.njk
-      - layouts/staff.njk
-      - layouts/volunteer-shifts.njk
+    - layouts/events.njk
+    - layouts/events-archive.njk
+    - layouts/home.njk
+    - layouts/page.njk
+    - layouts/page-wide.njk
+    - layouts/form-activate-gift-badge.njk
+    - layouts/form-apply-for-scholarship.njk
+    - layouts/form-buy-a-badge.njk
+    - layouts/form-change-password.njk
+    - layouts/form-contact-us.njk
+    - layouts/form-create-account.njk
+    - layouts/form-exhibitor.njk
+    - layouts/form-register.njk
+    - layouts/form-run-games-on-demand.njk
+    - layouts/form-run-an-event.njk
+    - layouts/form-suggest-event.njk
+    - layouts/form-volunteer-signup.njk
+    - layouts/poc-scholars.njk
+    - layouts/register-thank-you.njk
+    - layouts/staff.njk
+    - layouts/volunteer-shifts.njk
 - type: text
   name: title
   label: title
@@ -46,11 +46,11 @@ fields:
   label: navGroup
   config:
     options:
-      - Attend
-      - Events
-      - Volunteer
-      - Community
-      - Blog
+    - Attend
+    - Events
+    - Volunteer
+    - Community
+    - Blog
 - type: text
   name: nav title
   label: navTitle
