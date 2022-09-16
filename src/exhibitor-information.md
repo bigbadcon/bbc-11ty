@@ -3,7 +3,10 @@ layout: layouts/exhibitor-form.njk
 title: Exhibitor Information
 description: ''
 ogImage: ''
-
+navGroup: Attend
+navTitle: Exhibitors
+order: 3
+icon: booth
 ---
 Big Bad Con is a charity event, and that commitment to giving extends to our exhibitors, too! All the information below:
 

@@ -3,8 +3,10 @@ layout: layouts/events.njk
 title: Events
 description: ''
 tags: pages
-listing: events
-
+navGroup: Events
+navTitle: Events
+order: 0
+icon: calendar-clock
 ---
 Events are for Big Bad Con, October 27-30 2022! We are still accepting [event submissions](/run-an-event/)! _Game signups will start 9/25 at 12PM PT._
 

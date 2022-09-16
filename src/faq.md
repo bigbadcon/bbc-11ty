@@ -4,8 +4,10 @@ title: FAQ
 description: ''
 tags: pages
 ogImage: ''
-nav: 'Attend'
+navGroup: Attend
 order: 0
+icon: faq
+
 ---
 ## Will Big Bad Con return in-person?
 

@@ -51,7 +51,7 @@ function hoursToHHMM(hours) {
 
 /* ----- Sort by order frontmatter field then by fileSlug alphabetically ---- */
 function sortByOrder(a,b) {
-  return a.template.frontMatter.data.order - b.template.frontMatter.data.order || a.template.fileSlugStr.localeCompare(b.template.fileSlugStr)
+  return a.data.order - b.data.order || a.template.fileSlugStr.localeCompare(b.template.fileSlugStr)
 }
 
 /* ------------------------- Convert odd characters ------------------------- */
@@ -105,56 +105,74 @@ module.exports = (eleventyConfig) => {
 
    // Staff sorted by order number and then alphabetically
    eleventyConfig.addCollection("blogPublished", function(collectionApi) {
-    return collectionApi.getFilteredByTag("blog").filter(c => c.template.frontMatter.data.published === true);
+    return collectionApi.getFilteredByTag("blog").filter(c => c.data.published === true);
   });
 
   // Staff sorted by order number and then alphabetically
   eleventyConfig.addCollection("staff123ABC", function(collectionApi) {
-    return collectionApi.getFilteredByTag("staff").filter(c => c.template.frontMatter.data.published === true).sort((a,b) => sortByOrder(a,b));
+    return collectionApi.getFilteredByTag("staff").filter(c => c.data.published === true).sort((a,b) => sortByOrder(a,b));
   });
 
   // Staff Emeritus sorted by order number and then alphabetically
   eleventyConfig.addCollection("staffEmeritus123ABC", function(collectionApi) {
-    return collectionApi.getFilteredByTag("staff-emeritus").filter(c => c.template.frontMatter.data.published === true).sort((a,b) => sortByOrder(a,b));
+    return collectionApi.getFilteredByTag("staff-emeritus").filter(c => c.data.published === true).sort((a,b) => sortByOrder(a,b));
   });
 
   // Staff sorted by order number and then alphabetically
   eleventyConfig.addCollection("pocscholar123ABC", function(collectionApi) {
-    return collectionApi.getFilteredByTag("poc-scholar").filter(c => c.template.frontMatter.data.published === true).sort((a,b) => sortByOrder(a,b));
+    return collectionApi.getFilteredByTag("poc-scholar").filter(c => c.data.published === true).sort((a,b) => sortByOrder(a,b));
   });
 
   // Staff sorted by order number and then alphabetically
   eleventyConfig.addCollection("pocTeam123ABC", function(collectionApi) {
-    return collectionApi.getFilteredByTag("poc-team-member").filter(c => c.template.frontMatter.data.published === true).sort((a,b) => sortByOrder(a,b));
+    return collectionApi.getFilteredByTag("poc-team-member").filter(c => c.data.published === true).sort((a,b) => sortByOrder(a,b));
   });
 
   // Home Page Cards published and sorted by order number and then alphabetically
   eleventyConfig.addCollection("cards123ABC", function(collectionApi) {
-    return collectionApi.getFilteredByTag("cards").filter(c => c.template.frontMatter.data.published === true).sort((a,b) => sortByOrder(a,b));
+    return collectionApi.getFilteredByTag("cards").filter(c => c.data.published === true).sort((a,b) => sortByOrder(a,b));
   });
 
   // Home Page Big Cards published and sorted by order number and then alphabetically
   eleventyConfig.addCollection("bigcards123ABC", function(collectionApi) {
-    return collectionApi.getFilteredByTag("bigcards").filter(c => c.template.frontMatter.data.published === true).sort((a,b) => sortByOrder(a,b));
+    return collectionApi.getFilteredByTag("bigcards").filter(c => c.data.published === true).sort((a,b) => sortByOrder(a,b));
   });
 
   // Home Page Cards published and sorted by order number and then alphabetically
   eleventyConfig.addCollection("footer123ABC", function(collectionApi) {
-    return collectionApi.getFilteredByTag("footer").filter(c => c.template.frontMatter.data.published === true).sort((a,b) => sortByOrder(a,b));
+    return collectionApi.getFilteredByTag("footer").filter(c => c.data.published === true).sort((a,b) => sortByOrder(a,b));
   });
 
-  eleventyConfig.addCollection("navAttend", function(collectionApi) {
-    return collectionApi.getAll().filter(c => c.template.frontMatter.data.nav === 'Attend').sort((a,b) => sortByOrder(a,b))
+  /* -------------------------------------------------------------------------- */
+  /*                         Main Nav special collection                        */
+  /* -------------------------------------------------------------------------- */
+
+  const navGroups = ["Attend","Events","Volunteer","Community","Blog"]
+
+  eleventyConfig.addCollection("nav", function(collectionApi) {
+    const allNav = collectionApi.getAll().filter(c => c.data.navGroup)
+    const tempArray = allNav.map(c => {
+      return {
+        group: c.data.navGroup,
+        title: c.data.navTitle || c.data.title,
+        order: c.data.order,
+        icon: c.data.icon,
+        url: c.url
+      }
+    })
+
+    let navArray = {}
+
+    navGroups.forEach(g => {
+      const group = tempArray.filter(item => item.group === g)
+      if (group.length > 0) {
+        navArray[g] = group.sort((a,b) => a.order - b.order || a.title.localeCompare(b.title))
+      }
+    })
+
+    return navArray
   })
-  eleventyConfig.addCollection("navEvents", function(collectionApi) {
-    return collectionApi.getAll().filter(c => c.template.frontMatter.data.nav === 'Events').sort((a,b) => sortByOrder(a,b))
-  })
-  eleventyConfig.addCollection("navVolunteer", function(collectionApi) {
-    return collectionApi.getAll().filter(c => c.template.frontMatter.data.nav === 'Volunteer').sort((a,b) => sortByOrder(a,b))
-  })
-  eleventyConfig.addCollection("navCommunity", function(collectionApi) {
-    return collectionApi.getAll().filter(c => c.template.frontMatter.data.nav === 'Community').sort((a,b) => sortByOrder(a,b))
-  })
+
 
 /* -------------------------------------------------------------------------- */
 /*                                   Filters                                  */
@@ -195,6 +213,21 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addFilter("isPastDate", (date) => dayjs().isAfter(dayjs(date)));
 
   /* ------------------------------ Other Filters ----------------------------- */
+
+  // slugify
+  eleventyConfig.addFilter("slugify", text => {
+    return text
+      .toString()
+      .toLowerCase()
+      .trim()
+      .normalize('NFD') // separate accent from letter
+      .replace(/[\u0300-\u036f]/g, '') // remove all separated accents
+      .replace(/\s+/g, '-') // replace spaces with dash
+      .replace(/&/g, '-and-') // replace & with 'and'
+      .replace(/[^\w-]+/g, '') // remove all non-word chars
+      .replace(/--+/g, '-') // replace multiple dash with single
+  })
+
   // decode text
   eleventyConfig.addFilter("decodeText", (text) => decodeText(text))
   

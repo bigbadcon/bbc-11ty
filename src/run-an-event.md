@@ -4,7 +4,10 @@ title: Run An Event
 description: ''
 tags: pages
 ogImage: ''
-
+navGroup: Events
+navTitle: Run an Event
+order: 2
+icon: dice
 ---
 We're looking for games, panels, workshops, and events to make Big Bad Con 2022 our best year yet!
 

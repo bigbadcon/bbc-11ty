@@ -3,7 +3,10 @@ layout: layouts/page.njk
 title: Big Bad Con Scholarship
 description: ''
 ogImage: ''
-
+navGroup: Attend
+navTitle: Scholarship
+order: 2
+icon: gift
 ---
 Big Bad Con is committed to cultivating and supporting a spectacular and diverse gaming community. Part of the way we do that is by collecting donations to our scholarship program.
 
