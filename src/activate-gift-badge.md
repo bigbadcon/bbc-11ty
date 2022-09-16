@@ -1,4 +1,4 @@
 ---
-layout: layouts/activate-gift-badge.njk
+layout: layouts/form-activate-gift-badge.njk
 title: Activate Gift Badge
 ---

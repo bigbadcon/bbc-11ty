@@ -1,5 +1,5 @@
 ---
-layout: layouts/contact-us.njk
+layout: layouts/form-contact-us.njk
 title: Contact Us
 description: ''
 tags: pages

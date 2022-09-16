@@ -59,9 +59,9 @@
                                 <option>18+</option>
                             </select>
                         </div>
-                        <div class="required" data-error="phone number required">
+                        <div class="required" >
                             <label for="phone">Phone</label>
-                            <input id="phone" name="phone" type="tel" value="" x-model="formData.phone" @blur="(e) => validate(e,{phone: true})"/>
+                            <input id="phone" name="phone" type="tel" value="" x-model="formData.phone" required/>
                         </div>
                         <div>
                             <label for="discord">Discord Handle</label>

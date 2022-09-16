@@ -1,5 +1,5 @@
 ---
-layout: layouts/exhibitor-form.njk
+layout: layouts/form-exhibitor.njk
 title: Exhibitor Information
 description: ''
 ogImage: ''

@@ -1,5 +1,5 @@
 ---
-layout: layouts/change-password.njk
+layout: layouts/form-change-password.njk
 title: Reset Password
 description: ''
 

@@ -1,5 +1,5 @@
 ---
-layout: layouts/run_games_on_demand.njk
+layout: layouts/form-run-games-on-demand.njk
 title: Games On Demand
 description: ''
 tags: pages
