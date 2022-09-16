@@ -1,5 +1,5 @@
 ---
-layout: layouts/buy-a-badge.njk
+layout: layouts/form-buy-a-badge.njk
 title: Buy A Badge
 description: ''
 tags: pages

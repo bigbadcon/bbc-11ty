@@ -2,10 +2,32 @@
 label: Page
 hide_body: false
 fields:
-- type: text
+- type: select
   name: layout
   label: layout
   default: layouts/page.njk
+  options:
+    - layouts/events.njk
+    - layouts/events-archive.njk
+    - layouts/home.njk
+    - layouts/page.njk
+    - layouts/page-wide.njk
+    - layouts/form-activate-gift-badge.njk
+    - layouts/form-apply-for-scholarship.njk
+    - layouts/form-buy-a-badge.njk
+    - layouts/form-change-password.njk
+    - layouts/form-contact-us.njk
+    - layouts/form-create-account.njk
+    - layouts/form-exhibitor.njk
+    - layouts/form-register.njk
+    - layouts/form-run-games-on-demand.njk
+    - layouts/form-run-an-event.njk
+    - layouts/form-suggest-event.njk
+    - layouts/form-volunteer-signup.njk
+    - layouts/poc-scholars.njk
+    - layouts/register-thank-you.njk
+    - layouts/staff.njk
+    - layouts/volunteer-shifts.njk
 - type: text
   name: title
   label: title
@@ -18,6 +40,26 @@ fields:
     maxSize: 64
   label: open graph image
   description: Twitter/Facebook social image card
+- type: select
+  name: nav group
+  label: navGroup
+  options:
+    - Attend
+    - Events
+    - Volunteer
+    - Community
+    - Blog
+- type: text
+  name: nav title
+  label: navTitle
+  description: If the nav items title is different than the page title add it here
+- type: number
+  name: order
+  label: order
+  description: Order within the nav group
+- type: text
+  name: icon
+  label: icon
 pages:
 - src/accessibility-policy.md
 - src/big-bad-con-scholarship.md

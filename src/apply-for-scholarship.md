@@ -1,5 +1,5 @@
 ---
-layout: layouts/apply-for-scholarship.njk
+layout: layouts/form-apply-for-scholarship.njk
 title: Apply For Scholarship
 description: ''
 tags: pages
