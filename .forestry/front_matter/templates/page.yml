@@ -60,9 +60,59 @@ fields:
   name: order
   label: order
   description: Order within the nav group
-- type: text
+- type: select
   name: icon
   label: icon
+  description: icon for link in menu. See https://www.bigbadcon.com/icons/ for list
+  config:
+    options:
+    - accessibility
+    - add
+    - art
+    - badge
+    - book
+    - booth
+    - bullhorn
+    - calendar-clock
+    - calendar-star
+    - close
+    - dice
+    - discord
+    - envelope
+    - faq
+    - games-on-demand
+    - gift
+    - health
+    - hotel
+    - image
+    - itch-io
+    - kickstarter
+    - library
+    - light-bulb
+    - list
+    - menu
+    - moon
+    - parachute
+    - party
+    - paw
+    - pencil-square
+    - pig
+    - price-tags
+    - scholar
+    - scroll
+    - settings
+    - shield
+    - square-check
+    - square-full
+    - square-open
+    - star
+    - sun
+    - trophy
+    - twitch
+    - twitter
+    - website
+    - wolf
+    - youtube
 pages:
 - src/accessibility-policy.md
 - src/big-bad-con-scholarship.md
