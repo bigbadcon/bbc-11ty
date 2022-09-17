@@ -135,6 +135,15 @@
                     this.searchUrlParams()
                 },
                 filter: this.$persist({favsOnly: false, openOnly: false, category: 'all', day: 'All'}),
+                get isFilterDefault() {
+                    return this.filter.favsOnly === false && this.filter.openOnly === false && this.filter.category === 'all' && this.filter.day === 'All'
+                },
+                resetFilters() {
+                    this.filter.favsOnly = false;
+                    this.filter.openOnly = false;
+                    this.filter.category = 'all';
+                    this.filter.day = 'All';
+                },
                 sortBy: this.$persist(1),
                 sortAscending: this.$persist(true),
                 allCategories: [

@@ -40,13 +40,17 @@
             </svg>
             <span class="text-sm">Favs</span>
         </button>
-        <button @click="filter.openOnly = !filter.openOnly" 
-        class="filter-btn group">
+        <button @click="filter.openOnly = !filter.openOnly" class="filter-btn group">
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 28" class="w-4 h-4 group-hover:fill-secondary" :class="(filter.openOnly) ? 'fill-highlight' : 'fill-body'">
                 <title>square</title>
                 <path d="M24 6.5v15c0 2.484-2.016 4.5-4.5 4.5h-15c-2.484 0-4.5-2.016-4.5-4.5v-15c0-2.484 2.016-4.5 4.5-4.5h15c2.484 0 4.5 2.016 4.5 4.5z"></path>
             </svg>
             <span class="text-sm">Open Spaces</span>
+        </button>
+    </div>
+    <div class="flex lg:justify-end grow" x-show="!isFilterDefault" x-transition>
+        <button @click="resetFilters" class="filter-btn">
+            <span class="text-sm">Reset Filters</span>
         </button>
     </div>
 </div>

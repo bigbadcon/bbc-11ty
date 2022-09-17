@@ -104,6 +104,14 @@
                     this.sortTable(this.sortBy || 1, this.sortAscending)
                 },
                 filter: this.$persist({favsOnly: false, openOnly: false, day: "All"}),
+                get isFilterDefault() {
+                    return this.filter.favsOnly === false && this.filter.openOnly === false && this.filter.day === 'All'
+                },
+                resetFilters() {
+                    this.filter.favsOnly = false;
+                    this.filter.openOnly = false;
+                    this.filter.day = 'All';
+                },
                 sortBy: this.$persist(1),
                 sortAscending: this.$persist(true),
                 sortTable(colnum, direction) {

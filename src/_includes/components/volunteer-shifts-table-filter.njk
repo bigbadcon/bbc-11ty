@@ -33,4 +33,9 @@
             <span class="text-sm">Open Spaces</span>
         </button>
     </div>
+    <div class="flex lg:justify-end grow" x-show="!isFilterDefault" x-transition>
+        <button @click="resetFilters" class="filter-btn">
+            <span class="text-sm">Reset Filters</span>
+        </button>
+    </div>
 </div>
