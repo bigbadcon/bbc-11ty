@@ -78,8 +78,8 @@ eleventyComputed:
     <strong>Safety Tools:</strong>
     {{event.metadata.safety_tools}}</div>
   {% if (sitemeta.environment === 'dev') %}
-    <div>
-      <strong>Event ID:</strong>
+    <div class="border-2 border-header p-sm my-sm">
+      <strong class="text-header">DEV SITE Event ID:</strong>
       {{event.eventId}}</div>
   {% endif %}
 </div>
@@ -129,6 +129,11 @@ eleventyComputed:
   </div>
 {% elif(sitemeta.eventSignupDate | isPastDate) %}
   {% include 'components/event-booking-panel.njk' %}
+{% elif sitemeta.context === 'dev' %}
+  <div class="border-2 border-header p-sm my-base">
+    <h2 class="text-4xl font-bold text-center text-header">DEV SITE BOOKING</h2>
+    {% include 'components/event-booking-panel.njk' %}
+  </div>
 {% endif %}
 {# Event links #}
 <div class="flex flex-wrap justify-between max-w-full prose border-t-2 border-b-2 mt-md border-hr py-sm gap-base">
@@ -148,8 +153,8 @@ eleventyComputed:
     <a href="{{ogAPIImage | ogCacheBuster }}" class="icon-image">Social Image Card</a>
   </div>
 </div>
-{# ADMIN ONLY SECTION #}
-<div x-cloak x-show="isAdmin || (isAuth && user && user.id === gm.id)" class="max-w-full overflow-auto prose rounded my-base p-base bg-card">
+{# Image upload only for Admins and GMs #}
+<div x-cloak x-show="isAuth && (isAdmin || (user && gm.some(gm => gm.user.id === user.id))" class="max-w-full overflow-auto prose rounded my-base p-base bg-card">
   <h3>Image Upload</h3>
   <p class="italics">Only Available for Admins &amp; Event GM/Facilitator.</p>
   <form @submit.prevent="uploadImage">

@@ -19,7 +19,6 @@ x-init="if (isAuth) getBookedEvents(); bookingOverlap = doesEventOverlap('{{even
                 {% endif %}
             </div>
         </div>
-        <div x-show="bookingOverlap" class="italic rounded bg-card p-sm">The timing of this event overlaps with one of your booked events.</div>
         <div>
             <strong>Spaces Open:</strong>
             <span x-text="spacesOpen"></span> out of {{event.metadata.Players}}
@@ -34,10 +33,13 @@ x-init="if (isAuth) getBookedEvents(); bookingOverlap = doesEventOverlap('{{even
             </ul>
         </div>
         {# Booking buttons #}
-        <div class="text-sm italic" x-show="!isVolunteer">You must <a href="/rangers/#signup" class="underline text-highlight">sign up as a volunteer</a> to add a volunteer shift</div>
-        <div class="flex gap-sm" x-show="isVolunteer">
+        {# Show if they do not yet have a user role of volunteer #}
+        <div class="text-sm italic mt-base" x-show="!isVolunteer">You must <a href="/rangers/#signup" class="underline text-highlight">sign up as a volunteer</a> to add a volunteer shift</div>
+        {# Show if they have a volunteer role #}
+        <div class="space-y-sm mt-base" x-show="isVolunteer">
+            <div x-show="bookingOverlap" class="italic rounded bg-card p-sm">The timing of this event overlaps with one of your booked events.</div>
             <button class="button" x-show="spacesOpen > 0 && !isBooked({{event.eventId}}) && !bookingOverlap" @click="bookEvent({{event.eventId}})">Volunteer</button>
-            <span x-show="spacesOpen <= 0 && !isBooked({{event.eventId}})" class="font-bold">Shift is full</span>
+            <span x-show="spacesOpen <= 0" class="font-bold">Shift is full</span>
             <button class="button" x-show="isBooked({{event.eventId}})" @click="cancelBooking({{event.eventId}})">Cancel Shift</span>
         </div>
     </div>
