@@ -1,5 +1,6 @@
 {# x-data="eventInfo" on event page #}
-<div class="rounded-md shadow mt-md text-body p-base bg-card" x-init="bookingOverlap = doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}})">
+<div class="rounded-md shadow mt-md text-body p-base bg-card" 
+x-init="if (isAuth) getBookedEvents(); bookingOverlap = doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}})">
     <h2 class="-mt-1 font-serif text-2xl font-bold leading-none md:text-4xl text-header mb-sm">Volunteer Signup</h2>
     {# Event Name, spaces open, and list of players; only show if logged in and has event data #}
     <div x-cloak x-show="isAuth" class="flex flex-col gap-sm">
