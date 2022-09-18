@@ -293,7 +293,7 @@ document.addEventListener('alpine:init', () => {
         return isFullArray(this.favEvents) && this.favEvents.some( item => item === id)
       },
       isBooked(id) {
-        return isFullArray(this.bookedEvents) && this.bookedEvents.some( item => item.eventId === id)
+        return isFullArray(this.bookedEvents) && this.bookedEvents.some( item => item.id === id)
       },
       doesEventOverlap(date,dur) {
         function doesDateOverlap(start1,dur1,start2,dur2) {
