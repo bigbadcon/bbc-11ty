@@ -28,5 +28,10 @@ async function getPrices()  {
 
 // TODO: add try catch
 module.exports = async function () {
-    return await getPrices()
+    try {
+        return await getPrices()
+    } catch (err) {
+        console.log(err);
+        return false
+    }
 }
