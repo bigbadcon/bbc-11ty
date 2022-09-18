@@ -1,6 +1,51 @@
 <section class="mt-md" x-data="eventsTable">
     <h2 class="font-serif text-3xl font-bold leading-none md:text-4xl text-header mb-base">Volunteer Shift List</h2>
-    {% include 'components/volunteer-shifts-table-filter.njk' %}
+
+    {# Volunteer Filter Buttons #}
+    <div class="flex flex-wrap items-center justify-start border-t-2 border-b-2 mb-base text-body gap-sm py-sm border-hr" >
+        <div class="flex items-center justify-start gap-xs">
+            <h5 class="text-sm font-bold">Date:</h5>
+            <select class="mb-0 text-sm cursor-pointer pl-xs py-2xs" x-model="filter.day" >
+                <option>All</option>
+                <option>Oct 27</option>
+                <option>Oct 28</option>
+                <option>Oct 29</option>
+                <option>Oct 30</option>
+            </select>
+        </div>
+        <div class="flex items-center justify-start gap-xs" x-cloak x-show="isAuth">
+            {# favsOnly data is in x-data="eventFilter" in wrapping div in base.njk #}
+            <h5 class="text-sm font-bold">Filter:</h5>
+            <button @click="filter.favsOnly = !filter.favsOnly" class="filter-btn" :class="filter.favsOnly && 'active'">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                    <title>star</title>
+                    <path d="M32 12.408l-11.056-1.607-4.944-10.018-4.944 10.018-11.056 1.607 8 7.798-1.889 11.011 9.889-5.199 9.889 5.199-1.889-11.011 8-7.798z"></path>
+                </svg>
+                <span class="text-sm">Favs</span>
+            </button>
+            <button @click="filter.openOnly = !filter.openOnly" class="filter-btn" :class="filter.openOnly && 'active'">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 28">
+                    <title>square</title>
+                    <path d="M24 6.5v15c0 2.484-2.016 4.5-4.5 4.5h-15c-2.484 0-4.5-2.016-4.5-4.5v-15c0-2.484 2.016-4.5 4.5-4.5h15c2.484 0 4.5 2.016 4.5 4.5z"></path>
+                </svg>
+                <span class="text-sm">Open Spaces</span>
+            </button>
+            <button @click="filter.overlap = !filter.overlap" class="filter-btn" :class="filter.overlap && 'active'">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                    <path d="M28 4v26h-21c-1.657 0-3-1.343-3-3s1.343-3 3-3h19v-24h-20c-2.2 0-4 1.8-4 4v24c0 2.2 1.8 4 4 4h24v-28h-2z"></path>
+                    <path d="M7.002 26v0c-0.001 0-0.001 0-0.002 0-0.552 0-1 0.448-1 1s0.448 1 1 1c0.001 0 0.001-0 0.002-0v0h18.997v-2h-18.997z"></path>
+                </svg>
+                <span class="text-sm">Hide My Events Conflicts</span>
+            </button>
+        </div>
+        <div x-show="!isFilterDefault" x-transition>
+            <button @click="resetFilters" class="filter-btn">
+                <span class="text-sm">Reset Filters</span>
+            </button>
+        </div>
+    </div>
+
+    {# Volunteer Events Table #}
     <table class="events-table volunteer-shifts-table" id="events-table">
         <thead :class="sortAscending ? 'ascending' : 'descending'">
             <tr>
@@ -23,6 +68,8 @@
             </tr>
         </thead>
         <tbody>
+
+            {# Volunteer Event Row #}
             {# favsOnly and timezone in x-data in html #}
             {% for event in eventData.volunteer %}
                 {# isFav is in Alpine.data("global") #}
@@ -34,8 +81,9 @@
                 {% endif %}
                 <tr 
                 x-data="eventInfo"
-                x-init="spacesOpen = {{ spacesOpen }}; id = {{event.eventId}}; if (isAuth) getEventInfo({{event.eventId}}); $watch('isAuth', val => {if (val) getEventInfo({{event.eventId}})})"
-                x-show="(!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || isSpacesOpen) && (filter.day === 'All' || $refs.date{{event.eventId}}.textContent === filter.day)" >
+                x-init="spacesOpen = {{ spacesOpen }}; id = {{event.eventId}}; bookingOverlap = doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}); if (isAuth) getEventInfo({{event.eventId}}); $watch('isAuth', val => {if (val) getEventInfo({{event.eventId}})}); $watch('bookedEvents', val => { if (bookedEvents) doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}) })"
+                x-show="(!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || isSpacesOpen) && (filter.day === 'All' || $refs.date{{event.eventId}}.textContent === filter.day) && (!filter.overlap || !bookingOverlap)" 
+                >
                     {# Event Name #}
                     <td class="events-table-cell--name">
                         <h3>
@@ -103,13 +151,14 @@
                     }
                     this.sortTable(this.sortBy || 1, this.sortAscending)
                 },
-                filter: this.$persist({favsOnly: false, openOnly: false, day: "All"}),
+                filter: this.$persist({favsOnly: false, openOnly: false, day: "All", overlap: false}),
                 get isFilterDefault() {
-                    return this.filter.favsOnly === false && this.filter.openOnly === false && this.filter.day === 'All'
+                    return this.filter.favsOnly === false && this.filter.openOnly === false && this.filter.day === 'All' && this.filter.overlap === false
                 },
                 resetFilters() {
                     this.filter.favsOnly = false;
                     this.filter.openOnly = false;
+                    this.filter.overlap = false;
                     this.filter.day = 'All';
                 },
                 sortBy: this.$persist(1),

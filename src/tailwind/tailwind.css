@@ -443,8 +443,21 @@ a[class^='icon-']:hover {
 }
 
 .filter-btn {
-  @apply flex items-center transition-colors rounded gap-x-xs bg-card px-sm py-2xs hover:bg-primary;
+  @apply flex items-center transition-colors rounded gap-x-xs bg-card px-sm py-2xs hover:bg-primary border border-card;
 }
+.filter-btn svg {
+  @apply w-4 h-4 fill-body;
+}
+.filter-btn:hover svg {
+  @apply fill-secondary;
+}
+.filter-btn.active {
+  @apply border-highlight;
+}
+.filter-btn.active svg {
+  @apply fill-highlight;
+}
+
 
 .sort-btn {
   @apply border-b-2 border-transparent mb-[-2px] hover:border-body;

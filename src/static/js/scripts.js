@@ -246,7 +246,7 @@ document.addEventListener('alpine:init', () => {
           const response = await fetch('/events.json')
           eventData = await response.json()
         } catch(err) {
-          console.error(`ERROR: fetch for ${url}`,err)
+          console.error(`ERROR: fetch for '/events/me/'`,err)
           return false
         }
         //create array from eventData.json and remove all undefined cancelled events
@@ -295,6 +295,17 @@ document.addEventListener('alpine:init', () => {
       isBooked(id) {
         return isFullArray(this.bookedEvents) && this.bookedEvents.some( item => item.eventId === id)
       },
+      doesEventOverlap(date,dur) {
+        function doesDateOverlap(start1,dur1,start2,dur2) {
+          start1 = dayjs(start1)
+          start2 = dayjs(start2)
+          const end1 = start1.add(dur1,'h')
+          const end2 = start2.add(dur2,'h')
+          return (end2 >= start1 && start2 <= end1)
+        }
+        
+        return this.bookedEvents && this.bookedEvents.some(item => doesDateOverlap(item.date,item.dur,date,dur))
+      },
       async changePassword(userId,password) {
         let data = await fetchData('/users/setMyPassword',{ method: 'POST', body: { userId: userId, password: password }})
         return data
@@ -316,8 +327,9 @@ document.addEventListener('alpine:init', () => {
       categories: [], // this is filled in in nunjucks
       spacesOpen: 0, // this is temp filled in in nunjucks
       bookings: [],
-      gm: {},
+      gm: {}, // TODO: fix this to show panelists and multiple gms
       event_image: "",
+      bookingOverlap: false, // does this event overlap with my other bookings? Is set on page using doesEventOverlap() function in global
       async getEventInfo(id) {
         id = id || this.id
         // let spacesLS = JSON.parse(localStorage.getItem('spaces')) || {}
