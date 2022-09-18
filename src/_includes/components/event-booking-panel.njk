@@ -3,9 +3,14 @@
 {% if ('All Ages' in event.categories) %}
     {% set isAllAges = true %}
 {% endif %}
-<div class="rounded-md shadow mt-md text-body p-base bg-card" x-data="{isAllAges: {{isAllAges}} }">
+{% set isPanel = false %}
+{% if ('Panel' in event.categories || 'Vending' in event.categories) %}
+    {% set isQuotaExempt = true %}
+{% endif %}
+<div class="rounded-md shadow mt-md text-body p-base bg-card" x-data="{ isAllAges: {{isAllAges}}, isQuotaExempt: {{isQuotaExempt}} }" x-init="bookingOverlap = doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}})">
     <h2 class="-mt-1 font-serif text-2xl font-bold leading-none md:text-4xl text-header mb-sm">Event Booking</h2>
-    {# Event Name, spaces open, and list of players; only show if logged in and has event data #}
+
+    {# Only show if logged in and has event data #}
     <div x-cloak x-show="isAuth" class="flex flex-col gap-sm">
         <div class="flex flex-wrap justify-between">
             {# timezone data is in x-data="eventFilter" in wrapping div in base.njk #}
@@ -22,6 +27,7 @@
                 {% endif %}
             </div>
         </div>
+        <div x-show="bookingOverlap" class="italic rounded bg-card p-sm">The timing of this event overlaps with one of your booked events.</div>
         <div>
             <strong>Spaces Open:</strong>
             <span x-text="spacesOpen"></span> out of {{event.metadata.Players}}
@@ -35,13 +41,21 @@
                 </template>
             </ul>
         </div>
-        {# Booking buttons #}
-        <div class="flex mt-base gap-sm" x-show="(isTeen && !isAllAges) ? false : true">
-            <button class="button" x-show="spacesOpen > 0 && !isBooked({{event.eventId}})" @click="bookEvent({{event.eventId}})">Book Event</button>
+        <div x-show="!isQuotaExempt && availableSlots < 100">
+            <strong>Quota:</strong> You have <span x-text="availableSlots"></span> available game event slots left.
+        </div>
+        <div x-show="isQuotaExempt">
+            This event does not count towards your quota.
+        </div>
+        {# Booking buttons; Only show if age appropriate #}
+        <div class="mt-base" x-show="(isTeen && !isAllAges) ? false : true">
+            <button class="button" x-show="spacesOpen > 0 && !isBooked({{event.eventId}}) && (isQuotaExempt || availableSlots > 0)" @click="bookEvent({{event.eventId}})">Book Event</button>
             <span x-show="spacesOpen <= 0 && !isBooked({{event.eventId}})" class="font-bold">Event is full</span>
             {# Show Cancel #}
+            {# TODO: convert this to isOwner? Or also "Panelist"? Should be the same for who can upload images too. #}
             <button class="button" x-show="isBooked({{event.eventId}}) && user && user.id !== gm.id" @click="cancelBooking({{event.eventId}})">Cancel Booking</span>
         </div>
+        {# Show if you are GM #}
         <div x-show="user && user.id === gm.id">
             You are the person running this event. If you need to cancel this event please contact us at <a href="mailto:info@bigbadcon.com">info@bigbadcon.com</a>.
         </div>
@@ -49,6 +63,7 @@
             This is an 18+ only event. Teens are only allowed in All Ages events.
         </div>
     </div>
+
     {# Message for people not logged in #}
     <div x-cloak x-show="!isAuth">
         You must be <button @click="modal = 'login'" class="underline text-highlight">logged in</button> to sign up.
