@@ -78,27 +78,45 @@ exports.handler = async function (event, context) {
             /*                    Update user role if not a gift                          */
             /* -------------------------------------------------------------------------- */
             const isGift = metadata.recipient === 'for someone else'
+            const userId = parseInt(client_reference_id)
 
+            /* -------------------------------------------------------------------------- */
+            /*             Set roles for badges as long as they are not gifts             */
+            /* -------------------------------------------------------------------------- */
             if (metadata.productType === 'badge' && !isGift) {
                 await axios.post(bbcApiBaseUrl + `users/addRoleToUser`,
                     {
                         "role": "paidattendee",
-                        "userId": parseInt(client_reference_id)
+                        "userId": userId
                     },
                     {
                         headers: {"x-api-key": bbcApiKey}
                     }
                 )
-                await axios.post(bbcApiBaseUrl + `users/removeRoleFromUser`,
-                    {
+
+                try {
+                    const res = await axios.post(bbcApiBaseUrl + `remove`, {
+                        "role": "notattending",
+                        "userId": userId
+                    }, headers)
+                
+                    if (res.status !== 200) throw new Error("Add user role failed")
+                } catch (err) {
+                    console.log("remove user role 'notattending' failed", err.toString());
+                }
+
+                try {
+                    const res = await axios.post(bbcApiBaseUrl + `remove`, {
                         "role": "subscriber",
-                        "userId": parseInt(client_reference_id)
-                    },
-                    {
-                        headers: {"x-api-key": bbcApiKey}
-                    }
-                )
-                // TODO: double check that the product is a teen badge?
+                        "userId": userId
+                    }, headers)
+                
+                    if (res.status !== 200) throw new Error("Add user role failed")
+                } catch (err) {
+                    console.log("remove user role 'subscriber' for failed", err.toString());
+                }
+
+
                 if (metadata.age === 'teen') {
                     await axios.post(bbcApiBaseUrl + `users/addRoleToUser`,
                         {
