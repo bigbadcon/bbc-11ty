@@ -57,36 +57,50 @@ exports.handler = async function(event, context) {
             /* -------------------------------------------------------------------------- */
             /*                        3. add volunteer role to use                        */
             /* -------------------------------------------------------------------------- */
-            
-            // TODO: add Volunteer Role to any registered users. TEST THIS!!!
-            const body = {
-                "role": "volunteer",
-                "userId": parseInt(eventBody.userId)
-            }
+        
             
             const headers = { headers: {"x-api-key": apiKey} }
-            console.log("addRoleToUser API POST", headers, body);
+            const userId = parseInt(eventBody.userId)
+
             try {
+                const res = await axios.post(apiBaseUrl + `users/addRoleToUser`, {
+                    "role": "volunteer",
+                    "userId": userId
+                }, headers)
             
-                const res = await axios.post(apiBaseUrl + `users/addRoleToUser`, body, headers)
-            
-                if (res.status === 200) {
-                    return {
-                        statusCode: 200,
-                        body: "user added volunteer role",
-                    }
-                } else {
-                    return {
-                        statusCode: 500,
-                        body: "failed"
-                    }
-                }
+                if (res.status !== 200) throw new Error("Add user role failed")
             } catch (err) {
                 console.log("add user role for volunteer failed", err.toString());
-                return {
-                    statusCode: 200,
-                    body: "add user role for volunteer failed"
-                }
+            }
+
+            /* -------------------------------------------------------------------------- */
+            /*                    4. Remove notattending and subscriber role for user                    */
+            /* -------------------------------------------------------------------------- */
+            try {
+                const res = await axios.post(apiBaseUrl + `remove`, {
+                    "role": "notattending",
+                    "userId": userId
+                }, headers)
+            
+                if (res.status !== 200) throw new Error("Add user role failed")
+            } catch (err) {
+                console.log("remove user role 'notattending' for volunteer failed", err.toString());
+            }
+
+            try {
+                const res = await axios.post(apiBaseUrl + `remove`, {
+                    "role": "subscriber",
+                    "userId": userId
+                }, headers)
+            
+                if (res.status !== 200) throw new Error("Add user role failed")
+            } catch (err) {
+                console.log("remove user role 'subscriber' for volunteer failed", err.toString());
+            }
+
+            return {
+                statusCode: 200,
+                body: "user added volunteer role",
             }
 
         } catch (e) {
