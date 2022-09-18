@@ -327,7 +327,7 @@ document.addEventListener('alpine:init', () => {
       categories: [], // this is filled in in nunjucks
       spacesOpen: 0, // this is temp filled in in nunjucks
       bookings: [],
-      gm: {}, // TODO: fix this to show panelists and multiple gms
+      gm: [],
       event_image: "",
       bookingOverlap: false, // does this event overlap with my other bookings? Is set on page using doesEventOverlap() function in global
       async getEventInfo(id) {
@@ -350,12 +350,12 @@ document.addEventListener('alpine:init', () => {
           const metadata = metadataArrayToObject(data.metadata)
           // filter out canceled bookings and fix name issues with odd characters
           const bookings = data.bookings.filter(booking => booking.bookingStatus === 1).map(booking => {return { ...booking, user: {...booking.user, displayName: decodeText(booking.user.displayName)}}})
-         
+
           /* ------------------------ Update all data variables ----------------------- */
-          // gm defaults to empty object when there isn't a gm
-          this.gm = bookings.find(booking => booking.bookingComment === "GM") || {}
-          // get only active bookings that are not gms
-          this.bookings = bookings.filter(booking => booking.bookingComment !== "GM")
+          // get only active bookings that are gms/speakers (bookingComment is null if not labelled)
+          this.gm = bookings.filter(booking => booking.bookingComment)
+          // get only active bookings that are not gms/speakers (bookingComment is null if not labelled)
+          this.bookings = bookings.filter(booking => !booking.bookingComment).sort((a,b) => a.user.displayName.localeCompare(b.user.displayName))
           // spacesOpen is based on number of players - bookings unless players is not set as a number then it defaults to 'Any'
           // TODO: We might want to revisit this as it's a bit ugly
           this.spacesOpen = Number(metadata.Players) ? Number(metadata.Players) - this.bookings.length : 'Any'

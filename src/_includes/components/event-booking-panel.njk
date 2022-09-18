@@ -7,7 +7,8 @@
 {% if ('Panel' in event.categories or 'Vending' in event.categories or event.metadata.exempt) %}
     {% set isQuotaExempt = true %}
 {% endif %}
-<div class="rounded-md shadow mt-md text-body p-base bg-card" x-data="{ isAllAges: {{isAllAges}}, isQuotaExempt: {{isQuotaExempt}} }" x-init="bookingOverlap = doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}})">
+<div class="rounded-md shadow mt-md text-body p-base bg-card" x-data="{ isAllAges: {{isAllAges}}, isQuotaExempt: {{isQuotaExempt}} }" 
+x-init="if (isAuth) getBookedEvents(); bookingOverlap = doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}})">
     <h2 class="-mt-1 font-serif text-2xl font-bold leading-none md:text-4xl text-header mb-sm">Event Booking</h2>
 
     {# Only show if logged in and has event data #}
@@ -27,7 +28,6 @@
                 {% endif %}
             </div>
         </div>
-        <div x-show="bookingOverlap" class="italic rounded bg-card p-sm">The timing of this event overlaps with one of your booked events.</div>
         <div>
             <strong>Spaces Open:</strong>
             <span x-text="spacesOpen"></span> out of {{event.metadata.Players}}
@@ -41,24 +41,30 @@
                 </template>
             </ul>
         </div>
-        <div x-show="!isQuotaExempt && availableSlots < 100">
-            <strong>Quota:</strong> You have <span x-text="availableSlots"></span> available game event slots left.
+
+        {# Quota and Booking buttons; Only show if age appropriate and not a gm #}
+        <div class="space-y-sm mt-base" x-show="(isAllAges || !isTeen) && user && !gm.some(gm => gm.user.id === user.id)">
+            {# Show qnote if booking overlaps #}
+            <div x-show="bookingOverlap" class="italic rounded bg-card p-sm">The timing of this event overlaps with one of your booked events.</div>
+            {# Show quota information #}
+            <div x-show="!isQuotaExempt && availableSlots < 100">
+                <strong>Quota:</strong> You have <span x-text="availableSlots"></span> available game event slots left.
+            </div>
+            <div x-show="isQuotaExempt" class="italic">
+                This event does not count towards your quota.
+            </div>
+            {# Show if event is full #}
+            <div x-show="spacesOpen <= 0" class="font-bold">Event is full</div>
+            {# Booking button; only show if there are spaces open, if user is not booked, if they have available slots or if it is quota exempt, and if they are not overlapped #}
+            <button class="button" x-show="spacesOpen > 0 && !isBooked({{event.eventId}}) && (isQuotaExempt || availableSlots > 0) && !bookingOverlap" @click="bookEvent({{event.eventId}})">Book Event</button>
+            {# Show Cancel if booked #}
+            <button class="button" x-show="isBooked({{event.eventId}})" @click="cancelBooking({{event.eventId}})">Cancel Booking</span>
         </div>
-        <div x-show="isQuotaExempt" class="italic">
-            This event does not count towards your quota.
+        {# Show if you are a GM/Speaker #}
+        <div x-show="user && gm.some(gm => gm.user.id === user.id)" class="prose">
+            You are running this event. If you need to cancel, please contact us at <a href="mailto:info@bigbadcon.com">info@bigbadcon.com</a>.
         </div>
-        {# Booking buttons; Only show if age appropriate #}
-        <div class="mt-base" x-show="(isTeen && !isAllAges) ? false : true">
-            <button class="button" x-show="spacesOpen > 0 && !isBooked({{event.eventId}}) && (isQuotaExempt || availableSlots > 0)" @click="bookEvent({{event.eventId}})">Book Event</button>
-            <span x-show="spacesOpen <= 0 && !isBooked({{event.eventId}})" class="font-bold">Event is full</span>
-            {# Show Cancel #}
-            {# TODO: convert this to isOwner? Or also "Panelist"? Should be the same for who can upload images too. #}
-            <button class="button" x-show="isBooked({{event.eventId}}) && user && user.id !== gm.id" @click="cancelBooking({{event.eventId}})">Cancel Booking</span>
-        </div>
-        {# Show if you are GM #}
-        <div x-show="user && user.id === gm.id">
-            You are the person running this event. If you need to cancel this event please contact us at <a href="mailto:info@bigbadcon.com">info@bigbadcon.com</a>.
-        </div>
+        {# Show if you are a teen and this is not an all ages event #}
         <div x-show="(isTeen && !isAllAges) ? true : false" class="italic mt-base">
             This is an 18+ only event. Teens are only allowed in All Ages events.
         </div>
