@@ -94,6 +94,5 @@ While Go Play NW is not an event for young gamers, we want young gamers to flour
 
 [OrcaCon](https://www.orcacon.org/){.icon-website}
 
-Please contact us if you have any questions.
 ---
 _Written by the safety team headed by Angela Lemus-Mogrovejo (with reference to Big Bad Con, Emerald City Comic Con, Geek Girl Con, PAX West, and OrcaCon’s respective Codes of Conduct and Community Standards)_
