@@ -7,11 +7,11 @@ image: ''
 alt: ''
 
 ---
+Sign up to attend Big Bad Con!
+
 [Buy a Badge](/buy-a-badge){.icon-badge}
 
 [Book a Room](https://www.hyatt.com/en-US/group-booking/SFOBU/G-BBC3){.icon-hotel}
-
-[Scholarship](/big-bad-con-scholarship){.icon-gift}
 
 [Exhibitors](/exhibitor-information){.icon-booth}
 
