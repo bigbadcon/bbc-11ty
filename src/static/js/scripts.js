@@ -482,7 +482,6 @@ document.addEventListener('alpine:init', () => {
       bookings: [],
       gm: [],
       event_image: "",
-      bookingOverlap: false, // does this event overlap with my other bookings? Is set on page using doesEventOverlap() function in global
       async getEventInfo(id) {
         id = id || this.id
         let eventsLS = JSON.parse(localStorage.getItem('events')) || {}
@@ -494,7 +493,7 @@ document.addEventListener('alpine:init', () => {
         }
         
         try {
-          // TODO: replace this with simpler API call when Jerry builds it
+          // TODO: replace this with simpler API call when Jerry builds it; Also move it to events store.
           /* ------------------------ Get data from events/find ----------------------- */
           const data = await fetchData('/events/find',{ method: 'POST', body: { id: id }})
           // convert metadata to object
