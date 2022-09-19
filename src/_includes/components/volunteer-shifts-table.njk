@@ -77,11 +77,16 @@
 
             {# Volunteer Event Row #}
             {% for event in eventData.volunteer %}
+                {% if (event.metadata.Players > 0) %}
+                    {% set maxSpaces = event.metadata.Players %}
+                {% else %}
+                    {% set maxSpaces = "null" %}
+                {% endif %}
                 {# isFav is in Alpine.data("global") #}
                 <tr 
                 x-data="eventInfo"
-                x-init="id = {{event.eventId}}; bookingOverlap = doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}); $watch('bookedEvents', val => { if (bookedEvents) doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}) })"
-                x-show="(!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || spaces[{{event.eventId}}] > 0) && (filter.day === 'all' || $refs.date{{event.eventId}}.textContent === filter.day) && (!filter.overlap || !bookingOverlap)" 
+                x-init="id = {{event.eventId}}; maxSpaces = {{maxSpaces}}; bookingOverlap = doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}); $watch('bookedEvents', val => { if (bookedEvents) doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}) })"
+                x-show="(!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || isSpaceOpen) && (filter.day === 'all' || $refs.date{{event.eventId}}.textContent === filter.day) && (!filter.overlap || !bookingOverlap)" 
                 >
                     {# Event Name #}
                     <td class="events-table-cell--name">
@@ -93,14 +98,7 @@
                     {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
                     {# formatEventDate filter is in eleventy.js and returns html with date and time in seperate span tags #}
                     <td class="events-table-cell--date" data-sort="{{ event.eventStartDateTime | unixtime }}">
-                        {% if (event.eventDuration > 0) %}
-                            <span class="whitespace-nowrap" x-ref="date{{event.eventId}}">{{ event.eventStartDateTime | formatDate }}</span>
-                            <span class="whitespace-nowrap">{{ event.eventStartDateTime | formatTime }}
-                                <b class="whitespace-nowrap">{{ event.eventDuration }}hr</b>
-                            </span>
-                        {% else %}
-                            <span class="opacity-50">TBD</span>
-                        {% endif %}
+                        {% include 'components/events-table-date.njk' %}
                     </td>
                     {% if sitemeta.context === 'dev' %}
                         <td class="text-center">
@@ -109,17 +107,7 @@
                     {% endif %}
                     {# Spaces #}
                     <td class="events-table-cell--spaces">
-                        {# If booked add check mark, otherwise list number of spaces open #}
-                        {% if (event.metadata.Players > 0) %}
-                            <div class="flex items-center justify-center py-sm">
-                                <span 
-                                class="block text-center border-2 rounded border-body h-[1.45rem] w-[2.2rem]" 
-                                :class="spaces[{{event.eventId}}] <= 0 && 'bg-card opacity-40'"
-                                x-text="(isBooked({{event.eventId}})) ? '&#10004;' : (typeof spaces['{{event.eventId}}'] === 'number') ? spaces['{{event.eventId}}'] : '{{event.metadata.Players}}'">{{ event.metadata.Players }}</span>
-                            </div>
-                        {% else %}
-                            Any
-                        {% endif %}
+                        {% include 'components/events-table-spaces.njk' %}
                     </td>
                     {# Fav Event Icon #}
                     <td class="events-table-cell--fav" x-cloak x-show="isAuth">
@@ -132,99 +120,3 @@
         </tbody>
     </table>
 </section>
-<script type="text/javascript">
-
-    document.addEventListener('alpine:init', () => {
-        function compareValues(a, b) {
-            // return -1/0/1 based on what you "know" a and b
-            // are here. Numbers, text, some custom case-insensitive
-            // and natural number ordering, etc. That's up to you.
-            // A typical "do whatever JS would do" is:
-            return (a < b)
-                ? -1
-                : (a > b)
-                    ? 1
-                    : 0;
-        }
-
-        Alpine.data('eventsTable', function () {
-            return {
-                init() {
-                    if (this.sortAscending === undefined) {
-                        this.sortAscending = true
-                    }
-                    this.sortTable(this.sortBy || 1, this.sortAscending)
-
-                    this.getSpaces()
-                },
-                filter: this.$persist({favsOnly: false, openOnly: false, day: "all", overlap: false}),
-                get isFilterDefault() {
-                    return this.filter.favsOnly === false && this.filter.openOnly === false && this.filter.day === 'all' && this.filter.overlap === false
-                },
-                resetFilters() {
-                    this.filter.favsOnly = false;
-                    this.filter.openOnly = false;
-                    this.filter.overlap = false;
-                    this.filter.day = 'all';
-                },
-                resetUserFilters() {
-                    this.filter.favsOnly = false;
-                    this.filter.openOnly = false;
-                    this.filter.overlap = false;
-                },
-                sortBy: this.$persist(1),
-                sortAscending: this.$persist(true),
-                sortTable(colnum, direction) {
-                    // If this is the same column than switch direction
-                    if (direction === undefined) {
-                        if (this.sortBy === colnum) {
-                            this.sortAscending = !this.sortAscending
-                        } else {
-                            this.sortAscending = true
-                            this.sortBy = colnum
-                        }
-                    } else {
-                        this.sortAscending = direction
-                        this.sortBy = colnum
-                    }
-
-                    const table = document.querySelector('#events-table tbody');
-                    let rows = Array.from(table.querySelectorAll(`tr`));
-
-                    let qs = colnum === 1
-                        ? `td:nth-child(${colnum}) h3`
-                        : `td:nth-child(${colnum})`;
-                    rows.sort((r1, r2) => {
-                        // get each row's relevant column
-                        let t1 = r1.querySelector(qs);
-                        let t2 = r2.querySelector(qs);
-
-                        // if it has data-sort attribute than use that
-                        t1 = (t1.dataset.sort)
-                            ? t1.dataset.sort
-                            : t1.textContent
-                        t2 = (t2.dataset.sort)
-                            ? t2.dataset.sort
-                            : t2.textContent
-
-                        // and then effect sorting by comparing their content:
-                        if (this.sortAscending) {
-                            return compareValues(t1, t2);
-                        } else {
-                            return compareValues(t2, t1);
-                        }
-                    });
-
-                    // and then the magic part that makes the sorting appear on-page:
-                    rows.forEach(row => table.appendChild(row));
-                },
-                spaces: this.$persist({}),
-                async getSpaces() {
-                    const spaces = await fetchData('/events/spaces/public')
-                    if (spaces) 
-                        this.spaces = spaces
-                }
-            }
-        })
-    })
-</script>

@@ -4,25 +4,8 @@ x-init="if (isAuth) getBookedEvents(); bookingOverlap = doesEventOverlap('{{even
     <h2 class="-mt-1 font-serif text-2xl font-bold leading-none md:text-4xl text-header mb-sm">Volunteer Signup</h2>
     {# Event Name, spaces open, and list of players; only show if logged in and has event data #}
     <div x-cloak x-show="isAuth" class="flex flex-col gap-sm">
-        <div class="flex flex-wrap justify-between">
-            {# timezone data is in x-data="eventFilter" in wrapping div in base.njk #}
-            {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
-            <div>
-                <strong>Date:</strong>
-                {% if (event.eventDuration > 0) %}
-                    <span class="whitespace-nowrap">{{ event.eventStartDateTime | formatDateWithYear }}</span>
-                    <span class="whitespace-nowrap">{{ event.eventStartDateTime | formatTime }}
-                        <span class="whitespace-nowrap">({{ event.eventDuration }} hours)</span>
-                    </span>
-                {% else %}
-                    <span class="opacity-50">TBD</span>
-                {% endif %}
-            </div>
-        </div>
-        <div>
-            <strong>Spaces Open:</strong>
-            <span x-text="spacesOpen"></span> out of {{event.metadata.Players}}
-        </div>
+        {% include 'components/event-date.njk' %}
+        {% include 'components/event-spaces.njk' %}
 
         <div x-cloak x-show="bookings && bookings.length">
             <h4 class="font-serif text-2xl font-semibold">Volunteer List</h4>
@@ -38,8 +21,8 @@ x-init="if (isAuth) getBookedEvents(); bookingOverlap = doesEventOverlap('{{even
         {# Show if they have a volunteer role #}
         <div class="space-y-sm mt-base" x-show="isVolunteer">
             <div x-show="bookingOverlap" class="italic rounded bg-card p-sm">The timing of this event overlaps with one of your booked events.</div>
-            <button class="button" x-show="spacesOpen > 0 && !isBooked({{event.eventId}}) && !bookingOverlap" @click="bookEvent({{event.eventId}})">Volunteer</button>
-            <span x-show="spacesOpen <= 0" class="font-bold">Shift is full</span>
+            <button class="button" x-show="isSpaceOpen && !isBooked({{event.eventId}}) && !bookingOverlap" @click="bookEvent({{event.eventId}})">Volunteer</button>
+            <span x-show="!isSpaceOpen" class="font-bold">Shift is full</span>
             <button class="button" x-show="isBooked({{event.eventId}})" @click="cancelBooking({{event.eventId}})">Cancel Shift</span>
         </div>
     </div>

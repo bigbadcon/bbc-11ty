@@ -4,7 +4,7 @@
   {% if (event.metadata.Players > 0) %}
     {% set maxSpaces = event.metadata.Players %}
   {% else %}
-    {% set maxSpaces = "'Any'" %}
+    {% set maxSpaces = "null" %}
   {% endif %}
   <main id="content">
     <div class="mx-auto max-w-content p-base"
