@@ -105,12 +105,17 @@
         </thead>
         <tbody>
             {% for event in eventData.events %}
+                {% if (event.metadata.Players > 0) %}
+                    {% set maxSpaces = event.metadata.Players %}
+                {% else %}
+                    {% set maxSpaces = "'Any'" %}
+                {% endif %}
                 {# isFav is in Alpine.data("global") #}
                 <tr 
                 x-cloak
                 x-data="eventInfo"
-                x-init="id = {{event.eventId}}; categories = [{{event.categories | alpineArray}}]; bookingOverlap = doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}); $watch('bookedEvents', val => { if (bookedEvents) doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}) })"
-                x-show="(filter.category === 'all' || categories.some(cat => cat.toLowerCase() === filter.category)) && (!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || typeof spaces[{{event.eventId}}] !== 'number' || spaces[{{event.eventId}}] > 0) && (filter.day === 'all' || $refs.date{{event.eventId}}.textContent === filter.day) && (!filter.overlap || !bookingOverlap)" >
+                x-init="id = {{event.eventId}}; maxSpaces = {{maxSpaces}}; categories = [{{event.categories | alpineArray}}]; bookingOverlap = doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}); $watch('bookedEvents', val => { if (bookedEvents) doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}) })"
+                x-show="(filter.category === 'all' || categories.some(cat => cat.toLowerCase() === filter.category)) && (!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || maxSpaces === 'Any' || spaces[{{event.eventId}}] > 0) && (filter.day === 'all' || $refs.date{{event.eventId}}.textContent === filter.day) && (!filter.overlap || !bookingOverlap)" >
 
                     {# Event Name #}
                     <td class="events-table-cell--name">
