@@ -3,8 +3,8 @@
     <div class="flex items-center justify-center py-sm">
         <span 
         class="block text-center border-2 rounded border-body h-[1.45rem] w-[2.2rem]" 
-        :class="openSpaces <= 0 && 'bg-card opacity-40'"
-        x-text="(isBooked({{event.eventId}})) ? '&#10004;' : openSpaces">{{ event.metadata.Players }}</span>
+        :class="maxSpaces !== 'Any' && $store.events.spaces[id] <= 0 && 'bg-card opacity-40'"
+        x-text="(isBooked({{event.eventId}})) ? '&#10004;' : (maxSpaces === 'Any') ? 'Any' : $store.events.spaces[id]">{{ event.metadata.Players }}</span>
     </div>
 {% else %}
     Any

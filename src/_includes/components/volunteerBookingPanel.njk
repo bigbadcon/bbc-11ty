@@ -16,15 +16,18 @@ x-init="if (isAuth) getBookedEvents(); bookingOverlap = doesEventOverlap('{{even
             </ul>
         </div>
         {# Booking buttons #}
-        {# Show if they do not yet have a user role of volunteer #}
-        <div class="text-sm italic mt-base" x-show="!isVolunteer">You must <a href="/rangers/#signup" class="underline text-highlight">sign up as a volunteer</a> to add a volunteer shift</div>
-        {# Show if they have a volunteer role #}
-        <div class="space-y-sm mt-base" x-show="isVolunteer">
-            <div x-show="bookingOverlap" class="italic rounded bg-card p-sm">The timing of this event overlaps with one of your booked events.</div>
-            <button class="button" x-show="isSpaceOpen && !isBooked({{event.eventId}}) && !bookingOverlap" @click="bookEvent({{event.eventId}})">Volunteer</button>
-            <span x-show="!isSpaceOpen" class="font-bold">Shift is full</span>
-            <button class="button" x-show="isBooked({{event.eventId}})" @click="cancelBooking({{event.eventId}})">Cancel Shift</span>
+        {# Show if there are spaces #}
+        <div x-show="(maxSpaces === 'Any' || $store.events.spaces[id] > 0)">
+            {# Show if they do not yet have a user role of volunteer #}
+            <div class="text-sm italic mt-base" x-show="!isVolunteer">You must <a href="/rangers/#signup" class="underline text-highlight">sign up as a volunteer</a> to add a volunteer shift</div>
+            {# Show if they have a volunteer role #}
+            <div class="space-y-sm mt-base" x-show="isVolunteer">
+                <div x-show="bookingOverlap" class="italic rounded bg-card p-sm">The timing of this event overlaps with one of your booked events.</div>
+                <button class="button" x-show="!isBooked({{event.eventId}}) && !bookingOverlap" @click="bookEvent({{event.eventId}})">Volunteer</button>
+                <button class="button" x-show="isBooked({{event.eventId}})" @click="cancelBooking({{event.eventId}})">Cancel Shift</span>
+            </div>
         </div>
+        <div x-show="!(maxSpaces === 'Any' || $store.events.spaces[id] > 0)" class="font-bold rounded bg-card p-sm">Shift is full</div>
     </div>
     {# Message for people not logged in #}
     <div x-cloak x-show="!isAuth">
