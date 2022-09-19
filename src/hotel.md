@@ -3,10 +3,10 @@ layout: layouts/page.njk
 title: Hotel
 description: Big Bad Con will be hosted at the Hyatt Regency San Francisco Airport
 ogImage: "/images/hyatt-768x419.jpg"
-navGroup: ''
+navGroup: Attend
 navTitle: ''
-order: 
-icon: ''
+order: 1
+icon: hotel
 
 ---
 Big Bad Con will be hosted by the
@@ -33,7 +33,9 @@ The hotel offers parking for all attendees discounted from their rate of $36/day
 
 ### Hotel Map
 
-![](/images/both-floors.jpg)
+![](/images/ground-floor.png)
+
+![](/images/first-floor.png)
 
 [**Hotel Floor Plan**](https://assets.hyatt.com/content/dam/hyatt/hyattdam/documents/2016/10/11/1828/SFOBU-Hyatt-Regency-San-Francisco-Airport-Floor-Plan-101116.pdf) **(PDF) and** [**Capacity Chart**](https://assets.hyatt.com/content/dam/hyatt/hyattdam/documents/2018/07/09/1023/Hyatt-Regency-San-Francisco-Airport-Capacity-Charts-English-070918.pdf) **(PDF)**
 

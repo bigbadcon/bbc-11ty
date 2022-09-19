@@ -14,3 +14,5 @@ Submit an event for Big Bad Con 2022!
 [Games on Demand](/games-on-demand){.icon-games-on-demand}
 
 [Past Events](/past-events){.icon-library}
+
+[FAQ](/faq){.icon-faq}
