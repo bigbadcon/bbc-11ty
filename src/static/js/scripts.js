@@ -326,6 +326,9 @@ document.addEventListener('alpine:init', () => {
   Alpine.data('eventInfo', function () {
     // See init on page
     return {
+      init() {
+        this.getEventSpace()
+      },
       id: 0, // this is filled in in nunjucks
       categories: [], // this is filled in in nunjucks
       maxSpaces: 0, // this is temp filled in in nunjucks
@@ -334,6 +337,7 @@ document.addEventListener('alpine:init', () => {
       gm: [],
       event_image: "",
       bookingOverlap: false, // does this event overlap with my other bookings? Is set on page using doesEventOverlap() function in global
+      spaces: this.$persist({}),
       async getEventInfo(id) {
         id = id || this.id
         // let spacesLS = JSON.parse(localStorage.getItem('spaces')) || {}
@@ -381,6 +385,12 @@ document.addEventListener('alpine:init', () => {
       },
       get isSpacesOpen() {
         return this.spacesOpen > 0 || isNaN(this.spacesOpen)
+      },
+      async getEventSpace() {
+        if (this.id) {
+          const data = await fetchData(`/events/${this.id}/spaces/public`)
+          if (data) this.spaces[this.id] = data
+        }
       },
       async uploadImage(e) {
 
