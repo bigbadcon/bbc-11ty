@@ -155,13 +155,6 @@
                     }
                     this.sortTable(this.sortBy || 1, this.sortAscending)
                     // TODO: temporary force stored values to lowercase until everyone has this reset; in 10 days remove this after Sept 28th
-                    this.filter.day = (this.filter.day)
-                        ? this
-                            .filter
-                            .day
-                            .toLowerCase()
-                        : 'all'
-
                     this.getSpaces()
                 },
                 filter: this.$persist({favsOnly: false, openOnly: false, day: "all", overlap: false}),
