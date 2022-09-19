@@ -20,12 +20,19 @@
             {# Show if they do not yet have a user role of volunteer #}
             <div class="text-sm italic mt-base" x-show="!isVolunteer">You must <a href="/rangers/#signup" class="underline text-highlight">sign up as a volunteer</a> to add a volunteer shift</div>
             {# Show if they have a volunteer role #}
-            <div class="space-y-sm mt-base" x-show="isVolunteer">
-                <div x-show="doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}})" class="italic rounded bg-card p-sm">The timing of this event overlaps with one of your booked events.</div>
-                <button class="button" x-show="!isBooked({{event.eventId}}) && !doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}})" @click="bookEvent({{event.eventId}})">Volunteer</button>
-                <button class="button" x-show="isBooked({{event.eventId}})" @click="cancelBooking({{event.eventId}})">Cancel Shift</span>
+            <div x-show="isVolunteer">
+                {# Show if not booked #}
+                <div x-show="!isBooked({{event.eventId}})">
+                    <div x-show="doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}})" class="italic rounded bg-card p-sm">The timing of this event overlaps with one of your booked events.</div>
+                    <button class="button" x-show="!doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}})" @click="bookEvent({{event.eventId}})">Volunteer</button>
+                </div>
+                {# Show if booked #}
+                <div x-show="isBooked({{event.eventId}}">
+                    <button class="button" @click="cancelBooking({{event.eventId}})">Cancel Shift</span>
+                </div>
             </div>
         </div>
+        {# Show if event full #}
         <div x-show="!(maxSpaces === 'Any' || $store.events.spaces[id] > 0)" class="font-bold rounded bg-card p-sm">Shift is full</div>
     </div>
     {# Message for people not logged in #}
