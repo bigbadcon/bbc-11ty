@@ -278,15 +278,18 @@ document.addEventListener('alpine:init', () => {
         return data && data.map(item => item.eventId)
       },
       async toggleFav(id) {
+        id = Number(id)
+        
         let data
         if (this.isFav(id)) {
+          this.favEvents = this.favEvents.filter(fav => fav !== id)
           data = await fetchData('/events/me/favorite/delete',{ method: 'DELETE', body:{eventId: id} })
-        } else { 
+        } else {
+          this.favEvents = [...this.favEvents, id]
           data = await fetchData('/events/me/favorite/create',{ method: 'POST', body:{eventId: id} })
         }
-        if (!data) this.$dispatch('toast', 'ERROR: favoriting failed. Data service might be down.')
-        if (data && data.status === 'SUCCESS') {
-          this.getFavEvents()
+        if (!data) { 
+          this.$dispatch('toast', 'ERROR: saving fav failed. data service might be offline.') 
         }
       },
       isFav(id) {
