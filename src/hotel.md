@@ -3,10 +3,10 @@ layout: layouts/page.njk
 title: Hotel
 description: Big Bad Con will be hosted at the Hyatt Regency San Francisco Airport
 ogImage: "/images/hyatt-768x419.jpg"
-navGroup: ''
+navGroup: Attend
 navTitle: ''
-order: 
-icon: ''
+order: 1
+icon: hotel
 
 ---
 Big Bad Con will be hosted by the
