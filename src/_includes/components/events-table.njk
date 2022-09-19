@@ -27,7 +27,7 @@
         <div class="flex items-center justify-start gap-xs">
             <h5 class="text-sm font-bold">Date:</h5>
             <select class="mb-0 text-sm cursor-pointer pl-xs py-2xs" x-model="filter.day" >
-                <option>All</option>
+                <option value="all">All</option>
                 <option>Oct 27</option>
                 <option>Oct 28</option>
                 <option>Oct 29</option>
@@ -108,9 +108,10 @@
                 {% endif %}
                 {# spacesOpen defaults to number of players #}
                 <tr 
+                x-cloak
                 x-data="eventInfo"
                 x-init="spacesOpen = {{ spacesOpen }}; id = {{event.eventId}}; categories = [{{event.categories | alpineArray}}]; bookingOverlap = doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}); if (isAuth) getEventInfo({{event.eventId}}); $watch('isAuth', val => { if (val) getEventInfo({{event.eventId}}) }); $watch('bookedEvents', val => { if (bookedEvents) doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}) })"
-                x-show="(typeof filter.category !== 'string' || filter.category.toLowerCase() === 'all' || !categories.every(cat => cat.toLowerCase() !== filter.category.toLowerCase()) || categories.some(cat => cat.toLowerCase() === filter.category.toLowerCase())) && (!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || isSpacesOpen) && (!filter.day || filter.day.toLowerCase() === 'all' || $refs.date{{event.eventId}}.textContent === filter.day) && (!filter.overlap || !bookingOverlap)" >
+                x-show="(filter.category === 'all' || categories.some(cat => cat.toLowerCase() === filter.category)) && (!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || isSpacesOpen) && (filter.day === 'all' || $refs.date{{event.eventId}}.textContent === filter.day) && (!filter.overlap || !bookingOverlap)" >
 
                     {# Event Name #}
                     <td class="events-table-cell--name">
@@ -202,17 +203,26 @@
                     }
                     this.sortTable(this.sortBy || 1, this.sortAscending)
                     this.searchUrlParams()
+                    // TODO: temporary force stored values to lowercase until everyone has this reset; in 10 days remove this after Sept 28th
+                    this.filter.day = (this.filter.day)
+                        ? this
+                            .filter
+                            .day
+                            .toLowerCase()
+                        : 'all'
+                    // TODO: temporary check stored values to makes sure they match; in 10 days remove this after Sept 28th
+                    this.setCategory(this.filter.category)
                 },
-                filter: this.$persist({favsOnly: false, openOnly: false, category: 'all', day: 'All', overlap: false}),
+                filter: this.$persist({favsOnly: false, openOnly: false, category: 'all', day: 'all', overlap: false}),
                 get isFilterDefault() {
-                    return this.filter.favsOnly === false && this.filter.openOnly === false && this.filter.category === 'all' && this.filter.day === 'All' && this.filter.overlap === false
+                    return this.filter.favsOnly === false && this.filter.openOnly === false && this.filter.category === 'all' && this.filter.day === 'all' && this.filter.overlap === false
                 },
                 resetFilters() {
                     this.filter.favsOnly = false;
                     this.filter.openOnly = false;
                     this.filter.overlap = false;
                     this.filter.category = 'all';
-                    this.filter.day = 'All';
+                    this.filter.day = 'all';
                 },
                 resetUserFilters() {
                     this.filter.favsOnly = false;
@@ -221,18 +231,23 @@
                 },
                 sortBy: this.$persist(1),
                 sortAscending: this.$persist(true),
-                allCategories: [
-                    'all',
-                    'rpg',
-                    'board/card game',
-                    'playtest',
-                    'panel',
-                    'workshop',
-                    'god',
-                    'all ages',
-                    'early signup',
-                    'vending'
-                ],
+                setCategory(cat) {
+                    const allCategories = [
+                        'all',
+                        'rpg',
+                        'board/card game',
+                        'playtest',
+                        'panel',
+                        'workshop',
+                        'god',
+                        'all ages',
+                        'early signup',
+                        'vending'
+                    ]
+                    this.filter.category = (cat && allCategories.includes(cat))
+                        ? cat
+                        : 'all'
+                },
                 sortTable(colnum, direction) {
                     // If this is the same column than switch direction
                     if (direction === undefined) {
@@ -283,10 +298,11 @@
                     if (location.search) {
                         const params = new URLSearchParams(location.search);
                         let cat = params.get('cat')
-                        cat = cat.replace("-", " ")
-                        if (cat && this.allCategories.includes(cat)) {
-                            this.filter.category = cat
-                        }
+                        cat = cat
+                            .replace("-", " ")
+                            .toLowerCase()
+
+                        this.setCategory(cat)
                     }
                 }
             }

@@ -45,7 +45,7 @@ x-init="if (isAuth) getBookedEvents(); bookingOverlap = doesEventOverlap('{{even
         {# Quota and Booking buttons; Only show if age appropriate and not a gm #}
         <div class="space-y-sm mt-base" x-show="(isAllAges || !isTeen) && user && !gm.some(gm => gm.user.id === user.id)">
             {# Show qnote if booking overlaps #}
-            <div x-show="bookingOverlap" class="italic rounded bg-card p-sm">The timing of this event overlaps with one of your booked events.</div>
+            <div x-show="bookingOverlap" class="italic rounded bg-card py-sm px-base">The timing of this event overlaps with one of your booked events.</div>
             {# Show quota information #}
             <div x-show="!isQuotaExempt && availableSlots < 100">
                 <strong>Quota:</strong> You have <span x-text="availableSlots"></span> available game event slots left.
@@ -61,7 +61,7 @@ x-init="if (isAuth) getBookedEvents(); bookingOverlap = doesEventOverlap('{{even
             <button class="button" x-show="isBooked({{event.eventId}})" @click="cancelBooking({{event.eventId}})">Cancel Booking</span>
         </div>
         {# Show if you are a GM/Speaker #}
-        <div x-show="user && gm.some(gm => gm.user.id === user.id)" class="prose">
+        <div x-show="user && gm.some(gm => gm.user.id === user.id)" class="prose rounded bg-card py-sm px-base">
             You are running this event. If you need to cancel, please contact us at <a href="mailto:info@bigbadcon.com">info@bigbadcon.com</a>.
         </div>
         {# Show if you are a teen and this is not an all ages event #}
