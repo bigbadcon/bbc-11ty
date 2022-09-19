@@ -1,6 +1,5 @@
 {# x-data="eventInfo" on event page #}
-<div class="rounded-md shadow mt-md text-body p-base bg-card" 
-x-init="if (isAuth) getBookedEvents(); bookingOverlap = doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}})">
+<div class="rounded-md shadow mt-md text-body p-base bg-card">
     <h2 class="-mt-1 font-serif text-2xl font-bold leading-none md:text-4xl text-header mb-sm">Volunteer Signup</h2>
     {# Event Name, spaces open, and list of players; only show if logged in and has event data #}
     <div x-cloak x-show="isAuth" class="flex flex-col gap-sm">
@@ -22,8 +21,8 @@ x-init="if (isAuth) getBookedEvents(); bookingOverlap = doesEventOverlap('{{even
             <div class="text-sm italic mt-base" x-show="!isVolunteer">You must <a href="/rangers/#signup" class="underline text-highlight">sign up as a volunteer</a> to add a volunteer shift</div>
             {# Show if they have a volunteer role #}
             <div class="space-y-sm mt-base" x-show="isVolunteer">
-                <div x-show="bookingOverlap" class="italic rounded bg-card p-sm">The timing of this event overlaps with one of your booked events.</div>
-                <button class="button" x-show="!isBooked({{event.eventId}}) && !bookingOverlap" @click="bookEvent({{event.eventId}})">Volunteer</button>
+                <div x-show="doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}})" class="italic rounded bg-card p-sm">The timing of this event overlaps with one of your booked events.</div>
+                <button class="button" x-show="!isBooked({{event.eventId}}) && !doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}})" @click="bookEvent({{event.eventId}})">Volunteer</button>
                 <button class="button" x-show="isBooked({{event.eventId}})" @click="cancelBooking({{event.eventId}})">Cancel Shift</span>
             </div>
         </div>

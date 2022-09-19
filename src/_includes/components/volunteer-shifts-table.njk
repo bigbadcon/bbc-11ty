@@ -85,8 +85,8 @@
                 {# isFav is in Alpine.data("global") #}
                 <tr 
                 x-data="eventInfo"
-                x-init="id = {{event.eventId}}; maxSpaces = {{maxSpaces}}; bookingOverlap = doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}); $watch('bookedEvents', val => { if (bookedEvents) doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}) })"
-                x-show="(!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || (maxSpaces === 'Any' || $store.events.spaces[id] > 0)) && (filter.day === 'all' || $refs.date{{event.eventId}}.textContent === filter.day) && (!filter.overlap || !bookingOverlap)" 
+                x-init="id = {{event.eventId}}; maxSpaces = {{maxSpaces}};"
+                x-show="(!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || (maxSpaces === 'Any' || $store.events.spaces[id] > 0)) && (filter.day === 'all' || $refs.date{{event.eventId}}.textContent === filter.day) && (!filter.overlap || !doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}))" 
                 >
                     {# Event Name #}
                     <td class="events-table-cell--name">
