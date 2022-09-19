@@ -204,10 +204,6 @@
                     }
                     this.sortTable(this.sortBy || 1, this.sortAscending)
                     this.searchUrlParams()
-                    // TODO: temporary force stored values to lowercase until everyone has this reset; in 10 days remove this after Sept 28th
-                    this.filter.day = (this.filter.day === "All")
-                        ? this.filter.day
-                        : 'all'
                     // TODO: temporary check stored values to makes sure they match; in 10 days remove this after Sept 28th
                     this.setCategory(this.filter.category)
 
