@@ -1,7 +1,7 @@
 {% if prices.length %}
     {# Only show form if they are logged in with a badge not a teen, not booked for the event and there are spaces open #}
     {# Get booked events when loading this form as it might have been set by the purchase serverless function #}
-    <section x-cloak x-show="isAuth && hasBadge && !isTeen && !isBooked({{event.eventId}}) && isSpaceOpen" class="rounded-md mt-base bg-card pt-sm pb-base px-base" x-init="if (isAuth) getBookedEvents()">
+    <section x-cloak x-show="isAuth && hasBadge && !isTeen && !isBooked({{event.eventId}}) && (maxSpaces === 'Any' || $store.events.spaces[id] > 0)" class="rounded-md mt-base bg-card pt-sm pb-base px-base" x-init="if (isAuth) getBookedEvents()">
         <header class="prose">
             <h2>PoC Dinner Signup</h2>
             <p>Please fill out this form to sign up for the PoC Dinner.</p>
@@ -78,7 +78,7 @@
         You must be <button @click="modal = 'login'" class="underline text-highlight">logged in</button> to sign up.
     </div>
     {# Message for when logged in, not booked, and there are no spaces left #}
-    <div x-cloak x-show="isAuth && !isSpaceOpen" class="prose rounded-md bg-card p-base mt-base">
+    <div x-cloak x-show="isAuth && !(maxSpaces === 'Any' || $store.events.spaces[id] > 0)" class="prose rounded-md bg-card p-base mt-base">
         There are no spaces left in the event
     </div>
 {% else %}

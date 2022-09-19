@@ -1,4 +1,4 @@
-<section class="mt-md" x-data="eventsTable">
+<section class="mt-md" x-data="eventsTable" x-init="$store.events.getSpaces()">
     <h2 class="font-serif text-3xl font-bold leading-none md:text-4xl text-header mb-base">Volunteer Shift List</h2>
 
     {# Volunteer Filter Buttons #}
@@ -80,13 +80,13 @@
                 {% if (event.metadata.Players > 0) %}
                     {% set maxSpaces = event.metadata.Players %}
                 {% else %}
-                    {% set maxSpaces = "null" %}
+                    {% set maxSpaces = "'Any'" %}
                 {% endif %}
                 {# isFav is in Alpine.data("global") #}
                 <tr 
                 x-data="eventInfo"
                 x-init="id = {{event.eventId}}; maxSpaces = {{maxSpaces}}; bookingOverlap = doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}); $watch('bookedEvents', val => { if (bookedEvents) doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}) })"
-                x-show="(!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || isSpaceOpen) && (filter.day === 'all' || $refs.date{{event.eventId}}.textContent === filter.day) && (!filter.overlap || !bookingOverlap)" 
+                x-show="(!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || (maxSpaces === 'Any' || $store.events.spaces[id] > 0)) && (filter.day === 'all' || $refs.date{{event.eventId}}.textContent === filter.day) && (!filter.overlap || !bookingOverlap)" 
                 >
                     {# Event Name #}
                     <td class="events-table-cell--name">

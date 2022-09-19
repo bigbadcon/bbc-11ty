@@ -330,6 +330,35 @@ document.addEventListener('alpine:init', () => {
   })
 
   /* -------------------------------------------------------------------------- */
+  /*                             Alpine Events Store                            */
+  /* -------------------------------------------------------------------------- */
+
+  Alpine.store('events', {
+      init() {
+        console.log('events init');
+        let spacesLS = JSON.parse(localStorage.getItem('spaces')) || {}
+        this.spaces = spacesLS
+      },
+      spaces: {},
+      async getAllSpaces() {
+        console.log('getAllSpaces');
+        const spaces = await fetchData('/events/spaces/public')
+        if (spaces) {
+          this.spaces = spaces
+          localStorage.setItem('spaces', JSON.stringify(this.spaces))
+        }
+      },
+      async getSpace(id) {
+        console.log('getSpace');
+        const space = await fetchData(`/events/${id}/spaces/public`)
+        if (space) {
+          this.spaces = {...this.spaces, [id]: space}
+          localStorage.setItem('spaces', JSON.stringify(this.spaces))
+        }
+      }
+  })
+
+  /* -------------------------------------------------------------------------- */
   /*                             Alpine Event Table                             */
   /* -------------------------------------------------------------------------- */
 
@@ -343,8 +372,6 @@ document.addEventListener('alpine:init', () => {
             this.searchUrlParams()
             // TODO: temporary check stored values to makes sure they match; in 10 days remove this after Sept 28th
             this.setCategory(this.filter.category)
-
-            this.getSpaces()
         },
         filter: this.$persist({favsOnly: false, openOnly: false, category: 'all', day: 'all', overlap: false}),
         get isFilterDefault() {
@@ -438,12 +465,6 @@ document.addEventListener('alpine:init', () => {
                 this.setCategory(cat)
             }
         },
-        spaces: this.$persist({}),
-        async getSpaces() {
-            const spaces = await fetchData('/events/spaces/public')
-            if (spaces) 
-                this.spaces = spaces
-        }
     }
   })
   /* -------------------------------------------------------------------------- */
@@ -455,9 +476,6 @@ document.addEventListener('alpine:init', () => {
   Alpine.data('eventInfo', function () {
     // See init on page
     return {
-      init() {
-        this.getEventSpace()
-      },
       id: 0, // this is filled in in nunjucks
       categories: [], // this is filled in in nunjucks
       maxSpaces: null, // this is filled in nunjucks; it is either a number or null, which mean "Any"
@@ -465,17 +483,8 @@ document.addEventListener('alpine:init', () => {
       gm: [],
       event_image: "",
       bookingOverlap: false, // does this event overlap with my other bookings? Is set on page using doesEventOverlap() function in global
-      spaces: this.$persist({}), // this is shared with the eventTable data
-      get openSpaces() {
-        return this.maxSpaces && this.spaces[this.id]
-      },
-      get isSpaceOpen() {
-        // Always return true if maxSpaces is null, otherwise return is spaces is greater than 0
-        return (this.maxSpaces === null) ? true : this.spaces[this.id] > 0
-      },
       async getEventInfo(id) {
         id = id || this.id
-        // let spacesLS = JSON.parse(localStorage.getItem('spaces')) || {}
         let eventsLS = JSON.parse(localStorage.getItem('events')) || {}
 
         if (eventsLS[id]) {
@@ -495,9 +504,9 @@ document.addEventListener('alpine:init', () => {
 
           /* ------------------------ Update all data variables ----------------------- */
           // get only active bookings that are gms/speakers (bookingComment is null if not labelled)
-          this.gm = bookings.filter(booking => booking.bookingComment)
+          this.gm = bookings.filter(booking => booking.bookingComment) || []
           // get only active bookings that are not gms/speakers (bookingComment is null if not labelled)
-          this.bookings = bookings.filter(booking => !booking.bookingComment).sort((a,b) => a.user.displayName.localeCompare(b.user.displayName))
+          this.bookings = bookings.filter(booking => !booking.bookingComment).sort((a,b) => a.user.displayName.localeCompare(b.user.displayName)) || []
           // get event_image
           this.event_image = metadata.event_image
 
@@ -511,12 +520,6 @@ document.addEventListener('alpine:init', () => {
 
         } catch (e) {
           console.log(e)
-        }
-      },
-      async getEventSpace() {
-        if (this.id) {
-          const data = await fetchData(`/events/${this.id}/spaces/public`)
-          if (data) this.spaces[this.id] = data
         }
       },
       async uploadImage(e) {

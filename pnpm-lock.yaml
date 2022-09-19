@@ -6,7 +6,7 @@ specifiers:
   '@11ty/eleventy-img': ^0.9.0
   '@11ty/eleventy-plugin-rss': ^1.1.1
   '@alpinejs/intersect': ^3.10.3
-  '@alpinejs/persist': ^3.10.2
+  '@alpinejs/persist': ^3.10.3
   '@colinaut/alpinejs-plugin-simple-validate': ^1.7.10
   '@netlify/functions': ^0.7.2
   '@playwright/test': ^1.22.2
@@ -16,7 +16,7 @@ specifiers:
   '@tailwindcss/forms': ^0.5.2
   '@tailwindcss/typography': ^0.5.2
   airtable: ^0.11.4
-  alpinejs: ^3.10.2
+  alpinejs: ^3.10.3
   array-flat-polyfill: ^1.0.1
   autoprefixer: latest
   axios: ^0.21.1
@@ -51,7 +51,7 @@ dependencies:
   '@11ty/eleventy-img': 0.9.0
   '@11ty/eleventy-plugin-rss': 1.1.1_@11ty+eleventy@1.0.2
   '@alpinejs/intersect': 3.10.3
-  '@alpinejs/persist': 3.10.2
+  '@alpinejs/persist': 3.10.3
   '@colinaut/alpinejs-plugin-simple-validate': 1.7.10
   '@netlify/functions': 0.7.2
   '@sendgrid/mail': 7.4.6
@@ -60,7 +60,7 @@ dependencies:
   '@tailwindcss/forms': 0.5.2_tailwindcss@3.1.8
   '@tailwindcss/typography': 0.5.2_tailwindcss@3.1.8
   airtable: 0.11.4
-  alpinejs: 3.10.2
+  alpinejs: 3.10.3
   array-flat-polyfill: 1.0.1
   autoprefixer: 10.4.11_postcss@8.4.16
   axios: 0.21.4
@@ -194,8 +194,8 @@ packages:
     resolution: {integrity: sha512-vMRvhbMJzS1tupb2a/3GF5H+gLxxWaXJpcxJlfSHrV2JTb+RFWOJIkL/63JpPPGibtpaNBDrx3hsRN0CJ4d5mw==}
     dev: false
 
-  /@alpinejs/persist/3.10.2:
-    resolution: {integrity: sha512-BYnc4CxiuBHEaMqeMkU9KVrmV88lOEkdWY6qo5ryDnPMJGg1T/YhAMl3JxPImLJTsdc4r9fmcRgWeCXNPSGJew==}
+  /@alpinejs/persist/3.10.3:
+    resolution: {integrity: sha512-c5BWcCn4RHPtkeNEe0Mj99FuGuqcBgD1MBmYg8zKEFIjuu0bePd5LkfL8I8gVhrPIL2Ip7xXnREaWK6rVvUWSA==}
     dev: false
 
   /@ampproject/remapping/2.2.0:
@@ -859,8 +859,8 @@ packages:
       - encoding
     dev: false
 
-  /alpinejs/3.10.2:
-    resolution: {integrity: sha512-P6DTX78J94FgsskS3eS23s26hfb0NWQZUidBnkUK7fId1x64/kLm5E79lL3HNItUmHDCKOHvfP8EAcuCVab89w==}
+  /alpinejs/3.10.3:
+    resolution: {integrity: sha512-nt/w4hLq9pPaexCsHmO5zV5Alvq4yu9n0Iclti6aV0HmiqLWH/axUb0pn8z3XVuVNcj8EOXOQw+WpwPzMzLBWg==}
     dependencies:
       '@vue/reactivity': 3.1.5
     dev: false
