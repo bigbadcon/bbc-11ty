@@ -279,7 +279,7 @@ document.addEventListener('alpine:init', () => {
       },
       async toggleFav(id) {
         id = Number(id)
-        
+
         let data
         if (this.isFav(id)) {
           this.favEvents = this.favEvents.filter(fav => fav !== id)
@@ -328,6 +328,7 @@ document.addEventListener('alpine:init', () => {
     return {
       id: 0, // this is filled in in nunjucks
       categories: [], // this is filled in in nunjucks
+      maxSpaces: 0, // this is temp filled in in nunjucks
       spacesOpen: 0, // this is temp filled in in nunjucks
       bookings: [],
       gm: [],
