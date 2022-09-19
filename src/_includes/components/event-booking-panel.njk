@@ -13,25 +13,8 @@ x-init="if (isAuth) getBookedEvents(); bookingOverlap = doesEventOverlap('{{even
 
     {# Only show if logged in and has event data #}
     <div x-cloak x-show="isAuth" class="flex flex-col gap-sm">
-        <div class="flex flex-wrap justify-between">
-            {# timezone data is in x-data="eventFilter" in wrapping div in base.njk #}
-            {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
-            <div>
-                <strong>Date:</strong>
-                {% if (event.eventDuration > 0) %}
-                    <span class="whitespace-nowrap">{{ event.eventStartDateTime | formatDateWithYear }}</span>
-                    <span class="whitespace-nowrap">{{ event.eventStartDateTime | formatTime }}
-                        <span class="whitespace-nowrap">({{ event.eventDuration }} hours)</span>
-                    </span>
-                {% else %}
-                    <span class="opacity-50">TBD</span>
-                {% endif %}
-            </div>
-        </div>
-        <div>
-            <strong>Spaces Open:</strong>
-            <span x-text="spacesOpen"></span> out of {{event.metadata.Players}}
-        </div>
+        {% include 'components/event-date.njk' %}
+        {% include 'components/event-spaces.njk' %}
 
         <div x-cloak x-show="bookings && bookings.length">
             <h4 class="font-serif text-2xl font-semibold">Attendee/Player List</h4>
@@ -54,9 +37,9 @@ x-init="if (isAuth) getBookedEvents(); bookingOverlap = doesEventOverlap('{{even
                 This event does not count towards your quota.
             </div>
             {# Show if event is full #}
-            <div x-show="spacesOpen <= 0" class="font-bold">Event is full</div>
+            <div x-show="!isSpaceOpen" class="font-bold">Event is full</div>
             {# Booking button; only show if there are spaces open, if user is not booked, if they have available slots or if it is quota exempt, and if they are not overlapped #}
-            <button class="button" x-show="spacesOpen > 0 && !isBooked({{event.eventId}}) && (isQuotaExempt || availableSlots > 0) && !bookingOverlap" @click="bookEvent({{event.eventId}})">Book Event</button>
+            <button class="button" x-show="isSpaceOpen && !isBooked({{event.eventId}}) && (isQuotaExempt || availableSlots > 0) && !bookingOverlap" @click="bookEvent({{event.eventId}})">Book Event</button>
             {# Show Cancel if booked #}
             <button class="button" x-show="isBooked({{event.eventId}})" @click="cancelBooking({{event.eventId}})">Cancel Booking</span>
         </div>

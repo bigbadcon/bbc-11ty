@@ -73,8 +73,8 @@
                         {# TODO: add button that registers them for the event 3263 if they select all the above #}
                         <div x-show="$validate.isComplete('form') && $formData.badge_type.value === 'Yes'">
                             <div class="flex mt-base gap-sm" x-show="!isTeen">
-                                <button class="button" x-show="spacesOpen > 0 && !isBooked(3263)" @click.prevent="bookEvent(3263)">Book Event</button>
-                                <span x-show="spacesOpen <= 0 && !isBooked(3263)" class="font-bold">Event is full</span>
+                                <button class="button" x-show="isSpaceOpen && !isBooked(3263)" @click.prevent="bookEvent(3263)">Book Event</button>
+                                <span x-show="!isSpaceOpen" class="font-bold">Event is full</span>
                                 <button class="button" x-show="isBooked(3263) && user && user.displayName !== owner" @click.prevent="cancelBooking(3263)">Cancel Booking</span>
                             </div>
                             <div x-show="isTeen" class="italic mt-base">

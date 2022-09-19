@@ -23,6 +23,18 @@ function compareArrays(arr1, arr2) {
   return Array.isArray(arr1) && Array.isArray(arr2) && arr1.filter(val => arr2.indexOf(val) !== -1)
 }
 
+function compareValues(a, b) {
+  // return -1/0/1 based on what you "know" a and b
+  // are here. Numbers, text, some custom case-insensitive
+  // and natural number ordering, etc. That's up to you.
+  // A typical "do whatever JS would do" is:
+  return (a < b)
+      ? -1
+      : (a > b)
+          ? 1
+          : 0;
+}
+
 /* ------------------------- Convert odd characters ------------------------- */
 const decodeText = text => {
   return text && utf8.decode(windows1252.encode(text,{
@@ -89,10 +101,11 @@ async function fetchData(url, options, authToken) {
     method: 'GET', 
     headers: { 
       'Content-Type': 'application/json;charset=utf-8',
-      Authorization: authToken
-    }, 
+    },
     ...options
   }
+
+  if (authToken) options.headers.Authorization = authToken
 
   if (options.body) options.body = JSON.stringify(options.body)
 
@@ -316,9 +329,125 @@ document.addEventListener('alpine:init', () => {
     }
   })
 
-
   /* -------------------------------------------------------------------------- */
-  /*                            Alpine Component Data                           */
+  /*                             Alpine Event Table                             */
+  /* -------------------------------------------------------------------------- */
+
+  Alpine.data('eventsTable', function () {
+    return {
+        init() {
+            if (this.sortAscending === undefined) {
+                this.sortAscending = true
+            }
+            this.sortTable(this.sortBy || 1, this.sortAscending)
+            this.searchUrlParams()
+            // TODO: temporary check stored values to makes sure they match; in 10 days remove this after Sept 28th
+            this.setCategory(this.filter.category)
+
+            this.getSpaces()
+        },
+        filter: this.$persist({favsOnly: false, openOnly: false, category: 'all', day: 'all', overlap: false}),
+        get isFilterDefault() {
+            return this.filter.favsOnly === false && this.filter.openOnly === false && this.filter.category === 'all' && this.filter.day === 'all' && this.filter.overlap === false
+        },
+        resetFilters() {
+            this.filter.favsOnly = false;
+            this.filter.openOnly = false;
+            this.filter.overlap = false;
+            this.filter.category = 'all';
+            this.filter.day = 'all';
+        },
+        resetUserFilters() {
+            this.filter.favsOnly = false;
+            this.filter.openOnly = false;
+            this.filter.overlap = false;
+        },
+        sortBy: this.$persist(1),
+        sortAscending: this.$persist(true),
+        setCategory(cat) {
+            const allCategories = [
+                'all',
+                'rpg',
+                'board/card game',
+                'playtest',
+                'panel',
+                'workshop',
+                'god',
+                'all ages',
+                'early signup',
+                'vending'
+            ]
+            this.filter.category = (cat && allCategories.includes(cat))
+                ? cat
+                : 'all'
+        },
+        sortTable(colnum, direction) {
+            // If this is the same column than switch direction
+            if (direction === undefined) {
+                if (this.sortBy === colnum) {
+                    this.sortAscending = !this.sortAscending
+                } else {
+                    this.sortAscending = true
+                    this.sortBy = colnum
+                }
+            } else {
+                this.sortAscending = direction
+                this.sortBy = colnum
+            }
+
+            const table = document.querySelector('#events-table tbody');
+            let rows = Array.from(table.querySelectorAll(`tr`));
+
+            // first column is name which is in h3 tag
+            let qs = colnum === 1
+                ? `td:nth-child(${colnum}) h3`
+                : `td:nth-child(${colnum})`;
+
+            rows.sort((r1, r2) => {
+                // get each row's relevant column
+                let t1 = r1.querySelector(qs);
+                let t2 = r2.querySelector(qs);
+
+                // if it has data-sort attribute than use that
+                t1 = (t1.dataset.sort)
+                    ? t1.dataset.sort
+                    : t1.textContent
+                t2 = (t2.dataset.sort)
+                    ? t2.dataset.sort
+                    : t2.textContent
+
+                // and then effect sorting by comparing their content:
+                if (this.sortAscending) {
+                    return compareValues(t1, t2);
+                } else {
+                    return compareValues(t2, t1);
+                }
+            });
+
+            // and then the magic part that makes the sorting appear on-page:
+            rows.forEach(row => table.appendChild(row));
+        },
+        searchUrlParams() {
+            if (location.search) {
+                const params = new URLSearchParams(location.search);
+                let cat = params.get('cat')
+                cat = cat
+                    .replace("-", " ")
+                    .toLowerCase()
+
+                this.setCategory(cat)
+            }
+        },
+        spaces: this.$persist({}),
+        async getSpaces() {
+            const spaces = await fetchData('/events/spaces/public')
+            if (spaces) 
+                this.spaces = spaces
+        }
+    }
+  })
+  /* -------------------------------------------------------------------------- */
+  /*                              Alpine Event Info                             */
   /* -------------------------------------------------------------------------- */
 
   /* ----------- eventInfo Used for Event Table Rows and Event Pages ---------- */
@@ -331,20 +460,25 @@ document.addEventListener('alpine:init', () => {
       },
       id: 0, // this is filled in in nunjucks
       categories: [], // this is filled in in nunjucks
-      maxSpaces: 0, // this is temp filled in in nunjucks
-      spacesOpen: 0, // this is temp filled in in nunjucks
+      maxSpaces: null, // this is filled in nunjucks; it is either a number or null, which mean "Any"
       bookings: [],
       gm: [],
       event_image: "",
       bookingOverlap: false, // does this event overlap with my other bookings? Is set on page using doesEventOverlap() function in global
-      spaces: this.$persist({}),
+      spaces: this.$persist({}), // this is shared with the eventTable data
+      get openSpaces() {
+        return this.maxSpaces && this.spaces[this.id]
+      },
+      get isSpaceOpen() {
+        // Always return true if maxSpaces is null, otherwise return is spaces is greater than 0
+        return (this.maxSpaces === null) ? true : this.spaces[this.id] > 0
+      },
       async getEventInfo(id) {
         id = id || this.id
         // let spacesLS = JSON.parse(localStorage.getItem('spaces')) || {}
         let eventsLS = JSON.parse(localStorage.getItem('events')) || {}
-        // this.spacesOpen = spacesLS[id]
+
         if (eventsLS[id]) {
-          this.spacesOpen = eventsLS[id].spacesOpen
           this.bookings = eventsLS[id].bookings
           this.gm = eventsLS[id].gm
           this.event_image = eventsLS[id].event_image
@@ -364,15 +498,11 @@ document.addEventListener('alpine:init', () => {
           this.gm = bookings.filter(booking => booking.bookingComment)
           // get only active bookings that are not gms/speakers (bookingComment is null if not labelled)
           this.bookings = bookings.filter(booking => !booking.bookingComment).sort((a,b) => a.user.displayName.localeCompare(b.user.displayName))
-          // spacesOpen is based on number of players - bookings unless players is not set as a number then it defaults to 'Any'
-          // TODO: We might want to revisit this as it's a bit ugly
-          this.spacesOpen = Number(metadata.Players) ? Number(metadata.Players) - this.bookings.length : 'Any'
           // get event_image
           this.event_image = metadata.event_image
 
           /* -------------------------- Update Local Storage -------------------------- */
           eventsLS[id] = {
-            spacesOpen: this.spacesOpen,
             bookings: this.bookings,
             gm: this.gm,
             event_image: this.event_image
@@ -382,9 +512,6 @@ document.addEventListener('alpine:init', () => {
         } catch (e) {
           console.log(e)
         }
-      },
-      get isSpacesOpen() {
-        return this.spacesOpen > 0 || isNaN(this.spacesOpen)
       },
       async getEventSpace() {
         if (this.id) {
@@ -432,7 +559,6 @@ document.addEventListener('alpine:init', () => {
             this.event_image = data.fileName
           }
           eventsLS[eventId] = {
-            spacesOpen: this.spacesOpen,
             bookings: this.bookings,
             gm: this.gm,
             event_image: this.event_image
