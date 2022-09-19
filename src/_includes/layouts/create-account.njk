@@ -43,7 +43,7 @@
                     <fieldset>
                         <legend>Code of Conduct Agreement</legend>
                         <div class="flex items-center">
-                            <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-model="agree" required>
+                            <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-model="agreeCoC" required>
                             <label for="agree-to-community-standards" class="text-body-highlight"3324>
                                 Yes &mdash; I agree to the Go Play NW <a href="/code-of-conduct">Code of Conduct</a>
                                 <span class="font-bold text-highlight">*</span>
@@ -103,11 +103,20 @@
                             <input type="hidden" value="" name="displayName" id="displayName" :value="displayName"/>
                             <input type="hidden" value="create-account" name="formName" id="formName"/>
                         </div>
+                        <div>
+                            <label class="text-xs uppercase">Go Play NW Age Policy <span class="font-bold text-highlight">*</span></label>
+                            <p class="text-xs text-body mb-sm">You must be 18 years or older to attend Go Play NW. Please see our <a href="/code-of-conduct#AgePolicy">Age Policy</a> for more information.</p>
+                            <input type="checkbox" id="over-18-confirmation" name="over-18-confirmation" value="Yes" x-model="agreeAge" required>
+                            <label for="over-18-confirmation" class="text-body-highlight"3324>
+                                Yes  &mdash; I am 18 years or older
+                                <span class="font-bold text-highlight">*</span>
+                            </label>
+                        </div>                                                                        
                     </fieldset>
                     {# // TODO: add opt in for mailing list? #}
                     <div data-netlify-recaptcha="true"></div>
                     <p class="mt-base">
-                        <button type="submit" :disabled="!agree" disabled>Submit</button>
+                        <button type="submit" :disabled="!agreeAge || !agreeCoC" disabled>Submit</button>
                     </p>
                 </form>
             </section>
