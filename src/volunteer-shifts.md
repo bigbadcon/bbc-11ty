@@ -8,6 +8,6 @@ navTitle: Volunteers Shifts
 order: 1
 icon: calendar-clock
 ---
-Our Rangers are the folks that make Big Bad Con possible. To join, you must first [sign up as a volunteer](/rangers/#signup). Once you are registered you can book a shift below! *NOTE: You must be logged in to see shift availability*
+Our Rangers are the folks that make Big Bad Con possible. To join, you must first [sign up as a volunteer](/rangers/#signup). Once you are registered you can book a shift below!
 
 [Learn more about the Rangers](/rangers){.icon-paw}
