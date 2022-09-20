@@ -372,7 +372,6 @@ document.addEventListener('alpine:init', () => {
             this.searchUrlParams()
             this.testFilters()
             this.setCategory(this.filter.category)
-            console.log(this.filter);
         },
         filter: this.$persist({favsOnly: false, openOnly: false, category: 'All', day: 'All', overlap: false}),
         get isFilterDefault() {
@@ -415,7 +414,7 @@ document.addEventListener('alpine:init', () => {
         ],
         setCategory(cat) {
             // TODO: make category list more dynamic
-            this.filter.category = (this.filter.category && cat && this.allCategories.includes(cat))
+            this.filter.category = (this.filter.category && cat && this.allCategories.some(val => val.toLowerCase() === cat.toLowerCase()))
                 ? cat
                 : 'all'
         },
@@ -431,7 +430,7 @@ document.addEventListener('alpine:init', () => {
         ],
         setDay(day) {
           // TODO: make day range more dynamic
-          this.filter.day = (this.filter.day && day && this.allDays.includes(day))
+          this.filter.day = (this.filter.day && day && this.allDays.some(val => val.toLowerCase() === day.toLowerCase()))
               ? day
               : 'all'
         },

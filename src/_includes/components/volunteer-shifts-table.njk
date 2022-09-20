@@ -7,7 +7,7 @@
             <h5 class="text-sm font-bold">Date:</h5>
             <select class="mb-0 text-sm cursor-pointer pl-xs py-2xs" x-model="filter.day" >
                 <template x-for="day in allDays">
-                    <option :value="day" x-text="day"></option>
+                    <option x-text="day"></option>
                 </template>
             </select>
         </div>

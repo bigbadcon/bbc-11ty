@@ -10,9 +10,9 @@
 
         <div class="flex items-center justify-start gap-xs">
             <h5 class="text-sm font-bold">Category:</h5>
-            <select class="mb-0 text-sm cursor-pointer pl-xs py-2xs" x-model="filter.category" >
+            <select class="mb-0 text-sm cursor-pointer pl-xs py-2xs" x-model="filter.category" x-init="console.log(filter.category)">
                 <template x-for="cat in allCategories">
-                    <option :value="cat" x-text="cat"></option>
+                    <option x-text="cat" :selected="filter.category.toLowerCase() === cat.toLowerCase()"></option>
                 </template>
             </select>
         </div>
@@ -20,7 +20,7 @@
             <h5 class="text-sm font-bold">Date:</h5>
             <select class="mb-0 text-sm cursor-pointer pl-xs py-2xs" x-model="filter.day" >
                 <template x-for="day in allDays">
-                    <option :value="day" x-text="day"></option>
+                    <option x-text="day" :selected="filter.day.toLowerCase() === day.toLowerCase()"></option>
                 </template>
             </select>
         </div>
