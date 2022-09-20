@@ -28,6 +28,7 @@ function compareValues(a, b) {
   // are here. Numbers, text, some custom case-insensitive
   // and natural number ordering, etc. That's up to you.
   // A typical "do whatever JS would do" is:
+
   return (a < b)
       ? -1
       : (a > b)
@@ -365,12 +366,15 @@ document.addEventListener('alpine:init', () => {
   Alpine.data('eventsTable', function () {
     return {
         init() {
-            if (this.sortAscending === undefined) {
-                this.sortAscending = true
-            }
-            this.sortTable(this.sortBy || 1, this.sortAscending)
             this.searchUrlParams()
             this.testFilters()
+
+            // sort table on login
+            const page = location.pathname.split("/").filter(c => c.length).pop()
+            if (this.sort[page] && this.sort[page].col !== undefined) {
+              const th = this.$root.querySelectorAll('table th button')
+              this.sortTable(th[this.sort[page].col],this.sort[page].ascending)
+            }
         },
         filter: this.$persist({favsOnly: false, openOnly: false, category: 'All', day: 'All', overlap: false}),
         get isFilterDefault() {
@@ -396,6 +400,7 @@ document.addEventListener('alpine:init', () => {
             this.filter.openOnly = false;
             this.filter.overlap = false;
         },
+        sort: this.$persist({}),
         sortBy: this.$persist(1),
         sortAscending: this.$persist(true),
         allCategories: [
@@ -436,43 +441,55 @@ document.addEventListener('alpine:init', () => {
         filterDay(date) {
           return this.filter.day.toLowerCase() === "all" || this.filter.day.toLowerCase() === date.toLowerCase()
         },
-        sortTable(colnum, direction) {
-            // If this is the same column than switch direction
-            if (direction === undefined) {
-                if (this.sortBy === colnum) {
-                    this.sortAscending = !this.sortAscending
-                } else {
-                    this.sortAscending = true
-                    this.sortBy = colnum
-                }
-            } else {
-                this.sortAscending = direction
-                this.sortBy = colnum
+        isSort(el) {
+            const page = location.pathname.split("/").filter(c => c.length).pop()
+            const table = el.closest('table')
+            const ths = Array.from(table.querySelectorAll(`th`))
+            const col = ths.findIndex(th => th === el.closest('th'))
+            const sortCol = this.sort[page] && this.sort[page].col
+            const ascending = this.sort[page] && this.sort[page].ascending
+            return { col: col === sortCol, ascending: ascending }
+        },
+        sortTable(e, ascending) {
+            // Allow for either the event or the element to be used
+            const el = (e instanceof Element) ? e : e.target
+            const page = location.pathname.split("/").filter(c => c.length).pop()
+            const table = el.closest('table')
+            const ths = Array.from(table.querySelectorAll(`th`))
+            const col = ths.findIndex(th => th === el.closest('th'))
+
+            const tbody = table.querySelector('tbody')
+            const rows = Array.from(tbody.querySelectorAll(`tr`))
+
+            // If boolean than just use ascending var
+            if (typeof ascending !== 'boolean') {
+              // If this is the same column than flip direction, otherwise sort ascending
+              ascending = (this.sort[page] && this.sort[page].col === col && typeof this.sort[page].ascending === "boolean") ? !this.sort[page].ascending : true
             }
 
-            const table = document.querySelector('#events-table tbody');
-            let rows = Array.from(table.querySelectorAll(`tr`));
+            // Store values
+            this.sort[page] = { col:col, ascending: ascending }
 
-            // first column is name which is in h3 tag
-            let qs = colnum === 1
-                ? `td:nth-child(${colnum}) h3`
-                : `td:nth-child(${colnum})`;
+            let qs = `td:nth-child(${col + 1})`
 
             rows.sort((r1, r2) => {
                 // get each row's relevant column
                 let t1 = r1.querySelector(qs);
                 let t2 = r2.querySelector(qs);
-
                 // if it has data-sort attribute than use that
-                t1 = (t1.dataset.sort)
-                    ? t1.dataset.sort
-                    : t1.textContent
-                t2 = (t2.dataset.sort)
-                    ? t2.dataset.sort
-                    : t2.textContent
+                t1 = t1.dataset.sort || t1.textContent
+                t2 = t2.dataset.sort || t2.textContent
+
+                // check if this is a number and if so convert to number
+                t1 = (isNaN(Number(t1))) ? t1 : Number(t1);
+                t2 = (isNaN(Number(t2))) ? t2 : Number(t2);
+                // If one is a number and the other is not then convert then non number to 0
+                // this is mainly for the spaces column
+                if (isNaN(t1) && !isNaN(t2)) t1 = 0
+                if (isNaN(t2) && !isNaN(t1)) t2 = 0
 
                 // and then effect sorting by comparing their content:
-                if (this.sortAscending) {
+                if (ascending) {
                     return compareValues(t1, t2);
                 } else {
                     return compareValues(t2, t1);
@@ -480,7 +497,7 @@ document.addEventListener('alpine:init', () => {
             });
 
             // and then the magic part that makes the sorting appear on-page:
-            rows.forEach(row => table.appendChild(row));
+            rows.forEach(row => tbody.appendChild(row));
         },
         searchUrlParams() {
             if (location.search) {

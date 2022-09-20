@@ -61,31 +61,41 @@
 
     {# Event Table List #}
     <table class="events-table" id="events-table">
-        <caption class="italic text-left mb-xs">Table can be sorted by event, system, or date</caption>
-        <thead :class="sortAscending ? 'ascending' : 'descending'">
+        <caption class="italic text-left mb-xs">Table is sortable by clicking on headers</caption>
+        <thead :class="isSort($el).ascending ? 'ascending' : 'descending'">
             <tr>
                 <th>
-                    <div class="sortable" :class="sortBy === 1 && 'active'">
-                        <button @click="sortTable(1)" class="sort-btn" title="Sort by event">Event</button>
+                    <div class="sortable" :class="isSort($el).col && 'active'">
+                        <button @click="sortTable" class="sort-btn" title="Sort by event">Event</button>
                     </div>
                 </th>
                 <th>
-                    <div class="sortable" :class="sortBy === 2 && 'active'">
-                        <button @click="sortTable(2)" class="sort-btn" title="Sort by system">System</button>
+                    <div class="sortable" :class="isSort($el).col && 'active'">
+                        <button @click="sortTable" class="sort-btn" title="Sort by system">System</button>
                     </div>
                 </th>
                 <th>
-                    <div class="sortable" :class="sortBy === 3 && 'active'">
-                        <button @click="sortTable(3)" class="sort-btn" title="Sort by Date/Time">Date/Time</button>
+                    <div class="sortable" :class="isSort($el).col && 'active'">
+                        <button @click="sortTable" class="sort-btn" title="Sort by Date/Time">Date/Time</button>
                     </div>
                 </th>
                 {% if sitemeta.context === 'dev' %}
                     <th class="!text-center">
-                        <span class="border-2 border-header px-xs py-2xs">ID</span>
+                        <div :class="isSort($el).col && 'active'" class="sortable">
+                            <button class="sort-btn" @click="sortTable">ID</button>
+                        </div>
                     </th>
                 {% endif %}
-                <th class="events-table-header--categories">Categories</th>
-                <th class="events-table-header--spaces">Spaces</th>
+                <th class="events-table-header--categories">
+                    <div :class="isSort($el).col && 'active'" class="sortable">
+                        <button @click="sortTable" class="sort-btn" title="Sort by Categories">Categories</button>
+                    </div>
+                </th>
+                <th class="events-table-header--spaces">
+                    <div :class="isSort($el).col && 'active'" class="sortable">
+                        <button @click="sortTable" class="sort-btn" title="Sort by Spaces">Spaces</button>
+                    </div>
+                </th>
                 <th class="events-table-header--fav" x-cloak x-show="isAuth">
                     <div class="flex justify-end">
                         <span class="cursor-pointer fav-star-header hover:bg-highlight" @click="filter.favsOnly = !filter.favsOnly" :class="filter.favsOnly && 'favved'"></span>
