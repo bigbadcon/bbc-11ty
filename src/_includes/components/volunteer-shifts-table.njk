@@ -7,7 +7,7 @@
             <h5 class="text-sm font-bold">Date:</h5>
             <select class="mb-0 text-sm cursor-pointer pl-xs py-2xs" x-model="filter.day" >
                 <template x-for="day in allDays">
-                    <option x-text="day"></option>
+                    <option x-text="day" :selected="filter.day.toLowerCase() === day.toLowerCase()"></option>
                 </template>
             </select>
         </div>
@@ -84,7 +84,7 @@
                 <tr 
                 x-data="eventInfo"
                 x-init="id = {{event.eventId}}; maxSpaces = {{maxSpaces}};"
-                x-show="(!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || (maxSpaces === 'Any' || $store.events.spaces[id] > 0)) && (filter.day === 'all' || $refs.date{{event.eventId}}.textContent === filter.day) && (!filter.overlap || !doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}))" 
+                x-show="(!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || (maxSpaces === 'Any' || $store.events.spaces[id] > 0)) && filterDay($refs.date{{event.eventId}}.textContent) && (!filter.overlap || !doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}))" 
                 >
                     {# Event Name #}
                     <td class="events-table-cell--name">
