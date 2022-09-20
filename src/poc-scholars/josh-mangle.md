@@ -3,7 +3,7 @@ tags: poc-scholar
 order: 0
 title: Josh Mangle
 position: ''
-published: false
+published: true
 gender: they/he
 image: "/images/josh-mangle.jpg"
 twitter: steam_hunk
