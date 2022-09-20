@@ -6,11 +6,9 @@
         <div class="flex items-center justify-start gap-xs">
             <h5 class="text-sm font-bold">Date:</h5>
             <select class="mb-0 text-sm cursor-pointer pl-xs py-2xs" x-model="filter.day" >
-                <option value="all">All</option>
-                <option>Oct 27</option>
-                <option>Oct 28</option>
-                <option>Oct 29</option>
-                <option>Oct 30</option>
+                <template x-for="day in allDays">
+                    <option :value="day" x-text="day"></option>
+                </template>
             </select>
         </div>
         <div class="flex items-center justify-start gap-xs"
