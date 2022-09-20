@@ -371,7 +371,6 @@ document.addEventListener('alpine:init', () => {
             this.sortTable(this.sortBy || 1, this.sortAscending)
             this.searchUrlParams()
             this.testFilters()
-            this.setCategory(this.filter.category)
         },
         filter: this.$persist({favsOnly: false, openOnly: false, category: 'All', day: 'All', overlap: false}),
         get isFilterDefault() {
