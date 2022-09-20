@@ -321,8 +321,8 @@ module.exports = async () => {
             // TODO: need to sort out Daylight Savings Time. This is locking it to PDT; PST is -08:00
             const eventStartDateTime = dayjs(event.eventStartDate + "T" + event.eventStartTime + "-07:00").tz(tz).toString()
             const eventEndDateTime = dayjs(event.eventEndDate + "T" + event.eventEndTime + "-07:00").tz(tz).toISOString()
-            // convert to simple array
-            const categories = event.categories.map(val => val.name) 
+            // convert to simple array sorted alphabetically
+            const categories = event.categories.map(val => val.name).sort((a,b) => a.localeCompare(b))
 
             /* ------------------ Build tags list from eventMetadataIds ----------------- */
             const tags = event.eventMetadataIds.reduce((acc, val) => {
