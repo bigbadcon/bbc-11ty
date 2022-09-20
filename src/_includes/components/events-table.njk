@@ -11,27 +11,17 @@
         <div class="flex items-center justify-start gap-xs">
             <h5 class="text-sm font-bold">Category:</h5>
             <select class="mb-0 text-sm cursor-pointer pl-xs py-2xs" x-model="filter.category" >
-                <option value="all">All</option>
-                <option value="rpg">RPG</option>
-                <option value="larp">LARP</option>
-                <option value="board/card game">Board/Card Game</option>
-                <option value="playtest">Playtest</option>
-                <option value="panel">Panel</option>
-                <option value="workshop">Workshop</option>
-                <option value="god">GoD</option>
-                <option value="all ages">All Ages</option>
-                <option value="early signup">Early Signup</option>
-                <option value="vending">Vending</option>
+                <template x-for="cat in allCategories">
+                    <option :value="cat" x-text="cat"></option>
+                </template>
             </select>
         </div>
         <div class="flex items-center justify-start gap-xs">
             <h5 class="text-sm font-bold">Date:</h5>
             <select class="mb-0 text-sm cursor-pointer pl-xs py-2xs" x-model="filter.day" >
-                <option value="all">All</option>
-                <option>Oct 27</option>
-                <option>Oct 28</option>
-                <option>Oct 29</option>
-                <option>Oct 30</option>
+                <template x-for="day in allDays">
+                    <option :value="day" x-text="day"></option>
+                </template>
             </select>
         </div>
         {# favsOnly data is in x-data="eventFilter" in wrapping div in base.njk #}
@@ -115,7 +105,7 @@
                 x-cloak
                 x-data="eventInfo"
                 x-init="id = {{event.eventId}}; maxSpaces = {{maxSpaces}}; categories = [{{event.categories | alpineArray}}];"
-                x-show="(filter.category === 'all' || categories.some(cat => cat.toLowerCase() === filter.category)) && (!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || (maxSpaces === 'Any' || $store.events.spaces[id] > 0)) && (filter.day === 'all' || $refs.date{{event.eventId}}.textContent === filter.day) && ( !filter.overlap || !doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}) )" >
+                x-show="filterCategory(categories) && (!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || (maxSpaces === 'Any' || $store.events.spaces[id] > 0)) && filterDay($refs.date{{event.eventId}}.textContent) && ( !filter.overlap || !doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}) )" >
 
                     {# Event Name #}
                     <td class="events-table-cell--name">

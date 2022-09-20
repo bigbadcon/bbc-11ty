@@ -370,19 +370,28 @@ document.addEventListener('alpine:init', () => {
             }
             this.sortTable(this.sortBy || 1, this.sortAscending)
             this.searchUrlParams()
-            // TODO: temporary check stored values to makes sure they match; in 10 days remove this after Sept 28th
+            this.testFilters()
             this.setCategory(this.filter.category)
+            console.log(this.filter);
         },
-        filter: this.$persist({favsOnly: false, openOnly: false, category: 'all', day: 'all', overlap: false}),
+        filter: this.$persist({favsOnly: false, openOnly: false, category: 'All', day: 'All', overlap: false}),
         get isFilterDefault() {
             return this.filter.favsOnly === false && this.filter.openOnly === false && this.filter.category === 'all' && this.filter.day === 'all' && this.filter.overlap === false
+        },
+        testFilters() {
+          // test on init to make sure all the filters are valid
+          this.filter.favsOnly = (typeof this.filter.favsOnly === 'boolean') ? this.filter.favsOnly : false
+          this.filter.openOnly = (typeof this.filter.openOnly === 'boolean') ? this.filter.openOnly : false
+          this.filter.overlap = (typeof this.filter.overlap === 'boolean') ? this.filter.overlap : false
+          this.setCategory(this.filter.category)
+          this.setDay(this.filter.day)
         },
         resetFilters() {
             this.filter.favsOnly = false;
             this.filter.openOnly = false;
             this.filter.overlap = false;
-            this.filter.category = 'all';
-            this.filter.day = 'all';
+            this.filter.category = 'All';
+            this.filter.day = 'All';
         },
         resetUserFilters() {
             this.filter.favsOnly = false;
@@ -391,22 +400,43 @@ document.addEventListener('alpine:init', () => {
         },
         sortBy: this.$persist(1),
         sortAscending: this.$persist(true),
+        allCategories: [
+                'All',
+                'RPG',
+                'LARP',
+                'Board/Card Game',
+                'Playtest',
+                'Panel',
+                'Workshop',
+                'GoD',
+                'All Ages',
+                'Early Signup',
+                'Vending'
+        ],
         setCategory(cat) {
-            const allCategories = [
-                'all',
-                'rpg',
-                'board/card game',
-                'playtest',
-                'panel',
-                'workshop',
-                'god',
-                'all ages',
-                'early signup',
-                'vending'
-            ]
-            this.filter.category = (cat && allCategories.includes(cat))
+            // TODO: make category list more dynamic
+            this.filter.category = (this.filter.category && cat && this.allCategories.includes(cat))
                 ? cat
                 : 'all'
+        },
+        filterCategory(categories) {
+          return this.filter.category.toLowerCase() === "all" || categories.some(cat => cat.toLowerCase() === this.filter.category.toLowerCase())
+        },
+        allDays: [
+          'All',
+          'Oct 27',
+          'Oct 28',
+          'Oct 29',
+          'Oct 30'
+        ],
+        setDay(day) {
+          // TODO: make day range more dynamic
+          this.filter.day = (this.filter.day && day && this.allDays.includes(day))
+              ? day
+              : 'all'
+        },
+        filterDay(date) {
+          return this.filter.day.toLowerCase() === "all" || this.filter.day.toLowerCase() === date.toLowerCase()
         },
         sortTable(colnum, direction) {
             // If this is the same column than switch direction
