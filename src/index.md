@@ -16,4 +16,4 @@ tags: pages
 
 * Schedule of events [published now](https://www.bigbadcon.com/events/)!
 * [POC Dinner](https://www.bigbadcon.com/events/poc-dinner) and [Meet & Greet](https://www.bigbadcon.com/events/poc-meet-greet) sign ups open now!
-* Events sign ups begin 9/25 at 12PM PT
+* Events sign ups begin 9/25 at 12PM PT. [Here's how sign ups work!](/how-do-game-signups-work)
