@@ -1,6 +1,7 @@
 ---
 layout: layouts/form-buy-a-badge.njk
 title: Buy A Badge
+published: true
 description: ''
 tags: pages
 navGroup: Attend

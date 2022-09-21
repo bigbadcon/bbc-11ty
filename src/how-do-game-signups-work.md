@@ -1,6 +1,7 @@
 ---
 layout: layouts/page.njk
 title: How Do Game Signups Work?
+published: true
 description: Information on signing up for games and our quota system.
 ogImage: ''
 navGroup: Events

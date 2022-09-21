@@ -1,6 +1,7 @@
 ---
 layout: layouts/page.njk
 title: Account Submitted
+published: true
 description: ''
 tags: pages
 

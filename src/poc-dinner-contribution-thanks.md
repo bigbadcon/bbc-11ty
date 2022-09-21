@@ -1,6 +1,7 @@
 ---
 layout: layouts/page.njk
 title: Thanks For Contributing!
+published: true
 description: ''
 tags: pages
 

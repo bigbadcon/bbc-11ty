@@ -1,6 +1,7 @@
 ---
 layout: layouts/page.njk
 title: Accessibility Policy
+published: true
 description: ''
 ogImage: ''
 navGroup: Community

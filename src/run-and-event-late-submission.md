@@ -1,6 +1,7 @@
 ---
 layout: layouts/form-run-an-event.njk
 title: Run an Event (late submission)
+published: true
 description: ''
 ogImage: ''
 

@@ -1,6 +1,7 @@
 ---
 layout: layouts/page.njk
 title: Morgan Ellis Award
+published: true
 description: ''
 tags: pages
 navGroup: ''

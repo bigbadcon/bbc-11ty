@@ -1,6 +1,7 @@
 ---
 layout: layouts/poc-scholars.njk
 title: PoC Scholars
+published: true
 description: PoC Scholars
 tags: pages
 navGroup: Community

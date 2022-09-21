@@ -1,6 +1,7 @@
 ---
 layout: layouts/events-archive.njk
 title: Big Bad Online 2022
+published: true
 description: ''
 tags: pages
 listing: events

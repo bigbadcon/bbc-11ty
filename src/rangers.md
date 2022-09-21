@@ -1,6 +1,7 @@
 ---
 layout: layouts/form-volunteer-signup.njk
 title: Join The Rangers
+published: true
 description: ''
 tags: pages
 ogImage: ''

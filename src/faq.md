@@ -1,6 +1,7 @@
 ---
 layout: layouts/page.njk
 title: FAQ
+published: true
 description: ''
 tags: pages
 ogImage: ''

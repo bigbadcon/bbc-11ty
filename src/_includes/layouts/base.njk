@@ -25,7 +25,7 @@
         {# Main Content Area. <main> tag should live in content block #}
         {% block content %}{% endblock %}
         {# Add any content footers her e#}
-        {% for contentfooter in collections.contentfooter %}
+        {% for contentfooter in collections.contentfooter | published | sort %}
           {% if (contentfooter.data.location === page.fileSlug) %}
             <section class="mx-auto max-w-content p-base">
               <h2 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{ contentfooter.data.title }}</h2>

@@ -1,9 +1,10 @@
 ---
 title: Big Bad Blog
+published: true
 description: News about Big Bad Con
-layout: layouts/plain.njk
+layout: layouts/page.njk
 pagination:
-  data: collections.blogPublished
+  data: collections.blog | published
   size: 10
   reverse: true
   alias: blog

@@ -1,6 +1,7 @@
 ---
 layout: layouts/page.njk
 title: COVID Safety
+published: true
 description: Precautions we're taking to make the con as safe as we can.
 ogImage: ''
 
