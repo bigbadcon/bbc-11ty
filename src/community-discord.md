@@ -1,6 +1,7 @@
 ---
 layout: layouts/page.njk
 title: Discord
+published: true
 description: ''
 tags: pages
 ogImage: "/images/join-our-community-discord.png"

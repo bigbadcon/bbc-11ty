@@ -1,6 +1,7 @@
 ---
 layout: layouts/page.njk
 title: Thanks For Contacting Us
+published: true
 description: ''
 tags: pages
 

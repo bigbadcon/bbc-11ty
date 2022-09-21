@@ -12,14 +12,14 @@
       <div class="prose">{{ content | safe }}</div>
     </div>
     <section class="flex flex-col mx-auto max-w-content p-base gap-lg">
-      {% for person in collections.staff123ABC %}
+      {% for person in collections.staff | published | sort %}
         {{ biocard.card(person)}}
       {% endfor %}
     </section>
-    {% if collections.staffEmeritus123ABC %}
+    {% if collections["staff-emeritus"] | published %}
       <section class="flex flex-col mx-auto max-w-content p-base gap-lg">
-        <h1 class="font-serif text-5xl leading-none text-header mb-md">Staff Emeritus</h1>
-        {% for person in collections.staffEmeritus123ABC %}
+        <h1 class="font-serif text-5xl leading-none text-header">Staff Emeritus</h1>
+        {% for person in collections["staff-emeritus"] | published | sort %}
           {{ biocard.card(person)}}
         {% endfor %}
       </section>

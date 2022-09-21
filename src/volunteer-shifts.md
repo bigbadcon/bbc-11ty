@@ -1,6 +1,7 @@
 ---
 layout: layouts/volunteer-shifts.njk
 title: Volunteer Shifts
+published: true
 description: 'Our Rangers are the folks that make Big Bad Online possible. To join, sign up for a shift!'
 tags: pages
 navGroup: Volunteer

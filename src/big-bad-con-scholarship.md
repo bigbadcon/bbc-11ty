@@ -1,6 +1,7 @@
 ---
 layout: layouts/page.njk
 title: Big Bad Con Scholarship
+published: true
 description: ''
 ogImage: ''
 navGroup: Attend

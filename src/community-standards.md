@@ -1,6 +1,7 @@
 ---
 layout: layouts/page.njk
 title: Community Standards
+published: true
 description: ''
 tags: pages
 navGroup: Community

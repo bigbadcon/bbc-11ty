@@ -31,7 +31,7 @@
         {# Card grid #}
         <section class="mx-auto max-w-hero p-base">
             <ul class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-                {% for card in collections.cards123ABC %}
+                {% for card in collections.cards | published | sort %}
                     <li class="rounded shadow-md bg-card px-base pt-sm pb-base">
                         <h2 class="font-serif text-3xl leading-none text-header">{{ card.data.title }}</h2>
                         <div class="prose">{{ card.templateContent | safe }}</div>
@@ -42,7 +42,7 @@
         {# Big full width cards with images #}
         <section class="grid gap-4 mx-auto max-w-hero p-base">
             <ul class="grid gap-4">
-                {% for card in collections.bigcards123ABC %}
+                {% for card in collections.bigcards | published | sort %}
                     <li class="grid overflow-hidden rounded shadow-md md:grid-cols-3 bg-card">
                         <figure class="aspect-w-2 aspect-h-1">
                             <img src="{{card.data.image}}" class="object-cover object-center" alt="{{card.data.alt}}">

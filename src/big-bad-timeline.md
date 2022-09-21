@@ -1,6 +1,7 @@
 ---
 layout: layouts/page.njk
 title: Big Bad Timeline
+published: true
 description: ''
 ogImage: ''
 

@@ -1,6 +1,7 @@
 ---
 layout: layouts/page.njk
 title: Small Press Showcase
+published: true
 description: ''
 ogImage: ''
 

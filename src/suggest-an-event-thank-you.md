@@ -1,6 +1,7 @@
 ---
 layout: layouts/page.njk
 title: Thank you for your ideas!
+published: true
 description: ''
 tags: pages
 

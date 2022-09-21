@@ -1,6 +1,7 @@
 ---
 layout: layouts/form-exhibitor.njk
 title: Exhibitor Information
+published: true
 description: ''
 ogImage: ''
 navGroup: Attend

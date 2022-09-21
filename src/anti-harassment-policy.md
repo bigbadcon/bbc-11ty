@@ -1,6 +1,7 @@
 ---
 layout: layouts/page.njk
 title: Anti-Harassment Policy
+published: true
 description: ''
 tags: pages
 navGroup: Community

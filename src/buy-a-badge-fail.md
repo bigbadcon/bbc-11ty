@@ -1,6 +1,7 @@
 ---
 layout: layouts/page.njk
 title: Badge Purchase Failed
+published: true
 description: ''
 tags: pages
 

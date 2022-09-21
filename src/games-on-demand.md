@@ -1,6 +1,7 @@
 ---
 layout: layouts/form-run-games-on-demand.njk
 title: Games On Demand
+published: true
 description: ''
 tags: pages
 navGroup: Events

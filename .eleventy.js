@@ -103,46 +103,6 @@ module.exports = (eleventyConfig) => {
   /*                                 Collections                                */
   /* -------------------------------------------------------------------------- */
 
-   // Staff sorted by order number and then alphabetically
-   eleventyConfig.addCollection("blogPublished", function(collectionApi) {
-    return collectionApi.getFilteredByTag("blog").filter(c => c.data.published === true);
-  });
-
-  // Staff sorted by order number and then alphabetically
-  eleventyConfig.addCollection("staff123ABC", function(collectionApi) {
-    return collectionApi.getFilteredByTag("staff").filter(c => c.data.published === true).sort((a,b) => sortByOrder(a,b));
-  });
-
-  // Staff Emeritus sorted by order number and then alphabetically
-  eleventyConfig.addCollection("staffEmeritus123ABC", function(collectionApi) {
-    return collectionApi.getFilteredByTag("staff-emeritus").filter(c => c.data.published === true).sort((a,b) => sortByOrder(a,b));
-  });
-
-  // Staff sorted by order number and then alphabetically
-  eleventyConfig.addCollection("pocscholar123ABC", function(collectionApi) {
-    return collectionApi.getFilteredByTag("poc-scholar").filter(c => c.data.published === true).sort((a,b) => sortByOrder(a,b));
-  });
-
-  // Staff sorted by order number and then alphabetically
-  eleventyConfig.addCollection("pocTeam123ABC", function(collectionApi) {
-    return collectionApi.getFilteredByTag("poc-team-member").filter(c => c.data.published === true).sort((a,b) => sortByOrder(a,b));
-  });
-
-  // Home Page Cards published and sorted by order number and then alphabetically
-  eleventyConfig.addCollection("cards123ABC", function(collectionApi) {
-    return collectionApi.getFilteredByTag("cards").filter(c => c.data.published === true).sort((a,b) => sortByOrder(a,b));
-  });
-
-  // Home Page Big Cards published and sorted by order number and then alphabetically
-  eleventyConfig.addCollection("bigcards123ABC", function(collectionApi) {
-    return collectionApi.getFilteredByTag("bigcards").filter(c => c.data.published === true).sort((a,b) => sortByOrder(a,b));
-  });
-
-  // Home Page Cards published and sorted by order number and then alphabetically
-  eleventyConfig.addCollection("footer123ABC", function(collectionApi) {
-    return collectionApi.getFilteredByTag("footer").filter(c => c.data.published === true).sort((a,b) => sortByOrder(a,b));
-  });
-
   /* -------------------------------------------------------------------------- */
   /*                         Main Nav special collection                        */
   /* -------------------------------------------------------------------------- */
@@ -150,7 +110,7 @@ module.exports = (eleventyConfig) => {
   const navGroups = ["Attend","Events","Volunteer","Community","Blog"]
 
   eleventyConfig.addCollection("nav", function(collectionApi) {
-    const allNav = collectionApi.getAll().filter(c => c.data.navGroup)
+    const allNav = collectionApi.getAll().filter(c => c.data.navGroup).filter(c => c.data.published !== false)
     const tempArray = allNav.map(c => {
       return {
         group: c.data.navGroup,
@@ -177,6 +137,12 @@ module.exports = (eleventyConfig) => {
 /* -------------------------------------------------------------------------- */
 /*                                   Filters                                  */
 /* -------------------------------------------------------------------------- */
+
+/* --------------------------- Collections Filters -------------------------- */
+
+eleventyConfig.addFilter( "published", (collection) => collection && collection.filter(c => c.data.published !== false ) )
+
+eleventyConfig.addFilter( "sort", (collection) => collection && collection.sort((a,b) => sortByOrder(a,b)) )
 
 /* ------------------------------ Date Filters ------------------------------ */
 

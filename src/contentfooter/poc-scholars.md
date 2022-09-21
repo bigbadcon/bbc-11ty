@@ -1,5 +1,6 @@
 ---
 title: "Sponsors"
+published: true
 location: "poc-scholars"
 order: 1
 ---

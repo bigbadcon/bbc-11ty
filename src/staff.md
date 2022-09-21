@@ -1,6 +1,7 @@
 ---
 layout: layouts/staff.njk
 title: Our Staff
+published: true
 description: The Big Bad Con staff of volunteers
 tags: pages
 navGroup: Volunteer

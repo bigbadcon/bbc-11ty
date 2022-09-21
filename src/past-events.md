@@ -1,6 +1,7 @@
 ---
 layout: layouts/page.njk
 title: Past Events
+published: true
 description: Archive of Big Bad Con Events through the ages
 tags: pages
 navGroup: Events
