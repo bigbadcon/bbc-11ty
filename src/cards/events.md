@@ -16,3 +16,5 @@ Submit an event for Big Bad Con 2022!
 [Past Events](/past-events){.icon-library}
 
 [FAQ](/faq){.icon-faq}
+
+[How Sign Ups Work](https://www.bigbadcon.com/how-do-game-signups-work/){.icon-scroll}
