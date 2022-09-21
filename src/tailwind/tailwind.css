@@ -336,7 +336,7 @@ a[class^='icon-']:hover {
 }
 
 [class^='icon-']:before {
-  @apply block h-6 w-6 bg-highlight bg-gradient-to-br from-highlight via-highlight to-highlight-2;
+  @apply block h-6 w-6 bg-highlight bg-gradient-to-br from-highlight via-highlight to-highlight-2 shrink-0;
   mask-repeat: no-repeat;
   content: " ";
 }
