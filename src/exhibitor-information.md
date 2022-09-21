@@ -1,5 +1,5 @@
 ---
-layout: layouts/form-exhibitor.njk
+layout: layouts/page.njk
 title: Exhibitor Information
 description: ''
 ogImage: ''
@@ -7,6 +7,7 @@ navGroup: Attend
 navTitle: Exhibitors
 order: 3
 icon: booth
+
 ---
 Big Bad Con is a charity event, and that commitment to giving extends to our exhibitors, too! All the information below:
 
@@ -47,4 +48,6 @@ Burlingame, CA 94010
 
 $300 plus a donation of 10% of your proceeds to the Big Bad Con Scholarship Fund or another charity of your choice. Our scholarship fund helps folks at the intersection of marginalized identities attend the con.
 
-If you'd like to exhibit at Big Bad Con, please email info@bigbadcon.com
+### Application
+
+Our expo hall is now full and our vendor applications are closed for 2022. We'll re-open this page next year if you'd like to vend at Big Bad Con in the future.
