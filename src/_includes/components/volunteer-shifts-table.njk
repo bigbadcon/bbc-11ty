@@ -4,17 +4,16 @@
     {# Volunteer Filter Buttons #}
     <div class="flex flex-wrap items-center justify-start border-t-2 border-b-2 mb-base text-body gap-sm py-sm border-hr" >
         <div class="flex flex-col justify-start sm:items-center sm:flex-row gap-2xs sm:gap-xs">
-            <h5 class="text-xs font-bold sm:text-sm">Date:</h5>
-            <select class="mb-0 text-sm cursor-pointer pl-xs py-2xs" x-model="filter.day" >
+            <label class="text-xs font-bold sm:text-sm" for="filter-by-date">Date:</label>
+            <select class="mb-0 text-sm cursor-pointer pl-xs py-2xs" x-model="filter.day" id="filter-by-date">
                 <template x-for="day in allDays">
                     <option x-text="day" :selected="filter.day.toLowerCase() === day.toLowerCase()"></option>
                 </template>
             </select>
         </div>
-        <div class="flex items-center justify-start gap-xs"
+        <div class="flex flex-wrap items-center justify-start gap-xs"
         x-init="if (!isAuth) resetUserFilters(); $watch('isAuth', val => { if (!val) resetUserFilters() })">
             {# favsOnly data is in x-data="eventFilter" in wrapping div in base.njk #}
-            <h5 class="text-xs font-bold sm:text-sm">Filter:</h5>
             <button @click="filter.openOnly = !filter.openOnly" class="filter-btn" :class="filter.openOnly && 'active'">
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 28">
                     <title>square</title>

@@ -4,16 +4,16 @@
     {# Event Table Filter #}
     <div class="flex flex-wrap items-center justify-start border-t-2 border-b-2 mb-base text-body gap-sm py-sm border-hr" >
         <div class="flex flex-col justify-start sm:items-center sm:flex-row gap-2xs sm:gap-xs">
-            <h5 class="text-xs font-bold sm:text-sm">Date:</h5>
-            <select class="mb-0 text-sm cursor-pointer pl-xs py-2xs" x-model="filter.day" >
+            <label class="text-xs font-bold sm:text-sm" for="filter-by-date">Date:</label>
+            <select id="filter-by-date" class="mb-0 text-sm cursor-pointer pl-xs py-2xs" x-model="filter.day">
                 <template x-for="day in allDays">
-                    <option x-text="day" :selected="filter.day.toLowerCase() === day.toLowerCase()"></option>
+                    <option x-text="day" :selected="filter.category.toLowerCase() === cat.toLowerCase()"></option>
                 </template>
             </select>
         </div>
         <div class="flex flex-col justify-start sm:items-center sm:flex-row gap-2xs sm:gap-xs">
-            <h5 class="text-xs font-bold sm:text-sm">Category:</h5>
-            <select class="mb-0 text-sm cursor-pointer pl-xs py-2xs" x-model="filter.category" x-init="console.log(filter.category)">
+            <label for="filter-by-category" class="text-xs font-bold sm:text-sm">Category:</label>
+            <select id-"filter-by-category" class="mb-0 text-sm cursor-pointer pl-xs py-2xs" x-model="filter.category" x-init="console.log(filter.category)">
                 <template x-for="cat in allCategories">
                     <option x-text="cat" :selected="filter.category.toLowerCase() === cat.toLowerCase()"></option>
                 </template>
