@@ -1,0 +1,11 @@
+{# If booked add check mark, otherwise list number of spaces open #}
+{% if (event.metadata.Players > 0) %}
+    <div class="flex items-center justify-center py-sm">
+        <span 
+        class="block text-center border-2 rounded border-body h-[1.45rem] w-[2.2rem]" 
+        :class="maxSpaces !== 'Any' && $store.events.spaces[id] <= 0 && 'bg-card opacity-40'"
+        x-text="(isBooked({{event.eventId}})) ? '&#10004;' : (maxSpaces === 'Any') ? 'Any' : $store.events.spaces[id]">{{ event.metadata.Players }}</span>
+    </div>
+{% else %}
+    Any
+{% endif %}

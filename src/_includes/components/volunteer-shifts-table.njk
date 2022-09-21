@@ -1,49 +1,105 @@
-<section class="mt-md" 
-x-init="if ($store.auth.isAuth) $store.auth.getEventsCategory('volunteer-shift'); $watch('$store.auth.isAuth', value => {if (value) $store.auth.getEventsCategory('volunteer-shift')})">
+<section class="mt-md" x-data="eventsTable" x-init="$store.events.getAllSpaces()">
     <h2 class="font-serif text-3xl font-bold leading-none md:text-4xl text-header mb-base">Volunteer Shift List</h2>
-    {% include 'components/event-table-filter.njk' %}
-    <table class="w-full text-sm leading-tight text-body">
-        <thead>
+
+    {# Volunteer Filter Buttons #}
+    <div class="flex flex-wrap items-center justify-start border-t-2 border-b-2 mb-base text-body gap-sm py-sm border-hr" >
+        <div class="flex flex-col justify-start sm:items-center sm:flex-row gap-2xs sm:gap-xs">
+            <label class="text-xs font-bold sm:text-sm" for="filter-by-date">Date:</label>
+            <select class="mb-0 text-sm cursor-pointer pl-xs py-2xs" x-model="filter.day" id="filter-by-date">
+                <template x-for="day in allDays">
+                    <option x-text="day" :selected="filter.day.toLowerCase() === day.toLowerCase()"></option>
+                </template>
+            </select>
+        </div>
+        <div class="flex flex-wrap items-center justify-start gap-xs"
+        x-init="if (!isAuth) resetUserFilters(); $watch('isAuth', val => { if (!val) resetUserFilters() })">
+            {# favsOnly data is in x-data="eventFilter" in wrapping div in base.njk #}
+            <button @click="filter.openOnly = !filter.openOnly" class="filter-btn" :class="filter.openOnly && 'active'">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 28">
+                    <title>square</title>
+                    <path d="M24 6.5v15c0 2.484-2.016 4.5-4.5 4.5h-15c-2.484 0-4.5-2.016-4.5-4.5v-15c0-2.484 2.016-4.5 4.5-4.5h15c2.484 0 4.5 2.016 4.5 4.5z"></path>
+                </svg>
+                <span class="text-sm">Open Spaces</span>
+            </button>
+            <button @click="filter.favsOnly = !filter.favsOnly" class="filter-btn" :class="filter.favsOnly && 'active'" x-cloak x-show="isAuth">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                    <title>star</title>
+                    <path d="M32 12.408l-11.056-1.607-4.944-10.018-4.944 10.018-11.056 1.607 8 7.798-1.889 11.011 9.889-5.199 9.889 5.199-1.889-11.011 8-7.798z"></path>
+                </svg>
+                <span class="text-sm">Favs</span>
+            </button>
+            <button @click="filter.overlap = !filter.overlap" class="filter-btn" :class="filter.overlap && 'active'" x-cloak x-show="isAuth">
+                <?xml version="1.0" encoding="UTF-8"?>
+                <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 164.51 164.52"><path d="M147.37,31.31h-14.17v-14.17c0-9.45-7.69-17.15-17.15-17.15H17.15C7.69,0,0,7.69,0,17.15V116.06c0,9.45,7.69,17.15,17.15,17.15h14.17v14.17c0,9.45,7.69,17.15,17.15,17.15h98.91c9.45,0,17.15-7.69,17.15-17.15V48.46c0-9.45-7.69-17.15-17.15-17.15Zm-27.17,66.54l-22.35,22.35h-13.51l35.86-35.86v13.51Zm0,17.13v1.08c0,2.29-1.86,4.15-4.15,4.15h-1.08l5.22-5.22Zm0-47.76l-52.98,52.98h-13.51L120.2,53.71v13.51Zm-75.89,1.11l24.01-24.01h13.51l-37.52,37.52v-13.51Zm0-17.13v-2.74c0-2.29,1.86-4.15,4.15-4.15h2.74l-6.89,6.89Zm0,47.76l54.65-54.65h13.51L44.31,112.47v-13.51Zm-27.17,21.24c-2.29,0-4.15-1.86-4.15-4.15V17.15c0-2.29,1.86-4.15,4.15-4.15H116.06c2.29,0,4.15,1.86,4.15,4.15v14.17H48.46c-9.45,0-17.15,7.69-17.15,17.15V120.2h-14.17Zm134.37,27.17c0,2.29-1.86,4.15-4.15,4.15H48.46c-2.29,0-4.15-1.86-4.15-4.15v-14.17H116.06c9.45,0,17.15-7.69,17.15-17.15V44.31h14.17c2.29,0,4.15,1.86,4.15,4.15v98.91Z"/></svg>
+                <span class="text-sm">Hide My Event Conflicts</span>
+            </button>
+            <button x-show="!isFilterDefault" x-transition @click="resetFilters" class="text-sm filter-btn">Reset Filters</button>
+        </div>
+    </div>
+    {# Volunteer Events Table #}
+    <table class="events-table volunteer-shifts-table" id="events-table">
+        <thead :class="isSort($el).ascending ? 'ascending' : 'descending'">
             <tr>
-                <th class="text-left pb-sm">Event Name</th>
-                <th class="text-left pb-sm">Date Time</th>
-                <th class="text-center pb-sm max-w-max">Dur</th>
-                <th class="text-center pb-sm max-w-max">Spaces</th>
-                <th class="w-8 text-center pb-sm" x-cloak x-show="$store.auth.isAuth">
-                    <span class="flex items-center justify-end">{% icon 'star', 'fill-body' %}</span>
+                <th>
+                    <button x-bind="sortable" title="Sort by event">Event</button>
+                </th>
+                <th>
+                    <button x-bind="sortable" title="Sort by Date/Time">Date/Time</button>
+                </th>
+                {% if sitemeta.context === 'dev' %}
+                    <th class="!text-center" >
+                        <button x-bind="sortable">ID</button>
+                    </th>
+                {% endif %}
+                <th class="events-table-header--spaces">
+                    <button x-bind="sortable" title="Sort by Spaces">Space</button>
+                </th>
+                <th class="events-table-header--fav" x-cloak x-show="isAuth">
+                    <button title="filter by favs" class="fav-star-header" @click="filter.favsOnly = !filter.favsOnly" :class="filter.favsOnly && 'bg-highlight'"></button>
                 </th>
             </tr>
         </thead>
         <tbody>
-            {# favsOnly and timezone in x-data in html #}
+
+            {# Volunteer Event Row #}
             {% for event in eventData.volunteer %}
-                <tr x-show="$store.auth.filterEvent({{event.eventId}})">
+                {% if (event.metadata.Players > 0) %}
+                    {% set maxSpaces = event.metadata.Players %}
+                {% else %}
+                    {% set maxSpaces = "'Any'" %}
+                {% endif %}
+                {# isFav is in Alpine.data("global") #}
+                <tr 
+                x-data="eventInfo"
+                x-init="id = {{event.eventId}}; maxSpaces = {{maxSpaces}};"
+                x-show="(!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || (maxSpaces === 'Any' || $store.events.spaces[id] > 0)) && filterDay($refs.date{{event.eventId}}.textContent) && (!filter.overlap || !doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}))" 
+                >
                     {# Event Name #}
-                    <td class="py-sm pr-sm">
-                        <a href="/volunteer/{{event.eventSlug}}" class="font-bold transition-colors text-header hover:text-highlight">{{event.eventName | safe }}</a>
+                    <td class="events-table-cell--name">
+                        <h3>
+                            <a href="/volunteer/{{event.eventSlug}}" class="font-bold transition-colors text-header hover:text-highlight">{{event.eventName | safe }}</a>
+                        </h3>
                     </td>
                     {# Event Start Date/Time #}
                     {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
                     {# formatEventDate filter is in eleventy.js and returns html with date and time in seperate span tags #}
-                    <td class="flex flex-col py-sm gap-x-2xs sm:flex-row" x-cloak x-show="timezone" x-html="formatEventDate('{{event.eventStartDateTime}}', timezone)">{{ event.eventStartDateTime | formatEventDate | safe }}</td>
-                    {# Event Duration #}
-                    <td class="font-bold text-center py-sm px-xs">
-                        {% eventDuration event.eventStartDateTime,
-                        event.eventEndDateTime %}
+                    <td class="events-table-cell--date" data-sort="{{ event.eventStartDateTime | unixtime }}">
+                        {% include 'components/events-table-date.njk' %}
                     </td>
+                    {% if sitemeta.context === 'dev' %}
+                        <td class="text-center">
+                            <span class="text-xs border-2 border-header px-xs py-2xs">{{event.eventId}}</span>
+                        </td>
+                    {% endif %}
                     {# Spaces #}
-                    <td class="flex items-center justify-center py-sm">
-                        <span 
-                        style="width: 1.375rem; height: 1.375rem" 
-                        class="block text-center border-2 rounded border-body" 
-                        x-data="{eventSpace:$store.auth.volunteerEventSpace({{event.eventId}})}" 
-                        x-init="$watch('$store.auth.volunteerEventSpaces', value => {if (value) eventSpace = $store.auth.volunteerEventSpace({{event.eventId}})})" 
-                        :class="eventSpace && eventSpace.spacesOpen === 0 && 'bg-card opacity-40'" 
-                        x-text="($store.auth.isBooked({{event.eventId}})) ? '&#10004;' : (eventSpace) ? eventSpace.spacesOpen : '{{event.metadata.Players}}'">{{ event.metadata.Players }}</span>
+                    <td class="events-table-cell--spaces">
+                        {% include 'components/events-table-spaces.njk' %}
                     </td>
                     {# Fav Event Icon #}
-                    <td x-cloak x-show="$store.auth.isAuth">
-                        <span @click="$store.auth.toggleFav({{event.eventId}})" class="flex justify-end cursor-pointer opacity-40 hover:opacity-100" :class="$store.auth.isFav({{event.eventId}}) && 'favved'">{% icon 'star', 'fill-body' %}</span>
+                    <td class="events-table-cell--fav" x-cloak x-show="isAuth">
+                        <div class="flex justify-end">
+                            <span @click="toggleFav({{event.eventId}})" class="fav-star" :class="isFav({{event.eventId}}) && 'favved'"></span>
+                        </div>
                     </td>
                 </tr>
             {% endfor %}

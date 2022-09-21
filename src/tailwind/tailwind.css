@@ -6,14 +6,14 @@
 /*                               Color Variables                              */
 /* -------------------------------------------------------------------------- */
 
-:root, .light {
+:root, .light, [data-theme='light'] {
   /* ---------------------------- Base Light Theme ---------------------------- */
   --primary: #e1eac4;
   --primary-2: #c4d0a0;
   --primary-3: #94a268;
   --primary-4: #849357;
   --secondary: #843232;
-  --highlight: #ff6200;
+  --highlight: #e65800;
   --highlight-2: #f22600;
   --card: rgba(255, 255, 255, 0.6);
   --body: #313a3c;
@@ -62,7 +62,8 @@
     --backdrop: rgba(90, 100, 120, 0.6);
   }
 }
-.dark {
+
+.dark, [data-theme='dark'] {
   --primary: #171b30;
   --primary-2: #122436;
   --primary-3: #142F40;
@@ -165,7 +166,7 @@
 /*                                    Forms                                   */
 /* -------------------------------------------------------------------------- */
 
-input[type="text"], input[type="password"], input[type="email"] {
+input[type="text"], input[type="password"], input[type="email"], input[type="phone"], input[type="tel"], input[type="url"] {
   @apply px-sm py-xs border rounded-md bg-form border-body text-body focus:ring-highlight focus:border-highlight;
 }
 
@@ -174,11 +175,19 @@ label {
 }
 
 select {
-  @apply rounded mb-base bg-form text-body border-body focus:ring-highlight focus:border-highlight;
+  @apply rounded bg-form text-body border-body focus:ring-highlight focus:border-highlight;
 }
 
-button[type="submit"], .button {
-  @apply font-bold uppercase transition-colors duration-200 rounded shadow text-form bg-highlight hover:bg-highlight-2 py-xs px-base border border-highlight;
+button[type="submit"], input[type="submit"], .button {
+  @apply font-bold uppercase transition-colors duration-200 rounded shadow text-form bg-highlight hover:bg-highlight-2 py-xs px-sm sm:px-base border border-highlight;
+}
+
+input[type="file"] {
+  @apply font-bold uppercase transition-colors duration-200 rounded shadow bg-card py-xs px-sm sm:px-base;
+}
+
+button[type="submit"]:disabled, input[type="submit"]:disabled, .button:disabled {
+  @apply bg-slate-500;
 }
 
 .button-sm {
@@ -190,11 +199,15 @@ button:disabled {
 }
 
 textarea {
-  @apply w-full px-4 py-2 border rounded-md border-body bg-form mb-sm text-body focus:ring-highlight focus:border-highlight;
+  @apply w-full px-4 py-2 border rounded-md border-body bg-form text-body focus:ring-highlight focus:border-highlight;
 }
 
 fieldset {
-  @apply border-t-4 border-solid border-hr pt-base my-md;
+  @apply border-t-4 border-solid border-hr pt-base my-md space-y-4 transition-opacity;
+}
+
+fieldset > legend + * {
+@apply !mt-0
 }
 
 legend {
@@ -206,7 +219,51 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"] ~ label {
-  @apply inline-block font-normal m-0;
+  @apply inline-block font-normal m-0 leading-[1.1rem];
+}
+
+.required > label {
+  @apply after:content-['*'] after:text-highlight after:font-bold after:ml-2xs;
+}
+
+.error-required {
+  @apply bg-card p-sm rounded-md;
+}
+.error-required:after {
+  @apply ml-xs text-highlight italic font-bold;
+  content: 'required';
+}
+/* If specific data error text specified use that instead */
+.error-required[data-error]:after {
+  content: attr(data-error);
+}
+[data-error] {
+  @apply bg-card p-sm rounded-md;
+}
+[data-error]:after {
+  @apply ml-xs text-highlight italic font-bold;
+  content: attr(data-error);
+}
+
+.error-msg {
+  @apply ml-sm text-highlight italic font-bold;
+}
+
+/* Hide the error message for forms that use x-validate */
+/* TODO: fix all forms and then get rid of this and remove the [data-error]:after */
+form[x-validate] [data-error]:after {
+  content: "";
+  @apply hidden;
+}
+
+/* Used on Run an Event Additional Info */
+.checkbox-grid {
+  @apply grid gap-x-sm gap-y-sm;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+}
+
+.fieldset-disabled {
+  @apply pointer-events-none opacity-20;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -251,43 +308,9 @@ input[type="checkbox"] ~ label {
   /* @apply shadow-outline; */
 }
 
-/* --------------------------- Icon Link Shortcode -------------------------- */
-.icon-link, .icon {
-  @apply flex items-center space-x-sm text-highlight;
-  text-decoration: none !important;
-}
-.icon-link:hover {
-  text-decoration: underline !important;
-}
-.icon-link__icon,
-.light .icon-link__icon {
-  @apply w-6 h-6 flex-shrink-0;
-  filter: drop-shadow(0 0.1rem 0.1rem rgba(230, 255, 230, 0.4))
-}
-@media (prefers-color-scheme: dark) {
-  .icon-link__icon {
-    filter: drop-shadow(0 0.1rem 0.1rem rgba(0, 0, 50, 0.4))
-  }
-}
-.dark .icon-link__icon {
-  filter: drop-shadow(0 0.1rem 0.1rem rgba(0, 0, 50, 0.4))
-}
-.icon-link__title {
-  @apply text-body-highlight font-serif;
-  font-size: 1.3em;
-  line-height: 0.9;
-}
-/* Needed for cards on homepage */
-.prose p .icon-link {
-  margin: -.4em 0 0;
-}
-/* Make sure favved are highlighted */
-.favved {
-  opacity: 1 !important;
-}
-.favved .icon-link__icon {
-  @apply fill-highlight;
-}
+/* -------------------------------------------------------------------------- */
+/*                                    SVGS                                    */
+/* -------------------------------------------------------------------------- */
 
 .fill-highlight {
   fill: var(--highlight);
@@ -295,6 +318,206 @@ input[type="checkbox"] ~ label {
 
 .fill-body {
   fill: var(--body);
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                 Icon Links                                 */
+/* -------------------------------------------------------------------------- */
+
+[class^='icon-'] {
+  @apply text-body-highlight font-serif no-underline flex items-center gap-sm;
+  font-size: 1.3em;
+  line-height: 0.9;
+  text-decoration-color: var(--highlight);
+}
+
+a[class^='icon-']:hover {
+  @apply underline;
+}
+
+[class^='icon-']:before {
+  @apply block h-6 w-6 bg-highlight bg-gradient-to-br from-highlight via-highlight to-highlight-2 shrink-0;
+  mask-repeat: no-repeat;
+  content: " ";
+}
+
+/* all icon-svgname classes are dynamically generated in svg-icons.css from svg-icons-css.njk using all svgs in the static/icons folder */
+
+/* -------------------------------------------------------------------------- */
+/*                           Event / Volunteer List                           */
+/* -------------------------------------------------------------------------- */
+
+.events-table {
+  @apply w-full text-sm text-body;
+}
+
+.events-table thead tr {
+  @apply w-full flex flex-wrap justify-between sm:table-row relative border-b-2 border-card;
+}
+
+.events-table thead th {
+  @apply text-left last:pr-0 py-sm;
+}
+
+.events-table .events-table-header--categories {
+  @apply hidden sm:table-cell;
+}
+
+.events-table .events-table-header--spaces {
+  @apply hidden sm:table-cell text-center;
+}
+
+.events-table .events-table-header--fav {
+  @apply pb-sm justify-self-end flex justify-end;
+}
+
+.events-table tbody tr {
+  /* pr-8 leaves room for absolute placed fav star in mobile */
+  @apply w-full flex flex-wrap sm:table-row py-sm relative pr-8 sm:pr-0 gap-x-xs border-b-2 border-card;
+}
+.volunteer-shifts-table tbody tr {
+  /* pr-8 leaves room for absolute placed fav star in mobile */
+  @apply w-full flex flex-wrap sm:table-row py-sm relative pr-lg sm:pr-0 gap-x-xs border-b-2 border-card;
+}
+
+.events-table td {
+  @apply block sm:table-cell sm:py-sm sm:pr-sm last:pr-0;
+}`
+
+.events-table .events-table-cell--name {
+  @apply basis-full;
+}
+
+.events-table .events-table-cell--system {
+  @apply italic basis-full;
+}
+
+.events-table .events-table-cell--date {
+  @apply basis-full;
+}
+
+.events-table .events-table-cell--duration {
+  @apply font-bold text-center;
+}
+.events-table .events-table-cell--categories {
+
+}
+.events-table .events-table-cell--spaces {
+  @apply absolute sm:static bottom-0 right-0 text-center; 
+}
+.volunteer-shifts-table .events-table-cell--spaces {
+  @apply absolute sm:static top-sm right-lg text-center; 
+}
+.events-table .events-table-cell--fav {
+  @apply absolute sm:static right-0 top-sm;
+}
+
+
+.events-table thead tr {
+  @apply flex-row gap-sm;
+}
+
+.events-table th {
+  @apply pb-xs text-subheader sm:pr-sm;
+}
+
+.fav-star {
+  mask-image: url(/static/icons/star.svg);
+  mask-repeat: no-repeat;
+  @apply block w-6 h-6 cursor-pointer opacity-30 hover:opacity-100 bg-body text-transparent;
+}
+
+.fav-star-header {
+  mask-image: url(/static/icons/star.svg);
+  mask-repeat: no-repeat;
+  @apply block w-6 h-6 bg-body indent-96 hover:bg-highlight;
+}
+
+.fav-star--event-page, .fav-star--event-page .iconlink__icon  {
+  @apply w-8 h-8;
+}
+
+/* Make sure favved are highlighted */
+.fav-star.favved, .fav-star-header.favved {
+  @apply opacity-100 bg-highlight
+}
+
+.filter-btn {
+  @apply flex items-center transition-colors rounded gap-x-xs bg-card px-sm py-2xs hover:bg-primary border border-card;
+}
+.filter-btn svg {
+  @apply w-4 h-4 fill-body;
+}
+.filter-btn:hover svg {
+  @apply fill-secondary;
+}
+.filter-btn.active {
+  @apply border-highlight;
+}
+.filter-btn.active svg {
+  @apply fill-highlight;
+}
+
+
+[x-bind="sortable"] {
+  @apply underline-offset-2 decoration-2 decoration-hr hover:underline whitespace-nowrap;
+}
+.active [x-bind="sortable"] {
+  @apply underline decoration-highlight;
+}
+[x-bind="sortable"]:after {
+  content: "\279C";
+  @apply text-hr inline-block text-xs transition-transform ml-[.1rem] invisible;
+}
+.active [x-bind="sortable"]:after {
+  @apply visible;
+}
+.active [x-bind="sortable"].ascending:after {
+  @apply rotate-90;
+}
+.active [x-bind="sortable"].descending:after {
+  @apply rotate-[-90deg];
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                 Event Pages                                */
+/* -------------------------------------------------------------------------- */
+
+.event-description h2 + br,
+.event-description h3 + br,
+.event-description li + br,
+.event-description ul + br,
+.event-description ul > br {
+  display: none;
+}
+/* css to hide stuff */
+.spoilers-transparent {
+  @apply text-transparent;
+}
+.spoilers-transparent::selection {
+  @apply text-body bg-card;
+}
+
+.spoilers-black {
+  @apply text-transparent bg-black;
+}
+.spoilers-black::selection {
+  @apply text-slate-50 bg-slate-900;
+}
+
+.event-image {
+  animation: fadeInAnimation ease 500ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /* -------------------------------------------------------------------------- */

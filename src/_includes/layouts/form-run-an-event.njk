@@ -1,0 +1,1005 @@
+{% extends 'layouts/base.njk' %}
+
+{% block header %}
+    {% include 'components/header.njk' %}
+{% endblock %}
+
+{% block content %}
+    <main id="content">
+        <div class="mx-auto max-w-content p-base">
+            <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
+            <div class="prose">{{ content | safe }}</div>
+            <section class="my-base">
+                {# START Submit Form: only show if logged in #}
+                <div x-cloak x-show="!isAuth" class="prose">
+                    <p>You must be <button @click.stop="modal = 'login'" class="font-bold underline text-highlight">logged in</button> to submit a game</p>
+                </div>
+                <div x-cloak x-show="isAuth && user" x-data="runAnEventData" x-init="if(isAuth) getUserData()">
+                    <div x-show="!eventSubmitted" id="submit-your-event">
+                        <header class="prose">
+                            <h2>Submit Your Event</h2>
+                            <p>
+                                <span class="font-bold text-highlight">*</span>
+                                <em>required field</em>
+                            </p>
+                        </header>
+                        {# TODO: update this to use x-validate #}
+                        <form action="post" class="mt-base" id="form" x-ref="form" @submit.prevent="submitEvent" x-validate>
+                            {# TODO: add honeypot #}
+                            <input type="hidden" name="userDisplayName" :value="user && user.displayName" x-validate>
+                            {# Personal Info #}
+                            <fieldset x-ref="personalInfo">
+                                <legend>Personal Info</legend>
+                                <div class="required">
+                                    <label for="publicName">Public Badge Name</label>
+                                    <p class="text-xs mb-sm text-body">We encourage attendees to list their first and last names. However, if for privacy reasons you would like to use another name, enter it here.</p>
+                                    <input id="publicName" name="publicName" type="text" value="" :value="user && user.displayName"
+                                    x-validate
+                                    required/>
+                                </div>
+                                <div class="required">
+                                    <label for="yourAge">
+                                        Your age at start of con
+                                        <span>{{sitemeta.eventDate}}</span>
+                                    </label>
+                                    <select id="yourAge" name="yourAge" @change="if ($el.value === '13+') { $validate.updateData('playerAge',{value:'13+'})}" required>
+                                        <option disabled selected value="">
+                                            -- Choose One --
+                                        </option>
+                                        <option>13+</option>
+                                        <option>18+</option>
+                                    </select>
+                                </div>
+
+                            </fieldset>
+                            <fieldset x-ref="communityStandards" class="transition-opacity" :class="(isPrevComplete($el)) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'" >
+                                <legend>Community Standards Agreement</legend>
+                                <div class="prose mb-sm">
+                                    <p>Big Bad Con is committed to cultivating a culture of respect, support, and kindness at both our in-person and online events. We ask that all of our attendees agree to abide by our Community Standards, please take a moment to read them before answering yes below.</p>
+                                    <p>
+                                        <a href="/community-standards" class="icon-scroll">Community Standards</a>
+                                    </p>
+                                </div>
+                                <div class="required">
+                                    <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" required>
+                                    <label for="agree-to-community-standards" class="text-body-highlight">
+                                        Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Big Bad Con Community Standards
+                                    </label>
+                                </div>
+                            </fieldset>
+
+                            {# END Personal Info #}
+                            {# Event Info - Personal Info must be complete before showing #}
+                            <fieldset x-ref="eventInfo" class="transition-opacity" :class="(isPrevComplete($el)) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
+                                <legend>Event Info</legend>
+                                <div class="required">
+                                    <label for="eventName">Event Name</label>
+                                    <input id="eventName" name="eventName" type="text" value="" required class="w-full max-w-md"/>
+                                </div>
+                                <div class="required">
+                                    <label for="format">Format</label>
+                                    <select id="format" name="format" required
+                                    @change="$validate.updateData('eventCategoryId',{value: formatId($el.value)})">
+                                        <option disabled selected value="">-- Choose One --</option>
+                                        <template x-for="type in format">
+                                            <option :value="type.name" x-text="type.name"></option>
+                                        </template>
+                                    </select>
+                                </div>
+                                {# This value is updated with format select onChange since x-validate does not detect the change in :value automatically #}
+                                <input type="hidden" name="eventCategoryId" :value="formatId($validate.data('format').value)" x-init="$watch('$el',val => $validate.updateData(val,{value: formatId($el.value)}))" x-validate>
+                                <div x-show="isGame" class="required">
+                                    <label for="system">System</label>
+                                    <input id="system" name="system" type="text" value="" x-required="isGame"/>
+                                </div>
+                                <div x-show="isGame" class="required">
+                                    <label for="playtest">Is this a playtest?</label>
+                                    <select id="playtest" name="playtest" x-required="isGame" >
+                                        <option disabled selected value="">-- Choose One --</option>
+                                        <option>No</option>
+                                        <option>Yes</option>
+                                    </select>
+                                </div>
+                                <div class="required">
+                                    <label for="eventDescription">Description</label>
+                                    <textarea cols="30" id="eventDescription" name="eventDescription" rows="3" required></textarea>
+                                </div>
+                                <div>
+                                    <label for="otherInfo">Other info we should know (this will not go in the program)</label>
+                                    <textarea cols="30" id="otherInfo" name="otherInfo" rows="3" ></textarea>
+                                </div>
+                                {# <div x-data="{src: ''}">
+                                    <label for="file">Event Image Upload Add/Replace</label>
+                                    <p class="text-sm my-sm">Images are cropped automatically at 16/9 ratio and centered. Images should be mininum 760x428 px and maximum 1,520x856 px (or there abouts) and formatted with jpg or webp (png or gif accepted but generally the former compress better).</p>
+                                    <input type="file" name="file" id="file" accept="image/*" class="mr-base" 
+                                    @change="if ($el.files.length > 0) src = URL.createObjectURL($el.files[0])">
+                                    <img id="image-preview" class="hidden object-cover object-center rounded-md my-sm" style="aspect-ratio: 16/9"
+                                    :src="src" :style="src && 'display:block'"/>
+                                </div> #}
+                            </fieldset>
+                            {# END Event Info #}
+                            {# Player/Attendee Info - all above must be completed #}
+                            <fieldset x-ref="playerInfo" class="transition-opacity" :class="($validate.isComplete($el.previousElementSibling)) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
+                                <legend>Player/Attendee Info</legend>
+                                <div x-show="$validate.data('playerAge').value === '13+'" class="prose mb-base">
+                                    <p class="italic">Event designed for people aged 13+</p>
+                                </div>
+                                <div x-show="$validate.data('yourAge').value === '18+'" class="required">
+                                    <label for="playerAge">
+                                        Player/Attendee Age
+                                    </label>
+                                    <select id="playerAge" name="playerAge" required>
+                                        <option disabled selected value="">
+                                            -- Choose One --
+                                        </option>
+                                        <option>13+</option>
+                                        <option>18+</option>
+                                    </select>
+                                </div>
+                                <div class="required">
+                                    <label for="minPlayers">Minimum players/attendees</label>
+                                    <input id="minPlayers" name="minPlayers" type="text" value="" required/>
+                                </div>
+                                <div class="required">
+                                    <label for="maxPlayers">Maximum players/attendees</label>
+                                    <input id="maxPlayers" name="maxPlayers" type="text" value="" required/>
+                                </div>
+                                <div x-show="isRPGorLARP" class="required">
+                                    <label for="characters">Characters</label>
+                                    <select id="characters" name="characters" x-required="isRPGorLARP">
+                                        <option disabled selected value="">
+                                            -- Choose One --
+                                        </option>
+                                        <option>Provided</option>
+                                        <option>Created at the table</option>
+                                        <option>Other/Does not apply</option>
+                                    </select>
+                                </div>
+                            </fieldset>
+                            {# END Player Attendee Info #}
+                            {# Scheduling Info - player age must be completed #}
+                            <fieldset x-ref="scheduling" class="transition-opacity" :class="(isPrevComplete($el)) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
+                                <legend>Scheduling Info</legend>
+                                <div class="required">
+                                    <label for="runNumberOfTimes">Run this event</label>
+                                    <select id="runNumberOfTimes" name="runNumberOfTimes" required>
+                                        <option disabled selected value="">
+                                            -- Choose One --
+                                        </option>
+                                        <option value="1">Once</option>
+                                        <option value="2">Twice</option>
+                                        <option value="3">I want to run this 3 times! Whoa!</option>
+                                        <option value="4">I want to run this 4 times! Yow!!!</option>
+                                    </select>
+                                </div>
+                                <div x-show="isTableTop" class="required">
+                                    <label for="locationPref">Location Preference</label>
+                                    <select id="locationPref" name="locationPref" x-required="isTableTop">
+                                        <option disabled selected value="">
+                                            -- Choose One --
+                                        </option>
+                                        <option>No Preference</option>
+                                        <option>Private Room</option>
+                                        <option>Outdoor Pavilion</option>
+                                        <option>Atrium</option>
+                                    </select>
+                                </div>
+                                <div x-show="isBoardgame" class="required">
+                                    <label for="tableType">Board game table type requested</label>
+                                    <select id="tableType" name="tableType" x-required="isBoardgame">
+                                        <option disabled selected value="">
+                                            -- Choose One --
+                                        </option>
+                                        <option>Long</option>
+                                        <option>Round</option>
+                                        <option>Either</option>
+                                    </select>
+                                </div>
+                                <div x-show="!isGame" class="required">
+                                    <label for="requestMediaRoom">Request media room</label>
+                                    <select id="requestMediaRoom" name="requestMediaRoom" x-required="!isGame">
+                                        <option disabled selected value="">
+                                            -- Choose One --
+                                        </option>
+                                        <option>No</option>
+                                        <option>Yes</option>
+                                    </select>
+                                </div>
+                                <div x-show="$validate.data('requestMediaRoom').value === 'Yes'" class="required">
+                                    <label for="mediaEquipment">Media equipment</label>
+                                    <select id="mediaEquipment" name="mediaEquipment" x-required="$validate.data('requestMediaRoom').value === 'Yes'">
+                                        <option disabled selected value="">
+                                            -- Choose One --
+                                        </option>
+                                        <option>I have my own</option>
+                                        <option>Equipment requested</option>
+                                    </select>
+                                </div>
+                                <div x-show="$validate.data('mediaEquipment').value === 'Equipment requested'" class="required">
+                                    <label for="requestMediaEquipment">Media equipment requested</label>
+                                    <input id="requestMediaEquipment" name="requestMediaEquipment" type="text" value="" x-required="$validate.data('mediaEquipment').value === 'Equipment requested'"/>
+                                </div>
+                                <div class="required">
+                                    <label for="eventLength">Event Length</label>
+                                    <select id="eventLength" name="eventLength" required>
+                                        <option disabled selected value="">
+                                            -- Choose One --
+                                        </option>
+                                        <option value="1">1 hour</option>
+                                        <option value="2">2 hours</option>
+                                        <option value="4">4 hours</option>
+                                        <option value="6">6 hours</option>
+                                        <option value="8">8 hours</option>
+                                    </select>
+                                </div>
+                                <div x-show="$validate.data('eventLength').value">
+                                    <label>Scheduling Preferences</label>
+                                    <div class="flex flex-col gap-2xs">
+                                        <div>
+                                            <input type="checkbox" name="schedulingPref" id="No-Preference" value="No Preference" x-validate>
+                                            <label for="No-Preference">No Preference</label>
+                                        </div>
+                                        <template x-for="(time, i) in scheduleTimes[$validate.data('eventLength').value]">
+                                            <div>
+                                                <input type="checkbox" name="schedulingPref" :id="'time' + i" :value="time" x-validate>
+                                                <label :for="'time' + i" x-text="time"></label>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            {# END Scheduling Info #}
+                            {# Content Advisory & Safety Tools - show only if scheduling is completed #}
+                            <fieldset x-ref="contentAdvisory" class="transition-opacity" :class="(isPrevComplete($el)) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
+                                <legend>Content Advisory &amp; Safety Tools</legend>
+                                <div x-show="isAllAges" class="prose mb-base">
+                                    <p class="italic">Event designed for people aged 13+</p>
+                                </div>
+                                <div x-show="isAdultOnly" class="prose mb-base">
+                                    <p class="italic">Event designed for people aged 18+</p>
+                                </div>
+                                <div x-show="isAdultOnly" class="required">
+                                    <label>Content Advisory</label>
+                                    <select id="contentAdvisory" name="contentAdvisory" x-required="isAdultOnly">
+                                        <option :disabled="$validate.data('contentAdvisory').value !== ''" selected value="">
+                                            -- Choose One --
+                                        </option>
+                                        <option value="No">No content advisory needed</option>
+                                        <option value="Yes">Yes, contains strong content</option>
+                                    </select>
+
+                                </div>
+                                <div x-show="isAdultOnly && $validate.data('contentAdvisory').value === 'Yes'">
+                                    <label>Types of Content Advisory</label>
+                                    <div class="flex flex-col gap-2xs">
+                                        <template x-for="(type, i) in contentAdvisoryOptions">
+                                            <div class="flex items-center">
+                                                <input type="checkbox" name="contentAdvisoryOptions" :id="'contentAdvisoryOptions' + i" :value="type.id" x-validate >
+                                                <label :for="'contentAdvisoryOptions' + i" x-text="type.name"></label>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+                                <div x-show="isAdultOnly && $validate.data('contentAdvisory').value === 'Yes'">
+                                    <label for="triggerWarnings">Potential trigger warnings</label>
+                                    <input id="triggerWarnings" name="triggerWarnings" type="text" value="" class="w-full max-w-md"/>
+                                </div>
+                                <div x-show="isGame">
+                                    <label>Safety Tools</label>
+                                    <div class="flex flex-col gap-2xs">
+                                        <template x-for="(type, i) in safetyTools">
+                                            <div class="flex items-center">
+                                                <input type="checkbox" name="safetyTools" :id="'safetyTools' + i" :value="type" x-validate >
+                                                <label :for="'safetyTools' + i" x-text="type"></label>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            {# END Content Advisory & Safety Tools #}
+                            {# Additional Info - not required #}
+                            <fieldset x-ref="additional" class="transition-opacity" :class="($validate.isComplete($refs.scheduling)) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
+                                <legend>Additional Info</legend>
+                                <div x-show="$validate.data('format').value === 'Panel'">
+                                    <label>Panel Topic</label>
+                                    <div class="checkbox-grid">
+                                        <template x-for="(type, i) in panelTopic">
+                                            <div class="flex items-center">
+                                                <input type="checkbox" name="panelTopic" :id="'panelTopic' + i" :value="type.id" x-validate >
+                                                <label :for="'panelTopic' + i" x-text="type.name"></label>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+                                <div x-show="isGame">
+                                    <label>Game Focus</label>
+                                    <div class="checkbox-grid">
+                                        <template x-for="(type, i) in gameFocus">
+                                            <div class="flex items-center">
+                                                <input type="checkbox" name="gameFocus" :id="'gameFocus' + i" :value="type.id" x-validate >
+                                                <label :for="'gameFocus' + i" x-text="type.name"></label>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+                                <div x-show="isGame">
+                                    <label>Player Contributions</label>
+                                    <div class="checkbox-grid">
+                                        <template x-for="(type, i) in playerContributions">
+                                            <div class="flex items-center">
+                                                <input type="checkbox" name="playerContributions" :id="'playerContributions' + i" :value="type.id" x-validate >
+                                                <label :for="'playerContributions' + i" x-text="type.name"></label>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+                                <div x-show="isGame">
+                                    <label>Game Genre</label>
+                                    <div class="checkbox-grid">
+                                        <template x-for="(type, i) in gameGenre">
+                                            <div class="flex items-center">
+                                                <input type="checkbox" name="gameGenre" :id="'gameGenre' + i" :value="type.id" x-validate >
+                                                <label :for="'gameGenre' + i" x-text="type.name"></label>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+                                <div x-show="isGame">
+                                    <label>Game Mood</label>
+                                    <div class="checkbox-grid">
+                                        <template x-for="(type, i) in gameMood">
+                                            <div class="flex items-center">
+                                                <input type="checkbox" name="gameMood" :id="'gameMood' + i" :value="type.id" x-validate >
+                                                <label :for="'gameMood' + i" x-text="type.name"></label>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="additionalGMs">List any additional GMs/facilitators</label>
+                                    <textarea cols="30" id="additionalGMs" name="additionalGMs" rows="3" ></textarea>
+                                </div>
+                                <div>
+                                    <label for="additionalRequirements">List any special requirements</label>
+                                    <textarea cols="30" id="additionalRequirements" name="additionalRequirements" rows="3" ></textarea>
+                                </div>
+                            </fieldset>
+                            <button type="submit" :disabled="!$validate.isComplete('form')">Submit</button>
+                            {# x-validate form log #}
+                            {% if (sitemeta.environment === 'dev') %}
+                                {% import 'components/x-validate-form-validator.njk' as validate %}
+                                {{ validate.log('form') }}
+                            {% endif %}
+                        </form>
+                    </div>
+                    {# END event submission div #}
+                    {# event submitted #}
+                    <div class="prose" x-show="eventSubmitted" id="event-submitted">
+                        <h2>Thanks for submitting your event!</h2>
+                        <p>Our staff will review your <span id="submit-format" x-text="$validate.data('format').value"></span> event, <span id="submit-name" x-text="$validate.data('eventName').value" class="italic font-bold"></span>, and let you know about scheduling it!</p>
+                        <p>You can <a href="/run-an-event">submit another event</a> now if you'd like.</p>
+                    </div>
+                </div>
+                {# END runAnEventData component #}
+            </section>
+        </div>
+    </main>
+{% endblock %}
+
+{#
+    PUT /events/create API
+    {
+        // "accessabilityOptions": "string", //  not used
+        "additionalGms": "string", // used
+        "additionalRequirements": "string", //used
+        "characters": "string", //used
+        "contentAdvisory": true, // used but using a checkbox
+        "eventCategoryId": 0, // this is format
+        "eventDescription": "string", // used
+        "eventFacilitators": "string", // not used
+        "eventMetadataIds": [
+        0
+        ], // need to combine multiple
+        "eventName": "string", // used
+        "gm": "string", // need to convert from publicName?
+        "gmAge": "string", //need to convert from yourAge
+        "length": "string", // used but named eventLength
+        "minPlayers": "string", //used
+        "otherInfo": "string", //used
+        "playerAge": "string", //used
+        "players": "string", // this is maxPlayers
+        "playtest": "string", //used
+        "requestMediaEquipment": "string", // used
+        "requestMediaRoom": true,   // used
+        "requestPrivateRoom": true, // use locationPref for boolean and add rest to additionalRequirements 
+        "runNumberOfTimes": 0, // used
+        "safetyTools": "string", // used convert to string
+        "schedulingPref": "string", // convert to string
+        "system": "string", //  used
+        "tableType": "string",  // used
+        "triggerWarnings": "string",    // used
+        "userDisplayName": "string" , // matches user.displayName
+    }
+ #}
+
+{% block pagebottom %}
+
+    <script type="text/javascript">
+
+        document.addEventListener('alpine:init', () => {
+
+            /* -------------------------------------------------------------------------- */
+            /* Metadata Stuff */
+            /* -------------------------------------------------------------------------- */
+            // Metadata grouped by types
+            const metadata = {
+                format: [
+                    {
+                        "id": 10,
+                        "name": "Board/Card Game",
+                        "slug": "board-game"
+                    }, {
+                        "id": 9,
+                        "name": "LARP",
+                        "slug": "larp"
+                    }, {
+                        "id": 154,
+                        "name": "Panel",
+                        "slug": "panel"
+                    }, {
+                        "id": 8,
+                        "name": "RPG",
+                        "slug": "rpg"
+                    }, {
+                        "id": 11,
+                        "name": "Workshop",
+                        "slug": "workshop"
+                    }
+                ],
+                panelTopic: [
+                    {
+                        "id": 160,
+                        "name": "GMing Advice",
+                        "slug": "gming-advice"
+                    }, {
+                        "id": 159,
+                        "name": "Literature",
+                        "slug": "literature"
+                    }, {
+                        "id": 161,
+                        "name": "Player Advice",
+                        "slug": "player-advice"
+                    }, {
+                        "id": 163,
+                        "name": "Safety Tools",
+                        "slug": "safety-tools"
+                    }, {
+                        "id": 162,
+                        "name": "Social Contracts",
+                        "slug": "social-contracts"
+                    }, {
+                        "id": 158,
+                        "name": "Social Justice",
+                        "slug": "social-justice"
+                    }
+                ],
+                gameFocus: [
+                    {
+                        "id": 55,
+                        "name": "Adventure",
+                        "slug": "adventure"
+                    }, {
+                        "id": 62,
+                        "name": "Combat",
+                        "slug": "combat"
+                    }, {
+                        "id": 59,
+                        "name": "Drama",
+                        "slug": "drama"
+                    }, {
+                        "id": 56,
+                        "name": "Exploration",
+                        "slug": "exploration"
+                    }, {
+                        "id": 61,
+                        "name": "Hijinx",
+                        "slug": "hijinx"
+                    }, {
+                        "id": 191,
+                        "name": "Improv",
+                        "slug": "improv"
+                    }, {
+                        "id": 58,
+                        "name": "Intrigue",
+                        "slug": "intrigue"
+                    }, {
+                        "id": 57,
+                        "name": "Investigation",
+                        "slug": "investigation"
+                    }, {
+                        "id": 181,
+                        "name": "LGBTQ themes",
+                        "slug": "lgbtq-themes"
+                    }, {
+                        "id": 167,
+                        "name": "Mystery",
+                        "slug": "mystery"
+                    }, {
+                        "id": 60,
+                        "name": "Romance",
+                        "slug": "romance"
+                    }
+                ],
+                playerContributions: [
+                    {
+                        "id": 66,
+                        "name": "Collaborative",
+                        "slug": "collaborative"
+                    }, {
+                        "id": 188,
+                        "name": "Freeform",
+                        "slug": "freeform"
+                    }, {
+                        "id": 67,
+                        "name": "GM-less",
+                        "slug": "gm-less"
+                    }, {
+                        "id": 64,
+                        "name": "Play to find out",
+                        "slug": "play-to-find-out"
+                    }, {
+                        "id": 65,
+                        "name": "Player antagonism",
+                        "slug": "player-antagonism"
+                    }, {
+                        "id": 68,
+                        "name": "Rotating authority",
+                        "slug": "rotating-authority"
+                    }, {
+                        "id": 63,
+                        "name": "Strong storyline",
+                        "slug": "strong-storyline"
+                    }
+                ],
+                gameGenre: [
+                    {
+                        "id": 171,
+                        "name": "Aliens",
+                        "slug": "aliens"
+                    }, {
+                        "id": 73,
+                        "name": "Alternate History",
+                        "slug": "alternate-history"
+                    }, {
+                        "id": 76,
+                        "name": "Apocalyptic",
+                        "slug": "apocalyptic"
+                    }, {
+                        "id": 156,
+                        "name": "Cyberpunk",
+                        "slug": "cyberpunk"
+                    }, {
+                        "id": 77,
+                        "name": "Espionage",
+                        "slug": "espionage"
+                    }, {
+                        "id": 71,
+                        "name": "Fantasy",
+                        "slug": "fantasy"
+                    }, {
+                        "id": 69,
+                        "name": "Horror",
+                        "slug": "horror"
+                    }, {
+                        "id": 78,
+                        "name": "Military",
+                        "slug": "military"
+                    }, {
+                        "id": 72,
+                        "name": "Modern",
+                        "slug": "modern"
+                    }, {
+                        "id": 167,
+                        "name": "Mystery",
+                        "slug": "mystery"
+                    }, {
+                        "id": 75,
+                        "name": "Noir",
+                        "slug": "noir"
+                    }, {
+                        "id": 74,
+                        "name": "Pulp",
+                        "slug": "pulp"
+                    }, {
+                        "id": 70,
+                        "name": "Sci-Fi",
+                        "slug": "sci-fi"
+                    }, {
+                        "id": 120,
+                        "name": "Super Powers",
+                        "slug": "super-powers"
+                    }
+                ],
+                gameMood: [
+                    {
+                        "id": 80,
+                        "name": "Comical",
+                        "slug": "comical"
+                    }, {
+                        "id": 175,
+                        "name": "Cute",
+                        "slug": "cute"
+                    }, {
+                        "id": 82,
+                        "name": "Dark",
+                        "slug": "dark"
+                    }, {
+                        "id": 83,
+                        "name": "Emotional",
+                        "slug": "emotional"
+                    }, {
+                        "id": 81,
+                        "name": "Light",
+                        "slug": "light"
+                    }, {
+                        "id": 133,
+                        "name": "Melancholy",
+                        "slug": "melancholy"
+                    }, {
+                        "id": 79,
+                        "name": "Serious",
+                        "slug": "serious"
+                    }, {
+                        "id": 187,
+                        "name": "Silly",
+                        "slug": "silly"
+                    }, {
+                        "id": 84,
+                        "name": "Suspenseful",
+                        "slug": "suspenseful"
+                    }
+                ],
+                contentAdvisoryOptions: [
+                    {
+                        "id": 91,
+                        "name": "Gore",
+                        "slug": "gore"
+                    }, {
+                        "id": 90,
+                        "name": "Graphic Violence",
+                        "slug": "graphic-violence"
+                    }, {
+                        "id": 88,
+                        "name": "Provocative",
+                        "slug": "provocative"
+                    }, {
+                        "id": 89,
+                        "name": "Sex and Sexuality",
+                        "slug": "sex-and-sexuality"
+                    }
+                ]
+            }
+
+            // Metadata as one big array
+            let allMetadata = []
+            Object
+                .keys(metadata)
+                .forEach(key => allMetadata = [
+                    ...allMetadata,
+                    ...metadata[key]
+                ])
+
+            function getMetadataName(id) {
+                return allMetadata
+                    .find(val => val.id === id)
+                    .name
+            }
+
+            /* -------------------------------------------------------------------------- */
+            /* Function to covert form data to required data for create event API */
+            /* -------------------------------------------------------------------------- */
+
+            function convertFormDataToCreateEventAPI(formData) {
+
+                const eventMetadataIds = [
+                    ...formData.playerContributions.array,
+                    ...formData.gameFocus.array,
+                    ...formData.gameMood.array,
+                    ...formData.gameGenre.array,
+                    ...formData.contentAdvisoryOptions.array,
+                    ...formData.panelTopic.array
+                ].map(id => parseInt(id));
+
+                const eventMetadataNames = eventMetadataIds
+                    ? eventMetadataIds.map(id => getMetadataName(id))
+                    : [];
+
+                // TODO: review this stuff for improving this API later
+                formData = {
+                    //accessabilityOptions: formData.accessabilityOptions,  not used
+                    additionalGms: formData.additionalGMs.value,
+                    additionalRequirements: (formData.locationPref.value)
+                        ? formData.additionalRequirements.value + " Room Request: " + formData.locationPref.value
+                        : formData.additionalRequirements.value,
+                    characters: formData.characters.value,
+                    contentAdvisory: formData.contentAdvisory.value === "Yes", // this is a boolean in the API so we are using 1000000 is no-content-advisory; selection info goes into the eventMetadataIds
+                    eventCategoryId: formData.eventCategoryId.value || 0,
+                    eventDescription: formData.eventDescription.value,
+                    //eventFacilitators: formData.facilitators,  not used
+                    eventMetadataIds: eventMetadataIds || [],
+                    eventMetadataNames: eventMetadataNames || [], // This is not used in create event API; only for Google Sheet
+                    eventMetadataNamesString: eventMetadataNames.toString(),
+                    eventName: formData.eventName.value,
+                    format: formData.format.value,
+                    gm: formData.publicName.value,
+                    gmAge: formData.yourAge.value,
+                    length: formData.eventLength.value,
+                    minPlayers: formData.minPlayers.value,
+                    otherInfo: formData.otherInfo.value,
+                    playerAge: formData.playerAge.value,
+                    players: formData.maxPlayers.value,
+                    playtest: formData.playtest.value,
+                    requestMediaEquipment: (formData.requestMediaEquipment.value)
+                        ? `${formData.mediaEquipment.value} ${formData.requestMediaEquipment.value}`
+                        : formData.mediaEquipment.value,
+                    requestMediaRoom: formData.requestMediaRoom.value === "Yes",
+                    requestPrivateRoom: formData.locationPref.value !== "No Preference", // add extra to additionalRequirements for now
+                    runNumberOfTimes: parseInt(formData.runNumberOfTimes.value || 1),
+                    safetyTools: formData.safetyTools.value,
+                    schedulingPref: formData.schedulingPref
+                        ?.value || "",
+                    system: formData.system.value,
+                    tableType: formData.tableType.value,
+                    triggerWarnings: formData.triggerWarnings.value,
+                    userDisplayName: formData.userDisplayName.value
+                }
+                return formData;
+            }
+
+            /* -------------------------------------------------------------------------- */
+            /* Alpine data for form */
+            /* -------------------------------------------------------------------------- */
+
+            Alpine.data('runAnEventData', function () {
+                return {
+                    eventSubmitted: false,
+                    convertFormDataToCreateEventAPI(formData) {
+                        convertFormDataToCreateEventAPI(formData)
+                    },
+                    isPrevComplete($el) {
+                        return this
+                            .$validate
+                            .isComplete($el.previousElementSibling)
+                    },
+                    submitEvent(e) {
+                        const formData = this
+                            .$validate
+                            .formData(e.target)
+                        let createEventAPIData = convertFormDataToCreateEventAPI(formData)
+                        console.log("submit", createEventAPIData)
+
+                        const submitNow = async () => {
+                            const createEventAPI = await this.createEvent(createEventAPIData)
+                            // Returns eventId
+                            // Add event id and formData object if created for image upload
+                            if (typeof createEventAPI === 'number') {
+                                createEventAPIData = {
+                                    createEventAPIData,
+                                    eventId: createEventAPI
+                                }
+                            }
+                            const googleSheet = await this.postFormInfo(createEventAPIData)
+                            // TODO: test to make sure google sheet also worked
+                            if (createEventAPI) {
+                                this.eventSubmitted = true
+                                //this.uploadEventImage(e.target, createEventAPI)
+                            }
+                        }
+
+                        const scrollEventListener = () => {
+                            if (window.pageYOffset === 0) {
+                                //this.uploadEventImage(e.target, 3236)
+                                //this.uploadEventImage(e.target, 3083)
+                                submitNow();
+                                window.removeEventListener('scroll', scrollEventListener)
+                            }
+                        }
+                        function checkScrollEnd() {
+                            window.addEventListener('scroll', scrollEventListener);
+                        }
+                        checkScrollEnd()
+                        window.scroll({top: 0, behavior: 'smooth'});
+                    },
+                    async createEvent(createEventAPIData) {
+                        let data = await fetchData('/events/create', {
+                            method: 'PUT',
+                            body: createEventAPIData
+                        })
+                        if (data) {
+                            // upload image data
+                            this.$dispatch('toast', 'Event submitted!!')
+                        } else {
+                            this.$dispatch('toast', 'ERROR: Event submission failed')
+                        }
+                        return data
+                    },
+                    async postFormInfo(data) {
+                        /* --------- Send form data to serverless function for google sheet --------- */
+
+                        //change arrays to string values
+                        data = {
+                            ...data,
+                            eventMetadataIds: data
+                                .eventMetadataIds
+                                .toString(),
+                            eventMetadataNames: data.eventMetadataNamesString
+                        }
+                        // TODO: fix this later
+                        delete data['eventMetadataNamesString']
+
+                        const options = {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json;charset=utf-8'
+                            },
+                            body: JSON.stringify(data)
+                        }
+
+                        const url = "/.netlify/functions/submit-run-an-event"
+
+                        try {
+                            let response = await fetch(url, options)
+                            console.log(`RESPONSE:fetch for ${url}`, response)
+                            if (response.status !== 200) 
+                                throw `fetch fail status: ${response.status}`
+                            let result = await response.json()
+                            console.log(`RESULT:fetch for ${url}`, result)
+                            return result
+                        } catch (err) {
+                            console.error(`ERROR:fetch for ${url}`, err)
+                            return false
+                        }
+
+                    },
+                    async uploadEventImage(form, eventId) {
+                        const formDataObject = new FormData(form)
+
+                        async function customFetch(url, options) {
+                            try {
+                                let response = await fetch(url, options)
+                                console.log(`RESPONSE:fetch for ${url}`, response)
+                                if (response.status !== 200) 
+                                    throw `fetch fail status: ${response.status}`
+                                let result = await response.json()
+                                console.log(`RESULT:fetch for ${url}`, result)
+                                return result
+                            } catch (err) {
+                                console.error(`ERROR:fetch for ${url}`, err)
+                                return false
+                            }
+                        }
+                        formDataObject.append('eventId', eventId)
+
+                        let data = await customFetch('/.netlify/functions/submit-event-image', {
+                            method: 'POST',
+                            body: formDataObject
+                        })
+                        return data
+                    },
+                    times1hr: [
+                        "Friday afternoon (between 2PM-6PM)",
+                        "Friday night (between 8PM-Midnight)",
+                        "Saturday morning (between 9AM-1PM)",
+                        "Saturday afternoon (between 2PM-6PM)",
+                        "Saturday night (between 8PM-Midnight)",
+                        "Sunday morning (between 9AM-1PM)",
+                        "Sunday afternoon (between 2PM-6PM)"
+                    ],
+                    scheduleTimes: {
+                        "0": [],
+                        "1": [
+                            "Friday morning (between 9AM-1PM)",
+                            "Friday afternoon (between 2PM-6PM)",
+                            "Friday night (between 8PM-Midnight)",
+                            "Saturday morning (between 9AM-1PM)",
+                            "Saturday afternoon (between 2PM-6PM)",
+                            "Saturday night (between 8PM-Midnight)",
+                            "Sunday morning (between 9AM-1PM)",
+                            "Sunday afternoon (between 2PM-6PM)"
+                        ],
+                        "2": [
+                            "Friday 9AM-11AM",
+                            "Friday 11AM-1PM",
+                            "Friday 2PM-4PM",
+                            "Friday 4PM-6PM",
+                            "Friday 8PM-10PM",
+                            "Friday 10PM-Midnight",
+                            "Saturday 9AM-11AM",
+                            "Saturday 11AM-1PM",
+                            "Saturday 2PM-4PM",
+                            "Saturday 4PM-6PM",
+                            "Saturday 8PM-10PM",
+                            "Saturday 8PM-Midnight",
+                            "Sunday 9AM-11AM",
+                            "Sunday 11AM-1PM",
+                            "Sunday 2PM-4PM",
+                            "Sunday 4PM-6PM"
+                        ],
+                        "4": [
+                            "Friday 9AM-1PM",
+                            "Friday 2PM-6PM",
+                            "Friday 8PM-Midnight",
+                            "Saturday 9AM-1PM",
+                            "Saturday 2PM-6PM",
+                            "Saturday 8PM-Midnight",
+                            "Sunday 9AM-1PM",
+                            "Sunday 2PM-6PM"
+                        ],
+                        "6": [
+                            "Friday 10AM-4PM",
+                            "Friday 6PM-Midnight",
+                            "Saturday 10AM-4PM",
+                            "Saturday 6PM-Midnight",
+                            "Sunday 9AM-3PM",
+                            "Sunday 2PM-8PM"
+                        ],
+                        "8": ["Friday 10AM-6PM", "Friday 2PM-10PM", "Saturday 10AM-6PM", "Saturday 2PM-10PM", "Sunday 10AM-6PM"]
+                    },
+                    formatId(name) {
+                        if (name) {
+                            const formatType = this
+                                .format
+                                .find(e => e.name === name)
+                            return formatType && formatType
+                                .id
+                                .toString()
+                        }
+                    },
+                    get isGame() {
+                        return ["RPG", "LARP", "Board/Card Game"].includes(this.$validate.data('format').value)
+                    },
+                    get isRPGorLARP() {
+                        return ["RPG", "LARP"].includes(this.$validate.data('format').value)
+                    },
+                    get isTableTop() {
+                        return ["RPG", "Board/Card Game"].includes(this.$validate.data('format').value)
+                    },
+                    get isBoardgame() {
+                        return this
+                            .$validate
+                            .data('format')
+                            .value === "Board/Card Game"
+                    },
+                    get isAllAges() {
+                        return this
+                            .$validate
+                            .data('playerAge')
+                            .value === '13+'
+                    },
+                    get isAdultOnly() {
+                        return this
+                            .$validate
+                            .data('playerAge')
+                            .value === '18+'
+                    },
+                    format: metadata.format,
+                    panelTopic: metadata.panelTopic,
+                    gameFocus: metadata.gameFocus,
+                    playerContributions: metadata.playerContributions,
+                    gameGenre: metadata.gameGenre,
+                    gameMood: metadata.gameMood,
+                    contentAdvisoryOptions: metadata.contentAdvisoryOptions,
+                    safetyTools: [
+                        'X-card',
+                        'Lines/Veils',
+                        'Cut/Brake',
+                        'Open Door Policy',
+                        'Script Change',
+                        'Other'
+                    ]
+                }
+            })
+        })
+    </script>
+
+{% endblock %}

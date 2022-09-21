@@ -1,14 +1,13 @@
+{# x-data="eventInfo" on event page #}
 <div class="rounded-md shadow mt-md text-body p-base bg-card">
     <h2 class="-mt-1 font-serif text-2xl font-bold leading-none md:text-4xl text-header mb-sm">Volunteer Signup</h2>
     {# Event Name, spaces open, and list of players; only show if logged in and has event data #}
-    {# data is in eventInfo which is in event.njk #}
-    <div x-cloak x-show="event">
-        <div>
-            <span>Spaces Open:</span>
-            <span x-text="spacesOpen"></span> out of <span x-text="spacesTotal"></span>
-        </div>
-        <div x-cloak x-show="bookings && bookings.length > 0">
-            <h4 class="font-serif text-2xl font-semibold mt-sm">Volunteer List</h4>
+    <div x-cloak x-show="isAuth" class="flex flex-col gap-sm">
+        {% include 'components/event-date.njk' %}
+        {% include 'components/event-spaces.njk' %}
+
+        <div x-cloak x-show="bookings && bookings.length">
+            <h4 class="font-serif text-2xl font-semibold">Volunteer List</h4>
             <ul class="list-disc pl-md">
                 <template x-for="booking in bookings">
                     <li class="mb-xs" x-text="booking && booking.user.displayName"></li>
@@ -16,14 +15,28 @@
             </ul>
         </div>
         {# Booking buttons #}
-        <div class="flex mt-base gap-sm">
-            <button class="button" x-show="spacesOpen > 0 && !$store.auth.isBooked({{event.eventId}})" @click="$store.auth.bookEvent({{event.eventId}})">Signup to Volunteer</button>
-            <span x-show="spacesOpen <= 0 && !$store.auth.isBooked({{event.eventId}})" class="font-bold">Shift is full</span>
-            <button class="button" x-show="$store.auth.isBooked({{event.eventId}})" @click="$store.auth.cancelBooking({{event.eventId}})">Cancel Shift</span>
+        {# Show if there are spaces #}
+        <div x-show="(maxSpaces === 'Any' || $store.events.spaces[id] > 0)">
+            {# Show if they do not yet have a user role of volunteer #}
+            <div class="text-sm italic mt-base" x-show="!isVolunteer">You must <a href="/rangers/#signup" class="underline text-highlight">sign up as a volunteer</a> to add a volunteer shift</div>
+            {# Show if they have a volunteer role #}
+            <div x-show="isVolunteer">
+                {# Show if not booked #}
+                <div x-show="!isBooked({{event.eventId}})">
+                    <div x-show="doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}})" class="italic rounded bg-card p-sm">The timing of this event overlaps with one of your booked events.</div>
+                    <button class="button" x-show="!doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}})" @click="bookEvent({{event.eventId}})">Volunteer</button>
+                </div>
+                {# Show if booked #}
+                <div x-show="isBooked({{event.eventId}}">
+                    <button class="button" @click="cancelBooking({{event.eventId}})">Cancel Shift</span>
+                </div>
+            </div>
         </div>
+        {# Show if event full #}
+        <div x-show="!(maxSpaces === 'Any' || $store.events.spaces[id] > 0)" class="font-bold rounded bg-card p-sm">Shift is full</div>
     </div>
     {# Message for people not logged in #}
-    <div x-cloak x-show="!event">
+    <div x-cloak x-show="!isAuth">
         You must be <button @click="modal = 'login'" class="underline text-highlight">logged in</button> to sign up for a volunter shift.
     </div>
 </div>

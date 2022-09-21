@@ -3,7 +3,18 @@ title: How to Attend
 order: -1
 tags: cards
 published: true
----
-Big Bad Online 2021 is over. Thank you all who attended! We how to see everyone next year in 2022!
+image: ''
+alt: ''
 
-{% iconLink "/faq", "FAQ", "faq" %}
+---
+Sign up to attend Big Bad Con!
+
+[Buy a Badge](/buy-a-badge){.icon-badge}
+
+[Book a Room](https://www.hyatt.com/en-US/group-booking/SFOBU/G-BBC3){.icon-hotel}
+
+[Exhibitors](/exhibitor-information){.icon-booth}
+
+[Small Press Showcase](https://www.bigbadcon.com/small-press-showcase/){.icon-price-tags}
+
+[Hotel](/hotel){.icon-hotel}

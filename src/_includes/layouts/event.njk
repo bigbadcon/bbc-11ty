@@ -1,16 +1,16 @@
 {% extends 'layouts/base.njk' %}
 
-{% block header %}
-  {% include 'components/header.njk' %}
-{% endblock %}
-
 {% block content %}
+  {% if (event.metadata.Players > 0) %}
+    {% set maxSpaces = event.metadata.Players %}
+  {% else %}
+    {% set maxSpaces = "'Any'" %}
+  {% endif %}
   <main id="content">
     <div class="mx-auto max-w-content p-base"
-    x-data="eventInfo" 
-    x-init="if ($store.auth.isAuth) getEvent({{event.eventId}}); $watch('$store.auth.isAuth', value => {if (value === true) getEvent({{event.eventId}})}); $watch('$store.auth.bookedEvents', value => { getEvent({{event.eventId}}) } )">
+    x-data="eventInfo"
+    x-init="id = {{event.eventId}}; maxSpaces = {{maxSpaces}}; $store.events.getSpace({{event.eventId}}); if (isAuth) getEventInfo({{event.eventId}}); $watch('isAuth', value => {if (value === true) getEventInfo({{event.eventId}})}); $watch('bookedEvents', value => { getEventInfo({{event.eventId}}) } )">
       <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title | safe}}</h1>
-
       <div class="">{{ content | safe }}</div>
     </div>
   </main>

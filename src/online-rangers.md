@@ -1,6 +1,7 @@
 ---
 layout: layouts/page.njk
 title: Big Bad Online Rangers
+published: true
 description: ''
 tags: pages
 permalink: false

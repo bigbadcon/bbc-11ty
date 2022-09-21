@@ -1,9 +1,12 @@
 ---
 layout: layouts/page.njk
 title: Community Standards
+published: true
 description: ''
 tags: pages
-
+navGroup: Community
+order: 0
+icon: scroll
 ---
 At Big Bad Con, we foster a community that welcomes marginalized genders, queer folks, people of color, and people with disabilities. We actively work to make the con as physically, socially, and financially accessible as possible, and to cultivate a culture of **respect**, **support**, and **kindness**.
 
@@ -11,7 +14,7 @@ At Big Bad Con, we foster a community that welcomes marginalized genders, queer 
 
 * **We value people over the game.** _We learn and use people's pronouns. We honor the use of safety and calibration tools._
 * **We look for enthusiastic consent.** _We ask before taking someone’s picture or giving a hug. We apologize and change our behavior when we transgress._
-* **We care about health and well-being**. _We wash our hands, cover our coughs and sneezes, and avoid contact when sick._
+* **We care about health and well-being**. _We wash our hands, wear masks in event spaces, and avoid contact when sick._
 
 ## Support
 

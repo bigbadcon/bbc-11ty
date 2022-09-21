@@ -1,9 +1,15 @@
 ---
-layout: layouts/events-archive.njk
-title: Past Events
+layout: layouts/events.njk
+title: Events
+published: true
 description: ''
 tags: pages
-listing: events
----
+navGroup: Events
+navTitle: Events
+order: 0
+icon: calendar-clock
 
-Big Bad Online 2021 panels and seminars have all been archived on the [Big Bad Con YouTube channel](https://www.youtube.com/channel/UCZTZeTM1WamDePxRpEMCftw)
+---
+Events are for Big Bad Con, October 27-30 2022! We are still accepting [event submissions](/run-an-event/)! _Game signups will start 9/25 at 12PM PT._ [Here's how the work](https://www.bigbadcon.com/how-do-game-signups-work/)!
+
+See the event in a calendar grid [here](https://docs.google.com/spreadsheets/d/1pN9rNG8IhhzNwUwr1g-In8Gp0Pvfn7LVGfJCCaolWbs/edit#gid=2).

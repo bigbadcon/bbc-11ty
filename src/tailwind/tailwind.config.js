@@ -33,18 +33,12 @@ const colors = {
 }
 
 module.exports = {
-  mode: 'jit',
-  purge: {
-    content: [
-      "./dist/**/*.html",
-      "./src/**/*.njk",
-      "./src/**/*.njk",
-      "./src/**/*.html",
-    ],
-    options: {
-      safelist: [],
-    },
-  },
+  content: [
+    "./dist/**/*.html",
+    "./src/**/*.njk",
+    "./src/**/*.njk",
+    "./src/**/*.html",
+  ],
   theme: {
     darkMode: 'class',
     extend: {
@@ -56,6 +50,7 @@ module.exports = {
       typography: {
         DEFAULT: {
           css: {
+            maxWidth: '70rem',
             color: 'var(--body)',
             lineHeight: '1.45',
             h1: {
@@ -64,7 +59,7 @@ module.exports = {
               fontSize: '3rem',
               lineHeight: '1.20',
               marginBottom: '0.5em',
-              marginTop: '1.4em',
+              marginTop: '1.4rem',
             },
             h2: {
               color: 'var(--header)',
@@ -72,7 +67,7 @@ module.exports = {
               fontSize: '2.25rem',
               lineHeight: '1.10',
               marginBottom: '0.5em',
-              marginTop: '1.4em'
+              marginTop: '1.3rem'
             },
             h3: {
               color: 'var(--subheader)',
@@ -80,7 +75,7 @@ module.exports = {
               fontSize: '1.75rem',
               lineHeight: '1.05',
               marginBottom: '0.5em',
-              marginTop: '1.4em'
+              marginTop: '1.1rem'
             },
             h4: {
               color: 'var(--subheader)',
@@ -88,7 +83,7 @@ module.exports = {
               fontSize: '1.60rem',
               lineHeight: '1.00',
               marginBottom: '0.5em',
-              marginTop: '1.2em'
+              marginTop: '1em'
             },
             a:{
               color: 'var(--highlight)',
@@ -98,11 +93,18 @@ module.exports = {
                 color: 'var(--body)'
               }
             },
+            code: {
+              color: 'var(--body)',
+            },
             strong: {
               color: 'inherit',
+              fontWeight: '700'
             },
-            'ul > li::before': {
-                backgroundColor: 'var(--secondary)'
+            ul: {
+              marginBottom: '1.618rem',
+            },
+            'ul > li::marker': {
+                color: 'var(--secondary)'
             },
             hr: {
               borderColor: 'var(--hr)',
@@ -110,6 +112,19 @@ module.exports = {
               marginTop: '1rem',
               marginBottom: '1.618rem',
             },
+            'thead': {
+              borderBottomColor: 'var(--hr)',
+            },
+            'thead th': {
+              color: 'var(--subheader)',
+            },
+            'tbody tr': {
+              borderBottomColor: 'var(--hr)',
+            },
+            pre: {
+              backgroundColor: 'var(--card)',
+              color: 'var(--body)',
+            }
           }
         }
       },
@@ -128,7 +143,7 @@ module.exports = {
         'blog-cover-image': '398px'
       },
       fontFamily: {
-        sans: ['Open Sans', 'Hevetica', 'sans-serif'],
+        sans: ['Open Sans', 'Helvetica', 'sans-serif'],
         serif: ['Rokkitt', 'serif']
       },
       lineHeight: {

@@ -4,6 +4,7 @@
 /.env
 /*.env
 /*.env-*
+/config
 
 # Ignore clutter from Netlify CLI
 .netlify
@@ -23,3 +24,6 @@
 /.cache/**
 
 valsby.sh
+/test-results/
+/playwright-report/
+/playwright/.cache/

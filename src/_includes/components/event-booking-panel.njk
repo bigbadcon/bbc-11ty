@@ -1,0 +1,73 @@
+{# x-data="eventInfo" on event page #}
+{% set isAllAges = false %}
+{% if ('All Ages' in event.categories) %}
+    {% set isAllAges = true %}
+{% endif %}
+{% set isQuotaExempt = false %}
+{% if ('Panel' in event.categories or 'Vending' in event.categories or event.metadata.exempt) %}
+    {% set isQuotaExempt = true %}
+{% endif %}
+<div class="rounded-md shadow mt-md text-body p-base bg-card" x-data="{ isAllAges: {{isAllAges}}, isQuotaExempt: {{isQuotaExempt}} }">
+    <h2 class="-mt-1 font-serif text-2xl font-bold leading-none md:text-4xl text-header mb-sm">Event Booking</h2>
+
+    {# Only show if logged in and has event data #}
+    <div x-cloak x-show="isAuth" class="flex flex-col gap-sm">
+        {% include 'components/event-date.njk' %}
+        {% include 'components/event-spaces.njk' %}
+
+        <div x-cloak x-show="bookings && bookings.length">
+            <h4 class="font-serif text-2xl font-semibold">Attendee/Player List</h4>
+            <ul class="list-disc pl-md">
+                <template x-for="booking in bookings">
+                    <li class="mb-xs" x-text="booking && booking.user.displayName"></li>
+                </template>
+            </ul>
+        </div>
+
+        {# Only show if age appropriate#}
+        <div x-show="(isAllAges || !isTeen)">
+            {# only show if user is not gm #}
+            <div x-show="!gm.some(gm => gm.user.id === user.id)" class="space-y-sm">
+                {# Quota information #}
+                <div x-show="!isQuotaExempt && availableSlots >= 100">
+                    <strong>Quota:</strong> You have <span x-text="availableSlots"></span> available game event slots left.
+                </div>
+                <div x-show="isQuotaExempt" class="italic">
+                    This event does not count towards your quota.
+                </div>
+                {# Show if not booked #}
+                <div x-show="!isBooked({{event.eventId}})">
+                    {# Show if no overlap #}
+                    <div x-show="!doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}})">
+                        {# Show if event has spaces open #}
+                        <div x-show="(maxSpaces === 'Any' || $store.events.spaces[id] > 0)" class="space-y-sm">
+                            {# Booking button; show if they have available slots or if it is quota exempt #}
+                            <button class="button" :disabled="!(isQuotaExempt || availableSlots > 0)" @click="bookEvent({{event.eventId}})">Book Event</button>
+                        </div>
+                        {# Show if event is full #}
+                        <div x-show="!(maxSpaces === 'Any' || $store.events.spaces[id] > 0)" class="font-bold">Event is full</div>
+                    </div>
+                    {# Show if overlap #}
+                    <div x-show="doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}})" class="italic rounded bg-card py-sm px-base">The timing of this event overlaps with one of your booked events.</div>
+                </div>
+                <div x-show="isBooked({{event.eventId}})">
+                    <button class="button" @click="cancelBooking({{event.eventId}})">Cancel Booking</span>
+                </div>
+            </div>
+            {# Show if you are a GM/Speaker #}
+            <div x-show="user && gm.some(gm => gm.user.id === user.id)" class="prose rounded bg-card py-sm px-base">
+                You are running this event. If you need to cancel, please contact us at <a href="mailto:info@bigbadcon.com">info@bigbadcon.com</a>.
+            </div>
+        </div>
+
+        {# Show if you are a teen and this is not an all ages event #}
+        <div x-show="(isTeen && !isAllAges) ? true : false" class="italic mt-base">
+            This is an 18+ only event. Teens are only allowed in All Ages events.
+        </div>
+    </div>
+
+    {# Message for people not logged in #}
+    <div x-cloak x-show="!isAuth">
+        You must be <button @click="modal = 'login'" class="underline text-highlight">logged in</button> to sign up.
+    </div>
+</div>

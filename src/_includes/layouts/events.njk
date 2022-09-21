@@ -6,13 +6,16 @@
 
 {% block content %}
     <main id="content">
-        <div class="mx-auto max-w-content p-base">
+        <div class="mx-auto max-w-hero p-base">
             <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
-            <div class="prose">{{ content | safe }}</div>
+            <div class="prose max-w-content">{{ content | safe }}</div>
             {% include 'components/events-table.njk' %}
-            <div class="border-t-4 border-solid border-hr mt-md pt-base">
-                {% iconLink "/suggest-an-event", "Suggest an Event", "light-bulb" %}
-            </div>
+            {# <div class="mx-auto border-t-4 border-solid max-w-content border-hr mt-md pt-base">
+            <a href="/suggest-an-event" class="icon-light-bulb">Suggest an Event</a>
+            </div> #}
+            {# <div class="mx-auto border-t-4 border-solid max-w-content border-hr mt-md pt-base">
+                <a href="/run-an-event" class="icon-dice">Run an Event</a>
+            </div> #}
         </div>
     </main>
 {% endblock %}

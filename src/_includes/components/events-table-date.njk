@@ -1,0 +1,8 @@
+{% if (event.eventDuration > 0) %}
+    <span class="whitespace-nowrap" x-ref="date{{event.eventId}}">{{ event.eventStartDateTime | formatDate }}</span>
+    <span class="whitespace-nowrap">{{ event.eventStartDateTime | formatTime }}
+        <b class="whitespace-nowrap">{{ event.eventDuration }}hr</b>
+    </span>
+{% else %}
+    <span class="opacity-50" x-ref="date{{event.eventId}}">TBD</span>
+{% endif %}

@@ -1,9 +1,20 @@
 ---
-title: Online Events
+title: Events
 tags: cards
 published: true
 order: 
----
-All of the amazing panels from Big Bad Online 2021 are now on the [Big Bad Con YouTube channel](https://www.youtube.com/channel/UCZTZeTM1WamDePxRpEMCftw)
 
-{% iconLink "/events", "Past Events", "calendar-clock" %}
+---
+Submit an event for Big Bad Con 2022!
+
+[Events](/events){.icon-calendar-clock}
+
+[Run An Event](/run-an-event){.icon-dice}
+
+[Games on Demand](/games-on-demand){.icon-games-on-demand}
+
+[Past Events](/past-events){.icon-library}
+
+[FAQ](/faq){.icon-faq}
+
+[How Sign Ups Work](https://www.bigbadcon.com/how-do-game-signups-work/){.icon-scroll}

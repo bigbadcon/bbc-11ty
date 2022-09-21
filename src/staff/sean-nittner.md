@@ -5,7 +5,7 @@ tags: staff
 published: true
 twitter: seannittner
 website: http://www.seannittner.com
-image: "/images/sean-nittner-bio-pic-967x1024.jpg"
+image: "/images/sean_seattle.jpg"
 position: Steward
 website_name: seannittner.com
 website_url: http://www.seannittner.com/

@@ -3,7 +3,7 @@
     <div style="height: 300px" :style="`height: ${height}px`" ></div>
     <div x-ref="footer" class="fixed bottom-0 z-0 w-full bg-gradient-to-br from-primary to-primary-2">
         <div class="relative flex flex-col justify-end mx-auto max-w-hero text-body px-base pt-md md:flex-row md:justify-between space-y-sm md:space-y-0 md:space-x-base">
-            {% for card in collections.footer123ABC %}
+            {% for card in collections.footer | published | sort %}
                 <div class="relative z-10 pb-base">
                     <h2 class="font-serif text-2xl text-header mb-xs">{{ card.data.title }}</h2>
                     <div class="text-sm leading-snug prose">{{ card.templateContent | safe }}</div>

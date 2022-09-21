@@ -1,6 +1,17 @@
 <!doctype html>
 <html lang="en" >
-    {% include 'layouts/html_head.njk' %}
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="generator" content="{{ eleventy.generator }}">
+      <link rel="stylesheet" href="/tailwindoutlive.css"/>
+      <script src="/static/js/scripts.js"></script>
+      {# Preload the main fonts used. Italics are not preloaded as they are not used as much #}
+      <link rel="preload" as="font" href="/static/fonts/open-sans-v23-latin-regular.woff2" type="font/woff2" crossorigin="anonymous">
+      <link rel="preload" as="font" href="/static/fonts/open-sans-v23-latin-700.woff2" type="font/woff2" crossorigin="anonymous">
+      <link rel="preload" as="font" href="/static/fonts/rokkitt-v20-latin-500.woff2" type="font/woff2" crossorigin="anonymous">
+      <link rel="preload" as="font" href="/static/fonts/rokkitt-v20-latin-700.woff2" type="font/woff2" crossorigin="anonymous">
+    </head>
     <body class="light">
         <div style="width: 1200px; height: 635px">{{ content | safe }}</div>
     </body>

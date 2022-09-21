@@ -1,12 +1,13 @@
 ---
-title: "112 Events. LIVE!"
+title: 112 Events. LIVE!
 tags: blog
 published: true
 date: 2012-08-07
-categories: 
-  - "the-making-of"
----
+categories:
+- the-making-of
+ogImage: ''
 
+---
 The games are in, the schedule made. Now it's time to look at all the awesome and try not to drool on your keyboard.
 
 Sign ups go live September 8th at noon. Until then check out the [events list](http://www.bigbadcon.com/events/ "Events") or view the view the graphical version [on Google docs](https://docs.google.com/spreadsheet/ccc?key=0AqNVQlE61iI2dEdjSWJLTWlLTWV1aEZSR0Z1cW5xTWc#gid=2 "Graphical Schedule").

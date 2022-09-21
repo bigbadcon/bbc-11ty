@@ -1,0 +1,115 @@
+---
+label: PoC Scholars
+hide_body: false
+fields:
+- type: text
+  name: title
+  label: Name
+  description: "<em>Your chosen name</em>"
+  config:
+    required: true
+- type: text
+  name: position
+  label: Position Title
+- name: tags
+  type: select
+  default: []
+  config:
+    required: true
+    options:
+    - poc-scholar
+    - poc-team-member
+    source:
+      type: simple
+      section: 
+      file: 
+      path: 
+  label: tags
+- name: published
+  type: boolean
+  label: published
+  default: false
+- type: text
+  name: gender
+  label: gender
+  config:
+    required: true
+  description: "(they/them), (she/her), (he/him), etc."
+- name: order
+  type: number
+  label: order
+  default: 0
+  required: true
+  config:
+    min: 
+    max: 
+    step: 
+  description: Order number to sort bio cards. Lower number ranks higher on the page.
+- name: image
+  type: file
+  config:
+    maxSize: 64
+  label: image
+- type: text
+  name: twitter
+  label: twitter handle
+  description: handle without the @ symbol
+- name: website_name
+  type: text
+  config:
+    required: false
+  label: website name
+- name: website_url
+  type: text
+  config:
+    required: false
+  label: website url
+pages:
+- src/poc-scholars/aaron-catano-saez.md
+- src/poc-scholars/ajit-a.george.md
+- src/poc-scholars/alika-gupta.md
+- src/poc-scholars/anthony-joyce-rivera.md
+- src/poc-scholars/austin-taylor.md
+- src/poc-scholars/banana-c..md
+- src/poc-scholars/bianca-bickford.md
+- src/poc-scholars/bianca-canoza.md
+- src/poc-scholars/carlos-cisco.md
+- src/poc-scholars/carlos-luna.md
+- src/poc-scholars/cris-viana.md
+- src/poc-scholars/dan-munoz.md
+- src/poc-scholars/danny-quach.md
+- src/poc-scholars/dominique-dickey.md
+- src/poc-scholars/drakoniques.md
+- src/poc-scholars/erin-roberts.md
+- src/poc-scholars/eugenio-vargas-dm-jazzy-hands.md
+- src/poc-scholars/gordon-mcalpin.md
+- src/poc-scholars/indrani-ganguly-copy.md
+- src/poc-scholars/indrani-ganguly.md
+- src/poc-scholars/jaime-reyes-mondragon.md
+- src/poc-scholars/jaqueline-florencio.md
+- src/poc-scholars/jasper-william-cartwright.md
+- src/poc-scholars/josh-mangle.md
+- src/poc-scholars/justice-ramin-arman.md
+- src/poc-scholars/kandi-j.williams.md
+- src/poc-scholars/kelly-m-tran.md
+- src/poc-scholars/latia-jacquise.md
+- src/poc-scholars/lexi-mcqueen.md
+- src/poc-scholars/lucia-versprille.md
+- src/poc-scholars/luis-loza.md
+- src/poc-scholars/mario-ortegon-copy.md
+- src/poc-scholars/mario-ortegon.md
+- src/poc-scholars/markeia-mccarty.md
+- src/poc-scholars/morgan-nuncio.md
+- src/poc-scholars/omar-najam.md
+- src/poc-scholars/pam-punzalan-copy.md
+- src/poc-scholars/pam-punzalan.md
+- src/poc-scholars/poorna-mazumdar.md
+- src/poc-scholars/raya-sarkar.md
+- src/poc-scholars/samuel-clarice-mui-shen-ern.md
+- src/poc-scholars/sean-nittner.md
+- src/poc-scholars/sin-posadas.md
+- src/poc-scholars/surena-marie.md
+- src/poc-scholars/tan-shao-han.md
+- src/poc-scholars/taylor-navarro.md
+- src/poc-scholars/tomas-gimenez-rioja.md
+- src/poc-scholars/whitney-strix-beltran.md

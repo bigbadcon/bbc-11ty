@@ -1,6 +1,7 @@
 ---
 layout: layouts/page.njk
 title: Thank you for your ideas!
+published: true
 description: ''
 tags: pages
 
@@ -10,5 +11,5 @@ All the entries will be reviewed by our coordinators before we reach out to pros
 
 If you have another idea for an event you can submit the form again:
 
-{% iconLink "/suggest-an-event", "Suggest an Event", "light-bulb" %}
+[Suggest an Event](/suggest-an-event){.icon-light-bulb}
 

@@ -1,0 +1,33 @@
+---
+layout: layouts/og-card.njk
+pagination:
+    data: eventData.events
+    size: 1
+    alias: event
+permalink: "og/events/{{ event.eventSlug }}/"
+eleventyComputed:
+    title: "{{ event.eventName | safe }}"
+    heroImage: "/event-images/{{ event.eventSlug }}.png"
+    heroImageAlt: "Speaker headshots"
+---
+{# TODO: make this more modular #}
+<div class="grid w-full h-full" style="grid-template-columns: 240px 960px; grid-template-rows: 480px 156px">
+    <div class="flex flex-col bg-primary-4">
+        <div class="h-72 p-base">{% include 'components/bigbadonline-logo-vert.njk' %}</div>
+        <div class="flex flex-col items-center font-bold text-primary">
+            <div class="text-2xl">May 6-7</div>
+            <div class="text-5xl">2022</div>
+        </div>
+    </div>
+    <div class="overflow-hidden bg-primary">
+        <div style="margin-top: -10px">
+            <img src="{{heroImage}}" alt="{{heroImageAlt}}" class="w-full h-full object-cover"/>
+        </div>
+    </div>
+    <div class="text-form bg-secondary col-span-full">
+        <div class="col-span-9 px-md py-base ">
+            <h1 class="font-serif text-4xl font-bold leading-8">{{ event.eventName | safe }}</h1>
+            <div class="text-base font-bold mt-2xs">{{ event.metadata.GM }}</div>
+        </div>
+    </div>
+</div>
