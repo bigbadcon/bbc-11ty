@@ -103,6 +103,10 @@ module.exports = (eleventyConfig) => {
   /*                                 Collections                                */
   /* -------------------------------------------------------------------------- */
 
+  eleventyConfig.addCollection("blogPublished", function(collectionApi) {
+    return collectionApi.getFilteredByTag("blog").filter(c => c.data.published === true);
+  });
+
   /* -------------------------------------------------------------------------- */
   /*                         Main Nav special collection                        */
   /* -------------------------------------------------------------------------- */
@@ -110,6 +114,7 @@ module.exports = (eleventyConfig) => {
   const navGroups = ["Attend","Events","Volunteer","Community","Blog"]
 
   eleventyConfig.addCollection("nav", function(collectionApi) {
+    // console.log(collectionApi.getFilteredByTag("pages").map(c => c.data.title))
     const allNav = collectionApi.getAll().filter(c => c.data.navGroup).filter(c => c.data.published !== false)
     const tempArray = allNav.map(c => {
       return {
