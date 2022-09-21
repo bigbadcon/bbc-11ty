@@ -11,7 +11,7 @@ exports.handler = async function(event, context) {
 
     try {
         // Initialize the sheet - doc ID is the long id in the sheets URL
-        const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_REGISTER_BIGBADONLINE)
+        const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_REGISTER_BIGBADONLINE_2022)
 
         // Initialize Auth - see more available options at https://theoephraim.github.io/node-google-spreadsheet/#/getting-started/authentication
         await doc.useServiceAccountAuth({
@@ -29,7 +29,7 @@ exports.handler = async function(event, context) {
         // Search for user based on userNicename
         const isRegistered = rows.some((row) => row.userId === id && row.userNicename === userNicename)
 
-        const discordInviteCode = "C7ffzSVYwK"
+        const discordInviteCode = "pM74SJtQH9"
 
         const msg = (isRegistered) ? "is registered" : "is not registered"
 
@@ -38,7 +38,7 @@ exports.handler = async function(event, context) {
             body: JSON.stringify({
                 message: `${userNicename} ${msg}`,
                 isRegistered: isRegistered,
-                bboDiscordInvite: (isRegistered) ? discordInviteCode : false
+                bboDiscordInvite: isRegistered && discordInviteCode
             }),
         }
 

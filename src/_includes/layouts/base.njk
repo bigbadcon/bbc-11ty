@@ -1,26 +1,38 @@
 {%- from "components/modal.njk" import authModal -%}
 
 <!doctype html>
-<html lang="en" class="min-h-screen" x-data="{theme: $persist('auto'), timezone: $persist('America/Los_Angeles'), modal: false }">
-  {% include 'layouts/html_head.njk' %}
+<html lang="en" class="min-h-screen" x-data="{timezone: $persist('America/Los_Angeles'), modal: false }">
+  {% include 'layouts/html-head.njk' %}
   <body
-  x-cloak x-show="theme"
+  data-theme="auto"
+  x-data="global"
   class="min-h-screen bg-primary"
-  :class="theme"
   :style="(modal) && 'overflow: hidden; height: 100vh;'"
   >
     <div class="relative z-10 grid min-h-screen shadow page-wrapper">
       {# Header with branding and nav #}
       <div class="header-wrapper">
-        {% block header %}{% endblock %}
+        {% block header %}
+          {% include 'components/header.njk' %}
+        {% endblock %}
       </div>
       <div class="relative content-wrapper bg-gradient-to-b from-main-gradient-top to-main-gradient-bottom pb-lg" >
         {# Login / Account Button #}
-        {# <button @click.stop="modal = 'login'" class="absolute top-0 font-bold uppercase transition-all transform border rounded-b cursor-pointer text-form right-base bg-highlight px-base pb-xs pt-md hover:bg-highlight-2 hover:pt-lg border-highlight" x-text="($store.auth.isAuth) ? 'My Account' : 'Login'">Login</button> #}
+        <button @click.stop="modal = 'login'" class="absolute top-0 font-bold uppercase transition-all transform border rounded-b cursor-pointer text-form right-base bg-highlight px-base pb-xs pt-md hover:bg-highlight-2 hover:pt-lg border-highlight" 
+        x-text="(authToken) ? 'My Account' : 'Login'">Login</button>
         {# Decorative underbrush svg #}
         <div style="-webkit-mask: url(/static/images/underbrush.svg) repeat-x; mask: url(/static/images/underbrush.svg) repeat-x; pointer-events: none;" class="h-10 underbrush bg-primary mb-sm"></div>
         {# Main Content Area. <main> tag should live in content block #}
         {% block content %}{% endblock %}
+        {# Add any content footers her e#}
+        {% for contentfooter in collections.contentfooter | published | sort %}
+          {% if (contentfooter.data.location === page.fileSlug) %}
+            <section class="mx-auto max-w-content p-base">
+              <h2 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{ contentfooter.data.title }}</h2>
+              <div class="prose">{{ contentfooter.templateContent | safe }}</div>
+            </section>
+          {% endif %}
+        {% endfor %}
       </div>
     </div>
     {% include 'components/footer.njk' %}
@@ -31,20 +43,7 @@
     {# Model Popup #}
     {{ authModal() }}
     {# Toast Notification #}
-    <div class="fixed z-50 flex justify-center w-full bottom-8" 
-    x-cloak x-show="$store.auth.toast" x-transition 
-    @click.outside="$store.auth.toast = null">
-      <div class="flex px-3 text-sm border-4 rounded-lg shadow-lg w-80 bg-body text-primary border-primary py-sm gap-base">
-        <p x-html="$store.auth.toast" class="flex-grow"></p>
-        <div>
-          <button @click="$store.auth.toast = null" class="flex items-center justify-center w-6 h-6 border-2 border-solid rounded border-body bg-primary">
-            <svg class="w-3 h-3 fill-body">
-              <use xlink:href="/static/images/icons.svg#close"></use>
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
+    {% include 'components/toast.njk' %}
   </body>
 
 </html>

@@ -1,12 +1,17 @@
 ---
 title: Big Bad Blog
 description: News about Big Bad Con
+published: true
 layout: layouts/plain.njk
+permalink: "blog/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1 }}/{% endif %}index.html"
 pagination:
   data: collections.blog
   size: 10
   reverse: true
   alias: blog
+navGroup: Blog
+navTitle: Blog
+order: 0
 ---
 
 <section class="space-y-md mt-md">

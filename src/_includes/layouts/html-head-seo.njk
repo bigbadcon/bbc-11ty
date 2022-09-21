@@ -1,0 +1,40 @@
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%2016'%3E%3Ctext%20x='0'%20y='14'%3E🌬️%3C/text%3E%3C/svg%3E" type="image/svg+xml"/>
+
+<title>{{ title | safe }}</title>
+
+<meta name="description" content="{{ description }}"/>
+<meta name="generator" content="{{ eleventy.generator }}">
+<link rel="canonical" href="{{ sitemeta.url }}{{ page.url }}"/>
+
+<!-- OG cards -->
+<meta property="og:title" content="{{ title }}"/>
+<meta property="og:description" content="{{ description }}"/>
+<meta property="og:site_name" content="{{ title }}"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="{{ page.url }}"/>
+<!-- End OG cards -->
+{% if ogImage %}
+    {% set og = sitemeta.url + ogImage %}
+{% elif ogAPIImage %}
+    {% set og = ogAPIImage | ogCacheBuster %}
+{% else %}
+    {% set ogImg = ["og-red.jpg", "og-wolf.jpg"] | random %}
+    {% set og = sitemeta.url + "/static/images/" + ogImg %}
+{% endif %}
+
+<meta name="image" content="{{ og }}">
+<meta property="og:image" content="{{ og }}">
+<meta name="twitter:card" content="summary_large_image"/>
+
+<!-- Favicon -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
+<link rel="icon" href="/static/favicon/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png">
+<link rel="icon" href="/static/favicon/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/static/site.webmanifest">
+<link rel="mask-icon" href="/static/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+
+<link rel="alternate" type="application/rss+xml" title="Big Bad Con Blog" href="/feed.xml"/>

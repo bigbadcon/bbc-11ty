@@ -3,10 +3,10 @@ require('dotenv').config();
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 const { GoogleSpreadsheet } = require('google-spreadsheet')
-
-/* ----- Inject cert to avoid the UNABLE_TO_VERIFY_LEAF_SIGNATURE error ----- */
+const environment = process.env.CONTEXT
 
 const apiBaseUrl = 'https://admin.bigbadcon.com:8091/api/'
+const apiKey = `ApiKey ${process.env.BBC_API_KEY}`
 
 exports.handler = async function(event, context) {
     // your server-side functionality
@@ -133,8 +133,8 @@ exports.handler = async function(event, context) {
                         to: userEmail,
                         from: 'info@bigbadcon.com', 
                         subject: 'Big Bad Con New User Account',
-                        text: `Hello ${displayName}, Unfortunately there was a problem adding your account. An email has been sent to our admin staff to see what is wrong. If you have any questions you can reply to this message.`,
-                        html: `Hello ${displayName}, Unfortunately there was a problem adding your account. An email has been sent to our admin staff to see what is wrong. If you have any questions you can reply to this message.`,
+                        text: `Hello ${displayName}, Unfortunately there was a problem adding your account. It's possible that you already have an account with us if you had an account on our old site. As our reset password is broken right now you can go to our old site at https://admin.bigbadcon.com and reset it there. Once reset it will work on our new site. If you have any questions you can reply to this message.`,
+                        html: `Hello ${displayName}, Unfortunately there was a problem adding your account. It's possible that you already have an account with us if you had an account on our old site. As our reset password is broken right now you can go to our old site at https://admin.bigbadcon.com and reset it there. Once reset it will work on our new site. An email has been sent to our admin staff to see what is wrong. If you have any questions you can reply to this message.`,
                     }
 
                     await sgMail.send(newUserMsg);
@@ -184,7 +184,7 @@ exports.handler = async function(event, context) {
                     text: `The user ${displayName} attempted but failed to create an account due to the same username ${userNicename} already being in the system. They have been emailed explaining this. Email: ${userEmail}; Full name: ${firstName} ${lastName}; userNicename: ${userNicename}`,
                     html: `The user ${displayName} attempted but failed to create an account due to the same username ${userNicename} already being in the system. They have been emailed explaining this. Email: ${userEmail}; Full name: ${firstName} ${lastName}; userNicename: ${userNicename}`,
                 }
-                await sgMail.send(newUserAdminMsg);
+                if (environment === "production") await sgMail.send(newUserAdminMsg);
 
                 // finalize function
                 return {
@@ -210,7 +210,7 @@ exports.handler = async function(event, context) {
         console.log(process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"));
         try {
             // Initialize the sheet - doc ID is the long id in the sheets URL
-            const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_REGISTER_BIGBADONLINE)
+            const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_REGISTER_BIGBADONLINE_2022)
 
             // Initialize Auth - see more available options at https://theoephraim.github.io/node-google-spreadsheet/#/getting-started/authentication
             await doc.useServiceAccountAuth({
@@ -234,6 +234,37 @@ exports.handler = async function(event, context) {
                 "Agree To Community Standards": data["agree-to-community-standards"],
             })
             console.log("🚀 ~ file: submission-created.js ~ line 149 ~ exports.handler=function ~ addedRow", addedRow)
+            
+            // TODO: add Volunteer Role to any registered users. TEST THIS!!!
+            const body = {
+                "role": "volunteer",
+                "userId": data.userId
+            }
+            
+            const headers = { headers: {"x-api-key": apiKey} }
+            console.log("addRoleToUser API POST", headers, body);
+            try {
+            
+                const res = await axios.post(apiBaseUrl + `users/addRoleToUser`, body, headers)
+            
+                if (res.status === 200) {
+                    return {
+                        statusCode: 200,
+                        body: "user added volunter role",
+                    }
+                } else {
+                    return {
+                        statusCode: 500,
+                        body: "failed"
+                    }
+                }
+            } catch (err) {
+                console.log("add user role for voluteer failed", err.toString());
+                return {
+                    statusCode: 200,
+                    body: "add user role for voluteer failed"
+                }
+            }
 
             return {
               statusCode: 200,

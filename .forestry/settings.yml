@@ -26,12 +26,33 @@ sections:
   templates:
   - staff
 - type: directory
+  path: src/poc-scholars
+  label: PoC Scholars
+  create: documents
+  match: "**/*.md"
+  templates:
+  - poc-scholar
+- type: directory
   path: src/cards
   label: Home Page Cards
   create: documents
   match: "**/*.md"
   templates:
   - home-page-cards
+- type: directory
+  path: src/cards-big
+  label: Home Page Big Cards
+  create: documents
+  match: "**/*.md"
+  templates:
+  - home-page-cards-big
+- type: directory
+  path: src/contentfooter
+  label: Content Footer
+  create: documents
+  match: "**/*.md"
+  templates:
+  - contentfooter
 - type: directory
   path: src/footer
   label: Footer

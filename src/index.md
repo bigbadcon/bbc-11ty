@@ -1,15 +1,20 @@
 ---
 layout: layouts/home.njk
 title: Big Bad Con
+published: true
 description: Big Bad Con is a tabletop and live action gaming convention featuring
   fantastic games and even better company! We’re a volunteer run 501c3 non-profit!
 tags: pages
 
 ---
-## Big Bad Online
+## Big Bad Con 2022
 
-We want to thank everyone who made Big Bad Online possible: our amazing speaker and panel moderators, the volunteers who made everything work, and all who attended!
+**Big Bad Con is returning October 27-30** at the Hyatt Regency near San Francisco Airport. We're so excited to see our friends, meet new people, and play games together!
 
-All of the knowledge, creativity, and insight shared by our panelists can still be found on the [Big Bad Con YouTube channel](https://www.youtube.com/channel/UCZTZeTM1WamDePxRpEMCftw/featured)
+[Sign up to attend](/buy-a-badge){.icon-badge}
 
-We are keeping our [**Mightycause fundraiser**](https://www.mightycause.com/story/Bigbadonline) up for a little while longer for those that want to support the future of Big Bad Con in 2022 and beyond!
+### Upcoming dates:
+
+* Schedule of events [published now](https://www.bigbadcon.com/events/)!
+* [POC Dinner](https://www.bigbadcon.com/events/poc-dinner) and [Meet & Greet](https://www.bigbadcon.com/events/poc-meet-greet) sign ups open now!
+* Events sign ups begin 9/25 at 12PM PT. [Here's how sign ups work!](/how-do-game-signups-work)

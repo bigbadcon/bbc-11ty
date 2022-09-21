@@ -1,0 +1,114 @@
+{% extends 'layouts/page.njk' %}
+
+{# TODO: add are you a teen field #}
+{% block content %}
+    <main id="content">
+        <div class="mx-auto max-w-content p-base">
+            <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
+            <div class="prose">{{ content | safe }}</div>
+            <section class="my-base text-body"
+                x-data="createAccount"
+                x-effect="displayName = (howToDisplay === 'nickname') ? nickname : firstName + ' ' + lastName;">
+                <div class="prose" x-cloak x-show="isAuth && user">
+                    <p>Hi, you are signed in as <span x-text="user && user.displayName" class="font-bold"></span>. If you would like to create a new account please logout first.
+                    </p>
+                    <p>
+                        <button class="button" @click="logout()">Logout</button>
+                    </p>
+                </div>
+                <form x-cloak x-show="!isAuth" 
+                data-netlify="true" 
+                netlify-honeypot="bot-field"
+                data-netlify-recaptcha="true"
+                method="POST" 
+                name="create-account"  
+                action="/create-account-thank-you"
+                >
+                    <div class="prose">
+                        <p class="hidden">
+                            <label>Don’t fill this out if you’re human: <input name="bot-field"/></label>
+                        </p>
+                        <p>
+                            <em>
+                                <strong>NOTE:</strong> if you already have an account on our old site then you can use the same account to <a @click.prevent.stop="modal = 'login'" class="font-bold" href="#">login</a> on this new site!</em>
+                        </p>
+                        <p>Big Bad Con is committed to cultivating a culture of respect, support, and kindness at both our in-person and online events. We ask that all of our attendees agree to abide by our Community Standards, please take a moment to read them before answering yes below.</p>
+                        <p>
+                            <a href="/community-standards" class="icon-scroll">Community Standards</a>
+                        </p>
+                    </div>
+                    <fieldset>
+                        <legend>Community Standards Agreement</legend>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-model="agree" required>
+                            <label for="agree-to-community-standards" class="text-body-highlight"3324>
+                                Yes &mdash; I agree to the Big Bad Con Community Standards
+                            </label>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Login Info</legend>
+                        <div class="space-y-sm">
+                            <p class="text-body mb-base">
+                                <span class="font-bold text-highlight">*</span> Required</p>
+                            <div>
+                                <label for="userNicename" class="text-xs uppercase">User Name <span class="font-bold text-highlight">*</span></label>
+                                <input class="w-64" id="userNicename" name="userNicename" required type="text" value="" x-model="userNicename" @blur="checkUsername()"/>
+                                <div x-show="userNicenameExists" class="italic font-bold text-highlight">user name already exists</div>
+                            </div>
+                            <div>
+                                <label for="userEmail" class="text-xs uppercase">Email <span class="font-bold text-highlight">*</span></label>
+                                <input class="w-64" id="userEmail" name="userEmail" required type="email" value="" x-model="userEmail" autocapitalize="off" autocorrect="off" spellcheck="false"/>
+                            </div>
+                            <div>
+                                <label for="userPass" class="text-xs uppercase">Password <span class="font-bold text-highlight">*</span></label>
+                                <input class="w-64" id="userPass" name="userPass" required type="password" value="" x-model="userPass"/>
+                            </div>
+                            <input type="hidden" value="" name="userLogin" id="userLogin" :value="userNicename"/>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Your Info</legend>
+                        <div class="space-y-sm">
+                            <p class="text-body mb-base">
+                                <span class="font-bold text-highlight">*</span> Required</p>
+                            <div>
+                                <label for="firstName" class="text-xs uppercase">First Name <span class="font-bold text-highlight">*</span></label>
+                                <input class="w-64" id="firstName" name="firstName" required type="text" x-model="firstName" value=""/>
+                            </div>
+                            <div>
+                                <label for="lastName" class="text-xs uppercase">Last Name <span class="font-bold text-highlight">*</span></label>
+                                <input class="w-64" id="lastName" name="lastName" required type="text" x-model="lastName" value=""/>
+                            </div>
+                            <div>
+                                <label for="howToDisplay" class="text-xs uppercase">How to Display Your Name <span class="font-bold text-highlight">*</span></label>
+                                <p class="text-xs text-body mb-sm">This is how your name will be displayed on your badge and online event signups</p>
+                                <select class="w-64" id="howToDisplay" name="howToDisplay" required x-model="howToDisplay" value="">
+                                    <option value="firstlast" default>Use my first and last</option>
+                                    <option value="nickname">For privacy/safety reasons use another name</option>
+                                </select>
+                            </div>
+                            <div x-cloak x-show="howToDisplay === 'nickname'">
+                                <label for="nickname" class="text-xs uppercase">Publically Displayed Name <span class="font-bold text-highlight">*</span></label>
+                                <input class="w-64" id="nickname" name="nickname" :required="howToDisplay === 'nickname'" type="text" x-model="nickname" value=""/>
+                            </div>
+                            {# <div>
+                                <label for="twitter" class="text-xs uppercase">Twitter handle</label>
+                                <input class="w-64" id="twitter" name="twitter" type="text" value="" x-model="twitter"/>
+                            </div> #}
+                            <input type="hidden" value="" name="displayName" id="displayName" :value="displayName"/>
+                            <input type="hidden" value="create-account" name="formName" id="formName"/>
+                        </div>
+                    </fieldset>
+                    {# TODO: add opt in for mailing list? #}
+                    <div data-netlify-recaptcha="true"></div>
+                    <p class="mt-base">
+                        <button type="submit" :disabled="!agree" disabled>Submit</button>
+                    </p>
+                </form>
+            </section>
+        </div>
+    </main>
+{% endblock %}
+
+{# user	{"value":{"id":493,"userNicename":"colinaut","userEmail":"colin.fahrion@gmail.com","userUrl":"","userRegistered":1347009101000,"displayName":"Colin Fahrion","bookingComment":null,"lastUpdated":null,"metadata":[{"umetaId":64878,"metaKey":"facebook","metaValue":"","userId":493},{"umetaId":7740,"metaKey":"first_name","metaValue":"Colin","userId":493},{"umetaId":7741,"metaKey":"last_name","metaValue":"Fahrion","userId":493},{"umetaId":7742,"metaKey":"nickname","metaValue":"colinaut","userId":493},{"umetaId":64882,"metaKey":"parentemail","metaValue":"","userId":493},{"umetaId":64881,"metaKey":"parentname","metaValue":"","userId":493},{"umetaId":64879,"metaKey":"twitter","metaValue":"@colinaut","userId":493},{"umetaId":85774,"metaKey":"wp_tuiny5_capabilities","metaValue":"a:2:{s:13:\"administrator\";b:1;s:5:\"staff\";b:1;}","userId":493}],"bbcUserFavorites":[{"bbcUserFavoritesId":7987,"userId":493,"eventId":2659,"createDate":1568848882000,"updateDate":1568848882000,"status":1},{"bbcUserFavoritesId":7998,"userId":493,"eventId":2547,"createDate":1568863479000,"updateDate":1568863479000,"status":1},{"bbcUserFavoritesId":8521,"userId":493,"eventId":2845,"createDate":1628183203000,"updateDate":1628183203000,"status":1}]},"expiry":1628910026402} #}

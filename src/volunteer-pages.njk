@@ -1,0 +1,45 @@
+---
+layout: layouts/event.njk
+pagination:
+    data: eventData.volunteer
+    size: 1
+    alias: event
+permalink: "volunteer/{{ event.eventSlug }}/"
+eleventyComputed:
+    title: "{{ event.eventName | safe }}"
+    published: true
+---
+
+{# Date and Time #}
+<div class="text-lg prose border-t-2 border-b-2 text-body mb-base space-y-xs border-hr py-sm">
+    {# Event Date #}
+    {% include 'components/event-date.njk' %}
+    {# Spaces #}
+    {% if event.metadata.Players %}
+        {% include 'components/event-spaces.njk' %}
+    {% endif %}
+</div>
+
+{# Description #}
+<div class="prose event-description">{{event.postContent | nl2br | safe }}</div>
+{# TODO: Merge Volunteer event signup form with the volunteer event booking so that it forces the user to enter the form if they are not a volunteer before booking #}
+{# Event Signup / Booking #}
+{% include 'components/volunteerBookingPanel.njk'%}
+{# Event links #}
+<div class="flex flex-wrap justify-between prose border-t-2 border-b-2 mt-md border-hr py-sm gap-base">
+    <div class="flex text-sm gap-xs">
+        <strong>Add to calendar:</strong>
+        {% set calendarDescription = "Big Bad Online 2022 volunteer shift: https://www.bigbadcon.com/events/" + event.eventSlug %}
+        <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'google' %}">Google</a>
+        <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'ics' %}">iCal</a>
+        <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'outlook' %}">Outlook</a>
+    </div>
+    <div class="text-sm">
+        {% set tweeturl = "https://twitter.com/intent/tweet?text=Volunteer+at+BigBadCon!+https://www.bigbadcon.com/events/" + event.eventSlug %}
+
+        <a class="icon-twitter" href="{{tweeturl}}">Tweet This!</a>
+    </div>
+</div>
+
+<div class="prose py-base">Back to <a href="/volunteer-shifts/">List of Volunteer Shifts</a>
+</div>

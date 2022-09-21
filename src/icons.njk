@@ -1,0 +1,34 @@
+---
+layout: 'layouts/page-wide.njk'
+title: Icons
+published: true
+description: List of icons
+
+---
+
+<div class="max-w-content">
+    <p>Most of the SVG icons are thanks to Font Awesome and Icomoon with some tweaks and additional svg art by Colin Fahrion</p>
+
+    <p>To apply an icon use the following css class to any element using the markdown-it-attr syntax. For instance, the following markdown…</p>
+
+    <code>
+        [Hotel](/hotel){.icon-hotel}
+    </code>
+
+    <p>…will produce the following link:</p>
+
+    <p>
+        <a href="/hotel" class="icon-hotel">Hotel</a>
+    </p>
+
+    <p>If you are using WYSIWIG mode in Forestry just add the {.icon-hotel} immediately after the link with no space.</p>
+</div>
+<h2>List of Icons</h2>
+
+<div class="sm:columns-2 lg:columns-3 xl:columns-4 gap-base">
+    {% for icon in svgIcons %}
+        <div class="break-inside-avoid py-sm">
+            <div class="icon-{{icon.name}}">.icon-{{icon.name}}</div>
+        </div>
+    {% endfor %}
+</div>

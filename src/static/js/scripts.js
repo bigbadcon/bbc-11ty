@@ -3,16 +3,44 @@
 /* -------------------------------------------------------------------------- */
 
 function slugify(text) {
-    return text
-        .toString()
-        .toLowerCase()
-        .trim()
-        .normalize('NFD') // separate accent from letter
-        .replace(/[\u0300-\u036f]/g, '') // remove all separated accents
-        .replace(/\s+/g, '-') // replace spaces with dash
-        .replace(/&/g, '-and-') // replace & with 'and'
-        .replace(/[^\w-]+/g, '') // remove all non-word chars
-        .replace(/--+/g, '-') // replace multiple dash with single
+  return text
+    .toString()
+    .toLowerCase()
+    .trim()
+    .normalize('NFD') // separate accent from letter
+    .replace(/[\u0300-\u036f]/g, '') // remove all separated accents
+    .replace(/\s+/g, '-') // replace spaces with dash
+    .replace(/&/g, '-and-') // replace & with 'and'
+    .replace(/[^\w-]+/g, '') // remove all non-word chars
+    .replace(/--+/g, '-') // replace multiple dash with single
+}
+
+function isFullArray(arr) {
+  return Array.isArray(arr) && arr.length
+}
+
+function compareArrays(arr1, arr2) {
+  return Array.isArray(arr1) && Array.isArray(arr2) && arr1.filter(val => arr2.indexOf(val) !== -1)
+}
+
+function compareValues(a, b) {
+  // return -1/0/1 based on what you "know" a and b
+  // are here. Numbers, text, some custom case-insensitive
+  // and natural number ordering, etc. That's up to you.
+  // A typical "do whatever JS would do" is:
+
+  return (a < b)
+      ? -1
+      : (a > b)
+          ? 1
+          : 0;
+}
+
+/* ------------------------- Convert odd characters ------------------------- */
+const decodeText = text => {
+  return text && utf8.decode(windows1252.encode(text,{
+      mode: 'html'
+  }))
 }
 
 /* -------------------------------------------------------------------------- */
@@ -20,50 +48,13 @@ function slugify(text) {
 /* -------------------------------------------------------------------------- */
 
 function formatEventDate(date, tz = 'America/Los_Angeles') {
-  return "<span style='white-space: nowrap;'>" + dayjs(date).tz(tz).format('MMM D, YYYY') + "</span> <span>" + dayjs(date).tz(tz).format('h:mm a') + "</span>"
+  return dayjs(date).tz(tz).format('MMM D')
 }
-
-/* -------------------------------------------------------------------------- */
-/*                        LocalStorage Helper Functions                       */
-/* -------------------------------------------------------------------------- */
-
-function setLSWithExpiry(key, value, ttl) {
-  console.log("🚀 ~ file: scripts.js ~ line 23 ~ setLSWithExpiry ~ value", key, value)
-  ttl = ttl || 86400000 // one day
-  const now = new Date()
-
-  // `item` is an object which contains the original value
-  // as well as the time when it's supposed to expire (now + time in milliseconds)
-  const item = {
-    value: value,
-    expiry: now.getTime() + ttl,
-  }
-  localStorage.setItem(key, JSON.stringify(item))
+function formatEventDateWithYear(date, tz = 'America/Los_Angeles') {
+  return dayjs(date).tz(tz).format('MMM D, YYYY')
 }
-
-function getLSWithExpiry(key) {
-  const itemStr = localStorage.getItem(key)
-  // if the item doesn't exist, return null
-  if (!itemStr) {
-    return null
-  }
-  const item = JSON.parse(itemStr)
-  const now = new Date()
-  // compare the expiry time of the item with the current time
-  if (now.getTime() > item.expiry) {
-    // If the item is expired, delete the item from storage
-    // and return null
-    localStorage.removeItem(key)
-    return null
-  }
-  return item.value
-}
-
-function getAuthToken() {
-  return getLSWithExpiry('authToken')
-}
-function setAuthToken(token) {
-  return setLSWithExpiry('authToken', token)
+function formatEventTime(date, tz = 'America/Los_Angeles') {
+  return dayjs(date).tz(tz).format('h:mma')
 }
 
 /* -------------------------------------------------------------------------- */
@@ -85,6 +76,53 @@ function metadataArrayToObject(arr) {
   return object
 }
 
+
+/* --------------------------- Event Duration ------------------------------ */
+
+const getDurationInHours = (dateStart,dateEnd) => {
+  dateStart = new Date(dateStart)
+  dateEnd = new Date(dateEnd)
+  return (Math.abs(dateEnd - dateStart) / 1000) / 3600 % 24;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                             API Fetch Functions                            */
+/* -------------------------------------------------------------------------- */
+
+// TODO: refactor all this to simpler global functions 
+
+const apiBaseUrl = 'https://admin.bigbadcon.com:8091/api'
+// Dev API using Caddy server reverse proxy
+// const apiBaseUrl = '/apidev'
+
+// Global Fetch Function for API
+async function fetchData(url, options, authToken) {
+  authToken = authToken || JSON.parse(localStorage.getItem('_x_authToken'))
+  options = { 
+    method: 'GET', 
+    headers: { 
+      'Content-Type': 'application/json;charset=utf-8',
+    },
+    ...options
+  }
+
+  if (authToken) options.headers.Authorization = authToken
+
+  if (options.body) options.body = JSON.stringify(options.body)
+
+  try {
+    let response = await fetch(apiBaseUrl + url, options)
+    console.log(`RESPONSE:fetch for ${url}`, response)
+    if (response.status !== 200) throw `fetch fail status: ${response.status}`
+    let result = await response.json()
+    console.log(`RESULT:fetch for ${url}`, result)
+    return result
+  } catch (err) {
+    console.error(`ERROR:fetch for ${url}`,err)
+    return false
+  }
+}
+
 /* -------------------------------------------------------------------------- */
 /*                                Alpine Stuff                                */
 /* -------------------------------------------------------------------------- */
@@ -92,485 +130,525 @@ function metadataArrayToObject(arr) {
 document.addEventListener('alpine:init', () => {
 
   /* -------------------------------------------------------------------------- */
-  /*                             API Fetch Functions                            */
+  /*                                Alpine Global                               */
   /* -------------------------------------------------------------------------- */
 
-  const apiBaseUrl = "https://admin.bigbadcon.com:8091/api/"
-  // const apiBaseUrl = 'http://www.logictwine.com:8092/'
-
-  const api = {
-    getEvent: async (id) => {
-      const token = getAuthToken()
-      if (!token) return null
-      const config = { headers: { Authorization: token } }
-      const params = { id: id }
-      try {
-        const res = await axios.post(apiBaseUrl + 'events/find', params, config)
-        const event = res.data
-
-        // Create Javascript date object
-        const eventStartDateTime = dayjs(event.eventStartDate + "T" + event.eventStartTime + "-07:00").toDate()
-        const eventEndDateTime = dayjs(event.eventEndDate + "T" + event.eventEndTime + "-07:00").toDate()
+  // Main data for logged in users
   
-        const data = {...event, 
-          // Convert to keyed object
-          metadata: metadataArrayToObject(event.metadata),
-          // strip out status 0 which are canceled attendees
-          bookings: res.data.bookings.filter(booking => booking.bookingStatus === 1),
-          eventStartDateTime: eventStartDateTime,
-          eventEndDateTime: eventEndDateTime,
-        }
-        return data
-      } catch (err) {
-        alertMsg(`get event #${id} failed, error: ${err}`)
-        return null
-      }
-    },
-    getEventsCategory: async (category) => {
-      const token = getAuthToken()
-      if (!token) return null
-      const config = { headers: { Authorization: token } }
-      try {
-        const res = await axios.get(apiBaseUrl + 'events/category/' + category, config)
-        const events = res.data
-
-        const data = events.map(event => {
-          const spacesTotal = Number(event.metadata.find( m => m.metaKey === 'Players' ).metaValue)
-          const bookings = event.bookings.filter(booking => booking.bookingStatus === 1).length
-          // return only the spaces numbers as that's all I need right now
-          // TODO: this will break when we have events where the GM is listed as booked!!!
-          return {
-            eventId: event.eventId,
-            spacesOpen: spacesTotal - bookings,
-            spacesTotal: spacesTotal
+  Alpine.data('global', function () {
+    return {
+      init() {
+        // logout if it's been more than 10 days
+        if (!dayjs(this.lastLogin).isValid() || dayjs(this.lastLogin).diff(dayjs(),'hour') < - 240) this.logout()
+      },
+      lastLogin: this.$persist(null),
+      authToken: this.$persist(false),
+      user: this.$persist(false),
+      availableSlots: this.$persist(null),
+      bookedEvents: this.$persist([]),
+      favEvents: this.$persist([]),
+      isRegistered: this.$persist(null),
+      volunteerEventSpaces: this.$persist([]),
+      bboDiscordInvite: null,
+      get isAuth() { return (typeof this.authToken === "string") },
+      async submitLogin(username, password) {
+        console.log("submitLogin", username)
+        let res = await fetch(apiBaseUrl + '/login', { headers: { 'Content-Type': 'application/json;charset=utf-8' }, method: 'POST', body:JSON.stringify({ username: username, password: password })})
+        console.log("response", res, res.headers.get('authorization'))
+        if (res.status === 200 && res.headers.get('authorization')) {
+          const token = res.headers.get('authorization')
+          this.authToken = token
+          this.lastLogin = dayjs()
+          if (token) {
+            // Need to pass token for first couple since there is a delay with the $persist code storing it
+            await this.getUserData(token)
+            this.availableSlots = await fetchData('/bookings/myAvailableSlots',{}, token)
+            await this.getBookedEvents()
+            await this.getFavEvents()
+            // this.checkRegistration()  this was for Big Bad Online
           }
-        })
-
-        return data
-      } catch (err) {
-        alertMsg(`get events category ${category} failed, error: ${err}`)
-        return null
-      }
-    },
-    getFavEvents: async () => {
-      const token = getAuthToken()
-      if (!token) return null
-      const config = { headers: { Authorization: token } }
-      try {
-        const res = await axios.get(apiBaseUrl + 'events/me/favorites', config);
-        const data = await res.data
-        const simpleArray = data.map(item => item.eventId)
-        return simpleArray
-        // TODO: get Jerry to change to just a list of ids?
-      } catch (err) {
-        alertMsg(`get user fav events failed, error: ${err}`)
-        return null
-      }
-    },
-    getBookedEvents: async () => {
-      const token = getAuthToken()
-      if (!token) return null
-      const config = { headers: { Authorization: token } }
-      try {
-        const res = await axios.get(apiBaseUrl + 'events/me', config);
-        const data = await res.data
-        console.log("user events", data);
-        const asyncResult = await Promise.all(data.map( async eventId => {
-          const event = await api.getEvent(eventId)
-          
-          // Create Javascript date object
-          const eventStartDateTime = dayjs(event.eventStartDate + "T" + event.eventStartTime + "-07:00").toDate()
-          const eventEndDateTime = dayjs(event.eventEndDate + "T" + event.eventEndTime + "-07:00").toDate()
-
-          // Create Duration
-          const duration = (dateStart,dateEnd) => {
-            // calculate hours
-            let diffInMilliSeconds = Math.abs(dateEnd - dateStart) / 1000;
-            const hours = Math.floor(diffInMilliSeconds / 3600) % 24;
-        
-            diffInMilliSeconds -= hours * 3600;
-            // calculate minutes
-            const minutes = Math.floor(diffInMilliSeconds / 60) % 60;
-            diffInMilliSeconds -= minutes * 60;
-            return hours.toString()
-          };
-
-          return {
-            eventId: eventId, 
-            eventName: event.eventName,
-            eventSlug: event.eventSlug,
-            categories: event.categories,
-            isVolunteer: event.categories.some(cat => cat.slug === "volunteer-shift"),
-            eventStartDateTime: eventStartDateTime,
-            eventDuration: duration(eventStartDateTime,eventEndDateTime)
-          }
-        }))
-        console.log("🚀 ~ file: scripts.js ~ line 130 ~ getBookedEvents: ~ asyncResult", asyncResult)
-        return asyncResult
-      } catch (err) {
-        alertMsg(`get booked events failed, error: ${err}`)
-        return null
-      }
-    },
-    getUserData: async () => {
-      // contains { displayName, userNicename }
-      const token = getAuthToken()
-      if (!token) return null
-      try {
-        const config = { headers: { Authorization: token } }
-        const res = await axios.get(apiBaseUrl + 'users/me', config)
-        console.log("🚀 ~ file: scripts.js ~ line 143 ~ getUserData: ~ res", res)
-        if (res.status === 200) {
-          return res.data
-        } else {
-          alertMsg(`get user data failed, status: ${res.status}`)
-        }
-      } catch (err) {
-        alertMsg(`get user data failed, error: ${err}`)
-      }
-    },
-    getAvailableSlots: async () => {
-      // contains { displayName, userNicename }
-      const token = getAuthToken()
-      if (!token) return null
-      try {
-        const config = { headers: { Authorization: token } }
-        const res = await axios.get(apiBaseUrl + 'bookings/myAvailableSlots', config)
-        console.log("🚀 ~ file: scripts.js ~ line 174 ~ getAvailableSlots: ~ res", res)
-        if (res.status === 200) {
-          return res.data
-        } else {
-          alertMsg(`get myAvailableSlots failed, status: ${res.status}`)
-        }
-      } catch (err) {
-        alertMsg(`get myAvailableSlots failed, error: ${err}`)
-      }
-    },
-    addFav: async (id) => {
-      const token = getAuthToken()
-      if (!token) return null
-      const config = { headers: { Authorization: token } }
-      const params = { eventId: id }
-      try {
-        const res = await axios.post(apiBaseUrl + 'events/me/favorite/create', params, config)
-        const data = res.data
-        return data
-      } catch (err) {
-        alertMsg(`fav event failed, error: ${err}`)
-        return null
-      }
-    },
-    deleteFav: async (id) => {
-      const token = getAuthToken()
-      if (!token) return null
-      const config = { headers: { Authorization: token }, data: { eventId: id } }
-      try {
-        const res = await axios.delete(apiBaseUrl + 'events/me/favorite/delete', config)
-        const data = res.data
-        return data
-      } catch (err) {
-        alertMsg(`delete fav failed, error: ${err}`)
-        return null
-      }
-    },
-    bookEvent: async (id) => {
-      const token = getAuthToken()
-      if (!token) return null
-      const config = { headers: { Authorization: token } }
-      const params = { gameId: id }
-      try {
-        const res = await axios.post(apiBaseUrl + 'bookings/bookMeIntoGame', params, config)
-        const data = res.data
-        return data
-      } catch (err) {
-        alertMsg(`book event failed, error: ${err}`)
-        return null
-      }
-    },
-    cancelBooking: async (id) => {
-      const token = getAuthToken()
-      if (!token) return null
-      const config = { headers: { Authorization: token }, data: { gameId: id } }
-      try {
-        const res = await axios.delete(apiBaseUrl + 'bookings/removeMeFromGame', config)
-        const data = res.data
-        return data
-      } catch (err) {
-        alertMsg(`cancel booking failed, error: ${err}`)
-        return null
-      }
-    },
-    submitLogin: async (username, password) => {
-      try {
-        const res = await axios.post(apiBaseUrl + "login", { username: username, password: password })
-        if (res.status === 200 && res.headers.authorization) {
-          const token = res.headers.authorization
           return token
         } else {
-          alertMsg(`login failed, status: ${res.status}`)
-          return null
+          // TODO: better error message to say if password is wrong
+          this.$dispatch('toast', 'ERROR: login failed')
+          return false
         }
-      } catch (err) {
-        alertMsg(`login failed, error: ${err}`)
-        return null
-      }
-    },
-    changePassword: async (userId, password) => {
-      const token = getAuthToken()
-      if (!token) return null
-      const config = { headers: { Authorization: token } }
-      try {
-        const res = await axios.post(apiBaseUrl + "users/setMyPassword", { userId: userId, password: password }, config)
-        if (res.status === 200 || res.status === 201) {
-          return true
+      },
+      logout () {
+        this.authToken = null
+        this.user = null
+        this.favEvents = []
+        this.availableSlots = null
+        this.bookedEvents = null
+        this.isRegistered = null
+        this.volunteerEventSpaces = []
+        this.bboDiscordInvite = null
+        this.$dispatch('toast', 'You have been logged out')
+      },
+      async getUserData(token) {
+        token = token || this.authToken
+        let user = await fetchData('/users/me',{}, token)
+
+        if (!user) {this.logout(); return false;}
+
+        const userMetadata = metadataArrayToObject(user.metadata)
+        const userRoles = [...userMetadata.wp_tuiny5_capabilities.matchAll(/"([a-z\-]+)/g)].map( (match) => match[1])
+        user = {
+          ...user,
+          metadata: userMetadata,
+          roles: userRoles,
+          displayName: decodeText(user.displayName) || user.displayName
+        }
+        console.log("user data transformed",user);
+        this.user = user
+        return user
+      },
+      get badgeRoles() {
+        return this.user && compareArrays(this.user.roles,['gm','paidattendee','volunteer','comp','staff'])
+      },
+      get hasBadge() {
+        return this.user && Array.isArray(this.badgeRoles) && this.badgeRoles.length > 0
+      },
+      isRole(role) {
+        return this.user && Array.isArray(this.user.roles) && this.user.roles.includes(role)
+      },
+      get isVolunteer() {
+        return this.isRole('volunteer')
+      },
+      get isAdmin() {
+        return this.isRole('administrator')
+      },
+      get isTeen() {
+        return this.isRole('teen')
+      },
+      get isVendor() {
+        return this.isRole('vendor')
+      },
+      get isPaid() {
+        return this.isRole('paidattendee')
+      },
+      async checkRegistration () {
+        // Used for Big Bad Online
+        const url = `/.netlify/functions/check-registration/${this.user.id}/${this.user.userNicename}`
+        try {
+          const response = await fetch(url)
+          console.log(`RESPONSE:fetch for ${url}`, response)
+          if (response.status !== 200) throw `checkRegistration fetch fail status: ${response.status}`
+          let data = await response.json()
+          console.log(`RESULT:fetch for ${url}`, data)
+          this.bboDiscordInvite = data.bboDiscordInvite
+          this.isRegistered = data.isRegistered
+          return data
+        } catch(err) {
+          console.error(`ERROR: fetch for ${url}`,err)
+          return false
+        }
+      },
+      async getEvents() {
+        const data = await fetchData('/events/all/public')
+        console.log('getEvents', data)
+      },
+      async getBookedEvents() {
+        // 1. Get ID array of my events
+        let myEvents = await fetchData('/events/me/',{})
+        // Logout if this fails as it indicates we are offline. This is necessary because we had issues with  people submitting forms and it didn't work.
+        // TODO: change this so it tests if you are offline before submitting any api call and warns
+        if (myEvents === false) {this.logout(); return false;}
+        // 2. Get event data from local JSON
+        let eventData = {}
+        try {
+          const response = await fetch('/events.json')
+          eventData = await response.json()
+        } catch(err) {
+          console.error(`ERROR: fetch for '/events/me/'`,err)
+          return false
+        }
+        //create array from eventData.json and remove all undefined cancelled events
+        myEvents = myEvents.map( id => eventData[id]).filter(event => event)
+        // only show published events that are in the future (minus 1 month ago)
+        this.bookedEvents = myEvents
+        console.log("🚀 ~ file: scripts.js ~ line 279 ~ getBookedEvents ~ myEvents", myEvents)
+        return myEvents
+      },
+      async bookEvent(id) {
+        let data = await fetchData('/bookings/bookMeIntoGame',{method: 'POST',body: { gameId: id }})
+        if (!data) this.$dispatch('toast', 'ERROR: booking change failed. Data service might be down.')
+        // update availableSlots
+        this.availableSlots = await fetchData('/bookings/myAvailableSlots')
+        this.getBookedEvents()
+        return data
+      },
+      async cancelBooking(id) {
+        let data = await fetchData('/bookings/removeMeFromGame',{method: 'DELETE',body: { gameId: id, guid: id }})
+        if (!data) this.$dispatch('toast', 'ERROR: booking change failed. Data service might be down.')
+        // update availableSlots
+        this.availableSlots = await fetchData('/bookings/myAvailableSlots')
+        this.getBookedEvents()
+        return data
+      },
+      async getFavEvents() {
+        let data = await fetchData('/events/me/favorites')
+        this.favEvents = data && data.map(item => item.eventId)
+        return data && data.map(item => item.eventId)
+      },
+      async toggleFav(id) {
+        id = Number(id)
+
+        let data
+        if (this.isFav(id)) {
+          this.favEvents = this.favEvents.filter(fav => fav !== id)
+          data = await fetchData('/events/me/favorite/delete',{ method: 'DELETE', body:{eventId: id} })
         } else {
-          alertMsg(`login failed, status: ${res.status}`)
-          return null
+          this.favEvents = [...this.favEvents, id]
+          data = await fetchData('/events/me/favorite/create',{ method: 'POST', body:{eventId: id} })
         }
-      } catch (err) {
-        alertMsg(`login failed, error: ${err}`)
-        return null
-      }
-    },
-  }
-
-  /* -------------------------------------------------------------------------- */
-  /*                                Alpine Stores                               */
-  /* -------------------------------------------------------------------------- */
-
-  /* ---------------------------- Auth Store --------------------------- */
-  // ALl data for logged in users
-  // TODO: refactor to data with persist?
-
-  Alpine.store('auth', {
-    async init() {
-      const token = getAuthToken()
-      this.isAuth = (typeof token === 'string')
-      this.user = getLSWithExpiry('user')
-      this.availableSlots = getLSWithExpiry('availableSlots')
-      this.bookedEvents = getLSWithExpiry('bookedEvents')
-      this.favEvents = getLSWithExpiry('favEvents')
-      this.volunteerEventSpaces = getLSWithExpiry('volunteerEventSpaces')
-      this.favsOnly = getLSWithExpiry('favsOnly')
-      this.openOnly = getLSWithExpiry('openOnly')
-      this.bboDiscordInvite = getLSWithExpiry('bboDiscordInvite')
-      this.isRegistered = getLSWithExpiry('isRegistered')
-      if (this.isAuth) {
-        if (!this.user) this.getUserData()
-        if (!this.bookedEvents) this.getBookedEvents()
-        if (!this.favEvents) this.getFavEvents()
-        if (typeof this.availableSlots !== 'number') this.getAvailableSlots()
-      }
-    },
-    // Login stuff
-    username: "",
-    password: "",
-    email: "",
-    isAuth: false,
-    // User Data
-    user: false,
-    // User Events
-    availableSlots: null,
-    bookedEvents: [],
-    favEvents: [],
-    volunteerEventSpaces: [],
-    // Big Bad Online Registration
-    isRegistered: null, // null is not set; false not registered; true is registered
-    bboDiscordInvite: null, //stores discord invite link id grabbed from server; null == not set; false = unregistered; id string = discord invite id
-    // Big Bad Online Registration Functions
-    async checkRegistration() {
-      // If no discord link and has user info then check registration status
-      console.log("check reg");
-      if (!this.bboDiscordInvite && this.user) {
-        console.log("check reg yes user no bboDiscord");
-        const res = await axios.get(`/.netlify/functions/check-registration/${this.user.id}/${this.user.userNicename}`)
-        if (res && res.data) {
-          console.log(res.data)
-          const bboDiscordInvite = res.data.bboDiscordInvite
-          const isRegistered = res.data.isRegistered
-          this.bboDiscordInvite = bboDiscordInvite
-          this.isRegistered = isRegistered
-          setLSWithExpiry('bboDiscordInvite', bboDiscordInvite)
-          setLSWithExpiry('isRegistered', isRegistered)
-          return bboDiscordInvite
+        if (!data) { 
+          this.$dispatch('toast', 'ERROR: saving fav failed. data service might be offline.') 
         }
+      },
+      isFav(id) {
+        return isFullArray(this.favEvents) && this.favEvents.some( item => item === id)
+      },
+      isBooked(id) {
+        return isFullArray(this.bookedEvents) && this.bookedEvents.some( item => item.id === id)
+      },
+      doesEventOverlap(date,dur) {
+        function doesDateOverlap(start1,dur1,start2,dur2) {
+          start1 = dayjs(start1)
+          start2 = dayjs(start2)
+          const end1 = start1.add(dur1,'h')
+          const end2 = start2.add(dur2,'h')
+          return (end2 >= start1 && start2 <= end1)
+        }
+        
+        return this.bookedEvents && this.bookedEvents.some(item => doesDateOverlap(item.date,item.dur,date,dur))
+      },
+      async changePassword(userId,password) {
+        let data = await fetchData('/users/setMyPassword',{ method: 'POST', body: { userId: userId, password: password }})
+        return data
       }
-    },
-    // Event Table Functions
-    isBooked(id) {
-      if (this.bookedEvents) return this.bookedEvents.some( item => item.eventId === id)
-      return false
-    },
-    isFav(id) {
-      if (this.favEvents) return this.favEvents.some( item => item === id)
-      return false
-    },
-    async toggleFav(id) {
-      let data
-      if (this.isFav(id)) { 
-        this.favEvents = this.favEvents.filter(fav => fav !== id)
-        data = await api.deleteFav(id) 
-      }
-      else { 
-        this.favEvents = [...this.favEvents, id]
-        data = await api.addFav(id) 
-      }
-      if (data && data.status === 'FAILURE') this.makeToast(data.message)
-      if (data && data.status === 'SUCCESS') {
-        this.getFavEvents()
-      }
-    },
-    // Event Table Filter
-    favsOnly: false, // filter to only show favs
-    openOnly: false, // filter to only show open events
-    toggleFavsOnly() {
-      setLSWithExpiry('favsOnly',!this.favsOnly);
-      this.favsOnly = !this.favsOnly;
-    },
-    toggleOpenOnly() {
-      setLSWithExpiry('openOnly',!this.openOnly);
-      this.openOnly = !this.openOnly;
-    },
-    filterEvent(eventId) {
-      let showEvent = true
-      if (this.favsOnly && !this.isFav(eventId)) showEvent = false // hide if favsOnly true and not a fav
-      if (this.openOnly && this.volunteerEventSpaces.length > 0 && this.volunteerEventSpaces.find( e => e.eventId === eventId) && this.volunteerEventSpaces.find( e => e.eventId === eventId).spacesOpen === 0) showEvent = false // hide if openOnly true and no availableSlots
-      return showEvent
-    },
-    // Login functions
-    async submitLogin() {
-      const token = await api.submitLogin(this.username,this.password)
-      this.username = ""
-      this.password = ""
-      if (token) {
-        setAuthToken(token)
-        this.isAuth = true
-        this.getUserData()
-        this.getBookedEvents()
-        this.getFavEvents()
-        this.getAvailableSlots()
-        this.checkRegistration()
-      } else this.makeToast('Login failed')
-    },
-    async createAccount() {},
-    async forgetPassword() {},
-    async changePassword(newPassword) {
-      // console.log("change password",this.user.id,newPassword);
-      // returns boolean value
-      const isChanged = await api.changePassword(this.user.id, newPassword)
-      // triggers toast
-      if (isChanged) { this.makeToast("Password changed") } else this.makeToast("Error: Failed to change password")
-      return isChanged
-    },
-    logout() {
-      console.log("logout")
-      this.isAuth = false
-      this.user = null
-      this.bookedEvents = null
-      this.favEvents = null
-      this.availableSlots = null
-      this.volunteerEventSpaces = null
-      localStorage.removeItem('authToken')
-      localStorage.removeItem('user')
-      localStorage.removeItem('favEvents')
-      localStorage.removeItem('bookedEvents')
-      localStorage.removeItem('availableSlots')
-      localStorage.removeItem('volunteerEventSpaces')
-      localStorage.removeItem('isRegistered')
-      localStorage.removeItem('bboDiscordInvite')
-    },
-    // Booking functions
-    async bookEvent(id) {
-      const data = await api.bookEvent(id)
-      console.log("🚀 ~ file: scripts.js ~ line 294 ~ bookEvent ~ data", data)
-      if (data && data.status === 'FAILURE') this.makeToast(data.message)
-      if (data && data.status === 'SUCCESS') {
-        this.getBookedEvents()
-        this.makeToast("You've booked this event!")
-      }
-    },
-    async cancelBooking(id) {
-      const data = await api.cancelBooking(id)
-      console.log("🚀 ~ file: scripts.js ~ line 294 ~ bookEvent ~ data", data)
-      if (data && data.status === 'FAILURE') this.makeToast(data.message)
-      if (data && data.status === 'SUCCESS') {
-        this.getBookedEvents()
-        this.makeToast("Booking canceled")
-      }
-    },
-    // User data
-    async getUserData() {
-      const data = await api.getUserData()
-      this.user = data
-      setLSWithExpiry('user', data)
-    },
-    async getAvailableSlots() {
-      const data = await api.getAvailableSlots()
-      this.availableSlots = data
-      setLSWithExpiry('availableSlots',data)
-    },
-    async getBookedEvents() {
-      const data = await api.getBookedEvents()
-      this.bookedEvents = data
-      setLSWithExpiry('bookedEvents',data)
-    },
-    async getFavEvents() {
-      const data = await api.getFavEvents()
-      this.favEvents = data
-      setLSWithExpiry('favEvents',data)
-    },
-    // Load full events data for category. This is mainly to show number of slots open of volunteer shifts
-    // TODO: make this work for other event types, hopefully with simpler API
-    async getEventsCategory(category) {
-      // console.log("🚀 ~ file: scripts.js ~ line 429 ~ getEventsCategory ~ category", category)
-      const data = await api.getEventsCategory(category)
-      this.volunteerEventSpaces = data
-      setLSWithExpiry('volunteerEventSpaces',data)
-      // console.log("🚀 ~ file: scripts.js ~ line 431 ~ getEventsCategory ~ data", data)
-    },
-    volunteerEventSpace(eventId) {
-      return (this.volunteerEventSpaces && this.volunteerEventSpaces.length > 0) ? this.volunteerEventSpaces.find( e => e.eventId === eventId) : false
-    },
-    // Toast notifications
-    // TODO: look into making this global
-    toast: null,
-    makeToast(notification) {
-      this.toast = notification
-      setTimeout(() => this.toast = null, 2000);
-    },
+    }
   })
 
   /* -------------------------------------------------------------------------- */
-  /*                            Alpine Component Data                           */
+  /*                             Alpine Events Store                            */
   /* -------------------------------------------------------------------------- */
 
-  /* -------------------------- eventInfo panel data -------------------------- */
-
-  Alpine.data('eventInfo', () => ({
-    event: null,
-    spacesTotal: null,
-    spacesOpen: null,
-    owner: null,
-    gm: null,
-    bookings: [], // bookings minus all GMs
-    async getEvent(id) {
-      const data = await api.getEvent(id)
-      console.log("🚀 ~ file: scripts.js ~ line 373 ~ getEvent ~ data", data)
-      if (data) {
-        this.event = data
-        const spacesTotal = parseInt(data.metadata.Players)
-        this.spacesTotal = spacesTotal
-        this.owner = data.eventOwner.displayName
-        this.gm = data.metadata.GM
-        const bookings = data.bookings.filter(booking => booking.bookingComment !== "GM")
-        this.bookings = bookings
-        this.spacesOpen = spacesTotal - bookings.length
+  Alpine.store('events', {
+      init() {
+        console.log('events init');
+        let spacesLS = JSON.parse(localStorage.getItem('spaces')) || {}
+        this.spaces = spacesLS
+      },
+      spaces: {},
+      async getAllSpaces() {
+        console.log('getAllSpaces');
+        const spaces = await fetchData('/events/spaces/public')
+        if (spaces) {
+          this.spaces = spaces
+          localStorage.setItem('spaces', JSON.stringify(this.spaces))
+        }
+      },
+      async getSpace(id) {
+        console.log('getSpace');
+        const space = await fetchData(`/events/${id}/spaces/public`)
+        if (space) {
+          this.spaces = {...this.spaces, [id]: space}
+          localStorage.setItem('spaces', JSON.stringify(this.spaces))
+        }
       }
-    },
-    showTimezone(date,tz) {
-      console.log(dayjs(date).tz(tz))
+  })
+
+  /* -------------------------------------------------------------------------- */
+  /*                             Alpine Event Table                             */
+  /* -------------------------------------------------------------------------- */
+
+  Alpine.data('eventsTable', function () {
+    return {
+        init() {
+            this.searchUrlParams()
+            this.testFilters()
+
+            // sort table on login
+            const page = location.pathname.split("/").filter(c => c.length).pop()
+            if (this.sort[page] && this.sort[page].col !== undefined) {
+              const th = this.$root.querySelectorAll('table th button')
+              this.sortTable(th[this.sort[page].col],this.sort[page].ascending)
+            }
+        },
+        filter: this.$persist({favsOnly: false, openOnly: false, category: 'All', day: 'All', overlap: false}),
+        get isFilterDefault() {
+            return this.filter.favsOnly === false && this.filter.openOnly === false && this.filter.category.toLowerCase() === 'all' && this.filter.day.toLowerCase() === 'all' && this.filter.overlap === false
+        },
+        testFilters() {
+          // test on init to make sure all the filters are valid
+          this.filter.favsOnly = (typeof this.filter.favsOnly === 'boolean') ? this.filter.favsOnly : false
+          this.filter.openOnly = (typeof this.filter.openOnly === 'boolean') ? this.filter.openOnly : false
+          this.filter.overlap = (typeof this.filter.overlap === 'boolean') ? this.filter.overlap : false
+          this.setCategory(this.filter.category)
+          this.setDay(this.filter.day)
+        },
+        resetFilters() {
+            this.filter.favsOnly = false;
+            this.filter.openOnly = false;
+            this.filter.overlap = false;
+            this.filter.category = 'All';
+            this.filter.day = 'All';
+        },
+        resetUserFilters() {
+            this.filter.favsOnly = false;
+            this.filter.openOnly = false;
+            this.filter.overlap = false;
+        },
+        sort: this.$persist({}),
+        sortBy: this.$persist(1),
+        sortAscending: this.$persist(true),
+        allCategories: [
+                'All',
+                'RPG',
+                'LARP',
+                'Board/Card Game',
+                'Playtest',
+                'Panel',
+                'Workshop',
+                'GoD',
+                'All Ages',
+                'Early Signup',
+                'Vending'
+        ],
+        setCategory(cat) {
+            // TODO: make category list more dynamic
+            this.filter.category = (this.filter.category && cat && this.allCategories.some(val => val.toLowerCase() === cat.toLowerCase()))
+                ? cat
+                : 'all'
+        },
+        filterCategory(categories) {
+          return this.filter.category.toLowerCase() === "all" || categories.some(cat => cat.toLowerCase() === this.filter.category.toLowerCase())
+        },
+        allDays: [
+          'All',
+          'Oct 27',
+          'Oct 28',
+          'Oct 29',
+          'Oct 30'
+        ],
+        setDay(day) {
+          // TODO: make day range more dynamic
+          this.filter.day = (this.filter.day && day && this.allDays.some(val => val.toLowerCase() === day.toLowerCase()))
+              ? day
+              : 'all'
+        },
+        filterDay(date) {
+          return this.filter.day.toLowerCase() === "all" || this.filter.day.toLowerCase() === date.toLowerCase()
+        },
+        sortable: {
+          ['@click'](e) { this.sortTable(e) },
+          [':class']() {
+            const page = location.pathname.split("/").filter(c => c.length).pop()
+            if (this.sort[page] && this.sort[page].ascending) {
+              return 'ascending'
+            } else {
+              return 'descending'
+            }
+          }
+        },
+        isSort(el) {
+            const page = location.pathname.split("/").filter(c => c.length).pop()
+            const table = el.closest('table')
+            const ths = Array.from(table.querySelectorAll(`th`))
+            const col = ths.findIndex(th => th === el.closest('th'))
+            const sortCol = this.sort[page] && this.sort[page].col
+            const ascending = this.sort[page] && this.sort[page].ascending
+            return { col: col === sortCol, ascending: ascending }
+        },
+        sortTable(e, ascending) {
+            // Allow for either the event or the element to be used
+            const el = (e instanceof Element) ? e : e.target
+            const page = location.pathname.split("/").filter(c => c.length).pop()
+            const table = el.closest('table')
+            const parentTh = el.closest('th')
+            const ths = Array.from(table.querySelectorAll(`th`))
+            const col = ths.findIndex(th => th === el.closest('th'))
+
+            ths.forEach(th => { 
+              if (th !== parentTh) { 
+                th.classList.remove('active')
+              } else {
+                th.classList.add('active')
+              }
+            })
+
+            const tbody = table.querySelector('tbody')
+            const rows = Array.from(tbody.querySelectorAll(`tr`))
+
+            // If boolean than just use ascending var
+            if (typeof ascending !== 'boolean') {
+              // If this is the same column than flip direction, otherwise sort ascending
+              ascending = (this.sort[page] && this.sort[page].col === col && typeof this.sort[page].ascending === "boolean") ? !this.sort[page].ascending : true
+            }
+
+            // Store values
+            this.sort[page] = { col:col, ascending: ascending }
+
+            let qs = `td:nth-child(${col + 1})`
+
+            rows.sort((r1, r2) => {
+                // get each row's relevant column
+                let t1 = r1.querySelector(qs);
+                let t2 = r2.querySelector(qs);
+                // if it has data-sort attribute than use that
+                t1 = t1.dataset.sort || t1.textContent
+                t2 = t2.dataset.sort || t2.textContent
+
+                // check if this is a number and if so convert to number
+                t1 = (isNaN(Number(t1))) ? t1 : Number(t1);
+                t2 = (isNaN(Number(t2))) ? t2 : Number(t2);
+                // If one is a number and the other is not then convert then non number to 0
+                // this is mainly for the spaces column
+                if (isNaN(t1) && !isNaN(t2)) t1 = 0
+                if (isNaN(t2) && !isNaN(t1)) t2 = 0
+
+                // and then effect sorting by comparing their content:
+                if (ascending) {
+                    return compareValues(t1, t2);
+                } else {
+                    return compareValues(t2, t1);
+                }
+            });
+
+            // and then the magic part that makes the sorting appear on-page:
+            rows.forEach(row => tbody.appendChild(row));
+        },
+        searchUrlParams() {
+            if (location.search) {
+                const params = new URLSearchParams(location.search);
+                let cat = params.get('cat')
+                cat = cat
+                    .replace("-", " ")
+                    .toLowerCase()
+
+                this.setCategory(cat)
+            }
+        },
     }
-  }))
+  })
+  /* -------------------------------------------------------------------------- */
+  /*                              Alpine Event Info                             */
+  /* -------------------------------------------------------------------------- */
+
+  /* ----------- eventInfo Used for Event Table Rows and Event Pages ---------- */
+
+  Alpine.data('eventInfo', function () {
+    // See init on page
+    return {
+      id: 0, // this is filled in in nunjucks
+      categories: [], // this is filled in in nunjucks
+      maxSpaces: null, // this is filled in nunjucks; it is either a number or null, which mean "Any"
+      bookings: [],
+      gm: [],
+      event_image: "",
+      async getEventInfo(id) {
+        id = id || this.id
+        let eventsLS = JSON.parse(localStorage.getItem('events')) || {}
+
+        if (eventsLS[id]) {
+          this.bookings = eventsLS[id].bookings
+          this.gm = eventsLS[id].gm
+          this.event_image = eventsLS[id].event_image
+        }
+        
+        try {
+          // TODO: replace this with simpler API call when Jerry builds it; Also move it to events store.
+          /* ------------------------ Get data from events/find ----------------------- */
+          const data = await fetchData('/events/find',{ method: 'POST', body: { id: id }})
+          // convert metadata to object
+          const metadata = metadataArrayToObject(data.metadata)
+          // filter out canceled bookings and fix name issues with odd characters
+          const bookings = data.bookings.filter(booking => booking.bookingStatus === 1).map(booking => {return { ...booking, user: {...booking.user, displayName: decodeText(booking.user.displayName)}}})
+
+          /* ------------------------ Update all data variables ----------------------- */
+          // get only active bookings that are gms/speakers (bookingComment is null if not labelled)
+          this.gm = bookings.filter(booking => booking.bookingComment) || []
+          // get only active bookings that are not gms/speakers (bookingComment is null if not labelled)
+          this.bookings = bookings.filter(booking => !booking.bookingComment).sort((a,b) => a.user.displayName.localeCompare(b.user.displayName)) || []
+          // get event_image
+          this.event_image = metadata.event_image
+
+          /* -------------------------- Update Local Storage -------------------------- */
+          eventsLS[id] = {
+            bookings: this.bookings,
+            gm: this.gm,
+            event_image: this.event_image
+          }
+          localStorage.setItem('events', JSON.stringify(eventsLS))
+
+        } catch (e) {
+          console.log(e)
+        }
+      },
+      async uploadImage(e) {
+
+        if (!this.isAdmin) return false
+
+        const eventId = e.target.eventId.value
+        const formData = new FormData(e.target)
+
+        async function customFetch(url, authToken) {
+          const options = {
+            method: 'POST',
+            headers: {
+              Authorization: authToken
+            },
+            body: formData
+          }
+
+          console.log(options);
+
+          try {
+            let response = await fetch(apiBaseUrl + url, options)
+            console.log(`RESPONSE:fetch for ${url}`, response)
+            if (response.status !== 200) throw `fetch fail status: ${response.status}`
+            let result = await response.json()
+            console.log(`RESULT:fetch for ${url}`, result)
+            return result
+          } catch (err) {
+            console.error(`ERROR:fetch for ${url}`,err)
+            return false
+          }
+        }
+
+        let data = await customFetch('/events/image', this.authToken)
+
+        if (data) {
+          // if data update event data with new image
+          let eventsLS = JSON.parse(localStorage.getItem('events')) || {}
+          if (eventsLS[eventId]) {
+            this.event_image = data.fileName
+          }
+          eventsLS[eventId] = {
+            bookings: this.bookings,
+            gm: this.gm,
+            event_image: this.event_image
+          }
+          localStorage.setItem('events', JSON.stringify(eventsLS))
+          location.reload()
+        }
+
+        return data
+      },
+      showPreview(e) {
+        if (e.target.files.length > 0) {
+          const src = URL.createObjectURL(e.target.files[0]);
+          const preview = document.getElementById("image-preview");
+          const button = document.getElementById("upload-button");
+          preview.src = src;
+          preview.style.display = "block";
+          button.style.display = "inline-block";
+        }
+      }
+    }
+  })
+
 
   Alpine.data('createAccount',() => ({
     agree: false,
@@ -585,10 +663,10 @@ document.addEventListener('alpine:init', () => {
     displayName:'',
     twitter:'', // not set up yet in API
     userLogin: '',
+    // TODO: change to fetch
     async checkUsername() {
       try {
         const res = await axios.get(`/.netlify/functions/check-user/${this.userNicename}`)
-        console.log(res);
         if (res && res.data === "user exists") {
           this.userNicenameExists = true;
         }
@@ -598,35 +676,15 @@ document.addEventListener('alpine:init', () => {
     }
   }))
 
-  // Big Bad Online Registration Page
-  Alpine.data('registration',() => ({
-    agree: false,
-    isRegistered: false,
-    regState: 'loading',
-    getRegState() {
-      this.regState = getLSWithExpiry('registration')
-    },
-    async checkRegistration() {
-      const user = getLSWithExpiry('user')
-      if (user) {
-        const res = await axios.get(`/.netlify/functions/check-registration/${user.userNicename}`)
-        if (res && res.data && res.data.isUserRegistered) {
-          this.regState = 'registered'
-          setLSWithExpiry('registration','registered')
-        }
-      }
-    }
-  }))
-
   // Change Password
   Alpine.data('resetPasswordForm',() => ({
     userEmail: '',
     resetPasswordFormState: "empty",
     async resetPassword() {
-      resetPasswordFormState = "working"
+      this.resetPasswordFormState = "working"
       if (this.userEmail) {
-        console.log("working",this.userEmail);
         const paramSafeEmail = this.userEmail.replace(/\+/gi, '%2B') // replace + symbols for URLSearchParams
+        // TODO: change to fetch
         const res = await axios.get(`/.netlify/functions/forgot-password/?email=${paramSafeEmail}`)
         if (res && res.data === "forgot password email sent") {
           this.resetPasswordFormState = "succeeded"
@@ -648,8 +706,8 @@ document.addEventListener('alpine:init', () => {
     async changePassword() {
       this.passwordChangedState = 'working'
       if (this.uuid) {
-        console.log("working",this.uuid,this.userEmail);
         const paramSafeEmail = this.userEmail.replace(/\+/gi, '%2B') // replace + symbols for URLSearchParams
+        // TODO: change to fetch
         const res = await axios.get(`/.netlify/functions/change-password/?uuid=${this.uuid}&email=${paramSafeEmail}&password=${this.userPass}`)
         if (res && res.data === "password changed") {
           console.log("password change succeeded");

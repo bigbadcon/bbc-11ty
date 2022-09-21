@@ -1,5 +1,6 @@
 ---
-layout: layouts/suggest-event.njk
+layout: layouts/form-suggest-event.njk
+published: true
 title: Suggest an Event
 description: ''
 tags: pages

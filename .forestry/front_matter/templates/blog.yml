@@ -35,12 +35,20 @@ fields:
   config:
     required: false
   label: cover image alt text
+- name: ogImage
+  type: file
+  config:
+    maxSize: 64
+  label: open graph image
+  description: Twitter/Facebook image card
 pages:
-- src/blog/big-bad-con-presents-story-synth-microgrants.md
+- src/blog/big-bad-con-2022-october-27-30.md
 - src/blog/big-bad-online-2021.md
 - src/blog/big-bad-online-is-here.md
 - src/blog/big-news-coming-soon.md
+- src/blog/our-new-story-synth-microgrant-program.md
 - src/blog/planning-for-2021.md
+- src/blog/poc-programming-at-big-bad-con-2022.md
 - src/blog/save-the-date-big-bad-online-oct-23rd.md
 - src/blog/wolf-chase-2016.md
 - src/blog/wolf-den-under-construction.md

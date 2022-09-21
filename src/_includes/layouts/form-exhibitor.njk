@@ -1,0 +1,229 @@
+{% extends 'layouts/base.njk' %}
+
+{% block header %}
+    {% include 'components/header.njk' %}
+{% endblock %}
+
+{% block content %}
+    <main id="content">
+        <div class="mx-auto max-w-content p-base" x-data="formData">
+            <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
+            <div class="prose" x-show="formSubmitted" id="form-submitted" >
+                <h2>Thanks for submitting to be a dealer!</h2>
+                <p>Our staff will review your submission, and let you know about your application soon.</p>
+            </div>
+            <div class="prose">{{ content | safe }}</div>
+            <section class="my-md">
+                {# START Submit Form: only show if logged in #}
+                <div x-cloak x-show="!isAuth" class="prose">
+                    <h2>Exhibitor Signup</h2>
+                    <p>You must be <button @click.stop="modal = 'login'" class="font-bold underline text-highlight">logged in</button> to submit a form.</p>
+                </div>
+
+                <div x-cloak x-show="isAuth && user" >
+                    <div x-show="!formSubmitted" id="submit-form">
+                        <header class="prose">
+                            <h2>Exhibitor Signup</h2>
+                            <p>
+                                <span class="font-bold text-highlight">*</span>
+                                <em>required field</em>
+                            </p>
+                        </header>
+                        <form class="mt-base" id="form-exhibitor" x-ref="formexhibitor" x-validate @submit.prevent="submitForm" x-data>
+                            {# TODO: add honeypot #}
+                            <input name="user-display-name" type="hidden" x-model="formInfo.userDisplayName" x-init="formInfo.userDisplayName = user && user.displayName; $watch('user', value => formInfo.userDisplayName = value && value.displayName)">
+                            <input name="user-id" type="hidden" x-model="formInfo.userId" x-init="formInfo.userId = user && user.id; $watch('user', value => formInfo.userId = value && value.id)">
+                            <input name="user-email" type="hidden" x-model="formInfo.userEmail" x-init="formInfo.userEmail = user && user.userEmail; $watch('user', value => formInfo.userEmail = value && value.userEmail)">
+                            {# Personal Info #}
+                            <fieldset>
+                                <legend>Company Info</legend>
+                                <div class="required">
+                                    <label for="company-name">Company Name</label>
+                                    <input id="company-name" name="company-name" type="text" value="" x-model="formInfo.companyName" required/>
+                                </div>
+                                <div class="required">
+                                    <label for="website">Website</label>
+                                    <input id="website" name="website" type="text" value="" x-model="formInfo.website" x-validate.website required/>
+                                </div>
+                                <div >
+                                    <label for="twitter">Twitter</label>
+                                    <input id="twitter" name="twitter" type="text" value="" x-model="formInfo.twitter"/>
+                                </div>
+                                <div class="required">
+                                    <label for="product">Product or service your company provides</label>
+                                    <textarea cols="30" id="product" name="product" rows="3" x-model="formInfo.product" required ></textarea>
+                                </div>
+                                <div class="required">
+                                    <label for="charitysupported">Charity Supported</label>
+                                    <select id="charitysupported" name="charitysupported" x-model="formInfo.charitySupported" required >
+                                        <option disabled selected value="">
+                                            -- Choose One --
+                                        </option>
+                                        <option>Big Bad Con Scholarship</option>
+                                        <option value="other">Other (fill in below)</option>
+                                    </select>
+                                </div>
+                                <div x-show="formInfo.charitySupported === 'other'" class="required">
+                                    <label for="charity-other">Other Charity</label>
+                                    <input id="charity-other" name="charity-other" type="text" value="" x-model="formInfo.charityOther" x-required:charitysupported="'other'"/>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <legend>Contact Person</legend>
+                                <div class="required">
+                                    <label for="contact-name">Name</label>
+                                    <input id="contact-name" name="contact-name" type="text" value="" x-model="formInfo.contactName" required/>
+                                </div>
+                                <div class="required">
+                                    <label for="contact-email">Email</label>
+                                    <input id="contact-email" name="contact-email" type="email" value="" x-model="formInfo.contactEmail" required/>
+                                </div>
+                                <div class="required">
+                                    <label for="contact-phone">Phone</label>
+                                    <input id="contact-phone" name="contact-phone" type="tel" value="" x-model="formInfo.contactPhone" required/>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <legend>Community Standards Agreement</legend>
+                                <div class="prose mb-sm">
+                                    <p>Big Bad Con is committed to cultivating a culture of respect, support, and kindness at both our in-person and online events. We ask that all of our attendees agree to abide by our Community Standards, please take a moment to read them before answering yes below.</p>
+                                    <p>
+                                        <a href="/community-standards" class="icon-scroll">Community Standards</a>
+                                    </p>
+                                </div>
+                                <div class="required">
+                                    <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-model="formInfo.communityStandards" required >
+                                    <label for="agree-to-community-standards" class="text-body-highlight"3324>
+                                        Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Big Bad Con Community Standards
+                                    </label>
+                                </div>
+                            </fieldset>
+
+                            <button type="submit" :disabled="!$validate.isComplete($refs.formexhibitor)">Submit</button>
+                            {# <div class="form-validation-log text-body">
+                                <h3>Validations</h3>
+                                <p>
+                                    <small>List of data from <code>$validate.data($refs.formexhibitor)</code>
+                                    </small>
+                                </p>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>name</th>
+                                            <th>required</th>
+                                            <th>value</th>
+                                            <th>valid</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <template x-for="v in $validate.data($refs.formexhibitor)">
+                                            <tr>
+                                                <td>
+                                                    <span x-text="v.name"></span>
+                                                    <span x-text="v.group ? ' (group)' : ''"></span></td>
+                                                <td x-text="v.required ? '&#x2713;' : ''"></td>
+                                                <td x-text="v.value"></td>
+                                                <td x-text="v.valid ? '&#x2713;' : ''"></td>
+                                            </tr>
+                                        </template>
+                                    </tbody>
+                                </table>
+                                <p>$validate.isComplete: <b x-text="$validate.isComplete($refs.formexhibitor)"></b>
+                                </p>
+                            </div> #}
+                        </form>
+                    </div>
+                    {# END form submission div #}
+                    {# form submitted #}
+
+                </div>
+
+            </section>
+        </div>
+    </main>
+{% endblock %}
+
+{% block pagebottom %}
+
+    <script type="text/javascript">
+
+        document.addEventListener('alpine:init', () => {
+
+            Alpine.data('formData', function () {
+                return {
+                    formSubmitted: false,
+                    formInfo: {},
+                    submitForm() {
+                        console.log("submitForm", this.formInfo)
+                        const y = 0
+
+                        const submitNow = () => {
+                            this.postFormInfo()
+                            this.formSubmitted = true
+                        }
+
+                        const scrollEventListener = () => {
+                            if (window.pageYOffset === 0) {
+                                submitNow();
+                                window.removeEventListener('scroll', scrollEventListener)
+                            }
+                        }
+                        function checkScrollEnd() {
+                            window.addEventListener('scroll', scrollEventListener);
+                        }
+                        checkScrollEnd()
+                        window.scroll({top: y, behavior: 'smooth'});
+                    },
+                    async postFormInfo() {
+
+                        console.log('postFormInfo')
+
+                        // Remove communityStandards before submitting
+                        let {
+                            communityStandards,
+                            ...formInfo
+                        } = this.formInfo
+                        // change arrays to strings
+
+                        // Convert any array to string and make empty string for anything else not a string
+                        Object
+                            .keys(formInfo)
+                            .forEach(key => {
+                                if (formInfo[key] && formInfo[key].constructor === Array) {
+                                    formInfo[key] = formInfo[key].toString();
+                                } else if (!formInfo[key] || typeof formInfo[key] !== 'string') {
+                                    formInfo[key] = ''
+                                }
+                            })
+
+                        const options = {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json;charset=utf-8'
+                            },
+                            body: JSON.stringify(formInfo)
+                        }
+
+                        console.log('formInfo JOSN string', JSON.stringify(formInfo));
+
+                        const url = "/.netlify/functions/submit-exhibitor-application"
+
+                        try {
+                            let response = await fetch(url, options)
+                            console.log(`RESPONSE:fetch for ${url}`, response)
+                            if (response.status !== 200) 
+                                throw `fetch fail status: ${response.status}`
+                            let result = await response.json()
+                            console.log(`RESULT:fetch for ${url}`, result)
+                            return result
+                        } catch (err) {
+                            console.error(`ERROR:fetch for ${url}`, err)
+                            return false
+                        }
+                    }
+                }
+            })
+        })
+    </script>
+
+{% endblock %}

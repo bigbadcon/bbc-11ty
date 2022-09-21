@@ -1,0 +1,45 @@
+{% macro log(id) %}
+    <div class="fixed top-0 left-0 max-h-screen prose border-2 rounded w-60 text-2xs form-validation-log text-body bg-card border-hr"
+    x-ref="log"
+    x-data="{log: true, p1: 0, p2:0, p3:0, p4:0, drag: (e) => {this.p1 = this.p3 - e.clientX; this.p2 = this.p4 - e.clientY; this.p3 = e.clientX; this.p4 = e.clientY; $el.style.top = ($el.offsetTop - this.p2) + 'px'; $el.style.left = ($el.offsetLeft - this.p1) + 'px'}}"
+    >
+        <div class="flex justify-between text-xs border-b-2 mb-2xs border-hr p-2xs bg-primary text-body gap-sm"
+        @mousedown="(e) => { this.p3 = e.clientX; this.p4 = e.clientY; document.onmousemove=drag; document.onmouseup=()=>document.onmousemove=null}"
+        >
+            <button class="text-highlight hover:text-secondary" @click.prevent @mousedown.stop.prevent="() => { $refs.log.style.top = 0; $refs.log.style.left = 0}">&#9700;</button>
+            <span class="cursor-pointer grow">$validate.data('{{id}}')</span>
+
+            <button class="transition-transform text-highlight hover:text-secondary" @click.prevent @mousedown.stop.prevent="log = !log" :class="log && 'rotate-180'">&#9650;</button>
+        </div>
+        <div class="h-screen max-h-full overflow-scroll p-sm" x-show="log">
+            <div class="flex gap-sm">
+                <span>* required</span>
+                <span>&#x2713; valid</span>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>name</th>
+                        <th>value</th>
+                        <th>*</th>
+                        <th>&#x2713;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template x-for="v in $validate.data('{{id}}')">
+                        <tr>
+                            <td class="leading-tight py-2xs">
+                                <span x-text="v.name"></span>
+                                <span x-text="v.group ? ' (group)' : ''"></span></td>
+                            <td class="leading-tight break-all py-2xs" x-text="v.value"></td>
+                            <td class="leading-tight py-2xs" x-text="v.required ? '*' : ''"></td>
+                            <td class="leading-tight py-2xs" x-text="v.valid ? '&#x2713;' : ''"></td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+            <p>$validate.isComplete: <b x-text="$validate.isComplete('{{id}}')"></b>
+            </p>
+        </div>
+    </div>
+{% endmacro %}

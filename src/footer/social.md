@@ -4,8 +4,8 @@ order: 2
 published: true
 
 ---
-{% iconLink "https://twitter.com/bigbadcon", "@bigbadcon", "twitter" %}
+[@bigbadcon](https://twitter.com/bigbadcon){.icon-twitter}
 
-{% iconLink "/community-discord", "Join Our Discord", "discord" %}
+[Join Our Discord](/community-discord){.icon-discord}
 
-{% iconLink "/contact-us", "Contact Us", "envelope" %}
+[Contact Us](/contact-us){.icon-envelope}

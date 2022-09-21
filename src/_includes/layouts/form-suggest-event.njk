@@ -1,0 +1,43 @@
+{% extends 'layouts/base.njk' %}
+{# TODO: get rid of form-macros #}
+{% from 'components/form-macros.njk' import input %}
+{% from 'components/form-macros.njk' import textarea %}
+
+{% block header %}
+    {% include 'components/header.njk' %}
+{% endblock %}
+
+{% block content %}
+    <main id="content">
+        <div class="mx-auto max-w-content p-base">
+            <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
+            <div class="prose">{{ content | safe }}</div>
+            <div class="mt-base">
+                <form method="POST" name="suggest-event" data-netlify="true" netlify-honeypot="bot-field" action="/suggest-an-event-thank-you/">
+                    <p class="hidden">
+                        <label>Don’t fill this out if you’re human: <input name="bot-field"/></label>
+                    </p>
+                    <fieldset>
+                        <legend>Your Info</legend>
+                        <p class="text-body mb-base">All of this is optional. If you share your email, we may follow up to ask more information, but that is all we will use it for.</p>
+                        {{ input("name", "Name") }}
+                        {{ input("email", "Email", false, "email") }}
+                    </fieldset>
+                    <fieldset>
+                        <legend>Panelist Suggestion</legend>
+                        <p class="text-body mb-base">Let us know about panelists you think would be great for Big Bad Online!</p>
+                        {{ input("panelist", "Panelist you'd like to see") }}
+                        {{ input("panelistInfo", "Panelist contact info", "Website, twitter handle, email, etc.. Make sure you have permission to share this information!") }}
+                    </fieldset>
+                    <fieldset>
+                        <legend>Panel Topic Suggestion</legend>
+                        <p class="text-body mb-base">Is there a topic you'd like to see presented on?</p>
+                        {{ input("panelTopic", "Panel topic") }}
+                    </fieldset>
+                    <input type="hidden" value="suggest-event" name="formName" id="formName"/>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </main>
+{% endblock %}
