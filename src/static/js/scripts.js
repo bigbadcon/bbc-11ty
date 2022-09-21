@@ -378,7 +378,7 @@ document.addEventListener('alpine:init', () => {
         },
         filter: this.$persist({favsOnly: false, openOnly: false, category: 'All', day: 'All', overlap: false}),
         get isFilterDefault() {
-            return this.filter.favsOnly === false && this.filter.openOnly === false && this.filter.category === 'all' && this.filter.day === 'all' && this.filter.overlap === false
+            return this.filter.favsOnly === false && this.filter.openOnly === false && this.filter.category.toLowerCase() === 'all' && this.filter.day.toLowerCase() === 'all' && this.filter.overlap === false
         },
         testFilters() {
           // test on init to make sure all the filters are valid
@@ -441,6 +441,17 @@ document.addEventListener('alpine:init', () => {
         filterDay(date) {
           return this.filter.day.toLowerCase() === "all" || this.filter.day.toLowerCase() === date.toLowerCase()
         },
+        sortable: {
+          ['@click'](e) { this.sortTable(e) },
+          [':class']() {
+            const page = location.pathname.split("/").filter(c => c.length).pop()
+            if (this.sort[page] && this.sort[page].ascending) {
+              return 'ascending'
+            } else {
+              return 'descending'
+            }
+          }
+        },
         isSort(el) {
             const page = location.pathname.split("/").filter(c => c.length).pop()
             const table = el.closest('table')
@@ -455,8 +466,17 @@ document.addEventListener('alpine:init', () => {
             const el = (e instanceof Element) ? e : e.target
             const page = location.pathname.split("/").filter(c => c.length).pop()
             const table = el.closest('table')
+            const parentTh = el.closest('th')
             const ths = Array.from(table.querySelectorAll(`th`))
             const col = ths.findIndex(th => th === el.closest('th'))
+
+            ths.forEach(th => { 
+              if (th !== parentTh) { 
+                th.classList.remove('active')
+              } else {
+                th.classList.add('active')
+              }
+            })
 
             const tbody = table.querySelector('tbody')
             const rows = Array.from(tbody.querySelectorAll(`tr`))
