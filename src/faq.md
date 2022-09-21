@@ -48,10 +48,18 @@ Yes, you can find out more about each of those here:
 
 Yes! Big Bad Con is an official 501(c)(3) non-profit! Donations are tax deductible and we count as a charitable organization for volunteering. For more information on our non-profit status see [Proof of 501(c)(3) Status](/non-profit).
 
+## Who built the website?
+
+The front-end of the website is built by hand using the static site generator [11ty](https://www.11ty.dev) and hosted on [Netlify](https://www.netlify.com). The back-end is a combination of markdown files for static content, serverless functions, and a bespoke event manager data service. It is a collaboration of:
+
+ * [Colin Fahrion](/staff/#colin-fahrion): Site architecture, design, front-end development, and some writing
+ * [Jeremy Tidwell](/staff/#jeremy-tidwell): Back-end development and event manager API
+ * [Sean Nittner](/staff/#sean-nittner): Writing and the wisdom of years of Big Bad Con experience
+
 ## Where did you get all the wonderful illustrations and graphics?
 
-The character illustrations of Red and The Wolf are done [Eden Parkinson](https://eden-parkinson.com)
+The character illustrations of Red and The Wolf are done by [Eden Parkinson](https://eden-parkinson.com)
 
-Logo design, web design and front-end web development by [Colin Fahrion](http://www.twitter.com/colinaut)
+The Logo and other design graphics are done by [Colin Fahrion](/staff/#colin-fahrion)
 
-The [SVG icons](/icons) are combination of stock, thanks to [Font Awesome](https://fontawesome.com/license) and [Icomoon](https://icomoon.io), and some additional svg art by [Colin Fahrion](/staff/#colin-fahrion).
+The [SVG icons](/icons) are combination of stock, thanks to [Font Awesome](https://fontawesome.com/license) and [Icomoon](https://icomoon.io), and some additional svg art by Colin Fahrion.
