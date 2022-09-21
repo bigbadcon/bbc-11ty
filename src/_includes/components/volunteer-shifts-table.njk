@@ -3,8 +3,8 @@
 
     {# Volunteer Filter Buttons #}
     <div class="flex flex-wrap items-center justify-start border-t-2 border-b-2 mb-base text-body gap-sm py-sm border-hr" >
-        <div class="flex items-center justify-start gap-xs">
-            <h5 class="text-sm font-bold">Date:</h5>
+        <div class="flex flex-col justify-start sm:items-center sm:flex-row gap-2xs sm:gap-xs">
+            <h5 class="text-xs font-bold sm:text-sm">Date:</h5>
             <select class="mb-0 text-sm cursor-pointer pl-xs py-2xs" x-model="filter.day" >
                 <template x-for="day in allDays">
                     <option x-text="day" :selected="filter.day.toLowerCase() === day.toLowerCase()"></option>
@@ -14,7 +14,7 @@
         <div class="flex items-center justify-start gap-xs"
         x-init="if (!isAuth) resetUserFilters(); $watch('isAuth', val => { if (!val) resetUserFilters() })">
             {# favsOnly data is in x-data="eventFilter" in wrapping div in base.njk #}
-            <h5 class="text-sm font-bold">Filter:</h5>
+            <h5 class="text-xs font-bold sm:text-sm">Filter:</h5>
             <button @click="filter.openOnly = !filter.openOnly" class="filter-btn" :class="filter.openOnly && 'active'">
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 28">
                     <title>square</title>
@@ -36,11 +36,7 @@
                 </svg>
                 <span class="text-sm">Hide My Events Conflicts</span>
             </button>
-        </div>
-        <div x-show="!isFilterDefault" x-transition>
-            <button @click="resetFilters" class="filter-btn">
-                <span class="text-sm">Reset Filters</span>
-            </button>
+            <button x-show="!isFilterDefault" x-transition @click="resetFilters" class="text-sm filter-btn">Reset Filters</button>
         </div>
     </div>
 
@@ -49,31 +45,21 @@
         <thead :class="isSort($el).ascending ? 'ascending' : 'descending'">
             <tr>
                 <th>
-                    <div class="sortable" :class="isSort($el).col && 'active'">
-                        <button @click="sortTable" class="sort-btn" title="Sort by event">Event</button>
-                    </div>
+                    <button x-bind="sortable" title="Sort by event">Event</button>
                 </th>
                 <th>
-                    <div class="sortable" :class="isSort($el).col && 'active'">
-                        <button @click="sortTable" class="sort-btn" title="Sort by Date/Time">Date/Time</button>
-                    </div>
+                    <button x-bind="sortable" title="Sort by Date/Time">Date/Time</button>
                 </th>
                 {% if sitemeta.context === 'dev' %}
                     <th class="!text-center" >
-                        <div :class="isSort($el).col && 'active'" class="sortable">
-                            <button class="sort-btn" @click="sortTable">ID</button>
-                        </div>
+                        <button x-bind="sortable">ID</button>
                     </th>
                 {% endif %}
                 <th class="events-table-header--spaces">
-                    <div :class="isSort($el).col && 'active'" class="sortable">
-                        <button @click="sortTable" class="sort-btn" title="Sort by Spaces">Spaces</button>
-                    </div>
+                    <button x-bind="sortable" title="Sort by Spaces">Space</button>
                 </th>
                 <th class="events-table-header--fav" x-cloak x-show="isAuth">
-                    <div class="flex justify-end">
-                        <span class="cursor-pointer fav-star-header hover:bg-highlight" @click="filter.favsOnly = !filter.favsOnly" :class="filter.favsOnly && 'favved'"></span>
-                    </div>
+                    <button title="filter by favs" class="fav-star-header" @click="filter.favsOnly = !filter.favsOnly" :class="filter.favsOnly && 'bg-highlight'"></button>
                 </th>
             </tr>
         </thead>

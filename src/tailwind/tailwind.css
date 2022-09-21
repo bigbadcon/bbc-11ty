@@ -356,7 +356,7 @@ a[class^='icon-']:hover {
 }
 
 .events-table thead th {
-  @apply text-left last:pr-0 pb-base;
+  @apply text-left last:pr-0 py-sm;
 }
 
 .events-table .events-table-header--categories {
@@ -368,7 +368,7 @@ a[class^='icon-']:hover {
 }
 
 .events-table .events-table-header--fav {
-  @apply w-8 pb-sm justify-self-end;
+  @apply pb-sm justify-self-end flex justify-end;
 }
 
 .events-table tbody tr {
@@ -430,7 +430,7 @@ a[class^='icon-']:hover {
 .fav-star-header {
   mask-image: url(/static/icons/star.svg);
   mask-repeat: no-repeat;
-  @apply block w-6 h-6 bg-body indent-96;
+  @apply block w-6 h-6 bg-body indent-96 hover:bg-highlight;
 }
 
 .fav-star--event-page, .fav-star--event-page .iconlink__icon  {
@@ -459,32 +459,23 @@ a[class^='icon-']:hover {
 }
 
 
-.sort-btn {
-  @apply border-b-2 border-transparent mb-[-2px] hover:border-body;
+[x-bind="sortable"] {
+  @apply underline-offset-2 decoration-2 decoration-hr hover:underline whitespace-nowrap;
 }
-
-.sortable {
-  @apply inline-flex justify-start gap-2xs items-end;
+.active [x-bind="sortable"] {
+  @apply underline decoration-highlight;
 }
-
-.sortable:after {
+[x-bind="sortable"]:after {
   content: "\279C";
-  @apply text-transparent block text-xs;
+  @apply text-hr inline-block text-xs transition-transform ml-[.1rem] invisible;
 }
-
-.active.sortable:after {
-  @apply text-hr;
+.active [x-bind="sortable"]:after {
+  @apply visible;
 }
-
-.active .sort-btn {
-  @apply border-highlight;
-}
-
-.ascending .active.sortable:after {
+.active [x-bind="sortable"].ascending:after {
   @apply rotate-90;
 }
-
-.descending .active.sortable:after {
+.active [x-bind="sortable"].descending:after {
   @apply rotate-[-90deg];
 }
 
