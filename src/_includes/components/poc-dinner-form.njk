@@ -59,10 +59,10 @@
                 {% include 'components/event-booking-panel.njk' %}
             </div>
             {# x-validate form log #}
-            {# {% if (sitemeta.environment === 'dev') %}
+            {% if (sitemeta.environment === 'dev') %}
                 {% import 'components/x-validate-form-validator.njk' as validate %}
                 {{ validate.log('form') }}
-            {% endif %} #}
+            {% endif %}
         </form>
     </section>
     {# Show if Teen #}

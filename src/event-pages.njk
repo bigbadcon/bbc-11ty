@@ -63,7 +63,7 @@ eleventyComputed:
   <div>
     <strong>Safety Tools:</strong>
     {{event.metadata.safety_tools}}</div>
-  {% if (sitemeta.environment === 'dev') %}
+  {% if (sitemeta.environment === 'dev' or sitemeta.environment === 'branch-deploy') %}
     <div class="border-2 border-header p-sm my-sm">
       <strong class="text-header">DEV SITE Event ID:</strong>
       {{event.eventId}}</div>
