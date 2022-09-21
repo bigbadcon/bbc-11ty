@@ -27,7 +27,7 @@ We want you to have maximum access to games at Big Bad Con. Here’s how we do i
 Not everyone is available the moment signups open. So we've instituted Signup Phases, approximately one week apart:
 
 * Phase I (Sunday 9/25 12PM PDT) — Everyone can sign up for a maximum of 2 events.
-* Phase II (Monday 10/4 7PM PDT) — Everyone can sign up for 2 more events, a maximum of 4 total.
+* Phase II (Monday 10/3 7PM PDT) — Everyone can sign up for 2 more events, a maximum of 4 total.
 * Phase III (Saturday 10/8 7PM PDT) — Event signups have no maximum limit.
 
 A few things to note:
