@@ -54,4 +54,4 @@ The character illustrations of Red and The Wolf are done [Eden Parkinson](https:
 
 Logo design, web design and front-end web development by [Colin Fahrion](http://www.twitter.com/colinaut)
 
-Most of the SVG icons are thanks to [Font Awesome](https://fontawesome.com/license) and [Icomoon](https://icomoon.io) with some additional svg art by Colin Fahrion
+The [SVG icons](/icons) are combination of stock, thanks to [Font Awesome](https://fontawesome.com/license) and [Icomoon](https://icomoon.io), and some additional svg art by [Colin Fahrion](/staff/#colin-fahrion).
