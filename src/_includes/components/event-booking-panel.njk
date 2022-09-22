@@ -11,7 +11,7 @@
     <h2 class="-mt-1 font-serif text-2xl font-bold leading-none md:text-4xl text-header mb-sm">Event Booking</h2>
 
     {# Only show if logged in and has event data #}
-    <div x-cloak x-show="isAuth" class="flex flex-col gap-sm">
+    <div x-cloak x-show="isAuth && hasBadge" class="flex flex-col gap-sm">
         {% include 'components/event-date.njk' %}
         {% include 'components/event-spaces.njk' %}
 
@@ -70,4 +70,9 @@
     <div x-cloak x-show="!isAuth">
         You must be <button @click="modal = 'login'" class="underline text-highlight">logged in</button> to sign up.
     </div>
+    {# Message for people logged in but without a badge #}
+    <div x-cloak x-show="isAuth && !hasBadge">
+        You must be <button @click="modal = 'login'" class="underline text-highlight">logged in</button> to sign up.
+    </div>
+
 </div>
