@@ -275,14 +275,16 @@ document.addEventListener('alpine:init', () => {
         if (!data) this.$dispatch('toast', 'ERROR: booking change failed. Data service might be down.')
         // update availableSlots
         this.availableSlots = await fetchData('/bookings/myAvailableSlots')
+        this.$store.events.getSpace(id)
         this.getBookedEvents()
-        return data
+        // return data
       },
       async cancelBooking(id) {
         let data = await fetchData('/bookings/removeMeFromGame',{method: 'DELETE',body: { gameId: id, guid: id }})
         if (!data) this.$dispatch('toast', 'ERROR: booking change failed. Data service might be down.')
         // update availableSlots
         this.availableSlots = await fetchData('/bookings/myAvailableSlots')
+        this.$store.events.getSpace(id)
         this.getBookedEvents()
         return data
       },
