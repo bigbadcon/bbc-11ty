@@ -14,8 +14,8 @@
         <div class="flex flex-col justify-start sm:items-center sm:flex-row gap-2xs sm:gap-xs">
             <label for="filter-by-category" class="text-xs font-bold sm:text-sm">Category:</label>
             <select id-"filter-by-category" class="mb-0 text-sm cursor-pointer pl-xs py-2xs" x-model="filter.category" x-init="console.log(filter.category)">
-                <template x-for="cat in allCategories">
-                    <option x-text="cat" :selected="filter.cat.toLowerCase() === cat.toLowerCase()"></option>
+                <template x-for="category in allCategories">
+                    <option x-text="category" :selected="filter.category.toLowerCase() === category.toLowerCase()"></option>
                 </template>
             </select>
         </div>
