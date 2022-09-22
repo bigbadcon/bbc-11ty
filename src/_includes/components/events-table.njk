@@ -117,7 +117,7 @@
                     <td class="events-table-cell--date" data-sort="{{ event.eventStartDateTime | unixtime }}">
                         {% include 'components/events-table-date.njk' %}
                     </td>
-                    {% if sitemeta.context === 'dev' %}
+                    {% if sitemeta.context === 'dev' or sitemeta.context === 'branch-deploy' %}
                         <td class="text-center">
                             <span class="text-xs border-2 border-header px-xs py-2xs">{{event.eventId}}</span>
                         </td>
