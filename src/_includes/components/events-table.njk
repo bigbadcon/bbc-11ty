@@ -63,7 +63,7 @@
                 <th>
                     <button x-bind="sortable" title="Sort by Date/Time">Date/Time</button>
                 </th>
-                {% if sitemeta.context === 'dev' %}
+                {% if sitemeta.context === 'dev' or sitemeta.context === 'branch-deploy' %}
                     <th class="!text-center">
                         <button x-bind="sortable">ID</button>
                     </th>
@@ -96,7 +96,7 @@
                     {# Event Name #}
                     <td class="events-table-cell--name">
                         <h3>
-                            {% if (sitemeta.context === "dev" and event.eventStatus !== 1) %}
+                            {% if (sitemeta.context === "dev" or sitemeta.context === 'branch-deploy') and event.eventStatus !== 1) %}
                                 {% if event.eventStatus === 0 %}
                                     <b>PENDING:</b>
                                 {% else %}
