@@ -27,11 +27,20 @@
         {# Only show if age appropriate#}
         <div x-show="(isAllAges || !isTeen)">
             {# only show if user is not gm #}
-            <div x-show="!gm.some(gm => gm.user.id === user.id)" class="space-y-sm">
+            <div x-show="gm && !gm.some(gm => gm.user.id === user.id)" class="space-y-sm">
                 {# Quota information #}
-                <div x-show="!isQuotaExempt && availableSlots < 100">
-                    <strong>Quota:</strong> You have <span x-text="availableSlots"></span> available game event slots left.
-                </div>
+                {% if sitemeta.context === 'dev' or sitemeta.context === 'branch-deploy' %}
+                    <div x-show="!isQuotaExempt" class="border border-header p-sm">
+                        <p>
+                            <strong>DEV Quota:</strong> You have <span x-text="availableSlots"></span> available game event slots left.</p>
+                        <p class="text-sm italic">Dev version shows regardless of how high quote is. Production version only shows if quota is less than 100</p>
+                    </div>
+
+                {% else %}
+                    <div x-show="!isQuotaExempt && availableSlots < 100">
+                        <strong>Quota:</strong> You have <span x-text="availableSlots"></span> available game event slots left.
+                    </div>
+                {% endif %}
                 <div x-show="isQuotaExempt" class="italic">
                     This event does not count towards your quota.
                 </div>
