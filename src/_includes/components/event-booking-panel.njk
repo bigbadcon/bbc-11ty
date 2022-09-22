@@ -37,12 +37,11 @@
                         <p class="text-sm italic mb-sm">Dev version shows regardless of how high quote is. Production version only shows if quota is less than 100</p>
                         <button @click="getAvailableSlots" class="button">Get Available Slots (Quota)</button>
                     </div>
-
-                {% else %}
-                    <div x-show="!isQuotaExempt && availableSlots < 100">
-                        <strong>Quota:</strong> You have <span x-text="availableSlots"></span> available game event slots left.
-                    </div>
                 {% endif %}
+                <div x-show="!isQuotaExempt && availableSlots < 100">
+                    <strong>Quota:</strong> You have <span x-text="availableSlots"></span> available game event slots left.
+                </div>
+
                 <div x-show="isQuotaExempt" class="italic">
                     This event does not count towards your quota.
                 </div>
