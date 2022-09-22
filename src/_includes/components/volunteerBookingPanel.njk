@@ -27,7 +27,7 @@
                     <button class="button" x-show="!doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}})" @click="bookEvent({{event.eventId}})">Volunteer</button>
                 </div>
                 {# Show if booked #}
-                <div x-show="isBooked({{event.eventId}}">
+                <div x-show="isBooked({{event.eventId}})">
                     <button class="button" @click="cancelBooking({{event.eventId}})">Cancel Shift</span>
                 </div>
             </div>
