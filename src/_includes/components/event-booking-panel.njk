@@ -55,24 +55,24 @@
                 </div>
             </div>
             {# Show if you are a GM/Speaker #}
-            <div x-show="user && gm.some(gm => gm.user.id === user.id)" class="prose rounded bg-card py-sm px-base">
+            <div x-show="user && gm && gm.some(gm => gm.user.id === user.id)" class="prose rounded bg-card py-sm px-base">
                 You are running this event. If you need to cancel, please contact us at <a href="mailto:info@bigbadcon.com">info@bigbadcon.com</a>.
             </div>
         </div>
 
         {# Show if you are a teen and this is not an all ages event #}
-        <div x-show="(isTeen && !isAllAges) ? true : false" class="italic mt-base">
+        <div x-show="(isTeen && !isAllAges) ? true : false" class="italic prose mt-base">
             This is an 18+ only event. Teens are only allowed in All Ages events.
         </div>
     </div>
 
     {# Message for people not logged in #}
-    <div x-cloak x-show="!isAuth">
-        You must be <button @click="modal = 'login'" class="underline text-highlight">logged in</button> to sign up.
+    <div x-cloak x-show="!isAuth" class="prose">
+        You must be <button @click="modal = 'login'">logged in</button> to sign up.
     </div>
     {# Message for people logged in but without a badge #}
-    <div x-cloak x-show="isAuth && !hasBadge">
-        You must be <button @click="modal = 'login'" class="underline text-highlight">logged in</button> to sign up.
+    <div x-cloak x-show="isAuth && !hasBadge" class="prose">
+        You must have a <a href="/buy-a-badge">badge</a> to sign up for events.
     </div>
 
 </div>
