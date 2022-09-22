@@ -30,7 +30,7 @@ Treasures from across the Multiverse!
 
 Metal Weave Games (MWG) is a leading publisher evocative and inspirational tabletop products.
 
-### Dates and Times
+### Exhibitor Hall Dates and Times
 
 **Setup:**
 
