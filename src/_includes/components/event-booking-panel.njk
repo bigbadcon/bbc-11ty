@@ -29,7 +29,7 @@
             {# only show if user is not gm #}
             <div x-show="!gm.some(gm => gm.user.id === user.id)" class="space-y-sm">
                 {# Quota information #}
-                <div x-show="!isQuotaExempt && availableSlots >= 100">
+                <div x-show="!isQuotaExempt && availableSlots < 100">
                     <strong>Quota:</strong> You have <span x-text="availableSlots"></span> available game event slots left.
                 </div>
                 <div x-show="isQuotaExempt" class="italic">
