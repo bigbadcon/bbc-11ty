@@ -95,7 +95,7 @@ exports.handler = async function (event, context) {
                 )
 
                 try {
-                    const res = await axios.post(bbcApiBaseUrl + `remove`, {
+                    const res = await axios.post(bbcApiBaseUrl + `users/removeRoleFromUser`, {
                         "role": "notattending",
                         "userId": userId
                     }, headers)
@@ -106,7 +106,7 @@ exports.handler = async function (event, context) {
                 }
 
                 try {
-                    const res = await axios.post(bbcApiBaseUrl + `remove`, {
+                    const res = await axios.post(bbcApiBaseUrl + `users/removeRoleFromUser`, {
                         "role": "subscriber",
                         "userId": userId
                     }, headers)
