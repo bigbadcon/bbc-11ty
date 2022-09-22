@@ -7,7 +7,7 @@
             <label class="text-xs font-bold sm:text-sm" for="filter-by-date">Date:</label>
             <select id="filter-by-date" class="mb-0 text-sm cursor-pointer pl-xs py-2xs" x-model="filter.day">
                 <template x-for="day in allDays">
-                    <option x-text="day" :selected="filter.category.toLowerCase() === cat.toLowerCase()"></option>
+                    <option x-text="day" :selected="filter.day.toLowerCase() === day.toLowerCase()"></option>
                 </template>
             </select>
         </div>
@@ -15,7 +15,7 @@
             <label for="filter-by-category" class="text-xs font-bold sm:text-sm">Category:</label>
             <select id-"filter-by-category" class="mb-0 text-sm cursor-pointer pl-xs py-2xs" x-model="filter.category" x-init="console.log(filter.category)">
                 <template x-for="cat in allCategories">
-                    <option x-text="cat" :selected="filter.category.toLowerCase() === cat.toLowerCase()"></option>
+                    <option x-text="cat" :selected="filter.cat.toLowerCase() === cat.toLowerCase()"></option>
                 </template>
             </select>
         </div>
