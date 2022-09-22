@@ -12,7 +12,25 @@ icon: booth
 ---
 Big Bad Con is a charity event, and that commitment to giving extends to our exhibitors, too! All the information below:
 
-### Dates and Times
+## Big Bad Con Exhibitors
+
+### [Blackrowan Games](https://www.blackrowangames.com/)
+
+We are the Mabry family, and we love playing board games together. It all started when a friend gave us Zombie Dice as a gift and then invited us to play King of Tokyo, and from there we were hooked.
+
+### [Difference Engine](https://differenceengine.sg/)
+
+Difference Engine is an Independent Comics publisher based in Singapore.
+
+### [Doodles Curios](https://www.etsy.com/shop/doodlescurios/?etsrc=sdt)
+
+Treasures from across the Multiverse!
+
+### [Metal Weave Games](https://metalweavegames.com/)
+
+Metal Weave Games (MWG) is a leading publisher evocative and inspirational tabletop products.
+
+### Exhibitor Hall Dates and Times
 
 **Setup:**
 
