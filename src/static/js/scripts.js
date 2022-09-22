@@ -162,7 +162,7 @@ document.addEventListener('alpine:init', () => {
           if (token) {
             // Need to pass token for first couple since there is a delay with the $persist code storing it
             await this.getUserData(token)
-            this.availableSlots = await fetchData('/bookings/myAvailableSlots',{}, token)
+            await this.getAvailableSlots()
             await this.getBookedEvents()
             await this.getFavEvents()
             // this.checkRegistration()  this was for Big Bad Online
@@ -248,6 +248,10 @@ document.addEventListener('alpine:init', () => {
         const data = await fetchData('/events/all/public')
         console.log('getEvents', data)
       },
+      async getAvailableSlots() {
+        this.availableSlots = await fetchData('/bookings/myAvailableSlots')
+        return this.availableSlots
+      },
       async getBookedEvents() {
         // 1. Get ID array of my events
         let myEvents = await fetchData('/events/me/',{})
@@ -274,7 +278,7 @@ document.addEventListener('alpine:init', () => {
         let data = await fetchData('/bookings/bookMeIntoGame',{method: 'POST',body: { gameId: id }})
         if (!data) this.$dispatch('toast', 'ERROR: booking change failed. Data service might be down.')
         // update availableSlots
-        this.availableSlots = await fetchData('/bookings/myAvailableSlots')
+        this.getAvailableSlots()
         this.$store.events.getSpace(id)
         this.getBookedEvents()
         // return data
@@ -283,7 +287,7 @@ document.addEventListener('alpine:init', () => {
         let data = await fetchData('/bookings/removeMeFromGame',{method: 'DELETE',body: { gameId: id, guid: id }})
         if (!data) this.$dispatch('toast', 'ERROR: booking change failed. Data service might be down.')
         // update availableSlots
-        this.availableSlots = await fetchData('/bookings/myAvailableSlots')
+        this.getAvailableSlots()
         this.$store.events.getSpace(id)
         this.getBookedEvents()
         return data
