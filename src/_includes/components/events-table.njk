@@ -96,11 +96,13 @@
                     {# Event Name #}
                     <td class="events-table-cell--name">
                         <h3>
-                            {% if (sitemeta.context === "dev" or sitemeta.context === 'branch-deploy') and event.eventStatus !== 1) %}
-                                {% if event.eventStatus === 0 %}
-                                    <b>PENDING:</b>
-                                {% else %}
-                                    <b>UNPUBLISHED ({{event.eventStatus}}):</b>
+                            {% if sitemeta.context === "dev" or sitemeta.context === 'branch-deploy' %}
+                                {% if event.eventStatus !== 1 %}
+                                    {% if event.eventStatus === 0 %}
+                                        <b>PENDING:</b>
+                                    {% else %}
+                                        <b>UNPUBLISHED ({{event.eventStatus}}):</b>
+                                    {% endif %}
                                 {% endif %}
                             {% endif %}
                             <a href="/events/{{event.eventSlug}}" class="font-bold transition-colors text-header hover:text-highlight">{{event.eventName | safe }}</a>
