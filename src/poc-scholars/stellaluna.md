@@ -5,7 +5,7 @@ title: stellaluna
 position: ''
 published: true
 gender: she/they
-image: "/images/stellaluna.jpg"
+image: "/images/stellaluna_cropped.jpg"
 twitter: stellalunaTV
 website_name: ''
 website_url: ''
