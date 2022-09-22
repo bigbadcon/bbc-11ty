@@ -69,6 +69,32 @@ exports.handler = async function (event, context) {
                 )
             }
 
+            try {
+                const res = await axios.post(bbcApiBaseUrl + `remove`, {
+                    "role": "notattending",
+                    "userId": userId
+                }, {
+                    headers: {"x-api-key": bbcApiKey}
+                })
+            
+                if (res.status !== 200) throw new Error("Add user role failed")
+            } catch (err) {
+                console.log("remove user role 'notattending' failed", err.toString());
+            }
+
+            try {
+                const res = await axios.post(bbcApiBaseUrl + `remove`, {
+                    "role": "subscriber",
+                    "userId": userId
+                }, {
+                    headers: {"x-api-key": bbcApiKey}
+                })
+            
+                if (res.status !== 200) throw new Error("Add user role failed")
+            } catch (err) {
+                console.log("remove user role 'subscriber' for failed", err.toString());
+            }
+
             /* -------------------------------------------------------------------------- */
             /*    update Google Sheet row to show that they activated their gift badge    */
             /* -------------------------------------------------------------------------- */
