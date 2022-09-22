@@ -63,10 +63,21 @@ eleventyComputed:
   <div>
     <strong>Safety Tools:</strong>
     {{event.metadata.safety_tools}}</div>
+  {% if event.metadata.Characters %}
+    <div>
+      <strong>Characters:</strong>
+      {{event.metadata.Characters}}
+    </div>
+  {% endif %}
   {% if (sitemeta.context === 'dev' or sitemeta.context === 'branch-deploy') %}
-    <div class="border-2 border-header p-sm my-sm">
-      <strong class="text-header">DEV SITE Event ID:</strong>
-      {{event.eventId}}</div>
+    <div class="flex flex-col border-2 gap-sm border-header p-sm my-sm">
+      <div>
+        <strong class="text-header">Event ID:</strong>
+        {{event.eventId}}</div>
+      <div>
+        <strong class="text-header">Post ID:</strong>
+        {{event.postId}}</div>
+    </div>
   {% endif %}
 </div>
 
