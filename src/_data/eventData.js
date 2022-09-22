@@ -346,7 +346,7 @@ module.exports = async () => {
                 eventDuration: getDurationInHours(eventStartDateTime,eventEndDateTime), // duration in hours and minutes
                 eventSlug: event.eventSlug.toLowerCase(), // force lowercase
                 categories: categories, // convert to simple array
-                isVolunteer: categories.includes('volunteer'),
+                isVolunteer: categories.includes('Volunteer Shift'),
                 tags: tags, // Kludge until we get it from the api
                 contentAdvisory: hasContentAdvisoryTags || typeof metadata.trigger_warnings === 'string'
             }
@@ -364,7 +364,7 @@ module.exports = async () => {
                 date: event.eventStartDateTime,
                 dur: event.eventDuration,
                 status: event.eventStatus,
-                isV: event.isVolunteer ? 1 : 0,
+                isV: (event.isVolunteer) ? 1 : 0,
             }
         })
 
