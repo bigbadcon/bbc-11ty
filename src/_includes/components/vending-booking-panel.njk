@@ -115,7 +115,18 @@
         Alpine.data('smallPressForm', function () {
             return {
                 submitClicked: false,
-                submitForm(e) {
+                async submitForm(e) {
+                    // Check network status and data service status
+                    if (!navigator.onLine) {
+                        this.$dispatch('toast', 'You are currently offline! Booking and forms will not work.')
+                        return false
+                    } else {
+                        const littleRed = await fetch(apiBaseUrl + "/", {method: 'GET'})
+                        if (littleRed.status !== 200) {
+                            this.$dispatch('toast', 'The data service is currently offline! Please wait and try again.')
+                            return false
+                        }
+                    }
                     this.submitClicked = true;
                     const data = this
                         .$validate

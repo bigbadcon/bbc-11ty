@@ -6,6 +6,8 @@
   <body
   data-theme="auto"
   x-data="global"
+  @offline.window="$dispatch('toast','You are currently offline! Booking and forms will not work.')"
+  @online.window="$dispatch('toast','You are back online!')"
   class="min-h-screen bg-primary"
   :style="(modal) && 'overflow: hidden; height: 100vh;'"
   >

@@ -61,12 +61,6 @@ function formatEventTime(date, tz = 'America/Los_Angeles') {
 /*                            Misc Functions                                  */
 /* -------------------------------------------------------------------------- */
 
-// Note apiBaseUrl is coming from the html_head allowing it to switch between dev and prod versions
-
-function alertMsg(msg = 'error') {
-    console.log(msg)
-}
-
 /* ------------ Transform metadata from events to a keyed object ------------ */
 function metadataArrayToObject(arr) {
   const object = arr.reduce(function(result, item) {
@@ -100,7 +94,7 @@ async function fetchData(url, options, authToken) {
   authToken = authToken || JSON.parse(localStorage.getItem('_x_authToken'))
   options = { 
     method: 'GET', 
-    headers: { 
+    headers: {
       'Content-Type': 'application/json;charset=utf-8',
     },
     ...options
@@ -139,7 +133,9 @@ document.addEventListener('alpine:init', () => {
     return {
       init() {
         // logout if it's been more than 10 days
-        if (!dayjs(this.lastLogin).isValid() || dayjs(this.lastLogin).diff(dayjs(),'hour') < - 240) this.logout()
+        if (!dayjs(this.lastLogin).isValid() || dayjs(this.lastLogin).diff(dayjs(),'hour') < -240) {
+          this.logout('It has been more than 10 days since your last login so you are being logged out')
+        }
       },
       lastLogin: this.$persist(null),
       authToken: this.$persist(false),
@@ -152,6 +148,9 @@ document.addEventListener('alpine:init', () => {
       bboDiscordInvite: null,
       get isAuth() { return (typeof this.authToken === "string") },
       async submitLogin(username, password) {
+        // Check network and dataservice before submitting event
+        const network = await this.checkNetworkStatus()
+        if (!network) return false
         console.log("submitLogin", username)
         let res = await fetch(apiBaseUrl + '/login', { headers: { 'Content-Type': 'application/json;charset=utf-8' }, method: 'POST', body:JSON.stringify({ username: username, password: password })})
         console.log("response", res, res.headers.get('authorization'))
@@ -174,7 +173,7 @@ document.addEventListener('alpine:init', () => {
           return false
         }
       },
-      logout () {
+      logout (msg = 'You have been logged out') {
         this.authToken = null
         this.user = null
         this.favEvents = []
@@ -183,13 +182,12 @@ document.addEventListener('alpine:init', () => {
         this.isRegistered = null
         this.volunteerEventSpaces = []
         this.bboDiscordInvite = null
-        this.$dispatch('toast', 'You have been logged out')
+        this.$dispatch('toast', msg)
       },
       async getUserData(token) {
         token = token || this.authToken
         let user = await fetchData('/users/me',{}, token)
-
-        if (!user) {this.logout(); return false;}
+        this.checkNetworkStatus()
 
         const userMetadata = metadataArrayToObject(user.metadata)
         const userRoles = [...userMetadata.wp_tuiny5_capabilities.matchAll(/"([a-z\-]+)/g)].map( (match) => match[1])
@@ -256,8 +254,7 @@ document.addEventListener('alpine:init', () => {
         // 1. Get ID array of my events
         let myEvents = await fetchData('/events/me/',{})
         // Logout if this fails as it indicates we are offline. This is necessary because we had issues with  people submitting forms and it didn't work.
-        // TODO: change this so it tests if you are offline before submitting any api call and warns
-        if (myEvents === false) {this.logout(); return false;}
+        this.checkNetworkStatus()
         // 2. Get event data from local JSON
         let eventData = {}
         try {
@@ -275,15 +272,22 @@ document.addEventListener('alpine:init', () => {
         return myEvents
       },
       async bookEvent(id) {
-        let data = await fetchData('/bookings/bookMeIntoGame',{method: 'POST',body: { gameId: id }})
+        // Check network and dataservice before submitting event
+        const network = await this.checkNetworkStatus()
+        if (!network) return false
+        // book event
+        const data = await fetchData('/bookings/bookMeIntoGame',{method: 'POST',body: { gameId: id }})
         if (!data) this.$dispatch('toast', 'ERROR: booking change failed. Data service might be down.')
         // update availableSlots
         this.getAvailableSlots()
         this.$store.events.getSpace(id)
         this.getBookedEvents()
-        // return data
+        return data
       },
       async cancelBooking(id) {
+        // Check network and dataservice before submitting event
+        const network = await this.checkNetworkStatus()
+        if (!network) return false
         let data = await fetchData('/bookings/removeMeFromGame',{method: 'DELETE',body: { gameId: id, guid: id }})
         if (!data) this.$dispatch('toast', 'ERROR: booking change failed. Data service might be down.')
         // update availableSlots
@@ -299,6 +303,9 @@ document.addEventListener('alpine:init', () => {
       },
       async toggleFav(id) {
         id = Number(id)
+        // Check network and dataservice before submitting event
+        const network = await this.checkNetworkStatus()
+        if (!network) return false
 
         let data
         if (this.isFav(id)) {
@@ -330,8 +337,25 @@ document.addEventListener('alpine:init', () => {
         return this.bookedEvents && this.bookedEvents.some(item => doesDateOverlap(item.date,item.dur,date,dur))
       },
       async changePassword(userId,password) {
-        let data = await fetchData('/users/setMyPassword',{ method: 'POST', body: { userId: userId, password: password }})
+        const data = await fetchData('/users/setMyPassword',{ method: 'POST', body: { userId: userId, password: password }})
         return data
+      },
+      async checkNetworkStatus() {
+        if (!navigator.onLine) {
+          this.$dispatch('toast','ERROR: You are currently offline! Booking and forms will not work.')
+          return false
+        } else {
+          const littleRedStatus = await this.hello()
+          if (!littleRedStatus) {
+            this.$dispatch('toast','ERROR: The data service is currently offline! Please wait and try again.')
+            return false
+          }
+          return true
+        }
+      },
+      async hello() {
+        const response = await fetch(apiBaseUrl + "/", { method: 'GET'})
+        return response.status === 200
       }
     }
   })
@@ -593,6 +617,17 @@ document.addEventListener('alpine:init', () => {
         }
       },
       async uploadImage(e) {
+        // Check network and dataservice before submitting event
+        if (!navigator.onLine) {
+          this.$dispatch('toast', 'You are currently offline! Booking and forms will not work.')
+          return false
+      } else {
+          const littleRed = await fetch(apiBaseUrl + "/", {method: 'GET'})
+          if (littleRed.status !== 200) {
+              this.$dispatch('toast', 'The data service is currently offline! Please wait and try again.')
+              return false
+          }
+      }
 
         if (!this.isAdmin) return false
 
