@@ -125,7 +125,18 @@
                 return {
                     formSubmitted: false,
                     formInfo: {},
-                    submitForm(e) {
+                    async submitForm(e) {
+                        // Check network status and data service status
+                        if (!navigator.onLine) {
+                            this.$dispatch('toast', 'You are currently offline! Booking and forms will not work.')
+                            return false
+                        } else {
+                            const littleRed = await fetch(apiBaseUrl + "/", {method: 'GET'})
+                            if (littleRed.status !== 200) {
+                                this.$dispatch('toast', 'The data service is currently offline! Please wait and try again.')
+                                return false
+                            }
+                        }
                         let formData = {}
 
                         // Create formData object from $validate.data with simple name/value pairs

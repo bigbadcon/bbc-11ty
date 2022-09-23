@@ -345,7 +345,19 @@
                                 .remove('error-required');
                         }
                     },
-                    submitEvent() {
+                    async submitEvent() {
+                        // check network status and data service before submitting
+                        if (!navigator.onLine) {
+                            this.$dispatch('toast', 'ERROR: You are currently offline! Booking and forms will not work.')
+                            return false
+                        } else {
+                            const littleRed = await fetch(apiBaseUrl + "/", {method: 'GET'})
+                            if (littleRed.status !== 200) {
+                                this.$dispatch('toast', 'ERROR: The data service is currently offline! Please wait and try again.')
+                                return false
+                            }
+                        }
+
                         console.log("submit", JSON.stringify(this.submittableEventInfo))
                         const y = 0
 
