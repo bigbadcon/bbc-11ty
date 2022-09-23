@@ -4,7 +4,7 @@ order: 0
 title: Anjali Bhimani
 position: ''
 published: true
-gender: she/he
+gender: she/her
 image: "/images/anjali-bhimani.jpeg"
 twitter: sweeetanj
 website_name: Instagram
