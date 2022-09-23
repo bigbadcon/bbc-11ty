@@ -91,7 +91,9 @@
                 x-cloak
                 x-data="eventInfo"
                 x-init="id = {{event.eventId}}; maxSpaces = {{maxSpaces}}; categories = [{{event.categories | alpineArray}}];"
-                x-show="filterCategory(categories) && (!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || (maxSpaces === 'Any' || $store.events.spaces[id] > 0)) && filterDay($refs.date{{event.eventId}}.textContent) && ( !filter.overlap || !doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}) )" >
+                x-show="filterCategory(categories) && (!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || (maxSpaces === 'Any' || $store.events.spaces[id] > 0)) && filterDay($refs.date{{event.eventId}}.textContent) && ( !filter.overlap || !doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}) )"
+                :class="doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}) && 'overlap'"
+                >
 
                     {# Event Name #}
                     <td class="events-table-cell--name">
@@ -145,3 +147,10 @@
         </tbody>
     </table>
 </section>
+{% if sitemeta.context === "dev" or sitemeta.context === 'branch-deploy' %}
+    <style>
+        .overlap {
+            background: var(--card);
+        }
+    </style>
+{% endif %}
