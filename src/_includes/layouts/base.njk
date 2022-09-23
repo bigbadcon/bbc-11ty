@@ -9,7 +9,7 @@
   @offline.window="$dispatch('toast','You are currently offline! Booking and forms will not work.')"
   @online.window="$dispatch('toast','You are back online!')"
   class="min-h-screen bg-primary"
-  :style="(modal) && 'overflow: hidden; height: 100vh;'"
+  :style="(modal) ? 'overflow: hidden; height: 100vh;' : ''"
   >
     <div class="relative z-10 grid min-h-screen shadow page-wrapper">
       {# Header with branding and nav #}

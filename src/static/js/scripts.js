@@ -155,15 +155,15 @@ document.addEventListener('alpine:init', () => {
     /* eslint-disable no-console */
     try {
       let response = await fetch(url, options)
-      console.log(`RESPONSE:fetch for ${url}`, response)
+      console.log(`RESPONSE:xfetch for ${url}`, response)
       if (response.status !== 200) throw new Error(`fetch fail status: ${response.status}`)
       const contentType = response.headers.get("content-type");
       // Return JSON if it is JSON otherwise text
       const result = (contentType && contentType.indexOf("application/json") !== -1) ? await response.json() : await response.text();
-      console.log(`RESULT:fetch for ${url}`, result)
+      console.log(`RESULT:xfetch for ${url}`, result)
       return result
     } catch (err) {
-      console.error(`ERROR:fetch for ${url}`,err)
+      console.error(`ERROR:xfetch for ${url}`,err)
       return null
     }
     /* eslint-enable no-console */
@@ -194,11 +194,15 @@ document.addEventListener('alpine:init', () => {
       bboDiscordInvite: null,
       get isAuth() { return (typeof this.authToken === "string") },
       async submitLogin(username, password) {
-        // Check network and dataservice before submitting event
-        const network = await this.checkNetworkStatus()
-        if (!network) return false
-        console.log("submitLogin", username)
+        // Check network and data service before submitting event
+        const littleRedStatus = await this.$lilRed()
+        if (littleRedStatus === null) {
+          this.$dispatch('lilRedStatus')
+          return false
+        }
+        // console.log("submitLogin", username)
         let res = await fetch(apiBaseUrl + '/login', { headers: { 'Content-Type': 'application/json;charset=utf-8' }, method: 'POST', body:JSON.stringify({ username: username, password: password })})
+        /* eslint-disable no-console */
         console.log("response", res, res.headers.get('authorization'))
         if (res.status === 200 && res.headers.get('authorization')) {
           const token = res.headers.get('authorization')
@@ -233,7 +237,7 @@ document.addEventListener('alpine:init', () => {
       async getUserData(token) {
         token = token || this.authToken
         let user = await fetchData('/users/me',{}, token)
-        this.checkNetworkStatus()
+        this.$dispatch('lilRedStatus')
 
         const userMetadata = metadataArrayToObject(user.metadata)
         const userRoles = [...userMetadata.wp_tuiny5_capabilities.matchAll(/"([a-z-]+)/g)].map( (match) => match[1])
@@ -243,7 +247,7 @@ document.addEventListener('alpine:init', () => {
           roles: userRoles,
           displayName: decodeText(user.displayName) || user.displayName
         }
-        console.log("user data transformed",user);
+        // console.log("user data transformed",user);
         this.user = user
         return user
       },
@@ -274,6 +278,7 @@ document.addEventListener('alpine:init', () => {
       async checkRegistration () {
         // Used for Big Bad Online
         const url = `/.netlify/functions/check-registration/${this.user.id}/${this.user.userNicename}`
+        /* eslint-disable no-console */
         try {
           const response = await fetch(url)
           console.log(`RESPONSE:fetch for ${url}`, response)
@@ -287,10 +292,7 @@ document.addEventListener('alpine:init', () => {
           console.error(`ERROR: fetch for ${url}`,err)
           return false
         }
-      },
-      async getEvents() {
-        const data = await fetchData('/events/all/public')
-        console.log('getEvents', data)
+        /* eslint-enable */
       },
       async getAvailableSlots() {
         this.availableSlots = await fetchData('/bookings/myAvailableSlots')
@@ -299,14 +301,14 @@ document.addEventListener('alpine:init', () => {
       async getBookedEvents() {
         // 1. Get ID array of my events
         let myEvents = await fetchData('/events/me/',{})
-        // Logout if this fails as it indicates we are offline. This is necessary because we had issues with  people submitting forms and it didn't work.
-        this.checkNetworkStatus()
+        this.$dispatch('lilRedStatus')
         // 2. Get event data from local JSON
         let eventData = {}
         try {
           const response = await fetch('/events.json')
           eventData = await response.json()
         } catch(err) {
+          /* eslint-disable-next-line no-console */
           console.error(`ERROR: fetch for '/events/me/'`,err)
           return false
         }
@@ -314,13 +316,15 @@ document.addEventListener('alpine:init', () => {
         myEvents = myEvents.map( id => eventData[id]).filter(event => event)
         // only show published events that are in the future (minus 1 month ago)
         this.bookedEvents = myEvents
-        console.log("🚀 ~ file: scripts.js ~ line 279 ~ getBookedEvents ~ myEvents", myEvents)
         return myEvents
       },
       async bookEvent(id) {
-        // Check network and dataservice before submitting event
-        const network = await this.checkNetworkStatus()
-        if (!network) return false
+        // Check network and data service before submitting event
+        const littleRedStatus = await this.$lilRed()
+        if (littleRedStatus === null) {
+          this.$dispatch('lilRedStatus')
+          return false
+        }
         // book event
         const data = await fetchData('/bookings/bookMeIntoGame',{method: 'POST',body: { gameId: id }})
         if (!data) this.$dispatch('toast', 'ERROR: booking change failed. Data service might be down.')
@@ -331,9 +335,12 @@ document.addEventListener('alpine:init', () => {
         return data
       },
       async cancelBooking(id) {
-        // Check network and dataservice before submitting event
-        const network = await this.checkNetworkStatus()
-        if (!network) return false
+        // Check network and data service before submitting event
+        const littleRedStatus = await this.$lilRed()
+        if (littleRedStatus === null) {
+          this.$dispatch('lilRedStatus')
+          return false
+        }
         let data = await fetchData('/bookings/removeMeFromGame',{method: 'DELETE',body: { gameId: id, guid: id }})
         if (!data) this.$dispatch('toast', 'ERROR: booking change failed. Data service might be down.')
         // update availableSlots
@@ -349,9 +356,12 @@ document.addEventListener('alpine:init', () => {
       },
       async toggleFav(id) {
         id = Number(id)
-        // Check network and dataservice before submitting event
-        const network = await this.checkNetworkStatus()
-        if (!network) return false
+        // Check network and data service before submitting event
+        const littleRedStatus = await this.$lilRed()
+        if (littleRedStatus === null) {
+          this.$dispatch('lilRedStatus')
+          return false
+        }
 
         let data
         if (this.isFav(id)) {
@@ -390,20 +400,6 @@ document.addEventListener('alpine:init', () => {
         const data = await fetchData('/users/setMyPassword',{ method: 'POST', body: { userId: userId, password: password }})
         return data
       },
-      async checkNetworkStatus() {
-        if (!navigator.onLine) {
-          this.$dispatch('toast','ERROR: You are currently offline! Booking and forms will not work.')
-          return false
-        } else {
-          const littleRedStatus = await this.hello()
-          if (!littleRedStatus) {
-            this.$dispatch('lilred',littleRedStatus)
-            return false
-          }
-          return true
-        }
-        // TODO: add timer that checked for data service status
-      },
       async hello() {
         const response = await fetch(apiBaseUrl + "/", { method: 'GET'})
         return response.status === 200
@@ -417,13 +413,13 @@ document.addEventListener('alpine:init', () => {
 
   Alpine.store('events', {
       init() {
-        console.log('events init');
+        // console.log('events init');
         let spacesLS = JSON.parse(localStorage.getItem('spaces')) || {}
         this.spaces = spacesLS
       },
       spaces: {},
       async getAllSpaces() {
-        console.log('getAllSpaces');
+        // console.log('getAllSpaces');
         const spaces = await fetchData('/events/spaces/public')
         if (spaces) {
           this.spaces = spaces
@@ -431,7 +427,7 @@ document.addEventListener('alpine:init', () => {
         }
       },
       async getSpace(id) {
-        console.log('getSpace');
+        // console.log('getSpace');
         const space = await fetchData(`/events/${id}/spaces/public`)
         if (space) {
           this.spaces = {...this.spaces, [id]: space}
@@ -663,22 +659,23 @@ document.addEventListener('alpine:init', () => {
           }
           localStorage.setItem('events', JSON.stringify(eventsLS))
 
-        } catch (e) {
-          console.log(e)
-        }
-      },
-      async uploadImage(e) {
-        // Check network and dataservice before submitting event
-        if (!navigator.onLine) {
-          this.$dispatch('toast', 'You are currently offline! Booking and forms will not work.')
-          return false
-      } else {
-          const littleRed = await fetch(apiBaseUrl + "/", {method: 'GET'})
-          if (littleRed.status !== 200) {
-              this.$dispatch('toast', 'The data service is currently offline! Please wait and try again.')
-              return false
+          } catch (e) {
+            /* eslint-disable no-console */
+            console.log(e)
           }
-      }
+        },
+        async uploadImage(e) {
+          // Check network and data service before submitting event
+          if (!navigator.onLine) {
+            this.$dispatch('toast', 'You are currently offline! Booking and forms will not work.')
+            return false
+        } else {
+            const littleRed = await fetch(apiBaseUrl + "/", {method: 'GET'})
+            if (littleRed.status !== 200) {
+                this.$dispatch('toast', 'The data service is currently offline! Please wait and try again.')
+                return false
+            }
+        }
 
         if (!this.isAdmin) return false
 

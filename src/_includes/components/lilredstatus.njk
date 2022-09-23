@@ -1,15 +1,14 @@
-<div class="fixed z-50 flex justify-center w-full bottom-8"
-    x-data="{ lilRedStatus: '', async checkStatus() { this.lilRedStatus = await $lilRed(); if (typeof this.lilRedStatus !== 'string') { await delay(4000); this.checkStatus()} } }"
-    x-cloak x-show="typeof lilRedStatus !== 'string'" x-transition
+<div class="fixed bottom-0 z-40 w-full"
+    x-data="{ lilRedStatus: 'roll plus login', async checkStatus() { this.lilRedStatus = await $lilRed(); if (this.lilRedStatus !== 'roll plus login') { await delay(4000); this.checkStatus(); } } }"
+    x-cloak x-show="!lilRedStatus" x-transition
     x-init="checkStatus()"
+    lilRedStatus.window="checkStatus()"
     >
-    <div class="flex px-3 text-sm font-bold border-4 rounded-lg shadow-lg w-80 border-primary py-sm gap-base bg-body text-primary">
-        <p class="flex-grow">
-            The Little Red Event Manager is down. Booking and form submissions are not available. Please wait. This message will disappear once Little Red is back.
-        </p>
-        <svg class="w-5 h-5 text-body animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-        </svg>
+    <div class="flex justify-between shadow-lg gap-base bg-primary text-body px-base pt-xs">
+        <img src="/static/images/red-portrait-2017-sm.png" alt="Illustration of Little Red" class="self-end h-16">
+        <div class="self-center flex-grow text-sm pb-sm">
+            <p>
+                <strong class="text-secondary">Little Red Event Manager is down!</strong> Booking and forms are not available. <em>Please wait...</em> This message will disappear once Little Red is back.</p>
+        </div>
     </div>
 </div>
