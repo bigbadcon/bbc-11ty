@@ -331,7 +331,11 @@ document.addEventListener('alpine:init', () => {
           start2 = dayjs(start2)
           const end1 = start1.add(dur1,'h')
           const end2 = start2.add(dur2,'h')
-          return (end2 >= start1 && start2 <= end1)
+          return (end2 > start1 && start2 < end1)
+          // 2-4;4-6 true && false
+          // 2-5;4-6 true && true
+          // 2-4;1-2 false && true
+          // 2-4;2-4 true && true
         }
         
         return this.bookedEvents && this.bookedEvents.some(item => doesDateOverlap(item.date,item.dur,date,dur))
