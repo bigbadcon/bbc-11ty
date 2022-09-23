@@ -1,18 +1,22 @@
 /* -------------------------------------------------------------------------- */
+/*                             ESlint Global rules                            */
+/* -------------------------------------------------------------------------- */
+/* -------------------- These are all loaded in html head ------------------- */
+
+/*global Alpine */
+/*global dayjs */
+/*global utf8 */
+/*global windows1252 */
+/*global axios */
+/*eslint no-undef: "error" */
+
+/* -------------------------------------------------------------------------- */
 /*                              Helper functions                              */
 /* -------------------------------------------------------------------------- */
 
-function slugify(text) {
-  return text
-    .toString()
-    .toLowerCase()
-    .trim()
-    .normalize('NFD') // separate accent from letter
-    .replace(/[\u0300-\u036f]/g, '') // remove all separated accents
-    .replace(/\s+/g, '-') // replace spaces with dash
-    .replace(/&/g, '-and-') // replace & with 'and'
-    .replace(/[^\w-]+/g, '') // remove all non-word chars
-    .replace(/--+/g, '-') // replace multiple dash with single
+/* eslint-disable-next-line no-unused-vars */
+function delay(ms = 500) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function isFullArray(arr) {
@@ -46,7 +50,9 @@ const decodeText = text => {
 /* -------------------------------------------------------------------------- */
 /*                             dayjs event format                             */
 /* -------------------------------------------------------------------------- */
+/* --------- This is used for online events when timezone can change -------- */
 
+/* eslint-disable no-unused-vars */
 function formatEventDate(date, tz = 'America/Los_Angeles') {
   return dayjs(date).tz(tz).format('MMM D')
 }
@@ -56,6 +62,7 @@ function formatEventDateWithYear(date, tz = 'America/Los_Angeles') {
 function formatEventTime(date, tz = 'America/Los_Angeles') {
   return dayjs(date).tz(tz).format('h:mma')
 }
+/*eslint-enable*/
 
 /* -------------------------------------------------------------------------- */
 /*                            Misc Functions                                  */
@@ -71,13 +78,7 @@ function metadataArrayToObject(arr) {
 }
 
 
-/* --------------------------- Event Duration ------------------------------ */
 
-const getDurationInHours = (dateStart,dateEnd) => {
-  dateStart = new Date(dateStart)
-  dateEnd = new Date(dateEnd)
-  return (Math.abs(dateEnd - dateStart) / 1000) / 3600 % 24;
-}
 
 /* -------------------------------------------------------------------------- */
 /*                             API Fetch Functions                            */
@@ -104,6 +105,7 @@ async function fetchData(url, options, authToken) {
 
   if (options.body) options.body = JSON.stringify(options.body)
 
+  /* eslint-disable no-console */
   try {
     let response = await fetch(apiBaseUrl + url, options)
     console.log(`RESPONSE:fetch for ${url}`, response)
@@ -115,6 +117,7 @@ async function fetchData(url, options, authToken) {
     console.error(`ERROR:fetch for ${url}`,err)
     return false
   }
+  /* eslint-enable no-console */
 }
 
 /* -------------------------------------------------------------------------- */
@@ -122,6 +125,49 @@ async function fetchData(url, options, authToken) {
 /* -------------------------------------------------------------------------- */
 
 document.addEventListener('alpine:init', () => {
+
+  /* -------------------------------------------------------------------------- */
+  /*                         Alpine Fetch Magic Function                        */
+  /* -------------------------------------------------------------------------- */
+
+
+  Alpine.magic('lilRed', () => {
+    // $lilRed is a function
+    return async (url = "/" , options) => {
+      url = apiBaseUrl + url;
+      options = {
+        method: "GET",
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+        ...options
+      }
+      // If url isn't the base and does not end with public than needs auth token
+      if (url !== "/" && !/public$/.test(url)) {
+        options.headers.Authorization = JSON.parse(localStorage.getItem('_x_authToken')) || ""
+      }
+      let response = await xfetch(url, options)
+      return response;
+    }
+  })
+
+  async function xfetch(url, options) {
+    /* eslint-disable no-console */
+    try {
+      let response = await fetch(url, options)
+      console.log(`RESPONSE:fetch for ${url}`, response)
+      if (response.status !== 200) throw new Error(`fetch fail status: ${response.status}`)
+      const contentType = response.headers.get("content-type");
+      // Return JSON if it is JSON otherwise text
+      const result = (contentType && contentType.indexOf("application/json") !== -1) ? await response.json() : await response.text();
+      console.log(`RESULT:fetch for ${url}`, result)
+      return result
+    } catch (err) {
+      console.error(`ERROR:fetch for ${url}`,err)
+      return null
+    }
+    /* eslint-enable no-console */
+  }
 
   /* -------------------------------------------------------------------------- */
   /*                                Alpine Global                               */
@@ -190,7 +236,7 @@ document.addEventListener('alpine:init', () => {
         this.checkNetworkStatus()
 
         const userMetadata = metadataArrayToObject(user.metadata)
-        const userRoles = [...userMetadata.wp_tuiny5_capabilities.matchAll(/"([a-z\-]+)/g)].map( (match) => match[1])
+        const userRoles = [...userMetadata.wp_tuiny5_capabilities.matchAll(/"([a-z-]+)/g)].map( (match) => match[1])
         user = {
           ...user,
           metadata: userMetadata,
@@ -351,7 +397,7 @@ document.addEventListener('alpine:init', () => {
         } else {
           const littleRedStatus = await this.hello()
           if (!littleRedStatus) {
-            this.$dispatch('toast','ERROR: The data service is currently offline! Please wait and try again.')
+            this.$dispatch('lilred',littleRedStatus)
             return false
           }
           return true
@@ -783,6 +829,8 @@ if (typeof self.queueMicrotask !== "function") {
   };
 }
 /* ------------------------- Polyfill for globalThis ------------------------ */
+/*global __magic__ */
+/*eslint no-undef: "error" */
 (function() {
 	if (typeof globalThis === 'object') return;
 	Object.prototype.__defineGetter__('__magic__', function() {
