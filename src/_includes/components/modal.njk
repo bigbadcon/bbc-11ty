@@ -205,39 +205,49 @@
         {# My Events #}
         <h3 class="font-serif text-2xl font-semibold text-body">My Events</h3>
         {# <div class="mb-sm">{% include 'components/timezone-select.njk' %}</div> #}
-        <ul class="flex-grow overflow-y-auto text-sm border-t-2 border-b-2 text-body border-hr py-xs" x-cloak x-show="bookedEvents" >
-            <template x-for="event in bookedEvents">
-                <li class="mb-xs">
-                    <h4>
-                        <template x-if="(event.status === 1)">
-                            <a :href="(event.isV) ? '/volunteer/'+ event.slug : '/events/'+ event.slug" class="font-bold text-header hover:text-highlight" x-html="event.name"></a>
+        {# loading spinner #}
+        <div class="border-hr py-xs border-y-2">
+            <div x-show="!bookedEvents" class="inline-flex items-center italic font-bold gap-sm">
+                <svg class="w-5 h-5 text-body animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <span>Loading Events...</span>
+            </div>
+            <ul class="flex-grow overflow-y-auto text-sm text-body" x-cloak x-show="bookedEvents" >
+                <template x-for="event in bookedEvents">
+                    <li class="mb-xs">
+                        <h4>
+                            <template x-if="(event.status === 1)">
+                                <a :href="(event.isV) ? '/volunteer/'+ event.slug : '/events/'+ event.slug" class="font-bold text-header hover:text-highlight" x-html="event.name"></a>
+                            </template>
+                            <template x-if="(event.status === 0)">
+                                <a class="text-body">
+                                    <b x-html="event.name"></b>
+                                    <i>In Review</i>
+                                </a>
+                            </template>
+                        </h4>
+                        {# Timezone data is in x-data in html #}
+                        {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
+                        {# TODO: allow half hours #}
+                        <template x-if="Number(event.dur) > 0">
+                            <p class="text-xs opacity-90">
+                                <span x-html="formatEventDateWithYear(event.date)"></span>
+                                <span x-html="formatEventTime(event.date)"></span>
+                                (<span x-text="event.dur"></span> hours)
+                            </p>
                         </template>
-                        <template x-if="(event.status === 0)">
-                            <a class="text-body">
-                                <b x-html="event.name"></b>
-                                <i>In Review</i>
-                            </a>
+                        <template x-if="Number(event.dur) === 0">
+                            <p class="text-xs opacity-90">
+                                date/time not yet scheduled
+                            </p>
                         </template>
-                    </h4>
-                    {# Timezone data is in x-data in html #}
-                    {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
-                    {# TODO: allow half hours #}
-                    <template x-if="Number(event.dur) > 0">
-                        <p class="text-xs opacity-90">
-                            <span x-html="formatEventDateWithYear(event.date)"></span>
-                            <span x-html="formatEventTime(event.date)"></span>
-                            (<span x-text="event.dur"></span> hours)
-                        </p>
-                    </template>
-                    <template x-if="Number(event.dur) === 0">
-                        <p class="text-xs opacity-90">
-                            date/time not yet scheduled
-                        </p>
-                    </template>
-                </li>
-            </template>
-            <li x-show="bookedEvents && bookedEvents.length === 0" class="italic">You currently have no events</li>
-        </ul>
+                    </li>
+                </template>
+                <li x-show="bookedEvents && bookedEvents.length === 0" class="italic">You currently have no events</li>
+            </ul>
+        </div>
         <div class="flex items-center justify-between border-b-2 py-2xs gap-xs border-hr" x-show="user && hasBadge" x-transition>
             <div class="flex flex-wrap items-center gap-2xs">
                 <span>You have a <span x-show="isTeen">Teen</span> badge!</span>

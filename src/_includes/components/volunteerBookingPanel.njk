@@ -30,7 +30,6 @@
         <div x-show="isAuth && isVolunteer">
             {# Show if there are spaces and not booked #}
             <div x-show="(maxSpaces === 'Any' || $store.events.spaces[id] > 0) && !isBooked({{event.eventId}})">
-
                 <button class="button" x-show="!doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}})" @click="bookEvent({{event.eventId}})">Volunteer</button>
             </div>
             {# Show if event full#}
