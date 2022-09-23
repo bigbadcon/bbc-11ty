@@ -18,8 +18,8 @@
     "develop": "eleventy --serve",
     "debug": "DEBUG=* eleventy",
     "svgs": "npx svg-sprite-generate -d src/assets/svgs -o src/static/images/icons.svg",
-    "git-drafts": "git checkout drafts && git merge main",
-    "git-main": "git checkout main && git merge drafts"
+    "gd": "git checkout drafts && git merge main",
+    "gm": "git checkout main && git merge drafts"
   },
   "dependencies": {
     "@11ty/eleventy": "latest",

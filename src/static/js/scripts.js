@@ -352,6 +352,7 @@ document.addEventListener('alpine:init', () => {
           }
           return true
         }
+        // TODO: add timer that checked for data service status
       },
       async hello() {
         const response = await fetch(apiBaseUrl + "/", { method: 'GET'})
