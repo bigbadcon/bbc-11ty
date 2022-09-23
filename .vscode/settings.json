@@ -6,6 +6,7 @@
         "firstlast",
         "Nicename",
         "paidattendee",
-        "sendgrid"
+        "sendgrid",
+        "xfetch"
     ]
 }
