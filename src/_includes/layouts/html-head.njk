@@ -23,6 +23,9 @@
     dayjs.extend(window.dayjs_plugin_utc)
     dayjs.extend(window.dayjs_plugin_timezone)
 
+    // Store API Url
+    const lilRedAPIUrl = 'https://admin.bigbadcon.com:8091/api'
+
     // dark/light theme
     function setTheme(theme) {
       document
@@ -44,6 +47,7 @@
     if (savedTheme) 
       setTheme(savedTheme)
   </script>
+  <script src="/static/js/lil-red.js"></script>
   <script src="/static/js/scripts.js"></script>
   {# Preload the main fonts used. Italics are not preloaded as they are not used as much #}
   <link rel="preload" as="font" href="/static/fonts/open-sans-v23-latin-regular.woff2" type="font/woff2" crossorigin="anonymous">

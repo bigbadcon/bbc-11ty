@@ -4,7 +4,6 @@
 /* -------------------- These are all loaded in html head ------------------- */
 
 /* global dayjs */
-/* eslint no-undef: "error" */
 
 // These are to be used in other scripts so ignore unused variables
 /* eslint-disable no-unused-vars */

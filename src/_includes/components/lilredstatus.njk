@@ -1,5 +1,5 @@
 <div class="fixed bottom-0 z-40 w-full"
-    x-data="{ lilRedStatus: 'roll plus login', async checkStatus() { this.lilRedStatus = await $lilRed(); if (this.lilRedStatus !== 'roll plus login') { await delay(4000); this.checkStatus(); } } }"
+    x-data="{ lilRedStatus: 'roll plus login', async checkStatus() { this.lilRedStatus = await lilRed.get(); if (this.lilRedStatus !== 'roll plus login') { await delay(4000); this.checkStatus(); } } }"
     x-cloak x-show="!lilRedStatus" x-transition
     x-init="checkStatus()"
     lilRedStatus.window="checkStatus()"
