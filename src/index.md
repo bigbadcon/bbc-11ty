@@ -15,6 +15,6 @@ tags: pages
 
 ### Upcoming dates:
 
-* Schedule of events [published now](https://www.bigbadcon.com/events/)!
-* [POC Dinner](https://www.bigbadcon.com/events/poc-dinner) and [Meet & Greet](https://www.bigbadcon.com/events/poc-meet-greet) sign ups open now!
-* Events sign ups begin 9/25 at 12PM PT. [Here's how sign ups work!](/how-do-game-signups-work)
+* Event sign ups are [open now](https://www.bigbadcon.com/events/)!
+* Game quota expands from 2 to 4 on 10/3 at 7PM PT.
+* Game quotas lifted on 10/8 at 7PM PT.
