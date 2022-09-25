@@ -335,7 +335,7 @@ document.addEventListener("alpine:init", () => {
 		spaces: {},
 		async getAllSpaces() {
 			// console.log('getAllSpaces');
-			const spaces = await lilRed.public.spaces();
+			const spaces = await lilRed.events.spaces();
 			if (spaces) {
 				this.spaces = spaces;
 				localStorage.setItem("spaces", JSON.stringify(this.spaces));
@@ -343,7 +343,7 @@ document.addEventListener("alpine:init", () => {
 		},
 		async getSpace(id) {
 			// console.log('getSpace');
-			const space = await lilRed.public.space(id);
+			const space = await lilRed.events.space(id);
 			if (space) {
 				this.spaces = { ...this.spaces, [id]: space };
 				localStorage.setItem("spaces", JSON.stringify(this.spaces));
@@ -625,7 +625,8 @@ document.addEventListener("alpine:init", () => {
 					this.$dispatch("toast", "You are currently offline! Booking and forms will not work.");
 					return false;
 				} else {
-					const littleRed = await lilRed();
+					// TODO get this working!
+					const littleRed = await lilRed.uploadImage(e.target.formData);
 					if (littleRed !== "roll plus login") {
 						this.$dispatch("toast", "The data service is currently offline! Please wait and try again.");
 						return false;
