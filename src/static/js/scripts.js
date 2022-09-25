@@ -105,6 +105,7 @@ document.addEventListener("alpine:init", () => {
 				if (!dayjs(this.lastLogin).isValid() || dayjs(this.lastLogin).diff(dayjs(), "hour") < -240) {
 					this.logout("It has been more than 10 days since your last login so you are being logged out");
 				}
+				if (this.isAuth()) this.getAvailableSlots()
 			},
 			lastLogin: null,
 			authToken: false,
