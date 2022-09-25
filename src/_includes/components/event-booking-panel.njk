@@ -54,6 +54,7 @@ x-data="{ isAllAges: {{isAllAges}}, isQuotaExempt: {{isQuotaExempt}} }"
                         {# Show if event has spaces open #}
                         <div x-show="(maxSpaces === 'Any' || $store.events.spaces[id] > 0)" class="space-y-sm">
                             {# Booking button; show if they have available slots or if it is quota exempt #}
+                            {# TODO: add loading spinner after pressing button and waiting on response #}
                             <button class="button" :disabled="!(isQuotaExempt || availableSlots > 0)" @click="bookEvent({{event.eventId}})">Book Event</button>
                         </div>
                         {# Show if event is full #}
