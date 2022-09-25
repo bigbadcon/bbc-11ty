@@ -55,7 +55,7 @@ x-data="{ isAllAges: {{isAllAges}}, isQuotaExempt: {{isQuotaExempt}} }"
                         <div x-show="(maxSpaces === 'Any' || $store.events.spaces[id] > 0)" class="space-y-sm">
                             {# Booking button; show if they have available slots or if it is quota exempt #}
                             {# TODO: add loading spinner after pressing button and waiting on response #}
-                            <button class="button" :disabled="!(isQuotaExempt || availableSlots > 0)" @click="bookEvent({{event.eventId}})">Book Event</button>
+                            <button class="button" :disabled="!(isQuotaExempt || availableSlots > 0)" @click="bookEvent({{event.eventId}}); if (!isQuotaExempt) availableSlots = availableSlots - 1">Book Event</button>
                         </div>
                         {# Show if event is full #}
                         <div x-show="!(maxSpaces === 'Any' || $store.events.spaces[id] > 0)" class="font-bold">Event is full</div>
@@ -64,7 +64,7 @@ x-data="{ isAllAges: {{isAllAges}}, isQuotaExempt: {{isQuotaExempt}} }"
                     <div x-show="doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}})" class="italic rounded bg-card py-sm px-base">The timing of this event overlaps with one of your booked events.</div>
                 </div>
                 <div x-show="isBooked({{event.eventId}})">
-                    <button class="button" @click="cancelBooking({{event.eventId}})">Cancel Booking</span>
+                    <button class="button" @click="cancelBooking({{event.eventId}}); if (!isQuotaExempt) availableSlots = availableSlots + 1">Cancel Booking</span>
                 </div>
             </div>
             {# Show if you are a GM/Speaker #}
