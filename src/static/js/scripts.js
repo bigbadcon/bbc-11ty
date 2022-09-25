@@ -257,7 +257,13 @@ function slugify(text) {
 		},
 		async getBookedEvents() {
 		  // 1. Get ID array of my events
-		  let myEvents = await fetchData('/events/me/',{})
+		  let myEvents
+		  try {
+			myEvents = await fetchData('/events/me/',{})
+		  } catch (err) {
+			console.error(`ERROR: fetch for '/events/me/'`,err)
+			return false
+		  }
 		  // Logout if this fails as it indicates we are offline. This is necessary because we had issues with  people submitting forms and it didn't work.
 		  this.checkNetworkStatus()
 		  // 2. Get event data from local JSON
@@ -266,8 +272,7 @@ function slugify(text) {
 			const response = await fetch('/events.json')
 			eventData = await response.json()
 		  } catch(err) {
-			console.error(`ERROR: fetch for '/events/me/'`,err)
-			return false
+			console.error(`ERROR: fetch for '/events.json'`,err)
 		  }
 		  //create array from eventData.json and remove all undefined cancelled events
 		  myEvents = myEvents.map( id => eventData[id]).filter(event => event)
@@ -277,12 +282,15 @@ function slugify(text) {
 		  return myEvents
 		},
 		async bookEvent(id) {
-		  // Check network and dataservice before submitting event
+		  // Check network and data service before submitting event
 		  const network = await this.checkNetworkStatus()
 		  if (!network) return false
 		  // book event
 		  const data = await fetchData('/bookings/bookMeIntoGame',{method: 'POST',body: { gameId: id }})
-		  if (!data) this.$dispatch('toast', 'ERROR: booking change failed. Data service might be down.')
+		  if (!data) {
+			this.$dispatch('toast', 'ERROR: booking change failed. Data service might be down.')
+			return false
+		  }
 		  // update availableSlots
 		  this.getAvailableSlots()
 		  this.$store.events.getSpace(id)
@@ -294,7 +302,10 @@ function slugify(text) {
 		  const network = await this.checkNetworkStatus()
 		  if (!network) return false
 		  let data = await fetchData('/bookings/removeMeFromGame',{method: 'DELETE',body: { gameId: id, guid: id }})
-		  if (!data) this.$dispatch('toast', 'ERROR: booking change failed. Data service might be down.')
+		  if (!data) {
+			this.$dispatch('toast', 'ERROR: booking change failed. Data service might be down.')
+			return false
+		  }
 		  // update availableSlots
 		  this.getAvailableSlots()
 		  this.$store.events.getSpace(id)

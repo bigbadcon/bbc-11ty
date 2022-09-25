@@ -9,7 +9,7 @@
     {% set isQuotaExempt = true %}
 {% endif %}
 <div class="rounded-md shadow mt-md text-body p-base bg-card" 
-x-data="{ isAllAges: {{isAllAges}}, isQuotaExempt: {{isQuotaExempt}} }"
+x-data="{ isAllAges: {{isAllAges}}, isQuotaExempt: {{isQuotaExempt}}, bookingClicked: false}"
 >
     <h2 class="-mt-1 font-serif text-2xl font-bold leading-none md:text-4xl text-header mb-sm">Event Booking</h2>
 
@@ -55,7 +55,14 @@ x-data="{ isAllAges: {{isAllAges}}, isQuotaExempt: {{isQuotaExempt}} }"
                         <div x-show="(maxSpaces === 'Any' || $store.events.spaces[id] > 0)" class="space-y-sm">
                             {# Booking button; show if they have available slots or if it is quota exempt #}
                             {# TODO: add loading spinner after pressing button and waiting on response #}
-                            <button class="button" :disabled="!(isQuotaExempt || availableSlots > 0)" @click="bookEvent({{event.eventId}}); if (!isQuotaExempt) availableSlots = availableSlots - 1">Book Event</button>
+                            <button class="button" :disabled="!(isQuotaExempt || availableSlots > 0)" @click="async () => { await bookEvent({{event.eventId}}); bookingClicked = false }; if (!isQuotaExempt) availableSlots = availableSlots - 1; bookingClicked = true" x-show="!bookingClicked">Book Event</button>
+                            <div x-show="bookingClicked" class="inline-flex items-center italic font-bold gap-sm">
+                                <svg class="w-5 h-5 text-body animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                <span>Booking...</span>
+                            </div>
                         </div>
                         {# Show if event is full #}
                         <div x-show="!(maxSpaces === 'Any' || $store.events.spaces[id] > 0)" class="font-bold">Event is full</div>
@@ -64,7 +71,14 @@ x-data="{ isAllAges: {{isAllAges}}, isQuotaExempt: {{isQuotaExempt}} }"
                     <div x-show="doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}})" class="italic rounded bg-card py-sm px-base">The timing of this event overlaps with one of your booked events.</div>
                 </div>
                 <div x-show="isBooked({{event.eventId}})">
-                    <button class="button" @click="cancelBooking({{event.eventId}}); if (!isQuotaExempt) availableSlots = availableSlots + 1">Cancel Booking</span>
+                    <button class="button" @click="async () => { await cancelBooking({{event.eventId}}); bookingClicked = false }; if (!isQuotaExempt) availableSlots = availableSlots + 1; bookingClicked = true" x-show="!bookingClicked">Cancel Booking</span>
+                    <div x-show="bookingClicked" class="inline-flex items-center italic font-bold gap-sm">
+                        <svg class="w-5 h-5 text-body animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <span>Canceling...</span>
+                    </div>
                 </div>
             </div>
             {# Show if you are a GM/Speaker #}
