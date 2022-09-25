@@ -354,7 +354,7 @@ document.addEventListener('alpine:init', () => {
         } else {
           const littleRedStatus = await this.hello()
           if (!littleRedStatus) {
-            this.$dispatch('toast','ERROR: The data service is currently offline! Please wait and try again.')
+            this.$dispatch('lilRedStatus')
             return false
           }
           return true
