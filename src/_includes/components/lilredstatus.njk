@@ -1,0 +1,14 @@
+<div class="fixed bottom-0 z-40 w-full"
+    x-data="{ lilRedStatus: 'roll plus login', async checkStatus() { this.lilRedStatus = await lilRed.status(); if (this.lilRedStatus !== 'roll plus login') { await delay(4000); this.checkStatus(); } } }"
+    x-cloak x-show="lilRedStatus !== 'roll plus login'" x-transition
+    x-init="checkStatus()"
+    lilRedStatus.window="checkStatus()"
+    >
+    <div class="flex justify-between shadow-lg gap-base bg-primary text-body px-base pt-xs">
+        <img src="/static/images/red-portrait-2017-sm.png" alt="Illustration of Little Red" class="self-end h-16">
+        <div class="self-center flex-grow text-sm pb-sm">
+            <p>
+                <strong class="text-secondary">Little Red Event Manager is down!</strong> Booking and forms are not available. <em>Please wait...</em> This message will disappear once Little Red is back.</p>
+        </div>
+    </div>
+</div>

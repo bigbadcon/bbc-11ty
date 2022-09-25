@@ -132,6 +132,9 @@ document.addEventListener('alpine:init', () => {
   Alpine.data('global', function () {
     return {
       init() {
+		lilRed.init({
+			lilRedApiUrl: "https://admin.bigbadcon.com:8091/api",
+		});
         // logout if it's been more than 10 days
         if (!dayjs(this.lastLogin).isValid() || dayjs(this.lastLogin).diff(dayjs(),'hour') < -240) {
           this.logout('It has been more than 10 days since your last login so you are being logged out')
