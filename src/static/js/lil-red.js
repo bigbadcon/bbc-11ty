@@ -94,11 +94,11 @@ var lilRed = (() => {
         const token = response.headers.get("authorization");
         localStorage.setItem(AUTH_TOKEN, token);
         localStorage.setItem(LAST_LOGIN, new Date().toISOString());
-        dispatch("lilRed:login", "success");
+        dispatch("lilRed_login", "success");
         return token;
       }
     } catch (err) {
-      dispatch("lilRed:login", "fail");
+      dispatch("lilRed_login", "fail");
       return null;
     }
   }
@@ -124,7 +124,7 @@ var lilRed = (() => {
       if (authToken) {
         options.headers.Authorization = authToken;
       } else {
-        dispatch("lilRed:fetch-error", "ERROR: auth token missing");
+        dispatch("lilRed_lilFetch", "ERROR: auth token missing");
         return null;
       }
       if (lilRedSettings.logoutIfStale) {
@@ -137,7 +137,7 @@ var lilRed = (() => {
         const isStale = isNaN(lastLogin) || isNaN(earliestAllowedLogin) || lastLogin < earliestAllowedLogin;
         if (isStale) {
           dispatch(
-            "lilRed:fetch-error",
+            "lilRed_lilFetch",
             `ERROR: auth token stale. Last Login: ${lastLogin}`
           );
           logout();
@@ -174,13 +174,13 @@ var lilRed = (() => {
   }
   var status = async () => {
     const result = await lilGet("/");
-    dispatch("lilRed:status", result);
+    dispatch("lilRed_status", result);
     return result;
   };
   var isAdmin = () => lilGet("/users/me/isadmin");
   var login = (username, password2) => lilAuth(username, password2);
   var logout = () => {
-    dispatch("lilRed:logout", "You have been logged out of Lil Red");
+    dispatch("lilRed_logout", "You have been logged out of Lil Red");
     localStorage.removeItem(AUTH_TOKEN);
     localStorage.removeItem(LAST_LOGIN);
   };
@@ -234,12 +234,14 @@ var lilRed = (() => {
     category: (category) => lilGet(`/events/category/${category}`),
     count: () => lilGet("/events/count"),
     create: (body) => lilPut("/users/setMyPassword", body),
-    uploadImage: (formData) => lilFetch({
-      api: "/events/image",
-      method: "POST",
-      body: formData,
-      jsonStringify: true
-    }),
+    uploadImage: (formData) => {
+      lilFetch({
+        api: "/events/image",
+        method: "POST",
+        body: formData,
+        jsonStringify: false
+      });
+    },
     currentYear: (length, offset) => lilGet(`/events/page/${length}/${offset}`),
     since: (epochtime) => lilGet(`/events/since/${epochtime}`),
     public: {
