@@ -251,8 +251,9 @@ function slugify(text) {
 		  console.log('getEvents', data)
 		},
 		async getAvailableSlots() {
-		  this.availableSlots = await fetchData('/bookings/myAvailableSlots')
-		  return this.availableSlots
+			const slots = await fetchData('/bookings/myAvailableSlots')
+			if (typeof slots === 'number') this.availableSlots = slots
+			return slots
 		},
 		async getBookedEvents() {
 		  // 1. Get ID array of my events
