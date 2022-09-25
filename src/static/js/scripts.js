@@ -80,10 +80,6 @@ function metadataArrayToObject(arr) {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                              End Lil Red Fetch                             */
-/* -------------------------------------------------------------------------- */
-
-/* -------------------------------------------------------------------------- */
 /*                                Alpine Stuff                                */
 /* -------------------------------------------------------------------------- */
 
@@ -101,6 +97,7 @@ document.addEventListener("alpine:init", () => {
 	Alpine.data("global", function () {
 		return {
 			init() {
+				lilRed.init({ lilRedApiUrl: "https://admin.bigbadcon.com:8091/api" });
 				// convert to raw local storage as $persist as a delay and I want to switch to vanilla js plugin eventually
 				this.authToken = localStorage.getItem("lilRedAuthToken");
 				this.lastLogin = localStorage.getItem("lilRedLastLogin");
@@ -153,7 +150,7 @@ document.addEventListener("alpine:init", () => {
 			},
 			async getUserData() {
 				this.$dispatch("lilRedStatus");
-				let user = await lilRed.user.me();
+				let user = await lilRed.me();
 
 				const userMetadata = metadataArrayToObject(user.metadata);
 				const userRoles = [...userMetadata.wp_tuiny5_capabilities.matchAll(/"([a-z-]+)/g)].map(
@@ -215,12 +212,12 @@ document.addEventListener("alpine:init", () => {
 				/* eslint-enable */
 			},
 			async getAvailableSlots() {
-				this.availableSlots = await lilRed.user.slots();
+				this.availableSlots = await lilRed.bookings.slots();
 				return this.availableSlots;
 			},
 			async getBookedEvents() {
 				// 1. Get ID array of my events
-				let myEvents = await lilRed.user.bookings.get();
+				let myEvents = await lilRed.bookings.get();
 				this.$dispatch("lilRedStatus");
 				// 2. Get event data from local JSON
 				let eventData = {};
@@ -246,7 +243,7 @@ document.addEventListener("alpine:init", () => {
 					return false;
 				}
 				// book event
-				const data = await lilRed.user.bookings.add(id);
+				const data = await lilRed.bookings.add(id);
 				if (!data) this.$dispatch("toast", "ERROR: booking change failed. Data service might be down.");
 				// update availableSlots
 				this.getAvailableSlots();
@@ -285,10 +282,10 @@ document.addEventListener("alpine:init", () => {
 				let data;
 				if (this.isFav(id)) {
 					this.favEvents = this.favEvents.filter((fav) => fav !== id);
-					data = await lilRed.user.favorites.delete(id);
+					data = await lilRed.favorites.delete(id);
 				} else {
 					this.favEvents = [...this.favEvents, id];
-					data = await lilRed.user.favorites.add(id);
+					data = await lilRed.favorites.add(id);
 				}
 				if (!data) {
 					this.$dispatch("toast", "ERROR: saving fav failed. Please try again");
@@ -319,7 +316,7 @@ document.addEventListener("alpine:init", () => {
 				);
 			},
 			async changePassword(userId, password) {
-				const data = await lilRed.user.password.set(userId, password);
+				const data = await lilRed.password.set(userId, password);
 				return data;
 			},
 		};
@@ -583,7 +580,7 @@ document.addEventListener("alpine:init", () => {
 				try {
 					// TODO: replace this with simpler API call when Jerry builds it; Also move it to events store.
 					/* ------------------------ Get data from events/find ----------------------- */
-					const data = await lilRed.user.events.find(id);
+					const data = await lilRed.events.find(id);
 					// convert metadata to object
 					const metadata = metadataArrayToObject(data.metadata);
 					// filter out canceled bookings and fix name issues with odd characters

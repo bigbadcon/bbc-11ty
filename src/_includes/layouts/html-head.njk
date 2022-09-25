@@ -4,6 +4,7 @@
   <meta name="theme-color" content="#c4d0a0">
   <link rel="stylesheet" href="/tailwindoutlive.css"/>
   <link rel="stylesheet" href="/svg-icons.css"/>
+  <script src="/static/js/lil-red.js"></script>
   <script src="https://unpkg.com/axios@0.21.1/dist/axios.min.js" defer></script>
   <script src="/js/array-flat-polyfill.js" defer></script>
   <script src="/js/utf8.js"></script>
@@ -17,14 +18,11 @@
   <script src="/js/dayjs.timezone.js"></script>
   <script src="/js/lite-youtube-embed.js" defer></script>
   <link rel="stylesheet" href="/css/lite-youtube-embed.css"/>
-
+  <script src="/static/js/lil-red.js"></script>
   <script>
     // dayjs plugins
     dayjs.extend(window.dayjs_plugin_utc)
     dayjs.extend(window.dayjs_plugin_timezone)
-
-    // Store API Url
-    const lilRedAPIUrl = 'https://admin.bigbadcon.com:8091/api'
 
     // dark/light theme
     function setTheme(theme) {
