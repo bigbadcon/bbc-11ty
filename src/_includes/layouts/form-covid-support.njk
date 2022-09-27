@@ -13,7 +13,7 @@
                         <em>required field</em>
                     </p>
                 </header>
-                <form class="prose mt-base" id="form" method="post" action="/.netlify/functions/submit-covid-support" x-validate x-data={financialSupport:false} @pageshow.window="$el.reset()">
+                <form class="prose mt-base" id="form" method="post" action="/.netlify/functions/submit-covid-support" x-validate x-data={financialSupport:false} @pageshow.window="$el.reset()" @submit="$validate.submit()">
                     {# Honeypot #}
                     <div class="hidden">
                         <label for="fax_number">Fax Number</label>
