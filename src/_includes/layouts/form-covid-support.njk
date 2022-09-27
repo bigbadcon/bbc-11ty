@@ -1,0 +1,111 @@
+{% extends 'layouts/page.njk' %}
+
+{% block content %}
+    <main id="content">
+        <div class="mx-auto max-w-content p-base">
+            <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
+            <div class="prose">{{ content | safe }}</div>
+            <section class="my-base">
+                <header class="prose">
+                    <h2>COVID-19 Contact Tracing &amp; Support</h2>
+                    <p>
+                        <span class="font-bold text-highlight">*</span>
+                        <em>required field</em>
+                    </p>
+                </header>
+                <form class="prose mt-base" id="form" method="post" action="/.netlify/functions/submit-covid-support" x-validate x-data={financialSupport:false} @pageshow.window="$el.reset()">
+                    {# Honeypot #}
+                    <div class="hidden">
+                        <label for="fax_number">Fax Number</label>
+                        <input type="hidden" name="fax_number" value="" id="fax_number">
+                    </div>
+                    {# Personal Info #}
+                    <fieldset>
+                        <legend>Contact Tracing</legend>
+                        <div>
+                            <label for="where_you_got_infected">Where and when do you think you were infected?</label>
+                            <textarea name="where_you_got_infected" id="where_you_got_infected" cols="30" rows="3"></textarea>
+                        </div>
+                        <div class="required">
+                            <label for="where_you_exposed_others">Where and when were you that you may have exposed others?</label>
+                            <p class="my-sm">List of locations and times, where you spent 15 minutes or more, at the convention.</p>
+                            <textarea name="where_you_exposed_others" id="where_you_exposed_others" cols="30" rows="3" required></textarea>
+                        </div>
+                        <div>
+                            <label for="who_you_were_you_in_contact_with">Who were you in close contact with?</label>
+                            <p class="my-sm">List the names and contact information for anyone you had close contact with.</p>
+                            <textarea name="who_you_were_you_in_contact_with" id="who_you_were_you_in_contact_with" cols="30" rows="3"></textarea>
+                        </div>
+                        <h3>Financial Support</h3>
+                        <p>We can offer limited financial support (up to $100 USD) for those affected financially by exposure to COVID-19 at BBC.</p>
+                        <div class="flex items-center justify-start">
+                            <label for="financial_support"><input type="checkbox" name="financial_support" id="financial_support" value="yes" x-model="financialSupport">
+                                    I'd like to request financial support</label>
+                        </div>
+                    </fieldset>
+                    <fieldset x-cloak x-show="financialSupport" x-transition>
+                        <legend>Financial Support</legend>
+                        <div class="required">
+                            <label for="amount_requested">Amount Requested</label>
+                            <select name="amount_requested" id="amount_requested" x-required="financialSupport">
+                                <option value="" disabled selected>-- Choose One --</option>
+                                <option>$25</option>
+                                <option>$50</option>
+                                <option>$75</option>
+                                <option>$100</option>
+                            </select>
+                        </div>
+                        <div class="required">
+                            <label for="preferred_payment_method">Preferred Payment Method</label>
+                            <select name="preferred_payment_method" id="preferred_payment_method" x-required="financialSupport">
+                                <option value="" disabled selected>-- Choose One --</option>
+                                <option value="paypal">Paypal</option>
+                                <option value="check">Check (USA only)</option>
+                            </select>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Personal Info</legend>
+                        <div :class="financialSupport && 'required'">
+                            <label for="name">Name</label>
+                            <input type="text" name="name" id="name" value="" x-required="financialSupport">
+                        </div>
+                        <div :class="financialSupport && 'required'">
+                            <label for="phone">Phone</label>
+                            <input type="tel" name="phone" id="phone" value="" x-required="financialSupport">
+                        </div>
+                        <div :class="financialSupport && 'required'">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email" value="" x-required="financialSupport">
+                        </div>
+                        <div x-show="$formData.preferred_payment_method.value === 'paypal'" x-transition>
+                            <label for="paypal_email">Paypal Email, if different than above</label>
+                            <input type="email" name="paypal_email" id="paypal_email" value="">
+                        </div>
+                        <div class="required" x-show="$formData.preferred_payment_method.value === 'check'" x-transition>
+                            <label for="address">Address to send check</label>
+                            <textarea name="address" id="address" cols="30" rows="3" x-required="$formData.preferred_payment_method.value === 'check'"></textarea>
+                        </div>
+                        <div>
+                            <label for="other">Any other info we should know</label>
+                            <textarea name="other" id="other" cols="30" rows="3"></textarea>
+                        </div>
+
+                    </fieldset>
+                    <div x-data="{submitted: false}" @pageshow.window="submitted = false">
+                        <button type="submit" :disabled="!$validate.isComplete('form')" class="btn btn-primary" x-show="!submitted" @click="submitted = true">Submit</button>
+                        <div x-cloak x-show="submitted">
+                            {% import 'components/loading-spinner-macro.njk' as loading %}
+                            {{ loading.spinner('Submitting')}}
+                        </div>
+                    </div>
+
+                    {% if (sitemeta.environment === 'dev') %}
+                        {% import 'components/x-validate-form-validator.njk' as validate %}
+                        {{ validate.log('form') }}
+                    {% endif %}
+                </form>
+            </section>
+        </div>
+    </main>
+{% endblock %}
