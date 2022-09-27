@@ -1,7 +1,7 @@
 ---
-layout: layouts/page.njk
+layout: layouts/form-covid-support.njk
 title: COVID-19 Support Resources
-published: false
+published: true
 description: ''
 ogImage: ''
 navGroup: ''
