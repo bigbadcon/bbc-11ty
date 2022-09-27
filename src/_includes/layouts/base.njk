@@ -16,10 +16,6 @@
           {% include 'components/header.njk' %}
         {% endblock %}
       </div>
-      {# Decorative underbrush svg #}
-      <div class="relative content-wrapper bg-main-gradient-top" >
-        <div style="-webkit-mask: url(/static/images/underbrush.svg) repeat-x; mask: url(/static/images/underbrush.svg) repeat-x; pointer-events: none; -webkit-mask-position: top; mask-position: top" class="h-10 underbrush bg-primary" style="padding-top: 2rem"></div>
-      </div>
       <div class="relative content-wrapper bg-main-gradient-top pb-lg" style="padding-top: 2rem">
         {# Main Content Area. <main> tag should live in content block #}
         {% block content %}{% endblock %}
@@ -34,6 +30,8 @@
     {{ authModal() }}
     {# Toast Notification #}
     {% include 'components/toast.njk' %}
+    {# Lil Red Status Notification #}
+    {% include 'components/lilredstatus.njk' %}
   </body>
 
 </html>

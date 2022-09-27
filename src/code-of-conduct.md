@@ -81,5 +81,18 @@ Expulsion from Go Play NW events on a permanent basis.
 ```
 Note that this list is not exhaustive, and other appropriate actions may be taken as necessary. 
 
+## Age Policy
+You must be 18 years or older to attend Go Play NW, regardless of parental consent.
+
+During registration, attendees must confirm that they are at least 18 years old. This policy will be strictly enforced at the event.
+
+Go Play NW supports roleplaying games for all ages. We believe that young gamers need age-appropriate games, and all gamers should play in an environment where they feel comfortable expressing themselves freely. Unfortunately, we are unable to provide the necessary separate gaming space for all-ages gaming.
+
+While Go Play NW is not an event for young gamers, we want young gamers to flourish. We recommend looking into some other fantastic events in the Seattle area.
+
+[GeekGirlCon](https://geekgirlcon.com/){.icon-website}
+
+[OrcaCon](https://www.orcacon.org/){.icon-website}
+
 ---
 _Written by the safety team headed by Angela Lemus-Mogrovejo (with reference to Big Bad Con, Emerald City Comic Con, Geek Girl Con, PAX West, and OrcaCon’s respective Codes of Conduct and Community Standards)_

@@ -31,7 +31,7 @@ exports.handler = async function(event, context) {
             userPass: userPass,
             userUrl: "",
             emailSubject: "Go Play NW User account created",
-            emailBody: "An account for this email address has been created at <a href='https://www.goplaynw.org'>Go Play Northwest</a>! " +
+            emailBody: "An account for this email address has been created at https://www.goplaynw.org" + "!" +
                 "You may log in with either this email address, or the username " + displayName + "."
             // twitter: twitter
         }
