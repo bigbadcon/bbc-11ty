@@ -18,7 +18,6 @@ const colors = {
   'secondary': 'var(--secondary)',
   'highlight': 'var(--highlight)',
   'highlight-2': 'var(--highlight-2)',
-  'sky': 'var(--sky)',
   'body': 'var(--body)',
   'body-highlight': 'var(--body-highlight)',
   'header': 'var(--header)',
@@ -30,7 +29,7 @@ const colors = {
   'main-gradient-bottom': 'var(--main-gradient-bottom)',
   form: 'var(--bg-form)',
   hr: 'var(--hr)',
-  backdrop: `var(--backdrop)`
+  backdrop: 'var(--backdrop)'
 }
 
 module.exports = {

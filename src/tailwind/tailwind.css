@@ -24,11 +24,6 @@
   --header: var(--secondary);
   --subheader: #8B4A4E;
   --menu-icon: #6f693f;
-  --sky: #baedff;
-  --mountain: #83a0ad;
-  --sunmoon: #fff965;
-  --tree: #86815f;
-  --tree-2: #aca57e;
   --main-gradient-top: #849357;
   --main-gradient-bottom: #dfd5bb;
   --bg-form: #fcf8f3;
@@ -54,11 +49,6 @@
     --header: var(--secondary);
     --subheader: #bdcfd5;
     --menu-icon: #9dbfd5;
-    --sky: #97A0BF;
-    --mountain: #7F84A5;
-    --sunmoon: #F5F9FF;
-    --tree: #282A3F;
-    --tree-2: #4F536C;
     --main-gradient-top: #274555;
     --main-gradient-bottom: #1E1C3F;
     --bg-form: #2f2d31;
@@ -82,11 +72,6 @@
   --header: var(--secondary);
   --subheader: #dddddd;
   --menu-icon: #9dbfd5;
-  --sky: #97A0BF;
-  --mountain: #7F84A5;
-  --sunmoon: #F5F9FF;
-  --tree: #282A3F;
-  --tree-2: #4F536C;
   --main-gradient-top: #274555;
   --main-gradient-bottom: #1E1C3F;
   --bg-form: #2f2d31;
@@ -172,7 +157,7 @@
 /* -------------------------------------------------------------------------- */
 
 input[type="text"], input[type="password"], input[type="email"], input[type="phone"], input[type="url"] {
-  @apply px-sm py-xs border rounded-md bg-form border-body text-body focus:ring-highlight focus:border-highlight;
+  @apply border rounded-md px-sm py-xs bg-form border-body text-body focus:ring-highlight focus:border-highlight;
 }
 
 label {
@@ -184,7 +169,7 @@ select {
 }
 
 button[type="submit"], input[type="file"], .button {
-  @apply font-bold uppercase transition-colors duration-200 rounded shadow text-form bg-highlight hover:bg-highlight-2 py-xs px-base border border-highlight;
+  @apply font-bold uppercase transition-colors duration-200 border rounded shadow text-form bg-highlight hover:bg-highlight-2 py-xs px-base border-highlight;
 }
 
 button[type="submit"]:disabled .button:disabled {
@@ -192,11 +177,11 @@ button[type="submit"]:disabled .button:disabled {
 }
 
 .button-sm {
-  @apply font-bold uppercase transition-colors duration-200 rounded shadow text-form text-sm bg-highlight hover:bg-highlight-2 py-2xs px-sm border border-highlight;
+  @apply text-sm font-bold uppercase transition-colors duration-200 border rounded shadow text-form bg-highlight hover:bg-highlight-2 py-2xs px-sm border-highlight;
 }
 
 button:disabled {
-  @apply opacity-70 bg-hr hover:bg-hr border-hr cursor-default;
+  @apply cursor-default opacity-70 bg-hr hover:bg-hr border-hr;
 }
 
 textarea {
@@ -204,7 +189,7 @@ textarea {
 }
 
 fieldset {
-  @apply border-t-4 border-solid border-hr pt-base my-md flex flex-col gap-sm;
+  @apply flex flex-col border-t-4 border-solid border-hr pt-base my-md gap-sm;
 }
 
 legend {
@@ -224,10 +209,10 @@ input[type="checkbox"] ~ label {
 }
 
 .error-required {
-  @apply bg-card p-sm rounded-md;
+  @apply rounded-md bg-card p-sm;
 }
 .error-required:after {
-  @apply ml-xs text-highlight italic font-bold;
+  @apply italic font-bold ml-xs text-highlight;
   content: 'required';
 }
 /* If specific data error text specified use that instead */
@@ -235,10 +220,10 @@ input[type="checkbox"] ~ label {
   content: attr(data-error);
 }
 [data-error] {
-  @apply bg-card p-sm rounded-md;
+  @apply rounded-md bg-card p-sm;
 }
 [data-error]:after {
-  @apply ml-xs text-highlight italic font-bold;
+  @apply italic font-bold ml-xs text-highlight;
   content: attr(data-error);
 }
 
@@ -290,7 +275,7 @@ code {
 }
 
 .switch input[type="checkbox"]:checked ~ .track {
-  @apply transform transition-colors;
+  @apply transition-colors transform;
 }
 
 .switch input[type="checkbox"]:disabled ~ .track {
@@ -316,7 +301,7 @@ code {
 }
 .iconlink__icon,
 .light .icon-link__icon {
-  @apply w-6 h-6 flex-shrink-0;
+  @apply flex-shrink-0 w-6 h-6;
   filter: drop-shadow(0 0.1rem 0.1rem rgba(230, 255, 230, 0.4))
 }
 @media (prefers-color-scheme: dark) {
@@ -328,7 +313,7 @@ code {
   filter: drop-shadow(0 0.1rem 0.1rem rgba(0, 0, 50, 0.4))
 }
 .iconlink__title {
-  @apply text-body-highlight font-serif;
+  @apply font-serif text-body-highlight;
   font-size: 1.3em;
   line-height: 0.9;
 }
@@ -348,7 +333,7 @@ code {
 /* ------------------------------ Icon Link V2 ------------------------------ */
 
 [class^='icon-'] {
-  @apply text-body-highlight font-serif no-underline flex items-center gap-sm;
+  @apply flex items-center font-serif no-underline text-body-highlight gap-sm;
   font-size: 1.3em;
   line-height: 0.9;
   text-decoration-color: var(--highlight);
@@ -358,8 +343,9 @@ a[class^='icon-']:hover {
   @apply underline;
 }
 
+
 [class^='icon-']:before {
-  @apply block h-6 w-6 bg-highlight bg-gradient-to-br from-highlight via-highlight to-highlight-2;
+  @apply block w-6 h-6 bg-highlight bg-gradient-to-br from-highlight via-highlight to-highlight-2;
   mask-repeat: no-repeat;
   content: " ";
 }
@@ -569,13 +555,13 @@ a[class^='icon-']:hover {
 .fav-star {
   mask-image: url(/static/svgs/star.svg);
   mask-repeat: no-repeat;
-  @apply block w-6 h-6 cursor-pointer opacity-30 hover:opacity-100 bg-body mx-auto;
+  @apply block w-6 h-6 mx-auto cursor-pointer opacity-30 hover:opacity-100 bg-body;
 }
 
 .fav-star-header {
   mask-image: url(/static/svgs/star.svg);
   mask-repeat: no-repeat;
-  @apply block w-6 h-6 bg-body mx-auto;
+  @apply block w-6 h-6 mx-auto bg-body;
 }
 
 /* Make sure favved are highlighted */

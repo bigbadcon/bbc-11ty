@@ -9,17 +9,8 @@
                 {{ content | safe }}
             </div>
             {# Illustration Graphic #}
-            <div class="relative row-start-1 lg:col-span-2 md:row-start-auto">
-                {# background forest svg #}
-                {% include 'components/forest.njk' %}
-                {# absolutely placed Red illustration #}
-                <div class="absolute top-0 left-0 w-full aspect-w-3 aspect-h-2">
-                    <div class="flex items-end justify-end">
-                        <div class="w-1/2">
-                            {% include 'components/go.njk' %}
-                        </div>
-                    </div>
-                </div>
+            <div class="relative row-start-1 lg:col-span-2 md:row-start-auto pb-base">
+                {% include 'components/go.njk' %}
             </div>
         </div>
     </section>

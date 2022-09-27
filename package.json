@@ -16,6 +16,10 @@
       "url": "https://colinaut.com"
     }
   ],
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
   "main": ".eleventy.js",
   "repository": {
     "type": "git",
