@@ -379,8 +379,20 @@ document.addEventListener("alpine:init", () => {
 			},
 			async getFavEvents() {
 				let data = await fetchData("/events/me/favorites");
-				this.favEvents = data && data.map((item) => item.eventId);
-				return data && data.map((item) => item.eventId);
+				// TODO: simplify this once the API is simplified
+				this.favEvents =
+					data &&
+					data.map((item) => {
+						if (
+							typeof item === "number" ||
+							typeof item === "string"
+						) {
+							item;
+						} else if (typeof item === "object" && item.eventId) {
+							item.eventId;
+						}
+					});
+				return this.favEvents;
 			},
 			async toggleFav(id) {
 				id = Number(id);
