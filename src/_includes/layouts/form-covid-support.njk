@@ -66,6 +66,9 @@
                     </fieldset>
                     <fieldset>
                         <legend>Personal Info</legend>
+                        <p x-cloak x-show="!financialSupport" class="">Any and all personal info you'd like to provide is optional.</p>
+                        <p x-cloak x-show="financialSupport" class="!mt-0 font-bold">Personal info is required if you are requesting financial support.</p>
+                        <p class="italic">All contact tracing will be anonymous.</p>
                         <div :class="financialSupport && 'required'">
                             <label for="name">Name</label>
                             <input type="text" name="name" id="name" value="" x-required="financialSupport">
