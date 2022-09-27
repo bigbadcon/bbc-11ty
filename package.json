@@ -73,6 +73,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.22.2",
+    "eslint": "^8.24.0",
     "svg-sprite-generator": "^0.0.7"
   }
 }
