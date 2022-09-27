@@ -1,0 +1,13 @@
+<div class="fixed bottom-0 z-40 w-full"
+    x-data="{ lilRedStatus: 'roll plus login', async checkStatus() { this.lilRedStatus = await lilRed.status(); if (this.lilRedStatus !== 'roll plus login') { await delay(4000); this.checkStatus(); } } }"
+    x-cloak x-show="lilRedStatus !== 'roll plus lofgin'" x-transition
+    x-init="checkStatus()"
+    lilRedStatus.window="checkStatus()"
+    >
+    <div class="border-t-4 shadow-lg bg-primary text-body px-base pt-xs border-highlight">
+        <div class="self-center flex-grow text-sm pb-sm">
+            <p>
+                <strong class="text-secondary">GoPlay NW's Event Manager is down!</strong> Booking and forms are not available. <em>Please wait...</em> This message will disappear once it is back.</p>
+        </div>
+    </div>
+</div>
