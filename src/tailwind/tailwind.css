@@ -40,6 +40,7 @@
 /* ------------------------------- Dark Theme ------------------------------- */
 @media (prefers-color-scheme: dark) {
   :root {
+    /*
     --primary: #171b30;
     --primary-2: #122436;
     --primary-3: #142F40;
@@ -64,10 +65,39 @@
     --bg-form: #2f2d31;
     --hr: #6C89A6;
     --backdrop: rgba(90, 100, 120, 0.6);
+     */
+    --primary: #E4EFF2;
+    --primary-2: #c4d0a0;
+    --primary-3: #94a268;
+    --primary-4: #849357;
+    --secondary: #843232;
+    --highlight: #52A44B;
+    --highlight-2: #426117;
+    --highlightb: #e65800;
+    --highlightb-2: #f22600;
+    --card: rgba(255, 255, 255, 0.6);
+    --content: rgba(255, 255, 255, 1);
+    --body: #313a3c;
+    --body-highlight: #003312;
+    --header: var(--secondary);
+    --subheader: #8B4A4E;
+    --menu-icon: #6f693f;
+    --sky: #baedff;
+    --mountain: #83a0ad;
+    --sunmoon: #fff965;
+    --tree: #86815f;
+    --tree-2: #aca57e;
+    --main-gradient-top: #849357;
+    --main-gradient-bottom: #dfd5bb;
+    --bg-form: #fcf8f3;
+    --hr: #6E897C;
+    --fill-highlight: url(#highlight-gradient) var(--highlight);
+    --backdrop: rgba(16, 52, 55, 0.58);
   }
 }
 
 .dark, [data-theme='dark'] {
+  /*
   --primary: #171b30;
   --primary-2: #122436;
   --primary-3: #142F40;
@@ -92,6 +122,34 @@
   --bg-form: #2f2d31;
   --hr: #6C89A6;
   --backdrop: rgba(90, 100, 120, 0.6);
+   */
+    --primary: #E4EFF2;
+    --primary-2: #c4d0a0;
+    --primary-3: #94a268;
+    --primary-4: #849357;
+    --secondary: #843232;
+    --highlight: #52A44B;
+    --highlight-2: #426117;
+    --highlightb: #e65800;
+    --highlightb-2: #f22600;
+    --card: rgba(255, 255, 255, 0.6);
+    --content: rgba(255, 255, 255, 1);
+    --body: #313a3c;
+    --body-highlight: #003312;
+    --header: var(--secondary);
+    --subheader: #8B4A4E;
+    --menu-icon: #6f693f;
+    --sky: #baedff;
+    --mountain: #83a0ad;
+    --sunmoon: #fff965;
+    --tree: #86815f;
+    --tree-2: #aca57e;
+    --main-gradient-top: #849357;
+    --main-gradient-bottom: #dfd5bb;
+    --bg-form: #fcf8f3;
+    --hr: #6E897C;
+    --fill-highlight: url(#highlight-gradient) var(--highlight);
+    --backdrop: rgba(16, 52, 55, 0.58);
 }
 
 /* -------------------------------------------------------------------------- */
