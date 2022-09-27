@@ -14,6 +14,11 @@ eleventyComputed:
 <div class="text-lg prose border-t-2 border-b-2 text-body mb-base space-y-xs border-hr py-sm">
     {# Event Date #}
     {% include 'components/event-date.njk' %}
+    {% if event.metadata.room %}
+        <div>
+            <strong>Room:</strong>
+            {{event.metadata.room}}</div>
+    {% endif %}
     {# Spaces #}
     {% if event.metadata.Players %}
         {% include 'components/event-spaces.njk' %}

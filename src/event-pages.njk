@@ -47,13 +47,21 @@ eleventyComputed:
       {% endfor %}
     </ul>
   </div>
-  {% if event.metadata.Players %}
+  {# System #}
+  {% if event.metadata.System %}
     <div>
       <strong>System:</strong>
       {{event.metadata.System}}</div>
   {% endif %}
   {# Event Date #}
   {% include 'components/event-date.njk' %}
+  {# Room #}
+  {% if event.metadata.room %}
+    <div>
+      <strong>Room:</strong>
+      {{event.metadata.room}}</div>
+  {% endif %}
+  {# Spaces #}
   {% if event.metadata.Players %}
     {% include 'components/event-spaces.njk' %}
   {% endif %}
