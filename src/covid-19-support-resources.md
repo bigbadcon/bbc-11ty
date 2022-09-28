@@ -1,10 +1,10 @@
 ---
-layout: layouts/form-covid-support.njk
+layout: ''
 title: COVID-19 Support Resources
 published: true
 description: ''
 ogImage: ''
-navGroup: ''
+navGroup: Community
 navTitle: ''
 order: 
 icon: ''
