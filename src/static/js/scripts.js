@@ -324,7 +324,13 @@ document.addEventListener("alpine:init", () => {
 				//create array from eventData.json and remove all undefined cancelled events
 				myEvents = myEvents
 					.map((id) => eventData[id])
-					.filter((event) => event);
+					.filter((event) => event)
+					.sort((a, b) => {
+						return (
+							dayjs(a.eventStartDateTime) -
+							dayjs(b.eventStartDateTime)
+						);
+					});
 				// only show published events that are in the future (minus 1 month ago)
 				this.bookedEvents = myEvents;
 				// eslint-disable-next-line no-console
