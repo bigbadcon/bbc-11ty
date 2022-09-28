@@ -1,10 +1,10 @@
 ---
 layout: layouts/page.njk
 title: Public Health Policy
-published: false
+published: true
 description: ''
 ogImage: ''
-navGroup: ''
+navGroup: Community
 navTitle: ''
 order: 
 icon: ''
@@ -15,8 +15,6 @@ For the safety of all our attendees, we have the following policies in place for
 * **Masks that provide KN95 or better protection are required in all convention spaces**. We’ll be giving out free Big Bad Con KN95 masks to all attendees!
 * **All attendees must show proof of COVID vaccination before entering the con.** Make sure to pack that vaccination card, update your app, or take a pic before you head out.
 * **We request that all attendees take COVID tests and confirm they are negative before the con**. We’ll have free rapid tests available upon request.
-
-
 * As part of our [community standards](https://www.bigbadcon.com/community-standards/) of respect, support, and kindness, and especially in consideration of Monkeypox, **we ask before giving hugs or making other physical contact.**
 
 Keeping ourselves and each other safe is part of our community standards of respect, support, and kindness. We know that risk tolerances are different for everyone, so what might seem like overkill to one person, might still not be enough for others. We’re looking out for our most vulnerable attendees. Together, we believe we can host a wonderful event.
@@ -108,6 +106,6 @@ The Hyatt ventilation systems meet and exceed industrial filtration requirements
 
 ## COVID-19 Support Resources
 
-In the event that you contract COVID-19 just before, during, or shortly after Big Bad Con, we’ve gathered resources to help you isolate and get treatment. \[\[Link to resources\]\]
+In the event that you contract COVID-19 just before, during, or shortly after Big Bad Con, we’ve gathered [resources to help you isolate and get treatment](/covid-19-support-resources/).
 
 **_Please note_**_: The guidelines in this document are based on information currently available regarding the behavior and characteristics of the COVID-19 virus, public health information, and local or state guidelines with respect to large gatherings. As more clarity with respect to these variables emerges, it is expected that these guidelines may need to be adjusted accordingly._
