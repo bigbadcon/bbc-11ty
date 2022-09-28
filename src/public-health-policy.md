@@ -7,7 +7,7 @@ ogImage: ''
 navGroup: Community
 navTitle: ''
 order: 
-icon: ''
+icon: health
 
 ---
 For the safety of all our attendees, we have the following policies in place for Big Bad Con 2022:
