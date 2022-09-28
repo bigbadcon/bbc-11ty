@@ -198,6 +198,7 @@
 /*       url('/static/fonts/rokkitt-v20-latin-700.woff') format('woff'); !* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ *!*/
 /*}*/
 
+/* quicksand-italic - latin */
 @font-face {
     font-family: 'Quicksand';
     font-style: italic;
@@ -206,7 +207,7 @@
     url('/static/fonts/Quicksand-Italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
     url('/static/fonts/Quicksand-Italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
-/* open-sans-regular - latin */
+/* quicksand-regular - latin */
 @font-face {
     font-family: 'Quicksand';
     font-style: normal;
@@ -215,7 +216,7 @@
     url('/static/fonts/Quicksand-Regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
     url('/static/fonts/Quicksand-Regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
-/* open-sans-700 - latin */
+/* quicksand-700 - latin */
 @font-face {
     font-family: 'Quicksand';
     font-style: normal;
@@ -224,7 +225,7 @@
     url('/static/fonts/Quicksand-Bold.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
     url('/static/fonts/Quicksand-Bold.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
-/* open-sans-700italic - latin */
+/* quicksand-700italic - latin */
 @font-face {
     font-family: 'Quicksand';
     font-style: italic;
@@ -234,21 +235,40 @@
     url('/static/fonts/Quicksand-Italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
+/* bitter-500 - latin */
+@font-face {
+  font-family: 'Bitter';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Bitter'),
+       url('/static/fonts/Bitter-Medium.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('/static/fonts/Bitter-Medium.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* bitter-700 - latin */
+@font-face {
+  font-family: 'Bitter';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Bitter'),
+       url('/static/fonts/Bitter-Bold.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('/static/fonts/Bitter-Bold.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
 /* peace-sans */
 @font-face {
     font-family: 'Peace Sans';
     font-style: normal;
     font-weight: 500;
     src: local('Peace Sans'),
-    url('/static/fonts/peace-sans.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-    url('/static/fonts/peace-sans.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    url('/static/fonts/peace-sans-medium.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url('/static/fonts/peace-sans-medium.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
 :root {
   /* ------------------------------- Root Settings ------------------------------- */
 
   --sans: 'Quicksand', 'Hevetica', 'sans-serif';
-  --serif: 'Peace Sans', 'serif';
+  --serif: 'Bitter', 'serif';
 
   /* Fluid font size from Utopia */
   font-size: clamp(1rem, 0.9rem + 0.49vw, 1.25rem);

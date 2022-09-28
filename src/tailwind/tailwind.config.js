@@ -144,7 +144,7 @@ module.exports = {
       fontFamily: {
         sans: ['Quicksand', 'Helvetica', 'sans-serif'],
         // serif: ['Rokkitt', 'serif']
-        serif: ['Peace Sans', 'serif']
+        serif: ['Bitter', 'serif']
       },
       lineHeight: {
         'sub': '.9'
