@@ -7,7 +7,7 @@ ogImage: ''
 navGroup: Community
 navTitle: ''
 order: 
-icon: ''
+icon: book
 
 ---
 In the event that you contract COVID-19 just before, during, or shortly after Big Bad Con, we’ve gathered resources below to help you isolate and get treatment.
