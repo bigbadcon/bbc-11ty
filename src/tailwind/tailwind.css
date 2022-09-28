@@ -143,66 +143,112 @@
 
 /* ---------------------------------- Fonts --------------------------------- */
 /* open-sans-italic - latin */
+/*@font-face {*/
+/*  font-family: 'Open Sans';*/
+/*  font-style: italic;*/
+/*  font-weight: 400;*/
+/*  src: local('Open Sans'),*/
+/*       url('/static/fonts/open-sans-v23-latin-italic.woff2') format('woff2'), !* Chrome 26+, Opera 23+, Firefox 39+ *!*/
+/*       url('/static/fonts/open-sans-v23-latin-italic.woff') format('woff'); !* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ *!*/
+/*}*/
+/*!* open-sans-regular - latin *!*/
+/*@font-face {*/
+/*  font-family: 'Open Sans';*/
+/*  font-style: normal;*/
+/*  font-weight: 400;*/
+/*  src: local('Open Sans'),*/
+/*       url('/static/fonts/open-sans-v23-latin-regular.woff2') format('woff2'), !* Chrome 26+, Opera 23+, Firefox 39+ *!*/
+/*       url('/static/fonts/open-sans-v23-latin-regular.woff') format('woff'); !* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ *!*/
+/*}*/
+/*!* open-sans-700 - latin *!*/
+/*@font-face {*/
+/*  font-family: 'Open Sans';*/
+/*  font-style: normal;*/
+/*  font-weight: 700;*/
+/*  src: local('Open Sans'),*/
+/*       url('/static/fonts/open-sans-v23-latin-700.woff2') format('woff2'), !* Chrome 26+, Opera 23+, Firefox 39+ *!*/
+/*       url('/static/fonts/open-sans-v23-latin-700.woff') format('woff'); !* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ *!*/
+/*}*/
+/*!* open-sans-700italic - latin *!*/
+/*@font-face {*/
+/*  font-family: 'Open Sans';*/
+/*  font-style: italic;*/
+/*  font-weight: 700;*/
+/*  src: local('Open Sans'),*/
+/*       url('/static/fonts/open-sans-v23-latin-700italic.woff2') format('woff2'), !* Chrome 26+, Opera 23+, Firefox 39+ *!*/
+/*       url('/static/fonts/open-sans-v23-latin-700italic.woff') format('woff'); !* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ *!*/
+/*}*/
+
+/*!* rokkitt-500 - latin *!*/
+/*@font-face {*/
+/*  font-family: 'Rokkitt';*/
+/*  font-style: normal;*/
+/*  font-weight: 500;*/
+/*  src: local('Rokkitt'),*/
+/*       url('/static/fonts/rokkitt-v20-latin-500.woff2') format('woff2'), !* Chrome 26+, Opera 23+, Firefox 39+ *!*/
+/*       url('/static/fonts/rokkitt-v20-latin-500.woff') format('woff'); !* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ *!*/
+/*}*/
+/*!* rokkitt-700 - latin *!*/
+/*@font-face {*/
+/*  font-family: 'Rokkitt';*/
+/*  font-style: normal;*/
+/*  font-weight: 700;*/
+/*  src: local('Rokkitt'),*/
+/*       url('/static/fonts/rokkitt-v20-latin-700.woff2') format('woff2'), !* Chrome 26+, Opera 23+, Firefox 39+ *!*/
+/*       url('/static/fonts/rokkitt-v20-latin-700.woff') format('woff'); !* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ *!*/
+/*}*/
+
 @font-face {
-  font-family: 'Open Sans';
-  font-style: italic;
-  font-weight: 400;
-  src: local('Open Sans'),
-       url('/static/fonts/open-sans-v23-latin-italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('/static/fonts/open-sans-v23-latin-italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    font-family: 'Quicksand';
+    font-style: italic;
+    font-weight: 400;
+    src: local('Quicksand'),
+    url('/static/fonts/Quicksand-Italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url('/static/fonts/Quicksand-Italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 /* open-sans-regular - latin */
 @font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Open Sans'),
-       url('/static/fonts/open-sans-v23-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('/static/fonts/open-sans-v23-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Quicksand'),
+    url('/static/fonts/Quicksand-Regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url('/static/fonts/Quicksand-Regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 /* open-sans-700 - latin */
 @font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Open Sans'),
-       url('/static/fonts/open-sans-v23-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('/static/fonts/open-sans-v23-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Quicksand'),
+    url('/static/fonts/Quicksand-Regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url('/static/fonts/Quicksand-Regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 /* open-sans-700italic - latin */
 @font-face {
-  font-family: 'Open Sans';
-  font-style: italic;
-  font-weight: 700;
-  src: local('Open Sans'),
-       url('/static/fonts/open-sans-v23-latin-700italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('/static/fonts/open-sans-v23-latin-700italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    font-family: 'Quicksand';
+    font-style: italic;
+    font-weight: 700;
+    src: local('Quicksand'),
+    url('/static/fonts/Quicksand-Italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url('/static/fonts/Quicksand-Italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
-/* rokkitt-500 - latin */
+/* peace-sans */
 @font-face {
-  font-family: 'Rokkitt';
-  font-style: normal;
-  font-weight: 500;
-  src: local('Rokkitt'),
-       url('/static/fonts/rokkitt-v20-latin-500.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('/static/fonts/rokkitt-v20-latin-500.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-/* rokkitt-700 - latin */
-@font-face {
-  font-family: 'Rokkitt';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Rokkitt'),
-       url('/static/fonts/rokkitt-v20-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('/static/fonts/rokkitt-v20-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    font-family: 'Peace Sans';
+    font-style: normal;
+    font-weight: 500;
+    src: local('Peace Sans'),
+    url('/static/fonts/peace-sans.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url('/static/fonts/peace-sans.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
 :root {
   /* ------------------------------- Root Settings ------------------------------- */
 
-  --sans: 'Open Sans', 'Hevetica', 'sans-serif';
-  --serif: 'Rokkitt', 'serif';
+  --sans: 'Quicksand', 'Hevetica', 'sans-serif';
+  --serif: 'Peace Sans', 'serif';
 
   /* Fluid font size from Utopia */
   font-size: clamp(1rem, 0.9rem + 0.49vw, 1.25rem);

@@ -142,8 +142,9 @@ module.exports = {
         'blog-cover-image': '398px'
       },
       fontFamily: {
-        sans: ['Open Sans', 'Helvetica', 'sans-serif'],
-        serif: ['Rokkitt', 'serif']
+        sans: ['Quicksand', 'Helvetica', 'sans-serif'],
+        // serif: ['Rokkitt', 'serif']
+        serif: ['Peace Sans', 'serif']
       },
       lineHeight: {
         'sub': '.9'
