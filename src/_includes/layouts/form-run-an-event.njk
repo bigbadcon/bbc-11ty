@@ -728,7 +728,7 @@
                     //eventFacilitators: formData.facilitators,  not used
                     eventMetadataIds: eventMetadataIds || [],
                     eventMetadataNames: eventMetadataNames || [], // This is not used in create event API; only for Google Sheet
-                    eventMetadataNamesString: eventMetadataNames.toString(),
+                    eventMetadataNamesString: eventMetadataNames && eventMetadataNames.toString(),
                     eventName: formData.eventName.value,
                     format: formData.format.value,
                     gm: formData.publicName.value,
@@ -841,7 +841,7 @@
                         //change arrays to string values
                         data = {
                             ...data,
-                            eventMetadataIds: data
+                            eventMetadataIds: data.eventMetadataIds && data
                                 .eventMetadataIds
                                 .toString(),
                             eventMetadataNames: data.eventMetadataNamesString
@@ -962,7 +962,7 @@
                             const formatType = this
                                 .format
                                 .find(e => e.name === name)
-                            return formatType && formatType
+                            return formatType && formatType.id && formatType
                                 .id
                                 .toString()
                         }
