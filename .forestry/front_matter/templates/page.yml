@@ -18,6 +18,7 @@ fields:
     - layouts/form-buy-a-badge.njk
     - layouts/form-change-password.njk
     - layouts/form-contact-us.njk
+    - layouts/form-covid-support.njk
     - layouts/form-create-account.njk
     - layouts/form-exhibitor.njk
     - layouts/form-register.njk
