@@ -6,8 +6,9 @@ description: ''
 tags: pages
 ogImage: ''
 navGroup: Attend
-order: 0
+order: 
 icon: faq
+navTitle: ''
 
 ---
 ## Will Big Bad Con return in-person?
@@ -27,7 +28,7 @@ Big Bad Con Group Rate: $139/night ([booking link](https://www.hyatt.com/en-US/g
 
 ## What safety precautions are we taking?
 
-Find out about our COVID safety policies and risk mitigations efforts [here](/covid-safety).
+Find out about our COVID safety policies and risk mitigations efforts [here](/public-health-policy).
 
 ## Are teens welcome?
 
@@ -53,9 +54,9 @@ Yes! Big Bad Con is an official 501(c)(3) non-profit! Donations are tax deductib
 
 The front-end of the website is built by hand using the static site generator [11ty](https://www.11ty.dev) and hosted on [Netlify](https://www.netlify.com). The back-end is a combination of markdown files for static content, serverless functions, and a bespoke event manager data service. It is a collaboration of:
 
- * [Colin Fahrion](/staff/#colin-fahrion): Site architecture, design, front-end development, and some writing
- * [Jeremy Tidwell](/staff/#jeremy-tidwell): Back-end development and event manager API
- * [Sean Nittner](/staff/#sean-nittner): Writing and the wisdom of years of Big Bad Con experience
+* [Colin Fahrion](/staff/#colin-fahrion): Site architecture, design, front-end development, and some writing
+* [Jeremy Tidwell](/staff/#jeremy-tidwell): Back-end development and event manager API
+* [Sean Nittner](/staff/#sean-nittner): Writing and the wisdom of years of Big Bad Con experience
 
 ## Where did you get all the wonderful illustrations and graphics?
 
