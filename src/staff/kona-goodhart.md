@@ -7,7 +7,7 @@ gender: "(she/her, fae/femme)"
 image: "/images/staff/organizers_kona-goodhart_400x400.png"
 twitter: konahart
 website_name: Darling Bat Games
-website_url: darlingbat.com
+website_url: http://darlingbat.com
 order: 5
 
 ---
