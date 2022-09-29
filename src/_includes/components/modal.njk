@@ -191,6 +191,8 @@
                                 <span x-html="formatEventDateWithYear(event.date)"></span>
                                 <span x-html="formatEventTime(event.date)"></span>
                                 (<span x-text="event.dur"></span> hours)
+                                <span class="text-xs" x-show="event.room">&mdash; <span x-text="event.room" class="uppercase"></span>
+                                </span>
                             </p>
                         </template>
                         <template x-if="Number(event.dur) === 0">

@@ -451,10 +451,10 @@ module.exports = async () => {
 				id: event.eventId,
 				name: event.eventName,
 				slug: event.eventSlug,
-				eventStartDateTime: event.eventStartDateTime,
 				date: event.eventStartDateTime,
 				dur: event.eventDuration,
 				status: event.eventStatus,
+				room: event.metadata.room,
 				isV: event.isVolunteer ? 1 : 0,
 			};
 		});
