@@ -1,4 +1,4 @@
 <div class="">
     <strong>Spaces:</strong>
-    <span x-text="(maxSpaces === 'Any') ? null : `${$store.events.spaces[id]} out of `"></span>{{event.metadata.Players}}
+    <span x-text="(maxSpaces === 'Any' || $store.events.spaces[id] === undefined) ? null : `${$store.events.spaces[id]} out of `"></span>{{event.metadata.Players}}
 </div>
