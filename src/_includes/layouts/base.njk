@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="min-h-screen" x-data="{timezone: $persist('America/Los_Angeles'), modal: false }">
+<html lang="en" class="min-h-screen" x-data="{timezone: $persist('America/Los_Angeles') }">
     {% include 'layouts/html-head.njk' %}
     <body
   data-theme="auto"
@@ -18,7 +18,7 @@
             </div>
             <div class="relative content-wrapper bg-gradient-to-b from-main-gradient-top to-main-gradient-bottom pb-lg" >
                 {# Login / Account Button #}
-                <button @click.stop="modal = 'login'" class="absolute top-0 font-bold uppercase transition-all transform border rounded-b cursor-pointer text-form right-base bg-highlight px-base pb-xs pt-md hover:bg-highlight-2 hover:pt-lg border-highlight" 
+                <button @click.stop="modal = (authToken) ? 'My Account' : 'Login'" class="absolute top-0 font-bold uppercase transition-all transform border rounded-b cursor-pointer text-form right-base bg-highlight px-base pb-xs pt-md hover:bg-highlight-2 hover:pt-lg border-highlight" 
         x-text="(authToken) ? 'My Account' : 'Login'">Login</button>
                 {# Decorative underbrush svg #}
                 <div style="-webkit-mask: url(/static/images/underbrush.svg) repeat-x; mask: url(/static/images/underbrush.svg) repeat-x; pointer-events: none;" class="h-10 underbrush bg-primary mb-sm"></div>

@@ -5,21 +5,29 @@
     x-init="$watch('modal',val => { if (val && isAuth) { getUserData(); getBookedEvents() } })"
     class="fixed inset-0 z-40 flex items-center justify-center w-screen h-screen bg-backdrop" 
     style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);"
-    @click.stop="modal = false"
-    x-init="modal = 'my account'"
+    @click="modal = null"
     ></div>
+
 <div id="authModal" class="modal-wrapper" x-show="modal" >
-
+    {# Panel Loading Spinner #}
+    <div id="modal-loading" class="modal-panel" x-show="modal === 'Loading'">
+        <div class="inline-flex items-center italic font-bold gap-sm py-xs">
+            <svg class="w-5 h-5 text-body animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <span>Loading...</span>
+        </div>
+    </div>
     {# Login Panel #}
-
-    <div id="modal-login" x-cloak x-show="!authToken && modal === 'login'" class="modal-panel">
-        <div class="flex justify-between gap-x-sm">
-            <h2 class="flex-grow -mt-1 font-serif text-3xl font-semibold leading-none text-header">
+    <div id="modal-login" x-cloak x-show="modal === 'Login'" class="modal-panel">
+        <div class="modal-header">
+            <h2 class="modal-title">
                 Login
             </h2>
             {% include "components/modal-close-btn.njk" %}
         </div>
-        <form class="flex flex-col flex-grow my-sm text-body gap-base" x-data="{username: '',password: ''}" @submit.prevent="submitLogin(username,password); username = '';password = ''">
+        <form class="flex flex-col flex-grow my-sm text-body gap-base" x-data="{username: '',password: ''}" @submit.prevent="submitLogin(username, password, $el)">
             <div>
                 <label for="username" class="text-xs uppercase">User Name</label>
                 <input class="w-full" autocapitalize="off" id="username" name="username" required type="text" x-model="username" value=""/>
@@ -35,7 +43,7 @@
         <div class="flex flex-col justify-start text-sm text-body gap-xs">
             {# TODO: get lost password working #}
             <div>
-                Forgot Password? <a href="#" class="font-bold text-highlight" @click.prevent="modal='resetPassword'">Reset Password</a>
+                Forgot Password? <a href="#" class="font-bold text-highlight" @click.prevent="modal = 'Reset Password'">Reset Password</a>
             </div>
             <div>
                 New? <a href="/create-account" class="font-bold text-highlight">Create an Account</a>
@@ -45,10 +53,10 @@
 
     {# Reset Password Panel #}
 
-    <div id="modal-reset-password" x-cloak x-show="!authToken && modal === 'resetPassword'" class="modal-panel" >
+    <div id="modal-reset-password" x-cloak x-show="modal === 'Reset Password'" class="modal-panel" >
         {# Header #}
-        <div class="flex justify-between gap-x-sm">
-            <h2 class="flex-grow -mt-1 font-serif text-3xl font-semibold leading-none text-header">
+        <div class="modal-header">
+            <h2 class="modal-title">
                 Reset Password
             </h2>
             {% include "components/modal-close-btn.njk" %}
@@ -90,15 +98,15 @@
 
     {# Change Password Panel #}
 
-    <div id="modal-change-password" x-cloak x-show="user && modal === 'changePassword'" class="modal-panel" >
+    <div id="modal-change-password" x-cloak x-show="modal === 'Change Password'" class="modal-panel" >
         {# Header #}
-        <div class="flex justify-between gap-x-sm">
-            <h2 class="flex-grow -mt-1 font-serif text-3xl font-semibold leading-none text-header">
+        <div class="modal-header">
+            <h2 class="modal-title">
                 Change Password
             </h2>
             {% include "components/modal-close-btn.njk" %}
         </div>
-        <form class="flex flex-col flex-grow my-sm text-body gap-base" x-data="resetPasswordForm" @submit.prevent="resetPassword();" >
+        <form class="flex flex-col flex-grow pt-sm text-body gap-base" x-data="resetPasswordForm" @submit.prevent="resetPassword();" >
             <div class="text-sm prose">
                 <p>Submit your email address and a reset password email will be sent which will allow you to change your password.</p>
             </div>
@@ -130,28 +138,29 @@
                 </p>
             </div>
             <div>
-                <button class="button" @click="modal = 'accountInfo'">Account Info</button>
+                <button type="button" @click="modal = 'My Account'" class="link-btn">Back to My Account</button>
             </div>
         </form>
     </div>
 
     {# My Account User Info Panel including My Events. Shown only when logged in #}
 
-    <div id="modal-user-info" class="modal-panel" x-cloak x-show="user && modal && modal !== 'changePassword'" >
+    <div id="modal-user-info" class="modal-panel" x-cloak x-show="modal === 'My Account'" >
         {# Header #}
         <div class="">
-            <div class="flex justify-between gap-x-sm">
-                <h2 class="flex-grow -mt-1 font-serif text-3xl font-semibold leading-none text-header gap-base">
-                    <span x-text="user && user.displayName"></span> (<span x-text="user && user.userNicename"></span>)
-                    </h2>
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    My Account
+                </h2>
                 {% include "components/modal-close-btn.njk" %}
             </div>
-            <h3 class="font-serif text-2xl font-semibold text-body">My Events</h3>
+            <h3 class="font-semibold leading-none text-hr pb-xs">
+                <span x-text="user && user.displayName"></span> (<span x-text="user && user.userNicename"></span>)</h3>
         </div>
         {# My Events #}
         <div class="overflow-y-auto border-hr border-y-2">
             {# Badge and quota #}
-            <div class="flex items-center justify-between border-b-2 py-2xs gap-xs border-hr" x-show="user && hasBadge" x-transition>
+            <div class="flex items-center justify-between border-b-2 py-2xs gap-xs border-hr text-body" x-show="user && hasBadge" x-transition>
                 <div class="flex flex-wrap items-center gap-2xs">
                     <span>You have a <span x-show="isTeen">Teen</span> badge!</span>
                     <template x-for="role in badgeRoles">
@@ -171,7 +180,6 @@
             </div>
             {# events list #}
             <ul class="overflow-y-auto text-sm text-body py-xs" x-cloak x-show="bookedEvents" >
-                {# TODO!: add room info! #}
                 <template x-for="event in bookedEvents">
                     <li class="mb-xs">
                         <h4>
@@ -208,8 +216,8 @@
         {# Buttons #}
         <div class="">
             <div class="flex gap-base pt-base">
-                <button class="button" @click="modal = false; logout()">Logout</button>
-                <button class="button" @click="modal = 'changePassword'">Change Password</button>
+                <button class="button" @click="modal = null; logout()">Logout</button>
+                <button class="button" @click="modal = 'Change Password'">Change Password</button>
             </div>
         </div>
     </div>

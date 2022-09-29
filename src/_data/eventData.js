@@ -386,7 +386,7 @@ module.exports = async () => {
 				event.eventStartDate + "T" + event.eventStartTime + "-07:00"
 			)
 				.tz(tz)
-				.toString();
+				.toISOString();
 			const eventEndDateTime = dayjs(
 				event.eventEndDate + "T" + event.eventEndTime + "-07:00"
 			)

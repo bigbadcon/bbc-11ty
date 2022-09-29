@@ -147,6 +147,7 @@ document.addEventListener("alpine:init", () => {
 					this.getAvailableSlots();
 				}
 			},
+			modal: null, // this is a state machine basically with named string values for each panel and null for none
 			lastLogin: this.$persist(null),
 			authToken: this.$persist(false),
 			user: this.$persist(false),
@@ -159,41 +160,58 @@ document.addEventListener("alpine:init", () => {
 			get isAuth() {
 				return typeof this.authToken === "string";
 			},
-			async submitLogin(username, password) {
+			async submitLogin(username, password, form) {
 				// Check network and data service before submitting event
 				const network = await this.checkNetworkStatus();
 				if (!network) return false;
-				// eslint-disable-next-line no-console
-				console.log("submitLogin", username);
-				let res = await fetch(apiBaseUrl + "/login", {
-					headers: {
-						"Content-Type": "application/json;charset=utf-8",
-					},
-					method: "POST",
-					body: JSON.stringify({
-						username: username,
-						password: password,
-					}),
-				});
-				// eslint-disable-next-line no-console
-				console.log("response", res, res.headers.get("authorization"));
-				if (res.status === 200 && res.headers.get("authorization")) {
-					const token = res.headers.get("authorization");
-					this.authToken = token;
-					this.lastLogin = dayjs();
-					if (token) {
-						// Need to pass token for first couple since there is a delay with the $persist code storing it
-						await this.getUserData(token);
-						await this.getAvailableSlots();
-						await this.getBookedEvents();
-						await this.getFavEvents();
-						// this.checkRegistration()  this was for Big Bad Online
+				this.modal = "Loading";
+				try {
+					let res = await fetch(apiBaseUrl + "/login", {
+						headers: {
+							"Content-Type": "application/json;charset=utf-8",
+						},
+						method: "POST",
+						body: JSON.stringify({
+							username: username,
+							password: password,
+						}),
+					});
+					// eslint-disable-next-line no-console
+					console.log(
+						"response",
+						res,
+						res.headers.get("authorization")
+					);
+					if (
+						res.status === 200 &&
+						res.headers.get("authorization")
+					) {
+						const token = res.headers.get("authorization");
+						this.authToken = token;
+						this.lastLogin = dayjs();
+						if (token) {
+							form.reset();
+							// Need to pass token for first couple since there is a delay with the $persist code storing it
+							await this.getUserData(token);
+							await this.getAvailableSlots();
+							await this.getBookedEvents();
+							this.modal = "My Account";
+							await this.getFavEvents();
+							// this.checkRegistration()  this was for Big Bad Online
+						}
+						return token;
+					} else {
+						// TODO: better error message to say if password is wrong
+						this.$dispatch("toast", "ERROR: login failed");
+						this.modal = "Login";
+						return null;
 					}
-					return token;
-				} else {
-					// TODO: better error message to say if password is wrong
+				} catch (error) {
+					// eslint-disable-next-line no-console
+					console.log("login error", error);
 					this.$dispatch("toast", "ERROR: login failed");
-					return false;
+					this.modal = "Login";
+					return null;
 				}
 			},
 			logout(msg = "You have been logged out") {
