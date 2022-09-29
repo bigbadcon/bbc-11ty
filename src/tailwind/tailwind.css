@@ -532,6 +532,18 @@ a[class^='icon-']:hover {
    @apply flex flex-col transition-all rounded-md shadow p-base bg-primary max-w-[90%] max-h-[90%] w-96;
 }
 
+.modal-header {
+    @apply flex justify-between gap-x-sm;
+}
+
+.modal-title {
+    @apply flex-grow font-serif text-3xl font-semibold leading-none text-header;
+}
+
+.link-btn {
+    @apply text-highlight underline font-bold;
+}
+
 /* -------------------------------------------------------------------------- */
 /*                                lite-youtube                                */
 /* -------------------------------------------------------------------------- */
