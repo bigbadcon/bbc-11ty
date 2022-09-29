@@ -1,42 +1,23 @@
-{# TODO: convert this to normal partial #}
 {# TODO: add focus trapping #}
 {# TODO: Add account management panel or link to page for that #}
-{% macro authModal() %}
-    {# Backdrop #}
-    <div x-cloak x-show="(modal)" x-transition
+{# Backdrop #}
+<div x-cloak x-show="modal" x-transition
     x-init="$watch('modal',val => { if (val && isAuth) { getUserData(); getBookedEvents() } })"
-    class="fixed inset-0 z-40 flex items-center justify-center bg-backdrop" 
+    class="fixed inset-0 z-40 flex items-center justify-center w-screen h-screen bg-backdrop" 
     style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);"
     @click.stop="modal = false"
-    >
-        {# Modal #}
-        <div 
-        id="authModal"
-        class="transition-all rounded-md shadow h-fit p-base bg-primary"
-        style="max-height: 90%; max-width: 90%"
-        @click.stop=""
-        >
-            {{ login() }}
-            {{ userInfo() }}
-            {{ changePassword() }}
-            {{ resetPassword() }}
-        </div>
-    </div>
-{% endmacro %}
+    x-init="modal = 'my account'"
+    ></div>
+<div id="authModal" class="modal-wrapper" x-show="modal" >
 
-{# Front Panel Content #}
+    {# Login Panel #}
 
-{# TODO: give error if data service is down #}
-{# Login Panel #}
-{% macro login() %}
-    <div id="modal-login" class="x-cloak" x-show="!authToken && modal === 'login'" class="flex flex-col h-full w-72">
+    <div id="modal-login" x-cloak x-show="!authToken && modal === 'login'" class="modal-panel">
         <div class="flex justify-between gap-x-sm">
             <h2 class="flex-grow -mt-1 font-serif text-3xl font-semibold leading-none text-header">
                 Login
             </h2>
-            <div>
-                {{ closeBtn() }}
-            </div>
+            {% include "components/modal-close-btn.njk" %}
         </div>
         <form class="flex flex-col flex-grow my-sm text-body gap-base" x-data="{username: '',password: ''}" @submit.prevent="submitLogin(username,password); username = '';password = ''">
             <div>
@@ -61,24 +42,17 @@
             </div>
         </div>
     </div>
-{% endmacro %}
 
-{# Reset Password Panel #}
-{% macro resetPassword() %}
-    <div id="modal-reset-password" x-cloak x-show="!authToken && modal === 'resetPassword'" class="flex flex-col h-full w-72" >
+    {# Reset Password Panel #}
+
+    <div id="modal-reset-password" x-cloak x-show="!authToken && modal === 'resetPassword'" class="modal-panel" >
         {# Header #}
         <div class="flex justify-between gap-x-sm">
             <h2 class="flex-grow -mt-1 font-serif text-3xl font-semibold leading-none text-header">
                 Reset Password
             </h2>
-            <div>
-                {{ closeBtn() }}
-            </div>
+            {% include "components/modal-close-btn.njk" %}
         </div>
-        {# <div class="text-sm prose py-base">
-            <p>Our current website's password reset function is currently broken.</p>
-            <p>Please visit our old site <a href="https://admin.bigbadcon.com">admin.bigbadcon.com</a> which uses the same user database to reset your password. Once you change it on the old site it will work on our new site.</p>
-        </div> #}
         <form class="flex flex-col flex-grow my-sm text-body gap-base" x-data="resetPasswordForm" @submit.prevent="resetPassword();" >
             <div class="text-sm prose">
                 <p>Submit your email address to reset your password.</p>
@@ -113,24 +87,17 @@
             </div>
         </form>
     </div>
-{% endmacro %}
 
-{# Change Password Panel #}
-{% macro changePassword() %}
-    <div id="modal-change-password" x-cloak x-show="user && modal === 'changePassword'" class="flex flex-col h-full w-72" >
+    {# Change Password Panel #}
+
+    <div id="modal-change-password" x-cloak x-show="user && modal === 'changePassword'" class="modal-panel" >
         {# Header #}
         <div class="flex justify-between gap-x-sm">
             <h2 class="flex-grow -mt-1 font-serif text-3xl font-semibold leading-none text-header">
                 Change Password
             </h2>
-            <div>
-                {{ closeBtn() }}
-            </div>
+            {% include "components/modal-close-btn.njk" %}
         </div>
-        {# <div class="text-sm prose py-base">
-            <p>Our current website's password change function is currently broken.</p>
-            <p>Please visit our old site <a href="https://admin.bigbadcon.com">admin.bigbadcon.com</a> which uses the same user database to reset your password. Once you change it on the old site it will work on our new site.</p>
-        </div> #}
         <form class="flex flex-col flex-grow my-sm text-body gap-base" x-data="resetPasswordForm" @submit.prevent="resetPassword();" >
             <div class="text-sm prose">
                 <p>Submit your email address and a reset password email will be sent which will allow you to change your password.</p>
@@ -167,54 +134,44 @@
             </div>
         </form>
     </div>
-{% endmacro %}
 
-{# Loading Spinner. When logging in but user info not yet loaded #}
-{% macro spinner() %}
-    <div x-cloak x-show="isAuth && !user" class="flex items-center justify-center gap-sm animate-pulse py-md">
-        <div class="w-8 h-8 rounded-full bg-body"></div>
-        <div class="w-8 h-8 rounded-full bg-body"></div>
-        <div class="w-8 h-8 rounded-full bg-body"></div>
-    </div>
-{% endmacro %}
+    {# My Account User Info Panel including My Events. Shown only when logged in #}
 
-{# Close button #}
-{% macro closeBtn() %}
-    <button @click="modal = false" class="flex items-center justify-center border-2 border-solid rounded close-btn w-7 h-7 border-body bg-card hover:border-highlight group">
-        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-4 h-4 fill-body group-hover:fill-highlight">
-            <title>close</title>
-            <path d="M31.708 25.708c-0-0-0-0-0-0l-9.708-9.708 9.708-9.708c0-0 0-0 0-0 0.105-0.105 0.18-0.227 0.229-0.357 0.133-0.356 0.057-0.771-0.229-1.057l-4.586-4.586c-0.286-0.286-0.702-0.361-1.057-0.229-0.13 0.048-0.252 0.124-0.357 0.228 0 0-0 0-0 0l-9.708 9.708-9.708-9.708c-0-0-0-0-0-0-0.105-0.104-0.227-0.18-0.357-0.228-0.356-0.133-0.771-0.057-1.057 0.229l-4.586 4.586c-0.286 0.286-0.361 0.702-0.229 1.057 0.049 0.13 0.124 0.252 0.229 0.357 0 0 0 0 0 0l9.708 9.708-9.708 9.708c-0 0-0 0-0 0-0.104 0.105-0.18 0.227-0.229 0.357-0.133 0.355-0.057 0.771 0.229 1.057l4.586 4.586c0.286 0.286 0.702 0.361 1.057 0.229 0.13-0.049 0.252-0.124 0.357-0.229 0-0 0-0 0-0l9.708-9.708 9.708 9.708c0 0 0 0 0 0 0.105 0.105 0.227 0.18 0.357 0.229 0.356 0.133 0.771 0.057 1.057-0.229l4.586-4.586c0.286-0.286 0.362-0.702 0.229-1.057-0.049-0.13-0.124-0.252-0.229-0.357z"></path>
-        </svg>
-    </button>
-{% endmacro %}
-
-{# My Account User Info Panel including My Events. Shown only when logged in #}
-{% macro userInfo() %}
-    <div id="modal-user-info" class="flex flex-col h-full text-body"
-    x-cloak x-show="user && modal !== 'changePassword'"  
-    >
+    <div id="modal-user-info" class="modal-panel" x-cloak x-show="user && modal && modal !== 'changePassword'" >
         {# Header #}
-        <div class="flex justify-between gap-x-sm">
-            <h2 class="flex-grow -mt-1 font-serif text-3xl font-semibold leading-none text-header gap-base">
-                <span x-text="user && user.displayName"></span> (<span x-text="user && user.userNicename"></span>)
-            </h2>
-            <div>
-                {{ closeBtn() }}
+        <div class="">
+            <div class="flex justify-between gap-x-sm">
+                <h2 class="flex-grow -mt-1 font-serif text-3xl font-semibold leading-none text-header gap-base">
+                    <span x-text="user && user.displayName"></span> (<span x-text="user && user.userNicename"></span>)
+                    </h2>
+                {% include "components/modal-close-btn.njk" %}
             </div>
+            <h3 class="font-serif text-2xl font-semibold text-body">My Events</h3>
         </div>
         {# My Events #}
-        <h3 class="font-serif text-2xl font-semibold text-body">My Events</h3>
-        {# <div class="mb-sm">{% include 'components/timezone-select.njk' %}</div> #}
-        {# loading spinner #}
-        <div class="border-hr py-xs border-y-2">
-            <div x-show="!bookedEvents" class="inline-flex items-center italic font-bold gap-sm">
+        <div class="overflow-y-auto border-hr border-y-2">
+            {# Badge and quota #}
+            <div class="flex items-center justify-between border-b-2 py-2xs gap-xs border-hr" x-show="user && hasBadge" x-transition>
+                <div class="flex flex-wrap items-center gap-2xs">
+                    <span>You have a <span x-show="isTeen">Teen</span> badge!</span>
+                    <template x-for="role in badgeRoles">
+                        <span x-text="(role === 'paidattendee') ? 'paid' : role" class="py-[.1rem] text-xs font-bold uppercase rounded-full bg-hr text-primary px-xs"></span>
+                    </template>
+                </div>
+                <div class="text-sm" x-show="availableSlots !== undefined && availableSlots < 100">QUOTA: <b x-text="availableSlots"></b>
+                </div>
+            </div>
+            {# loading spinner #}
+            <div x-show="!bookedEvents" class="inline-flex items-center italic font-bold gap-sm py-xs">
                 <svg class="w-5 h-5 text-body animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
                 <span>Loading Events...</span>
             </div>
-            <ul class="flex-grow overflow-y-auto text-sm text-body" x-cloak x-show="bookedEvents" >
+            {# events list #}
+            <ul class="overflow-y-auto text-sm text-body py-xs" x-cloak x-show="bookedEvents" >
+                {# TODO!: add room info! #}
                 <template x-for="event in bookedEvents">
                     <li class="mb-xs">
                         <h4>
@@ -228,8 +185,6 @@
                                 </a>
                             </template>
                         </h4>
-                        {# Timezone data is in x-data in html #}
-                        {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
                         {# TODO: allow half hours #}
                         <template x-if="Number(event.dur) > 0">
                             <p class="text-xs opacity-90">
@@ -248,21 +203,14 @@
                 <li x-show="bookedEvents && bookedEvents.length === 0" class="italic">You currently have no events</li>
             </ul>
         </div>
-        <div class="flex items-center justify-between border-b-2 py-2xs gap-xs border-hr" x-show="user && hasBadge" x-transition>
-            <div class="flex flex-wrap items-center gap-2xs">
-                <span>You have a <span x-show="isTeen">Teen</span> badge!</span>
-                <template x-for="role in badgeRoles">
-                    <span x-text="(role === 'paidattendee') ? 'paid' : role" class="py-[.1rem] text-xs font-bold uppercase rounded-full bg-hr text-primary px-xs"></span>
-                </template>
-            </div>
-            <div class="text-sm" x-show="availableSlots !== undefined && availableSlots < 100">QUOTA: <b x-text="availableSlots"></b>
-            </div>
-        </div>
-
         {# Buttons #}
-        <div class="flex gap-base pt-base">
-            <button class="button" @click="modal = false; logout()">Logout</button>
-            <button class="button" @click="modal = 'changePassword'">Change Password</button>
+        <div class="">
+            <div class="flex gap-base pt-base">
+                <button class="button" @click="modal = false; logout()">Logout</button>
+                <button class="button" @click="modal = 'changePassword'">Change Password</button>
+            </div>
         </div>
     </div>
-{% endmacro %}
+</div>
+
+{# Front Panel Content #}
