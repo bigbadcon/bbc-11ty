@@ -24,6 +24,14 @@ const decodeText = (text) => {
 		})
 	);
 };
+/* ------------------- Sort by start time& alphabetically ------------------- */
+function eventSort(events) {
+	return events.sort(
+		(a, b) =>
+			a.eventStartDateTime - b.eventStartDateTime ||
+			a.eventName.localeCompare(b.eventName)
+	);
+}
 
 /* ---------------------------- Main url for API ---------------------------- */
 
@@ -462,8 +470,10 @@ module.exports = async () => {
 			JSON.stringify(simpleDataObject),
 			(err) => {
 				if (err) {
+					// eslint-disable-next-line no-console
 					console.log(err);
 				} else {
+					// eslint-disable-next-line no-console
 					console.log("events.json written successfully");
 				}
 			}
@@ -481,16 +491,6 @@ module.exports = async () => {
 			event.categories.some((category) => category === "Volunteer Shift")
 		);
 
-		/* ------------------- Sort by start time& alphabetically ------------------- */
-		// TODO: why is alphabetically not sorting right
-		function eventSort(events) {
-			return events.sort(
-				(a, b) =>
-					a.eventStartDateTime - b.eventStartDateTime ||
-					a.eventName.localeCompare(b.eventName)
-			);
-		}
-
 		/* ------------------- Return object with events separated ------------------ */
 		return {
 			events: eventSort(events),
@@ -498,6 +498,7 @@ module.exports = async () => {
 			all: eventSort(data),
 		};
 	} catch (error) {
+		// eslint-disable-next-line no-console
 		console.log("error", error);
 		return {
 			events: [],
