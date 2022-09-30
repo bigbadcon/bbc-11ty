@@ -35,9 +35,9 @@ eleventyComputed:
     <div class="flex text-sm gap-xs">
         <strong>Add to calendar:</strong>
         {% set calendarDescription = "Big Bad Online 2022 volunteer shift: https://www.bigbadcon.com/events/" + event.eventSlug %}
-        <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'google' %}">Google</a>
-        <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'ics' %}">iCal</a>
-        <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'outlook' %}">Outlook</a>
+        <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, event.metadata.room, 'google' %}">Google</a>
+        <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, event.metadata.room, 'ics' %}">iCal</a>
+        <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, event.metadata.room, 'outlook' %}">Outlook</a>
     </div>
     <div class="text-sm">
         {% set tweeturl = "https://twitter.com/intent/tweet?text=Volunteer+at+BigBadCon!+https://www.bigbadcon.com/events/" + event.eventSlug %}
