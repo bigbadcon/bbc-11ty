@@ -98,6 +98,10 @@ Some solutions to minimize exposure when eating or drinking in convection spaces
 * Regular check-ins at tables around eating needs
 * Replace your mask in between bites and sips
 
+## Outdoors
+
+Some variants are still very contagious outside and recommend masking outside when in the company of others.
+
 ## Hyatt Hotel Information
 
 The Hyatt ventilation systems meet and exceed industrial filtration requirements:
