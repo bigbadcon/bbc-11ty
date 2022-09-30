@@ -96,6 +96,7 @@ Some solutions to minimize exposure when eating or drinking in convection spaces
 * Straws in drinks can go under masks
 * Taking regular breaks at the game table to go to an eating area
 * Regular check-ins at tables around eating needs
+* Replace your mask in between bites and sips
 
 ## Hyatt Hotel Information
 
