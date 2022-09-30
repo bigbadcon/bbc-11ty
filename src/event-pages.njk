@@ -13,80 +13,80 @@ eleventyComputed:
 
 {% set src = "" %}
 {% if (event.metadata.event_image) %}
-  {# If it has a image than put it in place and replace it if a different image is available #}
-  {% set src = "https://admin.bigbadcon.com:8091/images/" + event.metadata.event_image %}
-  <div class="w-full rounded-md bg-card mb-base" style="aspect-ratio: 16/9;"
+    {# If it has a image than put it in place and replace it if a different image is available #}
+    {% set src = "https://admin.bigbadcon.com:8091/images/" + event.metadata.event_image %}
+    <div class="w-full rounded-md bg-card mb-base" style="aspect-ratio: 16/9;"
     x-data="{src: '{{src}}', defaultImg: '{{event.metadata.event_image}}'}">
-    <img src="{{src}}" class="object-cover w-full rounded-md event-image" style="aspect-ratio: 16/9;"
+        <img src="{{src}}" class="object-cover w-full rounded-md event-image" style="aspect-ratio: 16/9;"
         x-init="if (event_image && event_image !== defaultImg) $el.setAttribute('src', 'https://admin.bigbadcon.com:8091/images/' + event_image)"
 />
-  </div>
+    </div>
 {% else %}
-  {# If there is no image than make it hidden unless there is an image available #}
-  <div class="w-full rounded-md bg-card mb-base" style="aspect-ratio: 16/9;"
+    {# If there is no image than make it hidden unless there is an image available #}
+    <div class="w-full rounded-md bg-card mb-base" style="aspect-ratio: 16/9;"
     x-cloak x-show="event_image" x-transitition.opacity>
-    <img class="object-cover w-full rounded-md event-image" style="aspect-ratio: 16/9;"
+        <img class="object-cover w-full rounded-md event-image" style="aspect-ratio: 16/9;"
         x-init="if (event_image) $el.setAttribute('src', 'https://admin.bigbadcon.com:8091/images/' + event_image)"
 />
-  </div>
+    </div>
 {% endif %}
 
 {# TODO: add time when it is ready #}
 
 <div class="relative flex flex-col w-full prose border-t-2 border-b-2 mb-base text-body gap-sm border-hr pr-md py-sm">
-  <div x-cloak x-show="isAuth" class="absolute right-0 top-sm">
-    <span @click="toggleFav({{event.eventId}})" class="fav-star fav-star--event-page" :class="isFav({{event.eventId}}) && 'favved'">&starf;</span>
-  </div>
-  <div class="text-2xl font-semibold leading-snug text-body-highlight pr-base">
-    {{ event.metadata.GM }}
-  </div>
-  <div class="not-prose">
-    <ul class="flex justify-start text-sm gap-xs">
-      {% for category in event.categories %}
-        <li class="rounded-full px-sm py-[.15rem] bg-card text-body">{{ category }}</li>
-      {% endfor %}
-    </ul>
-  </div>
-  {# System #}
-  {% if event.metadata.System %}
-    <div>
-      <strong>System:</strong>
-      {{event.metadata.System}}</div>
-  {% endif %}
-  {# Event Date #}
-  {% include 'components/event-date.njk' %}
-  {# Room #}
-  {% if event.metadata.room %}
-    <div>
-      <strong>Room:</strong>
-      {{event.metadata.room}}</div>
-  {% endif %}
-  {# Spaces #}
-  {% if event.metadata.Players %}
-    {% include 'components/event-spaces.njk' %}
-  {% endif %}
-  <div>
-    <strong>Attendee/Player Age:</strong>
-    {{event.metadata.player_age}}</div>
-  <div>
-    <strong>Safety Tools:</strong>
-    {{event.metadata.safety_tools}}</div>
-  {% if event.metadata.Characters %}
-    <div>
-      <strong>Characters:</strong>
-      {{event.metadata.Characters}}
+    <div x-cloak x-show="isAuth" class="absolute right-0 top-sm">
+        <span @click="toggleFav({{event.eventId}})" class="fav-star fav-star--event-page" :class="isFav({{event.eventId}}) && 'favved'">&starf;</span>
     </div>
-  {% endif %}
-  {% if (sitemeta.context === 'dev' or sitemeta.context === 'branch-deploy') %}
-    <div class="flex flex-col border-2 gap-sm border-header p-sm my-sm">
-      <div>
-        <strong class="text-header">Event ID:</strong>
-        {{event.eventId}}</div>
-      <div>
-        <strong class="text-header">Post ID:</strong>
-        {{event.postId}}</div>
+    <div class="text-2xl font-semibold leading-snug text-body-highlight pr-base">
+        {{ event.metadata.GM }}
     </div>
-  {% endif %}
+    <div class="not-prose">
+        <ul class="flex justify-start text-sm gap-xs">
+            {% for category in event.categories %}
+                <li class="rounded-full px-sm py-[.15rem] bg-card text-body">{{ category }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {# System #}
+    {% if event.metadata.System %}
+        <div>
+            <strong>System:</strong>
+            {{event.metadata.System}}</div>
+    {% endif %}
+    {# Event Date #}
+    {% include 'components/event-date.njk' %}
+    {# Room #}
+    {% if event.metadata.room %}
+        <div>
+            <strong>Room:</strong>
+            {{event.metadata.room}}</div>
+    {% endif %}
+    {# Spaces #}
+    {% if event.metadata.Players %}
+        {% include 'components/event-spaces.njk' %}
+    {% endif %}
+    <div>
+        <strong>Attendee/Player Age:</strong>
+        {{event.metadata.player_age}}</div>
+    <div>
+        <strong>Safety Tools:</strong>
+        {{event.metadata.safety_tools}}</div>
+    {% if event.metadata.Characters %}
+        <div>
+            <strong>Characters:</strong>
+            {{event.metadata.Characters}}
+        </div>
+    {% endif %}
+    {% if (sitemeta.context === 'dev' or sitemeta.context === 'branch-deploy') %}
+        <div class="flex flex-col border-2 gap-sm border-header p-sm my-sm">
+            <div>
+                <strong class="text-header">Event ID:</strong>
+                {{event.eventId}}</div>
+            <div>
+                <strong class="text-header">Post ID:</strong>
+                {{event.postId}}</div>
+        </div>
+    {% endif %}
 </div>
 
 {# Description #}
@@ -95,24 +95,24 @@ eleventyComputed:
 {# Content Advisory #}
 
 {% if event.contentAdvisory %}
-  <div class="prose mt-base">
-    <div class="text-lg font-bold text-header">Content Advisory!</div>
-    {% if event.metadata.trigger_warnings %}
-      <div>{{event.metadata.trigger_warnings}}</div>
-    {% else %}
-      <div>Potential adult themes</div>
-    {% endif %}
-  </div>
+    <div class="prose mt-base">
+        <div class="text-lg font-bold text-header">Content Advisory!</div>
+        {% if event.metadata.trigger_warnings %}
+            <div>{{event.metadata.trigger_warnings}}</div>
+        {% else %}
+            <div>Potential adult themes</div>
+        {% endif %}
+    </div>
 {% endif %}
 
 {# Event Tags #}
 {% if event.tags | length %}
-  <div class="flex flex-wrap items-center prose gap-xs mt-base">
-    <strong>Tags:</strong>
-    {% for tag in event.tags %}
-      <span class="rounded-full bg-card px-sm py-[.05rem] text-sm">{{tag}}</span>
-    {% endfor %}
-  </div>
+    <div class="flex flex-wrap items-center prose gap-xs mt-base">
+        <strong>Tags:</strong>
+        {% for tag in event.tags %}
+            <span class="rounded-full bg-card px-sm py-[.05rem] text-sm">{{tag}}</span>
+        {% endfor %}
+    </div>
 {% endif %}
 
 {# Event Signup / Booking #}
@@ -122,54 +122,54 @@ eleventyComputed:
 
 {# Ad hoc form for PoC Dinner 3263 #}
 {% if event.eventId == 3263 %}
-  {% include 'components/poc-dinner-form.njk' %}
+    {% include 'components/poc-dinner-form.njk' %}
 {% elif('Early Signup' in event.categories) %}
-  {% include 'components/event-booking-panel.njk' %}
-{% elif('Vending' in event.categories) %}
-  {% include 'components/vending-booking-panel.njk' %}
-{% elif('GoD' in event.categories) %}
-  <div class="prose rounded-md bg-card p-base mt-base">
-    <h2>Games On Demand Booking</h2>
-    <p>All seats are <a href="/games-on-demand-how-it-works/">assigned on site</a>, just show up to our Games on Demand room at least 10 minutes before the games start and you can get in!</p>
-  </div>
-{% elif(sitemeta.eventSignupDate | isPastDate) %}
-  {% include 'components/event-booking-panel.njk' %}
-{% elif sitemeta.context === 'dev' or sitemeta.context === 'branch-deploy' %}
-  <div class="border-2 border-header p-sm my-base">
-    <h2 class="text-4xl font-bold text-center text-header">DEV SITE BOOKING</h2>
     {% include 'components/event-booking-panel.njk' %}
-  </div>
+{% elif('Vending' in event.categories) %}
+    {% include 'components/vending-booking-panel.njk' %}
+{% elif('GoD' in event.categories) %}
+    <div class="prose rounded-md bg-card p-base mt-base">
+        <h2>Games On Demand Booking</h2>
+        <p>All seats are <a href="/games-on-demand-how-it-works/">assigned on site</a>, just show up to our Games on Demand room at least 10 minutes before the games start and you can get in!</p>
+    </div>
+{% elif(sitemeta.eventSignupDate | isPastDate) %}
+    {% include 'components/event-booking-panel.njk' %}
+{% elif sitemeta.context === 'dev' or sitemeta.context === 'branch-deploy' %}
+    <div class="border-2 border-header p-sm my-base">
+        <h2 class="text-4xl font-bold text-center text-header">DEV SITE BOOKING</h2>
+        {% include 'components/event-booking-panel.njk' %}
+    </div>
 {% endif %}
 {# Event links #}
 <div class="flex flex-wrap justify-between max-w-full prose border-t-2 border-b-2 mt-md border-hr py-sm gap-base">
-  <div class="flex text-sm gap-xs">
-    <strong>Add to calendar:</strong>
-    {% set calendarDescription = "Big Bad Con: " + event.eventName | safe + " https://www.bigbadcon.com/events/" + event.eventSlug %}
-    <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'google' %}">Google</a>
-    <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'ics' %}">iCal</a>
-    <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, 'outlook' %}">Outlook</a>
-  </div>
-  <div class="text-sm">
-    {% set tweeturl = "https://twitter.com/intent/tweet?text=Check+out+this+event+at+BigBadCon!+https://www.bigbadcon.com/events/" + event.eventSlug %}
+    <div class="flex text-sm gap-xs">
+        <strong>Add to calendar:</strong>
+        {% set calendarDescription = "Big Bad Con: " + event.eventName | safe + " https://www.bigbadcon.com/events/" + event.eventSlug %}
+        <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, event.metadata.room, 'google' %}">Google</a>
+        <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, event.metadata.room, 'ics' %}">iCal</a>
+        <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, event.metadata.room, 'outlook' %}">Outlook</a>
+    </div>
+    <div class="text-sm">
+        {% set tweeturl = "https://twitter.com/intent/tweet?text=Check+out+this+event+at+BigBadCon!+https://www.bigbadcon.com/events/" + event.eventSlug %}
 
-    <a class="icon-twitter" href="{{tweeturl}}">Tweet This!</a>
-  </div>
-  <div class="text-sm">
-    <a href="{{ogAPIImage | ogCacheBuster }}" class="icon-image">Social Image Card</a>
-  </div>
+        <a class="icon-twitter" href="{{tweeturl}}">Tweet This!</a>
+    </div>
+    <div class="text-sm">
+        <a href="{{ogAPIImage | ogCacheBuster }}" class="icon-image">Social Image Card</a>
+    </div>
 </div>
 {# Image upload only for Admins and GMs #}
 <div x-cloak x-show="isAuth && (isAdmin || (user && gm && gm.some(gm => gm.user.id === user.id)))" class="max-w-full overflow-auto prose rounded my-base p-base bg-card">
-  <h3>Image Upload</h3>
-  <p class="italics">Only Available for Admins &amp; Event GM/Facilitator.</p>
-  <form @submit.prevent="uploadImage">
-    <input type="hidden" name="eventId" value="{{event.eventId}}">
-    <label for="file">Event Image Upload Add/Replace</label>
-    <p class="text-sm my-sm">Images are cropped automatically at 16/9 ratio and centered. Images should be mininum 760x428 px and maximum 1,520x856 px (or there abouts) and formatted with jpg or webp (png or gif accepted but generally the former compress better).</p>
-    <input type="file" name="file" id="file" accept="image/*" class="w-full cursor-pointer mr-base" @change="showPreview">
-    <img id="image-preview" class="hidden object-cover object-center w-full rounded-md my-base" x-ref="preview" style="aspect-ratio: 16/9"/>
-    <button type="submit" class="hidden" id="upload-button">Upload</button>
-  </form>
+    <h3>Image Upload</h3>
+    <p class="italics">Only Available for Admins &amp; Event GM/Facilitator.</p>
+    <form @submit.prevent="uploadImage">
+        <input type="hidden" name="eventId" value="{{event.eventId}}">
+        <label for="file">Event Image Upload Add/Replace</label>
+        <p class="text-sm my-sm">Images are cropped automatically at 16/9 ratio and centered. Images should be mininum 760x428 px and maximum 1,520x856 px (or there abouts) and formatted with jpg or webp (png or gif accepted but generally the former compress better).</p>
+        <input type="file" name="file" id="file" accept="image/*" class="w-full cursor-pointer mr-base" @change="showPreview">
+        <img id="image-preview" class="hidden object-cover object-center w-full rounded-md my-base" x-ref="preview" style="aspect-ratio: 16/9"/>
+        <button type="submit" class="hidden" id="upload-button">Upload</button>
+    </form>
 </div>
 <div class="prose py-base">Back to <a href="/events/">List of Events</a>
 </div>
