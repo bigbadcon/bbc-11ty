@@ -525,7 +525,7 @@ a[class^='icon-']:hover {
 /* -------------------------------------------------------------------------- */
 
 .modal-wrapper {
-   @apply fixed inset-0 z-50 flex items-center justify-center;
+   @apply fixed inset-0 z-50 flex items-center justify-center bg-backdrop backdrop-blur;
 }
 
 .modal-panel {
@@ -538,6 +538,10 @@ a[class^='icon-']:hover {
 
 .modal-title {
     @apply flex-grow font-serif text-3xl font-semibold leading-none text-header;
+}
+
+.modal-form {
+    @apply flex flex-col flex-grow my-sm text-body gap-base;
 }
 
 .link-btn {

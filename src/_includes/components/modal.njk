@@ -1,16 +1,11 @@
 {# TODO: add focus trapping #}
 {# TODO: Add account management panel or link to page for that #}
 {# Backdrop #}
-<div x-cloak x-show="modal" x-transition
-    x-init="$watch('modal',val => { if (val && isAuth) { getUserData(); getBookedEvents() } })"
-    class="fixed inset-0 z-40 flex items-center justify-center w-screen h-screen bg-backdrop" 
-    style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);"
-    @click="modal = null"
-    ></div>
 
-<div id="authModal" class="modal-wrapper" x-show="modal" >
+<div id="modal" class="modal-wrapper" x-cloak x-show="modal" @click="modal = null"
+x-init="$watch('modal',val => { if (val && isAuth) { getUserData(); getBookedEvents() } })">
     {# Panel Loading Spinner #}
-    <div id="modal-loading" class="modal-panel" x-show="modal === 'Loading'">
+    <div id="modal-loading" class="modal-panel" x-show="modal === 'Loading'" @click.stop>
         <div class="inline-flex items-center italic font-bold gap-sm py-xs">
             <svg class="w-5 h-5 text-body animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -20,14 +15,14 @@
         </div>
     </div>
     {# Login Panel #}
-    <div id="modal-login" x-cloak x-show="modal === 'Login'" class="modal-panel">
+    <div id="modal-login" x-cloak x-show="modal === 'Login'" class="modal-panel" @click.stop>
         <div class="modal-header">
             <h2 class="modal-title">
                 Login
             </h2>
             {% include "components/modal-close-btn.njk" %}
         </div>
-        <form class="flex flex-col flex-grow my-sm text-body gap-base" x-data="{username: '',password: ''}" @submit.prevent="submitLogin(username, password, $el)">
+        <form class="modal-form" x-data="{username: '',password: ''}" @submit.prevent="submitLogin(username, password, $el)">
             <div>
                 <label for="username" class="text-xs uppercase">User Name</label>
                 <input class="w-full" autocapitalize="off" id="username" name="username" required type="text" x-model="username" value=""/>
@@ -53,7 +48,7 @@
 
     {# Reset Password Panel #}
 
-    <div id="modal-reset-password" x-cloak x-show="modal === 'Reset Password'" class="modal-panel" >
+    <div id="modal-reset-password" x-cloak x-show="modal === 'Reset Password'" class="modal-panel" @click.stop>
         {# Header #}
         <div class="modal-header">
             <h2 class="modal-title">
@@ -61,7 +56,7 @@
             </h2>
             {% include "components/modal-close-btn.njk" %}
         </div>
-        <form class="flex flex-col flex-grow my-sm text-body gap-base" x-data="resetPasswordForm" @submit.prevent="resetPassword();" >
+        <form class="modal-form" x-data="resetPasswordForm" @submit.prevent="resetPassword();" >
             <div class="text-sm prose">
                 <p>Submit your email address to reset your password.</p>
             </div>
@@ -98,7 +93,7 @@
 
     {# Change Password Panel #}
 
-    <div id="modal-change-password" x-cloak x-show="modal === 'Change Password'" class="modal-panel" >
+    <div id="modal-change-password" x-cloak x-show="modal === 'Change Password'" class="modal-panel" @click.stop>
         {# Header #}
         <div class="modal-header">
             <h2 class="modal-title">
@@ -106,7 +101,7 @@
             </h2>
             {% include "components/modal-close-btn.njk" %}
         </div>
-        <form class="flex flex-col flex-grow pt-sm text-body gap-base" x-data="resetPasswordForm" @submit.prevent="resetPassword();" >
+        <form class="modal-form" x-data="resetPasswordForm" @submit.prevent="resetPassword();" >
             <div class="text-sm prose">
                 <p>Submit your email address and a reset password email will be sent which will allow you to change your password.</p>
             </div>
@@ -145,7 +140,7 @@
 
     {# My Account User Info Panel including My Events. Shown only when logged in #}
 
-    <div id="modal-user-info" class="modal-panel" x-cloak x-show="modal === 'My Account'" >
+    <div id="modal-user-info" class="modal-panel" x-cloak x-show="modal === 'My Account'" @click.stop>
         {# Header #}
         <div class="">
             <div class="modal-header">
