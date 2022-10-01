@@ -66,6 +66,7 @@ fields:
   label: website url
 pages:
 - src/poc-scholars/aaron-catano-saez.md
+- src/poc-scholars/aaron-lim.md
 - src/poc-scholars/ajit-a.george.md
 - src/poc-scholars/alika-gupta.md
 - src/poc-scholars/anjali-bhimani.md
