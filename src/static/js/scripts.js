@@ -38,23 +38,6 @@ const decodeText = (text) => {
 };
 
 /* -------------------------------------------------------------------------- */
-/*                             dayjs event format                             */
-/* -------------------------------------------------------------------------- */
-
-// eslint-disable-next-line no-unused-vars
-function formatEventDate(date, tz = "America/Los_Angeles") {
-	return dayjs(date).tz(tz).format("MMM D");
-}
-// eslint-disable-next-line no-unused-vars
-function formatEventDateWithYear(date, tz = "America/Los_Angeles") {
-	return dayjs(date).tz(tz).format("MMM D, YYYY");
-}
-// eslint-disable-next-line no-unused-vars
-function formatEventTime(date, tz = "America/Los_Angeles") {
-	return dayjs(date).tz(tz).format("h:mma");
-}
-
-/* -------------------------------------------------------------------------- */
 /*                            Misc Functions                                  */
 /* -------------------------------------------------------------------------- */
 
@@ -506,6 +489,15 @@ document.addEventListener("alpine:init", () => {
 					method: "GET",
 				});
 				return response.status === 200;
+			},
+			formatEventDate(date, tz = "America/Los_Angeles") {
+				return dayjs(date).tz(tz).format("MMM D");
+			},
+			formatEventDateWithYear(date, tz = "America/Los_Angeles") {
+				return dayjs(date).tz(tz).format("MMM D, YYYY");
+			},
+			formatEventTime(date, tz = "America/Los_Angeles") {
+				return dayjs(date).tz(tz).format("h:mma");
 			},
 		};
 	});
