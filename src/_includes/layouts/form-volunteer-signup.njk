@@ -28,14 +28,14 @@
                 method="POST" name="volunteer-signup" 
                 class="prose"
                 id="volunteer-signup" 
-                @submit.prevent="() => { submit(user); getUserData(); }">
+                @submit.prevent="() => { submit(user); getUserData(); }" x-validate>
                     <p class="hidden">
                         <label>Don't fill this out if you're human: <input name="bot-field"/></label>
                     </p>
-                    <input type="hidden" id="displayName" name="displayName" value="" :value="user && user.displayName">
-                    <input type="hidden" id="userEmail" name="userEmail" value="" :value="user && user.userEmail">
-                    <input type="hidden" id="userNicename" name="userNicename" value="" :value="user && user.userNicename">
-                    <input type="hidden" id="userId" name="userId" value="" :value="user && user.id">
+                    <input type="hidden" id="displayName" name="displayName" value="" :value="user && user.displayName" x-validate>
+                    <input type="hidden" id="userEmail" name="userEmail" value="" :value="user && user.userEmail" x-validate>
+                    <input type="hidden" id="userNicename" name="userNicename" value="" :value="user && user.userNicename" x-validate>
+                    <input type="hidden" id="userId" name="userId" value="" :value="user && user.id" x-validate>
                     <input type="hidden" id="formName" name="formName" value="volunteer-signup">
                     <p>
                         <span class="font-bold text-highlight">*</span>
@@ -86,8 +86,13 @@
                         </div>
                     </fieldset>
                     <p>
-                        <button type="submit" :disabled="!isFormComplete">Submit</button>
+                        <button type="submit" :disabled="!$validate.isComplete('volunteer-signup')">Submit</button>
                     </p>
+                    {# x-validate form log #}
+                    {% if (sitemeta.environment === 'dev') %}
+                        {% import 'components/x-validate-form-validator.njk' as validate %}
+                        {{ validate.log('volunteer-signup') }}
+                    {% endif %}
                 </form>
 
                 {# You are signed up notification. Show only when signed up and logged in.  #}
