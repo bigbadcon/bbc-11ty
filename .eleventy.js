@@ -369,25 +369,10 @@ module.exports = (eleventyConfig) => {
 
 	// Pass through 3rd party libraries
 	eleventyConfig.addPassthroughCopy({
-		"node_modules/alpinejs/dist/cdn.min.js": "js/alpine.min.js",
-		"node_modules/dayjs/dayjs.min.js": "js/dayjs.min.js",
-		"node_modules/dayjs/plugin/utc.js": "js/dayjs.utc.js",
-		"node_modules/dayjs/plugin/timezone.js": "js/dayjs.timezone.js",
 		"node_modules/lite-youtube-embed/src/lite-yt-embed.js":
 			"js/lite-youtube-embed.js",
 		"node_modules/lite-youtube-embed/src/lite-yt-embed.css":
 			"css/lite-youtube-embed.css",
-		"node_modules/array-flat-polyfill/index.js":
-			"js/array-flat-polyfill.js",
-		"node_modules/@alpinejs/persist/dist/cdn.min.js":
-			"js/alpine.persist.min.js",
-		"node_modules/@alpinejs/intersect/dist/cdn.min.js":
-			"js/alpine.intersect.min.js",
-		"node_modules/@colinaut/alpinejs-plugin-simple-validate/dist/alpine.validate.min.js":
-			"js/alpine.validate.min.js",
-		"node_modules/@colinaut/alpinejs-plugin-simple-validate/examples/alpine.validate.js":
-			"js/alpine.validate.js",
-		"node_modules/utf8/utf8.js": "js/utf8.js",
 	});
 
 	// Pass "static" things straight through from "src" to "dist"

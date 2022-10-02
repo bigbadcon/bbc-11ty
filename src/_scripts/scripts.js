@@ -5,6 +5,7 @@ import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
 dayjs.extend(utc);
 dayjs.extend(timezone);
+import "array-flat-polyfill";
 import Alpine from "alpinejs";
 import persist from "@alpinejs/persist";
 import validate from "@colinaut/alpinejs-plugin-simple-validate";
