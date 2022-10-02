@@ -66,6 +66,8 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.22.2",
+    "concurrently": "^7.4.0",
+    "esbuild": "^0.15.10",
     "eslint": "^8.24.0",
     "svg-sprite-generator": "^0.0.7"
   }
