@@ -1,57 +1,43 @@
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#c4d0a0">
-  <link rel="stylesheet" href="/tailwindoutlive.css"/>
-  <link rel="stylesheet" href="/svg-icons.css"/>
-  <script src="https://unpkg.com/axios@0.21.1/dist/axios.min.js" defer></script>
-  <script src="/js/array-flat-polyfill.js" defer></script>
-  <script src="/js/utf8.js"></script>
-  <script src="/static/js/windows-1252.js"></script>
-  <script src="/static/js/lil-red.min.js" defer></script>
-  <script src="/js/alpine.intersect.min.js" defer></script>
-  <script src="/js/alpine.validate.min.js" defer></script>
-  <script src="/js/alpine.persist.min.js" defer></script>
-  <script src="/js/alpine.min.js" defer></script>
-  <script src="/js/dayjs.min.js"></script>
-  <script src="/js/dayjs.utc.js"></script>
-  <script src="/js/dayjs.timezone.js"></script>
-  <script src="/js/lite-youtube-embed.js" defer></script>
-  <link rel="stylesheet" href="/css/lite-youtube-embed.css"/>
-
-  <script>
-    // dayjs plugins
-    dayjs.extend(window.dayjs_plugin_utc)
-    dayjs.extend(window.dayjs_plugin_timezone)
-
-    // dark/light theme
-    function setTheme(theme) {
-      document
-        .querySelector('html')
-        .setAttribute('data-theme', theme)
-      const themeColor = (theme === 'dark')
-        ? '#122436'
-        : '#c4d0a0';
-      document
-        .querySelector("meta[name='theme-color']")
-        .content = themeColor;
-      window
-        .localStorage
-        .setItem("theme", theme)
-    }
-    const savedTheme = window
-      .localStorage
-      .getItem('theme');
-    if (savedTheme) 
-      setTheme(savedTheme)
-  </script>
-  <script src="/static/js/scripts.js"></script>
-  {# Preload the main fonts used. Italics are not preloaded as they are not used as much #}
-  <link rel="preload" as="font" href="/static/fonts/open-sans-v23-latin-regular.woff2" type="font/woff2" crossorigin="anonymous">
-  <link rel="preload" as="font" href="/static/fonts/open-sans-v23-latin-700.woff2" type="font/woff2" crossorigin="anonymous">
-  <link rel="preload" as="font" href="/static/fonts/rokkitt-v20-latin-500.woff2" type="font/woff2" crossorigin="anonymous">
-  <link rel="preload" as="font" href="/static/fonts/rokkitt-v20-latin-700.woff2" type="font/woff2" crossorigin="anonymous">
-  {# Preload the underbrush images under the header so it doesn't flash #}
-  <link rel="preload" as="image" href="/static/images/underbrush.svg" type="image/svg+xml" crossorigin="anonymous">
-  {% include 'layouts/html-head-seo.njk' %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#c4d0a0">
+    <link rel="stylesheet" href="/tailwindoutlive.css"/>
+    <link rel="stylesheet" href="/svg-icons.css"/>
+    <script src="/js/array-flat-polyfill.js" defer></script>
+    <script src="/static/js/lil-red.min.js" defer></script>
+    <script src="/js/lite-youtube-embed.js" defer></script>
+    <link rel="stylesheet" href="/css/lite-youtube-embed.css"/>
+    <script>
+        // dark/light theme
+        function setTheme(theme) {
+            document
+                .querySelector('html')
+                .setAttribute('data-theme', theme)
+            const themeColor = (theme === 'dark')
+                ? '#122436'
+                : '#c4d0a0';
+            document
+                .querySelector("meta[name='theme-color']")
+                .content = themeColor;
+            window
+                .localStorage
+                .setItem("theme", theme)
+        }
+        const savedTheme = window
+            .localStorage
+            .getItem('theme');
+        if (savedTheme) 
+            setTheme(savedTheme)
+    </script>
+    {# Compiled with esbuild #}
+    <script src="/js/scripts.js" defer></script>
+    {# Preload the main fonts used. Italics are not preloaded as they are not used as much #}
+    <link rel="preload" as="font" href="/static/fonts/open-sans-v23-latin-regular.woff2" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" as="font" href="/static/fonts/open-sans-v23-latin-700.woff2" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" as="font" href="/static/fonts/rokkitt-v20-latin-500.woff2" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" as="font" href="/static/fonts/rokkitt-v20-latin-700.woff2" type="font/woff2" crossorigin="anonymous">
+    {# Preload the underbrush images under the header so it doesn't flash #}
+    <link rel="preload" as="image" href="/static/images/underbrush.svg" type="image/svg+xml" crossorigin="anonymous">
+    {% include 'layouts/html-head-seo.njk' %}
 </head>
