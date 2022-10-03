@@ -127,6 +127,18 @@ document.addEventListener("alpine:init", () => {
 						"It has been more than 10 days since your last login so you are being logged out"
 					);
 				}
+				// check for lilRedAuthToken and _x_authToken; if _x_authToken set but not other than set LilRedAuthToken
+				const lilRedAuthToken = localStorage.getItem("LilRedAuthToken");
+				const lilRedLastLogin = localStorage.getItem("LilRedLastLogin");
+				const _x_authToken = localStorage.getItem("_x_authToken");
+				const _x_lastLogin = localStorage.getItem("_x_lastLogin");
+				if (_x_authToken && !lilRedAuthToken) {
+					localStorage.setItem("LilRedAuthToken", _x_authToken);
+				}
+				if (_x_lastLogin && !lilRedLastLogin) {
+					localStorage.setItem("lilRedLastLogin", _x_authToken);
+				}
+
 				if (this.isAuth) {
 					this.getAvailableSlots();
 				}
@@ -142,6 +154,7 @@ document.addEventListener("alpine:init", () => {
 			volunteerEventSpaces: this.$persist([]),
 			bboDiscordInvite: null,
 			get isAuth() {
+				// TODO: make this work with lilRed
 				return typeof this.authToken === "string";
 			},
 			async submitLogin(username, password, form) {
