@@ -11,8 +11,6 @@ dayjs.extend(duration);
 dayjs.extend(relativeTime);
 const Image = require("@11ty/eleventy-img");
 const { google, outlook, office365, yahoo, ics } = require("calendar-link");
-const windows1252 = require("windows-1252");
-const utf8 = require("utf8");
 
 /* -------------------------------------------------------------------------- */
 /*                              Useful Functions                              */
@@ -60,7 +58,15 @@ function sortByOrder(a, b) {
 
 /* ------------------------- Convert odd characters ------------------------- */
 const decodeText = (text) => {
-	return utf8.decode(windows1252.encode(text));
+	try {
+		const windows1252 = new TextEncoder("windows-1251");
+		const utf8 = new TextDecoder();
+		return text && utf8.decode(windows1252.encode(text));
+	} catch (error) {
+		// eslint-disable-next-line no-console
+		console.error("decodeText: " + error);
+		return text;
+	}
 };
 
 /* --------------------------- Create Date Object --------------------------- */
