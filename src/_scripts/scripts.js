@@ -115,6 +115,16 @@ document.addEventListener("alpine:init", () => {
 	Alpine.data("global", function () {
 		return {
 			init() {
+				// check for lilRedAuthToken and _x_authToken; if _x_authToken set but not other than set LilRedAuthToken
+				const lilRedAuthToken = localStorage.getItem("lilRedAuthToken");
+				const lilRedLastLogin = localStorage.getItem("lilRedLastLogin");
+				if (this.authToken && !lilRedAuthToken) {
+					localStorage.setItem("lilRedAuthToken", this.authToken);
+				}
+				if (this.lastLogin && !lilRedLastLogin) {
+					localStorage.setItem("lilRedLastLogin", this.lastLogin);
+				}
+
 				lilRed.init({
 					lilRedApiUrl: "https://admin.bigbadcon.com:8091/api",
 				});
@@ -126,15 +136,6 @@ document.addEventListener("alpine:init", () => {
 					this.logout(
 						"It has been more than 10 days since your last login so you are being logged out"
 					);
-				}
-				// check for lilRedAuthToken and _x_authToken; if _x_authToken set but not other than set LilRedAuthToken
-				const lilRedAuthToken = localStorage.getItem("LilRedAuthToken");
-				const lilRedLastLogin = localStorage.getItem("LilRedLastLogin");
-				if (this.authToken && !lilRedAuthToken) {
-					localStorage.setItem("LilRedAuthToken", this.authToken);
-				}
-				if (this.lastLogin && !lilRedLastLogin) {
-					localStorage.setItem("lilRedLastLogin", this.lastLogin);
 				}
 
 				if (this.isAuth) {
