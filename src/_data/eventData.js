@@ -1,8 +1,6 @@
 /* global require module process */
 
 const Cache = require("@11ty/eleventy-cache-assets");
-const windows1252 = require("windows-1252");
-const utf8 = require("utf8");
 // const rootCas = require('ssl-root-cas').create();
 const dayjs = require("dayjs");
 const utc = require("dayjs/plugin/utc");
@@ -18,11 +16,15 @@ const fs = require("fs-extra");
 
 /* ------------------------- Convert odd characters ------------------------- */
 const decodeText = (text) => {
-	return utf8.decode(
-		windows1252.encode(text, {
-			mode: "html",
-		})
-	);
+	try {
+		const windows1252 = new TextEncoder("windows-1251");
+		const utf8 = new TextDecoder();
+		return text && utf8.decode(windows1252.encode(text));
+	} catch (error) {
+		// eslint-disable-next-line no-console
+		console.error("decodeText: " + error);
+		return text;
+	}
 };
 /* ------------------- Sort by start time& alphabetically ------------------- */
 function eventSort(events) {
