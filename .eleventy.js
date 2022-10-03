@@ -391,6 +391,7 @@ module.exports = (eleventyConfig) => {
 
 	// Watch for changes in tailwind css
 	eleventyConfig.addWatchTarget("./src/tailwind/tailwind.css");
+	eleventyConfig.addWatchTarget("./src/_scripts/scripts.js");
 	eleventyConfig.addWatchTarget("./event-images");
 
 	// Clarify which folder is for input and which folder is for output

@@ -9,23 +9,15 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 const environment = process.env.CONTEXT;
 const fs = require("fs-extra");
+const utf8 = require("utf8");
 
 /* -------------------------------------------------------------------------- */
 /*                              Helper Functions                              */
 /* -------------------------------------------------------------------------- */
 
 /* ------------------------- Convert odd characters ------------------------- */
-const decodeText = (text) => {
-	try {
-		const windows1252 = new TextEncoder("windows-1251");
-		const utf8 = new TextDecoder();
-		return text && utf8.decode(windows1252.encode(text));
-	} catch (error) {
-		// eslint-disable-next-line no-console
-		console.error("decodeText: " + error);
-		return text;
-	}
-};
+const decodeText = (text) => utf8.decode(text);
+
 /* ------------------- Sort by start time& alphabetically ------------------- */
 function eventSort(events) {
 	return events.sort(

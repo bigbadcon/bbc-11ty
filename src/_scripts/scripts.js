@@ -1,5 +1,7 @@
-/* global lilRed */
+/* global */
+import * as lilRed from "./lil-red.esm.js";
 import axios from "axios";
+import utf8 from "utf8";
 import dayjs from "dayjs";
 import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
@@ -13,6 +15,10 @@ Alpine.plugin(persist);
 Alpine.plugin(validate);
 window.Alpine = Alpine;
 
+window.lilRed = lilRed;
+lilRed.init({
+	lilRedApiUrl: "https://admin.bigbadcon.com:8091/api",
+});
 /* -------------------------------------------------------------------------- */
 /*                              Helper functions                              */
 /* -------------------------------------------------------------------------- */
@@ -37,11 +43,6 @@ function compareValues(a, b) {
 
 	return a < b ? -1 : a > b ? 1 : 0;
 }
-
-/* -------------------------------------------------------------------------- */
-/*                            Misc Functions                                  */
-/* -------------------------------------------------------------------------- */
-
 /* ------------ Transform metadata from events to a keyed object ------------ */
 function metadataArrayToObject(arr) {
 	const object = arr.reduce(function (result, item) {
@@ -50,6 +51,8 @@ function metadataArrayToObject(arr) {
 	}, {});
 	return object;
 }
+
+const decodeText = (text) => utf8.decode(text);
 
 /* --------------------------- Event Duration ------------------------------ */
 // eslint-disable-next-line no-unused-vars
@@ -125,9 +128,6 @@ document.addEventListener("alpine:init", () => {
 					localStorage.setItem("lilRedLastLogin", this.lastLogin);
 				}
 
-				lilRed.init({
-					lilRedApiUrl: "https://admin.bigbadcon.com:8091/api",
-				});
 				// logout if it's been more than 10 days
 				if (
 					!dayjs(this.lastLogin).isValid() ||
@@ -253,7 +253,7 @@ document.addEventListener("alpine:init", () => {
 					metadata: userMetadata,
 					roles: userRoles,
 					displayName:
-						lilRed.decodeText(user.displayName) || user.displayName,
+						decodeText(user.displayName) || user.displayName,
 				};
 				this.user = user;
 				return user;
@@ -489,7 +489,6 @@ document.addEventListener("alpine:init", () => {
 				} else {
 					const littleRedStatus = await lilRed.status();
 					if (!littleRedStatus) {
-						this.$dispatch("lilRedStatus");
 						return false;
 					}
 					return true;
@@ -809,7 +808,7 @@ document.addEventListener("alpine:init", () => {
 								...booking,
 								user: {
 									...booking.user,
-									displayName: lilRed.decodeText(
+									displayName: decodeText(
 										booking.user.displayName
 									),
 								},
