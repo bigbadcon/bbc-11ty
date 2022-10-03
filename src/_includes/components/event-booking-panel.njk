@@ -30,7 +30,7 @@ x-data="{ isAllAges: {{isAllAges}}, isQuotaExempt: {{isQuotaExempt}}, bookingCli
         {# Only show if age appropriate#}
         <div x-show="(isAllAges || !isTeen)">
             {# only show if user is not gm #}
-            <div x-show="gm && !gm.some(gm => gm.user.id === user.id)" class="space-y-sm">
+            <div x-show="user && gm && !gm.some(gm => gm.user.id === user.id)" class="space-y-sm">
                 {# Quota information #}
                 {% if sitemeta.context === 'dev' or sitemeta.context === 'branch-deploy' %}
                     {# DEV AREA #}
