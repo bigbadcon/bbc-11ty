@@ -145,6 +145,23 @@ document.addEventListener("alpine:init", () => {
 				return typeof this.authToken === "string";
 			},
 			async submitLogin(username, password, form) {
+				const network = await this.checkNetworkStatus();
+				if (!network) return false;
+				this.modal = "Loading";
+				const token = await lilRed.login(username, password);
+				if (token) {
+					form.reset();
+					// TODO rip authToken and lastLogin out once all API calls have converted to lilRed
+					this.authToken = token;
+					this.lastLogin = dayjs();
+					await this.getUserData(token);
+					await this.getAvailableSlots();
+					await this.getBookedEvents();
+					this.modal = "My Account";
+					await this.getFavEvents();
+				}
+			},
+			async submitLoginOld(username, password, form) {
 				// Check network and data service before submitting event
 				const network = await this.checkNetworkStatus();
 				if (!network) return false;
@@ -199,6 +216,7 @@ document.addEventListener("alpine:init", () => {
 				}
 			},
 			logout(msg = "You have been logged out") {
+				lilRed.logout();
 				this.authToken = null;
 				this.user = null;
 				this.favEvents = [];
@@ -209,10 +227,8 @@ document.addEventListener("alpine:init", () => {
 				this.bboDiscordInvite = null;
 				this.$dispatch("toast", msg);
 			},
-			async getUserData(token) {
-				token = token || this.authToken;
-				let user = await fetchData("/users/me", {}, token);
-				this.checkNetworkStatus();
+			async getUserData() {
+				let user = await lilRed.me();
 
 				const userMetadata = metadataArrayToObject(user.metadata);
 				const userRoles = [
@@ -292,13 +308,8 @@ document.addEventListener("alpine:init", () => {
 					return false;
 				}
 			},
-			async getEvents() {
-				const data = await fetchData("/events/all/public");
-				// eslint-disable-next-line no-console
-				console.log("getEvents", data);
-			},
 			async getAvailableSlots() {
-				const slots = await fetchData("/bookings/myAvailableSlots");
+				const slots = await lilRed.bookings.slots();
 				if (typeof slots === "number") this.availableSlots = slots;
 				return slots;
 			},
@@ -306,7 +317,7 @@ document.addEventListener("alpine:init", () => {
 				// 1. Get ID array of my events
 				let myEvents;
 				try {
-					myEvents = await fetchData("/events/me/", {});
+					myEvents = await lilRed.bookings.get();
 				} catch (err) {
 					// eslint-disable-next-line no-console
 					console.error(`ERROR: fetch for '/events/me/'`, err);
@@ -347,10 +358,7 @@ document.addEventListener("alpine:init", () => {
 				const network = await this.checkNetworkStatus();
 				if (!network) return false;
 				// book event
-				const data = await fetchData("/bookings/bookMeIntoGame", {
-					method: "POST",
-					body: { gameId: id },
-				});
+				const data = await lilRed.bookings.add(id);
 				if (!data) {
 					this.$dispatch(
 						"toast",
@@ -368,10 +376,7 @@ document.addEventListener("alpine:init", () => {
 				// Check network and data service before submitting event
 				const network = await this.checkNetworkStatus();
 				if (!network) return false;
-				let data = await fetchData("/bookings/removeMeFromGame", {
-					method: "DELETE",
-					body: { gameId: id, guid: id },
-				});
+				let data = await lilRed.bookings.delete(id);
 				if (!data) {
 					this.$dispatch(
 						"toast",
@@ -386,7 +391,7 @@ document.addEventListener("alpine:init", () => {
 				return data;
 			},
 			async getFavEvents() {
-				let data = await fetchData("/events/me/favorites");
+				let data = await lilRed.favorites.get();
 				// TODO: simplify this once the API is simplified
 				this.favEvents =
 					data &&
@@ -411,16 +416,10 @@ document.addEventListener("alpine:init", () => {
 				let data;
 				if (this.isFav(id)) {
 					this.favEvents = this.favEvents.filter((fav) => fav !== id);
-					data = await fetchData("/events/me/favorite/delete", {
-						method: "DELETE",
-						body: { eventId: id },
-					});
+					data = await lilRed.favorites.delete(id);
 				} else {
 					this.favEvents = [...this.favEvents, id];
-					data = await fetchData("/events/me/favorite/create", {
-						method: "POST",
-						body: { eventId: id },
-					});
+					data = await lilRed.favorites.add(id);
 				}
 				if (!data) {
 					this.$dispatch(
@@ -476,7 +475,7 @@ document.addEventListener("alpine:init", () => {
 					);
 					return false;
 				} else {
-					const littleRedStatus = await this.hello();
+					const littleRedStatus = await lilRed.status();
 					if (!littleRedStatus) {
 						this.$dispatch("lilRedStatus");
 						return false;
@@ -787,10 +786,7 @@ document.addEventListener("alpine:init", () => {
 				try {
 					// TODO: replace this with simpler API call when Jerry builds it; Also move it to events store.
 					/* ------------------------ Get data from events/find ----------------------- */
-					const data = await fetchData("/events/find", {
-						method: "POST",
-						body: { id: id },
-					});
+					const data = await lilRed.events.find(id);
 					// convert metadata to object
 					const metadata = metadataArrayToObject(data.metadata);
 					// filter out canceled bookings and fix name issues with odd characters
