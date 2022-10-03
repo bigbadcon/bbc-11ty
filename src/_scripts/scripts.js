@@ -130,13 +130,11 @@ document.addEventListener("alpine:init", () => {
 				// check for lilRedAuthToken and _x_authToken; if _x_authToken set but not other than set LilRedAuthToken
 				const lilRedAuthToken = localStorage.getItem("LilRedAuthToken");
 				const lilRedLastLogin = localStorage.getItem("LilRedLastLogin");
-				const _x_authToken = localStorage.getItem("_x_authToken");
-				const _x_lastLogin = localStorage.getItem("_x_lastLogin");
-				if (_x_authToken && !lilRedAuthToken) {
-					localStorage.setItem("LilRedAuthToken", _x_authToken);
+				if (this.authToken && !lilRedAuthToken) {
+					localStorage.setItem("LilRedAuthToken", this.authToken);
 				}
-				if (_x_lastLogin && !lilRedLastLogin) {
-					localStorage.setItem("lilRedLastLogin", _x_lastLogin);
+				if (this.lastLogin && !lilRedLastLogin) {
+					localStorage.setItem("lilRedLastLogin", this.lastLogin);
 				}
 
 				if (this.isAuth) {
