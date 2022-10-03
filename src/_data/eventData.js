@@ -16,7 +16,14 @@ const utf8 = require("utf8");
 /* -------------------------------------------------------------------------- */
 
 /* ------------------------- Convert odd characters ------------------------- */
-const decodeText = (text) => utf8.decode(text);
+// let utf8decoder = new TextDecoder();
+const decodeText = (text) => {
+	try {
+		return utf8.decode(text);
+	} catch (error) {
+		return text;
+	}
+};
 
 /* ------------------- Sort by start time& alphabetically ------------------- */
 function eventSort(events) {
