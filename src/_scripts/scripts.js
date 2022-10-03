@@ -136,7 +136,7 @@ document.addEventListener("alpine:init", () => {
 					localStorage.setItem("LilRedAuthToken", _x_authToken);
 				}
 				if (_x_lastLogin && !lilRedLastLogin) {
-					localStorage.setItem("lilRedLastLogin", _x_authToken);
+					localStorage.setItem("lilRedLastLogin", _x_lastLogin);
 				}
 
 				if (this.isAuth) {
