@@ -810,11 +810,6 @@ document.addEventListener("alpine:init", () => {
 					const bookings = data.bookings
 						.filter((booking) => booking.bookingStatus === 1)
 						.map((booking) => {
-							let utf8decoder = new TextDecoder();
-							console.log(
-								booking.user.displayName,
-								utf8decoder.decode(booking.user.displayName)
-							);
 							return {
 								...booking,
 								user: {
