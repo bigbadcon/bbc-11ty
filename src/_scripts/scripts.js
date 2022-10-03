@@ -357,10 +357,7 @@ document.addEventListener("alpine:init", () => {
 					.map((id) => eventData[id])
 					.filter((event) => event)
 					.sort((a, b) => {
-						return (
-							dayjs(a.eventStartDateTime) -
-							dayjs(b.eventStartDateTime)
-						);
+						return dayjs(a.date) - dayjs(b.date);
 					});
 				// only show published events that are in the future (minus 1 month ago)
 				this.bookedEvents = myEvents;
