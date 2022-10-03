@@ -1,4 +1,191 @@
+var __create = Object.create;
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getProtoOf = Object.getPrototypeOf;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __commonJS = (cb, mod) => function __require() {
+  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
+
+// node_modules/.pnpm/utf8@3.0.0/node_modules/utf8/utf8.js
+var require_utf8 = __commonJS({
+  "node_modules/.pnpm/utf8@3.0.0/node_modules/utf8/utf8.js"(exports) {
+    (function(root) {
+      var stringFromCharCode = String.fromCharCode;
+      function ucs2decode(string) {
+        var output = [];
+        var counter = 0;
+        var length = string.length;
+        var value;
+        var extra;
+        while (counter < length) {
+          value = string.charCodeAt(counter++);
+          if (value >= 55296 && value <= 56319 && counter < length) {
+            extra = string.charCodeAt(counter++);
+            if ((extra & 64512) == 56320) {
+              output.push(((value & 1023) << 10) + (extra & 1023) + 65536);
+            } else {
+              output.push(value);
+              counter--;
+            }
+          } else {
+            output.push(value);
+          }
+        }
+        return output;
+      }
+      function ucs2encode(array) {
+        var length = array.length;
+        var index = -1;
+        var value;
+        var output = "";
+        while (++index < length) {
+          value = array[index];
+          if (value > 65535) {
+            value -= 65536;
+            output += stringFromCharCode(value >>> 10 & 1023 | 55296);
+            value = 56320 | value & 1023;
+          }
+          output += stringFromCharCode(value);
+        }
+        return output;
+      }
+      function checkScalarValue(codePoint) {
+        if (codePoint >= 55296 && codePoint <= 57343) {
+          throw Error(
+            "Lone surrogate U+" + codePoint.toString(16).toUpperCase() + " is not a scalar value"
+          );
+        }
+      }
+      function createByte(codePoint, shift) {
+        return stringFromCharCode(codePoint >> shift & 63 | 128);
+      }
+      function encodeCodePoint(codePoint) {
+        if ((codePoint & 4294967168) == 0) {
+          return stringFromCharCode(codePoint);
+        }
+        var symbol = "";
+        if ((codePoint & 4294965248) == 0) {
+          symbol = stringFromCharCode(codePoint >> 6 & 31 | 192);
+        } else if ((codePoint & 4294901760) == 0) {
+          checkScalarValue(codePoint);
+          symbol = stringFromCharCode(codePoint >> 12 & 15 | 224);
+          symbol += createByte(codePoint, 6);
+        } else if ((codePoint & 4292870144) == 0) {
+          symbol = stringFromCharCode(codePoint >> 18 & 7 | 240);
+          symbol += createByte(codePoint, 12);
+          symbol += createByte(codePoint, 6);
+        }
+        symbol += stringFromCharCode(codePoint & 63 | 128);
+        return symbol;
+      }
+      function utf8encode(string) {
+        var codePoints = ucs2decode(string);
+        var length = codePoints.length;
+        var index = -1;
+        var codePoint;
+        var byteString = "";
+        while (++index < length) {
+          codePoint = codePoints[index];
+          byteString += encodeCodePoint(codePoint);
+        }
+        return byteString;
+      }
+      function readContinuationByte() {
+        if (byteIndex >= byteCount) {
+          throw Error("Invalid byte index");
+        }
+        var continuationByte = byteArray[byteIndex] & 255;
+        byteIndex++;
+        if ((continuationByte & 192) == 128) {
+          return continuationByte & 63;
+        }
+        throw Error("Invalid continuation byte");
+      }
+      function decodeSymbol() {
+        var byte1;
+        var byte2;
+        var byte3;
+        var byte4;
+        var codePoint;
+        if (byteIndex > byteCount) {
+          throw Error("Invalid byte index");
+        }
+        if (byteIndex == byteCount) {
+          return false;
+        }
+        byte1 = byteArray[byteIndex] & 255;
+        byteIndex++;
+        if ((byte1 & 128) == 0) {
+          return byte1;
+        }
+        if ((byte1 & 224) == 192) {
+          byte2 = readContinuationByte();
+          codePoint = (byte1 & 31) << 6 | byte2;
+          if (codePoint >= 128) {
+            return codePoint;
+          } else {
+            throw Error("Invalid continuation byte");
+          }
+        }
+        if ((byte1 & 240) == 224) {
+          byte2 = readContinuationByte();
+          byte3 = readContinuationByte();
+          codePoint = (byte1 & 15) << 12 | byte2 << 6 | byte3;
+          if (codePoint >= 2048) {
+            checkScalarValue(codePoint);
+            return codePoint;
+          } else {
+            throw Error("Invalid continuation byte");
+          }
+        }
+        if ((byte1 & 248) == 240) {
+          byte2 = readContinuationByte();
+          byte3 = readContinuationByte();
+          byte4 = readContinuationByte();
+          codePoint = (byte1 & 7) << 18 | byte2 << 12 | byte3 << 6 | byte4;
+          if (codePoint >= 65536 && codePoint <= 1114111) {
+            return codePoint;
+          }
+        }
+        throw Error("Invalid UTF-8 detected");
+      }
+      var byteArray;
+      var byteCount;
+      var byteIndex;
+      function utf8decode(byteString) {
+        byteArray = ucs2decode(byteString);
+        byteCount = byteArray.length;
+        byteIndex = 0;
+        var codePoints = [];
+        var tmp;
+        while ((tmp = decodeSymbol()) !== false) {
+          codePoints.push(tmp);
+        }
+        return ucs2encode(codePoints);
+      }
+      root.version = "3.0.0";
+      root.encode = utf8encode;
+      root.decode = utf8decode;
+    })(typeof exports === "undefined" ? exports.utf8 = {} : exports);
+  }
+});
+
 // src/index.js
+var import_utf8 = __toESM(require_utf8());
 var lilRedDefaults = {
   lilRedApiUrl: null,
   logoutIfStale: true,
@@ -31,9 +218,7 @@ function dispatch(name, detail, additional, bubbles = true) {
 }
 var decodeText = (text) => {
   try {
-    const windows1252 = new TextEncoder("windows-1251");
-    const utf8 = new TextDecoder();
-    return text && utf8.decode(windows1252.encode(text));
+    return import_utf8.default.decode(text);
   } catch (error) {
     console.error("decodeText: " + error);
     return text;
@@ -100,11 +285,11 @@ async function lilFetch(settings) {
   if (settings.body)
     options.body = settings.body;
   if (!publicMethod && !settings.serverApiKey) {
-    const authToken = settings.token || localStorage.getItem(AUTH_TOKEN);
-    if (authToken) {
-      options.headers.Authorization = authToken;
+    const authToken2 = settings.token || localStorage.getItem(AUTH_TOKEN);
+    if (authToken2) {
+      options.headers.Authorization = authToken2;
     } else {
-      dispatch("lil-red-fetch", "ERROR: auth token missing");
+      dispatch("lil-red-fetch", `ERROR: auth token missing; attempted to fetch ${settings.api}`);
       return null;
     }
     if (lilRedSettings.logoutIfStale) {
@@ -114,12 +299,15 @@ async function lilFetch(settings) {
       const earliestAllowedLogin = Date.parse(new Date(now.setDate(now.getDate() - daysTillLogout)));
       const isStale = isNaN(lastLogin) || isNaN(earliestAllowedLogin) || lastLogin < earliestAllowedLogin;
       if (isStale) {
-        dispatch("lil-red-fetch", `ERROR: auth token stale. Last Login: ${lastLogin}`);
+        dispatch(
+          "lil-red-fetch",
+          `ERROR: auth token stale. Last Login: ${lastLogin}; attempted to fetch ${settings.api}`
+        );
         logout();
         return null;
       }
     }
-    options.headers.Authorization = authToken;
+    options.headers.Authorization = authToken2;
   }
   if (!publicMethod && serverApiKey) {
     options.headers["x-api-key"] = serverApiKey;
@@ -165,12 +353,16 @@ var status = async () => {
   dispatch("lil-red-status", result);
   return result;
 };
+var apiUrl = () => lilRedSettings.lilRedApiUrl;
+var isInit = () => typeof lilRedSettings.lilRedApiUrl === "string";
 var login = (username, password2) => lilAuth(username, password2);
 var logout = () => {
   dispatch("lil-red-logout", "You have been logged out of Lil Red");
   localStorage.removeItem(AUTH_TOKEN);
   localStorage.removeItem(LAST_LOGIN);
 };
+var authToken = () => localStorage.getItem(AUTH_TOKEN);
+var isAuth = () => typeof localStorage.getItem(AUTH_TOKEN) === "string";
 var isAdmin = () => lilGet("/users/me/isadmin");
 var me = () => lilGet("/users/me");
 var roles = async (user) => {
@@ -300,6 +492,8 @@ var admin = {
 };
 export {
   admin,
+  apiUrl,
+  authToken,
   bookings,
   decodeText,
   destroy,
@@ -308,6 +502,8 @@ export {
   fetcher,
   init,
   isAdmin,
+  isAuth,
+  isInit,
   lilDelete,
   lilFetch,
   lilGet,
@@ -320,3 +516,4 @@ export {
   roles,
   status
 };
+/*! https://mths.be/utf8js v3.0.0 by @mathias */
