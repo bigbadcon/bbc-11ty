@@ -513,10 +513,6 @@ document.addEventListener("alpine:init", () => {
 			formatEventTime(date, tz = "America/Los_Angeles") {
 				return dayjs(date).tz(tz).format("h:mma");
 			},
-			async delay(ms = 500) {
-				console.log("hi");
-				return new Promise((resolve) => setTimeout(resolve, ms));
-			},
 		};
 	});
 
@@ -541,7 +537,7 @@ document.addEventListener("alpine:init", () => {
 		},
 		async getSpace(id) {
 			const space = await lilRed.events.public.space(id);
-			if (space) {
+			if (typeof space === "number") {
 				this.spaces = { ...this.spaces, [id]: space };
 				localStorage.setItem("spaces", JSON.stringify(this.spaces));
 			}
