@@ -513,6 +513,9 @@ document.addEventListener("alpine:init", () => {
 			formatEventTime(date, tz = "America/Los_Angeles") {
 				return dayjs(date).tz(tz).format("h:mma");
 			},
+			delay(ms = 500) {
+				return new Promise((resolve) => setTimeout(resolve, ms));
+			},
 		};
 	});
 
