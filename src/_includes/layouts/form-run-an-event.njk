@@ -14,8 +14,9 @@
                 <div x-cloak x-show="!isAuth" class="prose">
                     <p>You must be <button @click.stop="modal = 'Login'" class="font-bold underline text-highlight">logged in</button> to submit a game</p>
                 </div>
+                {# submittingState: 'unsubmitted', // unsubmitted, submitted, complete #}
                 <div x-cloak x-show="isAuth && user" x-data="runAnEventData" x-init="if(isAuth) getUserData()">
-                    <div x-show="!eventSubmitted" id="submit-your-event">
+                    <div x-show="submittingState !== 'complete'" id="submit-your-event">
                         <header class="prose">
                             <h2>Submit Your Event</h2>
                             <p>
@@ -26,7 +27,7 @@
                         {# TODO: update this to use x-validate #}
                         <form action="post" class="mt-base" id="form" x-ref="form" @submit.prevent="submitEvent" x-validate>
                             {# TODO: add honeypot #}
-                            <input type="hidden" name="userDisplayName" :value="user && user.displayName" x-validate>
+                            <input type="hidden" name="userDisplayName" :value="user && user.displayName" x-validate x-init="$watch('user',val => {if (val && val.displayName) $validate.updateData($el)})">
                             {# Personal Info #}
                             <fieldset x-ref="personalInfo">
                                 <legend>Personal Info</legend>
@@ -34,15 +35,14 @@
                                     <label for="publicName">Public Badge Name</label>
                                     <p class="text-xs mb-sm text-body">We encourage attendees to list their first and last names. However, if for privacy reasons you would like to use another name, enter it here.</p>
                                     <input id="publicName" name="publicName" type="text" value="" :value="user && user.displayName"
-                                    x-validate
-                                    required/>
+                                    x-validate.required x-init="$watch('user',val => {if (val && val.displayName) $validate.updateData($el)})"/>
                                 </div>
                                 <div class="required">
                                     <label for="yourAge">
                                         Your age at start of con
                                         <span>{{sitemeta.eventDate}}</span>
                                     </label>
-                                    <select id="yourAge" name="yourAge" @change="if ($el.value === '13+') { $validate.updateData('playerAge',{value:'13+'})}" required>
+                                    <select id="yourAge" name="yourAge" @change="if ($el.value === '13+') { $validate.updateData('playerAge',{value:'13+'})}" x-validate.required>
                                         <option disabled selected value="">
                                             -- Choose One --
                                         </option>
@@ -61,7 +61,7 @@
                                     </p>
                                 </div>
                                 <div class="required">
-                                    <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" required>
+                                    <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-validate.required>
                                     <label for="agree-to-community-standards" class="text-body-highlight">
                                         Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Big Bad Con Community Standards
                                     </label>
@@ -74,11 +74,11 @@
                                 <legend>Event Info</legend>
                                 <div class="required">
                                     <label for="eventName">Event Name</label>
-                                    <input id="eventName" name="eventName" type="text" value="" required class="w-full max-w-md"/>
+                                    <input id="eventName" name="eventName" type="text" value="" x-validate.required class="w-full max-w-md"/>
                                 </div>
                                 <div class="required">
                                     <label for="format">Format</label>
-                                    <select id="format" name="format" required
+                                    <select id="format" name="format" x-validate.required
                                     @change="$validate.updateData('eventCategoryId',{value: formatId($el.value)})">
                                         <option disabled selected value="">-- Choose One --</option>
                                         <template x-for="type in format">
@@ -102,7 +102,7 @@
                                 </div>
                                 <div class="required">
                                     <label for="eventDescription">Description</label>
-                                    <textarea cols="30" id="eventDescription" name="eventDescription" rows="3" required></textarea>
+                                    <textarea cols="30" id="eventDescription" name="eventDescription" rows="3" x-validate.required></textarea>
                                 </div>
                                 <div>
                                     <label for="otherInfo">Other info we should know (this will not go in the program)</label>
@@ -128,7 +128,7 @@
                                     <label for="playerAge">
                                         Player/Attendee Age
                                     </label>
-                                    <select id="playerAge" name="playerAge" required>
+                                    <select id="playerAge" name="playerAge" x-validate.required>
                                         <option disabled selected value="">
                                             -- Choose One --
                                         </option>
@@ -138,11 +138,11 @@
                                 </div>
                                 <div class="required">
                                     <label for="minPlayers">Minimum players/attendees</label>
-                                    <input id="minPlayers" name="minPlayers" type="text" value="" required/>
+                                    <input id="minPlayers" name="minPlayers" type="text" value="" x-validate.required/>
                                 </div>
                                 <div class="required">
                                     <label for="maxPlayers">Maximum players/attendees</label>
-                                    <input id="maxPlayers" name="maxPlayers" type="text" value="" required/>
+                                    <input id="maxPlayers" name="maxPlayers" type="text" value="" x-validate.required/>
                                 </div>
                                 <div x-show="isRPGorLARP" class="required">
                                     <label for="characters">Characters</label>
@@ -162,7 +162,7 @@
                                 <legend>Scheduling Info</legend>
                                 <div class="required">
                                     <label for="runNumberOfTimes">Run this event</label>
-                                    <select id="runNumberOfTimes" name="runNumberOfTimes" required>
+                                    <select id="runNumberOfTimes" name="runNumberOfTimes" x-validate.required>
                                         <option disabled selected value="">
                                             -- Choose One --
                                         </option>
@@ -221,7 +221,7 @@
                                 </div>
                                 <div class="required">
                                     <label for="eventLength">Event Length</label>
-                                    <select id="eventLength" name="eventLength" required>
+                                    <select id="eventLength" name="eventLength" x-validate.required>
                                         <option disabled selected value="">
                                             -- Choose One --
                                         </option>
@@ -364,7 +364,13 @@
                                     <textarea cols="30" id="additionalRequirements" name="additionalRequirements" rows="3" ></textarea>
                                 </div>
                             </fieldset>
-                            <button type="submit" :disabled="!$validate.isComplete('form')">Submit</button>
+                            <div x-show="submittingState === 'unsubmitted'">
+                                <button type="submit" :disabled="!$validate.isComplete('form')">Submit</button>
+                            </div>
+                            <div x-show="submittingState === 'submitted'">
+                                {% import 'components/loading-spinner-macro.njk' as loading %}
+                                {{ loading.spinner('Submitting')}}
+                            </div>
                             {# x-validate form log #}
                             {% if (sitemeta.environment === 'dev') %}
                                 {% import 'components/x-validate-form-validator.njk' as validate %}
@@ -374,7 +380,7 @@
                     </div>
                     {# END event submission div #}
                     {# event submitted #}
-                    <div class="prose" x-show="eventSubmitted" id="event-submitted">
+                    <div class="prose" x-show="submittingState === 'complete'" id="event-submitted">
                         <h2>Thanks for submitting your event!</h2>
                         <p>Our staff will review your <span id="submit-format" x-text="$validate.data('format').value"></span> event, <span id="submit-name" x-text="$validate.data('eventName').value" class="italic font-bold"></span>, and let you know about scheduling it!</p>
                         <p>You can <a href="/run-an-event">submit another event</a> now if you'd like.</p>
@@ -764,7 +770,7 @@
 
             Alpine.data('runAnEventData', function () {
                 return {
-                    eventSubmitted: false,
+                    submittingState: 'unsubmitted', // State Machine: unsubmitted, submitted, complete
                     convertFormDataToCreateEventAPI(formData) {
                         convertFormDataToCreateEventAPI(formData)
                     },
@@ -774,110 +780,86 @@
                             .isComplete($el.previousElementSibling)
                     },
                     async submitEvent(e) {
-                        console.log("🚀 ~ file: form-run-an-event.njk ~ line 777 ~ submitEvent ~ e", e)
-                        return false
+                        const form = e.target
+
                         // Check network status and dataservice before submitting event
-                        if (!navigator.onLine) {
-                            this.$dispatch('toast', 'ERROR: You are currently offline! Booking and forms will not work.')
+                        const status = await lilRed.status()
+                        if (!status) {
                             return false
-                        } else {
-                            const littleRed = await fetch(apiBaseUrl + "/", {method: 'GET'})
-                            if (littleRed.status !== 200) {
-                                this.$dispatch('toast', 'ERROR: The data service is currently offline! Please wait and try again.')
-                                return false
-                            }
-                        }
-                        // Get form data
-                        const formData = this
-                            .$validate
-                            .formData(e.target)
-                        let createEventAPIData = convertFormDataToCreateEventAPI(formData)
-                        console.log("submit", createEventAPIData)
-
-                        const submitNow = async () => {
-                            const createEventAPI = await this.createEvent(createEventAPIData)
-                            // Returns eventId
-                            // Add event id and formData object if created for image upload
-                            if (typeof createEventAPI === 'number') {
-                                createEventAPIData = {
-                                    createEventAPIData,
-                                    eventId: createEventAPI
-                                }
-                            }
-                            const googleSheet = await this.postFormInfo(createEventAPIData)
-                            // TODO: test to make sure google sheet also worked
-                            if (createEventAPI) {
-                                this.eventSubmitted = true
-                                //this.uploadEventImage(e.target, createEventAPI)
-                            }
                         }
 
-                        const scrollEventListener = () => {
-                            if (window.pageYOffset === 0) {
-                                //this.uploadEventImage(e.target, 3236)
-                                //this.uploadEventImage(e.target, 3083)
-                                submitNow();
-                                window.removeEventListener('scroll', scrollEventListener)
-                            }
-                        }
-                        function checkScrollEnd() {
-                            window.addEventListener('scroll', scrollEventListener);
-                        }
-                        checkScrollEnd()
-                        window.scroll({top: 0, behavior: 'smooth'});
-                    },
-                    async createEvent(createEventAPIData) {
-                        let data = await fetchData('/events/create', {
-                            method: 'PUT',
-                            body: createEventAPIData
-                        })
-                        if (data) {
-                            // upload image data
-                            this.$dispatch('toast', 'Event submitted!!')
-                        } else {
-                            this.$dispatch('toast', 'ERROR: Event submission failed')
-                        }
-                        return data
-                    },
-                    async postFormInfo(data) {
-                        /* --------- Send form data to serverless function for google sheet --------- */
+                        // Change status to submitted
+                        this.submittingState = "submitted"
 
-                        //change arrays to string values
-                        data = {
-                            ...data,
-                            eventMetadataIds: data.eventMetadataIds && data
-                                .eventMetadataIds
-                                .toString(),
-                            eventMetadataNames: data.eventMetadataNamesString
-                        }
-                        // TODO: fix this later
-                        delete data['eventMetadataNamesString']
-
-                        const options = {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json;charset=utf-8'
-                            },
-                            body: JSON.stringify(data)
-                        }
-
-                        const url = "/.netlify/functions/submit-run-an-event"
+                        // Get form data in API format
+                        const createEventAPIData = convertFormDataToCreateEventAPI(this.$validate.formData(form))
+                        console.log("🚀 ~ file: form-run-an-event.njk ~ line 783 ~ submitEvent ~ createEventAPIData", createEventAPIData)
 
                         try {
-                            let response = await fetch(url, options)
-                            console.log(`RESPONSE:fetch for ${url}`, response)
-                            if (response.status !== 200) 
-                                throw `fetch fail status: ${response.status}`
-                            let result = await response.json()
-                            console.log(`RESULT:fetch for ${url}`, result)
-                            return result
-                        } catch (err) {
-                            console.error(`ERROR:fetch for ${url}`, err)
-                            return false
-                        }
+                            // Submit to Little Red Event Manager
+                            const lilRedResult = await lilRed
+                                .events
+                                .create(createEventAPIData)
 
+                            console.log("🚀 ~ file: form-run-an-event.njk ~ line 805 ~ submitEvent ~ lilRedResult", lilRedResult)
+
+                            // If result is a success it returns the event ID.
+                            if (!isNaN(lilRedResult)) {
+
+                                try {
+                                    // Build data for google sheet
+                                    const googleFormData = {
+                                        ...createEventAPIData,
+                                        eventId: lilRedResult,
+                                        eventMetadataIds: createEventAPIData.eventMetadataIds && createEventAPIData
+                                            .eventMetadataIds
+                                            .toString(),
+                                        eventMetadataNames: createEventAPIData.eventMetadataNamesString
+                                    }
+
+                                    // Post to serverless function for Google Sheet
+
+                                    const options = {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json;charset=utf-8'
+                                        },
+                                        body: JSON.stringify(googleFormData)
+                                    }
+
+                                    const url = "/.netlify/functions/submit-run-an-event"
+
+                                    let response = await fetch(url, options)
+                                    console.log(`RESPONSE:fetch for ${url}`, response)
+                                    if (!response || response.status !== 200) {
+                                        throw new Error(`fetch fail status: ${response && response.status}`)
+                                    }
+                                    let result = await response.json()
+                                    console.log(`RESULT:fetch for ${url}`, result)
+
+                                    this.$dispatch('toast', 'Event submitted!')
+                                    window.scroll({top: 0, behavior: 'smooth'});
+                                    this.submittingState = "complete"
+                                    form.reset()
+                                    return result
+                                } catch (err) {
+                                    console.error(`ERROR:fetch for ${url}`, err)
+                                    this.submittingState = "unsubmitted"
+                                    this.$dispatch('toast', 'ERROR: event submission to spreadsheet failed!')
+                                    return false
+                                }
+                            } else {
+                                this.$dispatch('toast', 'ERROR: event submission failed!')
+                                this.submittingState = "unsubmitted"
+                            }
+                        } catch (e) {
+                            this.submittingState = "unsubmitted"
+                            console.log('ERROR:submitting form to /events/create', e)
+                            this.$dispatch('toast', 'ERROR: event submission to Little Red Avent Manager failed!')
+                        }
                     },
                     async uploadEventImage(form, eventId) {
+                        // TODO: get this working
                         const formDataObject = new FormData(form)
 
                         async function customFetch(url, options) {

@@ -188,33 +188,29 @@ var require_utf8 = __commonJS({
 var import_utf8 = __toESM(require_utf8());
 var lilRedDefaults = {
   lilRedApiUrl: null,
+  statusResponse: "roll plus login",
   logoutIfStale: true,
   daysTillLogout: 10,
-  serverApiKey: null
+  serverApiKey: null,
+  verbose: false
 };
 var lilRedSettings;
 var AUTH_TOKEN = "lilRedAuthToken";
 var LAST_LOGIN = "lilRedLastLogin";
-function dispatch(name, detail, additional, bubbles = true) {
-  if (typeof detail === "string" && /^ERROR/.test(detail)) {
-    if (additional) {
-      console.error(name, detail, additional);
-    } else {
-      console.error(name, detail, additional);
-    }
+function dispatch(name, detail, additional = "", bubbles = true) {
+  if (name === "lil-red-error") {
+    console.error(name, detail, additional);
   } else {
-    if (additional) {
-      console.log(name, detail);
-    } else {
-      console.log(name, detail);
-    }
+    console.log(name, detail, additional);
   }
-  document.dispatchEvent(
-    new CustomEvent(name, {
-      bubbles,
-      detail
-    })
-  );
+  if (typeof document !== "undefined") {
+    document.dispatchEvent(
+      new CustomEvent(name, {
+        bubbles,
+        detail
+      })
+    );
+  }
 }
 var decodeText = (text) => {
   try {
@@ -225,17 +221,28 @@ var decodeText = (text) => {
   }
 };
 async function fetcher(url, options) {
+  const apiPath = new URL(url).pathname;
   try {
     let response = await fetch(url, options);
-    console.log(`RESPONSE:lilFetch for ${url}`, response);
-    if (response.status !== 200)
+    if (lilRedSettings.verbose)
+      console.log(`RESPONSE:lilFetch for ${apiPath}`, response);
+    if (response.status === 401) {
+      dispatch(
+        "lil-red-error",
+        "(FETCH) Unauthorized. AuthToken invalid. You will be logged out, please and log back in and try again."
+      );
+      logout();
+      return null;
+    }
+    if (!response || response.status !== 200)
       throw new Error(`fetch fail status: ${response.status}`);
     const contentType = response.headers.get("content-type");
     const result = contentType && contentType.indexOf("application/json") !== -1 ? await response.json() : await response.text();
-    console.log(`RESULT: lilFetch for ${url}`, result);
+    if (lilRedSettings.verbose)
+      console.log(`RESULT: lilFetch for ${apiPath}`, result);
     return result;
   } catch (err) {
-    dispatch("lil-red-fetch-error", `ERROR: lilFetch for ${url} failed`, err);
+    dispatch("lil-red-error", `(FETCH) lilFetch failed for ${apiPath}`, err);
     return null;
   }
 }
@@ -255,15 +262,25 @@ async function lilAuth(username, password2) {
   };
   try {
     let response = await fetch(url, options);
+    if (response.status === 401) {
+      dispatch(
+        "lil-red-error",
+        "(LOGIN) Unauthorized. Either username or password is incorrect.",
+        response.status
+      );
+      return null;
+    }
     if (response.status === 200 && response.headers.get("authorization")) {
       const token = response.headers.get("authorization");
       localStorage.setItem(AUTH_TOKEN, token);
       localStorage.setItem(LAST_LOGIN, new Date().toISOString());
-      dispatch("lil-red-login", "success");
+      dispatch("lil-red-login", "success", username);
       return token;
     }
+    if (response.status !== 200)
+      throw new Error(`fetch fail status: ${response.status}`);
   } catch (err) {
-    dispatch("lil-red-login", "fail");
+    dispatch("lil-red-error", "(LOGIN) Login failed", err);
     return null;
   }
 }
@@ -285,11 +302,16 @@ async function lilFetch(settings) {
   if (settings.body)
     options.body = settings.body;
   if (!publicMethod && !settings.serverApiKey) {
-    const authToken2 = settings.token || localStorage.getItem(AUTH_TOKEN);
-    if (authToken2) {
-      options.headers.Authorization = authToken2;
+    const authToken = settings.token || localStorage.getItem(AUTH_TOKEN);
+    if (authToken) {
+      options.headers.Authorization = authToken;
     } else {
-      dispatch("lil-red-fetch", `ERROR: auth token missing; attempted to fetch ${settings.api}`);
+      dispatch(
+        "lil-red-error",
+        `(FETCH) AuthToken missing, you will be logged out. Please log back in and try again.`,
+        settings.api
+      );
+      logout();
       return null;
     }
     if (lilRedSettings.logoutIfStale) {
@@ -300,14 +322,14 @@ async function lilFetch(settings) {
       const isStale = isNaN(lastLogin) || isNaN(earliestAllowedLogin) || lastLogin < earliestAllowedLogin;
       if (isStale) {
         dispatch(
-          "lil-red-fetch",
-          `ERROR: auth token stale. Last Login: ${lastLogin}; attempted to fetch ${settings.api}`
+          "lil-red-error",
+          `(FETCH) Auth token stale. Last Login: ${lastLogin}. You will be logged out. Please log back in.`,
+          settings.api
         );
         logout();
         return null;
       }
     }
-    options.headers.Authorization = authToken2;
   }
   if (!publicMethod && serverApiKey) {
     options.headers["x-api-key"] = serverApiKey;
@@ -338,31 +360,45 @@ async function init(lilRedOptions) {
   destroy();
   lilRedSettings = { ...lilRedDefaults, ...lilRedOptions };
   console.log("\u{1F43A} Initializing LilRed", lilRedSettings);
-  dispatch("lil-red-init", `Initializing Lil Red: ${lilRedSettings.lilRedApiUrl}`);
-  return await status();
+  dispatch("lil-red-init", `Initializing Lil Red`, lilRedSettings);
+  return lilRedOptions.lilRedApiUrl;
 }
 function destroy() {
   const oldApiUrl = lilRedSettings?.lilRedApiUrl;
   lilRedSettings = lilRedDefaults;
   if (oldApiUrl) {
-    dispatch("lil-red-destroy", `Deinitialized -- no longer using ${oldApiUrl}`);
+    dispatch("lil-red-destroy", `Deinitialized`, oldApiUrl);
   }
+  return true;
 }
-var status = async () => {
-  const result = await lilGet("/");
-  dispatch("lil-red-status", result);
-  return result;
+var status = async (maxCount = 1, delay = 5e3, multiplier = 1) => {
+  if (typeof document !== "undefined" && !navigator.onLine) {
+    dispatch("lil-red-error", "You are not currently online", navigator.onLine);
+    return false;
+  }
+  const successResponse = lilRedSettings.statusResponse;
+  let status2;
+  for (let i = 0; i < maxCount; i++) {
+    if (i > 0) {
+      await new Promise((resolve) => setTimeout(resolve, delay));
+      delay = multiplier * delay;
+    }
+    status2 = await lilGet("/");
+    dispatch("lil-red-status", status2 === successResponse, `check: ${i + 1}`);
+    if (status2 === successResponse)
+      i = maxCount;
+  }
+  if (status2 !== successResponse) {
+    dispatch("lil-red-error", "(STATUS) Little Red Event Manager not available", lilRedSettings?.lilRedApiUrl);
+  }
+  return status2;
 };
-var apiUrl = () => lilRedSettings.lilRedApiUrl;
-var isInit = () => typeof lilRedSettings.lilRedApiUrl === "string";
 var login = (username, password2) => lilAuth(username, password2);
 var logout = () => {
-  dispatch("lil-red-logout", "You have been logged out of Lil Red");
+  dispatch("lil-red-logout", "You have been logged out of Lil Red", new Date());
   localStorage.removeItem(AUTH_TOKEN);
   localStorage.removeItem(LAST_LOGIN);
 };
-var authToken = () => localStorage.getItem(AUTH_TOKEN);
-var isAuth = () => typeof localStorage.getItem(AUTH_TOKEN) === "string";
 var isAdmin = () => lilGet("/users/me/isadmin");
 var me = () => lilGet("/users/me");
 var roles = async (user) => {
@@ -377,26 +413,7 @@ var bookings = {
   add: (id) => lilPost("/bookings/bookMeIntoGame", { gameId: Number(id) }),
   delete: (id) => lilDelete("/bookings/removeMeFromGame", {
     gameId: Number(id)
-  }),
-  event: async (id, event) => {
-    if (!event)
-      event = await events.find(id);
-    const bookings2 = event.bookings.filter((booking) => booking.bookingStatus === 1).map((booking) => {
-      return {
-        ...booking,
-        user: {
-          ...booking.user,
-          displayName: decodeText(booking.user.displayName)
-        }
-      };
-    });
-    const facilitator = bookings2.filter((booking) => booking.bookingComment).sort((a, b) => a.user.displayName.localeCompare(b.user.displayName)) || [];
-    const attendees = bookings2.filter((booking) => !booking.bookingComment).sort((a, b) => a.user.displayName.localeCompare(b.user.displayName)) || [];
-    return {
-      facilitator,
-      attendees
-    };
-  }
+  })
 };
 var favorites = {
   get: () => lilGet("/events/me/favorites"),
@@ -433,10 +450,32 @@ var password = {
 var events = {
   me: () => lilGet("/events/me"),
   find: (id) => lilPost("/events/find", { id: Number(id) }),
+  bookings: async (event) => {
+    if (!isNaN(Number(event)))
+      event = await lilPost("/events/find", { id: Number(event) });
+    const bookings2 = event.bookings.filter((booking) => booking.bookingStatus === 1).map((booking) => {
+      return {
+        id: booking.user.id,
+        displayName: decodeText(booking.user.displayName),
+        bookingComment: booking.bookingComment
+      };
+    });
+    const facilitator = bookings2.filter((booking) => booking.bookingComment).sort((a, b) => a.displayName.localeCompare(b.displayName)) || [];
+    const attendees = bookings2.filter((booking) => !booking.bookingComment).map((booking) => {
+      return {
+        id: booking.id,
+        displayName: decodeText(booking.displayName)
+      };
+    }).sort((a, b) => a.displayName.localeCompare(b.displayName)) || [];
+    return {
+      facilitator,
+      attendees
+    };
+  },
   all: () => lilGet("/events/all"),
   category: (category) => lilGet(`/events/category/${category}`),
   count: () => lilGet("/events/count"),
-  create: (body) => lilPut("/users/setMyPassword", body),
+  create: (body) => lilPut("/events/create", body),
   uploadImage: (formData) => {
     lilFetch({
       api: "/events/image",
@@ -492,8 +531,6 @@ var admin = {
 };
 export {
   admin,
-  apiUrl,
-  authToken,
   bookings,
   decodeText,
   destroy,
@@ -502,13 +539,12 @@ export {
   fetcher,
   init,
   isAdmin,
-  isAuth,
-  isInit,
   lilDelete,
   lilFetch,
   lilGet,
   lilPost,
   lilPut,
+  lilRedSettings,
   login,
   logout,
   me,

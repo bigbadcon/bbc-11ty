@@ -4,7 +4,10 @@
 {# Backdrop #}
 
 <div id="modal" class="modal-wrapper" x-cloak x-show="modal" @click="modal = null"
-x-init="$watch('modal',val => { if (val && isAuth) { getUserData(); getBookedEvents() } })">
+x-init="$watch('modal',val => { if (isAuth && val === 'My Account') { getUserData(); getBookedEvents(); getAvailableSlots() } })"
+@lil-red-error.window="if (/LOGIN/.test($event.detail)) { modal = 'Login' }"
+@lil-red-status.window="if (!$event.detail) { modal = null }"
+>
     {# Panel Loading Spinner #}
     <div id="modal-loading" class="modal-panel" x-show="modal === 'Loading'" @click.stop>
         <div class="inline-flex items-center italic font-bold gap-sm py-xs">

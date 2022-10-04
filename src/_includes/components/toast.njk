@@ -3,9 +3,10 @@
     x-cloak x-show="toast" x-transition
     @toast.window="() => { toast = $event.detail; if (!toast.startsWith('ERROR')) setTimeout(() => toast = '', 4000); }"
     @click.outside="if (!toast.startsWith('ERROR')) toast = ''"
-    @lil-red-login.window="if ($event.detail === 'fail') { toast = 'ERROR: login has failed'}"
+    @lil-red-logout.window="toast = $event.detail; setTimeout(() => toast = '', 4000)"
+    @lil-red-error.window="toast = `ERROR: ${$event.detail}`"
     >
-    <div class="flex px-3 text-sm font-bold border-4 rounded-lg shadow-lg w-80 border-primary py-sm gap-base" :class="(!toast.startsWith('ERROR')) ? 'bg-body text-primary' : 'bg-red-900 text-white'">
+    <div class="flex px-3 text-sm font-bold border-4 rounded-lg shadow-lg w-96 max-w-[90%] break-all border-primary py-sm gap-base" :class="(!toast.startsWith('ERROR')) ? 'bg-body text-primary' : 'bg-red-900 text-white'">
         <p x-text="toast" class="flex-grow"></p>
         <div>
             <button @click.prevent="toast = ''" class="flex items-center justify-center w-6 h-6 border-2 border-solid rounded border-body bg-primary">
