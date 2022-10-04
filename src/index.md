@@ -16,5 +16,5 @@ tags: pages
 ### Upcoming dates:
 
 * Event sign ups are [open now](https://www.bigbadcon.com/events/)!
-* Game quota expands from 2 to 4 on 10/3 at 7PM PT.
 * Game quotas lifted on 10/8 at 7PM PT.
+* Big Bad Con is October 27-30!
