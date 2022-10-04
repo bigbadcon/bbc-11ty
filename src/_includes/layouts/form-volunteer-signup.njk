@@ -1,15 +1,11 @@
-{% extends 'layouts/base.njk' %}
-
-{% block header %}
-    {% include 'components/header.njk' %}
-{% endblock %}
+{% extends 'layouts/page.njk' %}
 
 {% block content %}
     <main id="content">
         <div class="mx-auto max-w-content p-base">
             <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
             <div class="prose">{{ content | safe }}</div>
-            <section class="border-t-4 mt-lg pt-base mb-base text-body border-hr" x-data="volunteerSignup" x-init="formSubmitted = isVolunteer; $watch('user', v => formSubmitted = isVolunteer)">
+            <section class="border-t-4 mt-lg pt-base mb-base text-body border-hr" x-data="volunteerSignup" >
                 {# State Machine:
                 1. Not logged in: display login link. When logged in check volunteer status
                 2. Logged in but not volunteer: display signup form.
@@ -22,83 +18,93 @@
                 <div x-cloak x-show="!isAuth" class="prose">
                     <p>You must <button @click="modal = 'Login'" class="font-bold text-highlight">login</button> to signup as a volunteer.</p>
                 </div>
+                <div x-show="isAuth && isVolunteer" class="prose rounded-md bg-card p-base mt-sm">
+                    <p>You are a volunteer! You can go to the <a href="/volunteer-shifts/">Volunteer Shifts</a> to sign up!</p>
+                </div>
                 {# Register form; only show if logged in #}
-                {# TODO: make this only show if not already a volunteer. Not sure if this is possible with API #}
-                <form x-cloak x-show="isAuth && !formSubmitted"
-                method="POST" name="volunteer-signup" 
-                class="prose"
-                id="volunteer-signup" 
-                @submit.prevent="() => { submit(user); getUserData(); }" x-validate>
-                    <p class="hidden">
-                        <label>Don't fill this out if you're human: <input name="bot-field"/></label>
-                    </p>
-                    <input type="hidden" id="displayName" name="displayName" value="" :value="user && user.displayName" x-validate>
-                    <input type="hidden" id="userEmail" name="userEmail" value="" :value="user && user.userEmail" x-validate>
-                    <input type="hidden" id="userNicename" name="userNicename" value="" :value="user && user.userNicename" x-validate>
-                    <input type="hidden" id="userId" name="userId" value="" :value="user && user.id" x-validate>
-                    <input type="hidden" id="formName" name="formName" value="volunteer-signup">
-                    <p>
-                        <span class="font-bold text-highlight">*</span>
-                        <em>required field</em>
-                    </p>
-                    <fieldset>
-                        <legend>Personal Info</legend>
-                        <div class="prose">
-                            <strong>Name:</strong>
-                            <span x-text="user && user.displayName"></span></div>
-                        <div class="required">
-                            <label for="yourAge">
-                                        Your age at start of con
-                                        <span>{{sitemeta.eventDate}}</span>
-                            </label>
-                            <select id="yourAge" name="yourAge" x-model="formData.yourAge" @blur="validate">
-                                <option :disabled="formData.yourAge !== ''" selected value="">
-                                            -- Choose One --
-                                        </option>
-                                <option>13+</option>
-                                <option>18+</option>
-                            </select>
+                <div x-show="isAuth && !isVolunteer">
+                    <form x-cloak x-show="isAuth && submittingState !== 'complete'"
+                    method="POST" name="volunteer-signup" 
+                    class="prose"
+                    id="volunteer-signup" 
+                    @submit.prevent="() => { submit(user) }" x-validate
+                    x-init="$watch('submittingState', val => {if (val === 'complete') getUserData()})"
+                    >
+                        <p class="hidden">
+                            <label>Don't fill this out if you're human: <input name="bot-field"/></label>
+                        </p>
+                        <input type="hidden" id="displayName" name="displayName" value="" :value="user && user.displayName" x-validate>
+                        <input type="hidden" id="userEmail" name="userEmail" value="" :value="user && user.userEmail" x-validate>
+                        <input type="hidden" id="userNicename" name="userNicename" value="" :value="user && user.userNicename" x-validate>
+                        <input type="hidden" id="userId" name="userId" value="" :value="user && user.id" x-validate>
+                        <input type="hidden" id="formName" name="formName" value="volunteer-signup">
+                        <p>
+                            <span class="font-bold text-highlight">*</span>
+                            <em>required field</em>
+                        </p>
+                        <fieldset>
+                            <legend>Personal Info</legend>
+                            <div class="prose">
+                                <strong>Name:</strong>
+                                <span x-text="user && user.displayName"></span></div>
+                            <div class="required">
+                                <label for="yourAge">
+                                            Your age at start of con
+                                            <span>{{sitemeta.eventDate}}</span>
+                                </label>
+                                <select id="yourAge" name="yourAge" x-model="formData.yourAge" required>
+                                    <option :disabled="formData.yourAge !== ''" selected value="">
+                                                -- Choose One --
+                                            </option>
+                                    <option>13+</option>
+                                    <option>18+</option>
+                                </select>
+                            </div>
+                            <div class="required" >
+                                <label for="phone">Phone</label>
+                                <input id="phone" name="phone" type="tel" value="" x-model="formData.phone" required/>
+                            </div>
+                            <div>
+                                <label for="discord">Discord Handle</label>
+                                <input id="discord" name="discord" type="text" value="" x-model="formData.discord"/>
+                            </div>
+                            <div>
+                                <label for="otherInfo">Other info we should know</label>
+                                <textarea cols="30" id="otherInfo" name="otherInfo" rows="3" x-model="formData.otherInfo"></textarea>
+                            </div>
+                        </fieldset>
+                        <p>Big Bad Con is committed to cultivating a culture of respect, support, and kindness at both our in-person and online events. We ask that all of our attendees agree to abide by our Community Standards, please take a moment to read them before answering yes below.</p>
+                        <p>
+                            <a href="/community-standards" class="icon-scroll">Community Standards</a>
+                        </p>
+                        <fieldset>
+                            <legend>Community Standards Agreement</legend>
+                            <div class="flex items-center required">
+                                <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-model="formData.communityStandards" required>
+                                <label for="agree-to-community-standards" class="text-body-highlight"3324>
+                                    Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Big Bad Con Community Standards
+                                </label>
+                            </div>
+                        </fieldset>
+                        <div x-show="submittingState === 'unsubmitted'">
+                            <button type="submit" :disabled="!$validate.isComplete('volunteer-signup')">Submit</button>
                         </div>
-                        <div class="required" >
-                            <label for="phone">Phone</label>
-                            <input id="phone" name="phone" type="tel" value="" x-model="formData.phone" required/>
+                        <div x-show="submittingState === 'submitted'">
+                            {% import 'components/loading-spinner-macro.njk' as loading %}
+                            {{ loading.spinner('Submitting')}}
                         </div>
-                        <div>
-                            <label for="discord">Discord Handle</label>
-                            <input id="discord" name="discord" type="text" value="" x-model="formData.discord"/>
-                        </div>
-                        <div>
-                            <label for="otherInfo">Other info we should know</label>
-                            <textarea cols="30" id="otherInfo" name="otherInfo" rows="3" x-model="formData.otherInfo"></textarea>
-                        </div>
-                    </fieldset>
-                    <p>Big Bad Con is committed to cultivating a culture of respect, support, and kindness at both our in-person and online events. We ask that all of our attendees agree to abide by our Community Standards, please take a moment to read them before answering yes below.</p>
-                    <p>
-                        <a href="/community-standards" class="icon-scroll">Community Standards</a>
-                    </p>
-                    <fieldset>
-                        <legend>Community Standards Agreement</legend>
-                        <div class="flex items-center required">
-                            <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-model="formData.communityStandards" required>
-                            <label for="agree-to-community-standards" class="text-body-highlight"3324>
-                                Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Big Bad Con Community Standards
-                            </label>
-                        </div>
-                    </fieldset>
-                    <p>
-                        <button type="submit" :disabled="!$validate.isComplete('volunteer-signup')">Submit</button>
-                    </p>
-                    {# x-validate form log #}
-                    {% if (sitemeta.environment === 'dev') %}
-                        {% import 'components/x-validate-form-validator.njk' as validate %}
-                        {{ validate.log('volunteer-signup') }}
-                    {% endif %}
-                </form>
+                        {# x-validate form log #}
+                        {% if (sitemeta.environment === 'dev') %}
+                            {% import 'components/x-validate-form-validator.njk' as validate %}
+                            {{ validate.log('volunteer-signup') }}
+                        {% endif %}
+                    </form>
 
-                {# You are signed up notification. Show only when signed up and logged in.  #}
-                <div x-cloak x-show="isAuth && formSubmitted === true" class="prose">
-                    <h3>Thank you for signing up as a volunteer!</h3>
-                    <p>Head on over to our <a href="/volunteer-shifts">Volunteer Shifts</a> page and book a shift!</p>
+                    {# You are signed up notification. Show only when signed up and logged in.  #}
+                    <div x-cloak x-show="isAuth && submittingState === 'complete'" class="prose">
+                        <h3>Thank you for signing up as a volunteer!</h3>
+                        <p>Head on over to our <a href="/volunteer-shifts">Volunteer Shifts</a> page and book a shift!</p>
+                    </div>
                 </div>
             </section>
         </div>
@@ -133,7 +139,7 @@
 
             Alpine.data('volunteerSignup', function () {
                 return {
-                    formSubmitted: false,
+                    submittingState: 'unsubmitted', // State Machine: unsubmitted, submitted, complete
                     formData: {
                         yourAge: '', //required
                         phone: '', //required
@@ -141,51 +147,14 @@
                         otherInfo: '', //not required
                         communityStandards: false
                     },
-                    get isFormComplete() {
-                        return [this.formData.yourAge, this.formData.phone].every(isNotEmpty) && this.formData.communityStandards;
-                    },
-                    validate(event, options) {
-                        options = {
-                            required: true,
-                            email: false,
-                            phone: false,
-                            ...options
-                        }
-                        const target = event.target;
-                        const value = target.value;
-                        const parent = target.parentNode;
-
-                        let valid = true;
-
-                        if (options.required && !isNotEmpty(value)) 
-                            valid = false;
-                        if (options.email && !validateEmail(value)) 
-                            valid = false;
-                        if (options.phone && !validatePhone(value)) 
-                            valid = false;
-                        
-                        if (!valid) {
-                            parent
-                                .classList
-                                .add('error-required');
-                        } else {
-                            parent
-                                .classList
-                                .remove('error-required');
-                        }
-                    },
                     async submit(user) {
                         // Check network status and data service status
-                        if (!navigator.onLine) {
-                            this.$dispatch('toast', 'You are currently offline! Booking and forms will not work.')
-                            return false
-                        } else {
-                            const littleRed = await fetch(apiBaseUrl + "/", {method: 'GET'})
-                            if (littleRed.status !== 200) {
-                                this.$dispatch('toast', 'The data service is currently offline! Please wait and try again.')
-                                return false
-                            }
-                        }
+                        const status = await lilRed.status(30);
+                        if (!status) 
+                            return false;
+                        
+                        this.submittingState = "submitted"
+
                         const submitData = {
                             ...this.formData,
                             userEmail: user.userEmail,
@@ -194,7 +163,6 @@
                         }
                         console.log("submit", submitData)
                         this.submitForm(submitData)
-                        this.formSubmitted = true
                     },
                     async submitForm(submitData) {
                         // TODO: add fetch POST to serverless function
@@ -213,37 +181,16 @@
                             console.log(`RESPONSE:fetch for ${url}`, response)
                             if (response.status !== 200) 
                                 throw `fetch fail status: ${response.status}`
-                            let result = await response.json()
+                            let result = await response.text()
                             console.log(`RESULT:fetch for ${url}`, result)
+                            if (result) {
+                                this.submittingState = 'complete'
+                            }
                             return result
                         } catch (err) {
                             console.error(`ERROR:fetch for ${url}`, err)
                             return false
                         }
-                    },
-                    zeroFormData() {
-                        // Zero out all the form fields
-                        this.formData = {
-                            ...this.formData,
-                            ...volunteerSignUpDefault
-                        }
-                        // Bring back form
-                        this.formSubmitted = false
-                    },
-                    setCheckboxArray(el, arrayName) {
-                        this.eventInfo[arrayName] = this.eventInfo[arrayName] || [];
-                        // if checked then add value to array; otherwise remove
-                        if (el.checked) {
-                            this.eventInfo[arrayName] = [
-                                ...this.eventInfo[arrayName],
-                                el.value
-                            ]
-                        } else {
-                            this.eventInfo[arrayName] = this
-                                .eventInfo[arrayName]
-                                .filter(item => item !== el.value)
-                        }
-
                     }
                 }
             })

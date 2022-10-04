@@ -1,15 +1,20 @@
 {# lilRed auto checks on pageload and dispatches result to 'lil-red-status' #}
 {# If it fails then it keeps trying #}
 <div class="fixed bottom-0 z-40 w-full"
-    x-data="{ lilRedStatus: 'roll plus login', async delay() { return new Promise((resolve) => setTimeout(resolve, 5000))}, async checkStatus() { this.lilRedStatus = await lilRed.status(); if (this.lilRedStatus !== 'roll plus login') { await delay(); checkStatus() } } }"
-    x-cloak x-show="lilRedStatus !== 'roll plus login'" x-transition
-    @lil-red-status.window="lilRedStatus = $event.detail; if (lilRedStatus !== 'roll plus login') { await delay(); checkStatus()}"
+    x-data="{ lilRedStatus: true, msg:'Please wait... This message will disappear once Little Red is back.' }"
+    x-cloak x-show="!lilRedStatus" x-transition
+    @lil-red-status.window="lilRedStatus = $event.detail"
+    @lil-red-error.window="if (/STATUS/.test($event.detail)) { lilRedStatus = false; msg = 'Please check again later.' }"
     >
     <div class="flex justify-between border-t-4 shadow-lg gap-base bg-primary text-body px-base pt-xs border-highlight">
         <img src="/static/images/red-portrait-2017-sm.png" alt="Illustration of Little Red" class="self-end h-16">
         <div class="self-center flex-grow text-sm pb-sm">
             <p>
-                <strong class="text-secondary">Little Red Event Manager is down!</strong> Booking and forms are not available. <em>Please wait...</em> This message will disappear once Little Red is back.</p>
+                <strong class="text-secondary">Little Red Event Manager is down!</strong> Booking and forms are not available. <em x-text="msg"></em>
+            </p>
+        </div>
+        <div x-show="msg === 'Please check again later.'">
+            <button @click="await lilRed.status()" class="text-xs font-bold leading-tight uppercase border-2 rounded bg-highlight border-highlight py-xs px-sm text-primary hover:bg-header">Check Status</button>
         </div>
     </div>
 </div>

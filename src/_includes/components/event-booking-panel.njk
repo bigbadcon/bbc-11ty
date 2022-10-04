@@ -10,6 +10,7 @@
 {% endif %}
 <div class="rounded-md shadow mt-md text-body p-base bg-card" 
 x-data="{ isAllAges: {{isAllAges}}, isQuotaExempt: {{isQuotaExempt}}, bookingClicked: false}"
+x-init="if (isAuth) getAvailableSlots()"
 >
     <h2 class="-mt-1 font-serif text-2xl font-bold leading-none md:text-4xl text-header mb-sm">Event Booking</h2>
 

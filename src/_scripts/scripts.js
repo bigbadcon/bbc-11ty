@@ -17,7 +17,8 @@ window.Alpine = Alpine;
 
 window.lilRed = lilRed;
 lilRed.init({
-	lilRedApiUrl: "https://admin.bigbadcon.com:8091/api",
+	lilRedApiUrl: "https://admin.bigbadcon.com:8091/api43242323423",
+	verbose: true,
 });
 /* -------------------------------------------------------------------------- */
 /*                              Helper functions                              */
@@ -143,10 +144,6 @@ document.addEventListener("alpine:init", () => {
 						"It has been more than 10 days since your last login so you are being logged out"
 					);
 				}
-
-				if (this.isAuth) {
-					this.getAvailableSlots();
-				}
 			},
 			modal: null, // this is a state machine basically with named string values for each panel and null for none
 			lastLogin: this.$persist(null),
@@ -163,74 +160,23 @@ document.addEventListener("alpine:init", () => {
 				return typeof this.authToken === "string";
 			},
 			async submitLogin(username, password, form) {
-				const network = await this.checkNetworkStatus();
-				if (!network) return false;
+				const status = await lilRed.status(20, 5000, 1.05);
+				if (!status) return false;
 				this.modal = "Loading";
 				const token = await lilRed.login(username, password);
 				if (token) {
 					form.reset();
-					// TODO rip authToken and lastLogin out once all API calls have converted to lilRed
+					// TODO rip out authToken and lastLogin once all API calls have converted to lilRed
 					this.authToken = token;
 					this.lastLogin = dayjs();
-					await this.getUserData(token);
+					await this.getUserData();
 					await this.getAvailableSlots();
 					await this.getBookedEvents();
 					this.modal = "My Account";
 					await this.getFavEvents();
-				}
-			},
-			async submitLoginOld(username, password, form) {
-				// Check network and data service before submitting event
-				const network = await this.checkNetworkStatus();
-				if (!network) return false;
-				this.modal = "Loading";
-				try {
-					let res = await fetch(apiBaseUrl + "/login", {
-						headers: {
-							"Content-Type": "application/json;charset=utf-8",
-						},
-						method: "POST",
-						body: JSON.stringify({
-							username: username,
-							password: password,
-						}),
-					});
+				} else {
 					// eslint-disable-next-line no-console
-					console.log(
-						"response",
-						res,
-						res.headers.get("authorization")
-					);
-					if (
-						res.status === 200 &&
-						res.headers.get("authorization")
-					) {
-						const token = res.headers.get("authorization");
-						this.authToken = token;
-						this.lastLogin = dayjs();
-						if (token) {
-							form.reset();
-							// Need to pass token for first couple since there is a delay with the $persist code storing it
-							await this.getUserData(token);
-							await this.getAvailableSlots();
-							await this.getBookedEvents();
-							this.modal = "My Account";
-							await this.getFavEvents();
-							// this.checkRegistration()  this was for Big Bad Online
-						}
-						return token;
-					} else {
-						// TODO: better error message to say if password is wrong
-						this.$dispatch("toast", "ERROR: login failed");
-						this.modal = "Login";
-						return null;
-					}
-				} catch (error) {
-					// eslint-disable-next-line no-console
-					console.log("login error", error);
-					this.$dispatch("toast", "ERROR: login failed");
-					this.modal = "Login";
-					return null;
+					console.log("Login no token");
 				}
 			},
 			logout(msg = "You have been logged out") {
@@ -341,8 +287,6 @@ document.addEventListener("alpine:init", () => {
 					console.error(`ERROR: fetch for '/events/me/'`, err);
 					return false;
 				}
-				// Logout if this fails as it indicates we are offline. This is necessary because we had issues with  people submitting forms and it didn't work.
-				this.checkNetworkStatus();
 				// 2. Get event data from local JSON
 				let eventData = {};
 				try {
@@ -352,7 +296,7 @@ document.addEventListener("alpine:init", () => {
 					// eslint-disable-next-line no-console
 					console.error(`ERROR: fetch for '/events.json'`, err);
 				}
-				//create array from eventData.json and remove all undefined cancelled events
+				//create array from eventData.json and remove all undefined cancelled events and sort
 				myEvents = myEvents
 					.map((id) => eventData[id])
 					.filter((event) => event)
@@ -370,8 +314,8 @@ document.addEventListener("alpine:init", () => {
 			},
 			async bookEvent(id) {
 				// Check network and data service before submitting event
-				const network = await this.checkNetworkStatus();
-				if (!network) return false;
+				const status = await lilRed.status(20, 5000, 1.05);
+				if (!status) return false;
 				// book event
 				const data = await lilRed.bookings.add(id);
 				if (!data) {
@@ -389,8 +333,8 @@ document.addEventListener("alpine:init", () => {
 			},
 			async cancelBooking(id) {
 				// Check network and data service before submitting event
-				const network = await this.checkNetworkStatus();
-				if (!network) return false;
+				const status = await lilRed.status(20, 5000, 1.05);
+				if (!status) return false;
 				let data = await lilRed.bookings.delete(id);
 				if (!data) {
 					this.$dispatch(
@@ -424,9 +368,9 @@ document.addEventListener("alpine:init", () => {
 			},
 			async toggleFav(id) {
 				id = Number(id);
-				// Check network and data service before submitting event
-				const network = await this.checkNetworkStatus();
-				if (!network) return false;
+				// Check network and data service before favoriting
+				const status = await lilRed.status();
+				if (!status) return false;
 
 				let data;
 				if (this.isFav(id)) {
@@ -481,22 +425,6 @@ document.addEventListener("alpine:init", () => {
 					body: { userId: userId, password: password },
 				});
 				return data;
-			},
-			async checkNetworkStatus() {
-				if (!navigator.onLine) {
-					this.$dispatch(
-						"toast",
-						"ERROR: You are currently offline! Booking and forms will not work."
-					);
-					return false;
-				} else {
-					const littleRedStatus = await lilRed.status();
-					if (!littleRedStatus) {
-						return false;
-					}
-					return true;
-				}
-				// TODO: add timer that checked for data service status
 			},
 			async hello() {
 				const response = await fetch(apiBaseUrl + "/", {
@@ -849,24 +777,8 @@ document.addEventListener("alpine:init", () => {
 			},
 			async uploadImage(e) {
 				// Check network and data service before submitting event
-				if (!navigator.onLine) {
-					this.$dispatch(
-						"toast",
-						"You are currently offline! Booking and forms will not work."
-					);
-					return false;
-				} else {
-					const littleRed = await fetch(apiBaseUrl + "/", {
-						method: "GET",
-					});
-					if (littleRed.status !== 200) {
-						this.$dispatch(
-							"toast",
-							"The data service is currently offline! Please wait and try again."
-						);
-						return false;
-					}
-				}
+				const status = await lilRed.status();
+				if (!status) return false;
 
 				if (!this.isAdmin) return false;
 
