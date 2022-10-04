@@ -17,7 +17,7 @@ window.Alpine = Alpine;
 
 window.lilRed = lilRed;
 lilRed.init({
-	lilRedApiUrl: "https://admin.bigbadcon.com:8091/api43242323423",
+	lilRedApiUrl: "https://admin.bigbadcon.com:8091/api",
 	verbose: true,
 });
 /* -------------------------------------------------------------------------- */
