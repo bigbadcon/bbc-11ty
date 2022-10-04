@@ -8,16 +8,16 @@ module.exports = [
 			 	"url": "/register",
 			 	"icon": "badge"
 			},
-			{
-				"title": "Run a Game",
-				"url": "/run-an-event",
-				"icon": "dice"
-			},
-			{
-				"title": "Game Schedule",
-			 	"url": "/events",
-			 	"icon": "calendar-clock"
-			},
+			//{
+			//	"title": "Run a Game",
+			//	"url": "/run-an-event",
+			//	"icon": "dice"
+			//},
+			//{
+			//	"title": "Game Schedule",
+			// 	"url": "/events",
+			// 	"icon": "calendar-clock"
+			//},
 			//{
 			//	"title": "Hotel",
 			//	"url": "/hotel",
@@ -99,18 +99,20 @@ module.exports = [
 	{
 		"title": "Volunteer",
 		"id": "volunteer",
-		"subnav": [
-			{
-				"title": "Become a Volunteer",
-				"url": "/volunteer",
-				"icon": "people-group"
-			},
-			{
-				"title": "Volunteer Shifts",
-				"url": "/volunteer-shifts",
-				"icon": "calendar-clock"
-			}
-		]
+		"url": "/volunteer",
+		"icon": "people-group",
+		//"subnav": [
+		//	{
+		//		"title": "Become a Volunteer",
+		//		"url": "/volunteer",
+		//		"icon": "people-group"
+		//	}
+			//{
+			//	"title": "Volunteer Shifts",
+			//	"url": "/volunteer-shifts",
+			//	"icon": "calendar-clock"
+			//}
+		//]
 	},
 	{
 		"title": "Blog",
