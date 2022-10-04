@@ -514,6 +514,7 @@ document.addEventListener("alpine:init", () => {
 				return dayjs(date).tz(tz).format("h:mma");
 			},
 			async delay(ms = 500) {
+				console.log("hi");
 				return new Promise((resolve) => setTimeout(resolve, ms));
 			},
 		};
