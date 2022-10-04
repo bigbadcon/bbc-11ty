@@ -75,7 +75,7 @@
     </div>
     {# Message for people not logged in #}
     <div x-cloak x-show="!isAuth" class="prose rounded-md bg-card p-base mt-base">
-        You must be <button @click="modal = 'login'" class="underline text-highlight">logged in</button> to sign up.
+        You must be <button @click="modal = 'Login'" class="underline text-highlight">logged in</button> to sign up.
     </div>
     {# Message for when logged in, not booked, and there are no spaces left #}
     <div x-cloak x-show="isAuth && !(maxSpaces === 'Any' || $store.events.spaces[id] > 0)" class="prose rounded-md bg-card p-base mt-base">

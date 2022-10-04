@@ -17,7 +17,7 @@
                 {# START Submit Form: only show if logged in #}
                 <div x-cloak x-show="!isAuth" class="prose">
                     <h2>Exhibitor Signup</h2>
-                    <p>You must be <button @click.stop="modal = 'login'" class="font-bold underline text-highlight">logged in</button> to submit a form.</p>
+                    <p>You must be <button @click.stop="modal = 'Login'" class="font-bold underline text-highlight">logged in</button> to submit a form.</p>
                 </div>
 
                 <div x-cloak x-show="isAuth && user" >

@@ -95,7 +95,7 @@ x-data="{ isAllAges: {{isAllAges}}, isQuotaExempt: {{isQuotaExempt}}, bookingCli
 
     {# Message for people not logged in #}
     <div x-cloak x-show="!isAuth" class="prose">
-        You must be <button @click="modal = 'login'">logged in</button> to sign up.
+        You must be <button @click="modal = 'Login'">logged in</button> to sign up.
     </div>
     {# Message for people logged in but without a badge #}
     <div x-cloak x-show="isAuth && !hasBadge" class="prose">

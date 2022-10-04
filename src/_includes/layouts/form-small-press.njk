@@ -12,7 +12,7 @@
             <section class="my-base">
                 {# START Submit Form: only show if logged in #}
                 <div x-cloak x-show="!isAuth" class="prose">
-                    <p>You must be <button @click.stop="modal = 'login'" class="font-bold underline text-highlight">logged in</button> and have a badge to submit a form.</p>
+                    <p>You must be <button @click.stop="modal = 'Login'" class="font-bold underline text-highlight">logged in</button> and have a badge to submit a form.</p>
                 </div>
                 <div x-cloak x-show="isAuth && !hasBadge" class="prose">
                     <p>Hello <b x-text="user.displayName"></b> you must be have a badge to submit the Small Press signup form.</p>

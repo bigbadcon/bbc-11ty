@@ -1,195 +1,226 @@
-import { test, expect, chromium } from '@playwright/test';
-import 'dotenv/config'
+/* global process */
+/* eslint-disable no-console */
+// eslint-disable-next-line no-unused-vars
+import { test, expect, chromium } from "@playwright/test";
+import "dotenv/config";
 
 // TODO: set up test using tab from field to field
 // TODO: set up test for other formats
 
-const eventName = 'Extradimensional Bunny Squad'
-const eventDescription = 'A elite squad of dimension hopping bunnies come into the world of Torg in search of the One True Carrot!'
+const eventName = "Extradimensional Bunny Squad";
+const eventDescription =
+	"A elite squad of dimension hopping bunnies come into the world of Torg in search of the One True Carrot!";
 
+// eslint-disable-next-line no-unused-vars
 function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+	return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 //  Run headless simulation
+
 test.use({
-    headless: false, 
-    launchOptions: {
-        logger: {
-            isEnabled: (name, severity) => name === 'browser',
-            log: (name, severity, message, args) => console.log(`${name} ${message}`)
-        },
-        // slowMo: 400,
-        devtools: true
-    }
-})
+	headless: false,
+	launchOptions: {
+		logger: {
+			isEnabled: (name) => name === "browser",
+			log: (name, message) => console.log(`${name} ${message}`),
+		},
+		slowMo: 400,
+		devtools: true,
+	},
+});
 
-test.describe('Submit Run An Event Form', () => {
+test.describe("Submit Run An Event Form", () => {
+	test.beforeEach(async ({ page }) => {
+		// Runs before each test and signs in each page.
 
-    test.beforeEach(async ({ page }) => {
-        // Runs before each test and signs in each page.
+		// await chromium.launch({ headless: false, slowMo: 100, devtools: true });
 
-        // await chromium.launch({ headless: false, slowMo: 100, devtools: true });
+		await page.goto("http://localhost:8888/run-an-event/");
 
-        await page.goto('http://localhost:8888/run-an-event/');
+		// Click text=login
+		await page.click("text=Login");
 
-        // Click text=login
-        await page.click('text=Login');
+		await expect(page.locator("#modal")).toBeVisible(); //
 
-        await expect(page.locator('#authModal')).toBeVisible(); //
+		// Click input[name="username"]
+		await page.locator('input[name="username"]').click();
 
-        // Click input[name="username"]
-        await page.locator('input[name="username"]').click();
+		// Fill input[name="username"]
+		await page
+			.locator('input[name="username"]')
+			.fill(process.env.ADMIN_LOGIN);
 
-        // Fill input[name="username"]
-        await page.locator('input[name="username"]').fill(process.env.ADMIN_LOGIN);
+		// Click input[name="password"]
+		await page.locator('input[name="password"]').click();
 
-        // Click input[name="password"]
-        await page.locator('input[name="password"]').click();
+		// Fill input[name="password"]
+		await page
+			.locator('input[name="password"]')
+			.fill(process.env.ADMIN_PASSWORD);
 
-        // Fill input[name="password"]
-        await page.locator('input[name="password"]').fill(process.env.ADMIN_PASSWORD);
+		// Click text=User Name Password Login >> button
+		await page.locator("text=User Name Password Login >> button").click();
 
-        // Click text=User Name Password Login >> button
-        await page.locator('text=User Name Password Login >> button').click();
+		await expect(
+			page.locator('#modal h3 span[x-text="user && user.displayName"]')
+		).toHaveText(process.env.ADMIN_DISPLAYNAME);
 
-        await expect(page.locator('#authModal h2 span[x-text="user && user.displayName"]')).toHaveText(process.env.ADMIN_DISPLAYNAME); 
+		// Close window
+		await page.locator("#modal-user-info .close-btn").click();
 
-        // Close window
-        await page.locator('#modal-user-info .close-btn').click();
+		await expect(page.locator("#modal")).toBeHidden();
+	});
 
-        await expect(page.locator('#authModal')).toBeHidden();
-    });
+	test("should submit an RPG Event", async ({ page }) => {
+		page.on("console", (msg) => console.log(msg.text()));
 
-    test('should submit an RPG Event', async ({ page }) => {
+		await expect(page.locator("#form")).toBeVisible();
 
-        page.on('console', msg => console.log(msg.text()))
+		// await expect(page.locator('#form-run-an-event button[type="submit"]')).not.toBeEnabled();
 
-        await expect(page.locator('#form')).toBeVisible()
+		// Select 18+
+		await page.locator('select[name="yourAge"]').selectOption("18+");
 
-        // await expect(page.locator('#form-run-an-event button[type="submit"]')).not.toBeEnabled();
+		// Check community standards
+		await page.locator("input#agree-to-community-standards").check();
 
-        // Select 18+
-        await page.locator('select[name="yourAge"]').selectOption('18+');
+		// Click input[name="eventName"]
+		await page.locator('input[name="eventName"]').click();
 
-        // Check community standards
-        await page.locator('input#agree-to-community-standards').check();
+		// Fill input[name="eventName"]
+		await page.locator('input[name="eventName"]').fill(eventName);
 
-        // Click input[name="eventName"]
-        await page.locator('input[name="eventName"]').click();
+		// select RPG
+		await page.locator('select[name="format"]').selectOption("RPG");
 
-        // Fill input[name="eventName"]
-        await page.locator('input[name="eventName"]').fill(eventName);
+		// Click input[name="system"]
+		await page.locator('input[name="system"]').click();
 
-        // select RPG
-        await page.locator('select[name="format"]').selectOption('RPG');
+		// Fill input[name="system"]
+		await page.locator('input[name="system"]').fill("Torg");
 
-        // Click input[name="system"]
-        await page.locator('input[name="system"]').click();
+		// Select No
+		await page.locator('select[name="playtest"]').selectOption("No");
 
-        // Fill input[name="system"]
-        await page.locator('input[name="system"]').fill('Torg');
+		// Click textarea[name="eventDescription"]
+		await page.locator('textarea[name="eventDescription"]').click();
 
-        // Select No
-        await page.locator('select[name="playtest"]').selectOption('No');
+		// Fill textarea[name="eventDescription"]
+		await page
+			.locator('textarea[name="eventDescription"]')
+			.fill(eventDescription);
 
-        // Click textarea[name="eventDescription"]
-        await page.locator('textarea[name="eventDescription"]').click();
+		// Select 18+
+		await page.locator('select[name="playerAge"]').selectOption("18+");
 
-        // Fill textarea[name="eventDescription"]
-        await page.locator('textarea[name="eventDescription"]').fill(eventDescription);
+		// Click input[name="minPlayers"]
+		await page.locator('input[name="minPlayers"]').click();
 
-        // Select 18+
-        await page.locator('select[name="playerAge"]').selectOption('18+');
+		// Fill input[name="minPlayers"]
+		await page.locator('input[name="minPlayers"]').fill("3");
 
-        // Click input[name="minPlayers"]
-        await page.locator('input[name="minPlayers"]').click();
+		// Click input[name="maxPlayers"]
+		await page.locator('input[name="maxPlayers"]').click();
 
-        // Fill input[name="minPlayers"]
-        await page.locator('input[name="minPlayers"]').fill('3');
+		// Fill input[name="maxPlayers"]
+		await page.locator('input[name="maxPlayers"]').fill("5");
 
-        // Click input[name="maxPlayers"]
-        await page.locator('input[name="maxPlayers"]').click();
+		// Select Provided
+		await page
+			.locator('select[name="characters"]')
+			.selectOption("Provided");
 
-        // Fill input[name="maxPlayers"]
-        await page.locator('input[name="maxPlayers"]').fill('5');
+		// Select how many times to run
+		await page.locator('select[name="runNumberOfTimes"]').selectOption("1");
 
-        // Select Provided
-        await page.locator('select[name="characters"]').selectOption('Provided');
+		// Select Location Preference
+		await page
+			.locator('select[name="locationPref"]')
+			.selectOption("Private Room");
 
-        // Select how many times to run
-        await page.locator('select[name="runNumberOfTimes"]').selectOption('1');
+		// Select event length 4
+		await page.locator('select[name="eventLength"]').selectOption("4");
 
-        // Select Location Preference
-        await page.locator('select[name="locationPref"]').selectOption('Private Room');
+		// Check input[name="time0"]
+		await page.locator('input[name="time0"]').check();
 
-        // Select event length 4
-        await page.locator('select[name="eventLength"]').selectOption('4');
+		// Check input[name="time3"]
+		await page.locator('input[name="time3"]').check();
 
-        // Check input[name="time0"]
-        await page.locator('input[name="time0"]').check();
+		// Check input[name="time6"]
+		await page.locator('input[name="time6"]').check();
 
-        // Check input[name="time3"]
-        await page.locator('input[name="time3"]').check();
+		// Select contentAdvisory
+		await page
+			.locator('select[name="contentAdvisory"]')
+			.selectOption("Yes");
 
-        // Check input[name="time6"]
-        await page.locator('input[name="time6"]').check();
+		// Check input[name="contentAdvisory2"]
+		await page.locator('input[name="contentAdvisoryOptions2"]').check();
 
-        // Select contentAdvisory
-        await page.locator('select[name="contentAdvisory"]').selectOption('Yes');
+		// Click input[name="triggerWarnings"]
+		await page.locator('input[name="triggerWarnings"]').click();
 
-        // Check input[name="contentAdvisory2"]
-        await page.locator('input[name="contentAdvisoryOptions2"]').check();
+		// Fill input[name="triggerWarnings"]
+		await page
+			.locator('input[name="triggerWarnings"]')
+			.fill("Bloody bunnies");
 
-        // Click input[name="triggerWarnings"]
-        await page.locator('input[name="triggerWarnings"]').click();
+		// Check input[name="safetyTools0"]
+		await page.locator('input[name="safetyTools0"]').check();
 
-        // Fill input[name="triggerWarnings"]
-        await page.locator('input[name="triggerWarnings"]').fill('Bloody bunnies');
+		// Check input[name="safetyTools3"]
+		await page.locator('input[name="safetyTools3"]').check();
 
-        // Check input[name="safetyTools0"]
-        await page.locator('input[name="safetyTools0"]').check();
+		// Check input[name="gameFocus0"]
+		await page.locator('input[name="gameFocus0"]').check();
 
-        // Check input[name="safetyTools3"]
-        await page.locator('input[name="safetyTools3"]').check();
+		// Check input[name="gameFocus1"]
+		await page.locator('input[name="gameFocus1"]').check();
 
-        // Check input[name="gameFocus0"]
-        await page.locator('input[name="gameFocus0"]').check();
+		// Check input[name="playerContributions3"]
+		await page.locator('input[name="playerContributions3"]').check();
 
-        // Check input[name="gameFocus1"]
-        await page.locator('input[name="gameFocus1"]').check();
+		// Check input[name="playerContributions6"]
+		await page.locator('input[name="playerContributions6"]').check();
 
-        // Check input[name="playerContributions3"]
-        await page.locator('input[name="playerContributions3"]').check();
+		// Check input[name="gameGenre1"]
+		await page.locator('input[name="gameGenre1"]').check();
 
-        // Check input[name="playerContributions6"]
-        await page.locator('input[name="playerContributions6"]').check();
+		// Click section div:has-text("Sci-Fi") >> nth=4
+		await page.locator('section div:has-text("Sci-Fi")').nth(4).click();
 
-        // Check input[name="gameGenre1"]
-        await page.locator('input[name="gameGenre1"]').check();
+		// Check input[name="gameGenre12"]
+		await page.locator('input[name="gameGenre12"]').check();
 
-        // Click section div:has-text("Sci-Fi") >> nth=4
-        await page.locator('section div:has-text("Sci-Fi")').nth(4).click();
+		await page
+			.locator('textarea[name="additionalGMs"]')
+			.fill("I have a dozen real bunnies that will help me GM!");
 
-        // Check input[name="gameGenre12"]
-        await page.locator('input[name="gameGenre12"]').check();
+		await page
+			.locator('textarea[name="additionalRequirements"]')
+			.fill(
+				"I need a bushel of carrots for the game and to feed my bunnies!"
+			);
 
-        await page.locator('textarea[name="additionalGMs"]').fill('I have a dozen real bunnies that will help me GM!');
+		await expect(
+			page.locator('#content form button[type="submit"]')
+		).toBeEnabled();
 
-        await page.locator('textarea[name="additionalRequirements"]').fill('I need a bushel of carrots for the game and to feed my bunnies!');
+		// await delay(5000);
 
-        await expect(page.locator('#content form button[type="submit"]')).toBeEnabled();
+		// Click text=Submit Your Event * required field Personal Info Public Badge Name We encourage  >> button
+		await page.locator('#content form button[type="submit"]').click();
 
-        // await delay(5000);
+		await expect(page.locator("#event-submitted")).toBeVisible();
 
-        // Click text=Submit Your Event * required field Personal Info Public Badge Name We encourage  >> button
-        await page.locator('#content form button[type="submit"]').click();
+		await expect(
+			page.locator("#event-submitted span#submit-format")
+		).toHaveText("RPG");
 
-        await expect(page.locator('#event-submitted')).toBeVisible();
-
-        await expect(page.locator('#event-submitted span#submit-format')).toHaveText('RPG')
-        
-        await expect(page.locator('#event-submitted span#submit-name')).toHaveText(eventName)
-
-    });
-})
+		await expect(
+			page.locator("#event-submitted span#submit-name")
+		).toHaveText(eventName);
+	});
+});

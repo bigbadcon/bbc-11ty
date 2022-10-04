@@ -12,7 +12,7 @@
             <section class="my-base">
                 {# START Submit Form: only show if logged in #}
                 <div x-cloak x-show="!isAuth" class="prose">
-                    <p>You must be <button @click.stop="modal = 'login'" class="font-bold underline text-highlight">logged in</button> to submit a game</p>
+                    <p>You must be <button @click.stop="modal = 'Login'" class="font-bold underline text-highlight">logged in</button> to submit a game</p>
                 </div>
 
                 <div x-cloak x-show="isAuth && user" x-data="runAnEventData">
