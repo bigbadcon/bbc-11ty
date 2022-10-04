@@ -25,7 +25,7 @@ fields:
     required: false
   label: image alt text
 pages:
-- src/cards-big/1-GPNW2022.md
+#- src/cards-big/1-GPNW2022.md
 - src/cards-big/2-how-gpnw-online-works.md
 - src/cards-big/3-what-is-the-donut.md
 - src/cards-big/4-featured-facilitators.md
