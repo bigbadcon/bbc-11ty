@@ -22,7 +22,7 @@
         {% endif %}
         {# Message for people not logged in #}
         <div x-cloak x-show="!isAuth">
-            You must be <button @click="modal = 'login'" class="underline text-highlight">logged in</button> to sign up for a volunter shift.
+            You must be <button @click="modal = 'Login'" class="underline text-highlight">logged in</button> to sign up for a volunter shift.
         </div>
         {# Show if they re logged in and do not yet have a user role of volunteer #}
         <div class="text-sm italic mt-base" x-show="isAuth && !isVolunteer">You must <a href="/rangers/#signup" class="underline text-highlight">sign up as a volunteer</a> to add a volunteer shift</div>

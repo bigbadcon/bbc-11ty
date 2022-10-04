@@ -1,7 +1,7 @@
 {# x-data="eventInfo" on event page #}
 {# Show need for login  #}
 <div x-cloak x-show="!isAuth" class="prose rounded-md mt-base bg-card pt-sm pb-base px-base">
-    <p>You must be <button @click.stop="modal = 'login'" class="font-bold underline text-highlight">logged in</button> and have a badge to sign up as a Small Press Vendor</p>
+    <p>You must be <button @click.stop="modal = 'Login'" class="font-bold underline text-highlight">logged in</button> and have a badge to sign up as a Small Press Vendor</p>
 </div>
 
 <div x-cloak x-show="isAuth && isTeen" class="prose rounded-md mt-base bg-card pt-sm pb-base px-base">

@@ -9,7 +9,7 @@
             <section class="my-base" x-data="{formSubmitted:false}" x-init="if (isAuth) getUserData()">
                 {# START Submit Form: only show if logged in #}
                 <div x-cloak x-show="!isAuth" class="prose">
-                    <p>You must be <button @click.stop="modal = 'login'" class="font-bold underline text-highlight">logged in</button> to activate a gift badge</p>
+                    <p>You must be <button @click.stop="modal = 'Login'" class="font-bold underline text-highlight">logged in</button> to activate a gift badge</p>
                 </div>
                 <div class="prose rounded-md bg-card p-base" x-cloak x-show="isAuth && hasBadge" x-transition>
                     <p>Welcome <b x-text="user && user.displayName"></b>

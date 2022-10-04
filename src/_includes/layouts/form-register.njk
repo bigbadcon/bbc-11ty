@@ -17,7 +17,7 @@
                 #}
                 {# Login disclaimer: only show if not registered and not logged in #}
                 <div x-cloak x-show="!isAuth" class="prose">
-                    <p>You must <button @click="modal = 'login'" class="font-bold text-highlight">login</button> to register for Big Bad Online or view your registration information.</p>
+                    <p>You must <button @click="modal = 'Login'" class="font-bold text-highlight">login</button> to register for Big Bad Online or view your registration information.</p>
                 </div>
                 {# Loading spinner #}
                 <div x-cloak x-show="isAuth && isRegistered === null" 
