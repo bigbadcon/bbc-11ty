@@ -1,9 +1,9 @@
 ---
 tags: poc-scholar
-order: 0
+order: 
 title: stellaluna
 position: ''
-published: true
+published: false
 gender: she/they
 image: "/images/stellaluna_cropped.jpg"
 twitter: stellalunaTV
