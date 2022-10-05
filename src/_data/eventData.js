@@ -10,6 +10,7 @@ dayjs.extend(timezone);
 const environment = process.env.CONTEXT;
 const fs = require("fs-extra");
 const utf8 = require("utf8");
+const windows1252 = require("windows-1252");
 
 /* -------------------------------------------------------------------------- */
 /*                              Helper Functions                              */
@@ -19,6 +20,9 @@ const utf8 = require("utf8");
 // let utf8decoder = new TextDecoder();
 const decodeText = (text) => {
 	try {
+		text = windows1252.encode(text, {
+			mode: "html",
+		});
 		return utf8.decode(text);
 	} catch (error) {
 		return text;
