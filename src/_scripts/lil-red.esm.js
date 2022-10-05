@@ -221,17 +221,13 @@ var decodeText = (text) => {
   }
 };
 async function fetcher(url, options) {
-  const apiPath = new URL(url).pathname;
+  const apiPath = url.replace(lilRedSettings.lilRedApiUrl, "");
   try {
     let response = await fetch(url, options);
     if (lilRedSettings.verbose)
       console.log(`RESPONSE:lilFetch for ${apiPath}`, response);
     if (response.status === 401) {
-      dispatch(
-        "lil-red-error",
-        "(FETCH) Unauthorized. AuthToken invalid. You will be logged out, please and log back in and try again."
-      );
-      logout();
+      dispatch("lil-red-error", "(FETCH) Unauthorized or AuthToken invalid. Try logging out and back in.");
       return null;
     }
     if (!response || response.status !== 200)
@@ -240,9 +236,12 @@ async function fetcher(url, options) {
     const result = contentType && contentType.indexOf("application/json") !== -1 ? await response.json() : await response.text();
     if (lilRedSettings.verbose)
       console.log(`RESULT: lilFetch for ${apiPath}`, result);
+    console.log("\u{1F680} ~ file: index.js ~ line 116 ~ fetcher ~ result", result);
     return result;
   } catch (err) {
-    dispatch("lil-red-error", `(FETCH) lilFetch failed for ${apiPath}`, err);
+    if (apiPath !== "/") {
+      dispatch("lil-red-error", `(FETCH) lilFetch failed for ${apiPath}`, err);
+    }
     return null;
   }
 }
@@ -476,14 +475,12 @@ var events = {
   category: (category) => lilGet(`/events/category/${category}`),
   count: () => lilGet("/events/count"),
   create: (body) => lilPut("/events/create", body),
-  uploadImage: (formData) => {
-    lilFetch({
-      api: "/events/image",
-      method: "POST",
-      body: formData,
-      jsonStringify: false
-    });
-  },
+  uploadImage: async (formData) => lilFetch({
+    api: "/events/image",
+    method: "POST",
+    body: formData,
+    jsonStringify: false
+  }),
   currentYear: (length, offset) => lilGet(`/events/page/${length}/${offset}`),
   since: (epochtime) => lilGet(`/events/since/${epochtime}`),
   public: {
@@ -504,11 +501,11 @@ var events = {
 };
 var admin = {
   roles: {
-    add: (id, role) => lilPost("/events/addRoleToUser", {
+    add: (id, role) => lilPost("/users/addRoleToUser", {
       userId: Number(id),
       role
     }),
-    delete: (id, role) => lilPost("/events/removeRoleFormUser", {
+    delete: (id, role) => lilPost("/users/removeRoleFromUser", {
       userId: Number(id),
       role
     })
@@ -521,12 +518,9 @@ var admin = {
     setPassword: (id, password2) => lilPost("/users/setPassword", { password: password2, userId: id })
   },
   bookings: {
-    add: () => {
-    },
-    delete: () => {
-    },
-    setGm: () => {
-    }
+    add: (eventId, userId, isGm = false) => lilPost("/bookings/addUserToGame", { eventId, userId, isGm }),
+    delete: (eventId, userId) => lilDelete("/bookings/removeUserFromGame", { eventId, userId }),
+    setGm: (eventId, userId, isGm = true) => lilPost("/bookings/setGmStatusForPlayerInGame", { eventId, userId, isGm })
   }
 };
 export {

@@ -780,38 +780,10 @@ document.addEventListener("alpine:init", () => {
 				const status = await lilRed.status();
 				if (!status) return false;
 
-				if (!this.isAdmin) return false;
-
 				const eventId = e.target.eventId.value;
 				const formData = new FormData(e.target);
 
-				async function customFetch(url, authToken) {
-					const options = {
-						method: "POST",
-						headers: {
-							Authorization: authToken,
-						},
-						body: formData,
-					};
-
-					try {
-						let response = await fetch(apiBaseUrl + url, options);
-						// eslint-disable-next-line no-console
-						console.log(`RESPONSE:fetch for ${url}`, response);
-						if (response.status !== 200)
-							throw `fetch fail status: ${response.status}`;
-						let result = await response.json();
-						// eslint-disable-next-line no-console
-						console.log(`RESULT:fetch for ${url}`, result);
-						return result;
-					} catch (err) {
-						// eslint-disable-next-line no-console
-						console.error(`ERROR:fetch for ${url}`, err);
-						return false;
-					}
-				}
-
-				let data = await customFetch("/events/image", this.authToken);
+				let data = await lilRed.events.uploadImage(formData);
 
 				if (data) {
 					// if data update event data with new image
