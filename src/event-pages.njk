@@ -59,7 +59,11 @@ eleventyComputed:
     {% if event.metadata.room %}
         <div>
             <strong>Room:</strong>
-            {{event.metadata.room}}</div>
+            <span>{{event.metadata.room}}</span>
+            {% if event.metadata.table %}
+                <span>({{event.metadata.table}})</span>
+            {% endif %}
+        </div>
     {% endif %}
     {# Spaces #}
     {% if event.metadata.Players %}

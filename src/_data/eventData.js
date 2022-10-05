@@ -459,7 +459,10 @@ module.exports = async () => {
 				date: event.eventStartDateTime,
 				dur: event.eventDuration,
 				status: event.eventStatus,
-				room: event.metadata.room,
+				room: isNaN(event.metadata.room)
+					? event.metadata.room
+					: `ROOM ${event.metadata.room}`,
+				table: event.metadata.table,
 				isV: event.isVolunteer ? 1 : 0,
 			};
 		});
