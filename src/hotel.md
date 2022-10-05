@@ -67,6 +67,6 @@ During the con, Boardroom IV will be designated as a respite room. It will be a 
 
 ### Safety & Wellbeing
 
-[Big Bad Con Public Health Plan.](/covid-safety/)
+[Big Bad Con Public Health Plan.](/public-health-policy/)
 
 [Hyatt's safety policies](https://www.hyatt.com/info/care-and-cleanliness-americas).
