@@ -347,7 +347,7 @@
                     },
                     async submitEvent() {
                         // check network status and data service before submitting
-                        const status = await lilRed.status(30);
+                        const status = await lilRed.status(20, 5000, 1.05);
                         if (!status) 
                             return false;
                         

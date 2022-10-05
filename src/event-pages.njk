@@ -105,16 +105,20 @@ eleventyComputed:
     </div>
 {% endif %}
 
-{# Event Tags #}
-{% if event.tags | length %}
-    <div class="flex flex-wrap items-center prose gap-xs mt-base">
-        <strong>Tags:</strong>
-        {% for tag in event.tags %}
-            <span class="rounded-full bg-card px-sm py-[.05rem] text-sm">{{tag}}</span>
-        {% endfor %}
+{% if sitemeta.context === 'dev' or sitemeta.context === 'branch-deploy' %}
+    <div class="border-2 border-header p-base mt-base">
+        <h3 class="font-bold text-header">DEV ONLY</h3>
+        {# Event Tags #}
+        {% if event.tags | length %}
+            <div class="flex flex-wrap items-center prose gap-xs mt-base">
+                <strong>Tags:</strong>
+                {% for tag in event.tags %}
+                    <span class="rounded-full bg-card px-sm py-[.05rem] text-sm">{{tag}}</span>
+                {% endfor %}
+            </div>
+        {% endif %}
     </div>
 {% endif %}
-
 {# Event Signup / Booking #}
 {# TODO: make this visible for all when events open. Figure out a way to set this automatically. #}
 {# TODO: when do we want event signups to start? 9/25 12pm PT #}
