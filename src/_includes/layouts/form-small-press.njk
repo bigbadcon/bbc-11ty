@@ -127,7 +127,7 @@
                     formInfo: {},
                     async submitForm(e) {
                         // Check network status and data service status
-                        const status = await lilRed.status(30);
+                        const status = await lilRed.status(20, 5000, 1.05);
                         if (!status) 
                             return false;
                         
