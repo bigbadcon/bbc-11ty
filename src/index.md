@@ -16,5 +16,5 @@ tags: pages
 ### Upcoming dates:
 
 * Event sign ups are [open now](https://www.bigbadcon.com/events/)!
-* Game quotas lifted on 10/8 at 7PM PT.
+* Last day to [book at the con rate](https://www.hyatt.com/en-US/group-booking/SFOBU/G-BBC3) is 10/15.
 * Big Bad Con is October 27-30!
