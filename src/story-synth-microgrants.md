@@ -91,9 +91,11 @@ This grant kicks off January 24, 2022 and will go till October 22, 2022. Here’
 
 ### How do I apply?
 
-The Apply Now link below will bring you to our Story Synth Microgrant Application. All we need is some details for who you are and a pitch for your game — it's that easy!
+<!--The Apply Now link below will bring you to our Story Synth Microgrant Application. All we need is some details for who you are and a pitch for your game — it's that easy!
 
-[Apply Now!](https://airtable.com/shr2bGagYJxhDX2Te){.icon-pencil-square}
+[Apply Now!](https://airtable.com/shr2bGagYJxhDX2Te){.icon-pencil-square}-->
+
+The StorySynth applications are now closed. We're delicted that were were able to give out 100 grants (total of $30,000) to game designers creating on the StorySynth platform. You can see some of their work [https://storysynth.org/Gallery/](here). 
 
 ### FAQ
 
