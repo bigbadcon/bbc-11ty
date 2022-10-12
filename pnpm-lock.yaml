@@ -7,7 +7,7 @@ specifiers:
   '@11ty/eleventy-plugin-rss': ^1.1.1
   '@alpinejs/intersect': ^3.10.3
   '@alpinejs/persist': ^3.10.3
-  '@colinaut/alpinejs-plugin-simple-validate': ^1.7.12
+  '@colinaut/alpinejs-plugin-simple-validate': ^1.7.13
   '@netlify/functions': ^0.7.2
   '@playwright/test': ^1.22.2
   '@sendgrid/mail': ^7.4.6
@@ -55,7 +55,7 @@ dependencies:
   '@11ty/eleventy-plugin-rss': 1.1.1_@11ty+eleventy@1.0.2
   '@alpinejs/intersect': 3.10.3
   '@alpinejs/persist': 3.10.3
-  '@colinaut/alpinejs-plugin-simple-validate': 1.7.12
+  '@colinaut/alpinejs-plugin-simple-validate': 1.7.13
   '@netlify/functions': 0.7.2
   '@sendgrid/mail': 7.4.6
   '@slack/bolt': 3.6.0
@@ -405,8 +405,8 @@ packages:
       to-fast-properties: 2.0.0
     dev: false
 
-  /@colinaut/alpinejs-plugin-simple-validate/1.7.12:
-    resolution: {integrity: sha512-uVemuBHtkwP4b9n7kpNoaGGP7I/YoxLaFP79mZ3xntnpbOJb2KNSvCNsJsSuwpyypREIrmdvqe4VF81YcxNY8A==}
+  /@colinaut/alpinejs-plugin-simple-validate/1.7.13:
+    resolution: {integrity: sha512-3sCAFcr3XgZfCnc2sZf1P/eVaBu/Bro+Fwp6XqMD9HU+3LRi7CBOR3+/pFYX4AL80i/x295Qv32acaxL+cA9RA==}
     dependencies:
       concurrently: 7.4.0
       esbuild: 0.12.29
