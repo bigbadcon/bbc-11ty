@@ -7,7 +7,7 @@ published: true
 gender: they/them
 image: "/images/nala-j-wu.jpeg"
 twitter: NalaWu
-website_name: Nala Draws
+website_name: naladraws
 website_url: https://naladraws.com
 
 ---
