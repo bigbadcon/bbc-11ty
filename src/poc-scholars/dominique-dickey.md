@@ -1,9 +1,9 @@
 ---
 tags: poc-scholar
-order: 0
+order: 
 title: Dominique Dickey
 position: ''
-published: true
+published: false
 gender: they/them
 image: "/images/dominique-dickey.jpg"
 twitter: domsdickey
