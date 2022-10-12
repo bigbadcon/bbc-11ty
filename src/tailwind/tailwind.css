@@ -61,6 +61,33 @@
     --hr: #6C89A6;
     --backdrop: rgba(90, 100, 120, 0.6);
   }
+  [data-theme='light'] {
+    /* ---------------------------- Base Light Theme ---------------------------- */
+    --primary: #e1eac4;
+    --primary-2: #c4d0a0;
+    --primary-3: #94a268;
+    --primary-4: #849357;
+    --secondary: #843232;
+    --highlight: #e65800;
+    --highlight-2: #f22600;
+    --card: rgba(255, 255, 255, 0.6);
+    --body: #313a3c;
+    --body-highlight: #003312;
+    --header: var(--secondary);
+    --subheader: #304a3b;
+    --menu-icon: #6f693f;
+    --sky: #baedff;
+    --mountain: #83a0ad;
+    --sunmoon: #fff965;
+    --tree: #86815f;
+    --tree-2: #aca57e;
+    --main-gradient-top: #AFCFDD;
+    --main-gradient-bottom: #E4EFF2;
+    --bg-form: #fcf8f3;
+    --hr: #6E897C;
+    --fill-highlight: url(#highlight-gradient) var(--highlight);
+    --backdrop: rgba(16, 52, 55, 0.58);
+  }
 }
 
 .dark, [data-theme='dark'] {
