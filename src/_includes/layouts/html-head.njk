@@ -7,28 +7,7 @@
     <script src="/js/lite-youtube-embed.js" defer></script>
     <script src="/js/scripts.min.js" defer></script>
     <link rel="stylesheet" href="/css/lite-youtube-embed.css"/>
-    <script>
-        // dark/light theme
-        function setTheme(theme) {
-            document
-                .querySelector('html')
-                .setAttribute('data-theme', theme)
-            const themeColor = (theme === 'dark')
-                ? '#122436'
-                : '#c4d0a0';
-            document
-                .querySelector("meta[name='theme-color']")
-                .content = themeColor;
-            window
-                .localStorage
-                .setItem("theme", theme)
-        }
-        const savedTheme = window
-            .localStorage
-            .getItem('theme');
-        if (savedTheme) 
-            setTheme(savedTheme)
-    </script>
+
     {# Compiled with esbuild #}
 
     {# Preload the main fonts used. Italics are not preloaded as they are not used as much #}
