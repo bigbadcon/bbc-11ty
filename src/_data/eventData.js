@@ -1,5 +1,3 @@
-/* global require module process */
-
 const Cache = require("@11ty/eleventy-cache-assets");
 // const rootCas = require('ssl-root-cas').create();
 const dayjs = require("dayjs");
@@ -17,7 +15,9 @@ const windows1252 = require("windows-1252");
 /* -------------------------------------------------------------------------- */
 
 /* ------------------------- Convert odd characters ------------------------- */
-// let utf8decoder = new TextDecoder();
+// utf8 interpreted as windows-1252
+// We are using an old 1.x.x version of windows-1252 here as newer versions are ESM only and they don't work with UTF8 module.
+// Honestly this is a kludge and should be fixed server side in Phase 2
 const decodeText = (text) => {
 	try {
 		text = windows1252.encode(text, {
@@ -386,7 +386,7 @@ module.exports = async () => {
 
 			/* -------------------- Create date string with timezone -------------------- */
 			const tz = "America/Los_Angeles";
-			// TODO: need to sort out Daylight Savings Time. This is locking it to PDT; PST is -08:00
+			// TODO: need to sort out Proper Timezone and Daylight Savings Time. This is locking it to PDT; PST is -08:00
 			const eventStartDateTime = dayjs(
 				event.eventStartDate + "T" + event.eventStartTime + "-07:00"
 			)
