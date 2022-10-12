@@ -18,3 +18,5 @@ Sign up to attend Big Bad Con!
 [Small Press Showcase](https://www.bigbadcon.com/small-press-showcase/){.icon-price-tags}
 
 [Hotel](/hotel){.icon-hotel}
+
+[Program](/images/03-new_bigbadcon_program_10-09.pdf){.icon-book}
