@@ -13,13 +13,14 @@
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "concurrently \"npm run eleventybuild\" \"npm run esbuild\"",
-        "eleventybuild": "cross-env ELEVENTY_ENV=prod eleventy",
-        "esbuild": "node esbuild.js",
-        "dev": "cross-env ELEVENTY_ENV=dev eleventy --serve --quiet",
-        "develop": "eleventy --serve",
+        "start": "npm-run-all -p dev:*",
+        "dev": "npm-run-all -p dev:*",
+        "dev:11ty": "cross-env ELEVENTY_ENV=dev eleventy --serve --quiet",
+        "dev:js": "node esbuild.js --watch",
+        "build": "run-s build:*",
+        "build:11ty": "cross-env ELEVENTY_ENV=prod eleventy",
+        "build:js": "node esbuild.js",
         "debug": "DEBUG=* eleventy",
-        "watch": "node esbuild.js --watch",
         "svgs": "npx svg-sprite-generate -d src/assets/svgs -o src/static/images/icons.svg",
         "gd": "git checkout drafts && git merge main",
         "gm": "git checkout main && git merge drafts"
@@ -56,6 +57,7 @@
         "markdown-it-attrs": "^4.1.4",
         "netlify-plugin-inline-functions-env": "^1.0.9",
         "node-fetch": "^3.1.0",
+        "npm-run-all": "^4.1.5",
         "postcss": "latest",
         "postcss-cli": "latest",
         "puppeteer-core": "^10.2.0",
@@ -69,7 +71,6 @@
     },
     "devDependencies": {
         "@playwright/test": "^1.22.2",
-        "concurrently": "^7.4.0",
         "esbuild": "^0.15.10",
         "eslint": "^8.24.0",
         "svg-sprite-generator": "^0.0.7"
