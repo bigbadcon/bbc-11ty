@@ -117,6 +117,19 @@
 }
 
 /* -------------------------------------------------------------------------- */
+/*                                Theme Switch                                */
+/* -------------------------------------------------------------------------- */
+
+:root {
+    --lil-red-switch-border-radius: 4px;
+    --lil-red-switch-highlight: var(--highlight);
+    --lil-red-switch-track: var(--card);
+    --lil-red-switch-track-border: 2px solid var(--hr);
+    --lil-red-switch-color: var(--hr);
+    --lil-red-switch-knob: var(--hr);
+}
+
+/* -------------------------------------------------------------------------- */
 /*                                 Typography                                 */
 /* -------------------------------------------------------------------------- */
 
