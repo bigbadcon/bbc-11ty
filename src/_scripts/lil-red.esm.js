@@ -297,14 +297,14 @@ var auth = {
 };
 var AUTH_TOKEN = "lilRedAuthToken";
 var LAST_LOGIN = "lilRedLastLogin";
-var isBrowser = new Function("try {return this===window;}catch(e){ return false;}");
+var isBrowser = typeof window !== "undefined" && typeof window.document !== "undefined";
 function dispatch(name, detail, additional = "", bubbles = true) {
   if (name === "lil-red-error") {
     console.error(name, detail, additional);
   } else {
     console.log(name, detail, additional);
   }
-  if (isBrowser()) {
+  if (isBrowser) {
     document.dispatchEvent(
       new CustomEvent(name, {
         bubbles,
@@ -378,7 +378,7 @@ async function lilAuth(username, password2) {
         token,
         lastLogin
       };
-      if (isBrowser()) {
+      if (isBrowser) {
         localStorage.setItem(AUTH_TOKEN, token);
         localStorage.setItem(LAST_LOGIN, lastLogin);
       }
@@ -410,7 +410,7 @@ async function lilFetch(settings) {
   if (settings.body)
     options.body = settings.body;
   if (!publicMethod && !settings.serverApiKey) {
-    const tokenLS = isBrowser() ? localStorage.getItem(AUTH_TOKEN) : null;
+    const tokenLS = isBrowser ? localStorage.getItem(AUTH_TOKEN) : null;
     const authToken = settings.token || auth.token || tokenLS;
     if (authToken) {
       options.headers.Authorization = authToken;
@@ -424,7 +424,7 @@ async function lilFetch(settings) {
       return null;
     }
     if (lilRedSettings.logoutIfStale) {
-      auth.lastLogin = auth.lastLogin || isBrowser() ? localStorage.getItem(LAST_LOGIN) : null;
+      auth.lastLogin = auth.lastLogin || isBrowser ? localStorage.getItem(LAST_LOGIN) : null;
       const lastLogin = Date.parse(auth.lastLogin);
       const now = new Date();
       const daysTillLogout = lilRedSettings.daysTillLogout || 10;
@@ -482,9 +482,11 @@ function destroy() {
   return true;
 }
 var status = async (maxCount = 1, delay = 5e3, multiplier = 1) => {
-  if (isBrowser() && !navigator.onLine) {
-    dispatch("lil-red-error", "You are not currently online", navigator.onLine);
-    return false;
+  if (isBrowser) {
+    if (!navigator.onLine) {
+      dispatch("lil-red-error", "You are not currently online", navigator.onLine);
+      return false;
+    }
   }
   const successResponse = lilRedSettings.statusResponse;
   let status2;
@@ -507,7 +509,7 @@ var login = (username, password2) => lilAuth(username, password2);
 var logout = () => {
   dispatch("lil-red-logout", "You have been logged out of Lil Red", new Date());
   auth = {};
-  if (isBrowser()) {
+  if (isBrowser) {
     localStorage.removeItem(AUTH_TOKEN);
     localStorage.removeItem(LAST_LOGIN);
   }
