@@ -1,0 +1,29 @@
+---
+layout: layouts/page.njk
+title: lilRed Status
+published: true
+description: lilRed Event Manager Status page
+
+---
+
+<div x-data="{status: 'unchecked',online: undefined}">
+
+    <h3>Check Status of the Little Red Event Manager</h3>
+    <div class="mb-lg">
+        <button @click="status = await lilRed.status()" class="button">Check Status</button>
+    </div>
+    <div x-cloak x-show="status === false">
+        <p>
+            <strong>Status Check shows you are offline.</strong> If you believe this is not the case please click the following button which uses the same script to check your browser status.</p>
+        <button @click="online = navigator.onLine" class="button">Check if <code class="text-primary">navigator.onLine</code> shows you as online</button>
+        <p x-show="online === false">The basic function <code>navigator.onLine</code> says you are offline. If you are online and this message shows then please try another browser or contact us at info@bigbadcon.com.</p>
+        <p x-show="online === true">The basic function <code>navigator.onLine</code> says you are online. Check status again. If you are still having issues logging in or doing other things write us at info@bigbadcon.com.</p>
+    </div>
+    <div x-cloak x-show="status === null" class="text-xl italic font-bold">
+        The Little Red Event Manager is offline.
+    </div>
+    <div x-cloak x-show="status === 'roll plus login'" class="text-xl italic font-bold">
+        The Little Red Event Manager is online!
+    </div>
+
+</div>
