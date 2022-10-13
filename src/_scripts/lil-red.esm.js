@@ -20,9 +20,9 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 
-// node_modules/.pnpm/utf8@3.0.0/node_modules/utf8/utf8.js
+// ../node_modules/.pnpm/utf8@3.0.0/node_modules/utf8/utf8.js
 var require_utf8 = __commonJS({
-  "node_modules/.pnpm/utf8@3.0.0/node_modules/utf8/utf8.js"(exports) {
+  "../node_modules/.pnpm/utf8@3.0.0/node_modules/utf8/utf8.js"(exports) {
     (function(root) {
       var stringFromCharCode = String.fromCharCode;
       function ucs2decode(string) {
@@ -184,8 +184,104 @@ var require_utf8 = __commonJS({
   }
 });
 
+// ../node_modules/.pnpm/windows-1252@1.1.0/node_modules/windows-1252/windows-1252.js
+var require_windows_1252 = __commonJS({
+  "../node_modules/.pnpm/windows-1252@1.1.0/node_modules/windows-1252/windows-1252.js"(exports, module) {
+    (function() {
+      const stringFromCharCode = String.fromCharCode;
+      const INDEX_BY_CODE_POINT = /* @__PURE__ */ new Map([[129, 1], [141, 13], [143, 15], [144, 16], [157, 29], [160, 32], [161, 33], [162, 34], [163, 35], [164, 36], [165, 37], [166, 38], [167, 39], [168, 40], [169, 41], [170, 42], [171, 43], [172, 44], [173, 45], [174, 46], [175, 47], [176, 48], [177, 49], [178, 50], [179, 51], [180, 52], [181, 53], [182, 54], [183, 55], [184, 56], [185, 57], [186, 58], [187, 59], [188, 60], [189, 61], [190, 62], [191, 63], [192, 64], [193, 65], [194, 66], [195, 67], [196, 68], [197, 69], [198, 70], [199, 71], [200, 72], [201, 73], [202, 74], [203, 75], [204, 76], [205, 77], [206, 78], [207, 79], [208, 80], [209, 81], [210, 82], [211, 83], [212, 84], [213, 85], [214, 86], [215, 87], [216, 88], [217, 89], [218, 90], [219, 91], [220, 92], [221, 93], [222, 94], [223, 95], [224, 96], [225, 97], [226, 98], [227, 99], [228, 100], [229, 101], [230, 102], [231, 103], [232, 104], [233, 105], [234, 106], [235, 107], [236, 108], [237, 109], [238, 110], [239, 111], [240, 112], [241, 113], [242, 114], [243, 115], [244, 116], [245, 117], [246, 118], [247, 119], [248, 120], [249, 121], [250, 122], [251, 123], [252, 124], [253, 125], [254, 126], [255, 127], [338, 12], [339, 28], [352, 10], [353, 26], [376, 31], [381, 14], [382, 30], [402, 3], [710, 8], [732, 24], [8211, 22], [8212, 23], [8216, 17], [8217, 18], [8218, 2], [8220, 19], [8221, 20], [8222, 4], [8224, 6], [8225, 7], [8226, 21], [8230, 5], [8240, 9], [8249, 11], [8250, 27], [8364, 0], [8482, 25]]);
+      const INDEX_BY_POINTER = /* @__PURE__ */ new Map([[0, "\u20AC"], [1, "\x81"], [2, "\u201A"], [3, "\u0192"], [4, "\u201E"], [5, "\u2026"], [6, "\u2020"], [7, "\u2021"], [8, "\u02C6"], [9, "\u2030"], [10, "\u0160"], [11, "\u2039"], [12, "\u0152"], [13, "\x8D"], [14, "\u017D"], [15, "\x8F"], [16, "\x90"], [17, "\u2018"], [18, "\u2019"], [19, "\u201C"], [20, "\u201D"], [21, "\u2022"], [22, "\u2013"], [23, "\u2014"], [24, "\u02DC"], [25, "\u2122"], [26, "\u0161"], [27, "\u203A"], [28, "\u0153"], [29, "\x9D"], [30, "\u017E"], [31, "\u0178"], [32, "\xA0"], [33, "\xA1"], [34, "\xA2"], [35, "\xA3"], [36, "\xA4"], [37, "\xA5"], [38, "\xA6"], [39, "\xA7"], [40, "\xA8"], [41, "\xA9"], [42, "\xAA"], [43, "\xAB"], [44, "\xAC"], [45, "\xAD"], [46, "\xAE"], [47, "\xAF"], [48, "\xB0"], [49, "\xB1"], [50, "\xB2"], [51, "\xB3"], [52, "\xB4"], [53, "\xB5"], [54, "\xB6"], [55, "\xB7"], [56, "\xB8"], [57, "\xB9"], [58, "\xBA"], [59, "\xBB"], [60, "\xBC"], [61, "\xBD"], [62, "\xBE"], [63, "\xBF"], [64, "\xC0"], [65, "\xC1"], [66, "\xC2"], [67, "\xC3"], [68, "\xC4"], [69, "\xC5"], [70, "\xC6"], [71, "\xC7"], [72, "\xC8"], [73, "\xC9"], [74, "\xCA"], [75, "\xCB"], [76, "\xCC"], [77, "\xCD"], [78, "\xCE"], [79, "\xCF"], [80, "\xD0"], [81, "\xD1"], [82, "\xD2"], [83, "\xD3"], [84, "\xD4"], [85, "\xD5"], [86, "\xD6"], [87, "\xD7"], [88, "\xD8"], [89, "\xD9"], [90, "\xDA"], [91, "\xDB"], [92, "\xDC"], [93, "\xDD"], [94, "\xDE"], [95, "\xDF"], [96, "\xE0"], [97, "\xE1"], [98, "\xE2"], [99, "\xE3"], [100, "\xE4"], [101, "\xE5"], [102, "\xE6"], [103, "\xE7"], [104, "\xE8"], [105, "\xE9"], [106, "\xEA"], [107, "\xEB"], [108, "\xEC"], [109, "\xED"], [110, "\xEE"], [111, "\xEF"], [112, "\xF0"], [113, "\xF1"], [114, "\xF2"], [115, "\xF3"], [116, "\xF4"], [117, "\xF5"], [118, "\xF6"], [119, "\xF7"], [120, "\xF8"], [121, "\xF9"], [122, "\xFA"], [123, "\xFB"], [124, "\xFC"], [125, "\xFD"], [126, "\xFE"], [127, "\xFF"]]);
+      const error = (codePoint, mode) => {
+        if (mode == "replacement") {
+          return "\uFFFD";
+        }
+        if (codePoint !== null && mode === "html") {
+          return "&#" + codePoint + ";";
+        }
+        throw new Error();
+      };
+      const decode = (input, options) => {
+        let mode;
+        if (options && options.mode) {
+          mode = options.mode.toLowerCase();
+        }
+        if (mode !== "replacement" && mode !== "fatal") {
+          mode = "replacement";
+        }
+        const buffer = [];
+        for (let index = 0; index < input.length; index++) {
+          const byteValue = input.charCodeAt(index);
+          if (byteValue >= 0 && byteValue <= 127) {
+            buffer.push(stringFromCharCode(byteValue));
+            continue;
+          }
+          const pointer = byteValue - 128;
+          if (INDEX_BY_POINTER.has(pointer)) {
+            buffer.push(INDEX_BY_POINTER.get(pointer));
+          } else {
+            buffer.push(error(null, mode));
+          }
+        }
+        const result = buffer.join("");
+        return result;
+      };
+      const encode = (input, options) => {
+        let mode;
+        if (options && options.mode) {
+          mode = options.mode.toLowerCase();
+        }
+        if (mode !== "fatal" && mode !== "html") {
+          mode = "fatal";
+        }
+        const buffer = [];
+        for (let index = 0; index < input.length; index++) {
+          const codePoint = input.charCodeAt(index);
+          if (codePoint >= 0 && codePoint <= 127) {
+            buffer.push(stringFromCharCode(codePoint));
+            continue;
+          }
+          if (INDEX_BY_CODE_POINT.has(codePoint)) {
+            const pointer = INDEX_BY_CODE_POINT.get(codePoint);
+            buffer.push(stringFromCharCode(pointer + 128));
+          } else {
+            buffer.push(error(codePoint, mode));
+          }
+        }
+        const result = buffer.join("");
+        return result;
+      };
+      const windows12522 = {
+        encode,
+        decode,
+        labels: [
+          "ansi_x3.4-1968",
+          "ascii",
+          "cp1252",
+          "cp819",
+          "csisolatin1",
+          "ibm819",
+          "iso-8859-1",
+          "iso-ir-100",
+          "iso8859-1",
+          "iso88591",
+          "iso_8859-1",
+          "iso_8859-1:1987",
+          "l1",
+          "latin1",
+          "us-ascii",
+          "windows-1252",
+          "x-cp1252"
+        ],
+        version: "1.1.0"
+      };
+      module.exports = windows12522;
+    })();
+  }
+});
+
 // src/index.js
 var import_utf8 = __toESM(require_utf8());
+var import_windows_1252 = __toESM(require_windows_1252());
 var lilRedDefaults = {
   lilRedApiUrl: null,
   statusResponse: "roll plus login",
@@ -195,15 +291,20 @@ var lilRedDefaults = {
   verbose: false
 };
 var lilRedSettings;
+var auth = {
+  token: null,
+  lastLogin: null
+};
 var AUTH_TOKEN = "lilRedAuthToken";
 var LAST_LOGIN = "lilRedLastLogin";
+var isBrowser = new Function("try {return this===window;}catch(e){ return false;}");
 function dispatch(name, detail, additional = "", bubbles = true) {
   if (name === "lil-red-error") {
     console.error(name, detail, additional);
   } else {
     console.log(name, detail, additional);
   }
-  if (typeof document !== "undefined") {
+  if (isBrowser()) {
     document.dispatchEvent(
       new CustomEvent(name, {
         bubbles,
@@ -214,9 +315,11 @@ function dispatch(name, detail, additional = "", bubbles = true) {
 }
 var decodeText = (text) => {
   try {
+    text = import_windows_1252.default.encode(text, {
+      mode: "html"
+    });
     return import_utf8.default.decode(text);
   } catch (error) {
-    console.error("decodeText: " + error);
     return text;
   }
 };
@@ -236,7 +339,6 @@ async function fetcher(url, options) {
     const result = contentType && contentType.indexOf("application/json") !== -1 ? await response.json() : await response.text();
     if (lilRedSettings.verbose)
       console.log(`RESULT: lilFetch for ${apiPath}`, result);
-    console.log("\u{1F680} ~ file: index.js ~ line 116 ~ fetcher ~ result", result);
     return result;
   } catch (err) {
     if (apiPath !== "/") {
@@ -271,8 +373,15 @@ async function lilAuth(username, password2) {
     }
     if (response.status === 200 && response.headers.get("authorization")) {
       const token = response.headers.get("authorization");
-      localStorage.setItem(AUTH_TOKEN, token);
-      localStorage.setItem(LAST_LOGIN, new Date().toISOString());
+      const lastLogin = new Date().toISOString();
+      auth = {
+        token,
+        lastLogin
+      };
+      if (isBrowser()) {
+        localStorage.setItem(AUTH_TOKEN, token);
+        localStorage.setItem(LAST_LOGIN, lastLogin);
+      }
       dispatch("lil-red-login", "success", username);
       return token;
     }
@@ -301,7 +410,8 @@ async function lilFetch(settings) {
   if (settings.body)
     options.body = settings.body;
   if (!publicMethod && !settings.serverApiKey) {
-    const authToken = settings.token || localStorage.getItem(AUTH_TOKEN);
+    const tokenLS = isBrowser() ? localStorage.getItem(AUTH_TOKEN) : null;
+    const authToken = settings.token || auth.token || tokenLS;
     if (authToken) {
       options.headers.Authorization = authToken;
     } else {
@@ -314,7 +424,8 @@ async function lilFetch(settings) {
       return null;
     }
     if (lilRedSettings.logoutIfStale) {
-      const lastLogin = Date.parse(localStorage.getItem(LAST_LOGIN));
+      auth.lastLogin = auth.lastLogin || isBrowser() ? localStorage.getItem(LAST_LOGIN) : null;
+      const lastLogin = Date.parse(auth.lastLogin);
       const now = new Date();
       const daysTillLogout = lilRedSettings.daysTillLogout || 10;
       const earliestAllowedLogin = Date.parse(new Date(now.setDate(now.getDate() - daysTillLogout)));
@@ -371,7 +482,7 @@ function destroy() {
   return true;
 }
 var status = async (maxCount = 1, delay = 5e3, multiplier = 1) => {
-  if (typeof document !== "undefined" && !navigator.onLine) {
+  if (isBrowser() && !navigator.onLine) {
     dispatch("lil-red-error", "You are not currently online", navigator.onLine);
     return false;
   }
@@ -395,17 +506,14 @@ var status = async (maxCount = 1, delay = 5e3, multiplier = 1) => {
 var login = (username, password2) => lilAuth(username, password2);
 var logout = () => {
   dispatch("lil-red-logout", "You have been logged out of Lil Red", new Date());
-  localStorage.removeItem(AUTH_TOKEN);
-  localStorage.removeItem(LAST_LOGIN);
+  auth = {};
+  if (isBrowser()) {
+    localStorage.removeItem(AUTH_TOKEN);
+    localStorage.removeItem(LAST_LOGIN);
+  }
 };
 var isAdmin = () => lilGet("/users/me/isadmin");
 var me = () => lilGet("/users/me");
-var roles = async (user) => {
-  user = user || await lilGet("/users/me");
-  const capabilities = user.metadata.find((md) => /capabilities/.test(md.metaKey)).metaValue;
-  const roles2 = [...capabilities.matchAll(/"([a-z-]+)/g)].map((match) => match[1]);
-  return roles2;
-};
 var bookings = {
   slots: () => lilGet("/bookings/myAvailableSlots"),
   get: () => lilGet("/events/me"),
@@ -459,7 +567,7 @@ var events = {
         bookingComment: booking.bookingComment
       };
     });
-    const facilitator = bookings2.filter((booking) => booking.bookingComment).sort((a, b) => a.displayName.localeCompare(b.displayName)) || [];
+    const hosts = bookings2.filter((booking) => booking.bookingComment).sort((a, b) => a.displayName.localeCompare(b.displayName)) || [];
     const attendees = bookings2.filter((booking) => !booking.bookingComment).map((booking) => {
       return {
         id: booking.id,
@@ -467,7 +575,7 @@ var events = {
       };
     }).sort((a, b) => a.displayName.localeCompare(b.displayName)) || [];
     return {
-      facilitator,
+      hosts,
       attendees
     };
   },
@@ -518,13 +626,95 @@ var admin = {
     setPassword: (id, password2) => lilPost("/users/setPassword", { password: password2, userId: id })
   },
   bookings: {
+    get: (userId) => lilPost("/events/user", { id: userId }),
     add: (eventId, userId, isGm = false) => lilPost("/bookings/addUserToGame", { eventId, userId, isGm }),
     delete: (eventId, userId) => lilDelete("/bookings/removeUserFromGame", { eventId, userId }),
     setGm: (eventId, userId, isGm = true) => lilPost("/bookings/setGmStatusForPlayerInGame", { eventId, userId, isGm })
   }
 };
+function metadataArrayToObject(arr) {
+  const object = arr.reduce(function(result, item) {
+    result[item.metaKey] = item.metaValue;
+    return result;
+  }, {});
+  return object;
+}
+function getRoles(user) {
+  const capabilities = user.metadata.find((md) => /capabilities/.test(md.metaKey)).metaValue;
+  const roles = [...capabilities.matchAll(/"([a-z-]+)/g)].map((match) => match[1]);
+  return roles;
+}
+function eventSort(events2) {
+  return events2.sort((a, b) => new Date(a.start) - new Date(b.start) || a.name.localeCompare(b.name));
+}
+function simpleEvent(event, slim = false) {
+  const start = event.eventStartDate + "T" + event.eventStartTime + "-07:00";
+  const end = event.eventEndDate + "T" + event.eventEndTime + "-07:00";
+  const categories = event.categories.map((val) => val.name).sort((a, b) => a.localeCompare(b));
+  let metadata = metadataArrayToObject(event.metadata);
+  metadata = {
+    ...metadata,
+    GM: metadata.GM && decodeText(metadata.GM),
+    System: metadata.System && decodeText(metadata.System)
+  };
+  event = {
+    id: event.eventId,
+    name: event.eventName,
+    slug: event.eventSlug,
+    status: event.eventStatus,
+    start,
+    end,
+    dur: Number(metadata.Length),
+    categories,
+    metadata,
+    description: decodeText(event.postContent)
+  };
+  if (slim) {
+    delete event.description;
+    delete event.metadata;
+  }
+  return event;
+}
+function simpleEvents(events2, slim = false) {
+  events2 = Array.isArray(events2) && events2.map((event) => {
+    return simpleEvent(event, slim);
+  });
+  return eventSort(events2);
+}
+function bookedEvents(events2, bookings2) {
+  bookings2 = bookings2.map((id) => events2.find((event) => event.eventId === id || event.id === id)).filter((event) => event).sort((a, b) => {
+    let aDate = a.start || a.eventStartDate + "T" + a.eventStartTime + "-07:00";
+    let bDate = b.start || b.eventStartDate + "T" + b.eventStartTime + "-07:00";
+    aDate = new Date(aDate);
+    bDate = new Date(bDate);
+    return aDate - bDate;
+  });
+  return bookings2;
+}
+function simpleUser(user) {
+  let metadata = user.metadata.filter((md) => !/capabilities/.test(md.metaKey));
+  user = {
+    id: user.id,
+    email: user.userEmail,
+    nicename: user.userNicename,
+    metadata: metadataArrayToObject(metadata),
+    roles: getRoles(user),
+    displayName: decodeText(user.displayName) || user.displayName
+  };
+  return user;
+}
+function simpleUsersAll(users) {
+  users = Array.isArray(users) && users.map((user) => simpleUser(user));
+  return users.sort((a, b) => a.displayName.localeCompare(b.displayName));
+}
+function simpleUsersAttending(users) {
+  let simpleUsers = simpleUsersAll(users);
+  const badgeRoles = ["gm", "paidattendee", "volunteer", "comp", "staff"];
+  return simpleUsers.filter((user) => badgeRoles.some((role) => user.roles.includes(role)));
+}
 export {
   admin,
+  bookedEvents,
   bookings,
   decodeText,
   destroy,
@@ -543,7 +733,12 @@ export {
   logout,
   me,
   password,
-  roles,
+  simpleEvent,
+  simpleEvents,
+  simpleUser,
+  simpleUsersAll,
+  simpleUsersAttending,
   status
 };
 /*! https://mths.be/utf8js v3.0.0 by @mathias */
+/*! https://mths.be/windows-1252 v1.1.0 by @mathias | MIT license */
