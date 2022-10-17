@@ -13,10 +13,8 @@ Sign up to attend Big Bad Con!
 
 [Book a Room](https://www.hyatt.com/en-US/group-booking/SFOBU/G-BBC3){.icon-hotel}
 
-[Exhibitors](/exhibitor-information){.icon-booth}
-
-[Small Press Showcase](https://www.bigbadcon.com/small-press-showcase/){.icon-price-tags}
-
 [Hotel](/hotel){.icon-hotel}
+
+[Exhibitors](/exhibitor-information){.icon-booth}
 
 [Program](/images/03-new_bigbadcon_program_10-09.pdf){.icon-book}
