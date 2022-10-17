@@ -4,10 +4,11 @@ title: Past Events
 published: true
 description: Archive of Big Bad Con Events through the ages
 tags: pages
-navGroup: Events
+navGroup: ''
 navTitle: Past Events
 order: 3
 icon: library
+
 ---
 Big Bad Con has a long history, starting all the way back in 2010! Our blog goes all the way back to that [very first two sentence post about the con](/blog/announcing-big-bad-con/). Here's all the events we've hosted:
 
