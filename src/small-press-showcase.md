@@ -4,6 +4,10 @@ title: Small Press Showcase
 published: true
 description: ''
 ogImage: ''
+navGroup: Events
+navTitle: ''
+order: 
+icon: ''
 
 ---
 The Small Press Showcase is a space for self publishers, small press, crafters, and artists to vend their games, art, and creative works. The Small Press Showcase is free to any vendor attending the con.
