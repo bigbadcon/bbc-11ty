@@ -4,10 +4,10 @@ title: 'Games on Demand: How it Works'
 published: true
 description: ''
 ogImage: ''
-navGroup: ''
+navGroup: Events
 navTitle: ''
 order: 
-icon: ''
+icon: games-on-demand
 
 ---
 Don’t have any games scheduled but want to play something? Stop by the Big Bad Games On Demand! Games start every two hours (with a breaks from 1-2PM and 6-8PM).
