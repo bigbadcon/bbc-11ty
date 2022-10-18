@@ -13,7 +13,9 @@ Hello!
 
 As award recipients from [Grant for the Web](https://www.grantfortheweb.org/), Big Bad Con and Randy Lubin (creator of [Story Synth](https://storysynth.org/)) are excited to announce a microgrant program focused on helping game designers from marginalized identities create, publish, and monetize games on the Story Synth platform!
 
-### What are the microgrants and how do I get one?
+**_Update_**_: we've disbursed all 100 grants, you can find many of the completed games at_ [_https://storysynth.org/Gallery/_](https://storysynth.org/Gallery/ "https://storysynth.org/Gallery/")
+
+### What are the microgrants?
 
 The microgrants (application information below) award the following:
 
@@ -95,7 +97,7 @@ This grant kicks off January 24, 2022 and will go till October 22, 2022. Here’
 
 [Apply Now!](https://airtable.com/shr2bGagYJxhDX2Te){.icon-pencil-square}-->
 
-The StorySynth applications are now closed. We're delicted that were were able to give out 100 grants (total of $30,000) to game designers creating on the StorySynth platform. You can see some of their work [https://storysynth.org/Gallery/](here). 
+The StorySynth applications are now closed. We're delighted that were were able to give out 100 grants (total of $30,000) to game designers creating on the StorySynth platform. You can see some of their work [https://storysynth.org/Gallery/](here).
 
 ### FAQ
 
