@@ -384,6 +384,7 @@ module.exports = (eleventyConfig) => {
 	// Pass "static" things straight through from "src" to "dist"
 	eleventyConfig.addPassthroughCopy("./src/static/");
 	eleventyConfig.addPassthroughCopy("./images/");
+	eleventyConfig.addPassthroughCopy("./src/_redirects");
 	// eleventyConfig.addPassthroughCopy({"./src/assets/svgs" : "/static/svgs"});
 
 	// Event images is a kludge until we can get it working with event manager
