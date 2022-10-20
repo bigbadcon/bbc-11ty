@@ -20,7 +20,7 @@ Games On Demand games will start every two hours, with periodic breaks to give o
 
 **Before games start:**
 
-1. Come by the Regency room and check out the games on offer.
+1. Come by the Sequoia room and check out the games on offer.
 2. Pick up a boarding pass from our hosts.
 3. If you need extra time during boarding, let our hosts know!
 
