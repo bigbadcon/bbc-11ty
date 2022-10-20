@@ -17,8 +17,11 @@ Alpine.plugin(validate);
 window.Alpine = Alpine;
 
 window.lilRed = lilRed;
+
+const lilRedApiUrl = "https://admin.bigbadcon.com:8091/api";
+
 lilRed.init({
-	lilRedApiUrl: "https://admin.bigbadcon.com:8091/api",
+	lilRedApiUrl: lilRedApiUrl,
 	verbose: true,
 });
 /* -------------------------------------------------------------------------- */
@@ -895,6 +898,25 @@ document.addEventListener("alpine:init", () => {
 				}
 				this.userEmail = "";
 				this.userPass = "";
+			}
+		},
+	}));
+
+	/* -------------------------------------------------------------------------- */
+	/*                                 Status Page                                */
+	/* -------------------------------------------------------------------------- */
+	Alpine.data("statusTester", () => ({
+		status: "unchecked",
+		online: undefined,
+		response: undefined,
+		error: undefined,
+		async fetchApi(api) {
+			try {
+				this.response = await fetch(`${lilRedApiUrl}${api}`);
+			} catch (error) {
+				// eslint-disable-next-line no-console
+				console.error(error);
+				this.error = error;
 			}
 		},
 	}));

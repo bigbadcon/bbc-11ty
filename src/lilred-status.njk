@@ -6,11 +6,27 @@ description: lilRed Event Manager Status page
 
 ---
 
-<div x-data="{status: 'unchecked',online: undefined}">
+<div x-data="statusTester">
 
     <h3>Check Status of the Little Red Event Manager</h3>
     <div class="mb-lg">
-        <button @click="status = await lilRed.status()" class="button">Check Status</button>
+        <button @click="status = await lilRed.status(); await fetchApi('/'); console.log(response)" class="button">Check Status</button>
+    </div>
+    <div x-show="response">
+        <h4>Status Check Response</h4>
+        <p>
+            <strong>Status:</strong>
+            <span x-text="response && response.status"></span></p>
+        <p>
+            <strong>Body:</strong>
+            <span x-text="response && await response.text()"></span></p>
+    </div>
+    <div x-show="error">
+        <h4>Status Check Error</h4>
+        <p>
+            <strong>Error:</strong>
+            <span x-text="error"></span>
+        </p>
     </div>
     <div x-cloak x-show="status === false">
         <p>
