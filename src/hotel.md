@@ -68,3 +68,11 @@ During the con, Boardroom IV will be designated as a respite room. It will be a 
 [Big Bad Con Public Health Plan.](/public-health-policy/)
 
 [Hyatt's safety policies](https://www.hyatt.com/info/care-and-cleanliness-americas).
+
+### Food and Dining
+
+Here's a [map of dining options in the area](https://www.google.com/maps/d/u/0/edit?mid=1CE6SE62DYwbZdxV5-7CklkQiNfraCzA&ll=37.59161336786066%2C-122.36212222537841&z=16). The program also has these locations listed along with which ones offer outdoor dining, delivery, and takeout.
+
+During the lunch hour, the hotel (1-2:30PM) the hotel will also offer a popup food stand in the Atrium.
+
+![](/images/eating.JPG)
