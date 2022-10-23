@@ -1,9 +1,9 @@
 ---
 title: Headshots with KP Studios
-date: 
+date: 2022-10-23T20:00:00Z
 published: true
 excerpt: ''
-coverImage: "/images/headshot-collage.jpg"
+coverImage: ''
 coverImageAlt: ''
 ogImage: ''
 
