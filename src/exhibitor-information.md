@@ -16,7 +16,7 @@ Big Bad Con is a charity event, and that commitment to giving extends to our exh
 
 ### [Blackrowan Games](https://www.blackrowangames.com/)
 
-We are the Mabry family, and we love playing board games together. It all started when a friend gave us Zombie Dice as a gift and then invited us to play King of Tokyo, and from there we were hooked.
+Representing Indie Press Revolution (IPR). IPR is a network of creator-publishers devoted to bringing you the latest innovations in tabletop roleplaying and story games. Blackrowan Games also sells a variety of Kickstarter and other board games, dice, RPG miniatures, and more.
 
 ### [Difference Engine](https://differenceengine.sg/)
 
