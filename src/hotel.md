@@ -22,7 +22,7 @@ Big Bad Con Group Rate: $139/night ([booking link](https://www.hyatt.com/en-US/g
 
 * **Driving**: the hotel is right off Highway 101. Get [**driving directions here**](https://goo.gl/maps/7Jthy6QnQY9TMSPF9)
 * **Flying:** Fly into San Francisco International Airport (SFO). From there take the Hyatt shuttle (see below).
-* **Public Transportation**: We recommend either taking [**BART**](https://www.bart.gov/) to SFO airport and catching the Hyatt shuttle (see below), using [**SamTrans**](http://www.samtrans.com/), or taking [**Caltrain**](http://www.caltrain.com/) (stops 5 minutes from the hotel).
+* **Public Transportation**: We recommend either taking [**BART**](https://www.bart.gov/) to SFO airport and catching the Hyatt shuttle (see below), or taking Caltrain (nearby Broadway stop is weekend/holiday-only, during the week connect with [SamTrans](http://www.samtrans.com/) or [Commute.org](https://commute.org/shuttles/) at [Millbrae](https://511.org/transit/centers/millbrae-transit-center) or Burlingame).”
 
 ### Shuttle Service
 
