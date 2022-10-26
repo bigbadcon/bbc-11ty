@@ -14,9 +14,9 @@ Big Bad Con is a charity event, and that commitment to giving extends to our exh
 
 ## Big Bad Con Exhibitors
 
-### [Blackrowan Games](https://www.blackrowangames.com/)
+### Three Dog Quest
 
-Representing Indie Press Revolution (IPR). IPR is a network of creator-publishers devoted to bringing you the latest innovations in tabletop roleplaying and story games. Blackrowan Games also sells a variety of Kickstarter and other board games, dice, RPG miniatures, and more.
+Representing Indie Press Revolution (IPR). IPR is a network of creator-publishers devoted to bringing you the latest innovations in tabletop roleplaying and story games. Three Dog Quest also sells a variety of Kickstarter and other board games, dice, RPG miniatures, and more.
 
 ### [Difference Engine](https://differenceengine.sg/)
 
