@@ -28,6 +28,10 @@ Big Bad Con Group Rate: $139/night ([booking link](https://www.hyatt.com/en-US/g
 
 The Hyatt offers a free shuttle that runs ever 10-15 minutes. At SFO, go to the area marked “**Hotel Shuttle**.” The bus is marked “**Hyatt Regency and Marriott**.” [**Click here**](https://ips-systems.com/Sentry/Anon/40) to track the shuttle location.
 
+**Update**: as of 10/26 we just found out the hotel shuttle service changed and their new service does not include shuttles with lift gates. 
+
+This was a bummer to find out, but they have offered a stop gap solution. If you have ADA needs,  you can call a Lyft or Uber and then show the receipt for the ride at the front desk. They will reimburse you for the cost of the trip and advance you for the return trip.
+
 ### Parking
 
 The hotel offers parking for all attendees discounted from their rate of $36/day to $12/day for Big Bad Con.
