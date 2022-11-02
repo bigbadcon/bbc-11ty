@@ -2,12 +2,11 @@
   directory = "functions"
 [build]
   base = "./"
-  command = "npm run build"
+  command = "pnpm run build"
   publish = "dist"
-  functions = "functions"
 [dev]
   base = "./"
-  command = "npm run dev"
+  command = "pnpm run dev"
   publish = "dist"
 [[plugins]]
 package = "netlify-plugin-inline-functions-env"
