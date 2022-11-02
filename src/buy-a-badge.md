@@ -4,7 +4,7 @@ title: Buy A Badge
 published: true
 description: ''
 tags: pages
-navGroup: Attend
+navGroup: ''
 navTitle: Buy a Badge
 order: 4
 icon: badge
