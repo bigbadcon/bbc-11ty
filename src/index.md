@@ -15,4 +15,6 @@ tags: pages
 
 [COVID Support Resources](https://www.bigbadcon.com/covid-19-support-resources/){.icon-book}
 
-[Pictures of the con](https://photos.app.goo.gl/Dr1BMhnSsVoYjMr26){.icon-image}
+[Pictures of Big Bad Con 2022](https://photos.app.goo.gl/Dr1BMhnSsVoYjMr26){.icon-image}
+
+(please only submit pictures with permission)
