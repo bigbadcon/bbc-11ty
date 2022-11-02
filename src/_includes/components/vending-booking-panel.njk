@@ -1,164 +1,167 @@
 {# x-data="eventInfo" on event page #}
-{# Show need for login  #}
-<div x-cloak x-show="!isAuth" class="prose rounded-md mt-base bg-card pt-sm pb-base px-base">
-    <p>You must be <button @click.stop="modal = 'Login'" class="font-bold underline text-highlight">logged in</button> and have a badge to sign up as a Small Press Vendor</p>
-</div>
-
-<div x-cloak x-show="isAuth && isTeen" class="prose rounded-md mt-base bg-card pt-sm pb-base px-base">
-    <p>You must be 18 or older to be a Small Press Vendor.</p>
-</div>
-
-<div x-cloak x-data="smallPressForm" x-show="isAuth && !isTeen && !isVendor" class="prose rounded-md mt-base bg-card pt-sm pb-base px-base" x-init="if (isAuth) getUserData()">
-    <h2>Small Press Showcase Signup</h2>
-
-    {# Show need for badge to those logged in #}
-    <div x-cloak x-show="!hasBadge" class="prose">
-        <p>Hello <b x-text="user && user.displayName"></b> you must be have a badge to submit the Small Press signup form.</p>
+{# Only show if event has yet to happen #}
+{% if not event.eventStartDateTime | isPastDate %}
+    {# Show need for login  #}
+    <div x-cloak x-show="!isAuth" class="prose rounded-md mt-base bg-card pt-sm pb-base px-base">
+        <p>You must be <button @click.stop="modal = 'Login'" class="font-bold underline text-highlight">logged in</button> and have a badge to sign up as a Small Press Vendor</p>
     </div>
-    {# Shwo for those that have a badge #}
-    <div x-cloak x-show="hasBadge" x-transition>
-        <p>Welcome <b x-text="user && user.displayName"></b>
+
+    <div x-cloak x-show="isAuth && isTeen" class="prose rounded-md mt-base bg-card pt-sm pb-base px-base">
+        <p>You must be 18 or older to be a Small Press Vendor.</p>
+    </div>
+
+    <div x-cloak x-data="smallPressForm" x-show="isAuth && !isTeen && !isVendor" class="prose rounded-md mt-base bg-card pt-sm pb-base px-base" x-init="if (isAuth) getUserData()">
+        <h2>Small Press Showcase Signup</h2>
+
+        {# Show need for badge to those logged in #}
+        <div x-cloak x-show="!hasBadge" class="prose">
+            <p>Hello <b x-text="user && user.displayName"></b> you must be have a badge to submit the Small Press signup form.</p>
+        </div>
+        {# Shwo for those that have a badge #}
+        <div x-cloak x-show="hasBadge" x-transition>
+            <p>Welcome <b x-text="user && user.displayName"></b>
     You have a <span class="inline-flex items-center gap-2xs">
-                <template x-for="role in badgeRoles">
-                    <span x-text="(role === 'paidattendee') ? 'paid' : role" class="py-[.1rem] text-xs font-bold uppercase rounded-full bg-hr text-primary px-xs"></span>
-                </template>
-            </span>
+                    <template x-for="role in badgeRoles">
+                        <span x-text="(role === 'paidattendee') ? 'paid' : role" class="py-[.1rem] text-xs font-bold uppercase rounded-full bg-hr text-primary px-xs"></span>
+                    </template>
+                </span>
     badge! Before you can book into this event, you must fill out the following sign up form.
         </p>
-        <form class="mt-base" id="form-small-press" @submit.prevent="submitForm" x-validate>
-            {# TODO: add honeypot #}
-            {# x-init required to add value after the fact for these hidden fields #}
-            <input type="hidden" name="userDisplayName" :value="user && user.displayName" x-validate>
-            <input type="hidden" name="userId" :value="user && user.id" x-validate>
-            <input type="hidden" name="userEmail" :value="user && user.userEmail" x-validate>
-            <input type="hidden" name="eventId" value="{{event.eventId}}" x-validate>
-            {# Personal Info #}
-            <fieldset>
-                <legend>Company Info</legend>
-                <div class="required">
-                    <label for="business">Business Name</label>
-                    <input id="business" name="business" type="text" value="" required/>
-                </div>
-                <div class="required">
-                    <label for="website">Website</label>
-                    <input id="website" name="website" type="text" value="" x-validate.required.website/>
-                </div>
-                <div >
-                    <label for="twitter">Twitter</label>
-                    <input id="twitter" name="twitter" type="text" value=""/>
-                </div>
-                <div class="required">
-                    <label for="contact-phone">Phone</label>
-                    <input id="contact-phone" name="contact-phone" type="tel" value="" required/>
-                </div>
-                <div class="required">
-                    <label for="product">Product or service you provide</label>
-                    <textarea cols="30" id="product" name="product" rows="3" required></textarea>
-                </div>
-                <div>
-                    <label for="other">Anything else we should know</label>
-                    <textarea cols="30" id="other" name="other" rows="3"></textarea>
-                </div>
-                <div class="required">
-                    <input type="checkbox" id="age18" name="age18" value="Yes" required>
-                    <label for="age18" class="text-body-highlight"3324>
+            <form class="mt-base" id="form-small-press" @submit.prevent="submitForm" x-validate>
+                {# TODO: add honeypot #}
+                {# x-init required to add value after the fact for these hidden fields #}
+                <input type="hidden" name="userDisplayName" :value="user && user.displayName" x-validate>
+                <input type="hidden" name="userId" :value="user && user.id" x-validate>
+                <input type="hidden" name="userEmail" :value="user && user.userEmail" x-validate>
+                <input type="hidden" name="eventId" value="{{event.eventId}}" x-validate>
+                {# Personal Info #}
+                <fieldset>
+                    <legend>Company Info</legend>
+                    <div class="required">
+                        <label for="business">Business Name</label>
+                        <input id="business" name="business" type="text" value="" required/>
+                    </div>
+                    <div class="required">
+                        <label for="website">Website</label>
+                        <input id="website" name="website" type="text" value="" x-validate.required.website/>
+                    </div>
+                    <div >
+                        <label for="twitter">Twitter</label>
+                        <input id="twitter" name="twitter" type="text" value=""/>
+                    </div>
+                    <div class="required">
+                        <label for="contact-phone">Phone</label>
+                        <input id="contact-phone" name="contact-phone" type="tel" value="" required/>
+                    </div>
+                    <div class="required">
+                        <label for="product">Product or service you provide</label>
+                        <textarea cols="30" id="product" name="product" rows="3" required></textarea>
+                    </div>
+                    <div>
+                        <label for="other">Anything else we should know</label>
+                        <textarea cols="30" id="other" name="other" rows="3"></textarea>
+                    </div>
+                    <div class="required">
+                        <input type="checkbox" id="age18" name="age18" value="Yes" required>
+                        <label for="age18" class="text-body-highlight"3324>
                                         Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, am 18 or older
                                     </label>
-                    <span class="error-msg"></span>
-                </div>
-            </fieldset>
-            <fieldset>
-                <legend>Community Standards Agreement</legend>
-                <div class="prose mb-sm">
-                    <p>Big Bad Con is committed to cultivating a culture of respect, support, and kindness at both our in-person and online events. We ask that all of our attendees agree to abide by our Community Standards, please take a moment to read them before answering yes below.</p>
-                    <p>
-                        <a href="/community-standards" class="icon-scroll">Community Standards</a>
-                    </p>
-                </div>
-                <div class="required">
-                    <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" required>
-                    <label for="agree-to-community-standards" class="text-body-highlight"3324>
+                        <span class="error-msg"></span>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Community Standards Agreement</legend>
+                    <div class="prose mb-sm">
+                        <p>Big Bad Con is committed to cultivating a culture of respect, support, and kindness at both our in-person and online events. We ask that all of our attendees agree to abide by our Community Standards, please take a moment to read them before answering yes below.</p>
+                        <p>
+                            <a href="/community-standards" class="icon-scroll">Community Standards</a>
+                        </p>
+                    </div>
+                    <div class="required">
+                        <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" required>
+                        <label for="agree-to-community-standards" class="text-body-highlight"3324>
                                         Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Big Bad Con Community Standards
                                     </label>
-                    <span class="error-msg"></span>
+                        <span class="error-msg"></span>
+                    </div>
+                </fieldset>
+
+                <button type="submit" :disabled="!$validate.isComplete('form-small-press')" class="btn btn-primary" x-show="!submitClicked">Submit</button>
+                <div x-show="submitClicked" class="inline-flex items-center italic font-bold gap-sm">
+                    <svg class="w-5 h-5 text-body animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <span>Submitting form…</span>
                 </div>
-            </fieldset>
-
-            <button type="submit" :disabled="!$validate.isComplete('form-small-press')" class="btn btn-primary" x-show="!submitClicked">Submit</button>
-            <div x-show="submitClicked" class="inline-flex items-center italic font-bold gap-sm">
-                <svg class="w-5 h-5 text-body animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-                <span>Submitting form…</span>
-            </div>
-            {% if (sitemeta.environment === 'dev') %}
-                {% import 'components/x-validate-form-validator.njk' as validate %}
-                {{ validate.log('form-small-press') }}
-            {% endif %}
-        </form>
+                {% if (sitemeta.environment === 'dev') %}
+                    {% import 'components/x-validate-form-validator.njk' as validate %}
+                    {{ validate.log('form-small-press') }}
+                {% endif %}
+            </form>
+        </div>
     </div>
-</div>
 
-{# Only show booking if has role 'vendor'; reload getBooked Events as we need to check if this is booked via the form #}
-<div x-cloak x-show="isAuth && isVendor" x-show="if (isVendor) getBookedEvents()">
-    <div class="prose rounded-md my-base bg-card py-base px-base">
-        <p>Welcome <b x-text="user && user.displayName"></b> you are a registered Small Press Vendor!</p>
+    {# Only show booking if has role 'vendor'; reload getBooked Events as we need to check if this is booked via the form #}
+    <div x-cloak x-show="isAuth && isVendor" x-show="if (isVendor) getBookedEvents()">
+        <div class="prose rounded-md my-base bg-card py-base px-base">
+            <p>Welcome <b x-text="user && user.displayName"></b> you are a registered Small Press Vendor!</p>
+        </div>
+        {% include 'components/event-booking-panel.njk' %}
     </div>
-    {% include 'components/event-booking-panel.njk' %}
-</div>
 
-<script type="text/javascript">
+    <script type="text/javascript">
 
-    document.addEventListener('alpine:init', () => {
+        document.addEventListener('alpine:init', () => {
 
-        Alpine.data('smallPressForm', function () {
-            return {
-                submitClicked: false,
-                async submitForm(e) {
-                    // Check network status and data service status
-                    const status = await lilRed.status(20, 5000, 1.05);
-                    if (!status) 
-                        return false;
-                    
-                    this.submitClicked = true;
-                    const data = this
-                        .$validate
-                        .value(e.target)
-                    console.log("🚀 ~ file: vending-booking-panel.njk ~ line 144 ~ submitForm ~ data", data)
-
-                    this.postFormInfo(data)
-                },
-                async postFormInfo(data) {
-                    console.log('postFormInfo', data)
-
-                    const options = {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json;charset=utf-8'
-                        },
-                        body: JSON.stringify(data)
-                    }
-
-                    const url = "/.netlify/functions/submit-small-press-application"
-
-                    try {
-                        let response = await fetch(url, options)
-                        console.log(`RESPONSE:fetch for ${url}`, response)
-                        if (response.status !== 200) 
-                            throw `fetch fail status: ${response.status}`
-                            //reload the page
-                        location.reload()
-                        return result
-                    } catch (err) {
-                        console.error(`ERROR:fetch for ${url}`, err)
+            Alpine.data('smallPressForm', function () {
+                return {
+                    submitClicked: false,
+                    async submitForm(e) {
+                        // Check network status and data service status
+                        const status = await lilRed.status(20, 5000, 1.05);
+                        if (!status) 
+                            return false;
+                        
                         this.submitClicked = true;
-                        this.$dispatch('toast', 'ERROR: Small Press Vendor signup submission failed. Try again and contact us if you still are having issues.')
-                        return false
-                    }
+                        const data = this
+                            .$validate
+                            .value(e.target)
+                        console.log("🚀 ~ file: vending-booking-panel.njk ~ line 144 ~ submitForm ~ data", data)
 
+                        this.postFormInfo(data)
+                    },
+                    async postFormInfo(data) {
+                        console.log('postFormInfo', data)
+
+                        const options = {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json;charset=utf-8'
+                            },
+                            body: JSON.stringify(data)
+                        }
+
+                        const url = "/.netlify/functions/submit-small-press-application"
+
+                        try {
+                            let response = await fetch(url, options)
+                            console.log(`RESPONSE:fetch for ${url}`, response)
+                            if (response.status !== 200) 
+                                throw `fetch fail status: ${response.status}`
+                                //reload the page
+                            location.reload()
+                            return result
+                        } catch (err) {
+                            console.error(`ERROR:fetch for ${url}`, err)
+                            this.submitClicked = true;
+                            this.$dispatch('toast', 'ERROR: Small Press Vendor signup submission failed. Try again and contact us if you still are having issues.')
+                            return false
+                        }
+
+                    }
                 }
-            }
+            })
         })
-    })
-</script>
+    </script>
+{% endif %}
