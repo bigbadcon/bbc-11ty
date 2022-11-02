@@ -9,11 +9,10 @@ tags: pages
 ---
 ## Big Bad Con 2022
 
-**Big Bad Con is returning October 27-30** at the Hyatt Regency near San Francisco Airport. We're so excited to see our friends, meet new people, and play games together!
+**Big Bad Con** is complete! 500 amazing humans came out to celebrate games and community together and it was a fantastic event!
 
-[Sign up to attend](/buy-a-badge){.icon-badge}
+[Submit Feedback on Big Bad Con 2022](https://bigbadcon.com/feedback){.icon-pencil-square}
 
-### Upcoming dates:
+[COVID Support Resources](https://www.bigbadcon.com/covid-19-support-resources/){.icon-book}
 
-* Event sign ups are [open now](https://www.bigbadcon.com/events/)!
-* Big Bad Con is October 27-30!
+[Pictures of the con](https://photos.app.goo.gl/Dr1BMhnSsVoYjMr26){.icon-image}
