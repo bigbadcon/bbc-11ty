@@ -5,8 +5,4 @@ tags: cards
 published: true
 
 ---
-Big Bad Con is a purely volunteer run organization. Join the Rangers and be part of the team!
-
-[Join The Rangers](/rangers){.icon-paw}
-
-[Volunteer Shifts](/volunteer-shifts){.icon-calendar-clock}
+Big Bad Con is a purely volunteer run organization. Starting in early 2023 we'll re-open recruitment for Rangers. Check back here to join the team!
