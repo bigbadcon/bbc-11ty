@@ -20,3 +20,5 @@ Big Bad Con 2022 is now complete. Check back in early 2023 to see our plans for 
 [Exhibitors](/exhibitor-information){.icon-booth}
 
 [Program](/images/03-new_bigbadcon_program_10-09.pdf){.icon-book}-->
+
+[FAQ](/faq){.icon-faq}
