@@ -9,7 +9,7 @@ tags: pages
 ---
 ## Big Bad Con 2022
 
-**Big Bad Con** is complete! 500 amazing humans came out to celebrate games and community. Together we put on a fantastic event!
+**Big Bad Con 2022** is complete! 500 amazing humans came out to celebrate games and community. Together we put on a fantastic event!
 
 [Submit 2022 Feedback Here](https://bigbadcon.com/feedback){.icon-pencil-square}
 
