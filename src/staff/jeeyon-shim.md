@@ -1,7 +1,7 @@
 ---
-tags: staff
+tags: staff-emeritus
 published: true
-order: 0
+order: 
 title: Jeeyon Shim
 position: Outreach Coordinator
 gender: "(she/her)"
