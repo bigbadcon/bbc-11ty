@@ -6,7 +6,7 @@ position: Stream Coordinator
 published: true
 gender: they/them
 image: "/images/mariam-ahmad.jpg"
-twitter: "@media_junkie"
+twitter: media_junkie
 website_name: ''
 website_url: ''
 
