@@ -1,6 +1,6 @@
 ---
 title: Everything you need to know before you arrive at Big Bad Con
-date: 
+date: 2022-10-20T07:00:00Z
 published: true
 excerpt: ''
 coverImage: ''
