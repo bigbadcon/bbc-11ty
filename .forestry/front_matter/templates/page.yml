@@ -123,6 +123,7 @@ fields:
     - youtube
 pages:
 - src/accessibility-policy.md
+- src/archive-of-past-events.md
 - src/big-bad-con-scholarship.md
 - src/big-bad-timeline.md
 - src/covid-19-support-resources.md
