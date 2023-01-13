@@ -5,7 +5,7 @@ published: false
 description: Our Rangers are the folks that make Big Bad Online possible. To join,
   sign up for a shift!
 tags: pages
-navGroup: Volunteer
+navGroup: Events
 navTitle: Volunteers Shifts
 order: 1
 icon: calendar-clock
