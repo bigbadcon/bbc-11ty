@@ -1,5 +1,3 @@
-[functions]
-  directory = "functions"
 [build]
   base = "./"
   command = "pnpm run build"
