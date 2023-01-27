@@ -7,10 +7,11 @@ description: Big Bad Con is a tabletop and live action gaming convention featuri
 tags: pages
 
 ---
-## Big Bad Con 2022
+## Big Bad Online 2023
 
-**Big Bad Con 2022** is complete! 500 amazing humans came out to celebrate games and community. Together we put on a fantastic event!
+**Big Bad Online** is kicking off March 31st at 6PM PST and will include 24 hours of amazing panels, a dedicated community server, and post-panel discussions!
 
-[Pictures of Big Bad Con 2022](https://photos.app.goo.gl/Dr1BMhnSsVoYjMr26){.icon-image}
+Stay tuned for more about our fundraising campaign to make it all happen. As always, Big Bad Con runs with your support!
 
-(please only submit pictures with permission)
+* When: 3/31 6PM PST to 4/1 6PM PST
+* Where: [twitch.tv/bigbadcon](https://www.twitch.tv/bigbadcon "https://www.twitch.tv/bigbadcon")
