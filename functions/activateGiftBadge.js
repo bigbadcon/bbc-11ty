@@ -1,6 +1,7 @@
 /* global process require exports */
 const axios = require("axios");
 require("dotenv").config();
+// TODO: replace this with URL for this function and all others!!!!
 const environment = process.env.CONTEXT;
 
 // Google Sheet logger
