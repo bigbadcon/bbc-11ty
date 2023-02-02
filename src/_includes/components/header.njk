@@ -7,14 +7,14 @@
           class="flex flex-col md:items-center md:justify-between md:flex-row ">
                     <div class="flex flex-row items-center justify-between pt-base pb-sm gap-x-base md:gap-x-lg">
                         {# Branding Logo Area with event date #}
-                        <div class="grid grid-cols-1 w-36 sm:w-42 lg:w-56">
+                        <div class="grid grid-cols-1 w-42 lg:w-56">
                             <a href="/" class="block my-xs">{% include 'components/logo.njk' %}</a>
 
                             {% if sitemeta.eventDateOnline %}
-                                <div class="font-serif text-sm font-bold lg:leading-none text-highlight lg:text-lg">{{sitemeta.eventDateOnline}} Online </div>
+                                <div class="font-serif text-sm font-bold leading-none text-highlight lg:text-lg">{{sitemeta.eventDateOnline}} Online </div>
                             {% endif %}
                             {% if sitemeta.eventDate %}
-                                <div class="font-serif text-sm font-bold lg:leading-none text-highlight lg:text-lg">{{sitemeta.eventDate}} IRL</div>
+                                <div class="font-serif text-sm font-bold leading-none text-highlight lg:text-lg">{{sitemeta.eventDate}} IRL</div>
                             {% endif %}
 
                         </div>
