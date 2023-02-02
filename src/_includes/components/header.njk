@@ -5,11 +5,18 @@
             <div class="text-body">
                 <div x-data="{ open: false }"
           class="flex flex-col md:items-center md:justify-between md:flex-row ">
-                    <div class="flex flex-row items-center justify-between py-base space-x-base md:space-x-lg">
+                    <div class="flex flex-row items-center justify-between pt-base pb-sm gap-x-base md:gap-x-lg">
                         {# Branding Logo Area with event date #}
                         <div class="grid grid-cols-1 w-36 sm:w-42 lg:w-56">
-                            <a href="/" class="block md:mt-sm">{% include 'components/logo.njk' %}</a>
-                            <div class="font-serif text-sm leading-tight text-center text-highlight lg:text-2xl">{{sitemeta.eventDate}}</div>
+                            <a href="/" class="block my-xs">{% include 'components/logo.njk' %}</a>
+
+                            {% if sitemeta.eventDateOnline %}
+                                <div class="font-serif text-sm font-bold lg:leading-none text-highlight lg:text-lg">{{sitemeta.eventDateOnline}} Online </div>
+                            {% endif %}
+                            {% if sitemeta.eventDate %}
+                                <div class="font-serif text-sm font-bold lg:leading-none text-highlight lg:text-lg">{{sitemeta.eventDate}} IRL</div>
+                            {% endif %}
+
                         </div>
                         {# Light Dark Switch #}
                         <div class="text-body">
