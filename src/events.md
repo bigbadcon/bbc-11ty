@@ -14,4 +14,6 @@ icon: calendar-clock
 
 See the event in a calendar grid [here](https://docs.google.com/spreadsheets/d/1pN9rNG8IhhzNwUwr1g-In8Gp0Pvfn7LVGfJCCaolWbs/edit#gid=2).-->
 
-Panels we're hosting for Big Bad Online March 31 6PM to April 1 6PM. Big Bad Online is free to attend!
+Panels we're hosting for Big Bad Online March 31 6PM PST to April 1 6PM PST. 
+
+**Big Bad Online is free to attend!**
