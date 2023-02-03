@@ -1,13 +1,12 @@
 ---
 layout: layouts/page.njk
 title: Big Bad Online Rangers
-published: true
+published: false
 description: ''
 tags: pages
 permalink: false
 
 ---
-
 This year, Big Bad is going online! We’re going to have 24 hours of panels and hangout time on Discord! Because of all the energy, joy, and passion our rangers poured into Big Bad Con in the past, 2019 was an incredible success. We want to foster that same joy this year for our online experience and would love to have you rejoin the ranks of the Rangers!
 
 Here’re the roles we’re looking for this year:
