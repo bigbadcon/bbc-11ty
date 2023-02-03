@@ -7,7 +7,11 @@ image: ''
 alt: ''
 
 ---
-Big Bad Con 2022 is now complete. Check back in early 2023 to see our plans for next year!
+Big Bad Online (March 31-April 1) is free to attend!
+
+[Watch on Twitch](https://www.twitch.tv/bigbadcon){.icon-twitch}
+
+Big Bad Online Community Server (coming soon)
 
 <!--Sign up to attend Big Bad Con!
 
@@ -19,6 +23,6 @@ Big Bad Con 2022 is now complete. Check back in early 2023 to see our plans for 
 
 [Exhibitors](/exhibitor-information){.icon-booth}
 
-[Program](/images/03-new_bigbadcon_program_10-09.pdf){.icon-book}-->
+[Program](/images/03-new_bigbadcon_program_10-09.pdf){.icon-book}
 
-[FAQ](/faq){.icon-faq}
+[FAQ](/faq){.icon-faq}-->

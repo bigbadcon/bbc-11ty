@@ -9,4 +9,4 @@ published: true
 
 [Learn more about the Rangers](https://www.bigbadcon.com/rangers/){.icon-paw}
 
-[Sign up to help!](https://www.bigbadcon.com/volunteer-shifts/){icon-pencil-square}
+[Sign up to help!](https://www.bigbadcon.com/volunteer-shifts/){.icon-pencil-square}
