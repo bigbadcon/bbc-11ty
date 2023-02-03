@@ -2,7 +2,7 @@
 title: Events
 tags: cards
 published: true
-order: 
+order: 2
 
 ---
 Check out the amazing events at Big Bad Con!
