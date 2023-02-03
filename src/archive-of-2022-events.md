@@ -10,40 +10,20 @@ order:
 icon: ''
 
 ---
-<div class="post-bodycopy clearfix"><div id="em-wrapper"><p><h2>2020</h2><style type="text/css">
+<style type="text/css">
 
+\#current-events #event-date, #current-events .event-date {width: 6% !important}
+\#current-events #event-time, #current-events .event-time {width: 6% !important}
 
-#current-events #event-date, #current-events .event-date {width: 6% !important}
-#current-events #event-time, #current-events .event-time {width: 6% !important}
+\#current-events #event-description, #current-events .event-description {width: 23% !important}
+\#current-events #event-system, #current-events .event-system {width: 23% !important}
+\#current-events #event-GM, #current-events .event-GM {width: 15% !important}
+\#current-events #event-format, #current-events .event-format {width: 15% !important}
+\#current-events #event-spaces, #current-events .event-spaces {width: 6% !important}
+\#current-events #event-length, #current-events .event-length {width: 6% !important}
+\#current-events #event-location, #current-events .event-location {width: 6% !important}
 
-#current-events #event-description, #current-events .event-description {width: 23% !important}
-#current-events #event-system, #current-events .event-system {width: 23% !important}
-#current-events #event-GM, #current-events .event-GM {width: 15% !important}
-#current-events #event-format, #current-events .event-format {width: 15% !important}
-#current-events #event-spaces, #current-events .event-spaces {width: 6% !important}
-#current-events #event-length, #current-events .event-length {width: 6% !important}
-#current-events #event-location, #current-events .event-location {width: 6% !important}
-
-#current-events .event-categories li a {
-display: inline-block;
-margin-right: 3px;}
-</style>
-
-<p><a href="/events/my-bookings/">Manage my bookings</a></p><h2>2022</h2><style type="text/css">
-
-
-#current-events #event-date, #current-events .event-date {width: 6% !important}
-#current-events #event-time, #current-events .event-time {width: 6% !important}
-
-#current-events #event-description, #current-events .event-description {width: 23% !important}
-#current-events #event-system, #current-events .event-system {width: 23% !important}
-#current-events #event-GM, #current-events .event-GM {width: 15% !important}
-#current-events #event-format, #current-events .event-format {width: 15% !important}
-#current-events #event-spaces, #current-events .event-spaces {width: 6% !important}
-#current-events #event-length, #current-events .event-length {width: 6% !important}
-#current-events #event-location, #current-events .event-location {width: 6% !important}
-
-#current-events .event-categories li a {
+\#current-events .event-categories li a {
 display: inline-block;
 margin-right: 3px;}
 </style>
@@ -51,14 +31,14 @@ margin-right: 3px;}
 <table class="sortable resizable current-events" cellpadding="0" cellspacing="0" id="current-events">
 <thead>
 <tr>
-<th id="event-date" class="event-date" width="*">Date</th>
-<th id="event-time" class="event-time" width="*">Time</th>
-<th id="event-description" class="event-description" width="*" >Event</th>
-<th id="event-system" class="event-system" width="*">System</th>
-<th id="event-GM" class="event-GM" width="*">GM</th>
-<th id="event-format" class="event-format" width="*">Format</th>
-<!--	<th id="event-location" class="event-location" width="*">Room (table)</th> -->
-<th id="event-length" class="event-spaces" width="*">Length</th>
+<th id="event-date" class="event-date" width="_">Date</th>
+<th id="event-time" class="event-time" width="_">Time</th>
+<th id="event-description" class="event-description" width="_" >Event</th>
+<th id="event-system" class="event-system" width="_">System</th>
+<th id="event-GM" class="event-GM" width="_">GM</th>
+<th id="event-format" class="event-format" width="_">Format</th>
+<!--	<th id="event-location" class="event-location" width="_">Room (table)</th> -->
+<th id="event-length" class="event-spaces" width="_">Length</th>
 <th id="event-spaces" class="event-spaces" width="*">Available</th>
 
 </thead>
@@ -94,15 +74,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -135,15 +107,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 6
-
-
-
 
 <tr>
 <td>
@@ -176,15 +140,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 1
-
-
-
 
 <tr>
 <td>
@@ -217,15 +173,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 1
-
-
-
 
 <tr>
 <td>
@@ -258,15 +206,7 @@ Grand Peninsula Salon A ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 1
-
-
-
 
 <tr>
 <td>
@@ -299,15 +239,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 4
-
-
-
 
 <tr>
 <td>
@@ -341,15 +273,7 @@ Grand Peninsula ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 16 of 100
-
-
-
 
 <tr>
 <td>
@@ -382,15 +306,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -423,15 +339,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 1
-
-
-
 
 <tr>
 <td>
@@ -465,15 +373,7 @@ Grand Peninsula ()
 </td>
 <td class="event-spaces">
 
-
 Games on Demand
-
-
-
-
-
-
-
 
 <tr>
 <td>
@@ -506,15 +406,7 @@ Grand Peninsula ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 2 of 50
-
-
-
 
 <tr>
 <td>
@@ -548,15 +440,7 @@ Harbor Room (92)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 72 of 100
-
-
-
 
 <tr>
 <td>
@@ -589,15 +473,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 1
-
-
-
 
 <tr>
 <td>
@@ -630,15 +506,7 @@ Regency Room ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 2
-
-
-
 
 <tr>
 <td>
@@ -671,15 +539,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 4
-
-
-
 
 <tr>
 <td>
@@ -712,15 +572,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -753,15 +605,7 @@ Grand Peninsula Salon A ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 1
-
-
-
 
 <tr>
 <td>
@@ -795,15 +639,7 @@ Chris Sellers
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -836,15 +672,7 @@ Boardroom I (1)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 5
-
-
-
 
 <tr>
 <td>
@@ -877,15 +705,7 @@ Tom P
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 6
-
-
-
 
 <tr>
 <td>
@@ -920,15 +740,7 @@ Sequoia Room (47-59)
 </td>
 <td class="event-spaces">
 
-
 Games on Demand
-
-
-
-
-
-
-
 
 <tr>
 <td>
@@ -961,15 +773,7 @@ Sandpebble A ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 6 of 6
-
-
-
 
 <tr>
 <td>
@@ -1003,15 +807,7 @@ Harbor Room (92)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 23 of 50
-
-
-
 
 <tr>
 <td>
@@ -1045,15 +841,7 @@ Banana Chan
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -1086,15 +874,7 @@ Harbor Room ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 1
-
-
-
 
 <tr>
 <td>
@@ -1127,15 +907,7 @@ Scott Henderson
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 5
-
-
-
 
 <tr>
 <td>
@@ -1169,15 +941,7 @@ Jozy Zim
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 3 of 6
-
-
-
 
 <tr>
 <td>
@@ -1211,15 +975,7 @@ Amber Autumn Faebrooke
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 7
-
-
-
 
 <tr>
 <td>
@@ -1253,15 +1009,7 @@ Trevor Placker
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -1295,15 +1043,7 @@ Misha Grifka Wander
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 6
-
-
-
 
 <tr>
 <td>
@@ -1337,15 +1077,7 @@ Grand Peninsula (70)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 3
-
-
-
 
 <tr>
 <td>
@@ -1378,15 +1110,7 @@ Boardroom II (2)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 3 of 9
-
-
-
 
 <tr>
 <td>
@@ -1397,7 +1121,7 @@ Boardroom II (2)
 </td>
 
 <td class="event-description">
-<a href="https://admin.bigbadcon.com/events/the-dragon-lord-s-missing-daughter/">The Dragon Lord&#039;s Missing Daughter</a>
+<a href="https://admin.bigbadcon.com/events/the-dragon-lord-s-missing-daughter/">The Dragon Lord's Missing Daughter</a>
 </td>
 <td class="event-system">
 Dungeons & Dragons 5E
@@ -1420,15 +1144,7 @@ Hanju Kim
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 2 of 5
-
-
-
 
 <tr>
 <td>
@@ -1462,15 +1178,7 @@ Colin Fahrion
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -1503,15 +1211,7 @@ Marc Hobbs
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 13 of 16
-
-
-
 
 <tr>
 <td>
@@ -1544,15 +1244,7 @@ April Kit Walsh
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -1563,7 +1255,7 @@ April Kit Walsh
 </td>
 
 <td class="event-description">
-<a href="https://admin.bigbadcon.com/events/yazeba-s-bed-breakfast/">Yazeba&#039;s Bed &amp; Breakfast</a>
+<a href="https://admin.bigbadcon.com/events/yazeba-s-bed-breakfast/">Yazeba's Bed & Breakfast</a>
 </td>
 <td class="event-system">
 Yazeba's Bed & Breakfast
@@ -1586,15 +1278,7 @@ Jay Dragon
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 6
-
-
-
 
 <tr>
 <td>
@@ -1627,15 +1311,7 @@ Nychelle Schneider
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -1668,15 +1344,7 @@ Grand Peninsula (68)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 5 of 8
-
-
-
 
 <tr>
 <td>
@@ -1709,15 +1377,7 @@ Poolside Pavilion (79)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 4
-
-
-
 
 <tr>
 <td>
@@ -1750,15 +1410,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 1
-
-
-
 
 <tr>
 <td>
@@ -1792,15 +1444,7 @@ Harbor Room (92)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 32 of 50
-
-
-
 
 <tr>
 <td>
@@ -1833,15 +1477,7 @@ Meredith SK
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 8 of 8
-
-
-
 
 <tr>
 <td>
@@ -1874,15 +1510,7 @@ Liz Ruifrok
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -1915,15 +1543,7 @@ Amy McClure Echeverri
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 6
-
-
-
 
 <tr>
 <td>
@@ -1957,15 +1577,7 @@ Basheer Ghouse
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -2000,15 +1612,7 @@ Atrium (25)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 2 of 5
-
-
-
 
 <tr>
 <td>
@@ -2041,15 +1645,7 @@ Justin Ford
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 5
-
-
-
 
 <tr>
 <td>
@@ -2083,15 +1679,7 @@ Shao Han Tan
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -2124,15 +1712,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 2 of 4
-
-
-
 
 <tr>
 <td>
@@ -2166,15 +1746,7 @@ Kelly Tran
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 6
-
-
-
 
 <tr>
 <td>
@@ -2207,15 +1779,7 @@ Atrium (27)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 5
-
-
-
 
 <tr>
 <td>
@@ -2249,15 +1813,7 @@ Harbor Room (92)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 29 of 50
-
-
-
 
 <tr>
 <td>
@@ -2291,15 +1847,7 @@ Atrium (26)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 5
-
-
-
 
 <tr>
 <td>
@@ -2332,15 +1880,7 @@ Grand Peninsula (68)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 6 of 6
-
-
-
 
 <tr>
 <td>
@@ -2373,15 +1913,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 1
-
-
-
 
 <tr>
 <td>
@@ -2415,15 +1947,7 @@ Harbor Room (92)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 3 of 50
-
-
-
 
 <tr>
 <td>
@@ -2456,15 +1980,7 @@ Grand Peninsula (64-67)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 3 of 6
-
-
-
 
 <tr>
 <td>
@@ -2497,15 +2013,7 @@ Grand Peninsula Salon A ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 1
-
-
-
 
 <tr>
 <td>
@@ -2538,15 +2046,7 @@ Regency Room ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 2
-
-
-
 
 <tr>
 <td>
@@ -2579,15 +2079,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 3 of 5
-
-
-
 
 <tr>
 <td>
@@ -2621,15 +2113,7 @@ Dezzy
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 6
-
-
-
 
 <tr>
 <td>
@@ -2662,15 +2146,7 @@ Aser Tolentino
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 6
-
-
-
 
 <tr>
 <td>
@@ -2704,15 +2180,7 @@ Boardroom II (2)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 12 of 20
-
-
-
 
 <tr>
 <td>
@@ -2745,15 +2213,7 @@ W Quinellipe Zorn
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -2787,15 +2247,7 @@ Ian Norris
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 2 of 6
-
-
-
 
 <tr>
 <td>
@@ -2829,15 +2281,7 @@ Grand Peninsula (70)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 4 of 4
-
-
-
 
 <tr>
 <td>
@@ -2870,15 +2314,7 @@ Grand Peninsula (68)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 5 of 6
-
-
-
 
 <tr>
 <td>
@@ -2911,15 +2347,7 @@ Daniel Klein
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -2952,15 +2380,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 1
-
-
-
 
 <tr>
 <td>
@@ -2994,15 +2414,7 @@ Harbor Room (92)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 32 of 50
-
-
-
 
 <tr>
 <td>
@@ -3037,15 +2449,7 @@ Sequoia Room (47-59)
 </td>
 <td class="event-spaces">
 
-
 Games on Demand
-
-
-
-
-
-
-
 
 <tr>
 <td>
@@ -3079,15 +2483,7 @@ Poolside Pavilion (78)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -3121,15 +2517,7 @@ Jay Loomis
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -3162,15 +2550,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -3204,15 +2584,7 @@ Christie R. Fremon
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -3245,15 +2617,7 @@ Ronny
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 4
-
-
-
 
 <tr>
 <td>
@@ -3286,15 +2650,7 @@ Zachary Paul
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -3327,15 +2683,7 @@ Harbor Room ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 1
-
-
-
 
 <tr>
 <td>
@@ -3369,15 +2717,7 @@ Jason "JiB" Tryon (he/him)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -3411,15 +2751,7 @@ Atrium (25)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -3453,15 +2785,7 @@ Boardroom I (1)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 4 of 8
-
-
-
 
 <tr>
 <td>
@@ -3494,15 +2818,7 @@ Sandpebble E (43)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 6
-
-
-
 
 <tr>
 <td>
@@ -3535,15 +2851,7 @@ Grand Peninsula (64-67)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 3 of 6
-
-
-
 
 <tr>
 <td>
@@ -3577,15 +2885,7 @@ Grand Peninsula (69)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 4
-
-
-
 
 <tr>
 <td>
@@ -3618,15 +2918,7 @@ Matthulhu Steele
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -3659,15 +2951,7 @@ Poolside Pavilion (76)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -3700,15 +2984,7 @@ Adam DeCamp
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 8
-
-
-
 
 <tr>
 <td>
@@ -3741,15 +3017,7 @@ Abby Schwarz
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 2 of 5
-
-
-
 
 <tr>
 <td>
@@ -3783,15 +3051,7 @@ Chris Czerniak
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -3824,15 +3084,7 @@ Ash Cheshire
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 5
-
-
-
 
 <tr>
 <td>
@@ -3866,15 +3118,7 @@ Justin Ford
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -3908,15 +3152,7 @@ Atrium (32)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 4
-
-
-
 
 <tr>
 <td>
@@ -3949,15 +3185,7 @@ Grand Peninsula (68)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 6
-
-
-
 
 <tr>
 <td>
@@ -3990,15 +3218,7 @@ Harbor Room (92)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 22 of 50
-
-
-
 
 <tr>
 <td>
@@ -4032,15 +3252,7 @@ Basheer Ghouse
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -4073,15 +3285,7 @@ Grand Peninsula (71)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 2 of 6
-
-
-
 
 <tr>
 <td>
@@ -4114,15 +3318,7 @@ Harbor Room (92)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 50
-
-
-
 
 <tr>
 <td>
@@ -4156,15 +3352,7 @@ Boardroom II (2)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 16 of 20
-
-
-
 
 <tr>
 <td>
@@ -4197,15 +3385,7 @@ Grand Peninsula (68)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 6 of 6
-
-
-
 
 <tr>
 <td>
@@ -4238,15 +3418,7 @@ Daniel Klein
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -4279,15 +3451,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 1
-
-
-
 
 <tr>
 <td>
@@ -4320,15 +3484,7 @@ Boardroom III (3)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 12
-
-
-
 
 <tr>
 <td>
@@ -4361,15 +3517,7 @@ Grand Peninsula (64-67)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 4 of 6
-
-
-
 
 <tr>
 <td>
@@ -4403,15 +3551,7 @@ Atrium (32)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -4444,15 +3584,7 @@ Grand Peninsula (68)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 6 of 6
-
-
-
 
 <tr>
 <td>
@@ -4485,15 +3617,7 @@ Harbor Room (92)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 17 of 50
-
-
-
 
 <tr>
 <td>
@@ -4526,15 +3650,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -4567,15 +3683,7 @@ Grand Peninsula Salon A ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 1
-
-
-
 
 <tr>
 <td>
@@ -4608,15 +3716,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 1
-
-
-
 
 <tr>
 <td>
@@ -4650,15 +3750,7 @@ Chris Angelini
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 6
-
-
-
 
 <tr>
 <td>
@@ -4691,15 +3783,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -4732,15 +3816,7 @@ Regency Room ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 2
-
-
-
 
 <tr>
 <td>
@@ -4773,15 +3849,7 @@ Poolside Pavilion (76)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 100
-
-
-
 
 <tr>
 <td>
@@ -4814,15 +3882,7 @@ Boardroom I (1)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -4856,15 +3916,7 @@ Grand Peninsula (68)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -4897,15 +3949,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 1
-
-
-
 
 <tr>
 <td>
@@ -4938,15 +3982,7 @@ Joseph Benkual
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -4981,15 +4017,7 @@ Sequoia Room (47-59)
 </td>
 <td class="event-spaces">
 
-
 Games on Demand
-
-
-
-
-
-
-
 
 <tr>
 <td>
@@ -5023,15 +4051,7 @@ Sandpebble A (39)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 12
-
-
-
 
 <tr>
 <td>
@@ -5064,15 +4084,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 3
-
-
-
 
 <tr>
 <td>
@@ -5106,15 +4118,7 @@ Charles Simon
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -5148,15 +4152,7 @@ Amber Autumn Faebrooke
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 6
-
-
-
 
 <tr>
 <td>
@@ -5190,15 +4186,7 @@ Harbor Room (92)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -5232,15 +4220,7 @@ Grand Peninsula (70)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -5273,15 +4253,7 @@ Harbor Room ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 1
-
-
-
 
 <tr>
 <td>
@@ -5315,15 +4287,7 @@ Grand Peninsula (69)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -5356,15 +4320,7 @@ Matthulhu Steele
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -5397,15 +4353,7 @@ Ryan Ossum / Villain
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -5438,15 +4386,7 @@ Bernie Elayda
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 3 of 7
-
-
-
 
 <tr>
 <td>
@@ -5479,15 +4419,7 @@ Jess Ziganti
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 6
-
-
-
 
 <tr>
 <td>
@@ -5520,15 +4452,7 @@ Cypress Room A (93)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 45 of 50
-
-
-
 
 <tr>
 <td>
@@ -5561,15 +4485,7 @@ Regency Room ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 2
-
-
-
 
 <tr>
 <td>
@@ -5602,15 +4518,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -5643,15 +4551,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 5
-
-
-
 
 <tr>
 <td>
@@ -5685,15 +4585,7 @@ Lara Turner
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -5727,15 +4619,7 @@ Grand Peninsula (69)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -5768,15 +4652,7 @@ Sandpebble C (41)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 10
-
-
-
 
 <tr>
 <td>
@@ -5809,15 +4685,7 @@ Grand Peninsula Salon A ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 1
-
-
-
 
 <tr>
 <td>
@@ -5850,15 +4718,7 @@ Jeremiah Frye
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -5891,15 +4751,7 @@ Boardroom I (1)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -5932,15 +4784,7 @@ Grand Peninsula (68)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 3
-
-
-
 
 <tr>
 <td>
@@ -5973,15 +4817,7 @@ Rayven Reid-Murray
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -6016,15 +4852,7 @@ Sequoia Room (47-59)
 </td>
 <td class="event-spaces">
 
-
 Games on Demand
-
-
-
-
-
-
-
 
 <tr>
 <td>
@@ -6058,15 +4886,7 @@ Ronny
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 5
-
-
-
 
 <tr>
 <td>
@@ -6077,7 +4897,7 @@ Ronny
 </td>
 
 <td class="event-description">
-<a href="https://admin.bigbadcon.com/events/hope-s-last-day/">Hope&#039;s Last Day</a>
+<a href="https://admin.bigbadcon.com/events/hope-s-last-day/">Hope's Last Day</a>
 </td>
 <td class="event-system">
 ALIEN RPG
@@ -6100,15 +4920,7 @@ Thomas McVey
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 5
-
-
-
 
 <tr>
 <td>
@@ -6141,15 +4953,7 @@ Roy Vieira
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 6
-
-
-
 
 <tr>
 <td>
@@ -6182,15 +4986,7 @@ Atrium (25)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -6223,15 +5019,7 @@ Thom Hall
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 6
-
-
-
 
 <tr>
 <td>
@@ -6242,7 +5030,7 @@ Thom Hall
 </td>
 
 <td class="event-description">
-<a href="https://admin.bigbadcon.com/events/kickstarting-your-ttrpg-tips-tricks-from-a-to-z-2/">Kickstarting Your TTRPG, Tips &amp; Tricks from A to Z</a>
+<a href="https://admin.bigbadcon.com/events/kickstarting-your-ttrpg-tips-tricks-from-a-to-z-2/">Kickstarting Your TTRPG, Tips & Tricks from A to Z</a>
 </td>
 <td class="event-system">
 Panel
@@ -6265,15 +5053,7 @@ Harbor Room (92)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 31 of 50
-
-
-
 
 <tr>
 <td>
@@ -6308,15 +5088,7 @@ Alan Scott
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -6349,15 +5121,7 @@ Aser Tolentino
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 6
-
-
-
 
 <tr>
 <td>
@@ -6390,15 +5154,7 @@ Harbor Room ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 1
-
-
-
 
 <tr>
 <td>
@@ -6432,15 +5188,7 @@ Jozy Zim
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 6
-
-
-
 
 <tr>
 <td>
@@ -6474,15 +5222,7 @@ Atrium (26)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 6
-
-
-
 
 <tr>
 <td>
@@ -6516,15 +5256,7 @@ Trevor Placker
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -6558,15 +5290,7 @@ Misha Grifka Wander
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 6
-
-
-
 
 <tr>
 <td>
@@ -6599,15 +5323,7 @@ Adam DeCamp
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 8
-
-
-
 
 <tr>
 <td>
@@ -6641,15 +5357,7 @@ Adam Flynn and Lisa Sindorf
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 2 of 5
-
-
-
 
 <tr>
 <td>
@@ -6682,15 +5390,7 @@ Megan Tolentino
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 6
-
-
-
 
 <tr>
 <td>
@@ -6701,7 +5401,7 @@ Megan Tolentino
 </td>
 
 <td class="event-description">
-<a href="https://admin.bigbadcon.com/events/yazebas-bed-breakfast/">Yazeba&#039;s Bed &amp; Breakfast</a>
+<a href="https://admin.bigbadcon.com/events/yazebas-bed-breakfast/">Yazeba's Bed & Breakfast</a>
 </td>
 <td class="event-system">
 Yazeba's Bed & Breakfast
@@ -6724,15 +5424,7 @@ Jay Dragon
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 6
-
-
-
 
 <tr>
 <td>
@@ -6765,15 +5457,7 @@ Nychelle Schneider
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -6806,15 +5490,7 @@ Matthulhu Steele
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -6847,15 +5523,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 1
-
-
-
 
 <tr>
 <td>
@@ -6888,15 +5556,7 @@ Meredith SK
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 8 of 8
-
-
-
 
 <tr>
 <td>
@@ -6929,15 +5589,7 @@ Liz Ruifrok
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -6970,15 +5622,7 @@ Grand Peninsula (64-67)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 3 of 6
-
-
-
 
 <tr>
 <td>
@@ -7011,15 +5655,7 @@ Grand Peninsula (68)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 3
-
-
-
 
 <tr>
 <td>
@@ -7054,15 +5690,7 @@ Atrium (29)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 3 of 5
-
-
-
 
 <tr>
 <td>
@@ -7096,15 +5724,7 @@ Atrium (32)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 4 of 6
-
-
-
 
 <tr>
 <td>
@@ -7138,15 +5758,7 @@ Shao Han Tan
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -7179,15 +5791,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 4
-
-
-
 
 <tr>
 <td>
@@ -7217,15 +5821,7 @@ Atrium (34)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 5 of 5
-
-
-
 
 <tr>
 <td>
@@ -7236,7 +5832,7 @@ Atrium (34)
 </td>
 
 <td class="event-description">
-<a href="https://admin.bigbadcon.com/events/ttrpgs-dreams-radical-imagination/">TTRPGs, Dreams, &amp; Radical Imagination</a>
+<a href="https://admin.bigbadcon.com/events/ttrpgs-dreams-radical-imagination/">TTRPGs, Dreams, & Radical Imagination</a>
 </td>
 <td class="event-system">
 Panel
@@ -7259,15 +5855,7 @@ Harbor Room (92)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 16 of 50
-
-
-
 
 <tr>
 <td>
@@ -7300,15 +5888,7 @@ Jess Ziganti
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 6
-
-
-
 
 <tr>
 <td>
@@ -7341,15 +5921,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 1
-
-
-
 
 <tr>
 <td>
@@ -7382,15 +5954,7 @@ Grand Peninsula (64-67)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 6
-
-
-
 
 <tr>
 <td>
@@ -7423,15 +5987,7 @@ Harbor Room (92)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 11 of 50
-
-
-
 
 <tr>
 <td>
@@ -7464,15 +6020,7 @@ Grand Peninsula Salon A ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 1
-
-
-
 
 <tr>
 <td>
@@ -7505,15 +6053,7 @@ Regency Room ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 2
-
-
-
 
 <tr>
 <td>
@@ -7546,15 +6086,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 5
-
-
-
 
 <tr>
 <td>
@@ -7587,15 +6119,7 @@ Dezzy
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 6
-
-
-
 
 <tr>
 <td>
@@ -7628,15 +6152,7 @@ Jason "JiB" Tryon (he/him)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -7669,15 +6185,7 @@ Aser Tolentino
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 6
-
-
-
 
 <tr>
 <td>
@@ -7711,15 +6219,7 @@ Boardroom II (2)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 6 of 20
-
-
-
 
 <tr>
 <td>
@@ -7753,15 +6253,7 @@ W Quinellipe ("Quin") Zorn
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 4
-
-
-
 
 <tr>
 <td>
@@ -7796,15 +6288,7 @@ Atrium (26)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -7837,15 +6321,7 @@ Atrium (32)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 5 of 6
-
-
-
 
 <tr>
 <td>
@@ -7879,15 +6355,7 @@ Justin Ford
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -7920,15 +6388,7 @@ Bernie Elayda
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -7961,15 +6421,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 1
-
-
-
 
 <tr>
 <td>
@@ -8004,15 +6456,7 @@ Sequoia Room (47-59)
 </td>
 <td class="event-spaces">
 
-
 Games on Demand
-
-
-
-
-
-
-
 
 <tr>
 <td>
@@ -8046,15 +6490,7 @@ Sandpebble E (43)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 8 of 14
-
-
-
 
 <tr>
 <td>
@@ -8088,15 +6524,7 @@ Atrium (28)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 5
-
-
-
 
 <tr>
 <td>
@@ -8129,15 +6557,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -8170,15 +6590,7 @@ Grand Peninsula (68)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 3
-
-
-
 
 <tr>
 <td>
@@ -8212,15 +6624,7 @@ Charles Simon
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 5
-
-
-
 
 <tr>
 <td>
@@ -8255,15 +6659,7 @@ Atrium (36)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 5 of 6
-
-
-
 
 <tr>
 <td>
@@ -8297,15 +6693,7 @@ Christie R. Fremon
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -8316,7 +6704,7 @@ Christie R. Fremon
 </td>
 
 <td class="event-description">
-<a href="https://admin.bigbadcon.com/events/moon-s-shot/">Moon&#039;s Shot</a>
+<a href="https://admin.bigbadcon.com/events/moon-s-shot/">Moon's Shot</a>
 </td>
 <td class="event-system">
 Tunnel Goons
@@ -8339,15 +6727,7 @@ Poolside Pavilion (76)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -8381,15 +6761,7 @@ Charles Picard
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -8422,15 +6794,7 @@ Harbor Room ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 1
-
-
-
 
 <tr>
 <td>
@@ -8463,15 +6827,7 @@ Grand Peninsula (69)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 6
-
-
-
 
 <tr>
 <td>
@@ -8504,15 +6860,7 @@ Yann K.
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 6
-
-
-
 
 <tr>
 <td>
@@ -8523,7 +6871,7 @@ Yann K.
 </td>
 
 <td class="event-description">
-<a href="https://admin.bigbadcon.com/events/q-a-with-the-creators-of-journeys-through-the-radiant-citadel/">Q&amp;A with the Creators of Journeys through the Radiant Citadel</a>
+<a href="https://admin.bigbadcon.com/events/q-a-with-the-creators-of-journeys-through-the-radiant-citadel/">Q&A with the Creators of Journeys through the Radiant Citadel</a>
 </td>
 <td class="event-system">
 Panel
@@ -8545,15 +6893,7 @@ Harbor Room (92)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 50
-
-
-
 
 <tr>
 <td>
@@ -8586,15 +6926,7 @@ Sandpebble A (39)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 3 of 25
-
-
-
 
 <tr>
 <td>
@@ -8628,15 +6960,7 @@ Amber Autumn Faebrooke
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 3 of 7
-
-
-
 
 <tr>
 <td>
@@ -8669,15 +6993,7 @@ Grand Peninsula (64-67)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 2 of 6
-
-
-
 
 <tr>
 <td>
@@ -8711,15 +7027,7 @@ Grand Peninsula (70)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -8752,15 +7060,7 @@ Roy Vieira
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 6
-
-
-
 
 <tr>
 <td>
@@ -8793,15 +7093,7 @@ Ryan Ossum / Villain
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 5
-
-
-
 
 <tr>
 <td>
@@ -8834,15 +7126,7 @@ Steven Drouin
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -8877,15 +7161,7 @@ Atrium (36)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 4 of 6
-
-
-
 
 <tr>
 <td>
@@ -8918,15 +7194,7 @@ Grand Peninsula (69)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 6 of 6
-
-
-
 
 <tr>
 <td>
@@ -8960,15 +7228,7 @@ Boardroom II (2)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 12 of 20
-
-
-
 
 <tr>
 <td>
@@ -8979,7 +7239,7 @@ Boardroom II (2)
 </td>
 
 <td class="event-description">
-<a href="https://admin.bigbadcon.com/events/cults-conspiracies/">Cults &amp; Conspiracies</a>
+<a href="https://admin.bigbadcon.com/events/cults-conspiracies/">Cults & Conspiracies</a>
 </td>
 <td class="event-system">
 Original
@@ -9001,15 +7261,7 @@ Atrium (34)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 2 of 6
-
-
-
 
 <tr>
 <td>
@@ -9042,15 +7294,7 @@ Atrium (28)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -9083,15 +7327,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 1
-
-
-
 
 <tr>
 <td>
@@ -9126,15 +7362,7 @@ Atrium (36)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 5 of 6
-
-
-
 
 <tr>
 <td>
@@ -9167,15 +7395,7 @@ Grand Peninsula (69)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 5 of 6
-
-
-
 
 <tr>
 <td>
@@ -9208,15 +7428,7 @@ Grand Peninsula (64-67)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 6 of 6
-
-
-
 
 <tr>
 <td>
@@ -9250,15 +7462,7 @@ Grand Peninsula (68)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 4
-
-
-
 
 <tr>
 <td>
@@ -9269,7 +7473,7 @@ Grand Peninsula (68)
 </td>
 
 <td class="event-description">
-<a href="https://admin.bigbadcon.com/events/what-s-in-a-game-defining-the-elements-of-ttrpgs/">What&#039;s In A Game? Defining the Elements of TTRPGs</a>
+<a href="https://admin.bigbadcon.com/events/what-s-in-a-game-defining-the-elements-of-ttrpgs/">What's In A Game? Defining the Elements of TTRPGs</a>
 </td>
 <td class="event-system">
 Panel
@@ -9291,15 +7495,7 @@ Harbor Room (92)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 15 of 50
-
-
-
 
 <tr>
 <td>
@@ -9332,15 +7528,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 2 of 4
-
-
-
 
 <tr>
 <td>
@@ -9375,15 +7563,7 @@ Atrium (36)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 6 of 6
-
-
-
 
 <tr>
 <td>
@@ -9417,15 +7597,7 @@ Harbor Room (92)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 25 of 50
-
-
-
 
 <tr>
 <td>
@@ -9458,15 +7630,7 @@ Grand Peninsula Salon A ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 1
-
-
-
 
 <tr>
 <td>
@@ -9499,15 +7663,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 1
-
-
-
 
 <tr>
 <td>
@@ -9541,15 +7697,7 @@ Chris Angelini
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 6
-
-
-
 
 <tr>
 <td>
@@ -9582,15 +7730,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 2 of 4
-
-
-
 
 <tr>
 <td>
@@ -9623,15 +7763,7 @@ Harbor Room (92)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 16 of 50
-
-
-
 
 <tr>
 <td>
@@ -9664,15 +7796,7 @@ Matthulhu Steele
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 6
-
-
-
 
 <tr>
 <td>
@@ -9683,7 +7807,7 @@ Matthulhu Steele
 </td>
 
 <td class="event-description">
-<a href="https://admin.bigbadcon.com/events/poc-meet-greet-host/">POC Meet &amp; Greet Host</a>
+<a href="https://admin.bigbadcon.com/events/poc-meet-greet-host/">POC Meet & Greet Host</a>
 </td>
 <td class="event-system">
 Gathering
@@ -9705,15 +7829,7 @@ Atrium (25)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 2
-
-
-
 
 <tr>
 <td>
@@ -9746,15 +7862,7 @@ Regency Room ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 2
-
-
-
 
 <tr>
 <td>
@@ -9765,7 +7873,7 @@ Regency Room ()
 </td>
 
 <td class="event-description">
-<a href="https://admin.bigbadcon.com/events/poc-meet-greet/">POC Meet &amp; Greet</a>
+<a href="https://admin.bigbadcon.com/events/poc-meet-greet/">POC Meet & Greet</a>
 </td>
 <td class="event-system">
 Gathering
@@ -9787,15 +7895,7 @@ Atrium (25)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 11 of 130
-
-
-
 
 <tr>
 <td>
@@ -9806,7 +7906,7 @@ Atrium (25)
 </td>
 
 <td class="event-description">
-<a href="https://admin.bigbadcon.com/events/arsenic-lies/">Arsenic &amp; Lies</a>
+<a href="https://admin.bigbadcon.com/events/arsenic-lies/">Arsenic & Lies</a>
 </td>
 <td class="event-system">
 Arsenic & Lies
@@ -9828,15 +7928,7 @@ Sandpebble A (39)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 10
-
-
-
 
 <tr>
 <td>
@@ -9869,15 +7961,7 @@ W Quinellipe ("Quin") Zorn
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -9911,15 +7995,7 @@ Grand Peninsula (69)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -9952,15 +8028,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 1
-
-
-
 
 <tr>
 <td>
@@ -9995,15 +8063,7 @@ Sequoia Room (47-59)
 </td>
 <td class="event-spaces">
 
-
 Games on Demand
-
-
-
-
-
-
-
 
 <tr>
 <td>
@@ -10036,15 +8096,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 3
-
-
-
 
 <tr>
 <td>
@@ -10077,15 +8129,7 @@ Sandpebble E (43)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 9
-
-
-
 
 <tr>
 <td>
@@ -10118,15 +8162,7 @@ Chris Czerniak
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -10159,15 +8195,7 @@ Harbor Room ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 1
-
-
-
 
 <tr>
 <td>
@@ -10201,15 +8229,7 @@ Grand Peninsula (70)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -10242,15 +8262,7 @@ Jeremiah Frye
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 4
-
-
-
 
 <tr>
 <td>
@@ -10283,15 +8295,7 @@ Steven Drouin
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -10324,15 +8328,7 @@ Ash Cheshire
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -10366,15 +8362,7 @@ Grand Peninsula (68)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -10407,15 +8395,7 @@ Cypress Room A (93)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 29 of 50
-
-
-
 
 <tr>
 <td>
@@ -10449,15 +8429,7 @@ Grand Peninsula Foyer (Reg Desk)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 14 of 30
-
-
-
 
 <tr>
 <td>
@@ -10490,15 +8462,7 @@ Regency Room ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 2
-
-
-
 
 <tr>
 <td>
@@ -10531,15 +8495,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 3
-
-
-
 
 <tr>
 <td>
@@ -10572,15 +8528,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 4
-
-
-
 
 <tr>
 <td>
@@ -10613,15 +8561,7 @@ Peter Vogel
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -10655,15 +8595,7 @@ Jarys Maragopoulos
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -10696,15 +8628,7 @@ Ian Norris
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 6
-
-
-
 
 <tr>
 <td>
@@ -10737,15 +8661,7 @@ Grand Peninsula Salon A ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 1
-
-
-
 
 <tr>
 <td>
@@ -10780,15 +8696,7 @@ Kandi Williams
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 5
-
-
-
 
 <tr>
 <td>
@@ -10821,15 +8729,7 @@ Grand Peninsula (68)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 3
-
-
-
 
 <tr>
 <td>
@@ -10864,15 +8764,7 @@ Sequoia Room (47-59)
 </td>
 <td class="event-spaces">
 
-
 Games on Demand
-
-
-
-
-
-
-
 
 <tr>
 <td>
@@ -10906,15 +8798,7 @@ Charles Simon
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -10948,15 +8832,7 @@ Aaron Reed
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 2 of 5
-
-
-
 
 <tr>
 <td>
@@ -10990,15 +8866,7 @@ Boardroom II (2)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 2 of 8
-
-
-
 
 <tr>
 <td>
@@ -11032,15 +8900,7 @@ Grand Peninsula (70)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -11073,15 +8933,7 @@ Scott Henderson
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -11114,15 +8966,7 @@ Aser Tolentino
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 6
-
-
-
 
 <tr>
 <td>
@@ -11155,15 +8999,7 @@ Harbor Room ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 1
-
-
-
 
 <tr>
 <td>
@@ -11197,15 +9033,7 @@ Atrium (28)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 2 of 5
-
-
-
 
 <tr>
 <td>
@@ -11238,15 +9066,7 @@ Poolside Pavilion (78)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 5
-
-
-
 
 <tr>
 <td>
@@ -11279,15 +9099,7 @@ Boardroom III (3)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 3 of 9
-
-
-
 
 <tr>
 <td>
@@ -11320,15 +9132,7 @@ Ryan Ossum / Villain
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -11362,15 +9166,7 @@ Brian W
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 6
-
-
-
 
 <tr>
 <td>
@@ -11403,15 +9199,7 @@ Poolside Pavilion (76)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -11444,15 +9232,7 @@ Liz Ruifrok
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 4 of 10
-
-
-
 
 <tr>
 <td>
@@ -11463,7 +9243,7 @@ Liz Ruifrok
 </td>
 
 <td class="event-description">
-<a href="https://admin.bigbadcon.com/events/through-the-dread-jaguars-lair/">Through the Dread Jaguar&#039;s Lair</a>
+<a href="https://admin.bigbadcon.com/events/through-the-dread-jaguars-lair/">Through the Dread Jaguar's Lair</a>
 </td>
 <td class="event-system">
 Xolo: Dogs & Souls
@@ -11487,15 +9267,7 @@ Mario Ortegon
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -11530,15 +9302,7 @@ Megan Tolentino
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 6
-
-
-
 
 <tr>
 <td>
@@ -11571,15 +9335,7 @@ Morgan Nuncio
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -11612,15 +9368,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 1
-
-
-
 
 <tr>
 <td>
@@ -11653,15 +9401,7 @@ Grand Peninsula (64-67)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 5 of 6
-
-
-
 
 <tr>
 <td>
@@ -11694,15 +9434,7 @@ Harbor Room (92)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 16 of 20
-
-
-
 
 <tr>
 <td>
@@ -11736,15 +9468,7 @@ Basheer Ghouse
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -11777,15 +9501,7 @@ Grand Peninsula (68)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 1 of 3
-
-
-
 
 <tr>
 <td>
@@ -11818,15 +9534,7 @@ Atrium (32)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 4 of 6
-
-
-
 
 <tr>
 <td>
@@ -11860,15 +9568,7 @@ Shao Han Tan
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -11902,15 +9602,7 @@ Grand Peninsula (69)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 5 of 5
-
-
-
 
 <tr>
 <td>
@@ -11943,15 +9635,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 3
-
-
-
 
 <tr>
 <td>
@@ -11984,15 +9668,7 @@ Harbor Room (92)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 15 of 30
-
-
-
 
 <tr>
 <td>
@@ -12026,15 +9702,7 @@ Atrium (31)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -12067,15 +9735,7 @@ Grand Peninsula Foyer ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 1
-
-
-
 
 <tr>
 <td>
@@ -12108,15 +9768,7 @@ Grand Peninsula (64-67)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 2 of 6
-
-
-
 
 <tr>
 <td>
@@ -12149,15 +9801,7 @@ Grand Peninsula Salon A ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 3
-
-
-
 
 <tr>
 <td>
@@ -12168,7 +9812,7 @@ Grand Peninsula Salon A ()
 </td>
 
 <td class="event-description">
-<a href="https://admin.bigbadcon.com/events/a-monstrous-romance-haunt-here-often/">A Monstrous Romance &amp; Haunt Here Often?</a>
+<a href="https://admin.bigbadcon.com/events/a-monstrous-romance-haunt-here-often/">A Monstrous Romance & Haunt Here Often?</a>
 </td>
 <td class="event-system">
 Improvisational Satire
@@ -12190,15 +9834,7 @@ Sandpebble C (41)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 8
-
-
-
 
 <tr>
 <td>
@@ -12232,15 +9868,7 @@ Basheer Ghouse
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -12274,15 +9902,7 @@ Ian Norris
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 3 of 6
-
-
-
 
 <tr>
 <td>
@@ -12315,15 +9935,7 @@ W Quinellipe ("Quin") Zorn
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 2 of 6
-
-
-
 
 <tr>
 <td>
@@ -12356,15 +9968,7 @@ Jason "JiB" Tryon (he/him)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -12397,15 +10001,7 @@ Atrium (32)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 5 of 6
-
-
-
 
 <tr>
 <td>
@@ -12439,15 +10035,7 @@ Sandpebble A (39)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 4 of 11
-
-
-
 
 <tr>
 <td>
@@ -12480,15 +10068,7 @@ Rayven Reid-Murray
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -12523,15 +10103,7 @@ Sequoia Room (47-59)
 </td>
 <td class="event-spaces">
 
-
 Games on Demand
-
-
-
-
-
-
-
 
 <tr>
 <td>
@@ -12565,15 +10137,7 @@ Jay Loomis
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 2 of 4
-
-
-
 
 <tr>
 <td>
@@ -12606,15 +10170,7 @@ Grand Peninsula (68)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 2 of 3
-
-
-
 
 <tr>
 <td>
@@ -12649,15 +10205,7 @@ Atrium (34)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 4 of 6
-
-
-
 
 <tr>
 <td>
@@ -12690,15 +10238,7 @@ Harbor Room ()
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 1
-
-
-
 
 <tr>
 <td>
@@ -12731,15 +10271,7 @@ Lara Turner
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 5
-
-
-
 
 <tr>
 <td>
@@ -12772,15 +10304,7 @@ Grand Peninsula (64-67)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 4 of 6
-
-
-
 
 <tr>
 <td>
@@ -12813,15 +10337,7 @@ Harbor Room (92)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 20 of 50
-
-
-
 
 <tr>
 <td>
@@ -12854,15 +10370,7 @@ Ash Cheshire
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -12895,15 +10403,7 @@ Jon Robertson
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 4
-
-
-
 
 <tr>
 <td>
@@ -12914,7 +10414,7 @@ Jon Robertson
 </td>
 
 <td class="event-description">
-<a href="https://admin.bigbadcon.com/events/yazeba-s-bed-breakfast-one-of-a-kind-meta-clone-o-matic/">Yazeba&#039;s Bed &amp; Breakfast: One-Of-A-Kind Meta-Clone-O-Matic</a>
+<a href="https://admin.bigbadcon.com/events/yazeba-s-bed-breakfast-one-of-a-kind-meta-clone-o-matic/">Yazeba's Bed & Breakfast: One-Of-A-Kind Meta-Clone-O-Matic</a>
 </td>
 <td class="event-system">
 Yazeba's Bed & Breakfast
@@ -12937,15 +10437,7 @@ Indrani Ganguly
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 6
-
-
-
 
 <tr>
 <td>
@@ -12980,15 +10472,7 @@ Atrium (34)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 6 of 6
-
-
-
 
 <tr>
 <td>
@@ -13021,15 +10505,7 @@ Grand Peninsula (68)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 0 of 3
-
-
-
 
 <tr>
 <td>
@@ -13064,15 +10540,7 @@ Atrium (34)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 6 of 6
-
-
-
 
 <tr>
 <td>
@@ -13107,14 +10575,6 @@ Atrium (34)
 </td>
 <td class="event-spaces">
 
-
-
-
-
-
 6 of 6
-
-
-
 
 </tbody></table>
