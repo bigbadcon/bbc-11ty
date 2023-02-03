@@ -14,9 +14,9 @@ Big Bad Con has a long history, starting all the way back in 2010! Our blog goes
 
 ### Big Bad Con
 
-[Big Bad Archive 2011-2019](https://www.bigbadcon.com/archive-of-past-events/)
+[Big Bad Con 2011-2019](https://www.bigbadcon.com/archive-of-past-events/)
 
-Big Bad Con 2023 (coming soon)
+[Big Bad Con 2022](/archive-of-2022-events)
 
 ### Big Bad Online
 
