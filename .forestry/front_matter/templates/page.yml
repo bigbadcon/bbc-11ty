@@ -122,6 +122,7 @@ fields:
     - wolf
     - youtube
 pages:
+- src/404.md
 - src/accessibility-policy.md
 - src/archive-of-2022-events.md
 - src/archive-of-past-events.md
@@ -138,9 +139,11 @@ pages:
 - src/games-on-demand-how-it-works.md
 - src/hotel.md
 - src/how-do-game-signups-work.md
+- src/morgan-ellis-awards.md
 - src/non-profit.md
 - src/past-events.md
 - src/poc-dinner-contribution-thanks.md
+- src/poc-scholars.md
 - src/public-health-policy.md
 - src/rangers.md
 - src/run-an-event.md
