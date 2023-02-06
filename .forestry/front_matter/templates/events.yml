@@ -1,0 +1,43 @@
+---
+label: Events
+hide_body: false
+fields:
+- type: text
+  name: layout
+  label: layout
+- type: text
+  name: title
+  label: title
+- type: boolean
+  name: published
+  label: published
+- type: text
+  name: description
+  label: description
+- type: text
+  name: tags
+  label: tags
+- type: text
+  name: navGroup
+  label: navGroup
+- type: text
+  name: navTitle
+  label: navTitle
+- type: number
+  name: order
+  label: order
+- type: text
+  name: icon
+  label: icon
+- type: text
+  name: events_type
+  label: events_type
+- type: text
+  name: events_status
+  label: events_status
+- type: boolean
+  name: suggestEvent
+  label: suggestEvent
+- type: boolean
+  name: runEvent
+  label: runEvent
