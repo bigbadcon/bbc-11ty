@@ -13,24 +13,91 @@ fields:
 - type: boolean
   name: published
   label: published
+  default: false
 - type: text
   name: description
   label: description
-- type: text
-  name: tags
-  label: tags
-- type: text
+- name: ogImage
+  type: file
+  config:
+    maxSize: 64
+  label: open graph image
+  description: Twitter/Facebook social image card
+- type: select
   name: navGroup
   label: navGroup
+  config:
+    options:
+    - Attend
+    - Events
+    - Volunteer
+    - Community
+    - Blog
+  description: Nav group placement. If left blank it will not appear in the nav. If
+    only one item is in a nav group then it will not be a dropdown (for example Blog
+    is a single link not a dropdown as the only item in that group is blog)
 - type: text
   name: navTitle
   label: navTitle
+  description: If the nav items title is different than the page title add it here
 - type: number
   name: order
   label: order
-- type: text
+  description: Order within the nav group
+- type: select
   name: icon
   label: icon
+  description: icon for link in menu. See https://www.bigbadcon.com/icons/ for list
+  config:
+    options:
+    - accessibility
+    - add
+    - art
+    - badge
+    - book
+    - booth
+    - bullhorn
+    - calendar-clock
+    - calendar-star
+    - close
+    - dice
+    - discord
+    - envelope
+    - faq
+    - games-on-demand
+    - gift
+    - health
+    - hotel
+    - image
+    - itch-io
+    - kickstarter
+    - library
+    - light-bulb
+    - list
+    - menu
+    - moon
+    - overlap
+    - parachute
+    - party
+    - paw
+    - pencil-square
+    - pig
+    - price-tags
+    - scholar
+    - scroll
+    - settings
+    - shield
+    - square-check
+    - square-full
+    - square-open
+    - star
+    - sun
+    - trophy
+    - twitch
+    - twitter
+    - website
+    - wolf
+    - youtube
 - name: events_type
   type: select
   default: []
