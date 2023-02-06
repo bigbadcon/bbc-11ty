@@ -69,12 +69,16 @@ eleventyComputed:
     {% if event.metadata.Players %}
         {% include 'components/event-spaces.njk' %}
     {% endif %}
-    <div>
-        <strong>Attendee/Player Age:</strong>
-        {{event.metadata.player_age}}</div>
-    <div>
-        <strong>Safety Tools:</strong>
-        {{event.metadata.safety_tools}}</div>
+    {% if event.metadata.player_age %}
+        <div>
+            <strong>Attendee/Player Age:</strong>
+            {{event.metadata.player_age}}</div>
+    {% endif %}
+    {% if event.metadata.safety_tools %}
+        <div>
+            <strong>Safety Tools:</strong>
+            {{event.metadata.safety_tools}}</div>
+    {% endif %}
     {% if event.metadata.Characters %}
         <div>
             <strong>Characters:</strong>
