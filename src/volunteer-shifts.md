@@ -9,6 +9,7 @@ navGroup: Volunteer
 navTitle: Volunteers Shifts
 order: 1
 icon: calendar-clock
+ogImage: ''
 
 ---
 Our Rangers are the folks that make Big Bad Con and Big Bad Online possible. To join, sign up for one or more shift below! 
