@@ -560,6 +560,13 @@ document.addEventListener("alpine:init", () => {
 				"Early Signup",
 				"Vending",
 			],
+			onlineCategories: [
+				"All",
+				"Panel",
+				"Practicum",
+				"Seminar",
+				"Topical",
+			],
 			setCategory(cat) {
 				// TODO: make category list more dynamic
 				this.filter.category =

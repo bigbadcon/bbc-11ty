@@ -8,6 +8,10 @@ navGroup: Events
 navTitle: Events
 order: 0
 icon: calendar-clock
+events_type: online
+events_status: preview
+suggestEvent: false
+runEvent: false
 
 ---
 <!--Events are for Big Bad Con, October 27-30 2022! We are still accepting [event submissions](/run-an-event/)! _Game signups are open now._ [Here's how they work](https://www.bigbadcon.com/how-do-game-signups-work/)!
