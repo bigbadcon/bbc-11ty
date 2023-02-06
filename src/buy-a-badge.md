@@ -8,6 +8,7 @@ navGroup: ''
 navTitle: Buy a Badge
 order: 4
 icon: badge
+ogImage: ''
 
 ---
 Online badge sales are now closed but you can still buy at badge in person at the con. Just **show up**, go to our **vaccination screening station**, and then to the **reg desk** to pick one up:
