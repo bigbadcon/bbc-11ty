@@ -5,6 +5,8 @@ fields:
 - type: text
   name: layout
   label: layout
+  default: layouts/events.njk
+  hidden: true
 - type: text
   name: title
   label: title
@@ -29,11 +31,33 @@ fields:
 - type: text
   name: icon
   label: icon
-- type: text
-  name: events_type
+- name: events_type
+  type: select
+  default: []
+  config:
+    required: false
+    options:
+    - online
+    - irl
+    source:
+      type: simple
+      section: 
+      file: 
+      path: 
   label: events_type
-- type: text
-  name: events_status
+- name: events_status
+  type: select
+  default: []
+  config:
+    required: false
+    options:
+    - preview
+    - live
+    source:
+      type: simple
+      section: 
+      file: 
+      path: 
   label: events_status
 - type: boolean
   name: suggestEvent
