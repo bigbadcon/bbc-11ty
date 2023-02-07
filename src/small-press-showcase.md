@@ -1,7 +1,7 @@
 ---
 layout: layouts/page.njk
 title: Small Press Showcase
-published: true
+published: false
 description: ''
 ogImage: ''
 navGroup: Events
