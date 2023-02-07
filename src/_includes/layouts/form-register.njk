@@ -20,8 +20,8 @@
                     <p>You must <button @click="modal = 'Login'" class="font-bold text-highlight">login</button> to register for Big Bad Online or view your registration information.</p>
                 </div>
                 {# Loading spinner #}
-                <div x-cloak x-show="isAuth && isRegistered === null" 
-                x-init="checkRegistration()"
+                <div x-cloak x-show="isAuth && isRegistered === null"
+                x-init="checkRegistration(); $watch('user', value => {checkRegistration()})"
                 class="flex items-center justify-center gap-sm animate-pulse py-md">
                     <div class="w-8 h-8 rounded-full bg-body"></div>
                     <div class="w-8 h-8 rounded-full bg-body"></div>
@@ -64,10 +64,10 @@
                     <h2>You are registered!</h2>
                     <p>You, <strong>
                             <span x-text="user && user.displayName"></span> (<span x-text="user && user.userNicename"></span>)</strong>, are registered for Big Bad Online 2022.</p>
-                    <p>
+                    <p x-show="bboDiscordInvite">
                         <strong>Join</strong> the <a :href="'https://discord.gg/' + bboDiscordInvite">Big Bad Online 2022 Discord</a>!
                     </p>
-                    {# <p>We will post the event Discord invite link here once it gets closer to the date.</p> #}
+                    <p x-show="!bboDiscordInvite">We will post the event Discord invite link here once it gets closer to the date.</p>
                     <p>
                         <strong>Follow</strong> the <a href="https://twitch.tv/bigbadcon">Big Bad Con Twitch Channel</a>! <em>You must be a follower for 10 minutes before you can enter the twitch chat.</em>
                     </p>
