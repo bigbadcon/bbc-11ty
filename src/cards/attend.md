@@ -9,6 +9,8 @@ alt: ''
 ---
 Big Bad Online (March 31-April 1) is free to attend!
 
+[Register Now!](https://www.bigbadcon.com/register/){.icon-badge}
+
 [Watch on Twitch](https://www.twitch.tv/bigbadcon){.icon-twitch}
 
 Big Bad Online Community Server (coming soon)
