@@ -8,6 +8,7 @@ ogImage: "/images/join-our-community-discord.png"
 navGroup: Community
 order: 3
 icon: discord
+navTitle: ''
 
 ---
 Want to stay connected with Big Bad Con year round?
