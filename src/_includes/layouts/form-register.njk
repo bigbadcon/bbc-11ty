@@ -63,9 +63,9 @@
                 <div x-cloak x-show="isAuth && isRegistered === true" class="prose">
                     <h2>You are registered!</h2>
                     <p>You, <strong>
-                            <span x-text="user && user.displayName"></span> (<span x-text="user && user.userNicename"></span>)</strong>, are registered for Big Bad Online 2022.</p>
+                            <span x-text="user && user.displayName"></span> (<span x-text="user && user.userNicename"></span>)</strong>, are registered for Big Bad Online.</p>
                     <p x-show="bboDiscordInvite">
-                        <strong>Join</strong> the <a :href="'https://discord.gg/' + bboDiscordInvite">Big Bad Online 2022 Discord</a>!
+                        <strong>Join</strong> the <a :href="'https://discord.gg/' + bboDiscordInvite">Big Bad Online Discord</a>!
                     </p>
                     <p x-show="!bboDiscordInvite">We will post the event Discord invite link here once it gets closer to the date.</p>
                     <p>
