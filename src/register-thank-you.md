@@ -7,7 +7,7 @@ tags: pages
 ---
 Check out our ever growing [list of events](/events)!
 
-We encourage you to back our fundraiser and follow and promote us on mastodon [@bigbadcon@dice.camp](https://dice.camp/@robindlaws/109819027187621882) and twitter [@bigbadcon](https://twitter.com/bigbadcon) and !
+We encourage you to back our fundraiser and follow and promote us on mastodon [@bigbadcon@dice.camp](https://dice.camp/@robindlaws/109819027187621882) and twitter [@bigbadcon](https://twitter.com/bigbadcon)!
 
 ## Save the Date! March 31 - April 1!
 
