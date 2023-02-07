@@ -4,6 +4,11 @@ title: Apply For Scholarship
 published: true
 description: ''
 tags: pages
+ogImage: ''
+navGroup: ''
+navTitle: ''
+order: 
+icon: ''
 
 ---
 Our scholarship funds go towards helping women, people of color, disabled, and lgbtqia+ individuals attend the con. We use it to cover hotel rooms ($139+/night), convention badges ($75), and help with other fees. Depending on the number of applicants, we may be able cover full or partial costs.

@@ -7,6 +7,10 @@ description: Big Bad Con and Randy Lubin (creator of Story Synth) are excited to
   create, publish, and monetize games on the Story Synth platform!
 tags: pages
 ogImage: "/images/story-synth-microgrants-twitter-card.png"
+navGroup: ''
+navTitle: ''
+order: 
+icon: ''
 
 ---
 Hello!

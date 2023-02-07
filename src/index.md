@@ -5,6 +5,11 @@ published: true
 description: Big Bad Con is a tabletop and live action gaming convention featuring
   fantastic games and even better company! We’re a volunteer run 501c3 non-profit!
 tags: pages
+ogImage: ''
+navGroup: ''
+navTitle: ''
+order: 
+icon: ''
 
 ---
 ## Big Bad Online 2023

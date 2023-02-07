@@ -8,6 +8,7 @@ navGroup: ''
 navTitle: Games On Demand
 order: 2
 icon: games-on-demand
+ogImage: ''
 
 ---
 Games on Demand submissions are now closed. Thank you for all your contributions! To sign up to attend head over [here](/events).
