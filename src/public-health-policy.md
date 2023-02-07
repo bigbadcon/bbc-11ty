@@ -1,10 +1,10 @@
 ---
 layout: layouts/page.njk
 title: Public Health Policy
-published: false
+published: true
 description: ''
 ogImage: ''
-navGroup: Community
+navGroup: ''
 navTitle: ''
 order: 
 icon: health
