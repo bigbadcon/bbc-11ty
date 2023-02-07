@@ -13,8 +13,6 @@ Big Bad Online (March 31-April 1) is free to attend!
 
 [Watch on Twitch](https://www.twitch.tv/bigbadcon){.icon-twitch}
 
-Big Bad Online Community Server (coming soon)
-
 <!--Sign up to attend Big Bad Con!
 
 [Buy a Badge](/buy-a-badge){.icon-badge}
