@@ -257,23 +257,25 @@ document.addEventListener("alpine:init", () => {
 			},
 			async checkRegistration() {
 				// Used for Big Bad Online
-				const url = `/.netlify/functions/check-registration/${this.user.id}/${this.user.userNicename}`;
-				try {
-					const response = await fetch(url);
-					// eslint-disable-next-line no-console
-					console.log(`RESPONSE:fetch for ${url}`, response);
-					if (response.status !== 200)
-						throw `checkRegistration fetch fail status: ${response.status}`;
-					let data = await response.json();
-					// eslint-disable-next-line no-console
-					console.log(`RESULT:fetch for ${url}`, data);
-					this.bboDiscordInvite = data.bboDiscordInvite;
-					this.isRegistered = data.isRegistered;
-					return data;
-				} catch (err) {
-					// eslint-disable-next-line no-console
-					console.error(`ERROR: fetch for ${url}`, err);
-					return false;
+				if (this.user?.id) {
+					const url = `/.netlify/functions/check-registration/${this.user.id}/${this.user.userNicename}`;
+					try {
+						const response = await fetch(url);
+						// eslint-disable-next-line no-console
+						console.log(`RESPONSE:fetch for ${url}`, response);
+						if (response.status !== 200)
+							throw `checkRegistration fetch fail status: ${response.status}`;
+						let data = await response.json();
+						// eslint-disable-next-line no-console
+						console.log(`RESULT:fetch for ${url}`, data);
+						this.bboDiscordInvite = data.bboDiscordInvite;
+						this.isRegistered = data.isRegistered;
+						return data;
+					} catch (err) {
+						// eslint-disable-next-line no-console
+						console.error(`ERROR: fetch for ${url}`, err);
+						return false;
+					}
 				}
 			},
 			async getAvailableSlots() {
