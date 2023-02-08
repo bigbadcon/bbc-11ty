@@ -55,6 +55,10 @@ fields:
   name: twitter
   label: twitter handle
   description: handle without the @ symbol
+- type: text
+  name: mastodon
+  label: mastodon handle
+  description: "full handle: @name@server.name"
 - name: website_name
   type: text
   config:

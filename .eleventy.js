@@ -12,6 +12,8 @@ dayjs.extend(relativeTime);
 const Image = require("@11ty/eleventy-img");
 const { google, outlook, office365, yahoo, ics } = require("calendar-link");
 
+// const { EleventyServerlessBundlerPlugin } = require("@11ty/eleventy");
+
 /* -------------------------------------------------------------------------- */
 /*                              Useful Functions                              */
 /* -------------------------------------------------------------------------- */
@@ -109,6 +111,10 @@ module.exports = (eleventyConfig) => {
 
 	eleventyConfig.addPlugin(blogTools);
 	eleventyConfig.addPlugin(pluginRss);
+
+	// eleventyConfig.addPlugin(EleventyServerlessBundlerPlugin, {
+	// 	name: "serverless",
+	// });
 
 	/* -------------------------------------------------------------------------- */
 	/*                                 Collections                                */
@@ -277,6 +283,12 @@ module.exports = (eleventyConfig) => {
 	eleventyConfig.addFilter("alpineArray", (array) =>
 		array.map((item) => "'" + item + "'").toString()
 	);
+
+	// Mastodon link filter
+	eleventyConfig.addFilter("mastodonLink", (handle) => {
+		const mastodon = handle.split("@");
+		return `https://${mastodon[2]}/@${mastodon[1]}`;
+	});
 
 	/* -------------------------------------------------------------------------- */
 	/*                                 Shortcodes                                 */
