@@ -14,6 +14,9 @@
                 {% if person.data.twitter %}
                     <a href="https://twitter.com/{{person.data.twitter}}" class="icon-twitter mb-xs">@{{person.data.twitter}}</a>
                 {% endif %}
+                {% if person.data.mastodon %}
+                    <a href="{{person.data.mastodon | mastodonLink}}" class="icon-mastodon mb-xs">{{person.data.mastodon}}</a>
+                {% endif %}
                 {% if person.data.website_url %}
                     <a href="{{person.data.website_url}}" class="icon-website">{{person.data.website_name}}</a>
                 {% endif %}

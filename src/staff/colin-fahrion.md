@@ -3,7 +3,7 @@ title: Colin Fahrion
 gender: "(he/him)"
 tags: staff
 published: true
-twitter: colinaut
+mastodon: "@colinaut@dice.camp"
 website: http://colinaut.com
 image: "/images/37304880_10156299746000491_4517727746197028864_n.jpg"
 position: Marketing & Web Front-End Manager
