@@ -6,7 +6,7 @@ tags: pages
 navGroup: Community
 order: 5
 icon: scholar
-published: false
+published: true
 ogImage: ''
 navTitle: ''
 
