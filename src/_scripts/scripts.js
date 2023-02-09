@@ -590,7 +590,7 @@ document.addEventListener("alpine:init", () => {
 					)
 				);
 			},
-			allDays: ["All", "Oct 27", "Oct 28", "Oct 29", "Oct 30"],
+			allDays: ["All", "Mar 31", "Apr 1"], // TODO: make this dynamic
 			setDay(day) {
 				// TODO: make day range more dynamic
 				this.filter.day =
