@@ -18,5 +18,4 @@ icon: ''
 
 Stay tuned for more about our fundraising campaign to make it all happen. As always, Big Bad Con runs with your support!
 
-* When: 3/31 6PM PST to 4/1 6PM PST
-* Where: [twitch.tv/bigbadcon](https://www.twitch.tv/bigbadcon "https://www.twitch.tv/bigbadcon")
+[Support our Fundraiser](https://fundrazr.com/bigbadonline2023){.icon-pig}
