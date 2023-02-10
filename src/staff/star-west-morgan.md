@@ -1,12 +1,12 @@
 ---
-tags: staff
+tags: technology-committee
 published: true
-order: 6
+order: 0
 title: Star West-Morgan
 position: Technology Committee
 gender: "(he/him)"
 image: "/images/staff/organizers_star_400x400.png"
-twitter: hedgiespresso
+twitter: ''
 website_name: The Caffeinated Hedgehog
 website_url: https://starwest.itch.io/
 

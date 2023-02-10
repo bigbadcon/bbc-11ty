@@ -10,12 +10,13 @@
       <div class="mx-auto max-w-content p-base px-lg bg-card rounded-md shadow-md">
         <h1 class="font-serif text-4xl md:text-5xl text-header font-bold mb-base leading-none">{{title}}</h1>
         <div class="prose">{{ content | safe }}</div>
-      <section class="mx-auto p-base">
-        <h2 class="text-header leading-none text-5xl font-serif mb-md">Organizing Committee</h2>
-        {% for person in collections.committeeOrg123ABC %}
-          {{ staff.card(person)}}
-        {% endfor %}
-      </section>
+        <section class="mx-auto">
+          <h2 class="text-header leading-none text-5xl font-serif mb-md">Past Events</h2>
+          {% for person in collections.featuredFacilitators123ABC %}
+            {{ staff.card(person)}}
+          {% endfor %}
+        </section>
+      <!--
       {% if collections.committeeTech123ABC %}
       <section class="mx-auto p-base">
         <h2 class="text-header leading-none text-5xl font-serif mb-md">Technology Committee</h2>
@@ -23,7 +24,7 @@
           {{ staff.card(person)}}
         {% endfor %}
       </section>
-      {% endif %}
+      {% endif %} -->
     </div>
     </main>
 {% endblock %}

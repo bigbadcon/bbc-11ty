@@ -91,20 +91,25 @@ module.exports = (eleventyConfig) => {
   /*                                 Collections                                */
   /* -------------------------------------------------------------------------- */
 
-   // Staff sorted by order number and then alphabetically
+   // Blog Date published
    eleventyConfig.addCollection("blogPublished", function(collectionApi) {
     return collectionApi.getFilteredByTag("blog").filter(c => c.template.frontMatter.data.published === true);
   });
 
-  // Staff sorted by order number and then alphabetically
-  eleventyConfig.addCollection("staff123ABC", function(collectionApi) {
-    return collectionApi.getFilteredByTag("staff").filter(c => c.template.frontMatter.data.published === true).sort((a,b) => sortByOrder(a,b));
+  // Staff Organizing Committee sorted by order number and then alphabetically
+  eleventyConfig.addCollection("committeeOrg123ABC", function(collectionApi) {
+    return collectionApi.getFilteredByTag("organizing-committee").filter(c => c.template.frontMatter.data.published === true).sort((a,b) => sortByOrder(a,b));
   });
 
-  // Staff Emeritus sorted by order number and then alphabetically
-  eleventyConfig.addCollection("staffEmeritus123ABC", function(collectionApi) {
-    return collectionApi.getFilteredByTag("staff-emeritus").filter(c => c.template.frontMatter.data.published === true).sort((a,b) => sortByOrder(a,b));
+  // Staff Tech Committee sorted by order number and then alphabetically
+  eleventyConfig.addCollection("committeeTech123ABC", function(collectionApi) {
+    return collectionApi.getFilteredByTag("technology-committee").filter(c => c.template.frontMatter.data.published === true).sort((a,b) => sortByOrder(a,b));
   });
+
+    // Featured Facilitators sorted by order number and then alphabetically
+    eleventyConfig.addCollection("featuredFacilitators123ABC", function(collectionApi) {
+      return collectionApi.getFilteredByTag("featured-facilitator").filter(c => c.template.frontMatter.data.published === true).sort((a,b) => sortByOrder(a,b));
+    });
 
   // Home Page Cards published and sorted by order number and then alphabetically
   eleventyConfig.addCollection("cards123ABC", function(collectionApi) {
