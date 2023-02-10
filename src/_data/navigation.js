@@ -115,8 +115,8 @@ module.exports = [
 		//]
 	},
 	{
-		"title": "Blog",
-		"id": "blog",
+		"title": "Announcements",
+		"id": "announcements",
 		"url": "/blog",
 		"icon": "star"
 	}

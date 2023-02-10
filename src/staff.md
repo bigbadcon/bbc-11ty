@@ -1,6 +1,6 @@
 ---
 layout: layouts/staff.njk
-title: Our Organizers
+title: Our Staff
 description: GPNW's Organizing Committee Volunteers
 tags: pages
 

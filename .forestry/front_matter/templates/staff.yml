@@ -19,6 +19,9 @@ fields:
     options:
     - staff
     - staff-emeritus
+    - featured-facilitator
+    - organizing-committee
+    - technology-committee
     source:
       type: simple
       section: 
@@ -67,31 +70,3 @@ fields:
   label: website url
 pages:
 - src/staff/adrienne-mueller.md
-- src/staff/andy-munich.md
-- src/staff/anne-faye.md
-- src/staff/ash-cheshire.md
-- src/staff/aven-mcconnaughey.md
-- src/staff/brian-kwa.md
-- src/staff/brian-vo.md
-- src/staff/colin-fahrion.md
-- src/staff/devon-apple.md
-- src/staff/e.t.md
-- src/staff/elsa-s.henry.md
-- src/staff/eric-mersmann.md
-- src/staff/ezra-denney.md
-- src/staff/gina-ricker.md
-- src/staff/heather-rose.md
-- src/staff/james-mendez-hodes.md
-- src/staff/jeeyon-shim.md
-- src/staff/jenn-martin.md
-- src/staff/jeremy-tidwell.md
-- src/staff/jory-bowers.md
-- src/staff/kristine-hassell.md
-- src/staff/mickey-schulz.md
-- src/staff/morgan-nuncio.md
-- src/staff/nathan-black.md
-- src/staff/orion.md
-- src/staff/sandra-aranda.md
-- src/staff/sean-nittner.md
-- src/staff/shantih-moriarty.md
-- src/staff/sophie-lagace.md

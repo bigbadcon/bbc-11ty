@@ -1,5 +1,5 @@
 ---
-tags: staff
+tags: organizing-committee
 published: true
 order: 2
 title: E.T.
