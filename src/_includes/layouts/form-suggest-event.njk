@@ -1,7 +1,4 @@
 {% extends 'layouts/base.njk' %}
-{# TODO: get rid of form-macros #}
-{% from 'components/form-macros.njk' import input %}
-{% from 'components/form-macros.njk' import textarea %}
 
 {% block header %}
     {% include 'components/header.njk' %}
@@ -13,28 +10,43 @@
             <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
             <div class="prose">{{ content | safe }}</div>
             <div class="mt-base">
-                <form method="POST" name="suggest-event" data-netlify="true" netlify-honeypot="bot-field" action="/suggest-an-event-thank-you/">
+                <form method="POST" name="suggest-event" action="/.netlify/functions/submit-suggest-an-event" x-validate>
                     <p class="hidden">
-                        <label>Don’t fill this out if you’re human: <input name="bot-field"/></label>
+                        <label>Don't fill this out if you're human: <input name="fax_number"/></label>
                     </p>
+                    <input type="hidden" value="suggest-event" name="formName" id="formName"/>
+                    <input type="hidden" name="success_page" value="suggest-an-event-thank-you">
                     <fieldset>
                         <legend>Your Info</legend>
                         <p class="text-body mb-base">All of this is optional. If you share your email, we may follow up to ask more information, but that is all we will use it for.</p>
-                        {{ input("name", "Name") }}
-                        {{ input("email", "Email", false, "email") }}
+                        <div>
+                            <label for="name">Name</label>
+                            <input id="name" name="name" type="text" value=""/>
+                        </div>
+                        <div>
+                            <label for="email">Email</label>
+                            <input id="email" name="email" type="email" value=""/>
+                        </div>
                     </fieldset>
                     <fieldset>
                         <legend>Panelist Suggestion</legend>
                         <p class="text-body mb-base">Let us know about panelists you think would be great for Big Bad Online!</p>
-                        {{ input("panelist", "Panelist you'd like to see") }}
-                        {{ input("panelistInfo", "Panelist contact info", "Website, twitter handle, email, etc.. Make sure you have permission to share this information!") }}
+                        <div>
+                            <label for="panelist">Panelist you'd like to see</label>
+                            <input id="panelist" name="panelist" type="text" value=""/>
+                        </div>
+                        <div>
+                            <label for="panelist_info">Panelist info</label>
+                            <p class="text-body mb-base">Website, twitter handle, email, etc.. Make sure you have permission to share this information!</p>
+                            <input id="panelist_info" name="panelist_info" type="text" value=""/>
+                        </div>
                     </fieldset>
                     <fieldset>
                         <legend>Panel Topic Suggestion</legend>
-                        <p class="text-body mb-base">Is there a topic you'd like to see presented on?</p>
-                        {{ input("panelTopic", "Panel topic") }}
+                        <label class="text-body mb-base">Is there a topic you'd like to see presented?</label>
+                        <input id="panel_topic" name="panel_topic" type="text" value=""/>
                     </fieldset>
-                    <input type="hidden" value="suggest-event" name="formName" id="formName"/>
+
                     <button type="submit">Submit</button>
                 </form>
             </div>
