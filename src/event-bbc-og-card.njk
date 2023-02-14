@@ -9,16 +9,12 @@ eleventyComputed:
     title: "{{ event.eventName | safe }}"
     published: true
 ---
-{# TODO: make this more modular #}
+
 <div class="grid w-full h-full" style="grid-template-columns: 347px 853px; grid-template-rows: 480px">
     <div class="flex flex-col items-center bg-primary-4">
         <div class="pt-base text-primary" style="height: 380px">{% include 'components/bigbadcon-logo-vert.njk' %}</div>
-        <div class="flex items-center font-bold text-primary gap-sm">
-            <div class="flex flex-col items-center">
-                <span class="text-2xl leading-none">October</span>
-                <span class="text-3xl leading-none">27-30</span>
-            </div>
-            <div class="text-6xl">2022</div>
+        <div class="flex items-center text-3xl font-bold leading-none text-center text-primary gap-sm px-sm">
+            <span>{{sitemeta.eventDate}}</span>
         </div>
     </div>
     <div class="overflow-hidden bg-primary">
