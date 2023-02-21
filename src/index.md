@@ -5,8 +5,8 @@ description: Go Play NW is an annual weekend event where folks come together to 
 tags: pages
 
 ---
-## Thank you and see you next time!
-Thank you to all of our attendees, Featured Facilitators, volunteers, and organizers for making Go Play NW Online Fall 2022 a success! We're looking forward to seeing you all again in 2023.
+## Coming soon—Go Play NW 2023!
+We've been working hard to see you all again in 2023! [Read more…](blog/2023-02-21.md)
 
 In the meantime...
 
