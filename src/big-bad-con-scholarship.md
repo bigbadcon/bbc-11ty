@@ -8,6 +8,7 @@ navGroup: Attend
 navTitle: Scholarship
 order: 2
 icon: gift
+
 ---
 Big Bad Con is committed to cultivating and supporting a spectacular and diverse gaming community. Part of the way we do that is by collecting donations to our scholarship program.
 
@@ -29,8 +30,9 @@ Any contributions made after September will be set aside for next year’s fund.
 
 ### History
 
-We started the scholarship program in 2015. Here's the number of people we've been able to give financial support to so far. We're delighted that the program has grown every year!
+We started the scholarship program in 2015. Here's the number of people we've been able to give financial support to so far. 
 
+* 2022: 9 awards
 * 2019: 20 awards
 * 2018 13 awards
 * 2017: 11 awards
