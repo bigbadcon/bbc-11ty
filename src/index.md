@@ -6,7 +6,7 @@ tags: pages
 
 ---
 ## Coming soon—Go Play NW 2023!
-We've been working hard to see you all again in 2023! [Read more…](blog/2023-02-21.md)
+We've been working hard to see you all again in 2023! [Read more…](/blog/2023-02-21.md)
 
 In the meantime...
 
