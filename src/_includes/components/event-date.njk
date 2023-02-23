@@ -4,7 +4,7 @@
         {% if (event.eventDuration > 0) %}
             <span class="whitespace-nowrap">{{ event.eventStartDateTime | formatDate }}</span>
             <span class="whitespace-nowrap">{{ event.eventStartDateTime | formatTime }}
-                <span class="whitespace-nowrap">({{ event.eventDuration }} hours)</span>
+                <span class="whitespace-nowrap">(duration {{ event.eventDuration | hoursToHHMM }})</span>
             </span>
         {% else %}
             <span class="opacity-50">TBD</span>
