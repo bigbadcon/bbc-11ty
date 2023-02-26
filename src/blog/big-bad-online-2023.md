@@ -1,7 +1,7 @@
 ---
 title: Big Bad Online 2023
 date: 2023-02-07T08:00:00Z
-published: false
+published: true
 excerpt: Big Bad Online - 24 hours of amazing panels kicking of March 31st at 6PM
   PT
 coverImage: "/images/big-bad-online-2023-twitter-card.jpg"
