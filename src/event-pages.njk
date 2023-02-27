@@ -183,5 +183,20 @@ eleventyComputed:
         <button type="submit" class="hidden" id="upload-button">Upload</button>
     </form>
 </div>
+{# Pagination #}
+<div class="grid items-center justify-between grid-cols-2 text-sm leading-tight rounded-md shadow bg-primary p-sm mt-lg">
+    <div class="flex items-center h-full border-r border-primary-2 pr-sm mr-sm">
+        {% if pagination.href.previous %}
+            <a href="{{ pagination.href.previous }}" class="flex items-center text-highlight hover:underline gap-sm">{% include 'components/arrow-left.njk' %}
+                <span class="text-body-highlight">{{pagination.page.previous.eventName}}</span></a>
+        {% endif %}
+    </div>
+    <div class="justify-self-end">
+        {% if pagination.href.next %}
+            <a href="{{ pagination.href.next }}" class="flex items-center text-highlight hover:underline gap-sm">
+                <span class="text-body-highlight">{{pagination.page.next.eventName}}</span>{% include 'components/arrow-right.njk' %}</a>
+        {% endif %}
+    </div>
+</div>
 <div class="prose py-base">Back to <a href="/events/">List of Events</a>
 </div>

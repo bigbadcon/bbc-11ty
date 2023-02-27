@@ -1,38 +1,38 @@
 {% extends 'layouts/page.njk' %}
 
 {% block content %}
-  <main id="content">
-    <div class="mx-auto max-w-content p-base">
-      {# Title #}
-      <h1 class="font-serif text-4xl font-bold leading-none md:leading-sub md:text-5xl text-header">{{title}}</h1>
-      {# Date #}
-      <div class="text-sm font-bold text-body mb-base">{{ date | formatBlogDate }}</div>
-      {# Cover Image #}
-      {% if coverImage %}
-        {% if coverImageAlt %}{% set alt = coverImageAlt %}
-        {% else %}{% set alt = "" %}
-        {% endif %}
-        <div class="mb-base"><img src="{{ coverImage }}" alt="{{ alt }}" class="block object-cover object-center w-full max-h-blog-cover-image"></div>
-      {% endif %}
-      {# Content #}
-      <div class="prose">{{ content | safe }}</div>
-      {# Pagination #}
-      <div class="flex flex-wrap items-center justify-between text-sm rounded-md shadow bg-primary p-sm mt-lg">
-        {% set previousPost = collections.blog | getPreviousCollectionItem(page) %}
-        {% set nextPost = collections.blog | getNextCollectionItem(page) %}
-        <div class="justify-self-start">
-          {% if nextPost %}
-            <a href="{{ nextPost.url }}" class="flex items-center text-highlight hover:underline">{% include 'components/arrow-left.njk' %}
-              <span class="text-body-highlight">{{ nextPost.data.title }}</span></a>
-          {% endif %}
+    <main id="content">
+        <div class="mx-auto max-w-content p-base">
+            {# Title #}
+            <h1 class="font-serif text-4xl font-bold leading-none md:leading-sub md:text-5xl text-header">{{title}}</h1>
+            {# Date #}
+            <div class="text-sm font-bold text-body mb-base">{{ date | formatBlogDate }}</div>
+            {# Cover Image #}
+            {% if coverImage %}
+                {% if coverImageAlt %}{% set alt = coverImageAlt %}
+                {% else %}{% set alt = "" %}
+                {% endif %}
+                <div class="mb-base"><img src="{{ coverImage }}" alt="{{ alt }}" class="block object-cover object-center w-full max-h-blog-cover-image"></div>
+            {% endif %}
+            {# Content #}
+            <div class="prose">{{ content | safe }}</div>
+            {# Pagination #}
+            <div class="grid items-center justify-between grid-cols-2 text-sm leading-tight rounded-md shadow bg-primary p-sm mt-lg">
+                {% set previousPost = collections.blog | getPreviousCollectionItem(page) %}
+                {% set nextPost = collections.blog | getNextCollectionItem(page) %}
+                <div class="flex items-center h-full border-r border-primary-2 pr-sm mr-sm">
+                    {% if nextPost %}
+                        <a href="{{ nextPost.url }}" class="flex items-center text-highlight hover:underline gap-sm">{% include 'components/arrow-left.njk' %}
+                            <span class="text-body-highlight">{{ nextPost.data.title }}</span></a>
+                    {% endif %}
+                </div>
+                <div class="justify-self-end">
+                    {% if previousPost %}
+                        <a href="{{ previousPost.url }}" class="flex items-center text-highlight hover:underline gap-sm">
+                            <span class="text-body-highlight">{{ previousPost.data.title }}</span>{% include 'components/arrow-right.njk' %}</a>
+                    {% endif %}
+                </div>
+            </div>
         </div>
-        <div class="justify-self-end">
-          {% if previousPost %}
-            <a href="{{ previousPost.url }}" class="flex items-center text-highlight hover:underline">
-              <span class="text-body-highlight">{{ previousPost.data.title }}</span>{% include 'components/arrow-right.njk' %}</a>
-          {% endif %}
-        </div>
-      </div>
-    </div>
-  </main>
+    </main>
 {% endblock %}
