@@ -1,9 +1,11 @@
 ---
-title: Story Synth Microgrants
-order: 2
-published: false
-image: "/images/story-synth-cards.jpg"
-alt: Stack of cards with Story Synth logo
+title: 'Story Synth Microgrants: Complete'
+date: 2022-10-01T07:00:00Z
+published: true
+excerpt: ''
+coverImage: "/images/story-synth-cards.jpg"
+coverImageAlt: ''
+ogImage: ''
 
 ---
 **We’re excited to announce that we've disbursed all 100 grants (a total of $30,000) to grant recipients!**
