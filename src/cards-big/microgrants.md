@@ -1,7 +1,7 @@
 ---
 title: Story Synth Microgrants
 order: 2
-published: true
+published: false
 image: "/images/story-synth-cards.jpg"
 alt: Stack of cards with Story Synth logo
 
