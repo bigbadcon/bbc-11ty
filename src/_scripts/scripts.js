@@ -706,9 +706,10 @@ document.addEventListener("alpine:init", () => {
 				if (location.search) {
 					const params = new URLSearchParams(location.search);
 					let cat = params.get("cat");
-					cat = cat.replace("-", " ").toLowerCase();
-
-					this.setCategory(cat);
+					if (cat) {
+						cat = cat.replace("-", " ").toLowerCase();
+						this.setCategory(cat);
+					}
 				}
 			},
 		};
