@@ -9,7 +9,7 @@ navTitle: Events
 order: 0
 icon: calendar-clock
 events_type: online
-events_status: preview
+events_status: live
 suggestEvent: true
 runEvent: false
 
