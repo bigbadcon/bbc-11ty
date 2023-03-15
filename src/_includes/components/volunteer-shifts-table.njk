@@ -1,6 +1,5 @@
 <section class="mt-md" x-data="eventsTable" x-init="$store.events.getAllSpaces()">
     <h2 class="font-serif text-3xl font-bold leading-none md:text-4xl text-header mb-base">Volunteer Shift List</h2>
-
     {# Volunteer Filter Buttons #}
     <div class="flex flex-wrap items-center justify-start border-t-2 border-b-2 mb-base text-body gap-sm py-sm border-hr" >
         <div class="flex flex-col justify-start sm:items-center sm:flex-row gap-2xs sm:gap-xs">
@@ -11,6 +10,7 @@
                 </template>
             </select>
         </div>
+        <div>{% include "components/timezone-select.njk" %}</div>
         <div class="flex flex-wrap items-center justify-start gap-xs"
         x-init="if (!isAuth) resetUserFilters(); $watch('isAuth', val => { if (!val) resetUserFilters() })">
             {# favsOnly data is in x-data="eventFilter" in wrapping div in base.njk #}
@@ -44,7 +44,7 @@
                     <button x-bind="sortable" title="Sort by event">Event</button>
                 </th>
                 <th>
-                    <button x-bind="sortable" title="Sort by Date/Time">Date/Time</button>
+                    <button x-bind="sortable" title="Sort by Date/Time">Date/Time (dur)</button>
                 </th>
                 {% if sitemeta.context === 'dev' or sitemeta.context === 'branch-deploy' %}
                     <th class="!text-center" >

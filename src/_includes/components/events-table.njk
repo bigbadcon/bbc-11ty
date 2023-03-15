@@ -12,6 +12,7 @@
                     </template>
                 </select>
             </div>
+            <div>{% include "components/timezone-select.njk" %}</div>
         {% endif %}
         {% if events_type === "irl" %}
             <div class="flex flex-col justify-start sm:items-center sm:flex-row gap-2xs sm:gap-xs">
@@ -80,7 +81,7 @@
                 {% endif %}
                 {% if events_status === "live" %}
                     <th>
-                        <button x-bind="sortable" title="Sort by Date/Time">Date/Time</button>
+                        <button x-bind="sortable" title="Sort by Date/Time">Date/Time (dur)</button>
                     </th>
                 {% endif %}
                 {% if sitemeta.context === 'dev' or sitemeta.context === 'branch-deploy' %}
