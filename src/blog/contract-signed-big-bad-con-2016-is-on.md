@@ -8,7 +8,7 @@ categories:
   - "the-making-of"
 ---
 
-[![Outside at night](/images/oakwc_main01-300x161.jpg)](http://www.bigbadcon.com/wp-content/uploads/2016/03/oakwc_main01.jpg)
+[![Outside at night](/images/oakwc_main01-300x161.jpg)](/images/oakwc_main01.jpg)
 
 The contract is signed, scanned, and emailed to the Walnut Creek Marriott, who at this very moment is hosting [FOGcon](http://fogcon.org/)! Some of the awesome amenities at the hotel:
 

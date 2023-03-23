@@ -8,7 +8,7 @@ categories:
 coverImage: "PlayerFeedback.png"
 ---
 
-[![](/images/PlayerFeedback-300x188.png "PlayerFeedback")](http://www.bigbadcon.com/wp-content/uploads/2012/10/PlayerFeedback.png)All the feedback forms have been tallied (all 429 of them) and I have some results. This is just raw data right now. How it ended up affecting Big Bad Con 2013 will be the subject of future posts!
+[![](/images/PlayerFeedback-300x188.png "PlayerFeedback")](/images/PlayerFeedback.png)All the feedback forms have been tallied (all 429 of them) and I have some results. This is just raw data right now. How it ended up affecting Big Bad Con 2013 will be the subject of future posts!
 
 ### On a scale of 1 (very dissatisfied) to 6 (very satisfied) rate your con experience:
 

@@ -11,7 +11,7 @@ categories:
 
 Last year Big Bad Con over 200 player feedback forms to find out how we could improve the con. Once collected the data was aggregated into a spreadsheet to find out where the con was rocking, and where it was wrecking.
 
-[![](/images/BigBadFeedbackForms-1024x632.jpg "BigBadFeedbackForms")](http://www.bigbadcon.com/wp-content/uploads/2012/06/BigBadFeedbackForms.jpg)
+[![](/images/BigBadFeedbackForms-1024x632.jpg "BigBadFeedbackForms")](/images/BigBadFeedbackForms.jpg)
 
 ### Here are some of the changes made in 2012 based on feedback from last year:
 

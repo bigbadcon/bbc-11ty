@@ -7,7 +7,7 @@ categories:
   - "the-making-of"
 ---
 
-[![Little Red - Mistress of Big Bad Con](/images/little-red-204x136.png)](http://www.bigbadcon.com/wp-content/uploads/2012/06/little-red-204x136.png)Hello all!
+[![Little Red - Mistress of Big Bad Con](/images/little-red-204x136.png)](/images/little-red-204x136.png)Hello all!
 
 By this time last year Big Bad Con would already have the site up and be accepting games. As is, it's March and we still don't have a confirmation from the hotel (more on that below).
 

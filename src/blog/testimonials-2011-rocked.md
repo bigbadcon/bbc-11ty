@@ -159,11 +159,11 @@ In 2011 Big Bad Con has 220 attendees. This is what they said about the con:
 
 ### Facebook posts:
 
-[![](/images/Matt_Steele.png "Matt_Steele")](http://www.bigbadcon.com/wp-content/uploads/2012/06/Matt_Steele.png)
+[![](/images/Matt_Steele.png "Matt_Steele")](/images/Matt_Steele.png)
 
-[![](/images/Edmund_Metheny.png "Edmund_Metheny")](http://www.bigbadcon.com/wp-content/uploads/2012/06/Edmund_Metheny.png)
+[![](/images/Edmund_Metheny.png "Edmund_Metheny")](/images/Edmund_Metheny.png)
 
-[![](/images/Ben_Monroe.png "Ben_Monroe")](http://www.bigbadcon.com/wp-content/uploads/2012/06/Ben_Monroe.png)
+[![](/images/Ben_Monroe.png "Ben_Monroe")](/images/Ben_Monroe.png)
 
 ### Stories and Blogs
 

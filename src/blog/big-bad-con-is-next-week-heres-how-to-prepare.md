@@ -11,7 +11,7 @@ You’re coming to Big Bad Con! Awesome. Before you get on the road, here's a fe
 
 ### Support FBCCS! Bring non-perishable food
 
-Big Bad Con collects food for the Food Bank of Contra Costa and Solano County as part of our community outreach. The FBCCS provides food to over 190,000 people per month. You can support them by bringing out non-perishable food (especially items on this [shopping list](https://www.bigbadcon.com/wp-content/uploads/2017/10/Food-Drive-Shopping-List.pdf)) to the con.
+Big Bad Con collects food for the Food Bank of Contra Costa and Solano County as part of our community outreach. The FBCCS provides food to over 190,000 people per month. You can support them by bringing out non-perishable food (especially items on this [shopping list](/images/Food-Drive-Shopping-List.pdf)) to the con.
 
 ### Get into more games
 

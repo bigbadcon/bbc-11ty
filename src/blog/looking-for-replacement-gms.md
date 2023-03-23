@@ -9,7 +9,7 @@ categories:
 coverImage: "ReplacementGMs.jpg"
 ---
 
-[![ReplacementGMs](/images/ReplacementGMs-203x300.jpg)](https://www.bigbadcon.com/wp-content/uploads/2017/10/ReplacementGMs.jpg)Thanks to a series on unfortunate events, some of our game masters and hosts have had to cancel their plans for attending Big Bad Con. As a result, we have a number of orphaned players.
+[![ReplacementGMs](/images/ReplacementGMs-203x300.jpg)](/images/ReplacementGMs.jpg)Thanks to a series on unfortunate events, some of our game masters and hosts have had to cancel their plans for attending Big Bad Con. As a result, we have a number of orphaned players.
 
 If you think you could run a game in the following time slots, please contacts us at **events \[AT\] bigbadcon \[DOT\] com** to tell us which slot you can fill and provide us with a description for the replacement game. It's OK to offer a shorter game than the original time slot, for example, 8PM to midnight instead of 6PM to midnight.
 

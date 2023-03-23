@@ -11,7 +11,7 @@ categories:
 
 Big Bad Con wants you to come and game all weekend without having to worry about what games you’ll get into. To make this happen The Wolf has installed and online sign up system. Starting September 1st (over a month before the con), you can register for games online.
 
-[![](/images/book_now.png "book_now")](http://www.bigbadcon.com/wp-content/uploads/2012/06/book_now.png)
+[![](/images/book_now.png "book_now")](/images/book_now.png)
 
 The online registration allow players to see who else has signed up for a game they are in, it lets GMs know who will be in their games in advance in case they want to send any information before the game or tailor story/characters to their players, and it lets the con staff know what games are in the most demand so we can (and will) solicit GMs to run more of those games.
 

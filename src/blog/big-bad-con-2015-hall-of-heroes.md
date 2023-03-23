@@ -9,4 +9,4 @@ categories:
 
 **Our amazing Kickstarter backers:**
 
-[![hallofheroes](/images/hallofheroes-683x1024.jpg)](http://www.bigbadcon.com/wp-content/uploads/2015/10/hallofheroes.jpg)
+[![hallofheroes](/images/hallofheroes-683x1024.jpg)](/images/hallofheroes.jpg)

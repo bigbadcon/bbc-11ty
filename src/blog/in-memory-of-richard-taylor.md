@@ -7,7 +7,7 @@ categories:
   - "the-making-of"
 ---
 
-[![1655658_10152889629656661_8885726089387596555_o](/images/1655658_10152889629656661_8885726089387596555_o-300x200.jpg)](http://www.bigbadcon.com/wp-content/uploads/2015/09/1655658_10152889629656661_8885726089387596555_o.jpg)Unsurprisingly I met Rich in a convention game he was running. It was Conquest, back when it was at the Elk's Lodge. I also met Mike Bogan in that game, and, as appropriate to a Buffy game spoofing the 80s Brat Pack movies (the game was "Better off Undead") we had hilarious hi-jinks together.
+[![1655658_10152889629656661_8885726089387596555_o](/images/1655658_10152889629656661_8885726089387596555_o-300x200.jpg)](/images/1655658_10152889629656661_8885726089387596555_o.jpg)Unsurprisingly I met Rich in a convention game he was running. It was Conquest, back when it was at the Elk's Lodge. I also met Mike Bogan in that game, and, as appropriate to a Buffy game spoofing the 80s Brat Pack movies (the game was "Better off Undead") we had hilarious hi-jinks together.
 
 Rich opened my eyes to another kind of gaming. He is the reason why a year later I applied to be a Good Omens GM, why I realized I'd rather fill my game with laughter and sorrow and discovery than with treasure and dragons. He's the reason I played Buffy and the Storyteller System, and later that I started to explore indie games.
 

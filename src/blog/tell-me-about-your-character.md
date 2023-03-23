@@ -19,7 +19,7 @@ Five minutes of our volunteer's enthusiastic attention can be yours for a $5 don
 
 Do you have a favorite story you can't wait to tell? Bring it here. Do the accounts of Grimlord the Barbarian need your bardic tongue to do them justice? Bring it here. Should we all know about your daring heist to recover the scroll of Anuba? You get the idea.
 
-\[caption id="attachment\_6591" align="alignleft" width="300"\][![](/images/TMAYC-2018-10-14-300x225.jpg)](https://www.bigbadcon.com/wp-content/uploads/2019/05/TMAYC-2018-10-14.jpg) 2018 award ceremony, Tell Me About Your Character championship. Pictured: Ryan Ossum, Nathan Black, Alex Roberts.\[/caption\]
+\[caption id="attachment\_6591" align="alignleft" width="300"\][![](/images/TMAYC-2018-10-14-300x225.jpg)](/images/TMAYC-2018-10-14.jpg) 2018 award ceremony, Tell Me About Your Character championship. Pictured: Ryan Ossum, Nathan Black, Alex Roberts.\[/caption\]
 
 **Volunteers**: Should you wish to sign up to hear these tales of glory and defeat, get free admission to the con, and help save lives all at the same time, you can sign up to do so [here](https://www.bigbadcon.com/volunteer/join-the-rangers/).
 

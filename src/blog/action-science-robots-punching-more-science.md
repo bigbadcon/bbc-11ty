@@ -7,7 +7,7 @@ categories:
   - "events"
 ---
 
-[![Robo-Cover-600px](/images/Robo-Cover-600px-193x300.jpg)](http://www.bigbadcon.com/wp-content/uploads/2014/06/Robo-Cover-600px.jpg)Are you ready for some two-fisted science adventure? Then it’s time for the **Atomic Robo RPG!**Have you ever wanted to face down global conspiracy as an **immortal atomic robot** or **Carl Sagan**? The Atomic Robo RPG makes it possible.
+[![Robo-Cover-600px](/images/Robo-Cover-600px-193x300.jpg)](/images/Robo-Cover-600px.jpg)Are you ready for some two-fisted science adventure? Then it’s time for the **Atomic Robo RPG!**Have you ever wanted to face down global conspiracy as an **immortal atomic robot** or **Carl Sagan**? The Atomic Robo RPG makes it possible.
 
 The **Atomic Robo RPG** brings you the most explosive Fate Core system experience yet. This is**action science** like you’ve never seen it before, coming straight at you from the pages of the popular **Atomic Robo** comics by Brian Clevinger and Scott Wegener. Play as an action scientist or immortal robot, super-spy or pulp adventurer—or something stranger still from the hidden corners of super-science!
 

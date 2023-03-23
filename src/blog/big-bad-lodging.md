@@ -7,7 +7,7 @@ categories:
   - "hotel-info"
 ---
 
-[![Grandma's House](/images/62608_1-300x198.jpg)](http://www.bigbadcon.com/wp-content/uploads/2012/02/62608_1.jpg)As many folks have probably found out the hard way, the room block for Big Bad Con has filled up. We're working our little goat tails off trying to get more rooms added, but it's slow going. _Raiders_ are storming Oakland that weekend and instead of pillaging gold and treasures, they are taking up rooms at the Hilton (read: Football weekend).
+[![Grandma's House](/images/62608_1-300x198.jpg)](/images/62608_1.jpg)As many folks have probably found out the hard way, the room block for Big Bad Con has filled up. We're working our little goat tails off trying to get more rooms added, but it's slow going. _Raiders_ are storming Oakland that weekend and instead of pillaging gold and treasures, they are taking up rooms at the Hilton (read: Football weekend).
 
 Our recommendation is to book a room at the normal con rate ($159/night) and then stay tuned for updates about new blocks opening. If they do, you can cancel your standard rate booking and book under the con rate.
 

@@ -30,7 +30,7 @@ Also the hotel has throw in a few extras:
 
 ### Updated layout
 
-[![Gaming spaces highlighted in yellow.](/images/Floor-Plan-Hotel-Layout-Updated-981x1024.jpg)](http://www.bigbadcon.com/wp-content/uploads/2015/08/Floor-Plan-Hotel-Layout-Updated.jpg) 
+[![Gaming spaces highlighted in yellow.](/images/Floor-Plan-Hotel-Layout-Updated-981x1024.jpg)](/images/Floor-Plan-Hotel-Layout-Updated.jpg) 
 
 **_Gaming spaces highlighted in yellow_**
 

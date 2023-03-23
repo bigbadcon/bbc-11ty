@@ -8,7 +8,7 @@ categories:
 coverImage: "evil_hat.jpg"
 ---
 
-[![](/images/evil_hat.jpg "evil_hat")](http://www.bigbadcon.com/wp-content/uploads/2012/07/evil_hat.jpg)Big Bad Con is proud to announce the Evil Hat room. In addition to [Big Bad GM](http://www.bigbadcon.com/big-bad-gm-who-is-the-baddest-gm-in-the-land/ "Big Bad GM – Who is the Biggest, Baddest GM in the Land?") (fueled Evil Hat's Fate engine) and the Evil Hat games offered in [Games on Demand](http://www.bigbadcon.com/events/games-on-demand/ "Games on Demand"), _and_ [Rigney's Room](http://www.bigbadcon.com/rigneys-room/ "Rigney’s Room"), Evil Hat will have it's own abode at Big Bad Con to hang up its, well, er hat!
+[![](/images/evil_hat.jpg "evil_hat")](/images/evil_hat.jpg)Big Bad Con is proud to announce the Evil Hat room. In addition to [Big Bad GM](http://www.bigbadcon.com/big-bad-gm-who-is-the-baddest-gm-in-the-land/ "Big Bad GM – Who is the Biggest, Baddest GM in the Land?") (fueled Evil Hat's Fate engine) and the Evil Hat games offered in [Games on Demand](http://www.bigbadcon.com/events/games-on-demand/ "Games on Demand"), _and_ [Rigney's Room](http://www.bigbadcon.com/rigneys-room/ "Rigney’s Room"), Evil Hat will have it's own abode at Big Bad Con to hang up its, well, er hat!
 
 Here's the games you can find in the Evil Hat room:
 

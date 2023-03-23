@@ -13,4 +13,4 @@ First off, here's the new form to GM at [Games on Demand](http://www.bigbadcon.c
 
 Second, we're stealing there super fly GM badges, so anyone walking in can see the awesome games being run at a glance (note, sample is from GenCon)
 
-[![god_menu_samples](/images/god_menu_samples.jpg)](http://www.bigbadcon.com/wp-content/uploads/2013/07/god_menu_samples.jpg)
+[![god_menu_samples](/images/god_menu_samples.jpg)](/images/god_menu_samples.jpg)

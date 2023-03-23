@@ -7,7 +7,7 @@ categories:
   - "the-making-of"
 ---
 
-Everyone knows Jason Morningstar makes great games. [![jason_morningstar](/images/jason_morningstar.jpg)](http://www.bigbadcon.com/wp-content/uploads/2012/06/jason_morningstar.jpg)Like Fiasco and Durance _and_ Shab-al-Hiri Roach _and_ Grey Ranks _and, and, and,_ _and, and, and..._
+Everyone knows Jason Morningstar makes great games. [![jason_morningstar](/images/jason_morningstar.jpg)](/images/jason_morningstar.jpg)Like Fiasco and Durance _and_ Shab-al-Hiri Roach _and_ Grey Ranks _and, and, and,_ _and, and, and..._
 
 But not everyone this side of the Black Forest has had a chance to _play_ in his games. Which is a shame, because is you haven't Jason also _runs_ AWESOME games.
 

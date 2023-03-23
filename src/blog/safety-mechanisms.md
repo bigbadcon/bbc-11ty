@@ -7,7 +7,7 @@ categories:
   - "the-making-of"
 ---
 
-[![File Format Pdf-256x256](/images/File-Format-Pdf-256x256.png)](https://www.bigbadcon.com/wp-content/uploads/2016/03/Safety_Cards_082318.pdf)Sometimes a game can go in an unexpected direction, or explore difficult subjects, and situations or topics may come up that causes players to feel uncomfortable, scared, or even trigger memories of traumatic events.
+[![File Format Pdf-256x256](/images/File-Format-Pdf-256x256.png)](/images/Safety_Cards_082318.pdf)Sometimes a game can go in an unexpected direction, or explore difficult subjects, and situations or topics may come up that causes players to feel uncomfortable, scared, or even trigger memories of traumatic events.
 
 Here are some mechanisms that promote clear communication to help avoid these situations and give players tools to address them when they occur. Even if these tools are never used, it often puts players at ease to know that everyone in the game is committed to having a good experience at the table.
 

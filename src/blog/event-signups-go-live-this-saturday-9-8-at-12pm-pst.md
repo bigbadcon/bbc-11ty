@@ -7,7 +7,7 @@ categories:
   - "the-making-of"
 ---
 
-[![](/images/Red-Portrait-med-300x300.jpg)](https://www.bigbadcon.com/wp-content/uploads/2017/08/Red-Portrait-med.jpg)The moment is upon us. Big Bad Con event signups are about to start and here's everything you need to know to get into your favorite games, panels, and special events!
+[![](/images/Red-Portrait-med-300x300.jpg)](/images/Red-Portrait-med.jpg)The moment is upon us. Big Bad Con event signups are about to start and here's everything you need to know to get into your favorite games, panels, and special events!
 
 ### When do signups start?
 

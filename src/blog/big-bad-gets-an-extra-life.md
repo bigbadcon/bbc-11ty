@@ -7,7 +7,7 @@ categories:
   - "the-making-of"
 ---
 
-**[![Extra Life Image](/images/Extra-Life-Image-300x232.jpg)](http://www.bigbadcon.com/wp-content/uploads/2014/10/Extra-Life-Image.jpg)Calling All Gamers: Be a Hero for Kids!**
+**[![Extra Life Image](/images/Extra-Life-Image-300x232.jpg)](/images/Extra-Life-Image.jpg)Calling All Gamers: Be a Hero for Kids!**
 
 Join tens of thousands of gamers for the biggest charity gaming event of the year! From XBox to board games, the Extra Life gaming marathon gives people who love to play games a chance to give back.
 

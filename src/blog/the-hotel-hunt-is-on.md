@@ -8,7 +8,7 @@ categories:
   - "the-making-of"
 ---
 
-[![Hotel_Image](/images/Hotel_Image.jpg)](http://www.bigbadcon.com/wp-content/uploads/2015/03/Hotel_Image.jpg)Yesterday the Hilton sent confirmation that they will not wave the [overcharge from last year](http://www.bigbadcon.com/looking-for-new-recruits/), and that it must be paid before we can book there again.
+[![Hotel_Image](/images/Hotel_Image.jpg)](/images/Hotel_Image.jpg)Yesterday the Hilton sent confirmation that they will not wave the [overcharge from last year](http://www.bigbadcon.com/looking-for-new-recruits/), and that it must be paid before we can book there again.
 
 So, the hunt for another home is on! While nobody has taken the Hotel Liason position yet (though many people have contacted The Wolf to offer support, you all rock!) we still would benefit quite a bit from crowd-sourcing leads.
 

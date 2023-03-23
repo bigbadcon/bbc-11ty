@@ -8,7 +8,7 @@ categories:
 coverImage: "one-does-not-simply-carl-rigney.png"
 ---
 
-[![](/images/one-does-not-simply-carl-rigney.png "one does not simply carl rigney")](http://www.bigbadcon.com/wp-content/uploads/2012/06/one-does-not-simply-carl-rigney.png)
+[![](/images/one-does-not-simply-carl-rigney.png "one does not simply carl rigney")](/images/one-does-not-simply-carl-rigney.png)
 
 Carl Rigney, luminary of gaming, will be running not one or two, but five, yes FIVE games at Big Bad Con. Oh, and in his spare time he might run some games at Games on Demand Friday afternoon too. The Wolf, Little Red _and_ Grandma are all itching to click "Book Now" NOW.
 

@@ -13,7 +13,7 @@ Using only the FATE system and three mystery game ingredients consisting of a ge
 
 Our four Big Bad GM contestants were picked due to their reputations as excellent GMs, ability to run exceptional games off the cuff and, might I say, their huge egos? Meet our four contestants and decide who you think has what it takes to claim the title:
 
-[![](/images/mike.jpg "mike")](http://www.bigbadcon.com/wp-content/uploads/2011/02/mike.jpg)
+[![](/images/mike.jpg "mike")](/images/mike.jpg)
 
 **Mike Bogan** **The Ultimate Superfly TNT Dolemite GM Ninja of All Time**, a founder of [Good Omens](http://www.goodomensgames.com/) and 4-Eyed Demon, Mike is the go to GM for high action, over the top stunts, cinematic games. A huge fan of Feng Shui, Wushu and now FATE Mike runs games that are fast paced and intense. Mike’s enthusiasm for gaming shines through both as a GM and a player.
 
@@ -21,7 +21,7 @@ As the winner of the GM Throwdown at [EndGame](http://www.endgameoakland.com/) i
 
 Mike has recently made his foray into fate, converting his games inspired by Bill Willingham's Fables from Wushu to FATE. Lets see what he can do with three secret ingredients. Who knows, one of them may be The Wolf himself!  
 
-[![](/images/74535_1543478158379_1577732348_1265134_6053057_n-300x259.jpg "Mr. Boy")](http://www.bigbadcon.com/wp-content/uploads/2011/09/74535_1543478158379_1577732348_1265134_6053057_n.jpg)**Justin Evans.** Hailing from Petaluma, finalist in the Golden Geek podcast award from Board Game geeks, first GM to run a Horror Fate game that sent chills down The Wolf's spine, prop-maker extraordinaire, and soon to be father, The Wolf Proudly presents Justin "Mr. Boy" Evans, aka This Just-in...and yes, that is a butterfly on his head.
+[![](/images/74535_1543478158379_1577732348_1265134_6053057_n-300x259.jpg "Mr. Boy")](/images/74535_1543478158379_1577732348_1265134_6053057_n.jpg)**Justin Evans.** Hailing from Petaluma, finalist in the Golden Geek podcast award from Board Game geeks, first GM to run a Horror Fate game that sent chills down The Wolf's spine, prop-maker extraordinaire, and soon to be father, The Wolf Proudly presents Justin "Mr. Boy" Evans, aka This Just-in...and yes, that is a butterfly on his head.
 
 Justin has been rocking Fate since the Dresden Files was a "coming soon" postcard. He's used it to run Firefly space opera, horror, and many other milieus. At Big Bad Con his fate will be in the hands of the judges. Can he take the three ingredients they provide and make something magical? Find out at [Big Bad GM](http://www.bigbadcon.com/?page_id=6&event_id=72)!
 

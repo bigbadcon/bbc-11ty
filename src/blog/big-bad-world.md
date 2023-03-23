@@ -8,7 +8,7 @@ categories:
 coverImage: "Big-Bad-World-1.0.jpg"
 ---
 
-**[![Big Bad World 1.0](/images/Big-Bad-World-1.0-232x300.jpg)](http://www.bigbadcon.com/wp-content/uploads/2016/10/Big-Bad-World-1.0.jpg)Big Bad World is a meta-game that we created for Big Bad Con 2016.** To play, attendees select from the basic playbooks (Ambassador, Explorer, Mage, Rogue, Alchemist, or Tracker) and slide the playbooks behind their badge. On the front of the playbooks are our principles of play:
+**[![Big Bad World 1.0](/images/Big-Bad-World-1.0-232x300.jpg)](/images/Big-Bad-World-1.0.jpg)Big Bad World is a meta-game that we created for Big Bad Con 2016.** To play, attendees select from the basic playbooks (Ambassador, Explorer, Mage, Rogue, Alchemist, or Tracker) and slide the playbooks behind their badge. On the front of the playbooks are our principles of play:
 
 - Think about the well-being of those around you.
 - Address yourself to the other attendees.
@@ -22,7 +22,7 @@ Mark XP when you... ...introduce someone to a group of people. ...play a game yo
 
 After the players have marked their fifth XP, they can turn in their playbook, get a shiny pin showing the playbook was completed, and get a new playbook! Once all basic playbooks are completed, our attendees can move onto the _Advanced Playbooks_, Wolf and Little Red.
 
-**[![2016-10-31 07.05.20](/images/2016-10-31-07.05.20-300x267.jpg)](http://www.bigbadcon.com/wp-content/uploads/2016/10/2016-10-31-07.05.20.jpg)If you're interested in running Big Bad World at your convention:**
+**[![2016-10-31 07.05.20](/images/2016-10-31-07.05.20-300x267.jpg)](/images/2016-10-31-07.05.20.jpg)If you're interested in running Big Bad World at your convention:**
 
 - Here are the [playbooks](https://www.dropbox.com/s/9ojh2tlvpw4vahw/Big%20Bad%20World%202017%20-%20no%20lines.pdf?dl=0).
 - This is the [initial planning document](https://docs.google.com/document/d/1irKobG3S7_-Po_1UIZAm1bMuH6U0HVGTBqdb6uroW7I/edit#).
