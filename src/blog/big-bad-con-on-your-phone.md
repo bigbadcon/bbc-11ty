@@ -7,7 +7,7 @@ categories:
   - "the-making-of"
 ---
 
-[![splash-640x1136](/images/splash-640x1136-169x300.jpg)](http://www.bigbadcon.com/wp-content/uploads/2013/09/splash-640x1136.jpg)Big Bad Con Mobile is now available, for both iOS and Android!  On it you can find:
+[![splash-640x1136](/images/splash-640x1136-169x300.jpg)](/images/splash-640x1136.jpg)Big Bad Con Mobile is now available, for both iOS and Android!  On it you can find:
 
 - A list of events hosted
 - Photos of the con from the last two years

@@ -8,7 +8,7 @@ categories:
 coverImage: "rTA.jpg"
 ---
 
-[![](/images/rTA-300x114.jpg "rTA")](http://www.bigbadcon.com/wp-content/uploads/2012/09/rTA.jpg)Remember last year when we [demo'd the prototype for Race to Adventure](http://www.bigbadcon.com/race-to-adventure/)? Well, RTA is back, and BIGGER than ever!
+[![](/images/rTA-300x114.jpg "rTA")](/images/rTA.jpg)Remember last year when we [demo'd the prototype for Race to Adventure](http://www.bigbadcon.com/race-to-adventure/)? Well, RTA is back, and BIGGER than ever!
 
 Eric K Lytle, one of the game designers will be back at Big Bad Con running not just the soon to b e released Race To Adventure, but a GIANT version of the soon to be released Race to Adventure. About the game:
 
@@ -20,4 +20,4 @@ Saturday - [GIANT Race to Adventure](http://www.bigbadcon.com/events/giant-race-
 
 ### A picture of the GIANT board!
 
-[![](/images/2012-09-12_20-49-55_179-1024x577.jpg "2012-09-12_20-49-55_179")](http://www.bigbadcon.com/wp-content/uploads/2012/09/2012-09-12_20-49-55_179.jpg)
+[![](/images/2012-09-12_20-49-55_179-1024x577.jpg "2012-09-12_20-49-55_179")](/images/2012-09-12_20-49-55_179.jpg)

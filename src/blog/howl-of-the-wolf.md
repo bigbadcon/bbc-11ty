@@ -5,7 +5,7 @@ published: true
 date: 2011-05-11
 ---
 
-[![Howl of The Wolf Badge](/images/howl-ofthe-wolf4-no-url-forprint-300x300.png "Howl of The Wolf Badge")](http://www.bigbadcon.com/wp-content/uploads/2011/05/howl-ofthe-wolf4-no-url-forprint.png)HOOOOOOOWWWWWL
+[![Howl of The Wolf Badge](/images/howl-ofthe-wolf4-no-url-forprint-300x300.png "Howl of The Wolf Badge")](/images/howl-ofthe-wolf4-no-url-forprint.png)HOOOOOOOWWWWWL
 
 As Kublacon approaches, The Wolf wants to deputize fellow gamers to spread the “Howl of The Wolf”.   In exchange, you get to be part of the con (listed in the credits as an advertiser), get a shiny “Howl of The Wolf” pin, and if you’re a Facebook user, get a matching “Howl of The Wolf” badge for profile.
 

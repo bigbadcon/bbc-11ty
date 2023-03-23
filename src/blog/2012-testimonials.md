@@ -105,7 +105,7 @@ https://twitter.com/SeanNittner/status/256510414316249090
 
 ### Facebook
 
-[![BBC2012](/images/BBC2012.jpg)](http://www.bigbadcon.com/wp-content/uploads/2013/07/BBC2012.jpg)
+[![BBC2012](/images/BBC2012.jpg)](/images/BBC2012.jpg)
 
 ### Blogs
 

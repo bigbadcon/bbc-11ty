@@ -9,7 +9,7 @@ categories:
 
 ![Teen Games & Events](/images/teen-games.gif)We welcome all teens from 13-17 years old to attend Big Bad Con 2018. We are happy to announce the new [Teen Games & Events Track](http://www.bigbadcon.com/events/categories/teens/) for young gamers! Big Bad Con supports roleplaying games for all ages. We believe that young gamers need age-appropriate games, and all gamers should play in an environment where they feel comfortable expressing themselves freely.
 
-To attend teens will need a [permission form](https://www.bigbadcon.com/wp-content/uploads/2017/10/Teen-permission-form.pdf) signed by a parent or guardian. This can be filled out in advance or at the con!
+To attend teens will need a [permission form](/images/Teen-permission-form.pdf) signed by a parent or guardian. This can be filled out in advance or at the con!
 
 ## Hotel Age Requirements
 

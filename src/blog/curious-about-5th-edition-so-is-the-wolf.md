@@ -7,7 +7,7 @@ categories:
   - "events"
 ---
 
-[![Dungeons and Dragons 5E](/images/Dungeons-and-Dragons-5E-229x300.jpg)](http://www.bigbadcon.com/wp-content/uploads/2014/08/Dungeons-and-Dragons-5E.jpg)The Wolf wants to know what all the fuss is about. And how can _he_ get the advantage die? Maybe he'll get a chance in these games:
+[![Dungeons and Dragons 5E](/images/Dungeons-and-Dragons-5E-229x300.jpg)](/images/Dungeons-and-Dragons-5E.jpg)The Wolf wants to know what all the fuss is about. And how can _he_ get the advantage die? Maybe he'll get a chance in these games:
 
 [D&D 5E in Glorantha](http://www.bigbadcon.com/events/dd-5e-in-glorantha/) - Barbarian adventures in Dragon Pass. Rebel against the Lunar occupiers. Fight a Blood Feud with a neighboring clan. Go cattle raiding. Fight off marauding Chaos Beasts. Inter-clan politics.
 

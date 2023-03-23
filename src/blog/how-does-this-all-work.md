@@ -8,7 +8,7 @@ categories:
   - "hotel-info"
 ---
 
-[![Red_narrow](/images/Red_narrow-158x300.png)](https://www.bigbadcon.com/wp-content/uploads/2017/10/Red_narrow.png)Interested in Big Bad Con and have questions? Here's the place to get answers. Of note, we also have a lot of resources at the bottom of the page in the FAQ section, and if you ever have questions or concerns, please feel free to contact us with the contact form that is down there as well. Now, onto the information!
+[![Red_narrow](/images/Red_narrow-158x300.png)](/images/Red_narrow.png)Interested in Big Bad Con and have questions? Here's the place to get answers. Of note, we also have a lot of resources at the bottom of the page in the FAQ section, and if you ever have questions or concerns, please feel free to contact us with the contact form that is down there as well. Now, onto the information!
 
 ### Who can attend Big Bad Con?
 
@@ -39,7 +39,7 @@ Once you arrive at the con, game signups will still be online and can be done fr
 
 ### What should I bring to Big Bad Con?
 
-Big Bad Con collects food for the [Food Bank of Contra Costa and Solano County](https://www.foodbankccs.org/) as part of our community outreach. The FBCCS provides food to over 190,000 people per month. You can support them by bringing out non-perishable food (especially items on this [shopping list](https://www.bigbadcon.com/wp-content/uploads/2017/10/Food-Drive-Shopping-List.pdf)) to the con. We'll have collection barrels at the registration desk.  For more information on our community outreach see our [Charity Information Page](https://www.bigbadcon.com/charity-event-we-give-back/).
+Big Bad Con collects food for the [Food Bank of Contra Costa and Solano County](https://www.foodbankccs.org/) as part of our community outreach. The FBCCS provides food to over 190,000 people per month. You can support them by bringing out non-perishable food (especially items on this [shopping list](/images/Food-Drive-Shopping-List.pdf)) to the con. We'll have collection barrels at the registration desk.  For more information on our community outreach see our [Charity Information Page](https://www.bigbadcon.com/charity-event-we-give-back/).
 
 Beyond that we ask that every attendee come with an open mind and an eagerness to try new things. We have a huge array of games ranging from very traditional to brand-new experiments being playtested. We encourage you to try them all.
 
@@ -76,7 +76,7 @@ Our options are plentiful. If you haven't already signed up for events, or if yo
 
 We'll have maps up on the wall and in the program, but it never hurts to get familiar with the layout in advance.
 
-[![Marriott Floor-Plan-Master](/images/Marriott-Floor-Plan-Master-907x1024.jpg)](https://www.bigbadcon.com/wp-content/uploads/2017/10/Marriott-Floor-Plan-Master.jpg)
+[![Marriott Floor-Plan-Master](/images/Marriott-Floor-Plan-Master-907x1024.jpg)](/images/Marriott-Floor-Plan-Master.jpg)
 
 The large board rooms host large larps, panels, the dealers room, special events, and board games. The private game rooms (highlighted in yellow) host RPGs and some small larps!
 

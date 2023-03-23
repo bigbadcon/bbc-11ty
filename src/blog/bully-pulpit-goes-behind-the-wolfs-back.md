@@ -7,7 +7,7 @@ categories:
   - "events"
 ---
 
-[![What's Lenny got there?](/images/lenny_mystery-300x231.png "What's Lenny got there?")](http://www.bigbadcon.com/wp-content/uploads/2011/09/lenny_mystery.png)The Wolf is outraged. He's looking for a house to blow down just to let off steam.
+[![What's Lenny got there?](/images/lenny_mystery-300x231.png "What's Lenny got there?")](/images/lenny_mystery.png)The Wolf is outraged. He's looking for a house to blow down just to let off steam.
 
 Jason Morningstar ([@jmstar](http://twitter.com/#!/jmstar)) of Bully Pulpit has apparently sent new, as of yet unreleased material to Big Bad Con care of Leonard Balsera for his two slots of Fiasco!
 

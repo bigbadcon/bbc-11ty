@@ -8,7 +8,7 @@ categories:
 coverImage: "meandskekOk_2.jpg"
 ---
 
-[![](/images/meandskekOk_2-300x225.jpg "meandskekOk_2")](http://www.bigbadcon.com/wp-content/uploads/2012/07/meandskekOk_2.jpg)Luke's events are in. Check out all this awesomeness coming from Burning Wheel HQ and beyond!
+[![](/images/meandskekOk_2-300x225.jpg "meandskekOk_2")](/images/meandskekOk_2.jpg)Luke's events are in. Check out all this awesomeness coming from Burning Wheel HQ and beyond!
 
 [Danger on the Scent Border](http://www.bigbadcon.com/events/danger-on-the-scent-border/ "Danger on the Scent Border") (Mouse Guard)
 

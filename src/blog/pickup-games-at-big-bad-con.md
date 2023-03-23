@@ -5,7 +5,7 @@ published: true
 date: 2011-08-16
 ---
 
-[![Open Gaming](/images/open_gaming-232x300.jpg "Open Gaming")](http://www.bigbadcon.com/wp-content/uploads/2011/08/open_gaming.jpg)
+[![Open Gaming](/images/open_gaming-232x300.jpg "Open Gaming")](/images/open_gaming.jpg)
 
 The Wolf has plenty of scheduled games in the line up, but that's not all, he's opened up the Black Forest for games of all shapes and sizes in open gaming.
 

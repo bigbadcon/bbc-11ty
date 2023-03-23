@@ -7,7 +7,7 @@ categories:
   - "the-making-of"
 ---
 
-[![Elsa S Henry](/images/Elsa-S-Henry-300x300.jpg)](http://www.bigbadcon.com/wp-content/uploads/2015/07/Elsa-S-Henry.jpg)The Wolf had the delightful treat at Gencon of meeting Elsa S Henry ([@snarkbat](https://twitter.com/snarkbat)) and talking about both the Fate Accessibility project, and improving accessibility for people with disabilities at Big Bad Con.
+[![Elsa S Henry](/images/Elsa-S-Henry-300x300.jpg)](/images/Elsa-S-Henry.jpg)The Wolf had the delightful treat at Gencon of meeting Elsa S Henry ([@snarkbat](https://twitter.com/snarkbat)) and talking about both the Fate Accessibility project, and improving accessibility for people with disabilities at Big Bad Con.
 
 Much to our delight Elsa has signed up to be our accessibility consultant and help make the con more accessible to all.
 

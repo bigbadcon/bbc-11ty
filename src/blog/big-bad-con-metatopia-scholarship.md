@@ -7,7 +7,7 @@ categories:
   - "the-making-of"
 ---
 
-[![](/images/jackson-tegu-300x278.png)](https://www.bigbadcon.com/wp-content/uploads/2018/10/jackson-tegu.png)Inspired by [IGDN](https://www.igdnonline.com/metatopia-diversity-sponsorship) and in cooperation with [Double Exposure](https://dexposure.com/home.html), Big Bad Con is sending game designer Jackson Tegu to Metatopia to playtest his game Silver and White.
+[![](/images/jackson-tegu-300x278.png)](/images/jackson-tegu.png)Inspired by [IGDN](https://www.igdnonline.com/metatopia-diversity-sponsorship) and in cooperation with [Double Exposure](https://dexposure.com/home.html), Big Bad Con is sending game designer Jackson Tegu to Metatopia to playtest his game Silver and White.
 
 Metatopia is held each November in Morristown, NJ. It's a place where designers can find educational panels, get professional feedback on their game, and develop a larger sense of community. The scholarship covers travel, lodging, and a conference badge so that designers can show off their games and make connections with industry professionals.
 

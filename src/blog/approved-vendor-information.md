@@ -35,7 +35,7 @@ Submit payment: 9/15/2019
 Walnut Creek Marriott 2355 N Main Steet Walnut Creek, CA 94596
 
 - Convention is held on levels B1 and B2
-- Dealers room will be in Salon D of the California Ballroom ([map](https://www.bigbadcon.com/wp-content/uploads/2016/03/Floor-Plan-Master.jpg))
+- Dealers room will be in Salon D of the California Ballroom ([map](/images/Floor-Plan-Master.jpg))
 - Direct loading/unloading access available
 - (more [hotel information](https://www.bigbadcon.com/hotel/))
 

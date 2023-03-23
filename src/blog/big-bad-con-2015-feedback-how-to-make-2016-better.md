@@ -23,11 +23,11 @@ With that said, here's what you said.
 
 We love our charts. Here's the numbers!
 
-[![Big Bad Con 2015 Feedback_1](/images/Big-Bad-Con-2015-Feedback_1.jpg)](http://www.bigbadcon.com/wp-content/uploads/2016/03/Big-Bad-Con-2015-Feedback_1.jpg)
+[![Big Bad Con 2015 Feedback_1](/images/Big-Bad-Con-2015-Feedback_1.jpg)](/images/Big-Bad-Con-2015-Feedback_1.jpg)
 
-[![Big Bad Con 2015 Feedback_2](/images/Big-Bad-Con-2015-Feedback_2.jpg)](http://www.bigbadcon.com/wp-content/uploads/2016/03/Big-Bad-Con-2015-Feedback_2.jpg)
+[![Big Bad Con 2015 Feedback_2](/images/Big-Bad-Con-2015-Feedback_2.jpg)](/images/Big-Bad-Con-2015-Feedback_2.jpg)
 
-[![Big Bad Con 2015 Feedback_3](/images/Big-Bad-Con-2015-Feedback_3.jpg)](http://www.bigbadcon.com/wp-content/uploads/2016/03/Big-Bad-Con-2015-Feedback_3.jpg)
+[![Big Bad Con 2015 Feedback_3](/images/Big-Bad-Con-2015-Feedback_3.jpg)](/images/Big-Bad-Con-2015-Feedback_3.jpg)
 
 For the most part, YAY! It looks like folks were happy, _especially_ in the areas of our con staff and personal safety. However our offline sign ups and the noise levels could use some improvement. The hotel accommodations also had some issues, which we'll be on the lookout for at the Marriott.
 

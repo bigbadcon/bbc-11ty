@@ -12,4 +12,4 @@ A few people have told The Wolf the'd like to get a little exercise at Big Bad C
 
 **Comment** below if you'd be down for it. If I get 5 or more people interested we'll make it happen.
 
-[![](/images/BigBad5K.png "BigBad5K")](http://www.bigbadcon.com/wp-content/uploads/2012/09/BigBad5K.png)
+[![](/images/BigBad5K.png "BigBad5K")](/images/BigBad5K.png)

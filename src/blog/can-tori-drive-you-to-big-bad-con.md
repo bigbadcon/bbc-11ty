@@ -14,7 +14,7 @@ coverImage: "Tori.jpg"
 
 Both fantastical figures were delighted when they found this post [Can I drive you to Big Bad Con](Can I drive you to Big Bad Con?)? on Story Games:
 
-> [![](/images/Tori.jpg "Tori")](http://www.bigbadcon.com/wp-content/uploads/2012/08/Tori.jpg)This is suuuper random, but!
+> [![](/images/Tori.jpg "Tori")](/images/Tori.jpg)This is suuuper random, but!
 > 
 > I just heard from Joe Mc'd about Big Bad Con.
 > 

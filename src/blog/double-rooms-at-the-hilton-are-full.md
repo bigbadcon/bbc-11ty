@@ -8,7 +8,7 @@ categories:
 coverImage: "62608_1.jpg"
 ---
 
-[![Grandma's House](/images/62608_1-300x198.jpg "Oakland Airport Hilton")](http://www.bigbadcon.com/wp-content/uploads/2012/02/62608_1.jpg)
+[![Grandma's House](/images/62608_1-300x198.jpg "Oakland Airport Hilton")](/images/62608_1.jpg)
 
 **Update: " 4 more rooms freed up!**
 

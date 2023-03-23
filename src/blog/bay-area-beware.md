@@ -8,7 +8,7 @@ categories:
 coverImage: "baybridgelightning.jpg"
 ---
 
-[![](/images/baybridgelightning-300x168.jpg "baybridgelightning")](http://www.bigbadcon.com/wp-content/uploads/2012/07/baybridgelightning.jpg)The Wolf hasn't got anything out for the Bay Area. It's a nice place to huff and puff, you know.
+[![](/images/baybridgelightning-300x168.jpg "baybridgelightning")](/images/baybridgelightning.jpg)The Wolf hasn't got anything out for the Bay Area. It's a nice place to huff and puff, you know.
 
 But these GMs...i'm just saying.
 

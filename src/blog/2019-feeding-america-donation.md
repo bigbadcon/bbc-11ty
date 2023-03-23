@@ -47,4 +47,4 @@ No goods or services were exchanged for this contribution. All gifts may be tax-
 
 ### From Food Bank of Contra Costa and Solano County
 
-[![](/images/2019-Food-Bank-of-Contra-Costa-and-Solano-836x1024.jpg)](https://www.bigbadcon.com/wp-content/uploads/2019/12/2019-Food-Bank-of-Contra-Costa-and-Solano.jpg)
+[![](/images/2019-Food-Bank-of-Contra-Costa-and-Solano-836x1024.jpg)](/images/2019-Food-Bank-of-Contra-Costa-and-Solano.jpg)

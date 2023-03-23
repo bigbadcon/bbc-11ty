@@ -37,7 +37,7 @@ Contact Information: In a bind and need to contact us? You can tweet [@bigbadcon
 
 **Content Policy:** The con is 18 and over; we expect games to cover the gamut of gonzo silly to very mature themes. More detail is on our [content policy](http://www.bigbadcon.com/?p=294 "Big Bad Con Content Standards") page.
 
-Schedule: The game schedule is online here as a [PDF](http://www.bigbadcon.com/wp-content/uploads/2011/09/BBC_schedule2.pdf) or [Google Doc](https://docs.google.com/spreadsheet/ccc?key=0AqNVQlE61iI2dGdkc29ZVFR3S3RMTzFRU1V4LW9tT2c&hl=en_US#gid=6).
+Schedule: The game schedule is online here as a [PDF](/images/BBC_schedule2.pdf) or [Google Doc](https://docs.google.com/spreadsheet/ccc?key=0AqNVQlE61iI2dGdkc29ZVFR3S3RMTzFRU1V4LW9tT2c&hl=en_US#gid=6).
 
 ### Surviving at the Con
 

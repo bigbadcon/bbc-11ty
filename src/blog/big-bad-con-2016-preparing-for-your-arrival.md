@@ -8,11 +8,11 @@ categories:
   - "the-making-of"
 ---
 
-[![extra-life-logo](/images/extra-life-logo.jpg)](http://www.bigbadcon.com/wp-content/uploads/2014/10/extra-life-logo.jpg)You're coming to Big Bad Con! Awesome. Here are some important Con 101 reminders:
+[![extra-life-logo](/images/extra-life-logo.jpg)](/images/extra-life-logo.jpg)You're coming to Big Bad Con! Awesome. Here are some important Con 101 reminders:
 
 ### Before you head out
 
-**Bring non-perishable food for donation.** Big Bad Con will have a food barrel for the Food Bank of Contra Costa and Solano County at the registration desk. Please bring a can of something tasty for all the hungry folks in the Bay and we'll give you a pin! Here is a [list of food](http://www.bigbadcon.com/wp-content/uploads/2016/10/food-drive-shop-list.pdf) they are looking for.
+**Bring non-perishable food for donation.** Big Bad Con will have a food barrel for the Food Bank of Contra Costa and Solano County at the registration desk. Please bring a can of something tasty for all the hungry folks in the Bay and we'll give you a pin! Here is a [list of food](/images/food-drive-shop-list.pdf) they are looking for.
 
 ### Getting to the Hotel
 

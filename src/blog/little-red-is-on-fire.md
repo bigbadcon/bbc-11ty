@@ -8,7 +8,7 @@ categories:
 coverImage: "burningwheel.png"
 ---
 
-[![](/images/burningwheel-150x150.png "burningwheel")](http://www.bigbadcon.com/wp-content/uploads/2012/05/burningwheel.png)She just got back from the Burning Wheel room and she's still putting out the flames. What? What's this? A Burning Wheel room, where all the Burning Wheel HQ games will be run? Yes indeed!
+[![](/images/burningwheel-150x150.png "burningwheel")](/images/burningwheel.png)She just got back from the Burning Wheel room and she's still putting out the flames. What? What's this? A Burning Wheel room, where all the Burning Wheel HQ games will be run? Yes indeed!
 
 So far we've got on the roster
 

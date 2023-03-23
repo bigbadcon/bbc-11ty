@@ -9,7 +9,7 @@ categories:
 coverImage: "howl.jpg"
 ---
 
-[![](/images/howl.jpg "howl")](http://www.bigbadcon.com/wp-content/uploads/2012/05/howl.jpg)HOOOOOOOWWWWWL
+[![](/images/howl.jpg "howl")](/images/howl.jpg)HOOOOOOOWWWWWL
 
 As Memorial day approaches, The Wolf wants to deputize fellow gamers to spread the “Howl of The Wolf”. In exchange, you get to be part of the con (listed in the credits as an supporter), get a shiny “Howl of The Wolf 2012” pin, and get a matching “Howl of The Wolf” badge for profile.
 
