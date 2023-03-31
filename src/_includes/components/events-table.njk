@@ -119,13 +119,13 @@
                     :class="doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}) && 'overlap'"
                     >
                     {% endif %}
+                    {# TODO: make this more modular so that it does not filter by day if there is no date or is not live #}
                     {% if events_type === "online" %}
                         <tr 
                     x-cloak
                     x-data="eventInfo"
                     x-init="id = {{event.eventId}}; maxSpaces = {{maxSpaces}}; categories = [{{event.categories | alpineArray}}];"
-                    x-show="filterCategory(categories) && (!filter.favsOnly || isFav({{event.eventId}}))"
-                    :class="doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}) && 'overlap'"
+                    x-show="filterCategory(categories) && filterDay($refs.date{{event.eventId}}.textContent) && (!filter.favsOnly || isFav({{event.eventId}}))"
                     >
                         {% endif %}
 
