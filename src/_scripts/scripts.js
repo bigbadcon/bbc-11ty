@@ -255,10 +255,13 @@ document.addEventListener("alpine:init", () => {
 			get isPaid() {
 				return this.isRole("paidattendee");
 			},
-			async checkRegistration() {
+			async checkRegistration(id, userNicename) {
 				// Used for Big Bad Online
-				if (this.user?.id) {
-					const url = `/.netlify/functions/check-registration/${this.user.id}/${this.user.userNicename}`;
+				id = id || this.user?.id;
+				userNicename = userNicename || this.user?.userNicename;
+				if (id) {
+					userNicename = encodeURIComponent(userNicename);
+					const url = `/.netlify/functions/check-registration/${id}/${userNicename}`;
 					try {
 						const response = await fetch(url);
 						// eslint-disable-next-line no-console

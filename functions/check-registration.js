@@ -7,6 +7,17 @@ exports.handler = async function (event) {
 	const path = event.path.replace(/\/\.netlify\/functions\/[^/]*\//, "");
 	let [id, userNicename] = path ? path.split("/") : [];
 
+	if (!id || !userNicename) {
+		return {
+			statusCode: 400,
+			body: JSON.stringify({
+				message: "Bad Request",
+			}),
+		};
+	}
+
+	userNicename = decodeURIComponent(userNicename);
+
 	try {
 		// Initialize the sheet - doc ID is the long id in the sheets URL
 		const doc = new GoogleSpreadsheet(
@@ -26,6 +37,7 @@ exports.handler = async function (event) {
 		const rows = await sheet.getRows();
 
 		// Search for user based on userNicename
+		// TODO: test to see if names with / break this or not Specifically user 6330 "k/C"
 		const isRegistered = rows.some(
 			(row) => row.userId === id && row.userNicename === userNicename
 		);
