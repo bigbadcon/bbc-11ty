@@ -5,7 +5,7 @@ published: true
 description: Precautions we're taking to make the con as safe as we can.
 ogImage: ''
 navGroup: Attend
-navTitle: ''
+navTitle: Public Health Policy
 order: 
 icon: health
 
