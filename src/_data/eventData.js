@@ -29,13 +29,21 @@ const decodeText = (text) => {
 	}
 };
 
+/* ------------- Fetch image and save to event-images for cache ------------- */
+
+async function fetchImage(url, slug) {
+	const response = await fetch(url);
+	const blob = await response.blob();
+	const arrayBuffer = await blob.arrayBuffer();
+	const buffer = Buffer.from(arrayBuffer);
+	await fs.writeFile(`./event-images-cache/${slug}.png`, buffer);
+	await fs.writeFile(`./dist/event-images-cache/${slug}.png`, buffer);
+	return buffer;
+}
+
 /* ------------------- Sort by start time& alphabetically ------------------- */
 function eventSort(events) {
-	return events.sort(
-		(a, b) =>
-			a.eventStartDateTime - b.eventStartDateTime ||
-			a.eventName.localeCompare(b.eventName)
-	);
+	return events.sort((a, b) => a.eventStartDateTime - b.eventStartDateTime || a.eventName.localeCompare(b.eventName));
 }
 
 /* ---------------------------- Main url for API ---------------------------- */
@@ -362,12 +370,9 @@ module.exports = async () => {
 		// TODO: figure out a better way to handle this for main vs drafts
 		// 0: draft or pending, 1: published, -1 or null: trashed
 		// TODO: issue found is that eventStatus = null when it is moved to trash back to drafts?
-		if (environment === "production")
-			data = data.filter((event) => event.eventStatus === 1);
+		if (environment === "production") data = data.filter((event) => event.eventStatus === 1);
 		// Only show dates in the future (minus 1 month)
-		data = data.filter((event) =>
-			dayjs(event.eventStartDate).isAfter(dayjs().subtract(1, "month"))
-		);
+		data = data.filter((event) => dayjs(event.eventStartDate).isAfter(dayjs().subtract(1, "month")));
 
 		/* ---------------- fix data if missing slug and decode text ---------------- */
 		data = data.map((event) => {
@@ -387,28 +392,20 @@ module.exports = async () => {
 			/* -------------------- Create date string with timezone -------------------- */
 			const tz = "America/Los_Angeles";
 			// TODO: need to sort out Proper Timezone and Daylight Savings Time. This is locking it to PDT; PST is -08:00
-			const eventStartDateTime = dayjs(
-				event.eventStartDate + "T" + event.eventStartTime + "-07:00"
-			)
+			const eventStartDateTime = dayjs(event.eventStartDate + "T" + event.eventStartTime + "-07:00")
 				.tz(tz)
 				.toISOString();
-			const eventEndDateTime = dayjs(
-				event.eventEndDate + "T" + event.eventEndTime + "-07:00"
-			)
+
+			const eventEndDateTime = dayjs(event.eventEndDate + "T" + event.eventEndTime + "-07:00")
 				.tz(tz)
 				.toISOString();
+
 			// convert to simple array sorted alphabetically
-			const categories = event.categories
-				.map((val) => val.name)
-				.sort((a, b) => a.localeCompare(b));
+			const categories = event.categories.map((val) => val.name).sort((a, b) => a.localeCompare(b));
 
 			/* ------------------ Build tags list from eventMetadataIds ----------------- */
 			const tags = event.eventMetadataIds.reduce((acc, val) => {
-				if (
-					Object.keys(metadataTagsObj).includes(
-						val.termTaxonomyId.toString()
-					)
-				) {
+				if (Object.keys(metadataTagsObj).includes(val.termTaxonomyId.toString())) {
 					const tag = metadataTagsObj[val.termTaxonomyId].name;
 					return [...acc, tag];
 				}
@@ -417,14 +414,15 @@ module.exports = async () => {
 
 			const hasContentAdvisoryTags =
 				tags.length > 0 &&
-				tags.every((val) =>
-					[
-						"Gore",
-						"Graphic Violence",
-						"Provocative",
-						"Sex and Sexuality",
-					].includes(val)
-				);
+				tags.every((val) => ["Gore", "Graphic Violence", "Provocative", "Sex and Sexuality"].includes(val));
+
+			// Save Event Images renamed as event slug
+			const image = metadata.event_image;
+			const imageBaseUrl = "https://admin.bigbadcon.com:8091/images/";
+			if (image) {
+				console.log("🚀 ~ file: eventData.js:433 ~ data=data.map ~ image:", image);
+				fetchImage(imageBaseUrl + image, event.eventSlug.toLowerCase());
+			}
 
 			/* ----------------------- Return modified event data ----------------------- */
 			return {
@@ -434,17 +432,12 @@ module.exports = async () => {
 				metadata: metadata, // replace with keyed object
 				eventStartDateTime: eventStartDateTime, // native javascript date object
 				eventEndDateTime: eventEndDateTime, // native javascript date object
-				eventDuration: getDurationInHours(
-					eventStartDateTime,
-					eventEndDateTime
-				), // duration in hours and minutes
+				eventDuration: getDurationInHours(eventStartDateTime, eventEndDateTime), // duration in hours and minutes
 				eventSlug: event.eventSlug.toLowerCase(), // force lowercase
 				categories: categories, // convert to simple array
 				isVolunteer: categories.includes("Volunteer Shift"),
 				tags: tags, // Kludge until we get it from the api
-				contentAdvisory:
-					hasContentAdvisoryTags ||
-					typeof metadata.trigger_warnings === "string",
+				contentAdvisory: hasContentAdvisoryTags || typeof metadata.trigger_warnings === "string",
 			};
 		});
 
@@ -459,9 +452,7 @@ module.exports = async () => {
 				date: event.eventStartDateTime,
 				dur: event.eventDuration,
 				status: event.eventStatus,
-				room: isNaN(event.metadata.room)
-					? event.metadata.room
-					: `ROOM ${event.metadata.room}`,
+				room: isNaN(event.metadata.room) ? event.metadata.room : `ROOM ${event.metadata.room}`,
 				table: event.metadata.table,
 				isV: event.isVolunteer ? 1 : 0,
 			};
@@ -473,31 +464,20 @@ module.exports = async () => {
 		}, {});
 
 		// This is used for My Events so it's not hitting the API
-		fs.outputFile(
-			"./dist/events.json",
-			JSON.stringify(simpleDataObject),
-			(err) => {
-				if (err) {
-					// eslint-disable-next-line no-console
-					console.log(err);
-				} else {
-					// eslint-disable-next-line no-console
-					console.log("events.json written successfully");
-				}
+		fs.outputFile("./dist/events.json", JSON.stringify(simpleDataObject), (err) => {
+			if (err) {
+				// eslint-disable-next-line no-console
+				console.log(err);
+			} else {
+				// eslint-disable-next-line no-console
+				console.log("events.json written successfully");
 			}
-		);
+		});
 
 		/* ------------------ Separate Events from Volunteer shifts ----------------- */
-		const events = data.filter(
-			(event) =>
-				!event.categories.some(
-					(category) => category === "Volunteer Shift"
-				)
-		);
+		const events = data.filter((event) => !event.categories.some((category) => category === "Volunteer Shift"));
 		// console.log(events);
-		const volunteer = data.filter((event) =>
-			event.categories.some((category) => category === "Volunteer Shift")
-		);
+		const volunteer = data.filter((event) => event.categories.some((category) => category === "Volunteer Shift"));
 
 		/* ------------------- Return object with events separated ------------------ */
 		return {

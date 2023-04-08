@@ -27,8 +27,7 @@ function getHours(dateStart, dateEnd, accuracy = "minutes") {
 	// calculate minutes
 	diffInMilliSeconds -= hours * 3600;
 	const minutes = Math.floor(diffInMilliSeconds / 60) % 60;
-	const minutesString =
-		minutes < 10 ? `0${minutes.toString()}` : minutes.toString();
+	const minutesString = minutes < 10 ? `0${minutes.toString()}` : minutes.toString();
 
 	// calculate seconds
 	diffInMilliSeconds -= minutes * 60;
@@ -52,10 +51,7 @@ function hoursToHHMM(hours) {
 
 /* ----- Sort by order frontmatter field then by fileSlug alphabetically ---- */
 function sortByOrder(a, b) {
-	return (
-		a.data.order - b.data.order ||
-		a.template.fileSlugStr.localeCompare(b.template.fileSlugStr)
-	);
+	return a.data.order - b.data.order || a.template.fileSlugStr.localeCompare(b.template.fileSlugStr);
 }
 
 /* ------------------------- Convert odd characters ------------------------- */
@@ -121,9 +117,7 @@ module.exports = (eleventyConfig) => {
 	/* -------------------------------------------------------------------------- */
 
 	eleventyConfig.addCollection("blogPublished", function (collectionApi) {
-		return collectionApi
-			.getFilteredByTag("blog")
-			.filter((c) => c.data.published === true);
+		return collectionApi.getFilteredByTag("blog").filter((c) => c.data.published === true);
 	});
 
 	/* -------------------------------------------------------------------------- */
@@ -153,10 +147,7 @@ module.exports = (eleventyConfig) => {
 		navGroups.forEach((g) => {
 			const group = tempArray.filter((item) => item.group === g);
 			if (group.length > 0) {
-				navArray[g] = group.sort(
-					(a, b) =>
-						a.order - b.order || a.title.localeCompare(b.title)
-				);
+				navArray[g] = group.sort((a, b) => a.order - b.order || a.title.localeCompare(b.title));
 			}
 		});
 
@@ -171,22 +162,15 @@ module.exports = (eleventyConfig) => {
 
 	eleventyConfig.addFilter(
 		"published",
-		(collection) =>
-			collection && collection.filter((c) => c.data.published !== false)
+		(collection) => collection && collection.filter((c) => c.data.published !== false)
 	);
 
-	eleventyConfig.addFilter(
-		"sort",
-		(collection) =>
-			collection && collection.sort((a, b) => sortByOrder(a, b))
-	);
+	eleventyConfig.addFilter("sort", (collection) => collection && collection.sort((a, b) => sortByOrder(a, b)));
 
 	/* ------------------------------ Date Filters ------------------------------ */
 
 	// Format date for Blog list
-	eleventyConfig.addFilter("formatBlogDate", (date) =>
-		dayjs(date).format("MMM D, YYYY")
-	);
+	eleventyConfig.addFilter("formatBlogDate", (date) => dayjs(date).format("MMM D, YYYY"));
 
 	// Format date for event start
 	const tz = "America/Los_Angeles";
@@ -194,24 +178,16 @@ module.exports = (eleventyConfig) => {
 	eleventyConfig.addFilter("unixtime", (date) => dayjs(date).tz(tz).unix());
 
 	// Format date; used for event list
-	eleventyConfig.addFilter("formatDate", (date) =>
-		dayjs(date).tz(tz).format("MMM D")
-	);
+	eleventyConfig.addFilter("formatDate", (date) => dayjs(date).tz(tz).format("MMM D"));
 
 	// Format date with year
-	eleventyConfig.addFilter("formatDateWithYear", (date) =>
-		dayjs(date).tz(tz).format("MMM D, YYYY")
-	);
+	eleventyConfig.addFilter("formatDateWithYear", (date) => dayjs(date).tz(tz).format("MMM D, YYYY"));
 
 	// Format time
-	eleventyConfig.addFilter("formatTime", (date) =>
-		dayjs(date).tz(tz).format("h:mma")
-	);
+	eleventyConfig.addFilter("formatTime", (date) => dayjs(date).tz(tz).format("h:mma"));
 
 	// Convert unix time to ISO format; used in sitemap
-	eleventyConfig.addFilter("unixToISO", (date) =>
-		new Date(date).toISOString()
-	);
+	eleventyConfig.addFilter("unixToISO", (date) => new Date(date).toISOString());
 
 	// eventStartDateTime; used only in past events for now
 	eleventyConfig.addFilter("eventStartDateTime", (event) =>
@@ -230,9 +206,7 @@ module.exports = (eleventyConfig) => {
 	eleventyConfig.addFilter("hoursToHHMM", (hours) => hoursToHHMM(hours));
 
 	// check to see if date is in the past; used for turning on/off parts based on date like the game booking
-	eleventyConfig.addFilter("isPastDate", (date) =>
-		dayjs().isAfter(dayjs(date))
-	);
+	eleventyConfig.addFilter("isPastDate", (date) => dayjs().isAfter(dayjs(date)));
 
 	/* ------------------------------ Other Filters ----------------------------- */
 
@@ -264,12 +238,8 @@ module.exports = (eleventyConfig) => {
 	eleventyConfig.addFilter("sortEvents", function (events) {
 		if (events)
 			return events.sort((a, b) => {
-				const aEventStartDateTime = new Date(
-					createISODate(a.eventStartDate, a.eventStartTime)
-				);
-				const bEventStartDateTime = new Date(
-					createISODate(b.eventStartDate, b.eventStartTime)
-				);
+				const aEventStartDateTime = new Date(createISODate(a.eventStartDate, a.eventStartTime));
+				const bEventStartDateTime = new Date(createISODate(b.eventStartDate, b.eventStartTime));
 				return aEventStartDateTime - bEventStartDateTime;
 			});
 		return false;
@@ -280,9 +250,7 @@ module.exports = (eleventyConfig) => {
 
 	// convert any array fo strings to a string with single quotes for use in Alpine
 	// this is used mainly for the events-table list of categories for filtering
-	eleventyConfig.addFilter("alpineArray", (array) =>
-		array.map((item) => "'" + item + "'").toString()
-	);
+	eleventyConfig.addFilter("alpineArray", (array) => array.map((item) => "'" + item + "'").toString());
 
 	// Mastodon link filter
 	eleventyConfig.addFilter("mastodonLink", (handle) => {
@@ -295,13 +263,10 @@ module.exports = (eleventyConfig) => {
 	/* -------------------------------------------------------------------------- */
 
 	// Event duration in hours
-	eleventyConfig.addShortcode(
-		"eventDuration",
-		(dateStart, dateEnd, accuracy) => {
-			// accuracy "hours" || "minutes"; Defaults to minutes
-			return getDuration(dateStart, dateEnd, accuracy);
-		}
-	);
+	eleventyConfig.addShortcode("eventDuration", (dateStart, dateEnd, accuracy) => {
+		// accuracy "hours" || "minutes"; Defaults to minutes
+		return getDuration(dateStart, dateEnd, accuracy);
+	});
 
 	// Current Year
 	eleventyConfig.addShortcode("currentYear", function () {
@@ -317,9 +282,7 @@ module.exports = (eleventyConfig) => {
 
 	// Find Metadata Value By Key
 	eleventyConfig.addShortcode("metaValue", function (metadata, key) {
-		let value =
-			Array.isArray(metadata) &&
-			metadata.find((item) => item.metaKey === key).metaValue;
+		let value = Array.isArray(metadata) && metadata.find((item) => item.metaKey === key).metaValue;
 		if (value && key === "GM") value = decodeText(value);
 		return value;
 	});
@@ -355,14 +318,7 @@ module.exports = (eleventyConfig) => {
 	/* ------------------------- Calendar Link Shortcode ------------------------ */
 	eleventyConfig.addShortcode(
 		"calendarLink",
-		function (
-			title,
-			description,
-			dateStart,
-			dateEnd,
-			location,
-			type = "google"
-		) {
+		function (title, description, dateStart, dateEnd, location, type = "google") {
 			location = location || "";
 			// TODO make this switch for online vs in person
 			const event = {
@@ -389,10 +345,8 @@ module.exports = (eleventyConfig) => {
 
 	// Pass through 3rd party libraries
 	eleventyConfig.addPassthroughCopy({
-		"node_modules/lite-youtube-embed/src/lite-yt-embed.js":
-			"js/lite-youtube-embed.js",
-		"node_modules/lite-youtube-embed/src/lite-yt-embed.css":
-			"css/lite-youtube-embed.css",
+		"node_modules/lite-youtube-embed/src/lite-yt-embed.js": "js/lite-youtube-embed.js",
+		"node_modules/lite-youtube-embed/src/lite-yt-embed.css": "css/lite-youtube-embed.css",
 	});
 
 	// Pass "static" things straight through from "src" to "dist"
@@ -403,6 +357,7 @@ module.exports = (eleventyConfig) => {
 
 	// Event images is a kludge until we can get it working with event manager
 	eleventyConfig.addPassthroughCopy("./event-images/");
+	eleventyConfig.addPassthroughCopy("./event-images-cache/");
 
 	// Watch for changes in tailwind css
 	eleventyConfig.addWatchTarget("./src/tailwind/tailwind.css");
