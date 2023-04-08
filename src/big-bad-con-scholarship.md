@@ -12,25 +12,25 @@ icon: gift
 ---
 Big Bad Con is committed to cultivating and supporting a spectacular and diverse gaming community. Part of the way we do that is by collecting donations to our scholarship program.
 
-Our scholarship funds go towards helping women, people of color, disabled, and lgbtqia+ individuals attend the con. We use it to cover hotel rooms ($139+/night), convention badges ($75), and help with other fees. Depending on the number of applicants, we may be able cover full or partial costs.
+Our scholarship funds go towards helping women and people from marginalized genders, people of color, disabled, and lgbtqia+ individuals attend the con. We use it to cover hotel rooms ($139+/night), convention badges ($75), and help with other fees. Depending on the number of applicants, we may be able cover full or partial costs.
 
 ### Timeline
 
-* Scholarship applications are now closed for 2022. We'll re-open applications for the next year in 2023.
-* Determinations and reward disbursement will start August 22, 2022.
+* Scholarship applications will open from May 1 to July 31, 2023.
+* Determinations and reward disbursement will start August 22, 2023.
 
 ### Contributions
 
 If you would like to contribute to the Scholarship Fund, there are a few ways to do it.
 
-* During [crowdfunding](https://igg.me/at/bigbadcon2022) you can back at the scholarship level, or add a scholarship contribution as an add-on to another pledge.
+* During crowdfunding (starting soon) you can back at the scholarship level, or add a scholarship contribution as an add-on to another pledge.
 * You can also donate direct vial our [PayPal giving fund](https://www.paypal.com/us/fundraiser/charity/1653860).
 
 Any contributions made after September will be set aside for next year’s fund. Thank you very much for your support!
 
 ### History
 
-We started the scholarship program in 2015. Here's the number of people we've been able to give financial support to so far. 
+We started the scholarship program in 2015. Here's the number of people we've been able to give financial support to so far.
 
 * 2022: 9 awards
 * 2019: 20 awards
