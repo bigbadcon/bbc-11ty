@@ -1,7 +1,7 @@
 ---
 layout: layouts/events.njk
 title: Events
-published: true
+published: false
 description: ''
 tags: pages
 navGroup: Events
