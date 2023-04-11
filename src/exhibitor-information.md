@@ -70,3 +70,5 @@ $300 plus a donation of 10% of your proceeds to the Big Bad Con Scholarship Fund
 ### Application
 
 Our expo hall is now full and our vendor applications are closed for 2022. We'll re-open this page next year if you'd like to vend at Big Bad Con in the future.
+
+For any questions email exhibitors@bigbadcon.com.
