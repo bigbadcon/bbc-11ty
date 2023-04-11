@@ -688,6 +688,7 @@ a[class^='icon-']:hover {
 
 .icon-eye:before {
   mask-image: url(/static/svgs/eye.svg)
+}
 
 /* ------------------------- Event / Volunteer List ------------------------- */
 
