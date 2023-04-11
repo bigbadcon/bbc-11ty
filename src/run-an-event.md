@@ -4,9 +4,9 @@ title: Run a Game
 description: 'Learn how to add a game that you want to facilitate at Go Play NW to our event schedule!'
 tags: pages
 ogImage: ''
+heroImage: /images/sun-02-session_9192139302_o.jpg
 
 ---
-![Image](/images/sun-02-session_9192139302_o.jpg)
 
 We're excited to have you run a game at Go Play NW! We rely on our community to bring the fun for everyone. 
 

@@ -2,22 +2,23 @@
 
 {% block header %}
     {% include 'components/header.njk' %}
+    {# Homepage hero content #}
     <section id="home" class="bg-primary">
-        <div class="grid mx-auto md:grid-cols-2 lg:grid-cols-3 max-w-hero px-base">
-            {# Intro Content #}
-            <div class="text-sm prose pb-base md:pt-base xl:text-base">
-                {{ content | safe }}
-            </div>
-            {# Illustration Graphic #}
-            <div class="relative row-start-1 lg:col-span-2 md:row-start-auto pb-base">
-                {% include 'components/go.njk' %}
-            </div>
+    <div class="grid mx-auto md:grid-cols-2 lg:grid-cols-3 max-w-hero px-base">
+        {# Intro Content #}
+        <div class="text-sm prose pb-base md:pt-base xl:text-base">
+            {{ content | safe }}
         </div>
+        {# Illustration Graphic #}
+        <div class="relative row-start-1 lg:col-span-2 md:row-start-auto pb-base">
+           {% include 'components/go.njk' %}
+        </div>
+    </div>
     </section>
 {% endblock %}
 
+{# Homepage main content #}
 {% block content %}
-
     <main id="content">
         {# Card grid #}
         <section class="mx-auto max-w-hero p-base">
@@ -61,5 +62,4 @@
         </section>
 -->        
     </main>
-
 {% endblock %}

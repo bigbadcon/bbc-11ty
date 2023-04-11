@@ -1,12 +1,10 @@
 ---
 layout: layouts/page.njk
-title: 2022 Is a Wrap!
+title: Getting ready for 2023!
 tags: pages
 ---
 
-Go Play NW Online Fall 2022 is finished for this year! Thank you to all of our [Featured Facilitators](/featured-facilitators), attendees, volunteers, and organizers for joining us and making our event a success! We're looking forward to seeing you all again in 2023!
-
-Want to keep in touch with Go Play NW?
+Preparations for Go Play NW 2023 are in progress! We're looking forward to having more information for you soon. Until then, want to keep in touch with Go Play NW?
 
 [Join us on Discord](https://discord.gg/AqhayGFexQ){.icon-discord}
 

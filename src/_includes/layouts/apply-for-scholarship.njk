@@ -5,10 +5,24 @@
 {% endblock %}
 
 {% block content %}
-    <main id="content">
-        <div class="mx-auto max-w-content p-base">
-            <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
-            <div class="prose">{{ content | safe }}</div>
+  <main id="content">
+    {# Display Hero image if set #}
+    {% if (heroImage) %}
+    {# Hero image #}
+    <div class="mx-auto w-full px-12 md:mb-6" style="height: 550px; background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{{heroImage}}'); background-position: {{heroImagePosition}}; background-repeat: no-repeat; background-size: cover; position: relative; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+      {#Page title and subtitle #}
+        <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-white mb-base text-center">{{title}}</h1>
+        <h2 class="font-serif text-4xl font-bold leading-none md:text-5xl text-white mb-base text-center">{{subtitle}}</h2>
+    </div>
+      {% else %}
+      <div id="page-title" class="mx-auto max-w-content pt-12 pb-6 px-6 lg:px-0 text-white">
+        <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl mb-base">{{title}}</h1>
+        <h2 class="font-serif text-3xl leading-none tracking-tight">{{subtitle}}</h2>
+      </div>
+      {% endif %}
+    {# Page content #}
+    <div class="mx-auto md:rounded-md shadow-md max-w-content p-base bg-card">
+      <div class="prose max-w-content2">{{ content | safe }}</div>
             <section class="my-base">
                 {# START Submit Form: only show if logged in #}
                 <div x-cloak x-show="!isAuth" class="prose">
@@ -39,7 +53,7 @@
                                     x-init="formInfo.publicName = (user && user.displayName) || ''; $watch('user', value => formInfo.publicName = value && value.displayName)" 
                                     x-model="formInfo.publicName" @blur="validate"/>
                                 </div>
-                                <div class="required">
+                                <!--<div class="required">
                                     <label for="yourAge">
                                         Your age at start of con
                                         <span>{{sitemeta.eventDate}}</span>
@@ -51,24 +65,24 @@
                                         <option>13+</option>
                                         <option>18+</option>
                                     </select>
-                                </div>
+                                </div>-->
                             </fieldset>
                             <fieldset>
-                                <legend>Community Standards Agreement</legend>
+                                <legend>Code of Conduct</legend>
                                 <div class="prose mb-sm">
-                                    <p>Big Bad Con is committed to cultivating a culture of respect, support, and kindness at both our in-person and online events. We ask that all of our attendees agree to abide by our Community Standards, please take a moment to read them before answering yes below.</p>
+                                    <p>Go Play NW is committed to cultivating a culture of respect, support, and kindness at both our in-person and online events. We expect all of our attendees, volunteers, and staff to follow our Code of Conduct, please take a moment to read them before answering yes below.</p>
                                     <p>
-                                        <a href="/community-standards" class="icon-scroll">Community Standards</a>
+                                        <a href="/code-of-conduct" class="icon-scroll">Code of Conduct</a>
                                     </p>
                                 </div>
                                 <div class="required">
                                     <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-model="formInfo.communityStandards" required>
                                     <label for="agree-to-community-standards" class="text-body-highlight"3324>
-                                        Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Big Bad Con Community Standards
+                                        Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Go Play NW Code of Conduct.
                                     </label>
                                 </div>
                             </fieldset>
-                            <fieldset :class="!isPersonalInfoComplete && 'fieldset-disabled'">
+                            <!--<fieldset :class="!isPersonalInfoComplete && 'fieldset-disabled'">
                                 <legend>Social Media</legend>
                                 <div class="prose">
                                     <p>
@@ -87,11 +101,11 @@
                                     <label for="facebook">Facebook</label>
                                     <input id="facebook" name="facebook" type="text" value="" x-model="formInfo.facebook"/>
                                 </div>
-                            </fieldset>
+                            </fieldset>-->
                             <fieldset :class="!isPersonalInfoComplete && 'fieldset-disabled'">
                                 <legend>Scholarship Assistance</legend>
-                                <div class="required" x-data="{assistanceTypes:['Attendance (4-day badge)','Hotel Room','Travel']}">
-                                    <label>Request assistance with</label>
+                                <div class="required" x-data="{assistanceTypes:['Weekend pass','Friday Pass','Saturday Pass','Sunday Pass']}">
+                                    <label>Which days do you plan on attending Go Play NW?</label>
                                     <template x-for="(atype, i) in assistanceTypes">
                                         <div class="flex items-center">
                                             <input type="checkbox" :name="'atype' + i" :id="'atype' + i" :value="atype" @change="setCheckboxArray($el,'assistanceTypes')">
@@ -99,7 +113,7 @@
                                         </div>
                                     </template>
                                 </div>
-                                <div class="required" x-data="{nights:['Thursday','Friday','Saturday','Sunday']}">
+                                <!--<div class="required" x-data="{nights:['Thursday','Friday','Saturday','Sunday']}">
                                     <label>Which nights do you plan on staying?</label>
                                     <template x-for="(night, i) in nights">
                                         <div class="flex items-center">
@@ -141,7 +155,7 @@
                                         <option>Significant assistance (51-99% covered)</option>
                                         <option>Partial assistance (1-50% covered)</option>
                                     </select>
-                                </div>
+                                </div>-->
                                 <div class="required" x-data="{identities:['A person of color','A woman','Disabled','LGBTQIA+','Other (fill in below)']}">
                                     <label>I identify as</label>
                                     <template x-for="(identity, i) in identities">
@@ -171,7 +185,7 @@
                     {# form submitted #}
                     <div class="prose" x-show="formSubmitted" id="form-submitted">
                         <h2>Thanks for submitting for a scholarship!</h2>
-                        <p>Our staff will review your submission, and let you know how much our scholarship fund can help!</p>
+                        <p>Our organizers will review your submission, and let you know how much our scholarship fund can help!</p>
                     </div>
                 </div>
 
@@ -201,17 +215,12 @@
                     formInfo: {},
                     get isPersonalInfoComplete() {
                         const x = this.formInfo
-                        return [x.publicName, x.yourAge].every(isFull) && x.communityStandards;
+                        return [x.publicName].every(isFull) && x.communityStandards;
                     },
                     get isFormComplete() {
                         const x = this.formInfo
                         return this.isPersonalInfoComplete && [
                             x.assistanceTypes,
-                            x.nights,
-                            x.shareRoom,
-                            x.shareRoomWho,
-                            x.travelCosts,
-                            x.fundsRequired,
                             x.identities,
                             x.gamingXp
                         ].every(isFull);

@@ -3,8 +3,9 @@ layout: layouts/page.njk
 title: About Go Play NW
 description: ''
 tags: pages
+heroImage: /images/spillover-gaming_2562462407_o.jpg
+heroImagePosition: center
 ---
-![Image](/images/spillover-gaming_2562462407_o.jpg)
 
 Go Play NW is an annual weekend event where folks come together to play tabletop role-playing, story, board, and card games.
 

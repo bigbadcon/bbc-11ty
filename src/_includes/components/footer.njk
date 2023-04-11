@@ -1,12 +1,18 @@
-<div x-data="{height: 450}" x-init="setTimeout(() => { height = $refs.footer.offsetHeight }, 200); " x-on:resize.window.debounce="height = $refs.footer.offsetHeight" >
+<div id="footer-wrapper">
+<!--<div x-data="{height: 450}" x-init="setTimeout(() => { height = $refs.footer.offsetHeight }, 200); " x-on:resize.window.debounce="height = $refs.footer.offsetHeight" >-->
     {# TODO: add no javascript fallback #}
-    <div style="height: 450px" :style="`height: ${height}px`" ></div>
-    <div x-ref="footer" class="fixed bottom-0 z-0 w-full bg-gradient-to-br from-primary to-primary-2">
+    {# Buffer ensure content doesn't cover fixed footer #}
+    <div style="height: 450px" :style="`height: ${height}px`" >
+    </div>
+    {# Footer #}
+<!--<div x-ref="footer" class="fixed bottom-0 z-0 w-full bg-gradient-to-br from-primary to-primary-2">-->
+    <div x-ref="footer" class="w-full bg-gradient-to-br from-primary to-primary-2">
         <div class="relative flex flex-col justify-end mx-auto max-w-hero text-body px-base pt-md md:flex-row md:justify-between space-y-sm md:space-y-0 md:space-x-base">
             {% for card in collections.footer123ABC %}
                 <div class="relative z-10 pb-base">
                     <h2 class="font-serif text-2xl text-header mb-xs">{{ card.data.title }}</h2>
-                    <div class="text-sm leading-snug prose">{{ card.templateContent | safe }}</div>
+                    <div class="text-sm leading-snug prose">{{ card.templateContent | safe }}
+                    </div>
                 </div>
             {% endfor %}
             <div class="w-1/2 md:w-1/4 align-self-end">
