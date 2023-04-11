@@ -3,6 +3,8 @@ layout: layouts/contact-us.njk
 title: Contact Go Play NW
 description: ''
 tags: pages
+heroImage:
+customLayout: layouts/contact-us.njk
 
 ---
 

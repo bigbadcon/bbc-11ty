@@ -1,4 +1,30 @@
 module.exports = [
+//	{
+//		"title": "Go Play NW",
+//		"id": "off-season",
+//		"subnav": [
+//			{
+//			 	"title": "What is Go Play NW?",
+//			 	"url": "/what-is-go-play-nw",
+//			 	"icon": "goplaynw"
+//			},
+//			{
+//				"title": "Things to Do",
+//				"url": "/register",
+//				"icon": "badge"
+//		   },
+//		   {
+	//			"title": "Featured Facilitators",
+	//			"url": "/featured-facilitators",
+	//			"icon": "trophy"
+	//		},
+	//		{
+	//			"title": "Get Involved",
+	//			 "url": "/get-involved",
+	//			 "icon": "donut"
+	//		}
+//		]
+//	},
 	{
 		"title": "Attend",
 		"id": "attend",
@@ -8,94 +34,64 @@ module.exports = [
 			 	"url": "/register",
 			 	"icon": "badge"
 			},
-			//{
-			//	"title": "Run a Game",
-			//	"url": "/run-an-event",
-			//	"icon": "dice"
-			//},
-			//{
-			//	"title": "Game Schedule",
-			// 	"url": "/events",
-			// 	"icon": "calendar-clock"
-			//},
-			//{
-			//	"title": "Hotel",
-			//	"url": "/hotel",
-			//	"icon": "hotel"
-			//},
-			//{
-			//	"title": "Games On Demand",
-			//	"url": "/games-on-demand",
-			//	"icon": "games-on-demand"
-			//},
-			{
-				"title": "Featured Facilitators",
-				"url": "/featured-facilitators",
-				"icon": "trophy"
-			},
+//			{
+//				"title": "Venue",
+//				"url": "/venue-inperson",
+//				"icon": "hotel"
+//			},
+//			{
+//				"title": "Scholarship",
+//				"url": "/scholarship",
+//				"icon": "gift"
+//			},
+//			{
+//				"title" : "Safety and Accessibility",
+//				"url" : "/safety-and-accessibility",
+//				"icon" : "shield"
+//			},
 			{
 				"title": "The Donut",
 			 	"url": "/the-donut",
 			 	"icon": "donut"
 			},
 			{
-				"title": "Attendee Guide",
-				"url" : "https://docs.google.com/document/d/1i29pOo4SCO7NKRHNQjBAflOCh1IzJAHZMw52fZUmEac",
-				"icon": "book" 
-			}
-		    //{
-			//	"title": "Exhibitors",
-			//	"url": "/exhibitor-information",
-			//	"icon": "booth"
-			//},
-			//{
-			//	"title": "Past Events",
-			//	"url": "/past-events",
-			//	"icon": "library"
-			//},
+				"title": "Featured Facilitators",
+				"url": "/featured-facilitators",
+				"icon": "trophy"
+			},
+			{
+				"title" : "COVID-19 Policy",
+				"url" : "/covid-19",
+				"icon" : "virus"
+			},			
 		]
 	},
-	{
-		"title": "About",
-		"id": "about",
-		"subnav": [
-			{
-				"title": "About Go Play NW",
-				"url": "/about-us",
-				"icon": "goplaynw"
-			},
-			///{
-			///	"title": "Meet the Board",
-			///	"url": "/the-board",
-			///	"icon": "library"
-			///},
-			{
-				"title": "Our Organizers",
-				"url": "/staff",
-				"icon": "games-on-demand"
-			},
-			///{
-			///	"title": "Membership",
-			///	"url": "/membership",
-			///	"icon": "shield"
-			///},
-			{
-				"title": "Code of Conduct",
-				"url": "/code-of-conduct",
-				"icon": "scroll"
-			},
-			{
-				"title": "FAQ",
-				"url": "/faq",
-				"icon": "faq"
-			},
-			{
-				"title": "Contact Us",
-				"url": "/contact-us",
-				"icon": "envelope"
-			}
-		]
-	},
+//	{
+//		"title": "Play",
+//		"id": "play",
+//		"subnav": [
+//			{
+//				"title": "Run a Game",
+//				"url": "/run-an-event",
+//				"icon": "dice"
+//			},
+//			{
+//				"title": "Scheduled Games",
+//			 	"url": "/events",
+//			 	"icon": "calendar-clock"
+//			},
+//			{
+//				"title": "The Donut",
+//			 	"url": "/the-donut",
+//			 	"icon": "donut"
+//			},
+//			{
+//				"title": "Featured Facilitators",
+//				"url": "/featured-facilitators",
+//				"icon": "trophy"
+//			}
+//		]
+//	},
 	{
 		"title": "Volunteer",
 		"id": "volunteer",
@@ -113,6 +109,47 @@ module.exports = [
 			//	"icon": "calendar-clock"
 			//}
 		//]
+	},
+	{
+		"title": "About Us",
+		"id": "about",
+		"subnav": [
+			{
+				"title": "About Go Play NW",
+				"url": "/about-us",
+				"icon": "goplaynw"
+			},
+			{
+				"title": "Our Organizers",
+				"url": "/staff",
+				"icon": "games-on-demand"
+			},
+			///{
+			///	"title": "Membership",
+			///	"url": "/membership",
+			///	"icon": "shield"
+			///},
+			{
+				"title": "Code of Conduct",
+				"url": "/code-of-conduct",
+				"icon": "scroll"
+			},
+//			{
+//				"title": "Privacy Policy",
+//				"url": "/privacy-policy",
+//				"icon": "eye"
+//			},
+			{
+				"title": "Photography Policy",
+				"url": "/photography-policy",
+				"icon": "camera"
+			},
+			{
+				"title": "Contact Us",
+				"url": "/contact-us",
+				"icon": "envelope"
+			}
+		]
 	},
 	{
 		"title": "Announcements",

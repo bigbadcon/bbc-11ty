@@ -14,6 +14,13 @@ fields:
   label: description
 - name: ogImage
   type: file
+- type: text
+  name: heroImage
+  label: hero
+- type: text
+  name: subtitle
+  label: subtitle
+
   config:
     maxSize: 64
   label: open graph image

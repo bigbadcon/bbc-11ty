@@ -9,6 +9,8 @@ image: "/images/featured-facilitators/ConnieC.jpg"
 twitter: ''
 website_name: Connie on carrd
 website_url: 'https://byconniechang.carrd.co/'
+game_hype: Play HUMANS SUCK, BECOME CREATURES with Connie 
+game_url: https://goplaynw.org/events/henshin-a-sentai-rpg/
 
 ---
 Connie Chang (they/he/she) is a queer and trans Chinese-American actual play GM with a background in screenwriting and poetry. He's currently developing the ashcan of GODKILLER, a holypunk PBtA game, with Magpie Games. Connie has appeared on both NPR and in the New York Times. They excel at threading queer drama with blackhearted apocalyptica, and serves as the Game Master and Creative Producer for Transplanar RPG, an all-transgender, POC-led D&D show. Outside of TTRPGs, Connie is a narrative designer with Bungie.

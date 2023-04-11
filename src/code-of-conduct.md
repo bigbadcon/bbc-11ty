@@ -1,17 +1,24 @@
 ---
 layout: layouts/page.njk
 title: Code of Conduct
+subtitle: 
 description: ''
 tags: pages
 
 ---
+_last updated 2023-03-29_
+
 Go Play NW is a small tabletop gaming convention based in Seattle, Washington. At Go Play NW, we seek to create a welcoming space for new and experienced players and GMs, giving attendees room to explore, support, and play a diverse range of indie story games.
 
 To outline what we mean by “welcoming space,” we’ve developed this general code of conduct for both our volunteers and visitors. We ask that everyone examine this document before attending or volunteering at an event with us and commit to upholding the principles stated within.
 
 Let’s meet new people and play fun games!
 
-## Principles and Policies
+* [Principles and Policies](#principles-and-policies)
+* [Practices](#practices)
+* [Age Policy](#age-policy)
+
+## Principles and Policies{#principles-and-policies}
 
 ### Respect
 
@@ -61,7 +68,7 @@ Participate in Go Play NW events with empathy and patience.
 * Go Play NW staff work hard, but during peak times, they can have limited capacity. _We can support them by approaching waits patiently and requesting attention politely._
 * Not every conversation is appropriate for every space. _Staff may request that online conversation be moved to a different channel, or off of the public Discord._
 
-## Practices
+## Practices{#practices}
 During our online events, safety concerns can be directed on the Go Play NW event Discord through the Safety Team channel. Safety concerns about Go Play NW also can be directed to safety@goplaynw.org.
 
 Failure to abide by this document may result in Go Play NW taking any of these actions, as the situation requires: 
@@ -81,7 +88,7 @@ Expulsion from Go Play NW events on a permanent basis.
 ```
 Note that this list is not exhaustive, and other appropriate actions may be taken as necessary. 
 
-## Age Policy
+## Age Policy{#age-policy}
 You must be 18 years or older to attend Go Play NW, regardless of parental consent.
 
 During registration, attendees must confirm that they are at least 18 years old. This policy will be strictly enforced at the event.
@@ -93,6 +100,3 @@ While Go Play NW is not an event for young gamers, we want young gamers to flour
 [GeekGirlCon](https://geekgirlcon.com/){.icon-website}
 
 [OrcaCon](https://www.orcacon.org/){.icon-website}
-
----
-_Written by the safety team headed by Angela Lemus-Mogrovejo (with reference to Big Bad Con, Emerald City Comic Con, Geek Girl Con, PAX West, and OrcaCon’s respective Codes of Conduct and Community Standards)_

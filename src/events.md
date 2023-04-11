@@ -1,9 +1,12 @@
 ---
 layout: layouts/events.njk
-title: Fall 2022 Game Schedule
+title: Scheduled Games
 description: ''
 tags: pages
 listing: events
+heroImage: /images/honey-heist_52310031245_o.jpg
+heroImpagePosition: top
+
 ---
 
 Check out all of the games and activites we have scheduled for our Go Play NW Online Fall 2022 event below! If you see a game you'd like to be a part of, sign up now!

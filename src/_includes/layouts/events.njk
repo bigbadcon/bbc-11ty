@@ -5,10 +5,24 @@
 {% endblock %}
 
 {% block content %}
-    <main id="content">
-        <div class="mx-auto max-w-content p-base px-lg bg-card rounded-md shadow-md">
-            <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
-            <div class="prose max-w-content2">{{ content | safe }}</div>
+  <main id="content">
+    {# Display Hero image if set #}
+    {% if (heroImage) %}
+    {# Hero image #}
+    <div class="mx-auto w-full px-12 md:mb-6" style="height: 550px; background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{{heroImage}}'); background-position: {{heroImagePosition}}; background-repeat: no-repeat; background-size: cover; position: relative; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+      {#Page title and subtitle #}
+        <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-white mb-base text-center">{{title}}</h1>
+        <h2 class="font-serif text-4xl font-bold leading-none md:text-5xl text-white mb-base text-center">{{subtitle}}</h2>
+    </div>
+      {% else %}
+      <div id="page-title" class="mx-auto max-w-content pt-12 pb-6 px-6 lg:px-0 text-white">
+        <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl mb-base">{{title}}</h1>
+        <h2 class="font-serif text-3xl leading-none tracking-tight">{{subtitle}}</h2>
+      </div>
+      {% endif %}
+    {# Page content #}
+    <div class="mx-auto md:rounded-md shadow-md max-w-content p-base bg-card">
+      <div class="prose max-w-content2">{{ content | safe }}</div>
             {% include 'components/events-table.njk' %}
             <div class="border-t-4 border-solid border-hr mt-md pt-base">
                 <a href="/run-an-event" class="icon-dice">Looking for something else? Why not...Run a Game!</a>

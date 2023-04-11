@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 /* -------------------------------------------------------------------------- */
 /*                               Color Variables                              */
 /* -------------------------------------------------------------------------- */
@@ -30,36 +31,22 @@
   --hr: #6E897C;
   --fill-highlight: url(#highlight-gradient) var(--highlight);
   --backdrop: rgba(16, 52, 55, 0.58);
+  --header-background: #004127;
+  --submenu-background: rgba(139,74,78,1);
+  --submenu-hover: rgba(116,36,41);
+  --menu-hover: #742429;
+  --nav-background: #52A44B;
+  --header-border: #426117;
 }
 
 /* ------------------------------- Dark Theme ------------------------------- */
 @media (prefers-color-scheme: dark) {
   :root {
-    /*
-    --primary: #171b30;
-    --primary-2: #122436;
-    --primary-3: #142F40;
-    --primary-4: #254152;
-    --secondary: #ffd800;
-    --highlight: #ffb53b;
-    --highlight-2: #ff7f00;
-    --card: rgba(37, 5, 46, 0.4);
-    --content: #274555;
-    --body: #d5e3ed;
-    --body-highlight: #fff;
-    --header: var(--secondary);
-    --subheader: #bdcfd5;
-    --menu-icon: #9dbfd5;
-    --main-gradient-top: #274555;
-    --main-gradient-bottom: #1E1C3F;
-    --bg-form: #2f2d31;
-    --hr: #6C89A6;
-    --backdrop: rgba(90, 100, 120, 0.6);
-     */
     --primary: #E4EFF2;
     --primary-2: #c4d0a0;
     --primary-3: #94a268;
     --primary-4: #849357;
+    --primary-5: #333333;
     --secondary: #843232;
     --highlight: #52A44B;
     --highlight-2: #426117;
@@ -83,31 +70,14 @@
     --hr: #6E897C;
     --fill-highlight: url(#highlight-gradient) var(--highlight);
     --backdrop: rgba(16, 52, 55, 0.58);
+    --header-background: #004127;
+    --submenu-background: #8B4A4E;
+    --submenu-hover: #742429;
+    --menu-hover: #8B4A4E;
   }
 }
 
 .dark, [data-theme='dark'] {
-  /*
-  --primary: #171b30;
-  --primary-2: #122436;
-  --primary-3: #142F40;
-  --primary-4: #254152;
-  --secondary: #ffd800;
-  --highlight: #ffb53b;
-  --highlight-2: #ff7f00;
-  --card: rgba(37, 5, 46, 0.4);
-  --content: #274555;
-  --body: #d5e3ed;
-  --body-highlight: #fff;
-  --header: var(--secondary);
-  --subheader: #dddddd;
-  --menu-icon: #9dbfd5;
-  --main-gradient-top: #274555;
-  --main-gradient-bottom: #1E1C3F;
-  --bg-form: #2f2d31;
-  --hr: #6C89A6;
-  --backdrop: rgba(90, 100, 120, 0.6);
-   */
     --primary: #E4EFF2;
     --primary-2: #c4d0a0;
     --primary-3: #94a268;
@@ -135,6 +105,10 @@
     --hr: #6E897C;
     --fill-highlight: url(#highlight-gradient) var(--highlight);
     --backdrop: rgba(16, 52, 55, 0.58);
+    --header-background: #333333;
+    --submenu-background: #660000;
+    --submenu-hover: #990000;
+    --menu-hover: #999999;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -390,6 +364,16 @@ code {
 
 #home h2 {
   margin-top: 0em;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 102px;
 }
 
 /* -------------------------- Light Dark Switch ----------------------------- */
@@ -672,6 +656,22 @@ a[class^='icon-']:hover {
 
 .icon-login:before {
   mask-image: url(/static/svgs/login.svg)
+}
+
+.icon-virus:before {
+  mask-image: url(/static/svgs/virus.svg)
+}
+
+.icon-external-link:before {
+  mask-image: url(/static/svgs/external-site.svg)
+}
+
+.icon-camera:before {
+  mask-image: url(/static/svgs/camera.svg)
+}
+
+.icon-eye:before {
+  mask-image: url(/static/svgs/eye.svg)
 }
 
 /* ------------------------- Event / Volunteer List ------------------------- */
