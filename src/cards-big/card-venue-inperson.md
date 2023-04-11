@@ -1,7 +1,7 @@
 ---
 title: Venue
 order: 4
-published: true
+published: false
 image: "/images/centilia-outside.jpg"
 alt: Banner with a trophy and text reading "Featured Facilitators"
 
