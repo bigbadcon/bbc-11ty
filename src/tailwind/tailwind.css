@@ -674,6 +674,21 @@ a[class^='icon-']:hover {
   mask-image: url(/static/svgs/login.svg)
 }
 
+.icon-virus:before {
+  mask-image: url(/static/svgs/virus.svg)
+}
+
+.icon-external-link:before {
+  mask-image: url(/static/svgs/external-site.svg)
+}
+
+.icon-camera:before {
+  mask-image: url(/static/svgs/camera.svg)
+}
+
+.icon-eye:before {
+  mask-image: url(/static/svgs/eye.svg)
+
 /* ------------------------- Event / Volunteer List ------------------------- */
 
 .fav-star {
