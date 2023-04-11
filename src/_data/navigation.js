@@ -85,6 +85,11 @@ module.exports = [
 				"icon": "scroll"
 			},
 			{
+				"title": "COVID-19 Policy",
+				"url": "/covid-19",
+				"icon": "virus"
+			},
+			{
 				"title": "FAQ",
 				"url": "/faq",
 				"icon": "faq"
