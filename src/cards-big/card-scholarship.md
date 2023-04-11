@@ -1,7 +1,7 @@
 ---
 title: Scholarship Program
 order: 6
-published: true
+published: false
 image: "/images/Featured-Facilitators.png"
 alt: Banner with a trophy and text reading "Featured Facilitators"
 
