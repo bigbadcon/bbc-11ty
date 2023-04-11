@@ -7,9 +7,7 @@ image: ''
 alt: ''
 
 ---
-Join us for our Fall 2022 online event!
-
-[Register Now!](/register){.icon-badge}
+Our 2023 in-person event is coming soon! For now…
 
 [Join Our Discord](https://discord.gg/AqhayGFexQ){.icon-discord}
 
