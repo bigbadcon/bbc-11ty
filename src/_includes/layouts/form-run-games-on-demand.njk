@@ -26,6 +26,7 @@
                         </header>
                         <form class="mt-base" id="form-run-an-event" @submit.prevent="submitEvent">
                             {# TODO: add honeypot #}
+                            {# TODO: switch to x-validate #}
                             <input type="hidden" x-model="eventInfo.userDisplayName" x-init="eventInfo.userDisplayName = user && user.displayName; $watch('user', value => eventInfo.userDisplayName = value && value.displayName)">
                             <input type="hidden" x-model="eventInfo.userId" x-init="eventInfo.userId = user && user.id; $watch('user', value => eventInfo.userId = value && value.id)">
                             <input type="hidden" x-model="eventInfo.userEmail" x-init="eventInfo.userEmail = user && user.userEmail; $watch('user', value => eventInfo.userEmail = value && value.userEmail)">
@@ -51,6 +52,10 @@
                                         <option>13+</option>
                                         <option>18+</option>
                                     </select>
+                                </div>
+                                <div class="required">
+                                    <label for="phone">GM contact phone number</label>
+                                    <input id="phone" name="phone" type="tel" value="" @blur="validate"/>
                                 </div>
                             </fieldset>
                             <fieldset>
@@ -112,7 +117,7 @@
                                 <legend>Game 1: Info</legend>
                                 <div class="required">
                                     <label for="gameName">Game Name</label>
-                                    <input id="gameName" name="gameName" type="text" value="" x-model="eventInfo.gameName1" @blur="validate" class="w-full max-w-md"/>
+                                    <input id="gameName" name="gameName" type="text" value="" x-model="eventInfo.gameName1" @blur="validate" class="w-full max-w-md" maxlength="30"/>
                                 </div>
                                 <div class="required">
                                     <label for="system">System</label>
@@ -128,7 +133,7 @@
                                 </div>
                                 <div class="required">
                                     <label for="gameDescription">Elevator Pitch</label>
-                                    <textarea cols="30" id="gameDescription" name="gameDescription" rows="3" x-model="eventInfo.gameDescription1" @blur="validate"></textarea>
+                                    <textarea cols="30" id="gameDescription" name="gameDescription" rows="3" x-model="eventInfo.gameDescription1" @blur="validate" maxlength="250"></textarea>
                                 </div>
                                 <div class="required">
                                     <label for="minPlayers">Mininum Players</label>
@@ -173,8 +178,8 @@
                             <fieldset :class="!isGameOneComplete && 'fieldset-disabled'">
                                 <legend>Game 2: Info</legend>
                                 <div class="required">
-                                    <label for="gameName2">Event Name</label>
-                                    <input id="gameName2" name="gameName2" type="text" value="" x-model="eventInfo.gameName2" @blur="validate" class="w-full max-w-md"/>
+                                    <label for="gameName2">Game Name</label>
+                                    <input id="gameName2" name="gameName2" type="text" value="" x-model="eventInfo.gameName2" @blur="validate" class="w-full max-w-md" maxlength="30"/>
                                 </div>
                                 <div class="required">
                                     <label for="system2">System</label>
@@ -190,7 +195,7 @@
                                 </div>
                                 <div class="required">
                                     <label for="gameDescription2">Elevator Pitch</label>
-                                    <textarea cols="30" id="gameDescription2" name="gameDescription2" rows="3" x-model="eventInfo.gameDescription2" @blur="validate"></textarea>
+                                    <textarea cols="30" id="gameDescription2" name="gameDescription2" rows="3" x-model="eventInfo.gameDescription2" @blur="validate" maxlength="250"></textarea>
                                 </div>
                                 <div class="required">
                                     <label for="minPlayers2">Mininum Players</label>
