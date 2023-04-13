@@ -12,7 +12,7 @@ icon: booth
 ---
 Big Bad Con is a charity event, and that commitment to giving extends to our exhibitors, too! All the information below:
 
-## Big Bad Con Exhibitors
+## Big Bad Con 2022 Exhibitors
 
 ### Three Dog Quest
 
