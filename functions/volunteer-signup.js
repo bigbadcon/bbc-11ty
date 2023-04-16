@@ -37,20 +37,20 @@ exports.handler = async function(event, context) {
              console.log(doc.title);
              const sheet = doc.sheetsByIndex[0];
         
-//             /* ---------------------- Take submit event and add row --------------------- */
-//        
-//             const dateAdded = new Date().toLocaleDateString();
-//             const addedRow = await sheet.addRow({
-//                 dateAdded: dateAdded,
-//                 displayName: eventBody.displayName,
-//                 userId: eventBody.userId,
-//                 userEmail: eventBody.userEmail,
-//                 userAge: eventBody.yourAge, //required
-//                 phone: eventBody.phone, //required
-//                 discord: eventBody.discord, //required
-            //      otherInfo: eventBody.otherInfo, //not required
-            //      communityStandards: eventBody.communityStandards && "Agreed"
-            //  })
+            /* ---------------------- Take submit event and add row --------------------- */
+       
+            const dateAdded = new Date().toLocaleDateString();
+            const addedRow = await sheet.addRow({
+                dateAdded: dateAdded,
+                displayName: eventBody.displayName,
+                userId: eventBody.userId,
+                userEmail: eventBody.userEmail,
+                userAge: eventBody.yourAge, //required
+                phone: eventBody.phone, //required
+                discord: eventBody.discord, //required
+                 otherInfo: eventBody.otherInfo, //not required
+                 communityStandards: eventBody.communityStandards && "Agreed"
+             })
              console.log("addedRow", addedRow);
 
             /* -------------------------------------------------------------------------- */
