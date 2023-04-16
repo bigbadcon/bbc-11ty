@@ -25,7 +25,7 @@ exports.handler = async function(event, context) {
          console.log('Try submit to Google Sheet');
          try {
              // Initialize the sheet - doc ID is the long id in the sheets URL
-             const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_VOLUNTEER_GPNW_2023)
+             const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_VOLUNTEER_GPNW_2023);
         
              // Initialize Auth - see more available options at https://theoephraim.github.io/node-google-spreadsheet/#/getting-started/authentication
              await doc.useServiceAccountAuth({
@@ -35,22 +35,22 @@ exports.handler = async function(event, context) {
         
              await doc.loadInfo() // loads document properties and worksheets
              console.log(doc.title);
-             const sheet = doc.sheetsByIndex[0]
+             const sheet = doc.sheetsByIndex[0];
         
-             /* ---------------------- Take submit event and add row --------------------- */
-        
-             const dateAdded = new Date().toLocaleDateString()
-             const addedRow = await sheet.addRow({
-                 dateAdded: dateAdded,
-                 displayName: eventBody.displayName,
-                 userId: eventBody.userId,
-                 userEmail: eventBody.userEmail,
-                 userAge: eventBody.yourAge, //required
-                 phone: eventBody.phone, //required
-                 discord: eventBody.discord, //required
-                 otherInfo: eventBody.otherInfo, //not required
-                 communityStandards: eventBody.communityStandards && "Agreed"
-             })
+//             /* ---------------------- Take submit event and add row --------------------- */
+//        
+//             const dateAdded = new Date().toLocaleDateString();
+//             const addedRow = await sheet.addRow({
+//                 dateAdded: dateAdded,
+//                 displayName: eventBody.displayName,
+//                 userId: eventBody.userId,
+//                 userEmail: eventBody.userEmail,
+//                 userAge: eventBody.yourAge, //required
+//                 phone: eventBody.phone, //required
+//                 discord: eventBody.discord, //required
+            //      otherInfo: eventBody.otherInfo, //not required
+            //      communityStandards: eventBody.communityStandards && "Agreed"
+            //  })
              console.log("addedRow", addedRow);
 
             /* -------------------------------------------------------------------------- */
