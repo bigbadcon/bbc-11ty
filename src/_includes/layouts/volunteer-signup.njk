@@ -81,8 +81,23 @@
                             <label for="discord">Discord handle</label>
                             <input id="discord" name="discord" type="text" value="" x-model="formData.discord"/>
                         </div>
+                        {# Subject #}
                         <div>
-                            <label for="otherInfo">Other info we should know</label>
+                            <label for="subject" class="">Preferred volunteer role<span class="font-bold text-highlight">*</span></label>
+                            <p class="text-xs text-body mb-sm"></p>
+                            <select class="w-64" id="subject" name="subject" required value="">
+                                <option default disabled>-- select a role --</option>
+                                <option>Registration Table</option>
+                                <option>Scheduled Games Table Host</option>
+                                <option>Facilities</option>
+                                <option>Friendly Faces</option>
+                                <option>Donut Assistant</option>
+                                <option>No preference</option>
+                             </select>
+                        </div>
+                        <div>
+                            <label for="otherInfo">Additional information</label>
+                            <p class="text-xs text-body mb-sm">Is there any additional information we should know about you?</p>
                             <textarea cols="30" id="otherInfo" name="otherInfo" rows="3" x-model="formData.otherInfo"></textarea>
                         </div>
                     </fieldset>
