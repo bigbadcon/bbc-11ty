@@ -88,16 +88,14 @@ exports.handler = async function(event, context) {
         //        }
         //    }
 
-        // } catch (e) {
-        //     console.log('Google Sheet add failed', e)
-        //     return {
-        //         statusCode: 500,
-        //         body: e.toString(),
-        //     }
+         } catch (e) {
+             console.log('Google Sheet add failed', e)
+             return {
+                 statusCode: 500,
+                 body: e.toString(),
+             }
          }
-    } 
-    
-    else {
+    } else {
         return {
             statusCode: 500,
             body: `only POST events are allowed`
