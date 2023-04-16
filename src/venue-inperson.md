@@ -25,25 +25,32 @@ Seattle, WA 98144 [(view map)](https://goo.gl/maps/3B8WPNaPuSxCGybk9)
 ## Safety and Accessibility{#safety-and-accessibility}
 Go Play NW is committeed to creating a safe and accessible environment, especially for members of historically marginalized communities.
 
-* The Centilia Cultural Center is a new building and follows ADA requirements for new construction. As such, it is fully wheelchair accessible. 
-* Notable features for navigating our event space in Cenitlia include:
-    * a single door sill at the front and side entrances
-    * flat, finished concrete floors
-    * all activities take place in in a single, large room with limited-moderate sound baffling
-    * accessible bathrooms in the adjoining atrium 
-    * flat outdoor space with concrete bench seating 
-    * new pavement throughout the outdoor area and leading to the venue
-* El Centro de la Raza (where the smaller meeting room is located) is wheelchair accessible through both the main and side entrances.
-* During our event, all bathrooms in Centilia will be available for use by guests of any gender with signage to reflect this.
-* Current seating options include only banquet chairs with backs. We are working to source other seating options, but we recommend you bring your own cushioning for the time being if this is a significant concern for you. 
-* Handicap parking spaces are available for two-hour parking in the side parking lot of El Centro del Raza. Street parking is available throughout the neighborhood. Streets are relatively flat within a block of El Centro. For more information see [Parking](#parking).
-* We recognize that COVID-19 remains a serious threat to members of our community with weakened immune systems or underlying conditions. Proof of vaccination and masks are required; see our COVID-19 Policies for more information on the requirements, protective measures, and recommendations in place for Go Play NW 2023.
+The Centilia Cultural Center is a new building and follows ADA requirements for new construction. As such, it is fully wheelchair accessible. 
 
-[COVID-19 Policies](/covid-19){.icon-envelope}
+Notable features for navigating our event space in Cenitlia include:
+
+* a single door sill at the front and side entrances
+* flat, finished concrete floors
+* accessible bathrooms in the adjoining atrium 
+* flat outdoor space with concrete bench seating 
+* new pavement throughout the outdoor area and leading to the venue
+* most activities take place in in a single, large room with limited-moderate sound baffling; 
+* some games will be located in a quieter, smaller meeting room in El Centro de la Raza
+    * El Centro de la Raza is wheelchair accessible through both the main and side entrances.
+    * you can request that your scheduled game be located in this space directly by contacting us at info@goplaynw.org 
+    * space in the meeting room is limited, but a table will be reserved for guests who require quieter spaces to play.
+* During our event, all bathrooms in Centilia will be available for use by guests of any gender with signage to reflect this.
+* Current seating options include only banquet chairs with backs. We are working to source other seating options, but we recommend you bring your own cushioning for the time being if this is a significant concern for you.
+* Accessible parking spaces are available for two-hour parking in the side parking lot of El Centro del Raza.
+    * Street parking is available throughout the neighborhood. Streets are relatively flat within a block of El Centro.
+    * For more information see [Parking](#parking).
+* We recognize that COVID-19 remains a serious threat to members of our community with weakened immune systems or underlying conditions. Proof of vaccination and masks are required; see our [COVID-19](/covid-1) Policies for more information on the requirements, protective measures, and recommendations in place for Go Play NW 2023.
 
 ## Directions and Parking{#directions-and-parking}
 ### Public Transit
-The Centilia Cultural Center is one block East of the [Beacon Hill Light Rail station](https://goo.gl/maps/Jkvh1YYVrR93gRS16) and the [Beacon Ave S/S Lander St bus stop](https://goo.gl/maps/LJRb3cUWL9wBRaD89).
+The Centilia Cultural Center is one block East of:
+* [Beacon Hill Light Rail station](https://goo.gl/maps/Jkvh1YYVrR93gRS16) 
+* [Beacon Ave S/S Lander St bus stop](https://goo.gl/maps/LJRb3cUWL9wBRaD89).
 ### By Car
 **From SeaTac Airport**
 1. Take I-5 N to Exit 163 W Seattle Br/Columbian Way (appox 8 mi)
@@ -80,15 +87,14 @@ The Centilia Cultural Center is one block East of the [Beacon Hill Light Rail st
 
 
 ### Parking{#parking}
-**Handicap Accessible Parking**
+**Handicap Accessible Parking**  
 Handicap parking spaces are available for two-hour parking in El Centro del Raza's side parking lot. Street parking is available throughout the neighborhood, and streets whithin a block of the venue are relatively flat.
 
-**Street Parking**
-Street parking is available throughtout the neighborhood with the closest parking located along 17th St and along S Lander St east of 17th.
+**Street Parking**  
+Street parking is available throughtout the neighborhood with the closest parking located along [17th Ave S](https://goo.gl/maps/jPcZ3USZysHNQXNc8) and [S Lander St](https://goo.gl/maps/kR6x4EjN4nfE5CK96). Along most streets in the neighborhood, street parking rules are as follows--
 
-Along most streets, street parking rules are as follows--
 * Friday: 2 hr parking from 7 AM - 6 PM
-* Saturday: Available all day
+* Saturday & Sunday: Available all day
 
 ## The Neighborhood{#the-neighborhood}
 ### Food
