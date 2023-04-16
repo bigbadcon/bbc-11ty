@@ -4,7 +4,7 @@ const { GoogleSpreadsheet } = require('google-spreadsheet')
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-const googleSheetId = process.env.GOOGLE_SHEET_SCHOLARSHIP
+const googleSheetId = process.env.GOOGLE_SHEET_SCHOLARSHIP_GPNW_2023
 
 exports.handler = async function(event, context) {
 
@@ -40,7 +40,16 @@ exports.handler = async function(event, context) {
             /* ---------------------- Take submit event and add row --------------------- */
 
             const dateAdded = new Date().toLocaleDateString()
-            const addedRow = await sheet.addRow({...eventBody, dateAdded: dateAdded})
+            const addedRow = await sheet.addRow{
+                dateAdded: dateAdded,
+                displayName: eventBody.displayName,
+                userId: eventBody.userId,
+                userEmail: eventBody.userEmail,
+                scholarshipAssistance: eventBody.scholarshipAssistance, //required
+                demograhpics: eventBody.demographics, //required
+                gamingExperience: eventBody.gamingExperience, //not required
+                communityStandards: eventBody.communityStandards && "Agreed"
+             })
             console.log("addedRow", addedRow);
 
             /* -------------------------------------------------------------------------- */

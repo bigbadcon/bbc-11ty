@@ -1,7 +1,7 @@
 ---
 title: Scheduled Games
 order: 2
-published: false
+published: true
 image: "/images/honey-heist_52310031245_o.jpg"
 alt: New on the blog, thank you for 2022!
 
