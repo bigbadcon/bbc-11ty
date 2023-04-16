@@ -34,21 +34,37 @@ module.exports = [
 			 	"url": "/register",
 			 	"icon": "badge"
 			},
-//			{
-//				"title": "Venue",
-//				"url": "/venue-inperson",
-//				"icon": "hotel"
-//			},
-//			{
-//				"title": "Scholarship",
-//				"url": "/scholarship",
-//				"icon": "gift"
-//			},
-//			{
-//				"title" : "Safety and Accessibility",
-//				"url" : "/safety-and-accessibility",
-//				"icon" : "shield"
-//			},
+			{
+				"title": "Venue",
+				"url": "/venue-inperson",
+				"icon": "hotel"
+			},
+			{
+				"title": "Scholarship",
+				"url": "/scholarship",
+				"icon": "gift"
+			},
+			{
+				"title" : "COVID-19 Policy",
+				"url" : "/covid-19",
+				"icon" : "virus"
+			},			
+		]
+	},
+	{
+		"title": "Play",
+		"id": "play",
+		"subnav": [
+			{
+				"title": "Run a Game",
+				"url": "/run-an-event",
+				"icon": "dice"
+			},
+			{
+				"title": "Scheduled Games",
+			 	"url": "/events",
+			 	"icon": "calendar-clock"
+			},
 			{
 				"title": "The Donut",
 			 	"url": "/the-donut",
@@ -58,40 +74,9 @@ module.exports = [
 				"title": "Featured Facilitators",
 				"url": "/featured-facilitators",
 				"icon": "trophy"
-			},
-			{
-				"title" : "COVID-19 Policy",
-				"url" : "/covid-19",
-				"icon" : "virus"
-			},			
+			}
 		]
 	},
-//	{
-//		"title": "Play",
-//		"id": "play",
-//		"subnav": [
-//			{
-//				"title": "Run a Game",
-//				"url": "/run-an-event",
-//				"icon": "dice"
-//			},
-//			{
-//				"title": "Scheduled Games",
-//			 	"url": "/events",
-//			 	"icon": "calendar-clock"
-//			},
-//			{
-//				"title": "The Donut",
-//			 	"url": "/the-donut",
-//			 	"icon": "donut"
-//			},
-//			{
-//				"title": "Featured Facilitators",
-//				"url": "/featured-facilitators",
-//				"icon": "trophy"
-//			}
-//		]
-//	},
 	{
 		"title": "Volunteer",
 		"id": "volunteer",
