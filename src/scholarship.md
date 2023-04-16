@@ -16,4 +16,4 @@ homeOrder: 6
 ---
 Go Play NW is committed to cultivating and supporting a spectacular and diverse gaming community. Part of the way we do that is by collecting donations to our scholarship program, which helps cover ticket costs for women, people of color, disabled, and lgbtqia+. Depending on the number of applicants, we may be able cover your ticket cost for the weekend.
 
-If you'd like to donate to our Scholarship fund...(How do we want to do this?)
+If you'd like to donate to our Scholarship fund, [buy a ticket](/register) to Go Play NW 2023, and when you do select Scholarship as your ticket option.

@@ -7,11 +7,11 @@ heroImage: /images/vecteezy_covid-antigen-test-kit.jpg
 heroImagePosition: center
 ---
  
-_Last updated: 27 Mar 2023_
+_Last updated: 15 Apr 2023_
 
 While many organizations and agencies have relaxed their COVID-19 policies and the CDC has seen a significant reduction in severe cases and hospitalizations, COVID-19 is still a serious threat for members of our community who are at higher risk due to a weakened immune system or underlying conditions.
 
-While we recognize that even with the best precautions and measures we cannot completely eliminate the risk of contracting COVID-19, we hope that our community members will support and comply with our policies in order to protect the most vulnerable of our community members.
+While we recognize that even with the best precautions and measures we cannot completely eliminate the risk of contracting COVID-19, we hope that our community will support and comply with our policies in order to protect the most vulnerable of our community members.
 
 Please review the following requirements, protective measures, and recommendations we have put in place for Go Play NW 2023. If you have any questions about these policies, please [contact us](/contact-us).
 
@@ -23,11 +23,12 @@ Please review the following requirements, protective measures, and recommendatio
 ## Vaccines and masks are required{#vaccines-and-masks-are-required}
 Everyone who attends Go Play NW 2023 is required to be fully vaccinated and to wear a mask that covers their mouth and nose.
 
-1. **Proof of vaccination:** You must provide written documentation that you are have received either the second shot of a two-dose mRNA vaccine (such as Moderna or Pfizer), or a single dose vaccine (such as Johnson & Johnson) with a second shot of an mRNA (such as Pfizer or Moderna) or NovaVax shot, no later than Friday, June 23, 2023.
+1. **Masking:** You must wear a KN95-level or higher mask that covers your nose and mouth while indoors at all times. Masks may be removed outdoors and while eating and drinking, but we ask that you put your mask on between bites or sips.  
+Disposable KN95 masks are available for free at the Registration table as needed.
+
+2. **Proof of vaccination:** You must provide written or electronic documentation that you are fully vaccinated against COVID-19 upon entry to Go Play NW 2023. Fully vaccinated means that you have received either the second shot of a two-dose mRNA vaccine (such as Moderna or Pfizer), or a single dose vaccine (such as Johnson & Johnson) with a second shot of an mRNA (such as Pfizer or Moderna) or NovaVax shot, no later than Friday, June 23, 2023.  
 We recommend you [stay up-to-date](https://www.cdc.gov/coronavirus/2019-ncov/vaccines/stay-up-to-date.html) with your COVID-19 vaccines and boosters.
 
-2. **Masking:** You must wear a KN95-level or higher mask that covers your nose and mouth while indoors at all times. Masks may be removed outdoors and while eating and drinking, but we ask that you put your mask on between bites or sips. Bandanas and neck gaiters are not allowed.  
-Disposable KN95 masks are available; please see the Registration table for more information.
 
 ## Protective measures{#protective-measures}
 In addition to our [Vaccination and Masking Requirements](#vaccines-and-masks-are-required), Go Play NW is taking the following measures to help our community stay infection free!

@@ -4,7 +4,9 @@ title: Getting ready for 2023!
 tags: pages
 ---
 
-Preparations for Go Play NW 2023 are in progress! We're looking forward to having more information for you soon. Until then, want to keep in touch with Go Play NW?
+Preparations for Go Play NW 2023 are in progress! Ticket sales will open on Monday, April 17, 2023!
+
+Until then, want to keep in touch with Go Play NW?
 
 [Join us on Discord](https://discord.gg/AqhayGFexQ){.icon-discord}
 

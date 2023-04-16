@@ -25,12 +25,19 @@ Seattle, WA 98144 [(view map)](https://goo.gl/maps/3B8WPNaPuSxCGybk9)
 ## Safety and Accessibility{#safety-and-accessibility}
 Go Play NW is committeed to creating a safe and accessible environment, especially for members of historically marginalized communities.
 
-* The Centilia Cultural Center is fully wheelchair accessible. (Are there any other specific accomodations?)
-* Handicap parking spaces are available...
-* What's the plan re: Gender neutral bathrooms
-* We recognize that COVID-19 remains a serious threat to members of our community with weakend immune systems or underlying conditions. Proof of vaccination and masks are required; see our [COVID-19 Policies](/covid-19) for more information on the requirements, protective measures, and recommendations in place for Go Play NW 2023.
-
-[Safety and Accessibility](/safety-and-accessibility){.icon-envelope}
+* The Centilia Cultural Center is a new building and follows ADA requirements for new construction. As such, it is fully wheelchair accessible. 
+* Notable features for navigating our event space in Cenitlia include:
+    * a single door sill at the front and side entrances
+    * flat, finished concrete floors
+    * all activities take place in in a single, large room with limited-moderate sound baffling
+    * accessible bathrooms in the adjoining atrium 
+    * flat outdoor space with concrete bench seating 
+    * new pavement throughout the outdoor area and leading to the venue
+* El Centro de la Raza (where the smaller meeting room is located) is wheelchair accessible through both the main and side entrances.
+* During our event, all bathrooms in Centilia will be available for use by guests of any gender with signage to reflect this.
+* Current seating options include only banquet chairs with backs. We are working to source other seating options, but we recommend you bring your own cushioning for the time being if this is a significant concern for you. 
+* Handicap parking spaces are available for two-hour parking in the side parking lot of El Centro del Raza. Street parking is available throughout the neighborhood. Streets are relatively flat within a block of El Centro. For more information see [Parking](#parking).
+* We recognize that COVID-19 remains a serious threat to members of our community with weakened immune systems or underlying conditions. Proof of vaccination and masks are required; see our COVID-19 Policies for more information on the requirements, protective measures, and recommendations in place for Go Play NW 2023.
 
 [COVID-19 Policies](/covid-19){.icon-envelope}
 
@@ -39,14 +46,42 @@ Go Play NW is committeed to creating a safe and accessible environment, especial
 The Centilia Cultural Center is one block East of the [Beacon Hill Light Rail station](https://goo.gl/maps/Jkvh1YYVrR93gRS16) and the [Beacon Ave S/S Lander St bus stop](https://goo.gl/maps/LJRb3cUWL9wBRaD89).
 ### By Car
 **From SeaTac Airport**
+1. Take I-5 N to Exit 163 W Seattle Br/Columbian Way (appox 8 mi)
+2. Stay in the right-most lane and take a right at the fork, following signs to Columbian Way
+3. Once merged onto S Columbian Way, prepare to get into the left-most lane as you approach the first stop light (appox 0.3 mi)
+4. At the first stop light, turn left from the left-most lane onto S Spokane St.
+5. At the next intersection, turn left onto 15 Ave S.
+6. Follow 15 Ave S for 0.5 mi.
+7. Turn right onto S Lander St.
+8. Follow S Lander St for 2 blocks; the Centilia Cultural Center will be on your left.
 
 **From North-side Seattle**
+1. Take I-5 towards Tacoma/Portland
+2. After passing Exit 165 A James St get into one of the two left-most lanes.
+3. At the fork take the left-side of the fork to I-5 S Portland
+4. Continue on I-5 S to Exit 163 A W Seattle Br/Columbian Way (approx 2.5 mi)
+5. Take Exit 163A W Seattle Br/Columbian Way
+6. At the fork, take the left-side of the fork to Columbian Way/15th Ave S
+7. As you merge onto S Columbian Way, stay in the left lane.
+8. As you approach the first stop light, get into the left-most lane (approx .4 mi)
+9. At the first stop light, turn left from the left-most lane onto S Spokane St.
+10. At the next intersection, turn left onto 15 Ave S.
+11. Follow 15 Ave S for 0.5 mi.
+12. Turn right onto S Lander St.
+13. Follow S Lander St 2 blocks; the Centilia Cultural Center will be on your left.
 
 **From Seattle Eastside (e.g. Bellevue, Issaquah)**
+1. Take I-90 W towards Seattle
+2. As you exit the tunnel after crossing Lake Washington, follow signs to Exit 3A Rainier Ave South.
+3. Take Exit 3A Rainier Ave South and merge onto Rainier Ave S
+4. Take Rainier Ave S to the 2nd stop light (0.2 mi) and take a right onto S Massachusettes St
+5. Follow S Massachusetts St for 4 blocks and take a left onto 17th Ave S
+6. Follow 17th Ave S south to S Lander St for 0.6 mi; the Centilia Cultural Center will be on your right.
 
-### Parking
+
+### Parking{#parking}
 **Handicap Accessible Parking**
-
+Handicap parking spaces are available for two-hour parking in El Centro del Raza's side parking lot. Street parking is available throughout the neighborhood, and streets whithin a block of the venue are relatively flat.
 
 **Street Parking**
 Street parking is available throughtout the neighborhood with the closest parking located along 17th St and along S Lander St east of 17th.
@@ -54,9 +89,6 @@ Street parking is available throughtout the neighborhood with the closest parkin
 Along most streets, street parking rules are as follows--
 * Friday: 2 hr parking from 7 AM - 6 PM
 * Saturday: Available all day
-
-## Getting around Go Play NW{#getting-around-go-play-nw}
-Map of venue to go here.
 
 ## The Neighborhood{#the-neighborhood}
 ### Food
@@ -132,18 +164,3 @@ Hours: Fri - Sun 11 AM - 9 PM
 
 * **WaFd Bank (1-1/2 blocks from venue)**  
 2800 Beacon Ave S, Seattle, WA 98144 [(map)](https://goo.gl/maps/RLxTMCNRyLGVDkd79)
-
-### Hotels and Lodging
-While there are not very many hotels directly in the Beacon Hill area, there are several hotels with a direct public transit route to the Centilia Cultural Center. Here are a few suggestions.
-
-#### Near SeaTac Airport
-
-#### Downtown Seattle
-
-#### Northgate
-<!--
-
----
-
-Photo by Philip LaRose, 2011
--->
