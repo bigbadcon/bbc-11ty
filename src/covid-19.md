@@ -24,16 +24,16 @@ Please review the following requirements, protective measures, and recommendatio
 Everyone who attends Go Play NW 2023 is required to be fully vaccinated and to wear a mask that covers their mouth and nose.
 
 1. **Masking:** You must wear a KN95-level or higher mask that covers your nose and mouth while indoors at all times. Masks may be removed outdoors and while eating and drinking, but we ask that you put your mask on between bites or sips.  
-Disposable KN95 masks are available for free at the Registration table as needed.
+_Disposable KN95 masks are available for free at the registration table as needed._
 
 2. **Proof of vaccination:** You must provide written or electronic documentation that you are fully vaccinated against COVID-19 upon entry to Go Play NW 2023. Fully vaccinated means that you have received either the second shot of a two-dose mRNA vaccine (such as Moderna or Pfizer), or a single dose vaccine (such as Johnson & Johnson) with a second shot of an mRNA (such as Pfizer or Moderna) or NovaVax shot, no later than Friday, June 23, 2023.  
-We recommend you [stay up-to-date](https://www.cdc.gov/coronavirus/2019-ncov/vaccines/stay-up-to-date.html) with your COVID-19 vaccines and boosters.
+_We recommend you [stay up-to-date](https://www.cdc.gov/coronavirus/2019-ncov/vaccines/stay-up-to-date.html) with your COVID-19 vaccines and boosters._
 
 
 ## Protective measures{#protective-measures}
 In addition to our [Vaccination and Masking Requirements](#vaccines-and-masks-are-required), Go Play NW is taking the following measures to help our community stay infection free!
 
-### KN95 Masks are available
+### KN95 masks are available
 Disposable KN95 masks are available to Go Play NW attendees; please see the registration table for more information.
 
 ### On-site rapid testing
@@ -45,14 +45,13 @@ We recommend attendees also bring their own rapid tests. At home COVID-19 rapid 
 Built using MERV 13 furnace filters and box fans, Corsi-Rosenthal boxes provide an inexpensive and portable way to improve ventilation and air quality. Corsi-Rosenthal boxes will be placed around the Go Play NW venue. For more information see this article by [CleanAirCrew.org](https://cleanaircrew.org/box-fan-filters/).
 
 ### Hand sanitizer and sanitizing wipes
-Hand sanitizer and sanitizing wipes
 We will provide hand sanitizing stations for attendee use, as well as sanitizing wipes for tables and play materials.
 
 ## Recommendations{#recommendations}
-In addition to our Vaccination and Masking Requirements, we encourage you to follow  To make sure our convention is a fun and safe event for everyone, we encourage you to.
+To make sure our convention is a fun and safe event for everyone, we encourage you to follow these recommendations.
 
 * If you feel sick or had close contact with a COVID-19 positive individual and are waiting for your test results, PLEASE STAY HOME. See our [COVID-19 refund policy](#covid-19-refund-policy).
-* If you tested positive for COVID-19 within the previous 10 days, PLEASE STAY HOME.. See our [COVID-19 refund policy](#covid-19-refund-policy). 
+* If you tested positive for COVID-19 within the previous 10 days, PLEASE STAY HOME. See our [COVID-19 refund policy](#covid-19-refund-policy). 
 * Take a rapid test the day of Go Play NW 2023 if one is available.
 * Get up-to-date on your vaccinations and COVID-19 boosters; see [How Do I Find a COVID-19 Vaccine or Booster?](https://www.cdc.gov/coronavirus/2019-ncov/vaccines/How-Do-I-Get-a-COVID-19-Vaccine.html) for help finding a COVID-19 vaccine location near you.
 * Practice social distancing! Leave 6 feet of space between you and anyone outside of your table.
