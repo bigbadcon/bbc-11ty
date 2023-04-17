@@ -15,11 +15,13 @@
         <h2 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{subtitle}}</h2>
     </div>
       {% else %}
-        <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base" style="color: white;">{{title}}</h1>
-        <h2 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{subtitle}}</h2>      
-      {% endif %}
+       <div id="page-title" class="mx-auto max-w-content pt-12 pb-6 px-6 lg:px-0 text-white">
+        <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl mb-base">{{title}}</h1>
+        <h2 class="font-serif text-3xl leading-none tracking-tight">{{subtitle}}</h2>
+      </div>
+    {% endif %}
     {# Page content #}
-    <div class="mx-auto max-w-content p-base px-lg bg-card rounded-md shadow-md" x-data="registerEventbrite" style="margin-top: 50px;">
+    <div class="mx-auto max-w-content p-base px-lg bg-card rounded-md shadow-md" x-data="registerEventbrite">
         <div class="prose max-w-content2">
             <p>We're stoaked that you're planning on joining us for Go Play NW's 2023! Once we get you through our quick 5-step registration process you'll be ready to play some games!</p>
             <h2>1. Create a GoPlayNW.org account</h2>

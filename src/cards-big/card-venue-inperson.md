@@ -6,6 +6,6 @@ image: "/images/centilia-outside.jpg"
 alt: Banner with a trophy and text reading "Featured Facilitators"
 
 ---
-As part of Go Play NW’s ongoing commitment to better supporting the place of marginalized players and creators in our TTRPG spaces, we’ve invited a few professional BIPOC GMs to share their games, work, and storytelling styles by hosting games for attendees.
+2023 kicks off a return to Go Play NW's core mission: a place to meet and play games with new and interesting people. And, we're kicking off our first year back to in-person gaming with a brand new venue: the Centilia Cultural Center!
 
 [Read more about the Centilia Cultural Center](/venue-inperson){.icon-goplaynw}

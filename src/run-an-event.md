@@ -17,4 +17,4 @@ To submit a game you'd like to run, please fill out the form below.
 * **If you’re a game designer, we also have a vibrant playtest community.**\
   _Playtest games are welcome! Just be clear that your game is a playtest so people know what to expect._
 * **If you're not sure what games you could run online?**\
-  _Our [Online Games Inspiration List](/online-games-list) has several suggestions for games that work great for online play and require minimal up-front preparation._
+  _Our [Games Inspiration List](/online-games-list) has several suggestions for games that require minimal up-front preparation._

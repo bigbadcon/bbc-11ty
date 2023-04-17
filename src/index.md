@@ -5,9 +5,7 @@ description: Go Play NW is an annual weekend event where folks come together to 
 tags: pages
 
 ---
-## Coming soon—Go Play NW 2023!
-We've been working hard to see you all again in 2023! [Read more…](/blog/2023-02-21)
+## Get your tickets for Go Play NW 2023!
+Go Play NW is back!
 
-In the meantime...
-
-[Hang out with us on Discord!](https://discord.gg/AqhayGFexQ){.icon-discord}
+[Buy your ticket now!](/register){.icon-badge}

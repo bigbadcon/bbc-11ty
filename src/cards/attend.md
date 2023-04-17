@@ -7,8 +7,10 @@ image: ''
 alt: ''
 
 ---
-Our 2023 in-person event is coming soon! For now…
+Join us for Go Play NW 2023!
+
+[Buy your ticket!](/register){.icon-badge}
+
+[Get to know our COVID-19 Policies](/covid-19){.icon-virus}
 
 [Join Our Discord](https://discord.gg/AqhayGFexQ){.icon-discord}
-
-[FAQ](/faq){.icon-faq}
