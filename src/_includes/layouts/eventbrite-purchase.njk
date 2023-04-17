@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-<main id="content">
+<main id="content" style="padding-top: 30px;">
     <div class="mx-auto max-w-content p-base px-lg bg-card rounded-md shadow-md" x-show="isAuth">
         <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
         <div class="prose max-w-content2">{{ content | safe }}</div>
