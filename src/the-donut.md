@@ -60,7 +60,7 @@ Historically, facilitators wishing to pitch a game for play would stand in a cir
 Sometimes certain games are more or less popular. In the instance that a game is overfull or doesn’t fill, the Donut MC will try to help players and facilitators find a solution that works best for them.
 6. Players and facilitators find a table (sometimes with a Volunteer’s help) and play their games! 
 
-## Tips For a Good Donut{#tips-for-a-good-donut}
+## Tips for a good Donut{#tips-for-a-good-donut}
 * If you’re new to pitch circles/musters, we recommend you don’t pitch a game your first time. Games need players and facilitators to run, and it can help to watch before doing.
 * If there’s a game you really want to see played in the Donut, the best way to make that happen is to pitch it!
 * Don’t worry if you forget some information in your pitch. The Donut MC will help by providing prompts when you need them. 
@@ -74,7 +74,7 @@ Although games in the Donut are spontaneous, you can help things run smoothly by
 Here are a few ways you can support the Donut:
 
 1. **Volunteer with us!**  
-_Go play NW is always looking for helpers! Find out more about how to volunteer for the Donut [here](/volunteer)._
+_Go Play NW is always looking for helpers! Find out more about how to volunteer for the Donut [here](/volunteer)._
 2. **Think about games you want to pitch!**  
 _Facilitators are an essential part of the Donut! Without them, there would be no games._
 3. **Play a game!**  
