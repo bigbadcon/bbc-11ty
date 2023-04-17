@@ -30,7 +30,7 @@ module.exports = [
 		"id": "attend",
 		"subnav": [
 			{
-			 	"title": "Register Now!",
+			 	"title": "Buy Tickets!",
 			 	"url": "/register",
 			 	"icon": "badge"
 			},

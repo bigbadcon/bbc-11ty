@@ -1,6 +1,6 @@
 ---
-layout: layouts/page.njk
-title: Getting ready for 2023!
+layout: layouts/register-eventbrite.njk
+title: Buy Tickets for Go Play NW 2023!
 tags: pages
 ---
 
