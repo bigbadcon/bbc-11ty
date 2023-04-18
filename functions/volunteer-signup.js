@@ -88,7 +88,10 @@ exports.handler = async function(event, context) {
         //        }
         //    }
              return {
-                 statusCode: 200,
+                 statusCode: 302,
+                 headers: {
+                     "Location": "/"
+                 },
                  body: "volunteer request received",
              }
 
