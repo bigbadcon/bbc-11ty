@@ -7,7 +7,7 @@ image: ''
 alt: ''
 
 ---
-Join us for Go Play NW 2023!
+Join us for Go Play NW 2023, July 7–9!
 
 [Buy your ticket!](/register){.icon-badge}
 
