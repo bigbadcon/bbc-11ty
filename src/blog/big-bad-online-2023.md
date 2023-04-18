@@ -1,14 +1,14 @@
 ---
 title: Big Bad Online 2023
-date: 2023-02-07T08:00:00Z
+date: 2023-02-07T08:00:00.000Z
 published: true
-excerpt: Big Bad Online - 24 hours of amazing panels kicking of March 31st at 6PM
-  PT
-coverImage: "/images/big-bad-online-2023-twitter-card.jpg"
+excerpt: Big Bad Online - 24 hours of amazing panels kicking of March 31st at 6PM PT
+coverImage: /images/big-bad-online-2023-twitter-card.jpg
 coverImageAlt: Wild West Little Red with a lasso
 ogImage: ''
-
+_template: blog
 ---
+
 Greetings friends,
 
 Big Bad Online 2023 is happening March 31 at 6PM to April 1st at 6PM. I’m delighted for our April Fools’ prank to be an amazing series of panels from speakers all over the world, post-panel discussions in our dedicated discord server, and new this year: virtual office hours!

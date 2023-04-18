@@ -9,8 +9,9 @@ navGroup: ''
 navTitle: Run an Event
 order: 2
 icon: dice
-
+_template: page
 ---
+
 Event submission is now closed. Thank you for all your contributions! To sign up to attend head over [here](/events).
 
 <!--We're looking for games, panels, workshops, and events to make Big Bad Con 2022 our best year yet!

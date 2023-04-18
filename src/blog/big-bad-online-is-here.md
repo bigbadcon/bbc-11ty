@@ -1,12 +1,13 @@
 ---
 title: Big Bad Online is Here!
-date: 2021-08-17T17:00:00Z
+date: 2021-08-17T17:00:00.000Z
 published: true
 excerpt: ''
-coverImage: "/images/twitter-share-card.png"
-coverImageAlt: Big Bad Online Oct 23-24th 2021, Support Our Fundraiser
-
+coverImage: /images/twitter-share-card.png
+coverImageAlt: 'Big Bad Online Oct 23-24th 2021, Support Our Fundraiser'
+_template: blog
 ---
+
 We’ve been hard at work the past several months curating an online event that all of the Big Bad Community can be proud of. All of us immediately realized that this event is a unique opportunity for us to bring together many diverse and powerful voices.
 
 Big Bad Online is a welcoming community gathering and a platform for game designers and professionals from all over the world to share their knowledge, creativity, and insight. We are very excited about this event as the caliber of panels and seminars we’re presenting are on par with professional industry events.

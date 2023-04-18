@@ -6,10 +6,11 @@ description: ''
 ogImage: ''
 navGroup: ''
 navTitle: ''
-order: 
+order: null
 icon: ''
-
+_template: page
 ---
+
 <style type="text/css">
 
 \#current-events #event-date, #current-events .event-date {width: 6% !important}

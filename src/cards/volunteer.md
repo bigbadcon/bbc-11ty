@@ -3,8 +3,9 @@ title: Volunteer
 order: 1
 tags: cards
 published: false
-
+_template: home_page_cards
 ---
+
 <!--Big Bad Con is a purely volunteer run organization. Starting in early 2023 we'll re-open recruitment for Rangers. Check back here to join the team!--> 
 
 We're looking for Rangers to help us host Big Bad Online:

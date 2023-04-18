@@ -5,10 +5,11 @@ title: Carmen Wong
 position: Greeter Captain
 published: true
 gender: they/them
-image: "/images/carmen-wong.jpeg"
+image: /images/carmen-wong.jpeg
 twitter: ''
 website_name: ''
 website_url: ''
-
+_template: staff
 ---
+
 Carmen (they/them) is based in Seattle, a marketer by day and an all around nerd all the time. They got first introduced to Big Bad Con in 2019 and has been in love ever since. They're passionate about promoting a safe, inclusive and supportive environment for everyone to play and fun in.

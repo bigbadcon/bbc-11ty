@@ -9,8 +9,9 @@ navTitle: Games On Demand
 order: 2
 icon: games-on-demand
 ogImage: ''
-
+_template: page
 ---
+
 Games on Demand submissions are now closed. Thank you for all your contributions! To sign up to attend head over [here](/events).
 
 <!--We're looking for GMs to run in the Games On Demand room for the Goats Gruff and possibly a few other adventurous players.

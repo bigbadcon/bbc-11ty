@@ -8,8 +8,9 @@ navGroup: Events
 navTitle: ''
 order: 10
 icon: scroll
-
+_template: page
 ---
+
 We want you to have maximum access to games at Big Bad Con. Here’s how we do it:
 
 * Event submissions are open from early June through mid-September.

@@ -5,12 +5,13 @@ published: true
 description: ''
 tags: pages
 navGroup: ''
-order: 
+order: null
 icon: ''
 ogImage: ''
 navTitle: ''
-
+_template: page
 ---
+
 Morgan Ellis was a dear friend and treasured member of Big Bad Con who died in 2021. Morgan brought out the absolute best in people. That is part of what made him such a good GM, he always found a spotlight to help his players shine. Morgan’s graciousness extended well beyond the game table. He celebrated people for who they are and connected people together based on whatever interests they shared, no matter how obscure.
 
 Morgan will continue on in our memories of him. Big Bad Online 2021 and Big Bad Con 2022 were dedicated in his honor. We also created an award in his name, the Big Bad Morgan Ellis Award (or BigBad-ME!)

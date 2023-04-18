@@ -5,10 +5,11 @@ title: Gordon McAlpin
 position: ''
 published: true
 gender: he/him
-image: "/images/gordon-mcalpin.png"
+image: /images/gordon-mcalpin.png
 twitter: gmcalpin
 website_name: Gordon McAlpin
-website_url: http://www.gordonmcalpin.com/
-
+website_url: 'http://www.gordonmcalpin.com/'
+_template: poc_scholar
 ---
+
 Gordon McAlpin is a Filipino-American writer, graphic designer, illustrator, and animator. His past work includes the animated web series Multiplex 10 and the DMs Guild titles Death by Goblins!, Feats Don’t Fail Me Now, and The High Magic Sourcebook.

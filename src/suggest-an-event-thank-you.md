@@ -4,7 +4,7 @@ title: Thank you for your ideas!
 published: true
 description: ''
 tags: pages
-
+_template: page
 ---
 
 All the entries will be reviewed by our coordinators before we reach out to prospective panelists.

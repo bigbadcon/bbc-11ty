@@ -6,10 +6,11 @@ description: ''
 ogImage: ''
 navGroup: Events
 navTitle: ''
-order: 
+order: null
 icon: games-on-demand
-
+_template: page
 ---
+
 Don’t have any games scheduled but want to play something? Stop by the Big Bad Games On Demand! Games start every two hours (with a breaks from 1-2PM and 6-8PM).
 
 [List of all Games on Demand Events](https://www.bigbadcon.com/events/?cat=GoD)

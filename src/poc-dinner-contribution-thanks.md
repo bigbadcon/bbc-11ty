@@ -7,8 +7,9 @@ tags: pages
 ogImage: ''
 navGroup: ''
 navTitle: ''
-order: 
+order: null
 icon: ''
-
+_template: page
 ---
+
 Thank you for contributing to the [PoC Dinner](/events/poc-dinner/)!

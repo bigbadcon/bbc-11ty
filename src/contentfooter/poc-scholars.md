@@ -1,9 +1,11 @@
 ---
-title: "Sponsors"
+title: Sponsors
 published: true
-location: "poc-scholars"
+location: poc-scholars
 order: 1
+_template: contentfooter
 ---
+
 
 Several generous sponsors have made individual and corporate contributions to make our POC Programming possible. Their support of transformative change in games is so important, and we are grateful for their generous contributions. We would like to add a special thanks to our major donors:
 

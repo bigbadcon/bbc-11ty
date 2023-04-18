@@ -1,13 +1,14 @@
 ---
 title: Everything you need to know before you arrive at Big Bad Con
-date: 2022-10-20T07:00:00Z
+date: 2022-10-20T07:00:00.000Z
 published: true
 excerpt: ''
 coverImage: ''
 coverImageAlt: ''
 ogImage: ''
-
+_template: blog
 ---
+
 We're thrilled that Big Bad Con is happening next week! Before you head out to the con, here's a few things to keep in mind:
 
 ### Review the Public Health Policy

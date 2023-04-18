@@ -6,10 +6,11 @@ description: ''
 ogImage: ''
 navGroup: ''
 navTitle: ''
-order: 
+order: null
 icon: calendar-star
-
+_template: page
 ---
+
 <h2>2011</h2>
 <style type="text/css">
     #current-events #event-description,<br />

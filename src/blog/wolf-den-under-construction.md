@@ -1,17 +1,16 @@
 ---
 title: Wolf Den Under Construction
 tags:
-- blog
+  - blog
 published: true
-date: 2015-08-07
+date: 2015-08-07T00:00:00.000Z
 categories:
-- hotel-info
-- the-making-of
-excerpt: The Wolf met today with the Hilton and found out that Building 5 (where we
-  normally host the con) will be undergoing renovation while we're there. We live
-  in exciting times!
-
+  - hotel-info
+  - the-making-of
+excerpt: "The Wolf met today with the Hilton\_and found\_out that Building 5 (where we normally host the con) will be undergoing renovation while we're there. We live in exciting times!"
+_template: blog
 ---
+
 The Wolf met today with the Hilton and found out that Building 5 (where we normally host the con) will be undergoing renovation while we're there. We live in exciting times!
 
 There is good news though!

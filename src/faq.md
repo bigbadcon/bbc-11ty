@@ -6,11 +6,12 @@ description: ''
 tags: pages
 ogImage: ''
 navGroup: Attend
-order: 
+order: null
 icon: faq
 navTitle: ''
-
+_template: page
 ---
+
 ## Will Big Bad Con return in-person?
 
 Yes, we're coming back September 28 to October 1, 2023. Join us!
