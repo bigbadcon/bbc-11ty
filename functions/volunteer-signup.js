@@ -89,7 +89,7 @@ exports.handler = async function(event, context) {
         //    }
              return {
                  statusCode: 200,
-                 body: "user added volunteer role",
+                 body: "volunteer request received",
              }
 
          } catch (e) {
