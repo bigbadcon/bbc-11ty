@@ -22,28 +22,31 @@
     {% endif %}
     {# Page content #}
     <div class="mx-auto max-w-content p-base px-lg bg-card rounded-md shadow-md" x-data="registerEventbrite">
-        <div class="prose max-w-content2">
-            <p>We're stoked that you're planning on joining us for Go Play NW 2023 on July 7–9! Once we get you through our quick 5-step registration process you'll be ready to play some games!</p>
-            <p><b>Advance tickets are available now through Sunday, July 2. A full three-day weekend pass is $175; purchasing days separately, Friday is $60, Saturday or Sunday is $65 each.</b></p>
-            <h2>1. Create a GoPlayNW.org account</h2>
+        <div class="prose max-w-content2">{{ content | safe }}</div>
+        <div id="registration-steps" class="prose max-w-content2 my-8">
+            <h2>4-Steps to Go Play NW!</h2>
+            <div class="prose max-w-content2">
+                <p>In order to sign up for scheduled games, submit a game to run, or volunteer, you'll need a goplaynw.org account. Then, we'll link that account to Eventbrite so Eventbrite can tell us you bought your ticket, and finally you can buy your tickets for the weekend!</p>
+            </div>
+            <h3>1. Create a Go Play NW account</h3>
             <div class="prose max-w-content2" x-cloak x-show="notAuth">
-                <p>To get the most out of your Go Play NW experience, you'll need to have a GoPlayNW.org account. Once you're registered for the event, you can use your account to sign-up for our <a href="/events">scheduled games</a>, to <a href="/run-an-event">run a game</a>, or for <a href="/volunteer-shifts">volunteer shifts</a>.</p>
+                <p>Let's get your goplaynw.org account created! If you already have a goplaynw.org account, continue to Step 2.</p>
                 <p><a class="icon-new-user" href="/create-account">Create a Go Play NW account</a></p>
             </div>
             <div class="prose max-w-content2" x-cloak x-show="isAuth">
                 <p>You have already created your account.</p>
                 <p class="icon-checkmark">Continue to step 2 below</p>
             </div>
-            <h2>2. Log in to your GoPlayNW.org account</h2>
+            <h3>2. Log in to your GoPlayNW.org account</h3>
             <div class="prose max-w-content2" x-cloak x-show="notAuth">
-                <p>Once you have a GoPlayNW.org account, you'll need to be logged in before registering for the event so we can link your GoPlayNW.org account to your Eventbrite registration.</p>
+                <p>Now that your have your goplaynw.org account created, let's get you logged in, so we can link your GoPlayNW.org account to your Eventbrite registration.</p>
                 <button class="icon-login" @click="modal='login'">Login to your Go Play NW account</button>
             </div>
             <div class="prose max-w-content2" x-cloak x-show="isAuth">
                 <p>You have already logged into your GoPlayNW.org account.
                 <p class="icon-checkmark">Continue to step 3 below</p>
             </div>
-            <h2>3. Link your GoPlayNW.org account to Eventbrite</h2>
+            <h3>3. Link your GoPlayNW.org account to Eventbrite</h3>
                 <p>
                     Now the magic happens! Go Play NW uses Eventbrite to handle ticketing for our online
                     events. In order to connect your Eventbrite registration to your game schedule for the weekend, we need your permission to link your Go Play NW and Eventbrite accounts.
@@ -62,31 +65,17 @@
             <div class="prose max-w-content2" x-cloak x-show="isAuth">
                 <a class="icon-eventbrite" href="https://www.eventbrite.com/oauth/authorize?response_type=code&client_id=XDAPRWGTYCXDSNF723">Link your Go Play NW and Eventbrite accounts</a>
             </div>
-            <h2>4. Buy your ticket!</h2>
-            <p>Once you've linked your Eventbrite and Go Play NW accounts, Eventbrite will bring you back to the Go Play NW website where you can purchase your ticket to the July 7–9 event.</p>
+            <h3>4. Buy your ticket!</h3>
+            <p>Once you've linked your Eventbrite and Go Play NW accounts, Eventbrite will bring you back to the Go Play NW website where you can purchase your ticket to the event.</p>
             <div class="prose max-w-content2" x-cloak x-show="notAuth">
                 <button @click="modal='login'" class="icon-login">Login to buy your ticket.</button>
             </div>
             <div class="prose max-w-content2" x-cloak x-show="isAuth">
                 <a href="https://www.eventbrite.com/oauth/authorize?response_type=code&client_id=XDAPRWGTYCXDSNF723" class="icon-ticket-solid">Buy your ticket!</a>
             </div>
-            <h2>5. Get involved!</h2>
-            <p>It's attendees like you that make Go Play NW great! Now that you've got your ticket, let's help you get the most out of your Go Play NW experience!</p>
-            <p><a href="https://discord.gg/AqhayGFexQ" class="icon-discord">Join our Community Discord</a></p>
-            <p><a href="/events" class="icon-calendar-clock">Sign up to play in a scheduled game</a></p>
-            <p><a href="/run-an-event" class="icon-dice">Run a game for the weekend</a></p>
-            <p><a href="/the-donut" class="icon-donut">Learn about the Donut</a></p>
-            <p><a href="/contact-us" class="icon-envelope">Questions? Contact us</a></p>
-            <div>
-                <h3 class="font-bold text-highlight">Let's get you registered for Go Play NW Online!</h3>
+            <div class="prose max-w-content2 mt-8">
+                <p>And that's it! Once you've got your tickets, we'll show you how you can get involved and get the most out of your Go Play NW experience!</p>
             </div>
-            <div class="prose max-w-content2" x-cloak x-show="notAuth">
-                <button @click="modal='login'" class="icon-login">Login to your Go Play NW account to get started.</button>
-            </div>
-            <div class="prose max-w-content2" x-cloak x-show="isAuth">
-                <a href="https://www.eventbrite.com/oauth/authorize?response_type=code&client_id=XDAPRWGTYCXDSNF723" class="icon-ticket-solid">Buy your ticket!</a>
-            </div>
-            <div></div>
         </div>
     </div>
 </main>
