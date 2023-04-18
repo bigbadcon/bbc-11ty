@@ -229,6 +229,7 @@
                                 throw `fetch fail status: ${response.status}`
                             let result = await response.json()
                             console.log(`RESULT:fetch for ${url}`, result)
+                            this.$dispatch("toast", "Thanks so much for volunteering with Go Play NW! We'll get back to you soon to let you know you're registered.");
                             return result
                         } catch (err) {
                             console.error(`ERROR:fetch for ${url}`, err)

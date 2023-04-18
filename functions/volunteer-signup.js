@@ -88,10 +88,7 @@ exports.handler = async function(event, context) {
         //        }
         //    }
              return {
-                 statusCode: 302,
-                 headers: {
-                     "Location": "/"
-                 },
+                 statusCode: 200
              }
 
          } catch (e) {
