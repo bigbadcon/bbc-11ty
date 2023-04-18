@@ -9,8 +9,8 @@ alt: ''
 ---
 Join us for Go Play NW 2023, July 7–9!
 
-[Buy your ticket!](/register){.icon-badge}
+[Buy Your Ticket!](/register){.icon-badge}
 
-[Get to know our COVID-19 Policies](/covid-19){.icon-virus}
+[Read Our COVID-19 Policies](/covid-19){.icon-virus}
 
 [Join Our Discord](https://discord.gg/AqhayGFexQ){.icon-discord}
