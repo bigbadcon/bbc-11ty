@@ -1,15 +1,16 @@
 ---
 title: Wolf Chase 2016!
 tags:
-- blog
+  - blog
 published: true
-date: 2016-10-13T07:00:00Z
+date: 2016-10-13T07:00:00.000Z
 categories:
-- events
+  - events
 coverImage: Screen-Shot-2016-08-23-at-5.36.22-PM.png
 excerpt: ''
-
+_template: blog
 ---
+
 Every year at Big Bad Con, gamers will be faced with decisions such as can I outrun this creature bearing down on me with vicious claws and gnashing teeth? Usually these questions are solved by a roll of the dice. But some gamers decide to really test it by getting up with the sun and running for real in the Wolf Chase!
 
 This [Wolf Chase 2016](http://www.bigbadcon.com/events/wolf-chase-2016/) is on Sunday 16th from 7-8am. There are two courses the running course and the walking course — because hey you might need practice walking away from the slow zeds.

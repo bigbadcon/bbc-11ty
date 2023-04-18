@@ -5,8 +5,9 @@ tags: cards
 published: false
 image: ''
 alt: ''
-
+_template: home_page_cards
 ---
+
 Big Bad Online (March 31-April 1) is free to attend!
 
 <!--[Register Now!](https://www.bigbadcon.com/register/){.icon-badge}-->

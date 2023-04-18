@@ -6,10 +6,11 @@ description: Precautions we're taking to make the con as safe as we can.
 ogImage: ''
 navGroup: Attend
 navTitle: Public Health Policy
-order: 
+order: null
 icon: health
-
+_template: page
 ---
+
 Our highest priority in returning is addressing how we can do it as safely as possible. We know that no matter what precautions we take, we cannot eliminate risk of COVID or other airborne pathogens completely, however here’s the steps we’re taking toward mitigation:
 
 * Requiring masks in all event spaces including our private game rooms.

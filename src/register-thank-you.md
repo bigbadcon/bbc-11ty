@@ -3,7 +3,7 @@ layout: layouts/register-thank-you.njk
 title: Thank you for registering!
 description: ''
 tags: pages
-
+_template: page
 ---
 Check out our ever growing [list of events](/events)!
 

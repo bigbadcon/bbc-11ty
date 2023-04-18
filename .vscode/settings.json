@@ -9,6 +9,7 @@
         "Nicename",
         "notattending",
         "paidattendee",
-        "sendgrid"
+        "sendgrid",
+        "tinacms"
     ]
 }

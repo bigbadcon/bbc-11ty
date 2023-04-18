@@ -8,6 +8,8 @@ navGroup: Volunteer
 navTitle: Our Staff
 order: 2
 icon: wolf
+_template: page
 ---
+
 
 Big Bad Con would be nothing without it's amazing volunteer team!

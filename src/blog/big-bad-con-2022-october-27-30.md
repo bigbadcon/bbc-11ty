@@ -1,13 +1,14 @@
 ---
 title: Big Bad Con 2022 - October 27-30
-date: 2022-05-01
+date: 2022-05-01T00:00:00.000Z
 published: true
 excerpt: Our plans for Big Bad Con 2022!
 coverImage: ''
 coverImageAlt: ''
 ogImage: ''
-
+_template: blog
 ---
+
 Greetings!
 
 While we’re keeping our focus on Big Bad Online until it wraps up, we’re _also_ planning for Big Bad Con to return in person on October 27-30, 2022.

@@ -4,13 +4,14 @@ title: Discord
 published: true
 description: ''
 tags: pages
-ogImage: "/images/join-our-community-discord.png"
+ogImage: /images/join-our-community-discord.png
 navGroup: Community
 order: 3
 icon: discord
 navTitle: ''
-
+_template: page
 ---
+
 Want to stay connected with Big Bad Con year round?
 
 [Join Our Discord](https://discord.gg/ZzPqYE3){.icon-discord}

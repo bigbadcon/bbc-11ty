@@ -1,0 +1,230 @@
+import { defineConfig } from "tinacms";
+import { blogFields } from "./templates";
+import { content_footerFields } from "./templates";
+import { eventsFields } from "./templates";
+import { footerFields } from "./templates";
+import { home_page_big_cardsFields } from "./templates";
+import { home_page_cardsFields } from "./templates";
+import { pageFields } from "./templates";
+import { poc_scholarsFields } from "./templates";
+import { staffFields } from "./templates";
+
+// Your hosting provider likely exposes this as an environment variable
+const branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || "main";
+
+export default defineConfig({
+	branch,
+	clientId: "ac22da7d-8579-4122-a2c1-78b362f0d955", // Get this from tina.io
+	token: "fac8669e3d5e737ff52745ced41f56db74f9f20f", // Get this from tina.io
+	client: { skip: true },
+	build: {
+		outputFolder: "admin",
+		publicFolder: "src",
+	},
+	media: {
+		tina: {
+			mediaRoot: "images",
+			publicFolder: "src",
+		},
+	},
+	schema: {
+		collections: [
+			{
+				format: "md",
+				label: "Pages",
+				name: "pages",
+				path: "src",
+				match: {
+					include: "*",
+				},
+				templates: [
+					{
+						fields: [
+							{
+								type: "rich-text",
+								name: "body",
+								label: "Body of Document",
+								description: "This is the markdown body",
+								isBody: true,
+							},
+							...eventsFields(),
+						],
+						label: "events",
+						name: "events",
+					},
+					{
+						fields: [
+							{
+								type: "rich-text",
+								name: "body",
+								label: "Body of Document",
+								description: "This is the markdown body",
+								isBody: true,
+							},
+							...pageFields(),
+						],
+						label: "page",
+						name: "page",
+					},
+				],
+			},
+			{
+				format: "md",
+				label: "Blog",
+				name: "blog",
+				path: "src/blog",
+				match: {
+					include: "**/*",
+				},
+				fields: [
+					{
+						type: "rich-text",
+						name: "body",
+						label: "Body of Document",
+						description: "This is the markdown body",
+						isBody: true,
+					},
+					...blogFields(),
+				],
+			},
+			{
+				format: "md",
+				label: "Staff",
+				name: "staff",
+				path: "src/staff",
+				match: {
+					include: "**/*",
+				},
+				fields: [
+					{
+						type: "rich-text",
+						name: "body",
+						label: "Body of Document",
+						description: "This is the markdown body",
+						isBody: true,
+					},
+					...staffFields(),
+				],
+			},
+			{
+				format: "md",
+				label: "PoC Scholars",
+				name: "poc_scholars",
+				path: "src/poc-scholars",
+				match: {
+					include: "**/*",
+				},
+				fields: [
+					{
+						type: "rich-text",
+						name: "body",
+						label: "Body of Document",
+						description: "This is the markdown body",
+						isBody: true,
+					},
+					...poc_scholarsFields(),
+				],
+			},
+			{
+				format: "md",
+				label: "Home Page Cards",
+				name: "home_page_cards",
+				path: "src/cards",
+				match: {
+					include: "**/*",
+				},
+				fields: [
+					{
+						type: "rich-text",
+						name: "body",
+						label: "Body of Document",
+						description: "This is the markdown body",
+						isBody: true,
+					},
+					...home_page_cardsFields(),
+				],
+			},
+			{
+				format: "md",
+				label: "Home Page Big Cards",
+				name: "home_page_big_cards",
+				path: "src/cards-big",
+				match: {
+					include: "**/*",
+				},
+				fields: [
+					{
+						type: "rich-text",
+						name: "body",
+						label: "Body of Document",
+						description: "This is the markdown body",
+						isBody: true,
+					},
+					...home_page_big_cardsFields(),
+				],
+			},
+			{
+				format: "md",
+				label: "Content Footer",
+				name: "content_footer",
+				path: "src/contentfooter",
+				match: {
+					include: "**/*",
+				},
+				fields: [
+					{
+						type: "rich-text",
+						name: "body",
+						label: "Body of Document",
+						description: "This is the markdown body",
+						isBody: true,
+					},
+					...content_footerFields(),
+				],
+			},
+			{
+				format: "md",
+				label: "Footer",
+				name: "footer",
+				path: "src/footer",
+				match: {
+					include: "**/*",
+				},
+				fields: [
+					{
+						type: "rich-text",
+						name: "body",
+						label: "Body of Document",
+						description: "This is the markdown body",
+						isBody: true,
+					},
+					...footerFields(),
+				],
+			},
+			{
+				format: "json",
+				label: "Scripts",
+				name: "scripts",
+				path: ".",
+				ui: {
+					allowedActions: {
+						create: false,
+						delete: false,
+					},
+				},
+				match: {
+					include: "package",
+				},
+				fields: [
+					{
+						name: "dummy",
+						label: "Dummy field",
+						type: "string",
+						description:
+							"This is a dummy field, please replace it with the fields you want to edit. See https://tina.io/docs/schema/ for more info",
+					},
+				],
+			},
+		],
+	},
+});

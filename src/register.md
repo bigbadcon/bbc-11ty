@@ -3,7 +3,7 @@ layout: layouts/form-register.njk
 title: Big Bad Online Registration
 description: ''
 tags: pages
-
+_template: page
 ---
 
 Check out our ever growing [list of events](/events)!

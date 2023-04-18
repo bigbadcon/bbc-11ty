@@ -9,8 +9,9 @@ navTitle: Past Events
 order: 3
 icon: library
 ogImage: ''
-
+_template: page
 ---
+
 Big Bad Con has a long history, starting all the way back in 2010! Our blog goes all the way back to that [very first two sentence post about the con](/blog/announcing-big-bad-con/). Here's all the events we've hosted:
 
 ### Big Bad Con

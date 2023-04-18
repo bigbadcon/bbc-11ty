@@ -1,12 +1,13 @@
 ---
 title: Big Bad Online 2021
-date: 2021-05-05T07:00:00Z
+date: 2021-05-05T07:00:00.000Z
 published: true
 excerpt: ''
 coverImage: ''
 coverImageAlt: ''
-
+_template: blog
 ---
+
 We looked into our crystal ball, requested feedback from our community, reviewed health and safety guidelines, and asked ourselves some hard questions…
 
 The first big question is: **can we host a safe in-person event in October?**

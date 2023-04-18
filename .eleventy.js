@@ -353,6 +353,7 @@ module.exports = (eleventyConfig) => {
 	eleventyConfig.addPassthroughCopy("./src/static/");
 	eleventyConfig.addPassthroughCopy("./images/");
 	eleventyConfig.addPassthroughCopy("./src/_redirects");
+	eleventyConfig.addPassthroughCopy("src/admin/assets");
 	// eleventyConfig.addPassthroughCopy({"./src/assets/svgs" : "/static/svgs"});
 
 	// Event images is a kludge until we can get it working with event manager

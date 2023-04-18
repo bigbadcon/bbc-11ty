@@ -4,8 +4,9 @@ title: Big Bad Timeline
 published: true
 description: ''
 ogImage: ''
-
+_template: page
 ---
+
 ## January
 
 24 - Launch of the [Story Synth Microgrants](). Closes October 20, 2022

@@ -7,8 +7,9 @@ tags: pages
 ogImage: ''
 navGroup: ''
 navTitle: ''
-order: 
+order: null
 icon: ''
-
+_template: page
 ---
+
 If you have any questions about the event or issues with the site please use the contact form below.

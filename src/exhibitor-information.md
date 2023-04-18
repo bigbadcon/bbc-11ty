@@ -8,8 +8,9 @@ navGroup: Attend
 navTitle: Exhibitors
 order: 3
 icon: booth
-
+_template: page
 ---
+
 Big Bad Con is a charity event, and that commitment to giving extends to our exhibitors, too! All the information below:
 
 ## Big Bad Con 2022 Exhibitors

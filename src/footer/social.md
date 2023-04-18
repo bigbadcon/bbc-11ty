@@ -2,8 +2,9 @@
 title: ''
 order: 2
 published: true
-
+_template: footer
 ---
+
 [@bigbadcon@dice.camp](https://dice.camp/@bigbadcon){.icon-mastodon}
 
 [@bigbadcon](https://twitter.com/bigbadcon){.icon-twitter}
