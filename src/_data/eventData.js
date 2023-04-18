@@ -29,7 +29,7 @@ const decodeText = (text) => {
 };
 
 /* ------------- Fetch image and save to event-images for cache ------------- */
-// TODO: make this use eleventy-fetch
+
 async function fetchImage(url, slug) {
 	try {
 		const response = await fetch(url);
