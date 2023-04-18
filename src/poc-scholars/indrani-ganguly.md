@@ -1,5 +1,7 @@
 ---
-tags: poc-scholar
+tags:
+    - poc-scholar
+    - poc-team-member
 order: 0
 title: Indrani Ganguly
 position: ''
