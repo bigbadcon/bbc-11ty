@@ -1,6 +1,6 @@
 ---
 layout: layouts/volunteer-thank-you.njk
-title: Thank you for volunteering with Go Play NW!
+title: Thank you!
 description: ''
 tags: pages
 ogImage: ''
