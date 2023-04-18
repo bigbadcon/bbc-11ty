@@ -1,6 +1,6 @@
 ---
 layout: layouts/volunteer-thank-you.njk
-title: Thank you!
+title: 
 description: ''
 tags: pages
 ogImage: ''
