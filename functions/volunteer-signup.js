@@ -92,7 +92,6 @@ exports.handler = async function(event, context) {
                  headers: {
                      "Location": "/"
                  },
-                 body: "volunteer request received",
              }
 
          } catch (e) {
