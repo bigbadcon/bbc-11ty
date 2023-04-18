@@ -32,13 +32,19 @@ const decodeText = (text) => {
 /* ------------- Fetch image and save to event-images for cache ------------- */
 
 async function fetchImage(url, slug) {
-	const response = await fetch(url);
-	const blob = await response.blob();
-	const arrayBuffer = await blob.arrayBuffer();
-	const buffer = Buffer.from(arrayBuffer);
-	await fs.writeFile(`./event-images-cache/${slug}.png`, buffer);
-	await fs.writeFile(`./dist/event-images-cache/${slug}.png`, buffer);
-	return buffer;
+	try {
+		const response = await fetch(url);
+		const blob = await response.blob();
+		const arrayBuffer = await blob.arrayBuffer();
+		const buffer = Buffer.from(arrayBuffer);
+		await fs.writeFile(`./event-images-cache/${slug}.png`, buffer);
+		await fs.writeFile(`./dist/event-images-cache/${slug}.png`, buffer);
+		return buffer;
+	} catch (error) {
+		// eslint-disable-next-line no-console
+		console.log(`fetchImage failed for ${slug}`);
+		return false;
+	}
 }
 
 /* ------------------- Sort by start time& alphabetically ------------------- */
@@ -68,6 +74,29 @@ const getDurationInHours = (dateStart, dateEnd) => {
 	dateEnd = new Date(dateEnd);
 	return (Math.abs(dateEnd - dateStart) / 1000 / 3600) % 24;
 };
+
+/* --------------------------- Check server status -------------------------- */
+function checkServer(url, timeout = 500) {
+	const controller = new AbortController();
+	const signal = controller.signal;
+	const options = { mode: "no-cors", signal };
+	fetch(url, options)
+		.then(
+			setTimeout(() => {
+				controller.abort();
+			}, timeout)
+		)
+		.then((response) => {
+			// eslint-disable-next-line no-console
+			console.log("Check server response:", response.statusText);
+			return response.statusText;
+		})
+		.catch((error) => {
+			// eslint-disable-next-line no-console
+			console.error("Check server error:", error.message);
+			return false;
+		});
+}
 
 /* -------------------------------------------------------------------------- */
 /*                              Metadata Tag Ids                              */
@@ -360,6 +389,7 @@ Object.keys(metadataTags).forEach((type) => {
 /* -------------------------------------------------------------------------- */
 
 module.exports = async () => {
+	const isAdminOnline = checkServer("https://admin.bigbadcon.com");
 	try {
 		let data = await Cache(url, {
 			duration: "1d",
@@ -419,8 +449,7 @@ module.exports = async () => {
 			// Save Event Images renamed as event slug
 			const image = metadata.event_image;
 			const imageBaseUrl = "https://admin.bigbadcon.com:8091/images/";
-			if (image) {
-				console.log("🚀 ~ file: eventData.js:433 ~ data=data.map ~ image:", image);
+			if (isAdminOnline && image) {
 				fetchImage(imageBaseUrl + image, event.eventSlug.toLowerCase());
 			}
 
