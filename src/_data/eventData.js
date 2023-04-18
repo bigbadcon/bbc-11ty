@@ -1,5 +1,4 @@
-const Cache = require("@11ty/eleventy-cache-assets");
-// const rootCas = require('ssl-root-cas').create();
+const EleventyFetch = require("@11ty/eleventy-fetch");
 const dayjs = require("dayjs");
 const utc = require("dayjs/plugin/utc");
 const timezone = require("dayjs/plugin/timezone");
@@ -30,7 +29,7 @@ const decodeText = (text) => {
 };
 
 /* ------------- Fetch image and save to event-images for cache ------------- */
-
+// TODO: make this use eleventy-fetch
 async function fetchImage(url, slug) {
 	try {
 		const response = await fetch(url);
@@ -391,7 +390,7 @@ Object.keys(metadataTags).forEach((type) => {
 module.exports = async () => {
 	const isAdminOnline = checkServer("https://admin.bigbadcon.com");
 	try {
-		let data = await Cache(url, {
+		let data = await EleventyFetch(url, {
 			duration: "1d",
 			type: "json",
 		});
