@@ -156,6 +156,7 @@ input[type="text"],
 input[type="password"],
 input[type="email"],
 input[type="phone"],
+input[type="number"],
 input[type="tel"],
 input[type="url"] {
 	@apply px-sm py-xs border rounded-md bg-form border-body text-body focus:ring-highlight focus:border-highlight;
