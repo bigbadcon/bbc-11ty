@@ -45,7 +45,7 @@ exports.handler = async function(event, context) {
                 displayName: eventBody.displayName,
                 userId: eventBody.userId,
                 userEmail: eventBody.userEmail,
-                userAge: eventBody.yourAge, //required
+                //userAge: eventBody.yourAge, //required
                 phone: eventBody.phone, //required
                 discord: eventBody.discord, //required
                  otherInfo: eventBody.otherInfo, //not required

@@ -60,19 +60,19 @@
                         <div class="prose">
                             <strong>Name:</strong>
                             <span x-text="user.displayName"></span></div>
-                        <div class="required">
-                            <label for="yourAge">
-                                        Your age at start of con
-                                        <span>{{sitemeta.eventDate}}</span>
-                            </label>
-                            <select id="yourAge" name="yourAge" x-model="formData.yourAge" @blur="validate">
-                                <option :disabled="formData.yourAge !== ''" selected value="">
-                                            -- Choose One --
-                                        </option>
-                                <option>13+</option>
-                                <option>18+</option>
-                            </select>
-                        </div>
+<!--                        <div class="required">-->
+<!--                            <label for="yourAge">-->
+<!--                                        Your age at start of con-->
+<!--                                        <span>{{sitemeta.eventDate}}</span>-->
+<!--                            </label>-->
+<!--                            <select id="yourAge" name="yourAge" x-model="formData.yourAge" @blur="validate">-->
+<!--                                <option :disabled="formData.yourAge !== ''" selected value="">-->
+<!--                                            &#45;&#45; Choose One &#45;&#45;-->
+<!--                                        </option>-->
+<!--                                <option>13+</option>-->
+<!--                                <option>18+</option>-->
+<!--                            </select>-->
+<!--                        </div>-->
                         <div class="required" data-error="phone number required">
                             <label for="phone">Phone</label>
                             <input id="phone" name="phone" type="phone" value="" x-model="formData.phone" @blur="(e) => validate(e,{phone: true})"/>
@@ -148,7 +148,7 @@
 
             // Used to void variables
             const volunteerSignUpDefault = {
-                yourAge: '', //required
+//                yourAge: '', //required
                 phone: '', //required
                 discord: '', //required
                 otherInfo: '', //not required
@@ -159,14 +159,15 @@
                 return {
                     formSubmitted: false,
                     formData: {
-                        yourAge: '', //required
+//                        yourAge: '', //required
                         phone: '', //required
                         discord: '', //required
                         otherInfo: '', //not required
                         communityStandards: false
                     },
                     get isFormComplete() {
-                        return [this.formData.yourAge, this.formData.phone].every(isNotEmpty) && this.formData.communityStandards;
+//                        return [this.formData.yourAge, this.formData.phone].every(isNotEmpty) && this.formData.communityStandards;
+                        return [this.formData.phone].every(isNotEmpty) && this.formData.communityStandards;
                     },
                     validate(event, options) {
                         options = {
