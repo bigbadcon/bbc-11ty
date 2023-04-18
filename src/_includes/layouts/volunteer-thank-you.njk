@@ -1,0 +1,28 @@
+{% extends 'layouts/base.njk' %}
+
+{% block header %}
+    {% include 'components/header.njk' %}
+{% endblock %}
+
+{% block content %}
+    <main id="content">
+        <div class="mx-auto max-w-content p-base px-lg bg-card rounded-md shadow-md">
+            <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
+            <section>
+                {# Registration info #}
+                <div x-cloak x-show="isAuth" class="prose">
+                    <h2>Thank you!</h2>
+                    <p>
+                        Thanks so much for volunteering with Go Play NW! We'll get back to you soon to let you know you're registered.
+                    </p>
+                    <p>
+                        Once that happens, you can choose your <a href="/volunteer-shifts/">volunteer shifts and roles</a>!
+                    </p>
+                    <p>
+                </p>
+            </div>
+        </section>
+        <div class="prose">{{ content | safe }}</div>
+    </div>
+</main>
+{% endblock %}

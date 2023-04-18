@@ -45,7 +45,7 @@ exports.handler = async function(event, context) {
                 displayName: eventBody.displayName,
                 userId: eventBody.userId,
                 userEmail: eventBody.userEmail,
-                userAge: eventBody.yourAge, //required
+                //userAge: eventBody.yourAge, //required
                 phone: eventBody.phone, //required
                 discord: eventBody.discord, //required
                  otherInfo: eventBody.otherInfo, //not required
@@ -87,6 +87,10 @@ exports.handler = async function(event, context) {
         //            body: "add user role for volunteer failed"
         //        }
         //    }
+             return {
+                 statusCode: 200,
+                 body: "{}"
+             }
 
          } catch (e) {
              console.log('Google Sheet add failed', e)

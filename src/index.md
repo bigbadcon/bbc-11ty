@@ -6,6 +6,6 @@ tags: pages
 
 ---
 ## Get your tickets for Go Play NW 2023!
-Go Play NW is back!
+Go Play NW is back in person! Join us July 7–9 at Centilia Cultural Center in Seattle!
 
 [Buy your ticket now!](/register){.icon-badge}
