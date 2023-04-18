@@ -42,7 +42,7 @@
                                         Your age at start of con
                                         <span>{{sitemeta.eventDate}}</span>
                                     </label>
-                                    <select id="yourAge" name="yourAge" @change="if ($el.value === '13+') { $validate.updateData('playerAge',{value:'13+'})}" x-validate.required>
+                                    <select id="yourAge" name="yourAge" @change="if ($el.value === '13+') { $validate.value('playerAge','13+')}" x-validate.required>
                                         <option disabled selected value="">
                                             -- Choose One --
                                         </option>
@@ -79,7 +79,7 @@
                                 <div class="required">
                                     <label for="format">Format</label>
                                     <select id="format" name="format" x-validate.required
-                                    @change="$validate.updateData('eventCategoryId',{value: formatId($el.value)})">
+                                    @change="$validate.value('eventCategoryId',formatId($el.value)); if ($el.value === 'Panel' || $el.value === 'Workshop') { $validate.value('system',$el.value); $validate.value('eventLength','1')}; if ($el.value === 'Panel') {console.log('switch to panel');$validate.value('maxPlayers','50')}">
                                         <option disabled selected value="">-- Choose One --</option>
                                         <template x-for="type in format">
                                             <option :value="type.name" x-text="type.name"></option>
@@ -87,7 +87,7 @@
                                     </select>
                                 </div>
                                 {# This value is updated with format select onChange since x-validate does not detect the change in :value automatically #}
-                                <input type="hidden" name="eventCategoryId" :value="formatId($validate.data('format').value)" x-init="$watch('$el',val => $validate.updateData(val,{value: formatId($el.value)}))" x-validate>
+                                <input type="hidden" name="eventCategoryId" :value="formatId($validate.data('format').value)" x-init="$watch('$el',val => $validate.value(val,formatId($el.value)))" x-validate>
                                 <div x-show="isGame" class="required">
                                     <label for="system">System</label>
                                     <input id="system" name="system" type="text" value="" x-required="isGame"/>
@@ -138,11 +138,12 @@
                                 </div>
                                 <div class="required">
                                     <label for="minPlayers">Minimum players/attendees</label>
-                                    <input id="minPlayers" name="minPlayers" type="text" value="" x-validate.required/>
+                                    <input id="minPlayers" name="minPlayers" type="number" value="" x-validate.required/>
                                 </div>
                                 <div class="required">
                                     <label for="maxPlayers">Maximum players/attendees</label>
-                                    <input id="maxPlayers" name="maxPlayers" type="text" value="" x-validate.required/>
+                                    {# TODO: make sure 'maximum' is correct here #}
+                                    <input id="maxPlayers" x-ref="maxPlayers" name="maxPlayers" type="number" value="" x-validate.required :max="($validate.value('format') === 'Workshop') && 25"/>
                                 </div>
                                 <div x-show="isRPGorLARP" class="required">
                                     <label for="characters">Characters</label>
@@ -225,11 +226,9 @@
                                         <option disabled selected value="">
                                             -- Choose One --
                                         </option>
-                                        <option value="1">1 hour</option>
-                                        <option value="2">2 hours</option>
-                                        <option value="4">4 hours</option>
-                                        <option value="6">6 hours</option>
-                                        <option value="8">8 hours</option>
+                                        <template x-for="(option) in eventLengthOptions($validate.value('format'))">
+                                            <option :value="option.value" x-text="option.name"></option>
+                                        </template>
                                     </select>
                                 </div>
                                 <div x-show="$validate.data('eventLength').value">
@@ -239,7 +238,7 @@
                                             <input type="checkbox" name="schedulingPref" id="No-Preference" value="No Preference" x-validate>
                                             <label for="No-Preference">No Preference</label>
                                         </div>
-                                        <template x-for="(time, i) in scheduleTimes[$validate.data('eventLength').value]">
+                                        <template x-for="(time, i) in scheduleTimes($validate.value('format'),$validate.value('eventLength'))">
                                             <div>
                                                 <input type="checkbox" name="schedulingPref" :id="'time' + i" :value="time" x-validate>
                                                 <label :for="'time' + i" x-text="time"></label>
@@ -448,13 +447,11 @@
                         "id": 9,
                         "name": "LARP",
                         "slug": "larp"
-                    },
-                    /* {
+                    }, {
                         "id": 154,
                         "name": "Panel",
                         "slug": "panel"
-                    }, */
-                    {
+                    }, {
                         "id": 8,
                         "name": "RPG",
                         "slug": "rpg"
@@ -893,7 +890,70 @@
                         "Sunday morning (between 9AM-1PM)",
                         "Sunday afternoon (between 2PM-6PM)"
                     ],
-                    scheduleTimes: {
+                    eventLengthOptions(format) {
+                        let options = [
+                            {
+                                name: '1 hour',
+                                value: '1'
+                            }
+                        ]
+                        if (format === 'Panel') {
+                            // returns 1 hour
+                        } else if (format === 'Workshop') {
+                            options.push({name: '2 hours', value: '2'})
+                        } else {
+                            options = [
+                                ...options, {
+                                    name: '2 hours',
+                                    value: '2'
+                                }, {
+                                    name: '4 hours',
+                                    value: '4'
+                                }, {
+                                    name: '6 hours',
+                                    value: '6'
+                                }, {
+                                    name: '8 hours',
+                                    value: '8'
+                                }
+                            ]
+                        }
+                        return options
+
+                    },
+                    scheduleTimes(format, eventLength) {
+                        if (format === 'Panel' || format === 'Workshop') {
+                            return this.panelScheduleTimes[eventLength]
+                        } else {
+                            return this.gameScheduleTimes[eventLength]
+                        }
+                    },
+                    panelScheduleTimes: {
+                        "0": [],
+                        "1": [
+                            "Friday morning (between 9AM-1PM)",
+                            "Friday afternoon (between 2PM-6PM)",
+                            "Saturday morning (between 9AM-1PM)",
+                            "Saturday afternoon (between 2PM-6PM)",
+                            "Sunday morning (between 9AM-1PM)",
+                            "Sunday afternoon (between 2PM-6PM)"
+                        ],
+                        "2": [
+                            "Friday 9AM-11AM",
+                            "Friday 11AM-1PM",
+                            "Friday 2PM-4PM",
+                            "Friday 4PM-6PM",
+                            "Saturday 9AM-11AM",
+                            "Saturday 11AM-1PM",
+                            "Saturday 2PM-4PM",
+                            "Saturday 4PM-6PM",
+                            "Sunday 9AM-11AM",
+                            "Sunday 11AM-1PM",
+                            "Sunday 2PM-4PM",
+                            "Sunday 4PM-6PM"
+                        ]
+                    },
+                    gameScheduleTimes: {
                         "0": [],
                         "1": [
                             "Friday morning (between 9AM-1PM)",
