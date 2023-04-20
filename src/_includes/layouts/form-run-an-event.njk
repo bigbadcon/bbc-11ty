@@ -74,7 +74,7 @@
                                 <legend>Event Info</legend>
                                 <div class="required">
                                     <label for="eventName">Event Name</label>
-                                    <input id="eventName" name="eventName" type="text" value="" x-validate.required class="w-full max-w-md"/>
+                                    <input id="eventName" name="eventName" type="text" value="" x-validate.required class="w-full max-w-md" maxlength="30"/>
                                 </div>
                                 <div class="required">
                                     <label for="format">Format</label>
@@ -801,7 +801,7 @@
                             console.log("🚀 ~ file: form-run-an-event.njk ~ line 805 ~ submitEvent ~ lilRedResult", lilRedResult)
 
                             // If result is a success it returns the event ID.
-                            if (!isNaN(lilRedResult)) {
+                            if (lilRedResult && !isNaN(lilRedResult)) {
 
                                 try {
                                     // Build data for google sheet
