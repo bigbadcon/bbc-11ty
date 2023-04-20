@@ -6,7 +6,7 @@ published: true
 gender: she/they
 image: /images/Akemi Maniwa.jpg
 twitter: NinjaPenguinAM
-mastodon: dice.camp/@ninjapenguinamenguinAM
+mastodon: '@NinjaPenguinAM@dice.camp'
 website_name: itch
 website_url: 'https://ninjapenguinam.itch.io/'
 ---
