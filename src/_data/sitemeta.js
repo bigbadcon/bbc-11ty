@@ -1,30 +1,29 @@
 require("dotenv").config();
 
 /* --------------------------- Check server status -------------------------- */
-function checkServer(url, timeout = 500) {
+async function checkServer(url, timeout = 500) {
 	const controller = new AbortController();
 	const signal = controller.signal;
 	const options = { mode: "no-cors", signal };
-	fetch(url, options)
-		.then(
-			setTimeout(() => {
-				controller.abort();
-			}, timeout)
-		)
-		.then((response) => {
-			// eslint-disable-next-line no-console
-			console.log("Check server response:", response.statusText);
-			return response.statusText;
-		})
-		.catch((error) => {
-			// eslint-disable-next-line no-console
-			console.error("Check server error:", error.message);
-			return false;
-		});
+	try {
+		const response = await Promise.race([
+			fetch(url, options),
+			new Promise((_, reject) => setTimeout(() => reject(new Error("timeout")), timeout)),
+		]);
+		// eslint-disable-next-line no-console
+		console.log("Check server response:", response.statusText);
+		return response.statusText;
+	} catch (error) {
+		// eslint-disable-next-line no-console
+		console.error("Check server error:", error.message);
+		return false;
+	} finally {
+		controller.abort();
+	}
 }
 
 module.exports = async () => {
-	const isAdminOnline = checkServer("https://admin.bigbadcon.com");
+	const isAdminOnline = await checkServer("https://admin.bigbadcon.com");
 
 	return {
 		domain: process.env.DOMAIN || "www.bigbadcon.com",

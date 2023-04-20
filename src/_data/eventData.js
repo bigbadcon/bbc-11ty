@@ -75,26 +75,26 @@ const getDurationInHours = (dateStart, dateEnd) => {
 };
 
 /* --------------------------- Check server status -------------------------- */
-function checkServer(url, timeout = 500) {
+/* --------------------------- Check server status -------------------------- */
+async function checkServer(url, timeout = 500) {
 	const controller = new AbortController();
 	const signal = controller.signal;
 	const options = { mode: "no-cors", signal };
-	fetch(url, options)
-		.then(
-			setTimeout(() => {
-				controller.abort();
-			}, timeout)
-		)
-		.then((response) => {
-			// eslint-disable-next-line no-console
-			console.log("Check server response:", response.statusText);
-			return response.statusText;
-		})
-		.catch((error) => {
-			// eslint-disable-next-line no-console
-			console.error("Check server error:", error.message);
-			return false;
-		});
+	try {
+		const response = await Promise.race([
+			fetch(url, options),
+			new Promise((_, reject) => setTimeout(() => reject(new Error("timeout")), timeout)),
+		]);
+		// eslint-disable-next-line no-console
+		console.log("Check server response:", response.statusText);
+		return response.statusText;
+	} catch (error) {
+		// eslint-disable-next-line no-console
+		console.error("Check server error:", error.message);
+		return false;
+	} finally {
+		controller.abort();
+	}
 }
 
 /* -------------------------------------------------------------------------- */
@@ -388,7 +388,7 @@ Object.keys(metadataTags).forEach((type) => {
 /* -------------------------------------------------------------------------- */
 
 module.exports = async () => {
-	const isAdminOnline = checkServer("https://admin.bigbadcon.com");
+	const isAdminOnline = await checkServer("https://admin.bigbadcon.com");
 	try {
 		let data = await EleventyFetch(url, {
 			duration: "1d",
@@ -402,6 +402,7 @@ module.exports = async () => {
 		if (environment === "production") data = data.filter((event) => event.eventStatus === 1);
 		// Only show dates in the future (minus 1 month)
 		data = data.filter((event) => dayjs(event.eventStartDate).isAfter(dayjs().subtract(1, "month")));
+		console.log("Number of Events:", data.length);
 
 		/* ---------------- fix data if missing slug and decode text ---------------- */
 		data = data.map((event) => {
