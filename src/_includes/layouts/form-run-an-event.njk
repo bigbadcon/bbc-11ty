@@ -437,9 +437,8 @@
             /* -------------------------------------------------------------------------- */
             // Metadata grouped by types
 
-            // TODO: make sure that playtest adds id 157 for eventMetadataIds
-            // TODO: makes sure when 13+ games adds id 193 to eventMetadataIds
-            // Make all other tags only go to eventMetadataIds
+            // TODO: Alphabetize tags before sending as a string
+            // TODO: Make sure tags display correctly on the event page
 
             const metadata = {
                 format: [
@@ -473,104 +472,128 @@
                 panelTopic: [
                     {
                         "id": 160,
+                        "term_id": 160,
                         "name": "GMing Advice",
                         "slug": "gming-advice"
                     }, {
                         "id": 159,
+                        "term_id": 159,
                         "name": "Literature",
                         "slug": "literature"
                     }, {
                         "id": 161,
+                        "term_id": 161,
                         "name": "Player Advice",
                         "slug": "player-advice"
                     }, {
                         "id": 163,
+                        "term_id": 163,
                         "name": "Safety Tools",
                         "slug": "safety-tools"
                     }, {
                         "id": 162,
+                        "term_id": 162,
                         "name": "Social Contracts",
                         "slug": "social-contracts"
                     }, {
                         "id": 158,
+                        "term_id": 158,
                         "name": "Social Justice",
                         "slug": "social-justice"
                     }
                 ],
                 gameFocus: [
                     {
-                        "id": 55,
+                        "id": 56,
+                        "term_id": 55,
                         "name": "Adventure",
                         "slug": "adventure"
                     }, {
-                        "id": 62,
+                        "id": 63,
+                        "term_id": 62,
                         "name": "Combat",
                         "slug": "combat"
                     }, {
-                        "id": 59,
+                        "id": 60,
+                        "term_id": 59,
                         "name": "Drama",
                         "slug": "drama"
                     }, {
-                        "id": 56,
+                        "id": 57,
+                        "term_id": 56,
                         "name": "Exploration",
                         "slug": "exploration"
                     }, {
-                        "id": 61,
+                        "id": 62,
+                        "term_id": 61,
                         "name": "Hijinx",
                         "slug": "hijinx"
                     }, {
                         "id": 191,
+                        "term_id": 191,
                         "name": "Improv",
                         "slug": "improv"
                     }, {
-                        "id": 58,
+                        "id": 59,
+                        "term_id": 58,
                         "name": "Intrigue",
                         "slug": "intrigue"
                     }, {
-                        "id": 57,
+                        "id": 58,
+                        "term_id": 57,
                         "name": "Investigation",
                         "slug": "investigation"
                     }, {
                         "id": 181,
+                        "term_id": 181,
                         "name": "LGBTQ themes",
                         "slug": "lgbtq-themes"
                     }, {
                         "id": 167,
+                        "term_id": 167,
                         "name": "Mystery",
                         "slug": "mystery"
                     }, {
-                        "id": 60,
+                        "id": 61,
+                        "term_id": 60,
                         "name": "Romance",
                         "slug": "romance"
                     }
                 ],
                 playerContributions: [
                     {
-                        "id": 66,
+                        "id": 67,
+                        "term_id": 66,
                         "name": "Collaborative",
                         "slug": "collaborative"
                     }, {
                         "id": 188,
+                        "term_id": 188,
                         "name": "Freeform",
                         "slug": "freeform"
                     }, {
-                        "id": 67,
+                        "id": 68,
+                        "term_id": 67,
                         "name": "GM-less",
                         "slug": "gm-less"
                     }, {
-                        "id": 64,
+                        "id": 65,
+                        "term_id": 64,
                         "name": "Play to find out",
                         "slug": "play-to-find-out"
                     }, {
-                        "id": 65,
+                        "id": 66,
+                        "term_id": 65,
                         "name": "Player antagonism",
                         "slug": "player-antagonism"
                     }, {
-                        "id": 68,
+                        "id": 69,
+                        "term_id": 68,
                         "name": "Rotating authority",
                         "slug": "rotating-authority"
                     }, {
-                        "id": 63,
+                        "id": 64,
+                        "term_id": 63,
                         "name": "Strong storyline",
                         "slug": "strong-storyline"
                     }
@@ -578,116 +601,143 @@
                 gameGenre: [
                     {
                         "id": 171,
+                        "term_id": 171,
                         "name": "Aliens",
                         "slug": "aliens"
                     }, {
-                        "id": 73,
+                        "id": 74,
+                        "term_id": 73,
                         "name": "Alternate History",
                         "slug": "alternate-history"
                     }, {
-                        "id": 76,
+                        "id": 77,
+                        "term_id": 76,
                         "name": "Apocalyptic",
                         "slug": "apocalyptic"
                     }, {
                         "id": 156,
+                        "term_id": 156,
                         "name": "Cyberpunk",
                         "slug": "cyberpunk"
                     }, {
-                        "id": 77,
+                        "id": 78,
+                        "term_id": 77,
                         "name": "Espionage",
                         "slug": "espionage"
                     }, {
-                        "id": 71,
+                        "id": 72,
+                        "term_id": 71,
                         "name": "Fantasy",
                         "slug": "fantasy"
                     }, {
-                        "id": 69,
+                        "id": 70,
+                        "term_id": 69,
                         "name": "Horror",
                         "slug": "horror"
                     }, {
-                        "id": 78,
+                        "id": 79,
+                        "term_id": 78,
                         "name": "Military",
                         "slug": "military"
                     }, {
-                        "id": 72,
+                        "id": 73,
+                        "term_id": 72,
                         "name": "Modern",
                         "slug": "modern"
                     }, {
                         "id": 167,
+                        "term_id": 167,
                         "name": "Mystery",
                         "slug": "mystery"
                     }, {
-                        "id": 75,
+                        "id": 76,
+                        "term_id": 75,
                         "name": "Noir",
                         "slug": "noir"
                     }, {
-                        "id": 74,
+                        "id": 75,
+                        "term_id": 74,
                         "name": "Pulp",
                         "slug": "pulp"
                     }, {
-                        "id": 70,
+                        "id": 71,
+                        "term_id": 70,
                         "name": "Sci-Fi",
                         "slug": "sci-fi"
                     }, {
-                        "id": 120,
+                        "id": 121,
+                        "term_id": 120,
                         "name": "Super Powers",
                         "slug": "super-powers"
                     }
                 ],
                 gameMood: [
                     {
-                        "id": 80,
+                        "id": 81,
+                        "term_id": 80,
                         "name": "Comical",
                         "slug": "comical"
                     }, {
                         "id": 175,
+                        "term_id": 175,
                         "name": "Cute",
                         "slug": "cute"
                     }, {
-                        "id": 82,
+                        "id": 83,
+                        "term_id": 82,
                         "name": "Dark",
                         "slug": "dark"
                     }, {
-                        "id": 83,
+                        "id": 84,
+                        "term_id": 83,
                         "name": "Emotional",
                         "slug": "emotional"
                     }, {
-                        "id": 81,
+                        "id": 85,
+                        "term_id": 81,
                         "name": "Light",
                         "slug": "light"
                     }, {
-                        "id": 133,
+                        "id": 134,
+                        "term_id": 133,
                         "name": "Melancholy",
                         "slug": "melancholy"
                     }, {
-                        "id": 79,
+                        "id": 80,
+                        "term_id": 79,
                         "name": "Serious",
                         "slug": "serious"
                     }, {
                         "id": 187,
+                        "term_id": 187,
                         "name": "Silly",
                         "slug": "silly"
                     }, {
-                        "id": 84,
+                        "id": 85,
+                        "term_id": 84,
                         "name": "Suspenseful",
                         "slug": "suspenseful"
                     }
                 ],
                 contentAdvisoryOptions: [
                     {
-                        "id": 91,
+                        "id": 92,
+                        "term_id": 91,
                         "name": "Gore",
                         "slug": "gore"
                     }, {
-                        "id": 90,
+                        "id": 91,
+                        "term_id": 90,
                         "name": "Graphic Violence",
                         "slug": "graphic-violence"
                     }, {
-                        "id": 88,
+                        "id": 89,
+                        "term_id": 88,
                         "name": "Provocative",
                         "slug": "provocative"
                     }, {
-                        "id": 89,
+                        "id": 90,
+                        "term_id": 89,
                         "name": "Sex and Sexuality",
                         "slug": "sex-and-sexuality"
                     }
@@ -715,7 +765,7 @@
 
             function convertFormDataToCreateEventAPI(formData) {
 
-                const eventMetadataIds = [
+                let eventMetadataIds = [
                     ...formData.playerContributions.array,
                     ...formData.gameFocus.array,
                     ...formData.gameMood.array,
@@ -727,6 +777,40 @@
                 const eventMetadataNames = eventMetadataIds
                     ? eventMetadataIds.map(id => getMetadataName(id))
                     : [];
+
+                function getEventMetadataIds() {
+
+                    let eventMetadataIds = [
+                        ...formData.playerContributions.array,
+                        ...formData.gameFocus.array,
+                        ...formData.gameMood.array,
+                        ...formData.gameGenre.array,
+                        ...formData.contentAdvisoryOptions.array,
+                        ...formData.panelTopic.array
+                    ].map(id => parseInt(id));
+
+                    // Add event CategoryId
+                    eventMetadataIds = [
+                        ...eventMetadataIds,
+                        ...formData.eventCategoryId.value
+                    ]
+
+                    //If player age is 13+ then add
+                    if (formData.playerAge.value === "13+") {
+                        eventMetadataIds = [
+                            ...eventMetadataIds,
+                            193
+                        ]
+                    }
+
+                    // If playtest than add that
+                    if (formData.playtest.value === "Yes") {
+                        eventMetadataIds = [
+                            ...eventMetadataIds,
+                            157
+                        ]
+                    }
+                }
 
                 // TODO: review this stuff for improving this API later
                 formData = {
@@ -740,7 +824,7 @@
                     eventCategoryId: formData.eventCategoryId.value || 0,
                     eventDescription: formData.eventDescription.value,
                     //eventFacilitators: formData.facilitators,  not used
-                    eventMetadataIds: [formData.eventCategoryId.value] || [],
+                    eventMetadataIds: getEventMetadataIds() || [],
                     eventMetadataNames: eventMetadataNames || [], // This is not used in create event API; only for Google Sheet
                     eventMetadataNamesString: eventMetadataNames && eventMetadataNames.toString(),
                     eventName: formData.eventName.value,
