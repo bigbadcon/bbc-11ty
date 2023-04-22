@@ -23,7 +23,7 @@ async function checkServer(url, timeout = 500) {
 }
 
 module.exports = async () => {
-	const isAdminOnline = await checkServer("https://admin.bigbadcon.com");
+	const isAdminOnline = await checkServer("https://admin.bigbadcon.com", 5000);
 
 	return {
 		domain: process.env.DOMAIN || "www.bigbadcon.com",
