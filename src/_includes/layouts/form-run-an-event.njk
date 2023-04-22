@@ -181,7 +181,6 @@
                                         </option>
                                         <option>No Preference</option>
                                         <option>Private Room</option>
-                                        <option>Outdoor Pavilion</option>
                                         <option>Atrium</option>
                                     </select>
                                 </div>
@@ -440,23 +439,28 @@
             const metadata = {
                 format: [
                     {
-                        "id": 10,
+                        "id": 11,
+                        "term_id": 10,
                         "name": "Board/Card Game",
                         "slug": "board-game"
                     }, {
-                        "id": 9,
+                        "id": 10,
+                        "term_id": 9,
                         "name": "LARP",
                         "slug": "larp"
                     }, {
                         "id": 154,
+                        "term_id": 154,
                         "name": "Panel",
                         "slug": "panel"
                     }, {
-                        "id": 8,
+                        "id": 9,
+                        "term_id": 8,
                         "name": "RPG",
                         "slug": "rpg"
                     }, {
-                        "id": 11,
+                        "id": 13,
+                        "term_id": 12,
                         "name": "Workshop",
                         "slug": "workshop"
                     }
@@ -735,6 +739,7 @@
                     eventMetadataNames: eventMetadataNames || [], // This is not used in create event API; only for Google Sheet
                     eventMetadataNamesString: eventMetadataNames && eventMetadataNames.toString(),
                     eventName: formData.eventName.value,
+                    eventTags: eventMetadataTags || [],
                     format: formData.format.value,
                     gm: formData.publicName.value,
                     gmAge: formData.yourAge.value,
