@@ -740,7 +740,7 @@
                     eventCategoryId: formData.eventCategoryId.value || 0,
                     eventDescription: formData.eventDescription.value,
                     //eventFacilitators: formData.facilitators,  not used
-                    eventMetadataIds: eventMetadataIds || [],
+                    eventMetadataIds: [formData.eventCategoryId.value] || [],
                     eventMetadataNames: eventMetadataNames || [], // This is not used in create event API; only for Google Sheet
                     eventMetadataNamesString: eventMetadataNames && eventMetadataNames.toString(),
                     eventName: formData.eventName.value,
