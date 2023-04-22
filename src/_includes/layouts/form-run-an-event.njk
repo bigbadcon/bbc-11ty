@@ -436,6 +436,11 @@
             /* Metadata Stuff */
             /* -------------------------------------------------------------------------- */
             // Metadata grouped by types
+
+            // TODO: make sure that playtest adds id 157 for eventMetadataIds
+            // TODO: makes sure when 13+ games adds id 193 to eventMetadataIds
+            // Make all other tags only go to eventMetadataIds
+
             const metadata = {
                 format: [
                     {
@@ -739,7 +744,7 @@
                     eventMetadataNames: eventMetadataNames || [], // This is not used in create event API; only for Google Sheet
                     eventMetadataNamesString: eventMetadataNames && eventMetadataNames.toString(),
                     eventName: formData.eventName.value,
-                    eventTags: eventMetadataTags || [],
+                    eventTags: eventMetadataNames || [],
                     format: formData.format.value,
                     gm: formData.publicName.value,
                     gmAge: formData.yourAge.value,
