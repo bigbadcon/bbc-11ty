@@ -111,8 +111,17 @@ module.exports = [
 	{
 		"title": "Volunteer",
 		"id": "volunteer",
-		"url": "/volunteer",
-		"icon": "people-group",
+		"subnav": [
+			{	"title": "Become a Volunteer",
+				"url": "/volunteer",
+				"icon": "people-group"
+			},
+			{	
+				"title": "Volunteer Shifts",
+				"url": "/volunteer-shifts/",
+				"icon": "people-group"
+			}
+		]
 	},
 	{
 		"title": "About Us",

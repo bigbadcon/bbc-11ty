@@ -27,6 +27,10 @@ If you like paying matchmaker, you’ll make a great Table Host for our Schedule
 _(In-person only)_  
 Some folks like being the person behind the curtain. If that's you, facilities may be the perfect fit. Those working Setup or Breakdown will help Go Play NW by building or dismantling stanchions, putting up or taking down signage, and loading or unloading chairs, tables, or equipment, as needed. Don’t worry if heavy-lifting is not for you, there are also plenty of opportunities for fine or light work in this role.
 
+**Vaccination Station**
+_(In-person only)_
+Help Go Play NW support public health! Vaccination Station volunteers form an essential link in Go Play NW’s efforts to keep our community safe from COVID-19. In this volunteer role, you’ll check attendees vaccination status as they enter the convention to make sure they adhere to our COVID-19 vaccination requirements. You’ll also hook people up with masks and provide rapid at-home antigen tests to those who need them.
+
 **Friendly Faces**  
 _(In-person and online)_
 If you’d like to share your excitement about Go Play NW, become a Friendly Face! Our Friendly Faces welcome and orient attendees as they enter the convention, answer their questions (or connect them to staff for more assistance,) and help them feel comfortable. A Friendly Face is often an attendee’s first point of contact with convention staff, and helps set the tone for the weekend.
