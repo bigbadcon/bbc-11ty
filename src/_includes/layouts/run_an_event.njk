@@ -40,7 +40,7 @@
                         </header>
                         <form id="form" action="post" class="mt-base" id="form-run-an-event" @submit.prevent="submitEvent">
                             {# TODO: add honeypot #}
-                            <input type="hidden" x-model="eventInfo.userDisplayName" x-init="event_type = 'ONLINE';eventInfo.userDisplayName = user && user.displayName; $watch('user', value => eventInfo.userDisplayName = value && value.displayName)">
+                            <input type="hidden" x-model="eventInfo.userDisplayName" x-init="event_type = 'IN-PERSON';eventInfo.userDisplayName = user && user.displayName; $watch('user', value => eventInfo.userDisplayName = value && value.displayName)">
                             {# Personal Info #}
                             <fieldset>
                                 <legend>Personal info</legend>
