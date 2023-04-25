@@ -40,7 +40,7 @@
                         </header>
                         <form id="form" action="post" class="mt-base" id="form-run-an-event" @submit.prevent="submitEvent">
                             {# TODO: add honeypot #}
-                            <input type="hidden" x-model="eventInfo.userDisplayName" x-init="event_type = siteMeta.eventType;eventInfo.userDisplayName = user && user.displayName; $watch('user', value => eventInfo.userDisplayName = value && value.displayName)">
+                            <input type="hidden" x-model="eventInfo.userDisplayName" x-init="event_type = sitemeta.eventType;eventInfo.userDisplayName = user && user.displayName; $watch('user', value => eventInfo.userDisplayName = value && value.displayName)">
                             {# Personal Info #}
                             <fieldset>
                                 <legend>Personal info</legend>
@@ -118,8 +118,7 @@
                                 <legend>Player info</legend>
                                 {# Only required for games #}
                                 <div class="required">
-                                    <label for="minPlayers">Minimum players</label>                                         :640
-
+                                    <label for="minPlayers">Minimum players</label>
                                     <input id="minPlayers" name="minPlayers" type="number" step="1" value="" x-model="eventInfo.minPlayers" @blur="validate"/>
                                 </div>
                                 {# Only required for games #}
