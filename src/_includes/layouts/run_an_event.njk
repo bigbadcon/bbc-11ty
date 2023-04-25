@@ -190,7 +190,7 @@
                                         </template>
                                     </div>
                                 </div>
-                                <div x-show="isGame">
+                                <div x-show="isGame && isOnlineEvent">
                                     <label>Accessibility Options</label>
                                     <div class="checkbox-grid">
                                         <template x-for="(type, i) in accessibilityOptions">
@@ -275,6 +275,8 @@
 
     <script type="text/javascript">
 
+        import sitemeta from "../../_data/sitemeta";
+
         document.addEventListener('alpine:init', () => {
 
             // Check if variable is a string with stuff in it
@@ -283,16 +285,6 @@
             }
 
             function convertToCreateEventAPI(eventInfo) {
-                // const eventMetadataIds = [
-                //...eventInfo.playerContributions,
-                // ...eventInfo.gameTags,
-                // ...eventInfo.gameFocus,
-                // ...eventInfo.gameMood,
-                // ...eventInfo.gameGenre,
-                // ...eventInfo.contentAdvisoryOptions,
-                // ...eventInfo.panelTopic
-                // ].map(id => parseInt(id));
-
                 const scheduleTimeDetails = {
                     "Friday Afternoon - 1:30 PM-5:30 PM PDT": {
                         "date": "2023-07-07",
@@ -386,13 +378,11 @@
                     eventInfo: {
                         // -- Personal Info
                         publicName: '', //required
-                        //yourAge: '', required
                         communityStandards: false,
                         // -- Event Info
                         eventName: '', //required
                         format: '', //required
                         system: '', //required only isGame
-                        //                        playtest: '', required only isGame
                         eventDescription: '', //required
                         otherInfo: '',
                         // imageUpload not working yet
@@ -402,11 +392,6 @@
                         maxPlayers: '', //required if isGame
                         characters: '', //not required
                         // -- Scheduling Info
-                        //                        runNumberOfTimes: '', required
-                        //                        locationPref: '', required if isTabletop
-                        //                        tableType: '', required if Board/Card game
-                        //                        mediaEquipment: '', required if not isGame
-                        //                        mediaEquipmentRequested: '', required if mediaEquipment = "Equipment Requested"
                         eventLength: null, //required
                         schedulePref: '', // not required
                         // -- Content Advisory
@@ -417,11 +402,6 @@
                         // -- Additional Info
                         panelTopic: '', //not required
                         gameTags: '', //not required
-                        // gameFocus: '', not required
-                        // playerContributions: '', not required
-                        // gameGenre: '', not required
-                        // gameMood: '', not required
-                        // additionalGMs: '', not required
                         additionalRequirements: '', //not required
                         eventTags: '', //not required
                         eventImage: '', //not required
@@ -456,23 +436,7 @@
                     },
                     get isSchedulingInfoComplete() {
                         const x = this.eventInfo
-                        //let fields = [x.runNumberOfTimes, x.eventLength]
                         let fields = [x.eventLength]
-                        // if (this.isTableTop)
-                        //     fields = [
-                        //         ...fields,
-                        //         x.locationPref
-                        //     ]
-                        // if (this.isBoardgame)
-                        //     fields = [
-                        //         ...fields,
-                        //         x.tableType
-                        //     ]
-                        // if (!this.isGame)
-                        //     fields = [
-                        //         ...fields,
-                        //         x.mediaRoom
-                        //     ]
                         return (this.isPlayerInfoComplete && fields.every(isFull));
                     },
                     validate(event) {
@@ -622,6 +586,12 @@
                     get isBoardgame() {
                         return this.eventInfo.format === "Board/Card Game"
                     },
+                    get isOnlineEvent() {
+                        return sitemeta.eventType === "ONLINE"
+                    },
+                    get isInPersonEvent() {
+                        return sitemeta.eventType === "IN-PERSON"
+                    },
                     format: [
                         {
                             "id": 27,
@@ -632,81 +602,12 @@
                             "name": "LARP",
                             "slug": "larp"
                         },
-                        // {
-                        //     "id": 30,
-                        //     "name": "Panel",
-                        //     "slug": "panel"
-                        // },
                         {
                             "id": 29,
                             "name": "RPG",
                             "slug": "rpg"
                         },
-                        // {
-                        //     "id": 31,
-                        //     "name": "Workshops",
-                        //     "slug": "workshops"
-                        // }
                     ],
-                    // panelTopic: [],
-                    // gameTags: [
-                    //     {
-                    //         "id": 35,
-                    //         "name": "Diceless",
-                    //         "slug": "diceless"
-                    //     }, {
-                    //         "id": 34,
-                    //         "name": "GMless",
-                    //         "slug": "gmless"
-                    //     }, {
-                    //         "id": 36,
-                    //         "name": "Map-Building",
-                    //         "slug": "map-building"
-                    //     }, {
-                    //         "id": 37,
-                    //         "name": "Non-Violent",
-                    //         "slug": "non-violent"
-                    //     }, {
-                    //         "id": 39,
-                    //         "name": "Other",
-                    //         "slug": "other"
-                    //     }, {
-                    //         "id": 32,
-                    //         "name": "Playtest",
-                    //         "slug": "playtest"
-                    //     }, {
-                    //         "id": 33,
-                    //         "name": "Run by Designer",
-                    //         "slug": "run-by-designer"
-                    //     }, {
-                    //         "id": 38,
-                    //         "name": "World Building",
-                    //         "slug": "world-building"
-                    //     }
-                    // ],
-                    // gameFocus: [],
-                    // playerContributions: [],
-                    // gameGenre: [],
-                    // gameMood: [],
-                    // contentAdvisoryOptions: [
-                    //     {
-                    //         "id": 91,
-                    //         "name": "Gore",
-                    //         "slug": "gore"
-                    //     }, {
-                    //         "id": 90,
-                    //         "name": "Graphic Violence",
-                    //         "slug": "graphic-violence"
-                    //     }, {
-                    //         "id": 88,
-                    //         "name": "Provocative",
-                    //         "slug": "provocative"
-                    //     }, {
-                    //         "id": 89,
-                    //         "name": "Sex and Sexuality",
-                    //         "slug": "sex-and-sexuality"
-                    //     }
-                    // ],
                     safetyTools: [
                         'X-card',
                         'Script Change',
@@ -718,7 +619,11 @@
                         'Other'
                     ],
                     accessibilityOptions: [
-                        'Text Only', 'Outside Portal/Site', 'Video', 'Audio/Voice', 'Other'
+                        'Text Only',
+                        'Outside Portal/Site',
+                        'Video',
+                        'Audio/Voice',
+                        'Other'
                     ],
                     eventTags: [
                         'Diceless',

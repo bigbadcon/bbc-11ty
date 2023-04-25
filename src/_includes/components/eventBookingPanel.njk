@@ -15,11 +15,17 @@
             </ul>
         </div>
         {# Booking buttons #}
+        {% if sitemeta.signupsOpen %}
         <div class="flex mt-base gap-sm">
             <button class="button" x-show="spacesOpen > 0 && !isBooked({{event.eventId}})" @click="bookEvent({{event.eventId}})">Book Event</button>
             <span x-show="spacesOpen <= 0 && !isBooked({{event.eventId}})" class="font-bold">Event is full</span>
-            <button class="button" x-show="isBooked({{event.eventId}}) && user && user.displayName !== owner" @click="cancelBooking({{event.eventId}})">Cancel Booking</span>
+            <button class="button" x-show="isBooked({{event.eventId}}) && user && user.displayName !== owner" @click="cancelBooking({{event.eventId}})">Cancel Booking</button>
         </div>
+        {% else %}
+        <div>
+            <span class="font-bold">Game signups will open May 22, 2023! Too excited to wait? Consider submitting a game!</span>
+        </div>
+        {% endif %}
         <div x-show="user.displayName === owner">
             You are the owner of this event. If you need to cancel this event please contact us.
         </div>
