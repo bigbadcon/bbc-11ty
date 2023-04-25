@@ -40,7 +40,7 @@
                         </header>
                         <form id="form" action="post" class="mt-base" id="form-run-an-event" @submit.prevent="submitEvent">
                             {# TODO: add honeypot #}
-                            <input type="hidden" x-model="eventInfo.userDisplayName" x-init="eventInfo.userDisplayName = user && user.displayName; $watch('user', value => eventInfo.userDisplayName = value && value.displayName)">
+                            <input type="hidden" x-model="eventInfo.userDisplayName" x-init="event_type = siteMeta.eventType;eventInfo.userDisplayName = user && user.displayName; $watch('user', value => eventInfo.userDisplayName = value && value.displayName)">
                             {# Personal Info #}
                             <fieldset>
                                 <legend>Personal info</legend>
@@ -118,7 +118,8 @@
                                 <legend>Player info</legend>
                                 {# Only required for games #}
                                 <div class="required">
-                                    <label for="minPlayers">Minimum players</label>                                         
+                                    <label for="minPlayers">Minimum players</label>                                         :640
+
                                     <input id="minPlayers" name="minPlayers" type="number" step="1" value="" x-model="eventInfo.minPlayers" @blur="validate"/>
                                 </div>
                                 {# Only required for games #}
@@ -277,6 +278,7 @@
 
         document.addEventListener('alpine:init', () => {
 
+
             // Check if variable is a string with stuff in it
             function isFull(str) {
                 return (!!str && typeof str === 'string' && str.trim().length !== 0);
@@ -371,6 +373,7 @@
 
             Alpine.data('runAnEventData', function () {
                 return {
+                    event_type: '',
                     eventSubmitted: false,
                     authToken: this.$persist(""),
                     eventInfo: {
@@ -550,69 +553,7 @@
                         }
                         //console.log(this.eventInfo[arrayName])
                     },
-                    // times1hr: [
-                    //     "Friday afternoon (between 2PM-6PM)",
-                    //     "Friday night (between 8PM-Midnight)",
-                    //     "Saturday morning (between 9AM-1PM)",
-                    //     "Saturday afternoon (between 2PM-6PM)",
-                    //     "Saturday night (between 8PM-Midnight)",
-                    //     "Sunday morning (between 9AM-1PM)",
-                    //     "Sunday afternoon (between 2PM-6PM)"
-                    // ],
                     scheduleTimes: {
-                        // "0": [],
-                        // "1": [
-                        //     "Friday morning (between 9AM-1PM)",
-                        //     "Friday afternoon (between 2PM-6PM)",
-                        //     "Friday night (between 8PM-Midnight)",
-                        //     "Saturday morning (between 9AM-1PM)",
-                        //     "Saturday afternoon (between 2PM-6PM)",
-                        //     "Saturday night (between 8PM-Midnight)",
-                        //     "Sunday morning (between 9AM-1PM)",
-                        //     "Sunday afternoon (between 2PM-6PM)"
-                        // ],
-                        // "2": [
-                        //     "Friday 9AM-11AM",
-                        //     "Friday 11AM-1PM",
-                        //     "Friday 2PM-4PM",
-                        //     "Friday 4PM-6PM",
-                        //     "Friday 8PM-10PM",
-                        //     "Friday 10PM-Midnight",
-                        //     "Saturday 9AM-11AM",
-                        //     "Saturday 11AM-1PM",
-                        //     "Saturday 2PM-4PM",
-                        //     "Saturday 4PM-6PM",
-                        //     "Saturday 8PM-10PM",
-                        //     "Saturday 8PM-Midnight",
-                        //     "Sunday 9AM-11AM",
-                        //     "Sunday 11AM-1PM",
-                        //     "Sunday 2PM-4PM",
-                        //     "Sunday 4PM-6PM"
-                        // ],
-                        // "4": [
-                        //     "Friday 9AM-1PM",
-                        //     "Friday 2PM-6PM",
-                        //     "Friday 8PM-Midnight",
-                        //     "Saturday 9AM-1PM",
-                        //     "Saturday 2PM-6PM",
-                        //     "Saturday 8PM-Midnight",
-                        //     "Sunday 9AM-1PM",
-                        //     "Sunday 2PM-6PM"
-                        // ],
-                        // "6": [
-                        //     "Friday 10AM-4PM",
-                        //     "Friday 6PM-Midnight",
-                        //     "Saturday 10AM-4PM",
-                        //     "Saturday 6PM-Midnight",
-                        //     "Sunday 9AM-3PM",
-                        //     "Sunday 2PM-8PM"
-                        // ],
-                        // "8": [
-                        //     "Friday 10AM-6PM",
-                        //     "Friday 2PM-10PM",
-                        //     "Saturday 10AM-6PM",
-                        //     "Saturday 2PM-10PM",
-                        //     "Sunday 10AM-6PM"],
                         "-1": ["Saturday Morning", "Saturday Afternoon", "Saturday Evening", "Sunday Morning", "Sunday Afternoon"]
                     },
                     findName(array, name) {
@@ -638,10 +579,10 @@
                         return this.eventInfo.format === "Board/Card Game"
                     },
                     get isOnlineEvent() {
-                        return sitemeta.eventType === "ONLINE"
+                        return this.event_type === "ONLINE"
                     },
                     get isInPersonEvent() {
-                        return sitemeta.eventType === "IN-PERSON"
+                        return this.eventType === "IN-PERSON"
                     },
                     format: [
                         {
