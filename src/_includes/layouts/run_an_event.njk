@@ -190,7 +190,7 @@
                                         </template>
                                     </div>
                                 </div>
-                                <div x-show="isGame && isOnlineEvent">
+                                <div x-show="isGame">
                                     <label>Accessibility Options</label>
                                     <div class="checkbox-grid">
                                         <template x-for="(type, i) in accessibilityOptions">
@@ -274,8 +274,6 @@
 {% block pagebottom %}
 
     <script type="text/javascript">
-
-        import sitemeta from "../../_data/sitemeta";
 
         document.addEventListener('alpine:init', () => {
 
@@ -585,12 +583,6 @@
                     },
                     get isBoardgame() {
                         return this.eventInfo.format === "Board/Card Game"
-                    },
-                    get isOnlineEvent() {
-                        return sitemeta.eventType === "ONLINE"
-                    },
-                    get isInPersonEvent() {
-                        return sitemeta.eventType === "IN-PERSON"
                     },
                     format: [
                         {
