@@ -351,7 +351,7 @@ module.exports = (eleventyConfig) => {
 
 	// Pass "static" things straight through from "src" to "dist"
 	eleventyConfig.addPassthroughCopy("./src/static/");
-	eleventyConfig.addPassthroughCopy("./images/");
+	eleventyConfig.addPassthroughCopy("./src/images/");
 	eleventyConfig.addPassthroughCopy("./src/_redirects");
 	eleventyConfig.addPassthroughCopy("src/admin/assets");
 	// eleventyConfig.addPassthroughCopy({"./src/assets/svgs" : "/static/svgs"});
