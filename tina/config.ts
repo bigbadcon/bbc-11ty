@@ -8,6 +8,7 @@ import { home_page_cardsFields } from "./templates";
 import { pageFields } from "./templates";
 import { poc_scholarsFields } from "./templates";
 import { staffFields } from "./templates";
+import { globalFields } from "./templates";
 
 // Your hosting provider likely exposes this as an environment variable
 const branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || "main";
@@ -29,6 +30,22 @@ export default defineConfig({
 	},
 	schema: {
 		collections: [
+			{
+				format: "json",
+				label: "Global",
+				name: "global",
+				path: "src/_data/",
+				match: {
+					include: "global",
+				},
+				ui: {
+					allowedActions: {
+						create: false,
+						delete: false,
+					},
+				},
+				fields: [...globalFields()],
+			},
 			{
 				format: "md",
 				label: "Pages",

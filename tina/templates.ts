@@ -510,3 +510,42 @@ export function staffFields() {
 		},
 	] as TinaField[];
 }
+export function globalFields() {
+	return [
+		{
+			name: "onlineEventStartDate",
+			label: "Online Event: Start Date",
+			type: "datetime",
+		},
+		{
+			name: "onlineEventEndDate",
+			label: "Online Event: End Date",
+			type: "datetime",
+		},
+		{
+			name: "conEventStartDate",
+			label: "Con Event: Start Date",
+			type: "datetime",
+		},
+		{
+			name: "conEventEndDate",
+			label: "Con Event: End Date",
+			type: "datetime",
+		},
+		{
+			name: "showVolunteerShifts",
+			label: "Show Volunteer Shifts",
+			type: "boolean",
+		},
+		{
+			name: "showEvents",
+			label: "Show Events",
+			type: "boolean",
+		},
+		{
+			name: "showEventTimes",
+			label: "Show Event Times",
+			type: "boolean",
+		},
+	] as TinaField[];
+}
