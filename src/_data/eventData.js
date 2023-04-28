@@ -401,7 +401,7 @@ module.exports = async () => {
 		// TODO: issue found is that eventStatus = null when it is moved to trash back to drafts?
 		if (environment === "production") data = data.filter((event) => event.eventStatus === 1);
 		// Only show dates in the future (minus 1 month)
-		data = data.filter((event) => dayjs(event.eventStartDate).isAfter(dayjs().subtract(1, "month")));
+		data = data.filter((event) => dayjs(event.eventStartDate).isAfter(dayjs().subtract(2, "weeks")));
 		console.log("Number of Events:", data.length);
 
 		/* ---------------- fix data if missing slug and decode text ---------------- */
