@@ -1,7 +1,7 @@
 ---
 layout: layouts/page.njk
 title: 'Games on Demand: How it Works'
-published: false
+published: true
 description: ''
 ogImage: ''
 navGroup: Events
