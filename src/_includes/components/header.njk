@@ -10,8 +10,14 @@
                         <div class="grid grid-cols-1 w-42 lg:w-56">
                             <a href="/" class="block my-xs">{% include 'components/logo.njk' %}</a>
 
-                            {# TODO: make this more dynamic to show more than one date for Online and IRL #}
-                            <div class="font-serif text-sm leading-none text-highlight lg:text-lg lg:leading-none">{{sitemeta.eventDate}}</div>
+                            {% if global.onlineEventStartDate | isBeforeDate %}
+                                <div class="font-serif text-sm leading-none text-highlight lg:text-lg lg:leading-none">{% dateRange global.onlineEventStartDate,
+                                    global.onlineEventEndDate %} Online</div>
+                            {% endif %}
+                            {% if global.conEventStartDate | isBeforeDate %}
+                                <div class="font-serif text-sm leading-none text-highlight lg:text-lg lg:leading-none">{% dateRange global.conEventStartDate,
+                                    global.conEventEndDate %}</div>
+                            {% endif %}
 
                         </div>
                         {# Light Dark Switch #}

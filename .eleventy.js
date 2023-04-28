@@ -202,6 +202,26 @@ module.exports = (eleventyConfig) => {
 		)
 	);
 
+	eleventyConfig.addFilter("isBeforeDate", function (date) {
+		if (dayjs(date).isValid()) {
+			const isBeforeDate = dayjs().isBefore(dayjs(date));
+			return isBeforeDate;
+		} else {
+			console.log("ERROR: isBeforeDate has Invalid date");
+			return null;
+		}
+	});
+
+	eleventyConfig.addFilter("isAfterDate", function (date) {
+		if (dayjs(date).isValid()) {
+			const isAfterDate = dayjs().isAfter(dayjs(date));
+			return isAfterDate;
+		} else {
+			console.log("ERROR: isAfterDate has Invalid date");
+			return null;
+		}
+	});
+
 	//Used only for past events for now
 	eleventyConfig.addFilter("hoursToHHMM", (hours) => hoursToHHMM(hours));
 
@@ -262,6 +282,8 @@ module.exports = (eleventyConfig) => {
 	/*                                 Shortcodes                                 */
 	/* -------------------------------------------------------------------------- */
 
+	/* -------------------------- Date Time Shortcodes -------------------------- */
+
 	// Event duration in hours
 	eleventyConfig.addShortcode("eventDuration", (dateStart, dateEnd, accuracy) => {
 		// accuracy "hours" || "minutes"; Defaults to minutes
@@ -279,6 +301,20 @@ module.exports = (eleventyConfig) => {
 		const today = new Date();
 		return dayjs(today).format("YYYYMMDD");
 	});
+
+	eleventyConfig.addShortcode("dateRange", function (start, end) {
+		if (dayjs(start).isValid() && dayjs(end).isValid()) {
+			const dateRange = `${dayjs(start).format("MMM D")} - ${dayjs(end).format("MMM D")} ${dayjs(start).format(
+				"YYYY"
+			)}`;
+			return dateRange;
+		} else {
+			console.log("ERROR: dateRange has Invalid date");
+			return null;
+		}
+	});
+
+	/* ----------------------------- Other Shortcuts ---------------------------- */
 
 	// Find Metadata Value By Key
 	eleventyConfig.addShortcode("metaValue", function (metadata, key) {
@@ -340,6 +376,15 @@ module.exports = (eleventyConfig) => {
 	);
 
 	/* -------------------------------------------------------------------------- */
+	/*                                 Global Data                                */
+	/* -------------------------------------------------------------------------- */
+
+	eleventyConfig.addGlobalData("siteBuildDate", () => {
+		let now = new Date();
+		return new Intl.DateTimeFormat("en-US", { dateStyle: "full", timeStyle: "long" }).format(now);
+	});
+
+	/* -------------------------------------------------------------------------- */
 	/*                                 Build Stuff                                */
 	/* -------------------------------------------------------------------------- */
 
@@ -358,7 +403,8 @@ module.exports = (eleventyConfig) => {
 
 	// Event images is a kludge until we can get it working with event manager
 	eleventyConfig.addPassthroughCopy("./event-images/");
-	eleventyConfig.addPassthroughCopy("./event-images-cache/");
+	// TODO: fix this as it is going in a loop for dev
+	// eleventyConfig.addPassthroughCopy("./event-images-cache/");
 
 	// Watch for changes in tailwind css
 	eleventyConfig.addWatchTarget("./src/tailwind/tailwind.css");
