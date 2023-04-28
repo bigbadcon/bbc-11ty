@@ -1,7 +1,7 @@
 ---
 layout: layouts/form-apply-for-scholarship.njk
 title: Apply For Scholarship
-published: true
+published: false
 description: ''
 tags: pages
 ogImage: ''
