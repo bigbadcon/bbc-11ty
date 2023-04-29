@@ -25,3 +25,5 @@ Big Bad Con has a long history, starting all the way back in 2010! Our blog goes
 [Big Bad Online 2021](/past-events/big-bad-online-2021)
 
 [Big Bad Online 2022](/past-events/big-bad-online-2022)
+
+[Big Bad Online 2023](https://www.youtube.com/playlist?list=PLY22glPJVwSLz3itLhB3R4P35xEemHUqK)
