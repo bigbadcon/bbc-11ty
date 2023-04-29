@@ -1,5 +1,3 @@
-/* global require process exports */
-
 const axios = require("axios");
 require("dotenv").config();
 const { GoogleSpreadsheet } = require("google-spreadsheet");
@@ -26,17 +24,12 @@ exports.handler = async function (event) {
 
 		try {
 			// Initialize the sheet - doc ID is the long id in the sheets URL
-			const doc = new GoogleSpreadsheet(
-				process.env.GOOGLE_SHEET_VOLUNTEER_BIGBADCON_2022
-			);
+			const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_VOLUNTEER_BIGBADCON_2022);
 
 			// Initialize Auth - see more available options at https://theoephraim.github.io/node-google-spreadsheet/#/getting-started/authentication
 			await doc.useServiceAccountAuth({
 				client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-				private_key: process.env.GOOGLE_PRIVATE_KEY.replace(
-					/\\n/g,
-					"\n"
-				),
+				private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"),
 			});
 
 			await doc.loadInfo(); // loads document properties and worksheets
@@ -81,10 +74,7 @@ exports.handler = async function (event) {
 				if (res.status !== 200) throw new Error("Add user role failed");
 			} catch (err) {
 				// eslint-disable-next-line no-console
-				console.log(
-					"add user role for volunteer failed",
-					err.toString()
-				);
+				console.log("add user role for volunteer failed", err.toString());
 			}
 
 			/* -------------------------------------------------------------------------- */
@@ -103,10 +93,7 @@ exports.handler = async function (event) {
 				if (res.status !== 200) throw new Error("Add user role failed");
 			} catch (err) {
 				// eslint-disable-next-line no-console
-				console.log(
-					"remove user role 'notattending' for volunteer failed",
-					err.toString()
-				);
+				console.log("remove user role 'notattending' for volunteer failed", err.toString());
 			}
 
 			try {
@@ -122,10 +109,7 @@ exports.handler = async function (event) {
 				if (res.status !== 200) throw new Error("Add user role failed");
 			} catch (err) {
 				// eslint-disable-next-line no-console
-				console.log(
-					"remove user role 'subscriber' for volunteer failed",
-					err.toString()
-				);
+				console.log("remove user role 'subscriber' for volunteer failed", err.toString());
 			}
 
 			return {
