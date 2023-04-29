@@ -9,7 +9,7 @@
     {% set isQuotaExempt = true %}
 {% endif %}
 {# Only show if event has yet to happen #}
-{% if not event.eventStartDateTime | isPastDate %}
+{% if not event.eventStartDateTime | isAfterDate %}
     <div class="rounded-md shadow mt-md text-body p-base bg-card" 
     x-data="{ isAllAges: {{isAllAges}}, isQuotaExempt: {{isQuotaExempt}}, bookingClicked: false}"
     x-init="if (isAuth) getAvailableSlots()"

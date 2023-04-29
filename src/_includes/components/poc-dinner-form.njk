@@ -1,5 +1,5 @@
 {# Only show if event has yet to happen #}
-{% if not event.eventStartDateTime | isPastDate %}
+{% if not event.eventStartDateTime | isAfterDate %}
     {% if prices.length %}
         {# Only show form if they are logged in with a badge not a teen, not booked for the event and there are spaces open #}
         {# Get booked events when loading this form as it might have been set by the purchase serverless function #}
