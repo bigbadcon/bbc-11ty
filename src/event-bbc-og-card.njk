@@ -14,7 +14,7 @@ eleventyComputed:
     <div class="flex flex-col items-center bg-primary-4">
         <div class="pt-base text-primary" style="height: 380px">{% include 'components/bigbadcon-logo-vert.njk' %}</div>
         <div class="flex items-center text-3xl font-bold leading-none text-center text-primary gap-sm px-sm">
-            <span>{{sitemeta.eventDate}}</span>
+            <span>{% include "components/date-range.njk" %}</span>
         </div>
     </div>
     <div class="overflow-hidden bg-primary">
