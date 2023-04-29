@@ -1,16 +1,14 @@
 ---
 layout: layouts/events.njk
 title: Events
-published: false
+published: true
 description: ''
 tags: pages
 navGroup: Events
 navTitle: Events
 order: 0
 icon: calendar-clock
-events_type: online
-events_status: live
-suggestEvent: true
+suggestEvent: false
 runEvent: false
 
 ---
