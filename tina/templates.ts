@@ -165,18 +165,6 @@ export function eventsFields() {
 			],
 		},
 		{
-			type: "string",
-			name: "events_type",
-			label: "events_type",
-			options: ["online", "irl"],
-		},
-		{
-			type: "string",
-			name: "events_status",
-			label: "events_status",
-			options: ["preview", "live"],
-		},
-		{
 			type: "boolean",
 			name: "suggestEvent",
 			label: "suggestEvent",
@@ -531,6 +519,11 @@ export function globalFields() {
 			name: "conEventEndDate",
 			label: "Con Event: End Date",
 			type: "datetime",
+		},
+		{
+			name: "isEventOnline",
+			label: "Online Event",
+			type: "boolean",
 		},
 		{
 			name: "showVolunteerShifts",
