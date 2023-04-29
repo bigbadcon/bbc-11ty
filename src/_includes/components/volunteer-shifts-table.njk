@@ -10,7 +10,9 @@
                 </template>
             </select>
         </div>
-        <div>{% include "components/timezone-select.njk" %}</div>
+        {% if global.isEventOnline %}
+            <div>{% include "components/timezone-select.njk" %}</div>
+        {% endif %}
         <div class="flex flex-wrap items-center justify-start gap-xs"
         x-init="if (!isAuth) resetUserFilters(); $watch('isAuth', val => { if (!val) resetUserFilters() })">
             {# favsOnly data is in x-data="eventFilter" in wrapping div in base.njk #}

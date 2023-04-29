@@ -1,7 +1,14 @@
-{% if (event.eventDuration > 0) %}
+{% if (event.eventDuration > 0) 
+    and global.isEventOnline %}
     <span class="whitespace-nowrap" x-ref="date{{event.eventId}}" x-text="formatEventDate('{{ event.eventStartDateTime }}', timezone)" >{{ event.eventStartDateTime | formatDate }}</span>
     <div class="whitespace-nowrap" >
         <span class="whitespace-nowrap" x-text="formatEventTime('{{ event.eventStartDateTime }}', timezone)">{{ event.eventStartDateTime | formatTime }}</span>
+        <span class="whitespace-nowrap" >({{ event.eventDuration | hoursToHHMM }})</span>
+    </div>
+{% elif event.eventDuration > 0 and not global.isEventOnline %}
+    <span class="whitespace-nowrap" x-ref="date{{event.eventId}}">{{ event.eventStartDateTime | formatDate }}</span>
+    <div class="whitespace-nowrap" >
+        <span class="whitespace-nowrap" >{{ event.eventStartDateTime | formatTime }}</span>
         <span class="whitespace-nowrap" >({{ event.eventDuration | hoursToHHMM }})</span>
     </div>
 {% else %}

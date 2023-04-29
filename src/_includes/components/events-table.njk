@@ -1,9 +1,9 @@
 <section class="mt-md" x-data="eventsTable" x-init="$store.events.getAllSpaces()">
     <h2 class="font-serif text-3xl font-bold leading-none md:text-4xl text-header mb-2xs">Events List</h2>
-
     {# Event Table Filter #}
     <div class="flex flex-wrap items-center justify-start border-t-2 border-b-2 mb-base text-body gap-sm py-sm border-hr" >
-        {% if events_status === "live" %}
+        {# date filter #}
+        {% if global.showEventsTimes %}
             <div class="flex flex-col justify-start sm:items-center sm:flex-row gap-2xs sm:gap-xs">
                 <label class="text-xs font-bold sm:text-sm" for="filter-by-date">Date:</label>
                 <select id="filter-by-date" class="mb-0 text-sm cursor-pointer pl-xs py-2xs" x-model="filter.day">
@@ -12,23 +12,25 @@
                     </template>
                 </select>
             </div>
-            <div>{% include "components/timezone-select.njk" %}</div>
+            {% if global.isEventOnline %}
+                <div>{% include "components/timezone-select.njk" %}</div>
+            {% endif %}
         {% endif %}
-        {% if events_type === "irl" %}
-            <div class="flex flex-col justify-start sm:items-center sm:flex-row gap-2xs sm:gap-xs">
-                <label for="filter-by-category" class="text-xs font-bold sm:text-sm">Category:</label>
-                <select id-"filter-by-category" class="mb-0 text-sm cursor-pointer pl-xs py-2xs" x-model="filter.category" x-init="console.log(filter.category)">
-                    <template x-for="category in allCategories">
-                        <option x-text="category" :selected="filter.category.toLowerCase() === category.toLowerCase()"></option>
-                    </template>
-                </select>
-            </div>
-        {% endif %}
-        {% if events_type === "online" %}
+        {# Filter Catagories #}
+        {% if global.isEventOnline %}
             <div class="flex flex-col justify-start sm:items-center sm:flex-row gap-2xs sm:gap-xs">
                 <label for="filter-by-category" class="text-xs font-bold sm:text-sm">Category:</label>
                 <select id-"filter-by-category" class="mb-0 text-sm cursor-pointer pl-xs py-2xs" x-model="filter.category" x-init="console.log(filter.category)">
                     <template x-for="category in onlineCategories">
+                        <option x-text="category" :selected="filter.category.toLowerCase() === category.toLowerCase()"></option>
+                    </template>
+                </select>
+            </div>
+        {% else %}
+            <div class="flex flex-col justify-start sm:items-center sm:flex-row gap-2xs sm:gap-xs">
+                <label for="filter-by-category" class="text-xs font-bold sm:text-sm">Category:</label>
+                <select id-"filter-by-category" class="mb-0 text-sm cursor-pointer pl-xs py-2xs" x-model="filter.category" x-init="console.log(filter.category)">
+                    <template x-for="category in allCategories">
                         <option x-text="category" :selected="filter.category.toLowerCase() === category.toLowerCase()"></option>
                     </template>
                 </select>
@@ -40,7 +42,7 @@
         <div class="flex flex-wrap items-center justify-start gap-xs"
         x-init="if (!isAuth) resetUserFilters(); $watch('isAuth', val => { if (!val) resetUserFilters() })"
         >
-            {% if events_type === "irl" %}
+            {% if not global.isEventOnline and global.showEventTimes %}
                 <button @click="filter.openOnly = !filter.openOnly" class="filter-btn" :class="filter.openOnly && 'active'">
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 28">
                         <title>square</title>
@@ -56,7 +58,7 @@
                 </svg>
                 <span class="text-sm">Favs</span>
             </button>
-            {% if events_type === "irl" %}
+            {% if not global.isEventOnline and global.showEventTimes %}
                 <button @click="filter.overlap = !filter.overlap" class="filter-btn" :class="filter.overlap && 'active'" x-cloak x-show="isAuth">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 164.51 164.52"><path d="M147.37,31.31h-14.17v-14.17c0-9.45-7.69-17.15-17.15-17.15H17.15C7.69,0,0,7.69,0,17.15V116.06c0,9.45,7.69,17.15,17.15,17.15h14.17v14.17c0,9.45,7.69,17.15,17.15,17.15h98.91c9.45,0,17.15-7.69,17.15-17.15V48.46c0-9.45-7.69-17.15-17.15-17.15Zm-27.17,66.54l-22.35,22.35h-13.51l35.86-35.86v13.51Zm0,17.13v1.08c0,2.29-1.86,4.15-4.15,4.15h-1.08l5.22-5.22Zm0-47.76l-52.98,52.98h-13.51L120.2,53.71v13.51Zm-75.89,1.11l24.01-24.01h13.51l-37.52,37.52v-13.51Zm0-17.13v-2.74c0-2.29,1.86-4.15,4.15-4.15h2.74l-6.89,6.89Zm0,47.76l54.65-54.65h13.51L44.31,112.47v-13.51Zm-27.17,21.24c-2.29,0-4.15-1.86-4.15-4.15V17.15c0-2.29,1.86-4.15,4.15-4.15H116.06c2.29,0,4.15,1.86,4.15,4.15v14.17H48.46c-9.45,0-17.15,7.69-17.15,17.15V120.2h-14.17Zm134.37,27.17c0,2.29-1.86,4.15-4.15,4.15H48.46c-2.29,0-4.15-1.86-4.15-4.15v-14.17H116.06c9.45,0,17.15-7.69,17.15-17.15V44.31h14.17c2.29,0,4.15,1.86,4.15,4.15v98.91Z"/></svg>
                     <span class="text-sm">Hide My Event Conflicts</span>
@@ -64,70 +66,68 @@
             {% endif %}
             <button x-show="!isFilterDefault" x-transition @click="resetFilters" class="text-sm filter-btn">Reset Filters</button>
         </div>
-    </div>
 
-    {# Event Table List #}
-    <table class="events-table" id="events-table">
-        <caption class="italic text-left mb-xs">Table is sortable by clicking on headers</caption>
-        <thead :class="isSort($el).ascending ? 'ascending' : 'descending'">
-            <tr>
-                <th>
-                    <button x-bind="sortable" title="Sort by event">Event</button>
-                </th>
-                {% if events_type === "irl" %}
+        {# Event Table List #}
+        <table class="events-table" id="events-table">
+            <caption class="italic text-left mb-xs">Table is sortable by clicking on headers</caption>
+            <thead :class="isSort($el).ascending ? 'ascending' : 'descending'">
+                <tr>
                     <th>
-                        <button x-bind="sortable" title="Sort by system">System</button>
+                        <button x-bind="sortable" title="Sort by event">Event</button>
                     </th>
-                {% endif %}
-                {% if events_status === "live" %}
-                    <th>
-                        <button x-bind="sortable" title="Sort by Date/Time">Date/Time (dur)</button>
+                    {% if not global.isEventOnline %}
+                        <th>
+                            <button x-bind="sortable" title="Sort by system">System</button>
+                        </th>
+                    {% endif %}
+                    {% if global.showEventTimes %}
+                        <th>
+                            <button x-bind="sortable" title="Sort by Date/Time">Date/Time (dur)</button>
+                        </th>
+                    {% endif %}
+                    {% if sitemeta.context === 'dev' or sitemeta.context === 'branch-deploy' %}
+                        <th class="!text-center">
+                            <button x-bind="sortable">ID</button>
+                        </th>
+                    {% endif %}
+                    <th class="events-table-header--categories">
+                        <button x-bind="sortable" title="Sort by Categories">Categories</button>
                     </th>
-                {% endif %}
-                {% if sitemeta.context === 'dev' or sitemeta.context === 'branch-deploy' %}
-                    <th class="!text-center">
-                        <button x-bind="sortable">ID</button>
+                    {% if not global.isEventOnline %}
+                        <th class="events-table-header--spaces">
+                            <button x-bind="sortable" title="Sort by Spaces">Space</button>
+                        </th>
+                    {% endif %}
+                    <th class="events-table-header--fav" x-cloak x-show="isAuth">
+                        <button title="filter by favs" class="fav-star-header" @click="filter.favsOnly = !filter.favsOnly" :class="filter.favsOnly && '!bg-highlight'"></button>
                     </th>
-                {% endif %}
-                <th class="events-table-header--categories">
-                    <button x-bind="sortable" title="Sort by Categories">Categories</button>
-                </th>
-                {% if events_type === "irl" %}
-                    <th class="events-table-header--spaces">
-                        <button x-bind="sortable" title="Sort by Spaces">Space</button>
-                    </th>
-                {% endif %}
-                <th class="events-table-header--fav" x-cloak x-show="isAuth">
-                    <button title="filter by favs" class="fav-star-header" @click="filter.favsOnly = !filter.favsOnly" :class="filter.favsOnly && '!bg-highlight'"></button>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for event in eventData.events %}
-                {% if (event.metadata.Players > 0) %}
-                    {% set maxSpaces = event.metadata.Players %}
-                {% else %}
-                    {% set maxSpaces = "'Any'" %}
-                {% endif %}
-                {# isFav is in Alpine.data("global") #}
-                {% if events_type === "irl" %}
-                    <tr 
-                    x-cloak
-                    x-data="eventInfo"
+                </tr>
+            </thead>
+            <tbody>
+                {% for event in eventData.events %}
+                    {% if (event.metadata.Players > 0) %}
+                        {% set maxSpaces = event.metadata.Players %}
+                    {% else %}
+                        {% set maxSpaces = "'Any'" %}
+                    {% endif %}
+                    {# isFav is in Alpine.data("global") #}
+                    <tr x-cloak x-data="eventInfo"
+                {% if not global.isEventOnline and not global.showEventTimes %}
+                    x-init="id = {{event.eventId}}; maxSpaces = {{maxSpaces}}; categories = [{{event.categories | alpineArray}}];"
+                    x-show="filterCategory(categories) && (!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || (maxSpaces === 'Any' || $store.events.spaces[id] > 0))"
+                    {% elif not global.isEventOnline and global.showEventTimes %}
                     x-init="id = {{event.eventId}}; maxSpaces = {{maxSpaces}}; categories = [{{event.categories | alpineArray}}];"
                     x-show="filterCategory(categories) && (!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || (maxSpaces === 'Any' || $store.events.spaces[id] > 0)) && filterDay($refs.date{{event.eventId}}.textContent) && ( !filter.overlap || !doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}) )"
                     :class="doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}) && 'overlap'"
-                    >
-                    {% endif %}
-                    {# TODO: make this more modular so that it does not filter by day if there is no date or is not live #}
-                    {% if events_type === "online" %}
-                        <tr 
-                    x-cloak
-                    x-data="eventInfo"
-                    x-init="id = {{event.eventId}}; maxSpaces = {{maxSpaces}}; categories = [{{event.categories | alpineArray}}];"
+                    {% elif global.isEventOnline and not global.showEventTimes %}
+                    x-init="id = {{event.eventId}}; categories = [{{event.categories | alpineArray}}];"
+                    x-show="filterCategory(categories) && (!filter.favsOnly || isFav({{event.eventId}}))"
+                    {% elif global.isEventOnline and global.showEventTimes %}
+                    x-init="id = {{event.eventId}}; categories = [{{event.categories | alpineArray}}];"
                     x-show="filterCategory(categories) && filterDay($refs.date{{event.eventId}}.textContent) && (!filter.favsOnly || isFav({{event.eventId}}))"
+                    {% endif %}
                     >
-                        {% endif %}
+                        {# TODO: make this more modular so that it does not filter by day if there is no date or is not live #}
 
                         {# Event Name #}
                         <td class="events-table-cell--name">
@@ -146,12 +146,12 @@
                             <p>{{event.metadata.GM | safe}}</p>
                         </td>
 
-                        {% if events_type === "irl" %}
+                        {% if not global.isEventOnline %}
                             {# System #}
                             <td class="events-table-cell--system">{{event.metadata.System}}</td>
                         {% endif %}
 
-                        {% if events_status === "live" %}
+                        {% if global.isEventOnline %}
                             {# Event Start Date/Time #}
                             <td class="events-table-cell--date" data-sort="{{ event.eventStartDateTime | unixtime }}">
                                 {% include 'components/events-table-date.njk' %}
@@ -170,7 +170,7 @@
                                 {% endfor %}
                             </div>
                         </td>
-                        {% if events_type === "irl" %}
+                        {% if not global.isEventOnline %}
                             {# Spaces #}
                             <td class="events-table-cell--spaces">
                                 {% include 'components/events-table-spaces.njk' %}
@@ -186,11 +186,12 @@
                 {% endfor %}
             </tbody>
         </table>
-    </section>
-    {% if sitemeta.context === "dev" or sitemeta.context === 'branch-deploy' %}
-        <style>
-            .overlap {
-                background: var(--card);
-            }
-        </style>
-    {% endif %}
+    </div>
+</section>
+{% if sitemeta.context === "dev" or sitemeta.context === 'branch-deploy' %}
+    <style>
+        .overlap {
+            background: var(--card);
+        }
+    </style>
+{% endif %}
