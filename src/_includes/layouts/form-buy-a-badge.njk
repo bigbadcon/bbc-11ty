@@ -39,8 +39,8 @@
                             </div>
                             <div class="prose required">
                                 <label for="yourAge">
-                                    <span x-text="($validate.value('recipient') === 'for me') ? 'Your' : 'Their'">Your</span> age at start of con
-                                        <span>{{sitemeta.eventDate}}</span>
+                                    <span x-text="($validate.value('recipient') === 'for me') ? 'Your' : 'Their'">Your</span> age at start of con:
+                                        <span>{% include "components/date-range.njk" %}</span>
                                 </label>
                                 <select id="age" name="age" required @change="price_id = ''">
                                     <option disabled selected value="">

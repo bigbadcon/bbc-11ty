@@ -39,8 +39,8 @@
                                 </div>
                                 <div class="required">
                                     <label for="yourAge">
-                                        Your age at start of con
-                                        <span>{{sitemeta.eventDate}}</span>
+                                        Your age at start of con:
+                                        <span>{% include "components/date-range.njk" %}</span>
                                     </label>
                                     <select id="yourAge" name="yourAge" @change="if ($el.value === '13+') { $validate.value('playerAge','13+')}" x-validate.required>
                                         <option disabled selected value="">

@@ -49,8 +49,10 @@
                                 <span x-text="user && user.displayName"></span></div>
                             <div class="required">
                                 <label for="yourAge">
-                                            Your age at start of con
-                                            <span>{{sitemeta.eventDate}}</span>
+                                    Your age at start of con:
+                                    <span>
+                                        {% include "components/date-range.njk" %}
+                                    </span>
                                 </label>
                                 <select id="yourAge" name="yourAge" x-model="formData.yourAge" required>
                                     <option :disabled="formData.yourAge !== ''" selected value="">
