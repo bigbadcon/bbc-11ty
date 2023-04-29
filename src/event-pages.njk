@@ -144,7 +144,7 @@ eleventyComputed:
         <h2>Games On Demand Booking</h2>
         <p>All seats are <a href="/games-on-demand-how-it-works/">assigned on site</a>, just show up to our Games on Demand room at least 10 minutes before the games start and you can get in!</p>
     </div>
-{% elif(sitemeta.eventSignupDate | isPastDate) %}
+{% elif(global.conEventSignUpsOpen | isAfterDate) %}
     {% include 'components/event-booking-panel.njk' %}
 {% elif sitemeta.context === 'dev' or sitemeta.context === 'branch-deploy' %}
     <div class="border-2 border-header p-sm my-base">

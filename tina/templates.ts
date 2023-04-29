@@ -521,19 +521,31 @@ export function globalFields() {
 			type: "datetime",
 		},
 		{
+			name: "conEventSignUpsOpen",
+			label: "Con Event: Sign-ups Open",
+			type: "datetime",
+			ui: {
+				timeFormat: "HH:mm",
+			},
+			description: "When game sign-ups are opened",
+		},
+		{
 			name: "isEventOnline",
 			label: "Online Event",
 			type: "boolean",
+			description: "Is the current event Big Bad Online",
 		},
 		{
 			name: "showVolunteerShifts",
 			label: "Show Volunteer Shifts",
 			type: "boolean",
+			description: "Show the volunteer shifts on the events page",
 		},
 		{
 			name: "showEvents",
 			label: "Show Events",
 			type: "boolean",
+			description: "Show the events table on the events page",
 		},
 		{
 			name: "showEventTimes",
