@@ -26,9 +26,9 @@
                         </header>
                         <form class="mt-base" id="form-scholarship" @submit.prevent="submitForm">
                             {# TODO: add honeypot #}
-                            <input type="hidden" x-model="formInfo.userDisplayName" x-init="formInfo.userDisplayName = user && user.displayName; $watch('user', value => formInfo.userDisplayName = value && value.displayName)">
-                            <input type="hidden" x-model="formInfo.userId" x-init="formInfo.userId = user && user.id; $watch('user', value => formInfo.userId = value && value.id)">
-                            <input type="hidden" x-model="formInfo.userEmail" x-init="formInfo.userEmail = user && user.userEmail; $watch('user', value => formInfo.userEmail = value && value.userEmail)">
+                            <input type="hidden" name="userDisplayName" x-model="formInfo.userDisplayName" x-init="formInfo.userDisplayName = user && user.displayName; $watch('user', value => formInfo.userDisplayName = value && value.displayName)">
+                            <input type="hidden" name="userId" x-model="formInfo.userId" x-init="formInfo.userId = user && user.id; $watch('user', value => formInfo.userId = value && value.id)">
+                            <input type="hidden" name="userEmail" x-model="formInfo.userEmail" x-init="formInfo.userEmail = user && user.userEmail; $watch('user', value => formInfo.userEmail = value && value.userEmail)">
                             {# Personal Info #}
                             <fieldset>
                                 <legend>Personal Info</legend>
