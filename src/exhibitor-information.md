@@ -1,5 +1,5 @@
 ---
-layout: layouts/page.njk
+layout: layouts/form-exhibitor.njk
 title: Exhibitor Information
 published: true
 description: ''
@@ -12,24 +12,6 @@ _template: page
 ---
 
 Big Bad Con is a charity event, and that commitment to giving extends to our exhibitors, too! All the information below:
-
-## Big Bad Con 2022 Exhibitors
-
-### Three Dog Quest
-
-Representing Indie Press Revolution (IPR). IPR is a network of creator-publishers devoted to bringing you the latest innovations in tabletop roleplaying and story games. Three Dog Quest also sells a variety of Kickstarter and other board games, dice, RPG miniatures, and more.
-
-### [Difference Engine](https://differenceengine.sg/)
-
-Difference Engine is an Independent Comics publisher based in Singapore.
-
-### [Doodles Curios](https://www.etsy.com/shop/doodlescurios/?etsrc=sdt)
-
-Treasures from across the Multiverse!
-
-### [Metal Weave Games](https://metalweavegames.com/)
-
-Metal Weave Games (MWG) is a leading publisher evocative and inspirational tabletop products.
 
 ### Exhibitor Hall Dates and Times
 
@@ -50,8 +32,8 @@ Metal Weave Games (MWG) is a leading publisher evocative and inspirational table
 
 **Hotel Information**
 
-Hyatt Regency San Francisco Airport  
-1333 Old Bayshore Highway  
+Hyatt Regency San Francisco Airport\
+1333 Old Bayshore Highway\
 Burlingame, CA 94010
 
 * Dealers room will be in the Grand Peninsula.
@@ -60,7 +42,7 @@ Burlingame, CA 94010
 
 ### Booth Information
 
-* 1/5 of the 1545 square foot exhibitors hall (\~300 square feet)
+* 1/5 of the 1545 square foot exhibitors hall (~300 square feet)
 * Power outlets available.
 * A locked space that only the hotel and the convention steward (myself) has access to, to keep your products secure when the dealers room is closed.
 
@@ -70,6 +52,4 @@ $300 plus a donation of 10% of your proceeds to the Big Bad Con Scholarship Fund
 
 ### Application
 
-Our expo hall is now full and our vendor applications are closed for 2022. We'll re-open this page next year if you'd like to vend at Big Bad Con in the future.
-
-For any questions email exhibitors@bigbadcon.com.
+Interested in becoming an exhibitor at Big Bad Con? Fill out the form below and we'll get back to you soon!
