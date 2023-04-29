@@ -225,9 +225,6 @@ module.exports = (eleventyConfig) => {
 	//Used only for past events for now
 	eleventyConfig.addFilter("hoursToHHMM", (hours) => hoursToHHMM(hours));
 
-	// check to see if date is in the past; used for turning on/off parts based on date like the game booking
-	eleventyConfig.addFilter("isPastDate", (date) => dayjs().isAfter(dayjs(date)));
-
 	/* ------------------------------ Other Filters ----------------------------- */
 
 	// slugify
