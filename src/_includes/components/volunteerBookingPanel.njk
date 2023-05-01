@@ -1,10 +1,11 @@
 {# x-data="eventInfo" on event page #}
+
 {# Only show if event has yet to happen #}
 {% if not event.eventStartDateTime | isAfterDate %}
+    <!-- ----------------------- Volunteer Registration Form ---------------------- -->
     {# Show if they are logged in and do not yet have a user role of volunteer #}
-    {# <div class="text-sm italic mt-base" x-show="isAuth && !isVolunteer">You must <a href="/rangers/#signup" class="underline text-highlight">sign up as a volunteer</a> to add a volunteer shift</div> #}
     <section class="text-sm italic rounded-md shadow mt-md text-body p-base bg-card" 
-    x-show="isAuth && !isVolunteer" 
+    x-show="isAuth && !isVolunteer && (maxSpaces === 'Any' || $store.events.spaces[id] > 0)"
     x-data="volunteerSignup"
     x-init="if (!isVolunteer) {getUserData()}"
     >
@@ -17,7 +18,7 @@
             name="volunteer-signup" 
             class="prose"
             id="volunteer-signup" 
-            @submit.prevent="() => { submit(user) }" x-validate
+            @submit.prevent="submit($validate.value($el))" x-validate
             x-init="$watch('submittingState', val => {if (val === 'complete') getUserData()})"
             >
             <p class="hidden">
@@ -28,6 +29,7 @@
             <input type="hidden" id="userNicename" name="userNicename" value="" :value="user && user.userNicename" x-validate>
             <input type="hidden" id="userId" name="userId" value="" :value="user && user.id" x-validate>
             <input type="hidden" id="formName" name="formName" value="volunteer-signup">
+            <input type="hidden" id="eventId" name="eventId" value="{{event.eventId}}" x-validate>
             <p>
                 <span class="font-bold text-highlight">*</span>
                 <em>required field</em>
@@ -44,25 +46,23 @@
                             {% include "components/date-range.njk" %}
                         </span>
                     </label>
-                    <select id="yourAge" name="yourAge" x-model="formData.yourAge" required>
-                        <option :disabled="formData.yourAge !== ''" selected value="">
-                                                -- Choose One --
-                                            </option>
+                    <select id="yourAge" name="yourAge" required>
+                        <option disabled selected>-- Choose One --</option>
                         <option>13+</option>
                         <option>18+</option>
                     </select>
                 </div>
                 <div class="required" >
                     <label for="phone">Phone</label>
-                    <input id="phone" name="phone" type="tel" value="" x-model="formData.phone" required/>
+                    <input id="phone" name="phone" type="tel" value="" required/>
                 </div>
                 <div>
                     <label for="discord">Discord Handle</label>
-                    <input id="discord" name="discord" type="text" value="" x-model="formData.discord"/>
+                    <input id="discord" name="discord" type="text" value=""/>
                 </div>
                 <div>
                     <label for="otherInfo">Other info we should know</label>
-                    <textarea cols="30" id="otherInfo" name="otherInfo" rows="3" x-model="formData.otherInfo"></textarea>
+                    <textarea cols="30" id="otherInfo" name="otherInfo" rows="3" ></textarea>
                 </div>
             </fieldset>
             <p>Big Bad Con is committed to cultivating a culture of respect, support, and kindness at both our in-person and online events. We ask that all of our attendees agree to abide by our Community Standards, please take a moment to read them before answering yes below.</p>
@@ -72,8 +72,8 @@
             <fieldset>
                 <legend>Community Standards Agreement</legend>
                 <div class="flex items-center required">
-                    <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-model="formData.communityStandards" required>
-                    <label for="agree-to-community-standards" class="text-body-highlight"3324>
+                    <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" required>
+                    <label for="agree-to-community-standards" class="text-body-highlight">
                                     Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Big Bad Con Community Standards
                                 </label>
                 </div>
@@ -100,137 +100,102 @@
     </section>
     {# End of volunteer registration form #}
 
-    <div class="rounded-md shadow mt-md text-body p-base bg-card">
-        <h2 class="-mt-1 font-serif text-2xl font-bold leading-none md:text-4xl text-header mb-sm">Volunteer Signup</h2>
-        {# Event Name, spaces open, and list of players; only show if logged in and has event data #}
-        <div x-cloak x-show="isAuth" class="flex flex-col gap-sm">
-            {% include 'components/event-date.njk' %}
-            {% include 'components/event-spaces.njk' %}
+    <!-- ----------------------- Volunteer Registration Form Script ---------------------- -->
+    <script type="text/javascript">
 
-            <div x-cloak x-show="bookings && bookings.length">
-                <h4 class="font-serif text-2xl font-semibold">Volunteer List</h4>
-                <ul class="list-disc pl-md">
-                    <template x-for="booking in bookings">
-                        <li class="mb-xs" x-text="booking && booking.user.displayName"></li>
-                    </template>
-                </ul>
-            </div>
-            {% if sitemeta.context === 'dev' or sitemeta.context === 'branch-deploy' %}
-                {# DEV AREA #}
-                <div class="border-2 border-header p-sm" x-show="doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}})" class="italic rounded bg-card p-sm">
-                    <p>The timing of this event overlaps with one of your booked events.</p>
-                </div>
-            {% endif %}
-        </div>
-        {# Message for people not logged in #}
-        <div x-cloak x-show="!isAuth">
-            You must be <button @click="modal = 'Login'" class="underline text-highlight">logged in</button> to sign up for a volunter shift.
-        </div>
+        document.addEventListener('alpine:init', () => {
 
-        {# Show if logged in and volunteer #}
-        <div x-show="isAuth && isVolunteer" class="pt-base">
-            {# Show if there are spaces and not booked #}
-            <div x-show="(maxSpaces === 'Any' || $store.events.spaces[id] > 0) && !isBooked({{event.eventId}})">
-                <button class="button" x-show="!doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}})" @click="bookEvent({{event.eventId}})">Volunteer</button>
-            </div>
-            {# Show if event full#}
-            <div x-show="!(maxSpaces === 'Any' || $store.events.spaces[id] > 0)" class="font-bold rounded bg-card p-sm">Shift is full</div>
-            {# Show if booked #}
-            <div x-show="isBooked({{event.eventId}})">
-                <button class="button" @click="cancelBooking({{event.eventId}})">Cancel Shift</span>
-            </div>
-        </div>
+            Alpine.data('volunteerSignup', function () {
+                return {
+                    submittingState: 'unsubmitted', // State Machine: unsubmitted, submitted, complete
+                    async submit(data) {
+                        // Check network status and data service status
+                        const status = await lilRed.status(20, 5000, 1.05);
+                        if (!status) 
+                            return false;
+                        
+                        this.submittingState = "submitted"
 
-    </div>
-
-</div>
-
-<script type="text/javascript">
-
-    document.addEventListener('alpine:init', () => {
-
-        // Check if variable is a string with stuff in it
-        function isNotEmpty(value) {
-            return value && value !== ''
-        }
-
-        const validatePhone = (txt) => {
-            return String(txt)
-                .toLowerCase()
-                .match(/^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/);
-        };
-
-        // Used to void variables
-        const volunteerSignUpDefault = {
-            yourAge: '', //required
-            phone: '', //required
-            discord: '', //required
-            otherInfo: '', //not required
-            communityStandards: false
-        }
-
-        Alpine.data('volunteerSignup', function () {
-            return {
-                submittingState: 'unsubmitted', // State Machine: unsubmitted, submitted, complete
-                formData: {
-                    yourAge: '', //required
-                    phone: '', //required
-                    discord: '', //required
-                    otherInfo: '', //not required
-                    communityStandards: false
-                },
-                async submit(user) {
-                    // Check network status and data service status
-                    const status = await lilRed.status(20, 5000, 1.05);
-                    if (!status) 
-                        return false;
-                    
-                    this.submittingState = "submitted"
-
-                    const submitData = {
-                        ...this.formData,
-                        userEmail: user.userEmail,
-                        displayName: user.displayName,
-                        userId: user.id
-                    }
-                    console.log("submit", submitData)
-                    this.submitForm(submitData)
-                },
-                async submitForm(submitData) {
-                    // TODO: add fetch POST to serverless function
-                    const options = {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json;charset=utf-8'
-                        },
-                        body: JSON.stringify(submitData)
-                    }
-
-                    const url = "/.netlify/functions/volunteer-signup"
-
-                    try {
-                        let response = await fetch(url, options)
-                        console.log(`RESPONSE:fetch for ${url}`, response)
-                        if (response.status !== 200) 
-                            throw `fetch fail status: ${response.status}`
-                        let result = await response.text()
-                        console.log(`RESULT:fetch for ${url}`, result)
-                        if (result) {
-                            this.submittingState = 'complete';
-                            window
-                                .location
-                                .reload();
+                        console.log("submit", data)
+                        this.submitForm(data)
+                    },
+                    async submitForm(submitData) {
+                        // TODO: add fetch POST to serverless function
+                        const options = {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json;charset=utf-8'
+                            },
+                            body: JSON.stringify(submitData)
                         }
-                        return result
-                    } catch (err) {
-                        console.error(`ERROR:fetch for ${url}`, err)
-                        this.$dispatch("toast", "ERROR: could not register as volunteer. Try again or contact info@bigbadcon.com for help.")
-                        this.submittingState = 'unsubmitted'
-                        return false
+
+                        const url = "/.netlify/functions/volunteer-signup"
+
+                        try {
+                            let response = await fetch(url, options)
+                            console.log(`RESPONSE:fetch for ${url}`, response)
+                            if (response.status !== 200) 
+                                throw `fetch fail status: ${response.status}`
+                            let result = await response.text()
+                            console.log(`RESULT:fetch for ${url}`, result)
+                            if (result) {
+                                this.submittingState = 'complete';
+                                this.$dispatch('get-user-data');
+                                this.$dispatch('get-booked-events');
+                            }
+                            return result
+                        } catch (err) {
+                            console.error(`ERROR:fetch for ${url}`, err)
+                            this.$dispatch("toast", "ERROR: could not register as volunteer. Try again or contact info@bigbadcon.com for help.")
+                            this.submittingState = 'unsubmitted'
+                            return false
+                        }
                     }
                 }
-            }
+            })
         })
-    })
-</script>
+    </script>
 {% endif %}
+
+{# Booking Panel #}
+<div class="rounded-md shadow mt-md text-body p-base bg-card">
+    <h2 class="-mt-1 font-serif text-2xl font-bold leading-none md:text-4xl text-header mb-sm">Volunteer Signup</h2>
+    {# Event Name, spaces open, and list of players; only show if logged in and has event data #}
+    <div x-cloak x-show="isAuth" class="flex flex-col gap-sm">
+        {% include 'components/event-date.njk' %}
+        {% include 'components/event-spaces.njk' %}
+
+        <div x-cloak x-show="bookings && bookings.length">
+            <h4 class="font-serif text-2xl font-semibold">Volunteer List</h4>
+            <ul class="list-disc pl-md">
+                <template x-for="booking in bookings">
+                    <li class="mb-xs" x-text="booking && booking.user.displayName"></li>
+                </template>
+            </ul>
+        </div>
+        {% if sitemeta.context === 'dev' or sitemeta.context === 'branch-deploy' %}
+            {# DEV AREA #}
+            <div class="border-2 border-header p-sm" x-show="doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}})" class="italic rounded bg-card p-sm">
+                <p>The timing of this event overlaps with one of your booked events.</p>
+            </div>
+        {% endif %}
+    </div>
+    {# Message for people not logged in #}
+    <div x-cloak x-show="!isAuth">
+        You must be <button @click="modal = 'Login'" class="underline text-highlight">logged in</button> to sign up for a volunter shift.
+    </div>
+
+    {# Show if logged in and volunteer #}
+    <div x-show="isAuth && isVolunteer" class="pt-base">
+        {# Show if there are spaces and not booked #}
+        <div x-show="(maxSpaces === 'Any' || $store.events.spaces[id] > 0) && !isBooked({{event.eventId}})">
+            <button class="button" x-show="!doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}})" @click="bookEvent({{event.eventId}})">Volunteer</button>
+        </div>
+        {# Show if event full#}
+        <div x-show="!(maxSpaces === 'Any' || $store.events.spaces[id] > 0)" class="font-bold rounded bg-card p-sm mb-xs">Shift is full</div>
+        {# Show if booked #}
+        <div x-show="isBooked({{event.eventId}})">
+            <button class="button" @click="cancelBooking({{event.eventId}})">Cancel Shift</span>
+        </div>
+    </div>
+</div>
