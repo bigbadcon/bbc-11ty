@@ -15,6 +15,7 @@ exports.handler = async function (event) {
 		/* -------------------------------------------------------------------------- */
 
 		const eventBody = JSON.parse(event.body);
+		console.log("🚀 ~ file: volunteer-signup.js:18 ~ eventBody:", eventBody);
 
 		/* -------------------------------------------------------------------------- */
 		/*                        2. Submit data to google form                       */
@@ -50,6 +51,7 @@ exports.handler = async function (event) {
 				discord: eventBody.discord, //required
 				otherInfo: eventBody.otherInfo, //not required
 				communityStandards: eventBody.communityStandards && "Agreed",
+				eventId: eventBody.eventId,
 			});
 			// eslint-disable-next-line no-console
 			console.log("addedRow", addedRow);
@@ -112,9 +114,40 @@ exports.handler = async function (event) {
 				console.log("remove user role 'subscriber' for volunteer failed", err.toString());
 			}
 
+			/* -------------------------------------------------------------------------- */
+			/*                          5. Sign up user for event                         */
+			/* -------------------------------------------------------------------------- */
+
+			try {
+				const bookEvent = await axios.post(
+					apiBaseUrl + "bookings/addUserToGame",
+					{
+						eventId: eventBody.eventId,
+						isGm: false,
+						userId: parseInt(userId),
+					},
+					{
+						headers: { "x-api-key": apiKey },
+					}
+				);
+
+				if (bookEvent.status !== 200) throw "Status !== 200; Book volunteer shift event failed";
+				// eslint-disable-next-line no-console
+				console.log(`eventId: ${eventBody.eventId} booked for ${eventBody.displayName} userId:${userId}`);
+			} catch (err) {
+				// eslint-disable-next-line no-console
+				console.log(
+					`eventId: ${eventBody.eventId} failed to book for ${eventBody.displayName} userId:${userId}`
+				);
+			}
+
+			/* -------------------------------------------------------------------------- */
+			/*                                6. Return 200                               */
+			/* -------------------------------------------------------------------------- */
+
 			return {
 				statusCode: 200,
-				body: "user added volunteer role",
+				body: `${eventBody.displayName} (${userId}) added volunteer role and added to event ${eventBody.eventId}`,
 			};
 		} catch (e) {
 			// eslint-disable-next-line no-console
