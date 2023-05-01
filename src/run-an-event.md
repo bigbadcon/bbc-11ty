@@ -12,7 +12,9 @@ icon: dice
 _template: page
 ---
 
-Event submission is now closed. Thank you for all your contributions! To sign up to attend head over [here](/events).
+We're looking for games, panels, workshops, and events to make Big Bad Con 2023 our best year yet!
+
+**Free admission**: attendees who sign up for any combination of 8+ hours of running events, GMing in Games on Demand, or volunteer shifts get a free 4-day badge to attend the con.
 
 <!--We're looking for games, panels, workshops, and events to make Big Bad Con 2022 our best year yet!
 
