@@ -1,5 +1,5 @@
 ---
-layout: layouts/form-volunteer-signup.njk
+layout: layouts/page.njk
 title: Join The Rangers
 published: true
 description: ''
