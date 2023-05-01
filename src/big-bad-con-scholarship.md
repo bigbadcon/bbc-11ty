@@ -1,5 +1,5 @@
 ---
-layout: layouts/page.njk
+layout: layouts/form-apply-for-scholarship.njk
 title: Big Bad Con Scholarship
 published: true
 description: ''
