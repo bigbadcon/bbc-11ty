@@ -59,7 +59,7 @@ The Big Bad Con scholarship funds go towards helping women and people from margi
 * Scholarship applications will open now until July 31, 2023.
 * Determinations and reward disbursement will start August 22, 2023.
 
-Apply here!
+Apply [here](https://www.bigbadcon.com/big-bad-con-scholarship/)!
 
 ### Crowdfunding Starts in early June
 
