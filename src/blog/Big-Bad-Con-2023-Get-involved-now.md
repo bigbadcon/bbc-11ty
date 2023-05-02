@@ -1,5 +1,5 @@
 ---
-title: Big Bad Con 2023 is upon us!
+title: Big Bad Con 2023
 published: true
 excerpt: >-
   Last year was our first year back in person and our first time in the new
