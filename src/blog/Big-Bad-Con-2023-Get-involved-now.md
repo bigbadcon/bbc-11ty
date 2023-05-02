@@ -46,7 +46,7 @@ Ranger shifts are open, [sign up here](https://www.bigbadcon.com/volunteer-shift
 
 ### Hotel Room Booking
 
-Hyatt rooms are available starting at $145/night. Book a room now.
+Hyatt rooms are available starting at $145/night. [Book a room now](https://www.hyatt.com/en-US/group-booking/SFOBU/G-BBC4).
 
 Free shuttle service from San Francisco International Airport (SFO) runs every 15 minutes. Shuttles with lift gates upon request. Call (650) 347-1234 to schedule one.
 
