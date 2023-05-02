@@ -63,7 +63,7 @@ Apply [here](https://www.bigbadcon.com/big-bad-con-scholarship/)!
 
 ### Crowdfunding Starts in early June
 
-Big Bad Con keeps the lights on with your generous contributions. Through our crowdfunding campaign you can get a badge to attend the con as well as several of our favorite rewards like Big Bad GM, and Baba Yaga’s Tote. If the campaign does well enough, we’ll help bring out stretch goal guests to run games and panels at the con!
+Big Bad Con keeps the lights on with your generous contributions. Through our [crowdfunding campaign](https://www.backerkit.com/call_to_action/79ab90a4-9eed-4b37-a417-01692df6f57c/landing) you can get a badge to attend the con as well as several of our favorite rewards like Big Bad GM, and Baba Yaga’s Tote. If the campaign does well enough, we’ll help bring out stretch goal guests to run games and panels at the con!
 
 Head over here to follow the campaign and be notified when it launches!
 
