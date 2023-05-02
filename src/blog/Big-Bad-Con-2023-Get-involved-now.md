@@ -1,5 +1,5 @@
 ---
-title: "Big Bad Con 2023 - Get involved now!\U0001F4EF"
+title: Big Bad Con 2023 is upon us!
 published: true
 excerpt: >-
   Last year was our first year back in person and our first time in the new
