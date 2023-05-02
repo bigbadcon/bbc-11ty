@@ -5,7 +5,7 @@ published: true
 description: ''
 tags: pages
 ogImage: ''
-navGroup: ''
+navGroup: Events
 navTitle: Run an Event
 order: 2
 icon: dice
