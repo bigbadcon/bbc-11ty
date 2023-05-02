@@ -26,7 +26,6 @@ const url = apiBaseUrl + "events/all/public"
 /* -------- Convert metadata array to object to make it easier to use ------- */
 function metadataArrayToObject(arr) {
     const object = arr.reduce(function(result, item) {
-        console.log("meta: " , item.metaKey , ", " , item.metaValue)
       result[item.metaKey.replace(/-/,'_')] = item.metaValue;
       return result;
     }, {});
