@@ -4,14 +4,14 @@ title: Public Health Policy
 published: true
 description: ''
 ogImage: ''
-navGroup: ''
+navGroup: Community
 navTitle: ''
 order: null
 icon: health
 _template: page
 ---
 
-For the safety of all our attendees, we have the following policies in place for Big Bad Con 2022:
+For the safety of all our attendees, we have the following policies in place for Big Bad Con 2023:
 
 * **Masks that provide KN95 or better protection are required in all convention spaces**. We’ll be giving out free Big Bad Con KN95 masks to all attendees!
 * **All attendees must show proof of COVID vaccination before entering the con.** Make sure to pack that vaccination card, update your app, or take a pic before you head out.
@@ -24,7 +24,7 @@ Keeping ourselves and each other safe is part of our community standards of resp
 
 When you first arrive at Big Bad Con, **before entering the convention spaces**:
 
-1. Proceed to the COVID check-in table, located at the base of the south stairwell ([map](https://www.bigbadcon.com/images/ground-floor.png)). _Please don’t enter the Grand Foyer (where convention registration is located) or any other convention area until you first check in with the COVID screening team._
+1. Proceed to the COVID check-in table, located at the base of the south stairwell ([map](https://www.bigbadcon.com/images/ground-floor.png)). *Please don’t enter the Grand Foyer (where convention registration is located) or any other convention area until you first check in with the COVID screening team.*
 2. At the COVID screening table, a ranger will **ask for proof of vaccination**, check to see if you have had a **recent negative test** (and offer a free rapid test if you haven’t), offer a **Big Bad Con KN-95 mask**, and give you a **wristband signifying your vaccination has been verified** and that you can enter the rest of the convention.
 
 Every participant must be present with their own vaccination verification materials (i.e. physical vaccination card or digital proof).
@@ -114,4 +114,4 @@ The Hyatt ventilation systems meet and exceed industrial filtration requirements
 
 In the event that you contract COVID-19 just before, during, or shortly after Big Bad Con, we’ve gathered [resources to help you isolate and get treatment](/covid-19-support-resources/).
 
-**_Please note_**_: The guidelines in this document are based on information currently available regarding the behavior and characteristics of the COVID-19 virus, public health information, and local or state guidelines with respect to large gatherings. As more clarity with respect to these variables emerges, it is expected that these guidelines may need to be adjusted accordingly._
+***Please note: The guidelines in this document are based on information currently available regarding the behavior and characteristics of the COVID-19 virus, public health information, and local or state guidelines with respect to large gatherings. As more clarity with respect to these variables emerges, it is expected that these guidelines may need to be adjusted accordingly.***
