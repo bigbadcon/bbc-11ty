@@ -40,7 +40,7 @@ Rangers are the folks that make Big Bad Con possible! We're here to greet people
 * Games on Demand Host
 * Or to do Setup and Breakdown!
 
-Ranger shifts are open, sign up here!
+Ranger shifts are open, [sign up here](https://www.bigbadcon.com/volunteer-shifts/)!
 
 **Free admission**: attendees who sign up for any combination of 8+ hours of running events, GMing in Games on Demand, or volunteer shifts get a free 4-day badge to attend the con.
 
