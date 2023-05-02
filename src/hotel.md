@@ -29,11 +29,9 @@ Burlingame, CA 94010
 
 ### Shuttle Service
 
-The Hyatt offers a free shuttle that runs ever 10-15 minutes. At SFO, go to the area marked “**Hotel Shuttle**.” The bus is marked “**Hyatt Regency and Marriott**.” **[Click here](https://ips-systems.com/Sentry/Anon/40)** to track the shuttle location.
+The Hyatt offers a free shuttle that runs ever 10-15 minutes. At SFO, go to the area marked “**Hotel Shuttle**.” The bus is marked “**Hyatt Regency and Marriott**.”
 
-**Update**: as of 10/26 we just found out the hotel shuttle service changed and their new service does not include shuttles with lift gates.
-
-This was a bummer to find out, but they have offered a stop gap solution. If you have ADA needs,  you can call a Lyft or Uber and then show the receipt for the ride at the front desk. They will reimburse you for the cost of the trip and advance you for the return trip.
+**Accessible Shuttles**: The hotel provides shuttles with lift gates upon request. Before you fly out call the hotel (650) 347-1234 and let them know your arrival time to have an accessible shuttle pick you up. Let the know in advance of your departure as well so they can take you back to the airport.
 
 ### Parking
 
