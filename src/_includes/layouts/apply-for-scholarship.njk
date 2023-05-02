@@ -33,7 +33,7 @@
                     <p>You must <button @click.stop="modal = 'login'" class="font-bold underline text-highlight">login</button> to apply for a scholarship.</p>
                 </div>
                 {# Display form if logged in #}
-                <div x-cloak x-show="isAuth && user" x-data="formData">
+                <div x-cloak x-show="isAuth && user" x-data="scholarshipSubmission">
                     <div x-show="!formSubmitted" id="submit-form">
                         <form 
                         method="POST" name="scholarship-signup" 
@@ -142,10 +142,14 @@
                 return false;
             }
 
-            Alpine.data('formData', function () {
+            Alpine.data('scholarshipSubmission', function () {
                 return {
                     formSubmitted: false,
-                    formInfo: {},
+                    formInfo: {
+                        assistanceTypes: '',
+                        identities: '',
+                        gamingXp: '',
+                    },
                     get isPersonalInfoComplete() {
                         const x = this.formInfo
                         return [x.publicName].every(isFull) && x.communityStandards;
