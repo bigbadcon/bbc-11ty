@@ -4,7 +4,7 @@ title: 'Games on Demand: How it Works'
 published: true
 description: ''
 ogImage: ''
-navGroup: Events
+navGroup: ''
 navTitle: ''
 order: null
 icon: games-on-demand
