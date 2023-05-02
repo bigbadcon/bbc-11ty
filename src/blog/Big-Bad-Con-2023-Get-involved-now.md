@@ -15,7 +15,7 @@ Last year was our first year back in person and our first time in the new hotel.
 
 ### Event Submissions
 
-Event submissions are now open. We're looking for RPGs, LARPs, board games, panels, workshops, and social events to make Big Bad Con 2023 our best year yet!
+[Event submissions](https://www.bigbadcon.com/run-an-event/) are now open. We're looking for RPGs, LARPs, board games, panels, workshops, and social events to make Big Bad Con 2023 our best year yet!
 
 **Free admissio**n: attendees who sign up for any combination of 8+ hours of running events, GMing in Games on Demand, or volunteer shifts get a free 4-day badge to attend the con.
 
@@ -48,7 +48,7 @@ Ranger shifts are open, sign up here!
 
 Hyatt rooms are available starting at $145/night. Book a room now.
 
-Free shuttle service from San Francisco International Airport (SFO) runs every 15 minutes. Shuttles with lift gates upon request. Call (650) 347-1234 to schedule one. 
+Free shuttle service from San Francisco International Airport (SFO) runs every 15 minutes. Shuttles with lift gates upon request. Call (650) 347-1234 to schedule one.
 
 More information about the hotel including information about getting there, parking, and nearby eats,.
 
@@ -83,7 +83,7 @@ For the next two months we’ll be focusing on crowdfunding and badge sales. Her
 
 ### Playing great games and attending amazing panels!
 
-Event sign ups will start once we have all the submissions in and the schedule made. We’re planning to open sign ups in late August. A final date will be sent out when we get closer! 
+Event sign ups will start once we have all the submissions in and the schedule made. We’re planning to open sign ups in late August. A final date will be sent out when we get closer!
 
 All event bookings are done on the Big Bad Con site and there’s no additional fee to sign up for events (your badge covers it all).
 
