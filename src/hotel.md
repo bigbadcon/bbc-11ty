@@ -13,21 +13,23 @@ _template: page
 
 Big Bad Con will be hosted by the
 
-**Hyatt Regency San Francisco Airport**  
-1333 Old Bayshore Hwy  
+**Hyatt Regency San Francisco Airport**\
+1333 Old Bayshore Hwy\
 Burlingame, CA 94010
+
+[Big Bad Con Group Rate: $139/night](https://www.hyatt.com/en-US/group-booking/SFOBU/G-BBC4)
 
 <!-- Big Bad Con Group Rate: $139/night ([booking link](https://www.hyatt.com/en-US/group-booking/SFOBU/G-BBC3)) -->
 
 ### Getting to the Hotel
 
-* **Driving**: the hotel is right off Highway 101. Get [**driving directions here**](https://goo.gl/maps/7Jthy6QnQY9TMSPF9)
+* **Driving**: the hotel is right off Highway 101. Get **[driving directions here](https://goo.gl/maps/7Jthy6QnQY9TMSPF9)**
 * **Flying:** Fly into San Francisco International Airport (SFO). From there take the Hyatt shuttle (see below).
-* **Public Transportation**: We recommend either taking [**BART**](https://www.bart.gov/) to SFO airport and catching the Hyatt shuttle (see below), or taking Caltrain (nearby Broadway stop is weekend/holiday-only, during the week connect with [SamTrans](http://www.samtrans.com/) or [Commute.org](https://commute.org/shuttles/) at [Millbrae](https://511.org/transit/centers/millbrae-transit-center) or Burlingame).”
+* **Public Transportation**: We recommend either taking **[BART](https://www.bart.gov/)** to SFO airport and catching the Hyatt shuttle (see below), or taking Caltrain (nearby Broadway stop is weekend/holiday-only, during the week connect with [SamTrans](http://www.samtrans.com/) or [Commute.org](https://commute.org/shuttles/) at [Millbrae](https://511.org/transit/centers/millbrae-transit-center) or Burlingame).”
 
 ### Shuttle Service
 
-The Hyatt offers a free shuttle that runs ever 10-15 minutes. At SFO, go to the area marked “**Hotel Shuttle**.” The bus is marked “**Hyatt Regency and Marriott**.” [**Click here**](https://ips-systems.com/Sentry/Anon/40) to track the shuttle location.
+The Hyatt offers a free shuttle that runs ever 10-15 minutes. At SFO, go to the area marked “**Hotel Shuttle**.” The bus is marked “**Hyatt Regency and Marriott**.” **[Click here](https://ips-systems.com/Sentry/Anon/40)** to track the shuttle location.
 
 **Update**: as of 10/26 we just found out the hotel shuttle service changed and their new service does not include shuttles with lift gates.
 
@@ -41,7 +43,7 @@ The hotel offers parking for all attendees discounted from their rate of $36/day
 
 ![](/images/09-bigbadcon_hotel_map.jpg)
 
-[**Hotel Map**](/images/09-bigbadcon_hotel_map.pdf) **(PDF) and** [**Capacity Chart**](https://assets.hyatt.com/content/dam/hyatt/hyattdam/documents/2018/07/09/1023/Hyatt-Regency-San-Francisco-Airport-Capacity-Charts-English-070918.pdf) **(PDF)**
+**[Hotel Map](/images/09-bigbadcon_hotel_map.pdf)** **(PDF) and** **[Capacity Chart](https://assets.hyatt.com/content/dam/hyatt/hyattdam/documents/2018/07/09/1023/Hyatt-Regency-San-Francisco-Airport-Capacity-Charts-English-070918.pdf)** **(PDF)**
 
 ### Internet Access
 
@@ -76,7 +78,7 @@ During the con, Boardroom IV will be designated as a respite room. It will be a 
 
 ### Food and Dining
 
-Here's a [map of dining options in the area](https://www.google.com/maps/d/u/0/edit?mid=1CE6SE62DYwbZdxV5-7CklkQiNfraCzA&ll=37.59161336786066%2C-122.36212222537841&z=16). The program also has these locations listed along with which ones offer outdoor dining, delivery, and takeout.
+Here's a [map of dining options in the area](https://www.google.com/maps/d/u/0/edit?mid=1CE6SE62DYwbZdxV5-7CklkQiNfraCzA\&ll=37.59161336786066%2C-122.36212222537841\&z=16). The program also has these locations listed along with which ones offer outdoor dining, delivery, and takeout.
 
 During the lunch hour, the hotel (1-2:30PM) the hotel will also offer a popup food stand in the Atrium.
 
