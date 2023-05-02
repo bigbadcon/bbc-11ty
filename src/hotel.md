@@ -11,15 +11,14 @@ icon: hotel
 _template: page
 ---
 
-Big Bad Con will be hosted by the
+Big Bad Con will be hosted at the:
 
 **Hyatt Regency San Francisco Airport**\
 1333 Old Bayshore Hwy\
-Burlingame, CA 94010
+Burlingame, CA 94010\
+(650) 347-1234
 
 [Big Bad Con Group Rate: $139/night](https://www.hyatt.com/en-US/group-booking/SFOBU/G-BBC4){.icon-hotel}
-
-
 
 <!-- Big Bad Con Group Rate: $139/night ([booking link](https://www.hyatt.com/en-US/group-booking/SFOBU/G-BBC3)) -->
 
