@@ -42,11 +42,9 @@ exports.handler = async function(event, context) {
             const dateAdded = new Date().toLocaleDateString()
             const addedRow = await sheet.addRow{
                 dateAdded: dateAdded,
-                displayName: eventBody.displayName,
+                publicName: eventBody.publicName,
                 userId: eventBody.userId,
                 userEmail: eventBody.userEmail,
-                scholarshipAssistance: eventBody.scholarshipAssistance, //required
-                demograhpics: eventBody.demographics, //required
                 gamingExperience: eventBody.gamingExperience, //not required
                 communityStandards: eventBody.communityStandards && "Agreed"
              })
