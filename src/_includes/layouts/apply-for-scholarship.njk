@@ -34,98 +34,84 @@
                 </div>
                 {# Display form if logged in #}
                 <div x-cloak x-show="isAuth && user" x-data="formData">
-                        <div x-show="!formSubmitted" id="submit-form"><!-- See if I can remove this...is redundant -->
-                <form x-cloak x-show="isAuth && !formSubmitted"
-                method="POST" name="scholarship-signup" 
-                class="prose"
-                id="scholarship-signup" 
-                @submit.prevent="() => { submit(user); getUserData(); }">
-                    <p class="hidden">
-                        <label>Don't fill this out if you're human: <input name="bot-field"/></label>
-                    </p>
-                    <input type="hidden" id="displayName" name="displayName" value="" :value="user && user.displayName">
-                    <input type="hidden" id="userEmail" name="userEmail" value="" :value="user && user.userEmail">
-                    <input type="hidden" id="userNicename" name="userNicename" value="" :value="user && user.userNicename">
-                    <input type="hidden" id="userId" name="userId" value="" :value="user && user.id">
-                    <input type="hidden" id="formName" name="formName" value="volunteer-signup">
-                    <p>
-                        <span class="font-bold text-highlight">*</span>
-                        <em>required field</em>
-                    </p>
-                    {# Personal Info #}
-                            <fieldset>
-                                <legend>Personal Info</legend>
-                                <div class="required">
-                                    <label for="publicName">Public Badge Name</label>
-                                    <p class="text-xs mb-sm text-body">We encourage attendees to list their first and last names. However, if for privacy reasons you would like to use another name, enter it here.</p>
-                                    <input id="publicName" name="publicName" type="text" value="" 
-                                    x-init="formInfo.publicName = (user && user.displayName) || ''; $watch('user', value => formInfo.publicName = value && value.displayName)" 
-                                    x-model="formInfo.publicName" @blur="validate"/>
-                                </div>
-<!--                                <div class="required">
-                                    <label for="yourAge">
-                                        Your age at start of con
-                                        <span>{{sitemeta.eventDate}}</span>
-                                    </label>
-                                    <select id="yourAge" name="yourAge" x-model="formInfo.yourAge" @change="if (formInfo.yourAge === '13+') formInfo.playerAge = '13+'" @blur="validate">
-                                        <option :disabled="formInfo.yourAge !== ''" selected value="">
-                                            -- Choose One --
-                                        </option>
-                                        <option>13+</option>
-                                        <option>18+</option>
-                                    </select>
-                                </div>
-                            </fieldset> -->
-                            <fieldset>
-                                <legend>Code of Conduct</legend>
-                                <div class="prose mb-sm">
-                                    <p>Go Play NW is committed to cultivating a culture of respect, support, and kindness at both our in-person and online events. We expect all of our attendees, volunteers, and staff to follow our Code of Conduct, please take a moment to read them before answering yes below.</p>
-                                    <p>
-                                        <a href="/code-of-conduct" class="icon-scroll">Code of Conduct</a>
-                                    </p>
-                                </div>
-                                <div class="required">
-                                    <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-model="formInfo.communityStandards" required>
-                                    <label for="agree-to-community-standards" class="text-body-highlight"3324>
-                                        Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Go Play NW Code of Conduct.
-                                    </label>
-                                </div>
-                            </fieldset>
-                            <fieldset :class="!isPersonalInfoComplete && 'fieldset-disabled'">
-                                <legend>Scholarship Assistance</legend>
-                                <div class="required" x-data="{assistanceTypes:['Weekend pass','Friday Pass','Saturday Pass','Sunday Pass']}">
-                                    <label>Which days do you plan on attending Go Play NW?</label>
-                                    <template x-for="(atype, i) in assistanceTypes">
-                                        <div class="flex items-center">
-                                            <input type="checkbox" :name="'atype' + i" :id="'atype' + i" :value="atype" @change="setCheckboxArray($el,'assistanceTypes')">
-                                            <label :for="'atype' + i" x-text="atype"></label>
+                    <div x-show="!formSubmitted" id="submit-form">
+                        <form x-cloak 
+                        method="POST" name="scholarship-signup" 
+                        class="prose"
+                        id="scholarship-signup" 
+                        @submit.prevent="() => { submit(user); getUserData(); }">
+                            <p class="hidden">
+                                <label>Don't fill this out if you're human: <input name="bot-field"/></label>
+                            </p>
+                            <input type="hidden" id="displayName" name="displayName" value="" :value="user && user.displayName">
+                            <input type="hidden" id="userEmail" name="userEmail" value="" :value="user && user.userEmail">
+                            <input type="hidden" id="userNicename" name="userNicename" value="" :value="user && user.userNicename">
+                            <input type="hidden" id="userId" name="userId" value="" :value="user && user.id">
+                            <input type="hidden" id="formName" name="formName" value="volunteer-signup">
+                            <p>
+                                <span class="font-bold text-highlight">*</span>
+                                <em>required field</em>
+                            </p>
+                            {# Personal Info #}
+                                    <fieldset>
+                                        <legend>Personal Info</legend>
+                                        <div class="required">
+                                            <label for="publicName">Public Badge Name</label>
+                                            <p class="text-xs mb-sm text-body">We encourage attendees to list their first and last names. However, if for privacy reasons you would like to use another name, enter it here.</p>
+                                            <input id="publicName" name="publicName" type="text" value="" 
+                                            x-init="formInfo.publicName = (user && user.displayName) || ''; $watch('user', value => formInfo.publicName = value && value.displayName)" 
+                                            x-model="formInfo.publicName" @blur="validate"/>
                                         </div>
-                                    </template>
-                                </div>
-                                <div class="required" x-data="{identities:['A person of color','A woman','Disabled','LGBTQIA+','Other (fill in below)']}">
-                                    <label>I identify as</label>
-                                    <template x-for="(identity, i) in identities">
-                                        <div class="flex items-center">
-                                            <input type="checkbox" :name="'identity' + i" :id="'identity' + i" :value="identity" @change="setCheckboxArray($el,'identities')">
-                                            <label :for="'identity' + i" x-text="identity"></label>
+                                    <fieldset>
+                                        <legend>Code of Conduct</legend>
+                                        <div class="prose mb-sm">
+                                            <p>Go Play NW is committed to cultivating a culture of respect, support, and kindness at both our in-person and online events. We expect all of our attendees, volunteers, and staff to follow our Code of Conduct, please take a moment to read them before answering yes below.</p>
+                                            <p>
+                                                <a href="/code-of-conduct" class="icon-scroll">Code of Conduct</a>
+                                            </p>
                                         </div>
-                                    </template>
-                                </div>
-                                <div x-show="formInfo.identities && formInfo.identities.includes('Other (fill in below)')">
-                                    <label for="identitiesOther">Other identity</label>
-                                    <input id="identitiesOther" name="identitiesOther" type="text" value="" x-model="formInfo.identitiesOther" @blur="validate"/>
-                                </div>
-                                <div class="required">
-                                    <label for="gamingXp">Gaming Community Experience</label>
-                                    <div class="prose">
-                                        <p>Please tell us a bit about your experiences in the gaming community and why you would like to attend Go Play NW.</p>
-                                    </div>
-                                    <textarea cols="30" id="gamingXp" name="gamingXp" rows="3" x-model="formInfo.gamingXp" @blur="validate"></textarea>
-                                </div>
-                            </fieldset>
+                                        <div class="required">
+                                            <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-model="formInfo.communityStandards" required>
+                                            <label for="agree-to-community-standards" class="text-body-highlight"3324>
+                                                Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Go Play NW Code of Conduct.
+                                            </label>
+                                        </div>
+                                    </fieldset>
+                                    <fieldset :class="!isPersonalInfoComplete && 'fieldset-disabled'">
+                                        <legend>Scholarship Assistance</legend>
+                                        <div class="required" x-data="{assistanceTypes:['Weekend pass','Friday Pass','Saturday Pass','Sunday Pass']}">
+                                            <label>Which days do you plan on attending Go Play NW?</label>
+                                            <template x-for="(atype, i) in assistanceTypes">
+                                                <div class="flex items-center">
+                                                    <input type="checkbox" :name="'atype' + i" :id="'atype' + i" :value="atype" @change="setCheckboxArray($el,'assistanceTypes')">
+                                                    <label :for="'atype' + i" x-text="atype"></label>
+                                                </div>
+                                            </template>
+                                        </div>
+                                        <div class="required" x-data="{identities:['A person of color','A woman','Disabled','LGBTQIA+','Other (fill in below)']}">
+                                            <label>I identify as</label>
+                                            <template x-for="(identity, i) in identities">
+                                                <div class="flex items-center">
+                                                    <input type="checkbox" :name="'identity' + i" :id="'identity' + i" :value="identity" @change="setCheckboxArray($el,'identities')">
+                                                    <label :for="'identity' + i" x-text="identity"></label>
+                                                </div>
+                                            </template>
+                                        </div>
+                                        <div x-show="formInfo.identities && formInfo.identities.includes('Other (fill in below)')">
+                                            <label for="identitiesOther">Other identity</label>
+                                            <input id="identitiesOther" name="identitiesOther" type="text" value="" x-model="formInfo.identitiesOther" @blur="validate"/>
+                                        </div>
+                                        <div class="required">
+                                            <label for="gamingXp">Gaming Community Experience</label>
+                                            <div class="prose">
+                                                <p>Please tell us a bit about your experiences in the gaming community and why you would like to attend Go Play NW.</p>
+                                            </div>
+                                            <textarea cols="30" id="gamingXp" name="gamingXp" rows="3" x-model="formInfo.gamingXp" @blur="validate"></textarea>
+                                        </div>
+                                    </fieldset>
 
-                            <button type="submit" :disabled="!isFormComplete">Submit</button>
-                        </form>
+                                    <button type="submit" :disabled="!isFormComplete">Submit</button>
+                                </form>
                     </div>
                     {# END form submission div #}
                     {# form submitted #}
