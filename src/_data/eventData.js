@@ -26,8 +26,8 @@ const url = apiBaseUrl + "events/all/public"
 /* -------- Convert metadata array to object to make it easier to use ------- */
 function metadataArrayToObject(arr) {
     const object = arr.reduce(function(result, item) {
-        console.log("meta: " + item.metaKey + ", " + item.metaValue)
-      result[item.metaKey] = item.metaValue;
+        console.log("meta: " , item.metaKey , ", " , item.metaValue)
+      result[item.metaKey.replace(/-/,'_')] = item.metaValue;
       return result;
     }, {});
     return object
@@ -71,6 +71,8 @@ module.exports = async () => {
                 eventStartDateTime: eventStartDateTime, // native javascript date object
                 eventEndDateTime: eventEndDateTime, // native javascript date object
                 eventSlug: event.eventSlug.toLowerCase(), // force lowercase
+                contentWarnings: metadata['content-warnings'],
+                metaString: JSON.stringify(metadata, null, "\t"),
             }
         })
 
