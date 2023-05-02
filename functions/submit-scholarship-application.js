@@ -1,10 +1,13 @@
 const axios = require('axios');
 require('dotenv').config();
 const { GoogleSpreadsheet } = require('google-spreadsheet')
-const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+// const sgMail = require('@sendgrid/mail');
+// sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-const googleSheetId = process.env.GOOGLE_SHEET_SCHOLARSHIP_GPNW_2023
+const apiBaseUrl = `${process.env.API_BASE_URI}`
+
+const apiKey = `ApiKey ${process.env.BBC_API_KEY}`
+// headers: {"x-api-key": apiKey}
 
 exports.handler = async function(event, context) {
 
@@ -14,9 +17,6 @@ exports.handler = async function(event, context) {
         /* -------------------------------------------------------------------------- */
 
         const eventBody = JSON.parse(event.body)
-        console.log("🚀 ~ file: submit-games-on-demand.js ~ line 15 ~ exports.handler=function ~ eventBody", eventBody)
-
-        
 
         /* -------------------------------------------------------------------------- */
         /*                        2. Submit data to google form                       */
@@ -25,7 +25,7 @@ exports.handler = async function(event, context) {
         console.log('Try submit to Google Sheet');
         try {
             // Initialize the sheet - doc ID is the long id in the sheets URL
-            const doc = new GoogleSpreadsheet(googleSheetId)
+            const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_SCHOLARSHIP_GPNW_2023)
 
             // Initialize Auth - see more available options at https://theoephraim.github.io/node-google-spreadsheet/#/getting-started/authentication
             await doc.useServiceAccountAuth({
@@ -39,15 +39,15 @@ exports.handler = async function(event, context) {
 
             /* ---------------------- Take submit event and add row --------------------- */
 
-            const dateAdded = new Date().toLocaleDateString()
-            const addedRow = await sheet.addRow{
+            const dateAdded = new Date().toLocaleDateString();
+            const addedRow = await sheet.addRow({
                 dateAdded: dateAdded,
-                displayName: eventBody.displayName,
+                publicName: eventBody.publicName,
                 userId: eventBody.userId,
                 userEmail: eventBody.userEmail,
-                scholarshipAssistance: eventBody.scholarshipAssistance, //required
-                demograhpics: eventBody.demographics, //required
-                gamingExperience: eventBody.gamingExperience, //not required
+                assistanceTypes: eventBody.assistanceTypes,
+                identities: eventBody.identities,
+                gamingXp: eventBody.gamingXp, //not required
                 communityStandards: eventBody.communityStandards && "Agreed"
              })
             console.log("addedRow", addedRow);
@@ -56,24 +56,24 @@ exports.handler = async function(event, context) {
             /*                               3. email people                              */
             /* -------------------------------------------------------------------------- */
             
-            const newUserMsg = {
-                to: eventBody.userEmail,
-                from: 'info@bigbadcon.com',
-                subject: 'Thanks for applying for BBC Scholarship',
-                text: `Thank you ${eventBody.publicName} for applying for BBC Scholarship! Our staff will review your submission and let you know about funding`,
-                html: `Thank you ${eventBody.publicName} for applying for BBC Scholarship! Our staff will review your submission and let you know about funding`,
-            }
+            // const newUserMsg = {
+            //     to: eventBody.userEmail,
+            //     from: 'info@bigbadcon.com',
+            //     subject: 'Thanks for applying for BBC Scholarship',
+            //     text: `Thank you ${eventBody.publicName} for applying for BBC Scholarship! Our staff will review your submission and let you know about funding`,
+            //     html: `Thank you ${eventBody.publicName} for applying for BBC Scholarship! Our staff will review your submission and let you know about funding`,
+            // }
 
-            await sgMail.send(newUserMsg);
-            /* --------------------------- Admin user message --------------------------- */
-            const newUserAdminMsg = {
-                to: 'info@bigbadcon.com',
-                from: 'info@bigbadcon.com',
-                subject: 'BBC Scholarship submission',
-                text: `User ${eventBody.publicName} (${eventBody.userEmail}) applied for BBC Scholarship! You can find their submission on google sheets: https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0`,
-                html: `User ${eventBody.publicName} (${eventBody.userEmail}) applied for BBC Scholarship! You can find their submission on <a href="https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0">google sheets</a>.`,
-            }
-            await sgMail.send(newUserAdminMsg);
+            // await sgMail.send(newUserMsg);
+            // /* --------------------------- Admin user message --------------------------- */
+            // const newUserAdminMsg = {
+            //     to: 'info@bigbadcon.com',
+            //     from: 'info@bigbadcon.com',
+            //     subject: 'BBC Scholarship submission',
+            //     text: `User ${eventBody.publicName} (${eventBody.userEmail}) applied for BBC Scholarship! You can find their submission on google sheets: https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0`,
+            //     html: `User ${eventBody.publicName} (${eventBody.userEmail}) applied for BBC Scholarship! You can find their submission on <a href="https://docs.google.com/spreadsheets/d/${googleSheetId}/edit#gid=0">google sheets</a>.`,
+            // }
+            // await sgMail.send(newUserAdminMsg);
 
             return {
                 statusCode: 200,
