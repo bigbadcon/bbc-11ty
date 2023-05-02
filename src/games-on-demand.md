@@ -4,7 +4,7 @@ title: Games On Demand
 published: true
 description: ''
 tags: pages
-navGroup: ''
+navGroup: Events
 navTitle: Games On Demand
 order: 2
 icon: games-on-demand
