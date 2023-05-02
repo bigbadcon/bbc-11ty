@@ -109,9 +109,10 @@
                                             <textarea cols="30" id="gamingXp" name="gamingXp" rows="3" x-model="formInfo.gamingXp" @blur="validate"></textarea>
                                         </div>
                                     </fieldset>
-
-                                    <button type="submit" :disabled="!isFormComplete">Submit</button>
-                                </form>
+                                    <p>
+                                        <button type="submit" :disabled="!isFormComplete">Submit</button>
+                                    </P>
+                        </form>
                     </div>
                     {# END form submission div #}
                     {# form submitted #}
@@ -171,58 +172,78 @@
                                 .remove('error-required');
                         }
                     },
-                    submitForm() {
-                        console.log("submitForm", this.formInfo)
-                        const y = 0
-
-                        const submitNow = () => {
-                            this.postFormInfo()
-                            this.formSubmitted = true
+                    submit(user) {
+                        const submitData = {
+                            ...this.formData,
+                            userEmail: user.userEmail,
+                            displayName: user.displayName,
+                            userId: user.id
                         }
-
-                        const scrollEventListener = () => {
-                            if (window.pageYOffset === 0) {
-                                submitNow();
-                                window.removeEventListener('scroll', scrollEventListener)
-                            }
-                        }
-                        function checkScrollEnd() {
-                            window.addEventListener('scroll', scrollEventListener);
-                        }
-                        checkScrollEnd()
-                        window.scroll({top: y, behavior: 'smooth'});
+                        console.log("submit", submitData)
+                        this.submitForm(submitData)
+                        this.formSubmitted = true
                     },
-                    async postFormInfo() {
-
-                        console.log('postFormInfo')
-
-                        // Remove communityStandards before submitting
-                        let {
-                            communityStandards,
-                            ...formInfo
-                        } = this.formInfo
-                        // change arrays to strings
-
-                        // Convert any array to string and make empty string for anything else not a string
-                        Object
-                            .keys(formInfo)
-                            .forEach(key => {
-                                if (formInfo[key] && formInfo[key].constructor === Array) {
-                                    formInfo[key] = formInfo[key].toString();
-                                } else if (!formInfo[key] || typeof formInfo[key] !== 'string') {
-                                    formInfo[key] = ''
-                                }
-                            })
-
+                    async submitForm(submitData) {
+                        // TODO: add fetch POST to serverless function
                         const options = {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json;charset=utf-8'
                             },
-                            body: JSON.stringify(formInfo)
+                            body: JSON.stringify(submitData)
+                        }            
+//                    submitForm() {
+//                        console.log("submitForm", this.formInfo)
+//                        const y = 0
+
+//                        const submitNow = () => {
+//                            this.postFormInfo()
+//                            this.formSubmitted = true
+//                        }
+
+//                        const scrollEventListener = () => {
+//                            if (window.pageYOffset === 0) {
+ //                               submitNow();
+//                                window.removeEventListener('scroll', scrollEventListener)
+//                            }
+//                        }
+//                        function checkScrollEnd() {
+//                            window.addEventListener('scroll', scrollEventListener);
+//                        }
+//                        checkScrollEnd()
+//                        window.scroll({top: y, behavior: 'smooth'});
+//                    },
+//                    async postFormInfo() {
+//
+//                        console.log('postFormInfo')
+
+                        // Remove communityStandards before submitting
+//                        let {
+//                            communityStandards,
+//                            ...formInfo
+//                        } = this.formInfo
+                        // change arrays to strings
+
+                        // Convert any array to string and make empty string for anything else not a string
+//                        Object
+//                            .keys(formInfo)
+//                            .forEach(key => {
+//                                if (formInfo[key] && formInfo[key].constructor === Array) {
+//                                    formInfo[key] = formInfo[key].toString();
+//                                } else if (!formInfo[key] || typeof formInfo[key] !== 'string') {
+//                                    formInfo[key] = ''
+//                                }
+//                            })
+
+//                        const options = {
+//                            method: 'POST',
+//                            headers: {
+//                                'Content-Type': 'application/json;charset=utf-8'
+//                            },
+//                            body: JSON.stringify(formInfo)
                         }
 
-                        console.log('formInfo JOSN string', JSON.stringify(formInfo));
+//                        console.log('formInfo JOSN string', JSON.stringify(formInfo));
 
                         const url = "/.netlify/functions/submit-scholarship-application"
 
