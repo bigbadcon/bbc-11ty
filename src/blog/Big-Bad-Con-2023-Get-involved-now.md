@@ -50,7 +50,7 @@ Hyatt rooms are available starting at $145/night. [Book a room now](https://www.
 
 Free shuttle service from San Francisco International Airport (SFO) runs every 15 minutes. Shuttles with lift gates upon request. Call (650) 347-1234 to schedule one.
 
-More information about the hotel including information about getting there, parking, and nearby eats,.
+More information about the [hotel](https://www.bigbadcon.com/hotel/) including information about getting there, parking, and nearby eats,.
 
 ### Scholarship Applications
 
