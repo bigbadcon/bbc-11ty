@@ -15,7 +15,6 @@
         </thead>
         <tbody>
             {# favsOnly and timezone in x-data in html #}
-            {% set start = null %}
             {% for event in eventData.volunteer %}
                 {# isFav is in Alpine.data("global") #}
                 {# TODO: test openOnly #}
@@ -56,11 +55,6 @@
                         <span @click="toggleFav({{event.eventId}})" class="fav-star" :class="isFav({{event.eventId}}) && 'favved'"></span>
                     </td>
                 </tr>
-            {% set prevEvent = start %}
-            {%- if (event.eventId == prevEvent.eventId) -%}
-            <tr><td><hr width = 85%></td></tr>
-            {%- endif -%}
-            {% set start = event %}
             {% endfor %}
         </tbody>
     </table>
