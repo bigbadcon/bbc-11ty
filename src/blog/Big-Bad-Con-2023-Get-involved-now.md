@@ -23,7 +23,7 @@ Sign up to [run an event](https://www.bigbadcon.com/run-an-event/) now (submissi
 
 ### Games on Demand Submissions
 
-Games on Demand offers players a roster of games to sign up for at the con and GMs the opportunity to run their favorite RPGs, from the classics to brand new systems!
+[Games on Demand](https://www.bigbadcon.com/games-on-demand/) offers players a roster of games to sign up for at the con and GMs the opportunity to run their favorite RPGs, from the classics to brand new systems!
 
 Sign up to run your favorite games (submissions open until 7/31).
 
