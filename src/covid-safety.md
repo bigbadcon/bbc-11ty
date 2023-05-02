@@ -4,8 +4,8 @@ title: COVID Safety
 published: true
 description: Precautions we're taking to make the con as safe as we can.
 ogImage: ''
-navGroup: Attend
-navTitle: Public Health Policy
+navGroup: ''
+navTitle: ''
 order: null
 icon: health
 _template: page
