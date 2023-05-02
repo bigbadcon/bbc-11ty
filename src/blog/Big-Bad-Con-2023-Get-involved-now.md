@@ -71,7 +71,7 @@ Head over here to follow the campaign and be notified when it launches!
 
 Last year, thanks to everyone’s diligence there were zero reported COVID transmissions at Big Bad Con! That is incredible, and a trend we want to see continue.
 
-In order to keep everyone as safe as we can, we’ll be maintaining our public health policy that requires all attendees to:
+In order to keep everyone as safe as we can, we’ll be maintaining our [public health policy](https://www.bigbadcon.com/public-health-policy/) that requires all attendees to:
 
 * Show proof of vaccination
 * Test before arriving (we’ll provide free test at our welcome desk)
