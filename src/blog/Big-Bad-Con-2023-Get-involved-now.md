@@ -31,7 +31,7 @@ Sign up to [run your favorite games](https://www.bigbadcon.com/games-on-demand/)
 
 ### Volunteer Sign ups
 
-Rangers are the folks that make Big Bad Con possible! We're here to greet people when they arrive, get them registered, and help them find their way throughout the con. We also get to work with amazing folks…each other! Join the team as a:
+[Rangers](https://www.bigbadcon.com/volunteer-shifts/) are the folks that make Big Bad Con possible! We're here to greet people when they arrive, get them registered, and help them find their way throughout the con. We also get to work with amazing folks…each other! Join the team as a:
 
 * Greeter
 * Registration Desk Host
