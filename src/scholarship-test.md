@@ -1,5 +1,5 @@
 ---
-layout: layouts/page.njk
+layout: layouts/apply-for-scholarship.njk
 title: Scholarship Program
 description: 'Sign up for the Go Play NW scholarship program.'
 published: true
