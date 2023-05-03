@@ -3,12 +3,11 @@ title: Events
 tags: cards
 published: false
 order: 2
-_template: home_page_cards
 ---
 
-Check out the amazing events at Big Bad Con!
+[GM in Games on Demand](https://www.bigbadcon.com/games-on-demand/){.icon-games-on-demand}
 
-[Big Bad Online Panels](https://www.bigbadcon.com/events/){.icon-bullhorn}
+Run and Event
 
 [Past Events](https://www.bigbadcon.com/past-events/){.icon-calendar-clock}
 
