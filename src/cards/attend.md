@@ -5,14 +5,15 @@ tags: cards
 published: false
 image: ''
 alt: ''
-_template: home_page_cards
 ---
 
-Big Bad Online (March 31-April 1) is free to attend!
+Big Bad Con 2023
 
 <!--[Register Now!](https://www.bigbadcon.com/register/){.icon-badge}-->
 
-[Watch on Twitch](https://www.twitch.tv/bigbadcon){.icon-twitch}
+[Book a Room](https://www.hyatt.com/en-US/group-booking/SFOBU/G-BBC4){.icon-hotel}
+
+Badges available in June!
 
 <!--Sign up to attend Big Bad Con!
 
