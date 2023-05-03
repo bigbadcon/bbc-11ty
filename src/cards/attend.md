@@ -2,7 +2,7 @@
 title: How to Attend
 order: -1
 tags: cards
-published: false
+published: true
 image: ''
 alt: ''
 ---
