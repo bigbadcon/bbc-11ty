@@ -11,7 +11,7 @@ Big Bad Con 2023
 
 <!--[Register Now!](https://www.bigbadcon.com/register/){.icon-badge}-->
 
-[Book a Room](https://www.hyatt.com/en-US/group-booking/SFOBU/G-BBC4){.icon-hotel}
+[Book a Room](https://www.bigbadcon.com/hotel/){.icon-hotel}
 
 Badges available in June!
 
