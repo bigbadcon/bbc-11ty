@@ -7,6 +7,8 @@ image: ''
 alt: ''
 ---
 
+Big Bad Con 2023:
+
 [Book a Room](https://www.bigbadcon.com/hotel/){.icon-hotel}
 
 Badges available in June!
