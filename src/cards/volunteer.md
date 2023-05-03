@@ -7,7 +7,7 @@ published: true
 
 <!--Big Bad Con is a purely volunteer run organization. Starting in early 2023 we'll re-open recruitment for Rangers. Check back here to join the team!--> 
 
-We're looking for Rangers to help us host Big Bad Online:
+Join the Rangers:
 
 [Learn about the Rangers](https://www.bigbadcon.com/rangers/){.icon-paw}
 
