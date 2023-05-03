@@ -16,8 +16,6 @@ exports.handler = async function(event, context) {
 
         const eventBody = JSON.parse(event.body)
 
-        
-
         /* -------------------------------------------------------------------------- */
         /*                        2. Submit data to google form                       */
         /* -------------------------------------------------------------------------- */
