@@ -42,7 +42,7 @@ exports.handler = async function(event, context) {
             const dateAdded = new Date().toLocaleDateString();
             const addedRow = await sheet.addRow({
                 dateAdded: dateAdded,
-                publicName: eventBody.publicName,
+                displayName: eventBody.displayName,
                 userId: eventBody.userId,
                 userEmail: eventBody.userEmail,
                 assistanceTypes: eventBody.assistanceTypes,
