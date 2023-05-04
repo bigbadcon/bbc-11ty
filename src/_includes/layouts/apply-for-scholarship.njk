@@ -59,8 +59,8 @@
                                             <label for="publicName">Public Name</label>
                                             <p class="text-xs mb-sm text-body">We encourage attendees to list their first and last names. However, if for privacy reasons you would like to use another name, enter it here.</p>
                                             <input id="publicName" name="publicName" type="text" value="" 
-                                            x-init="formInfo.publicName = (user && user.displayName) || ''; $watch('user', value => formInfo.publicName = value && value.displayName)" 
-                                            x-model="formInfo.publicName" @blur="validate"/>
+                                            x-init="formData.publicName = (user && user.displayName) || ''; $watch('user', value => formData.publicName = value && value.displayName)" 
+                                            x-model="formData.publicName" @blur="validate"/>
                                         </div>
                                     <fieldset>
                                         <legend>Code of Conduct</legend>
@@ -71,7 +71,7 @@
                                             </p>
                                         </div>
                                         <div class="required">
-                                            <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-model="formInfo.communityStandards" required>
+                                            <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-model="formData.communityStandards" required>
                                             <label for="agree-to-community-standards" class="text-body-highlight"3324>
                                                 Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Go Play NW Code of Conduct.
                                             </label>
@@ -97,16 +97,16 @@
                                                 </div>
                                             </template>
                                         </div>
-                                        <div x-show="formInfo.identities && formInfo.identities.includes('Other (fill in below)')">
+                                        <div x-show="formData.identities && formData.identities.includes('Other (fill in below)')">
                                             <label for="identitiesOther">Other identity</label>
-                                            <input id="identitiesOther" name="identitiesOther" type="text" value="" x-model="formInfo.identitiesOther" @blur="validate"/>
+                                            <input id="identitiesOther" name="identitiesOther" type="text" value="" x-model="formData.identitiesOther" @blur="validate"/>
                                         </div>
                                         <div class="required">
                                             <label for="gamingXp">Gaming Community Experience</label>
                                             <div class="prose">
                                                 <p>Please tell us a bit about your experiences in the gaming community and why you would like to attend Go Play NW.</p>
                                             </div>
-                                            <textarea cols="30" id="gamingXp" name="gamingXp" rows="3" x-model="formInfo.gamingXp" @blur="validate"></textarea>
+                                            <textarea cols="30" id="gamingXp" name="gamingXp" rows="3" x-model="formData.gamingXp" @blur="validate"></textarea>
                                         </div>
                                     </fieldset>
                                     <p>
@@ -145,18 +145,18 @@
             Alpine.data('scholarshipSubmission', function () {
                 return {
                     formSubmitted: false,
-                    formInfo: {
+                    formData: {
                         assistanceTypes: '',
                         identities: '',
                         gamingXp: '',
                         communityStandards: false
                     },
                     get isPersonalInfoComplete() {
-                        const x = this.formInfo
+                        const x = this.formData
                         return [x.publicName].every(isFull) && x.communityStandards;
                     },
                     get isFormComplete() {
-                        const x = this.formInfo
+                        const x = this.formData
                         return this.isPersonalInfoComplete && [
                             x.assistanceTypes,
                             x.identities,
@@ -179,10 +179,10 @@
                     },
                     submit(user) {
                         const submitData = {
-                            ...this.formInfo,
+                            ...this.formData,
                             userEmail: user.userEmail,
                             displayName: user.displayName,
-                            userId: user.id
+                            userId: user.id,
                         }
                         console.log("submit", submitData)
                         this.submitForm(submitData)
@@ -198,11 +198,11 @@
                             body: JSON.stringify(submitData)
                         }            
 //                    submitForm() {
-//                        console.log("submitForm", this.formInfo)
+//                        console.log("submitForm", this.formData)
 //                        const y = 0
 
 //                        const submitNow = () => {
-//                            this.postFormInfo()
+//                            this.postformData()
 //                            this.formSubmitted = true
 //                        }
 
@@ -218,25 +218,25 @@
 //                        checkScrollEnd()
 //                        window.scroll({top: y, behavior: 'smooth'});
 //                    },
-//                    async postFormInfo() {
+//                    async postformData() {
 //
-//                        console.log('postFormInfo')
+//                        console.log('postformData')
 
                         // Remove communityStandards before submitting
 //                        let {
 //                            communityStandards,
-//                            ...formInfo
-//                        } = this.formInfo
+//                            ...formData
+//                        } = this.formData
                         // change arrays to strings
 
                         // Convert any array to string and make empty string for anything else not a string
 //                        Object
-//                            .keys(formInfo)
+//                            .keys(formData)
 //                            .forEach(key => {
-//                                if (formInfo[key] && formInfo[key].constructor === Array) {
-//                                    formInfo[key] = formInfo[key].toString();
-//                                } else if (!formInfo[key] || typeof formInfo[key] !== 'string') {
-//                                    formInfo[key] = ''
+//                                if (formData[key] && formData[key].constructor === Array) {
+//                                    formData[key] = formData[key].toString();
+//                                } else if (!formData[key] || typeof formData[key] !== 'string') {
+//                                    formData[key] = ''
 //                                }
 //                            })
 
@@ -245,10 +245,10 @@
 //                            headers: {
 //                                'Content-Type': 'application/json;charset=utf-8'
 //                            },
-//                            body: JSON.stringify(formInfo)
+//                            body: JSON.stringify(formData)
 //                        }
 
-//                        console.log('formInfo JOSN string', JSON.stringify(formInfo));
+//                        console.log('formData JOSN string', JSON.stringify(formData));
 
                         const url = "/.netlify/functions/submit-scholarship-application"
 
@@ -266,16 +266,16 @@
                         }
                     },
                     setCheckboxArray(el, arrayName) {
-                        this.formInfo[arrayName] = this.formInfo[arrayName] || [];
+                        this.formData[arrayName] = this.formData[arrayName] || [];
                         // if checked then add value to array; otherwise remove
                         if (el.checked) {
-                            this.formInfo[arrayName] = [
-                                ...this.formInfo[arrayName],
+                            this.formData[arrayName] = [
+                                ...this.formData[arrayName],
                                 el.value
                             ]
                         } else {
-                            this.formInfo[arrayName] = this
-                                .formInfo[arrayName]
+                            this.formData[arrayName] = this
+                                .formData[arrayName]
                                 .filter(item => item !== el.value)
                         }
                     }
