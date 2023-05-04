@@ -33,11 +33,7 @@ function isFullArray(arr) {
 }
 
 function compareArrays(arr1, arr2) {
-	return (
-		Array.isArray(arr1) &&
-		Array.isArray(arr2) &&
-		arr1.filter((val) => arr2.indexOf(val) !== -1)
-	);
+	return Array.isArray(arr1) && Array.isArray(arr2) && arr1.filter((val) => arr2.indexOf(val) !== -1);
 }
 
 function compareValues(a, b) {
@@ -102,8 +98,7 @@ async function fetchData(url, options, authToken) {
 		let response = await fetch(apiBaseUrl + url, options);
 		// eslint-disable-next-line no-console
 		console.log(`RESPONSE:fetch for ${url}`, response);
-		if (response.status !== 200)
-			throw `fetch fail status: ${response.status}`;
+		if (response.status !== 200) throw `fetch fail status: ${response.status}`;
 		let result = await response.json();
 		// eslint-disable-next-line no-console
 		console.log(`RESULT:fetch for ${url}`, result);
@@ -140,13 +135,8 @@ document.addEventListener("alpine:init", () => {
 				}
 
 				// logout if it's been more than 10 days
-				if (
-					!dayjs(this.lastLogin).isValid() ||
-					dayjs(this.lastLogin).diff(dayjs(), "hour") < -240
-				) {
-					this.logout(
-						"It has been more than 10 days since your last login so you are being logged out"
-					);
+				if (!dayjs(this.lastLogin).isValid() || dayjs(this.lastLogin).diff(dayjs(), "hour") < -240) {
+					this.logout("It has been more than 10 days since your last login so you are being logged out");
 				}
 			},
 			modal: null, // this is a state machine basically with named string values for each panel and null for none
@@ -199,46 +189,28 @@ document.addEventListener("alpine:init", () => {
 				let user = await lilRed.me();
 
 				const userMetadata = metadataArrayToObject(user.metadata);
-				const userRoles = [
-					...userMetadata.wp_tuiny5_capabilities.matchAll(
-						/"([a-z-]+)/g
-					),
-				].map((match) => match[1]);
+				const userRoles = [...userMetadata.wp_tuiny5_capabilities.matchAll(/"([a-z-]+)/g)].map(
+					(match) => match[1]
+				);
 				user = {
 					...user,
 					metadata: userMetadata,
 					roles: userRoles,
-					displayName:
-						decodeText(user.displayName) || user.displayName,
+					displayName: decodeText(user.displayName) || user.displayName,
 				};
 				this.user = user;
 				return user;
 			},
 			get badgeRoles() {
 				return (
-					this.user &&
-					compareArrays(this.user.roles, [
-						"gm",
-						"paidattendee",
-						"volunteer",
-						"comp",
-						"staff",
-					])
+					this.user && compareArrays(this.user.roles, ["gm", "paidattendee", "volunteer", "comp", "staff"])
 				);
 			},
 			get hasBadge() {
-				return (
-					this.user &&
-					Array.isArray(this.badgeRoles) &&
-					this.badgeRoles.length > 0
-				);
+				return this.user && Array.isArray(this.badgeRoles) && this.badgeRoles.length > 0;
 			},
 			isRole(role) {
-				return (
-					this.user &&
-					Array.isArray(this.user.roles) &&
-					this.user.roles.includes(role)
-				);
+				return this.user && Array.isArray(this.user.roles) && this.user.roles.includes(role);
 			},
 			get isVolunteer() {
 				return this.isRole("volunteer");
@@ -266,8 +238,7 @@ document.addEventListener("alpine:init", () => {
 						const response = await fetch(url);
 						// eslint-disable-next-line no-console
 						console.log(`RESPONSE:fetch for ${url}`, response);
-						if (response.status !== 200)
-							throw `checkRegistration fetch fail status: ${response.status}`;
+						if (response.status !== 200) throw `checkRegistration fetch fail status: ${response.status}`;
 						let data = await response.json();
 						// eslint-disable-next-line no-console
 						console.log(`RESULT:fetch for ${url}`, data);
@@ -315,10 +286,7 @@ document.addEventListener("alpine:init", () => {
 				// only show published events that are in the future (minus 1 month ago)
 				this.bookedEvents = myEvents;
 				// eslint-disable-next-line no-console
-				console.log(
-					"🚀 ~ file: scripts.js ~ line 279 ~ getBookedEvents ~ myEvents",
-					myEvents
-				);
+				console.log("🚀 ~ file: scripts.js ~ line 279 ~ getBookedEvents ~ myEvents", myEvents);
 				return myEvents;
 			},
 			async bookEvent(id) {
@@ -328,10 +296,7 @@ document.addEventListener("alpine:init", () => {
 				// book event
 				const data = await lilRed.bookings.add(id);
 				if (!data) {
-					this.$dispatch(
-						"toast",
-						"ERROR: booking change failed. Data service might be down."
-					);
+					this.$dispatch("toast", "ERROR: booking change failed. Data service might be down.");
 					return false;
 				}
 				// update availableSlots
@@ -346,10 +311,7 @@ document.addEventListener("alpine:init", () => {
 				if (!status) return false;
 				let data = await lilRed.bookings.delete(id);
 				if (!data) {
-					this.$dispatch(
-						"toast",
-						"ERROR: booking change failed. Data service might be down."
-					);
+					this.$dispatch("toast", "ERROR: booking change failed. Data service might be down.");
 					return false;
 				}
 				// update availableSlots
@@ -364,10 +326,7 @@ document.addEventListener("alpine:init", () => {
 				this.favEvents =
 					data &&
 					data.map((item) => {
-						if (
-							typeof item === "number" ||
-							typeof item === "string"
-						) {
+						if (typeof item === "number" || typeof item === "string") {
 							return item;
 						} else if (typeof item === "object" && item.eventId) {
 							return item.eventId;
@@ -390,23 +349,14 @@ document.addEventListener("alpine:init", () => {
 					data = await lilRed.favorites.add(id);
 				}
 				if (!data) {
-					this.$dispatch(
-						"toast",
-						"ERROR: saving fav failed. data service might be offline."
-					);
+					this.$dispatch("toast", "ERROR: saving fav failed. data service might be offline.");
 				}
 			},
 			isFav(id) {
-				return (
-					isFullArray(this.favEvents) &&
-					this.favEvents.some((item) => item === id)
-				);
+				return isFullArray(this.favEvents) && this.favEvents.some((item) => item === id);
 			},
 			isBooked(id) {
-				return (
-					isFullArray(this.bookedEvents) &&
-					this.bookedEvents.some((item) => item.id === id)
-				);
+				return isFullArray(this.bookedEvents) && this.bookedEvents.some((item) => item.id === id);
 			},
 			doesEventOverlap(date, dur) {
 				function doesDateOverlap(start1, dur1, start2, dur2) {
@@ -423,9 +373,7 @@ document.addEventListener("alpine:init", () => {
 
 				return (
 					this.bookedEvents &&
-					this.bookedEvents.some((item) =>
-						doesDateOverlap(item.date, item.dur, date, dur)
-					)
+					this.bookedEvents.some((item) => doesDateOverlap(item.date, item.dur, date, dur))
 				);
 			},
 			async changePassword(userId, password) {
@@ -498,10 +446,7 @@ document.addEventListener("alpine:init", () => {
 					.pop();
 				if (this.sort[page] && this.sort[page].col !== undefined) {
 					const th = this.$root.querySelectorAll("table th button");
-					this.sortTable(
-						th[this.sort[page].col],
-						this.sort[page].ascending
-					);
+					this.sortTable(th[this.sort[page].col], this.sort[page].ascending);
 				}
 			},
 			filter: this.$persist({
@@ -522,18 +467,9 @@ document.addEventListener("alpine:init", () => {
 			},
 			testFilters() {
 				// test on init to make sure all the filters are valid
-				this.filter.favsOnly =
-					typeof this.filter.favsOnly === "boolean"
-						? this.filter.favsOnly
-						: false;
-				this.filter.openOnly =
-					typeof this.filter.openOnly === "boolean"
-						? this.filter.openOnly
-						: false;
-				this.filter.overlap =
-					typeof this.filter.overlap === "boolean"
-						? this.filter.overlap
-						: false;
+				this.filter.favsOnly = typeof this.filter.favsOnly === "boolean" ? this.filter.favsOnly : false;
+				this.filter.openOnly = typeof this.filter.openOnly === "boolean" ? this.filter.openOnly : false;
+				this.filter.overlap = typeof this.filter.overlap === "boolean" ? this.filter.overlap : false;
 				this.setCategory(this.filter.category);
 				this.setDay(this.filter.day);
 			},
@@ -565,51 +501,32 @@ document.addEventListener("alpine:init", () => {
 				"Early Signup",
 				"Vending",
 			],
-			onlineCategories: [
-				"All",
-				"Panel",
-				"Practicum",
-				"Seminar",
-				"Topical",
-			],
+			onlineCategories: ["All", "Panel", "Practicum", "Seminar", "Topical"],
 			setCategory(cat) {
 				// TODO: make category list more dynamic
 				this.filter.category =
 					this.filter.category &&
 					cat &&
-					this.allCategories.some(
-						(val) => val.toLowerCase() === cat.toLowerCase()
-					)
+					this.allCategories.some((val) => val.toLowerCase() === cat.toLowerCase())
 						? cat
 						: "all";
 			},
 			filterCategory(categories) {
 				return (
 					this.filter.category.toLowerCase() === "all" ||
-					categories.some(
-						(cat) =>
-							cat.toLowerCase() ===
-							this.filter.category.toLowerCase()
-					)
+					categories.some((cat) => cat.toLowerCase() === this.filter.category.toLowerCase())
 				);
 			},
 			allDays: ["All", "Mar 31", "Apr 1"], // TODO: make this dynamic
 			setDay(day) {
 				// TODO: make day range more dynamic
 				this.filter.day =
-					this.filter.day &&
-					day &&
-					this.allDays.some(
-						(val) => val.toLowerCase() === day.toLowerCase()
-					)
+					this.filter.day && day && this.allDays.some((val) => val.toLowerCase() === day.toLowerCase())
 						? day
 						: "all";
 			},
 			filterDay(date) {
-				return (
-					this.filter.day.toLowerCase() === "all" ||
-					this.filter.day.toLowerCase() === date.toLowerCase()
-				);
+				return this.filter.day.toLowerCase() === "all" || this.filter.day.toLowerCase() === date.toLowerCase();
 			},
 			sortable: {
 				["@click"](e) {
@@ -666,9 +583,7 @@ document.addEventListener("alpine:init", () => {
 				if (typeof ascending !== "boolean") {
 					// If this is the same column than flip direction, otherwise sort ascending
 					ascending =
-						this.sort[page] &&
-						this.sort[page].col === col &&
-						typeof this.sort[page].ascending === "boolean"
+						this.sort[page] && this.sort[page].col === col && typeof this.sort[page].ascending === "boolean"
 							? !this.sort[page].ascending
 							: true;
 				}
@@ -756,27 +671,19 @@ document.addEventListener("alpine:init", () => {
 								...booking,
 								user: {
 									...booking.user,
-									displayName: decodeText(
-										booking.user.displayName
-									),
+									displayName: decodeText(booking.user.displayName),
 								},
 							};
 						});
 
 					/* ------------------------ Update all data variables ----------------------- */
 					// get only active bookings that are gms/speakers (bookingComment is null if not labelled)
-					this.gm =
-						bookings.filter((booking) => booking.bookingComment) ||
-						[];
+					this.gm = bookings.filter((booking) => booking.bookingComment) || [];
 					// get only active bookings that are not gms/speakers (bookingComment is null if not labelled)
 					this.bookings =
 						bookings
 							.filter((booking) => !booking.bookingComment)
-							.sort((a, b) =>
-								a.user.displayName.localeCompare(
-									b.user.displayName
-								)
-							) || [];
+							.sort((a, b) => a.user.displayName.localeCompare(b.user.displayName)) || [];
 					// get event_image
 					this.event_image = metadata.event_image;
 
@@ -804,8 +711,7 @@ document.addEventListener("alpine:init", () => {
 
 				if (data) {
 					// if data update event data with new image
-					let eventsLS =
-						JSON.parse(localStorage.getItem("events")) || {};
+					let eventsLS = JSON.parse(localStorage.getItem("events")) || {};
 					if (eventsLS[eventId]) {
 						this.event_image = data.fileName;
 					}
@@ -849,9 +755,7 @@ document.addEventListener("alpine:init", () => {
 		// TODO: change to fetch
 		async checkUsername() {
 			try {
-				const res = await axios.get(
-					`/.netlify/functions/check-user/${this.userNicename}`
-				);
+				const res = await axios.get(`/.netlify/functions/check-user/${this.userNicename}`);
 				if (res && res.data === "user exists") {
 					this.userNicenameExists = true;
 				}
@@ -871,9 +775,7 @@ document.addEventListener("alpine:init", () => {
 			if (this.userEmail) {
 				const paramSafeEmail = this.userEmail.replace(/\+/gi, "%2B"); // replace + symbols for URLSearchParams
 				// TODO: change to fetch
-				const res = await axios.get(
-					`/.netlify/functions/forgot-password/?email=${paramSafeEmail}`
-				);
+				const res = await axios.get(`/.netlify/functions/forgot-password/?email=${paramSafeEmail}`);
 				if (res && res.data === "forgot password email sent") {
 					this.resetPasswordFormState = "succeeded";
 					// eslint-disable-next-line no-console
@@ -882,35 +784,6 @@ document.addEventListener("alpine:init", () => {
 					this.resetPasswordFormState = "failed";
 				}
 				this.userEmail = "";
-			}
-		},
-	}));
-
-	// Change Password
-	Alpine.data("changePasswordForm", () => ({
-		uuid: null,
-		userEmail: "",
-		userPass: "",
-		passwordChangedState: "empty",
-		async changePassword() {
-			this.passwordChangedState = "working";
-			if (this.uuid) {
-				const paramSafeEmail = this.userEmail.replace(/\+/gi, "%2B"); // replace + symbols for URLSearchParams
-				// TODO: change to fetch
-				const res = await axios.get(
-					`/.netlify/functions/change-password/?uuid=${this.uuid}&email=${paramSafeEmail}&password=${this.userPass}`
-				);
-				if (res && res.data === "password changed") {
-					// eslint-disable-next-line no-console
-					console.log("password change succeeded");
-					this.passwordChangedState = "succeeded";
-				} else {
-					// eslint-disable-next-line no-console
-					console.log("password change failed");
-					this.passwordChangedState = "failed";
-				}
-				this.userEmail = "";
-				this.userPass = "";
 			}
 		},
 	}));
