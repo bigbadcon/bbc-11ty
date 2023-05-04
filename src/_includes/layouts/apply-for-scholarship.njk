@@ -190,6 +190,18 @@
                     },
                     async submitForm(submitData) {
                         // TODO: add fetch POST to serverless function
+
+                        // Convert any array to string and make empty string for anything else not a string
+                        Object
+                            .keys(formData)
+                            .forEach(key => {
+                                if (formData[key] && formData[key].constructor === Array) {
+                                    formData[key] = formData[key].toString();
+                                } else if (!formData[key] || typeof formData[key] !== 'string') {
+                                    formData[key] = ''
+                                }
+                            })
+
                         const options = {
                             method: 'POST',
                             headers: {
@@ -232,7 +244,7 @@
                         // Convert any array to string and make empty string for anything else not a string
 //                        Object
 //                            .keys(formData)
-//                            .forEach(key => {
+//  /                          .forEach(key => {
 //                                if (formData[key] && formData[key].constructor === Array) {
 //                                    formData[key] = formData[key].toString();
 //                                } else if (!formData[key] || typeof formData[key] !== 'string') {
