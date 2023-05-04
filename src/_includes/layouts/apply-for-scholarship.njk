@@ -56,7 +56,7 @@
                                     <fieldset>
                                         <legend>Personal Info</legend>
                                         <div class="required">
-                                            <label for="publicName">Public Badge Name</label>
+                                            <label for="publicName">Public Name</label>
                                             <p class="text-xs mb-sm text-body">We encourage attendees to list their first and last names. However, if for privacy reasons you would like to use another name, enter it here.</p>
                                             <input id="publicName" name="publicName" type="text" value="" 
                                             x-init="formInfo.publicName = (user && user.displayName) || ''; $watch('user', value => formInfo.publicName = value && value.displayName)" 
@@ -149,6 +149,7 @@
                         assistanceTypes: '',
                         identities: '',
                         gamingXp: '',
+                        communityStandards: false
                     },
                     get isPersonalInfoComplete() {
                         const x = this.formInfo
