@@ -552,5 +552,11 @@ export function globalFields() {
 			label: "Show Event Times",
 			type: "boolean",
 		},
+		{
+			name: "showEventForm",
+			label: "Show Event Times",
+			type: "boolean",
+			description: "Show the Run an Event (for Con) or Suggest an Event (for Online) link on events page",
+		},
 	] as TinaField[];
 }

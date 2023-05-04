@@ -12,12 +12,12 @@
             {% if global.showEvents %}
                 {% include 'components/events-table.njk' %}
             {% endif %}
-            {% if suggestEvent %}
+            {% if global.isEventOnline and global.showEventForm %}
                 <div class="mx-auto border-t-4 border-solid max-w-hero border-hr mt-md pt-base">
                     <a href="/suggest-an-event" class="icon-light-bulb">Suggest an Event</a>
                 </div>
             {% endif %}
-            {% if runEvent %}
+            {% if not global.isEventOnline and global.showEventForm %}
                 <div class="mx-auto border-t-4 border-solid max-w-hero border-hr mt-md pt-base">
                     <a href="/run-an-event" class="icon-dice">Run an Event</a>
                 </div>
