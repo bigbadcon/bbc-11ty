@@ -373,6 +373,13 @@
                             {% if (sitemeta.environment === 'dev') %}
                                 {% import 'components/x-validate-form-validator.njk' as validate %}
                                 {{ validate.log('form') }}
+                                <div class="fixed top-0 right-0 text-xs p-sm bg-slate-100">
+                                    <button @click.prevent="console.log(createEventAPIData)" class="border border-green-300 rounded p-xs">log eventAPI</button>
+                                    <template x-for="id in eventMetadataIds">
+                                        <div x-text="id"></div>
+                                    </template>
+
+                                </div>
                             {% endif %}
                         </form>
                     </div>
@@ -748,110 +755,6 @@
                     ...metadata[key]
                 ])
 
-            function getMetadataName(id) {
-                return allMetadata
-                    .find(val => val.id === id)
-                    .name
-            }
-
-            /* -------------------------------------------------------------------------- */
-            /* Function to covert form data to required data for create event API */
-            /* -------------------------------------------------------------------------- */
-
-            function convertFormDataToCreateEventAPI(formData) {
-
-                let eventMetadataIds = [
-                    ...formData.playerContributions.array,
-                    ...formData.gameFocus.array,
-                    ...formData.gameMood.array,
-                    ...formData.gameGenre.array,
-                    ...formData.contentAdvisoryOptions.array,
-                    ...formData.panelTopic.array
-                ].map(id => parseInt(id));
-
-                const eventMetadataNames = eventMetadataIds
-                    ? eventMetadataIds.map(id => getMetadataName(id))
-                    : [];
-
-                function getEventMetadataIds() {
-
-                    let eventMetadataIds = [
-                        ...formData.playerContributions.array,
-                        ...formData.gameFocus.array,
-                        ...formData.gameMood.array,
-                        ...formData.gameGenre.array,
-                        ...formData.contentAdvisoryOptions.array,
-                        ...formData.panelTopic.array
-                    ].map(id => parseInt(id));
-
-                    // Add event CategoryId
-                    eventMetadataIds = [
-                        ...eventMetadataIds,
-                        ...formData.eventCategoryId.value
-                    ]
-
-                    //If player age is 13+ then add
-                    if (formData.playerAge.value === "13+") {
-                        eventMetadataIds = [
-                            ...eventMetadataIds,
-                            193
-                        ]
-                    }
-
-                    // If playtest than add that
-                    if (formData.playtest.value === "Yes") {
-                        eventMetadataIds = [
-                            ...eventMetadataIds,
-                            157
-                        ]
-                    }
-
-                    return eventMetadataIds
-                }
-
-                // TODO: review this stuff for improving this API later
-                formData = {
-                    //accessabilityOptions: formData.accessabilityOptions,  not used
-                    additionalGms: formData.additionalGMs.value,
-                    additionalRequirements: (formData.locationPref.value)
-                        ? formData.additionalRequirements.value + " Room Request: " + formData.locationPref.value
-                        : formData.additionalRequirements.value,
-                    characters: formData.characters.value,
-                    contentAdvisory: formData.contentAdvisory.value === "Yes", // this is a boolean in the API so we are using 1000000 is no-content-advisory; selection info goes into the eventMetadataIds
-                    eventCategoryId: formData.eventCategoryId.value || 0,
-                    eventDescription: formData.eventDescription.value,
-                    //eventFacilitators: formData.facilitators,  not used
-                    eventMetadataIds: getEventMetadataIds() || [],
-                    eventMetadataNames: eventMetadataNames || [], // This is not used in create event API; only for Google Sheet
-                    eventMetadataNamesString: eventMetadataNames && eventMetadataNames.toString(),
-                    eventName: formData.eventName.value,
-                    eventTags: eventMetadataNames || [],
-                    format: formData.format.value,
-                    gm: formData.publicName.value,
-                    gmAge: formData.yourAge.value,
-                    length: formData.eventLength.value,
-                    minPlayers: formData.minPlayers.value,
-                    otherInfo: formData.otherInfo.value,
-                    playerAge: formData.playerAge.value,
-                    players: formData.maxPlayers.value,
-                    playtest: formData.playtest.value,
-                    requestMediaEquipment: (formData.requestMediaEquipment.value)
-                        ? `${formData.mediaEquipment.value} ${formData.requestMediaEquipment.value}`
-                        : formData.mediaEquipment.value,
-                    requestMediaRoom: formData.requestMediaRoom.value === "Yes",
-                    requestPrivateRoom: formData.locationPref.value !== "No Preference", // add extra to additionalRequirements for now
-                    runNumberOfTimes: parseInt(formData.runNumberOfTimes.value || 1),
-                    safetyTools: formData.safetyTools.value,
-                    schedulingPref: formData.schedulingPref
-                        ?.value || "",
-                    system: formData.system.value,
-                    tableType: formData.tableType.value,
-                    triggerWarnings: formData.triggerWarnings.value,
-                    userDisplayName: formData.userDisplayName.value
-                }
-                return formData;
-            }
-
             /* -------------------------------------------------------------------------- */
             /* Alpine data for form */
             /* -------------------------------------------------------------------------- */
@@ -867,6 +770,98 @@
                             .$validate
                             .isComplete($el.previousElementSibling)
                     },
+                    get eventMetadataNames() {
+                        const namesArray = this
+                            .eventMetadataIds
+                            .map(id => {
+                                const metadata = allMetadata.find(val => val.id === id)
+                                return metadata && metadata.name
+                            })
+
+                        return namesArray
+                    },
+                    get eventMetadataIds() {
+                        const formData = this
+                            .$validate
+                            .formData("form");
+
+                        let eventMetadataIds = [
+                            ...formData.playerContributions.array,
+                            ...formData.gameFocus.array,
+                            ...formData.gameMood.array,
+                            ...formData.gameGenre.array,
+                            ...formData.contentAdvisoryOptions.array,
+                            ...formData.panelTopic.array,
+                            formData.eventCategoryId.value
+                        ].map(id => parseInt(id));
+
+                        //If player age is 13+ then add
+                        if (formData.playerAge.value === "13+") {
+                            eventMetadataIds = [
+                                ...eventMetadataIds,
+                                193
+                            ]
+                        }
+
+                        // If playtest than add that
+                        if (formData.playtest.value === "Yes") {
+                            eventMetadataIds = [
+                                ...eventMetadataIds,
+                                157
+                            ]
+                        }
+
+                        return eventMetadataIds
+                    },
+                    get createEventAPIData() {
+
+                        const formData = this
+                            .$validate
+                            .formData("form");
+
+                        const apiData = {
+                            //accessabilityOptions: formData.accessabilityOptions,  not used
+                            additionalGms: formData.additionalGMs.value,
+                            additionalRequirements: (formData.locationPref.value)
+                                ? formData.additionalRequirements.value + " Room Request: " + formData.locationPref.value
+                                : formData.additionalRequirements.value,
+                            characters: formData.characters.value,
+                            contentAdvisory: formData.contentAdvisory.value === "Yes", // this is a boolean in the API so we are using 1000000 is no-content-advisory; selection info goes into the eventMetadataIds
+                            eventCategoryId: formData.eventCategoryId.value || 0,
+                            eventDescription: formData.eventDescription.value,
+                            //eventFacilitators: formData.facilitators,  not used
+                            eventMetadataIds: this.eventMetadataIds,
+                            eventMetadataNames: this.eventMetadataNames || [], // This is not used in create event API; only for Google Sheet
+                            eventMetadataNamesString: this.eventMetadataNames && this
+                                .eventMetadataNames
+                                .toString(),
+                            eventName: formData.eventName.value,
+                            eventTags: this.eventMetadataNames || [],
+                            format: formData.format.value,
+                            gm: formData.publicName.value,
+                            gmAge: formData.yourAge.value,
+                            length: formData.eventLength.value,
+                            minPlayers: formData.minPlayers.value,
+                            otherInfo: formData.otherInfo.value,
+                            playerAge: formData.playerAge.value,
+                            players: formData.maxPlayers.value,
+                            playtest: formData.playtest.value,
+                            requestMediaEquipment: (formData.requestMediaEquipment.value)
+                                ? `${formData.mediaEquipment.value} ${formData.requestMediaEquipment.value}`
+                                : formData.mediaEquipment.value,
+                            requestMediaRoom: formData.requestMediaRoom.value === "Yes",
+                            requestPrivateRoom: formData.locationPref.value !== "No Preference", // add extra to additionalRequirements for now
+                            runNumberOfTimes: parseInt(formData.runNumberOfTimes.value || 1),
+                            safetyTools: formData.safetyTools.value,
+                            schedulingPref: formData.schedulingPref
+                                ?.value || "",
+                            system: formData.system.value,
+                            tableType: formData.tableType.value,
+                            triggerWarnings: formData.triggerWarnings.value,
+                            userDisplayName: formData.userDisplayName.value
+                        }
+                        return apiData;
+                    },
                     async submitEvent(e) {
                         const form = e.target
 
@@ -879,15 +874,13 @@
                         // Change status to submitted
                         this.submittingState = "submitted"
 
-                        // Get form data in API format
-                        const createEventAPIData = convertFormDataToCreateEventAPI(this.$validate.formData(form))
-                        console.log("🚀 ~ file: form-run-an-event.njk ~ line 783 ~ submitEvent ~ createEventAPIData", createEventAPIData)
+                        console.log("🚀 ~ file: form-run-an-event.njk ~ line 783 ~ submitEvent ~ createEventAPIData", this.createEventAPIData)
 
                         try {
                             // Submit to Little Red Event Manager
                             const lilRedResult = await lilRed
                                 .events
-                                .create(createEventAPIData)
+                                .create(this.createEventAPIData)
 
                             console.log("🚀 ~ file: form-run-an-event.njk ~ line 805 ~ submitEvent ~ lilRedResult", lilRedResult)
 
@@ -897,12 +890,13 @@
                                 try {
                                     // Build data for google sheet
                                     const googleFormData = {
-                                        ...createEventAPIData,
+                                        ...this.createEventAPIData,
                                         eventId: lilRedResult,
-                                        eventMetadataIds: createEventAPIData.eventMetadataIds && createEventAPIData
+                                        eventMetadataIds: this.createEventAPIData.eventMetadataIds && this
+                                            .createEventAPIData
                                             .eventMetadataIds
                                             .toString(),
-                                        eventMetadataNames: createEventAPIData.eventMetadataNamesString
+                                        eventMetadataNames: this.createEventAPIData.eventMetadataNamesString
                                     }
 
                                     // Post to serverless function for Google Sheet
@@ -943,7 +937,7 @@
                         } catch (e) {
                             this.submittingState = "unsubmitted"
                             console.log('ERROR:submitting form to /events/create', e)
-                            this.$dispatch('toast', 'ERROR: event submission to Little Red Avent Manager failed!')
+                            this.$dispatch('toast', 'ERROR: event submission to Little Red Event Manager failed!')
                         }
                     },
                     async uploadEventImage(form, eventId) {
