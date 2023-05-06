@@ -40,6 +40,11 @@ module.exports = [
 				"icon": "hotel"
 			},
 			{
+				"title": "Hotels and Lodging",
+				"url": "/hotels-and-lodging",
+				"icon": "hotel"
+			},
+			{
 				"title": "Scholarship",
 				"url": "/scholarship",
 				"icon": "gift"
