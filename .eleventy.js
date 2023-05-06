@@ -102,6 +102,11 @@ module.exports = (eleventyConfig) => {
   });
 
   // Staff Tech Committee sorted by order number and then alphabetically
+  eleventyConfig.addCollection("committeeComm123ABC", function(collectionApi) {
+    return collectionApi.getFilteredByTag("community-management-committee").filter(c => c.template.frontMatter.data.published === true).sort((a,b) => sortByOrder(a,b));
+  });
+
+  // Staff Tech Committee sorted by order number and then alphabetically
   eleventyConfig.addCollection("committeeTech123ABC", function(collectionApi) {
     return collectionApi.getFilteredByTag("technology-committee").filter(c => c.template.frontMatter.data.published === true).sort((a,b) => sortByOrder(a,b));
   });

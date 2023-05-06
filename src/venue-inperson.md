@@ -97,6 +97,11 @@ Street parking is available throughtout the neighborhood with the closest parkin
 * Saturday & Sunday: Available all day
 
 ## The Neighborhood{#the-neighborhood}
+### Hotels and Lodging
+Sadly, the Beacon Hill neighborhood does not have any reliable lodging or hotel options. However--it is fortunately located right next to the Beacon Hill transit center, which makes it easy to get to from any hotel on or near a Link Light Rail station. We've compiled a list of a few suggestions for hotel and lodging options.
+
+[Learn more about hotel and lodging options](/hotels-and-lodging){.icon-hotel}
+
 ### Food
 
 * **Outsider Pizza (0 blocks from venue)**  

@@ -1,6 +1,6 @@
 ---
 tags: organizing-committee
-published: true
+published: false
 order: 3
 title: Angela Lemus-Mogrovejo
 position: Diversity and Equity Consultant

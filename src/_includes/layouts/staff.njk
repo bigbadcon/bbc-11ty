@@ -26,10 +26,23 @@
       <div class="prose max-w-content2">{{ content | safe }}</div>
       <section class="mx-auto p-base">
         <h2 class="text-header leading-none text-5xl font-serif mb-md">Organizing Committee</h2>
+        {# Organizing Committee #}
         {% for person in collections.committeeOrg123ABC %}
           {{ staff.card(person)}}
         {% endfor %}
       </section>
+      
+      {# Community Management Committee #}
+      {% if collections.committeeComm123ABC %}
+      <section class="mx-auto p-base">
+        <h2 class="text-header leading-none text-5xl font-serif mb-md">Community Management Committee</h2>
+        {% for person in collections.committeeComm123ABC %}
+          {{ staff.card(person)}}
+        {% endfor %}
+      </section>
+      {% endif %}
+
+      {# Tech Committee #}
       {% if collections.committeeTech123ABC %}
       <section class="mx-auto p-base">
         <h2 class="text-header leading-none text-5xl font-serif mb-md">Technology Committee</h2>
@@ -38,6 +51,7 @@
         {% endfor %}
       </section>
       {% endif %}
+
     </div>
     </main>
 {% endblock %}
