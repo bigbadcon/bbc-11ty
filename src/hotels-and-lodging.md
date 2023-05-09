@@ -23,7 +23,7 @@ Our list is organized by neighborhood and ascending distance to the venue via th
 
 **Farther afield**
 * [Capitol Hill](#capitol-hill-far)
-* [Ballard/Freemont](#ballardfremont-far)
+* [Ballard/Fremont](#ballardfremont-far)
 * [Budget](#on-a-budget)
 
 # On the light rail
