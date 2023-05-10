@@ -177,17 +177,6 @@
                                 .remove('error-required');
                         }
                     },
-                    submit(user) {
-                        const submitData = {
-                            ...this.formData,
-                            userEmail: user.userEmail,
-                            displayName: user.displayName,
-                            userId: user.id,
-                        }
-                        console.log("submit", submitData)
-                        this.submitForm(submitData)
-                        this.formSubmitted = true
-                    },
                     async submitForm(submitData) {
                         // TODO: add fetch POST to serverless function
 
@@ -208,7 +197,22 @@
                                 'Content-Type': 'application/json;charset=utf-8'
                             },
                             body: JSON.stringify(submitData)
-                        }            
+                        }
+                        const url = "/.netlify/functions/submit-scholarship-application"
+
+                        try {
+                            let response = await fetch(url, options)
+                            console.log(`RESPONSE:fetch for ${url}`, response)
+                            if (response.status !== 200)
+                                throw `fetch fail status: ${response.status}`
+                            let result = await response.json()
+                            console.log(`RESULT:fetch for ${url}`, result)
+                            return result
+                        } catch (err) {
+                            console.error(`ERROR:fetch for ${url}`, err)
+                            return false
+                        }
+                    },
 //                    submitForm() {
 //                        console.log("submitForm", this.formData)
 //                        const y = 0
@@ -262,20 +266,16 @@
 
 //                        console.log('formData JOSN string', JSON.stringify(formData));
 
-                        const url = "/.netlify/functions/submit-scholarship-application"
-
-                        try {
-                            let response = await fetch(url, options)
-                            console.log(`RESPONSE:fetch for ${url}`, response)
-                            if (response.status !== 200) 
-                                throw `fetch fail status: ${response.status}`
-                            let result = await response.json()
-                            console.log(`RESULT:fetch for ${url}`, result)
-                            return result
-                        } catch (err) {
-                            console.error(`ERROR:fetch for ${url}`, err)
-                            return false
+                    submit(user) {
+                        const submitData = {
+                            ...this.formData,
+                            userEmail: user.userEmail,
+                            displayName: user.displayName,
+                            userId: user.id,
                         }
+                        this.submitForm(submitData)
+                        console.log("submit", submitData)
+                        this.formSubmitted = true
                     },
                     setCheckboxArray(el, arrayName) {
                         this.formData[arrayName] = this.formData[arrayName] || [];
