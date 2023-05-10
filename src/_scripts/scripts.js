@@ -568,14 +568,6 @@ document.addEventListener("alpine:init", () => {
 				const ths = Array.from(table.querySelectorAll(`th`));
 				const col = ths.findIndex((th) => th === el.closest("th"));
 
-				ths.forEach((th) => {
-					if (th !== parentTh) {
-						th.classList.remove("active");
-					} else {
-						th.classList.add("active");
-					}
-				});
-
 				const tbody = table.querySelector("tbody");
 				const rows = Array.from(tbody.querySelectorAll(`tr`));
 
@@ -587,6 +579,16 @@ document.addEventListener("alpine:init", () => {
 							? !this.sort[page].ascending
 							: true;
 				}
+
+				ths.forEach((th) => {
+					if (th !== parentTh) {
+						th.classList.remove("active");
+						th.removeAttribute("aria-sort");
+					} else {
+						th.classList.add("active");
+						th.setAttribute("aria-sort", ascending ? "ascending" : "descending");
+					}
+				});
 
 				// Store values
 				this.sort[page] = { col: col, ascending: ascending };
