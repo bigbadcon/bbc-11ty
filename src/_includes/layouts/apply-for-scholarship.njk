@@ -177,7 +177,7 @@
                                 .remove('error-required');
                         }
                     },
-                    async submitForm(submitData) {
+                    async submitForm(user) {
                         // TODO: add fetch POST to serverless function
 
                         // Convert any array to string and make empty string for anything else not a string
@@ -191,6 +191,13 @@
                                 }
                             })
 
+                        let submitData = {
+                            ...this.formData,
+                            userEmail: user.userEmail,
+                            displayName: user.displayName,
+                            userId: user.id,
+                        }
+
                         const options = {
                             method: 'POST',
                             headers: {
@@ -202,6 +209,7 @@
 
                         try {
                             let response = await fetch(url, options)
+                            console.log("submit", submitData)
                             console.log(`RESPONSE:fetch for ${url}`, response)
                             if (response.status !== 200)
                                 throw `fetch fail status: ${response.status}`
@@ -267,14 +275,13 @@
 //                        console.log('formData JOSN string', JSON.stringify(formData));
 
                     submit(user) {
-                        const submitData = {
-                            ...this.formData,
-                            userEmail: user.userEmail,
-                            displayName: user.displayName,
-                            userId: user.id,
-                        }
-                        this.submitForm(submitData)
-                        console.log("submit", submitData)
+                        // const submitData = {
+                        //     ...this.formData,
+                        //     userEmail: user.userEmail,
+                        //     displayName: user.displayName,
+                        //     userId: user.id,
+                        // }
+                        this.submitForm(user)
                         this.formSubmitted = true
                     },
                     setCheckboxArray(el, arrayName) {
