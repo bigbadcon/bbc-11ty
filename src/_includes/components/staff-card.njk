@@ -14,6 +14,21 @@
                 {% if person.data.twitter %}
                     <a href="https://twitter.com/{{person.data.twitter}}" class="icon-twitter mb-xs">@{{person.data.twitter}}</a>
                 {% endif %}
+                {% if person.data.instagram %}
+                    <a href="https://www.instagram.com/{{person.data.instagram}}" class="icon-instagram mb-xs">{{person.data.instagram}}</a>
+                {% endif %}
+                {% if person.data.mastodon %}
+                    <a href="{{person.data.mastodon}}" class="icon-mastodon mb-xs">{{person.data.mastodon}}</a>
+                {% endif %}
+
+                {% if person.data.twitch %}
+                    <a href="https://www.twitch.tv/{{person.data.twitch}}" class="icon-twitch mb-xs">{{person.data.twitch}}</a>
+                {% endif %}
+
+                {% if person.data.itch %}
+                    <a href="https.://{{person.data.itch}}.itch.io" class="icon-itch-io mb-xs">{{person.data.itch}}</a>
+                {% endif %}
+
                 {% if person.data.website_url %}
                     <a href="{{person.data.website_url}}" class="icon-website">{{person.data.website_name}}</a>
                 {% endif %}
