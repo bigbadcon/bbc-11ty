@@ -28,7 +28,6 @@
                 <div x-cloak x-show="!isAuth" class="prose">
                     <p>You must be <button @click.stop="modal = 'login'" class="font-bold underline text-highlight">logged in</button> to submit a game</p>
                 </div>
-
                 <div x-cloak x-show="isAuth && user" x-data="runAnEventData">
                     <div x-show="!eventSubmitted" id="submit-your-event">
                         <header class="prose">
@@ -40,7 +39,7 @@
                         </header>
                         <form id="form" action="post" class="mt-base" id="form-run-an-event" @submit.prevent="submitEvent">
                             {# TODO: add honeypot #}
-                            <input type="hidden" x-model="eventInfo.userDisplayName" x-init="event_type = 'IN-PERSON';eventInfo.userDisplayName = user && user.displayName; $watch('user', value => eventInfo.userDisplayName = value && value.displayName)">
+                            <input type="hidden" x-model="eventInfo.userDisplayName" x-init="event_type = '{{sitemeta.eventType}}';eventInfo.userDisplayName = user && user.displayName; $watch('user', value => eventInfo.userDisplayName = value && value.displayName)">
                             {# Personal Info #}
                             <fieldset>
                                 <legend>Personal info</legend>
@@ -158,7 +157,7 @@
                                     <div id="schedulePrefBlock" class="flex items-center">
                                         <select id="schedulePrefSel" name="schedulePrefSel" x-model="eventInfo.schedulePref" @blur="validate">
                                             <option :disabled="eventInfo.format !== ''" selected value="">-- Choose One --</option>
-                                            <template x-for="(time, i) in scheduleTimes['-1']">
+                                            <template x-for="(time, i) in scheduleTimeDetails()">
                                                 <option :value="time" x-text="time"></option>
                                             </template>
                                         </select>
@@ -275,8 +274,46 @@
 
     <script type="text/javascript">
 
-        document.addEventListener('alpine:init', () => {
 
+        function getSchedule() {
+            const scheduleTimeDetails = {
+                "Friday Afternoon - 1:30 PM-5:30 PM PDT": {
+                    "date": "2023-07-07",
+                    "time": "13:30:00"
+                },
+                "Friday Evening - 7:00 PM-10:30 PM PDT": {
+                    "date": "2023-07-07",
+                    "time": "19:00:00"
+                },
+                "Saturday Morning - 9:00 AM-12:30 PM PDT": {
+                    "date": "2023-07-08",
+                    "time": "09:00:00"
+                },
+                "Saturday Afternoon - 1:30 PM-5:30 PM PDT": {
+                    "date": "2023-07-08",
+                    "time": "13:30:00"
+                },
+                "Saturday Evening - 7:00 PM-10:30 PM PDT": {
+                    "date": "2023-07-08",
+                    "time": "19:00:00"
+                },
+                "Sunday Morning - 9:00 AM-12:00 PM PDT": {
+                    "date": "2023-07-09",
+                    "time": "09:00:00"
+                },
+                "Sunday Afternoon - 1:00 PM-4:30 PM PDT": {
+                    "date": "2023-07-09",
+                    "time": "13:00:00"
+                },
+                "Sunday Evening - 5:30 PM-8:30 PM PDT": {
+                    "date": "2023-07-09",
+                    "time": "17:30:00"
+                }
+            };
+            return scheduleTimeDetails;
+        }
+
+        document.addEventListener('alpine:init', () => {
 
             // Check if variable is a string with stuff in it
             function isFull(str) {
@@ -284,40 +321,42 @@
             }
 
             function convertToCreateEventAPI(eventInfo) {
-                const scheduleTimeDetails = {
-                    "Friday Afternoon - 1:30 PM-5:30 PM PDT": {
-                        "date": "2023-07-07",
-                        "time": "13:30:00"
-                    },
-                    "Friday Evening - 7:00 PM-10:30 PM PDT": {
-                        "date": "2023-07-07",
-                        "time": "19:00:00"
-                    },
-                    "Saturday Morning - 9:00 AM-12:30 PM PDT": {
-                        "date": "2023-07-08",
-                        "time": "09:00:00"
-                    },
-                    "Saturday Afternoon - 1:30 PM-5:30 PM PDT": {
-                        "date": "2023-07-08",
-                        "time": "13:30:00"
-                    },
-                    "Saturday Evening - 7:00 PM-10:30 PM PDT": {
-                        "date": "2023-07-08",
-                        "time": "19:00:00"
-                    },
-                    "Sunday Morning - 9:00 AM-12:00 PM PDT": {
-                        "date": "2023-07-09",
-                        "time": "09:00:00"
-                    },
-                    "Sunday Afternoon - 1:00 PM-4:30 PM PDT": {
-                        "date": "2023-07-09",
-                        "time": "13:00:00"
-                    },
-                    "Sunday Evening - 5:30 PM-8:30 PM PDT": {
-                        "date": "2023-07-09",
-                        "time": "17:30:00"
-                    }
-                };
+                // const scheduleTimeDetails = {
+                //     "Friday Afternoon - 1:30 PM-5:30 PM PDT": {
+                //         "date": "2023-07-07",
+                //         "time": "13:30:00"
+                //     },
+                //     "Friday Evening - 7:00 PM-10:30 PM PDT": {
+                //         "date": "2023-07-07",
+                //         "time": "19:00:00"
+                //     },
+                //     "Saturday Morning - 9:00 AM-12:30 PM PDT": {
+                //         "date": "2023-07-08",
+                //         "time": "09:00:00"
+                //     },
+                //     "Saturday Afternoon - 1:30 PM-5:30 PM PDT": {
+                //         "date": "2023-07-08",
+                //         "time": "13:30:00"
+                //     },
+                //     "Saturday Evening - 7:00 PM-10:30 PM PDT": {
+                //         "date": "2023-07-08",
+                //         "time": "19:00:00"
+                //     },
+                //     "Sunday Morning - 9:00 AM-12:00 PM PDT": {
+                //         "date": "2023-07-09",
+                //         "time": "09:00:00"
+                //     },
+                //     "Sunday Afternoon - 1:00 PM-4:30 PM PDT": {
+                //         "date": "2023-07-09",
+                //         "time": "13:00:00"
+                //     },
+                //     "Sunday Evening - 5:30 PM-8:30 PM PDT": {
+                //         "date": "2023-07-09",
+                //         "time": "17:30:00"
+                //     }
+                // };
+
+                const scheduleTimeDetails = getSchedule();
 
                 eventInfo = {
                     accessabilityOptions: eventInfo.accessibilityOptions && eventInfo
@@ -552,18 +591,21 @@
                         }
                         //console.log(this.eventInfo[arrayName])
                     },
-                    scheduleTimes: {
-                        "-1": [
-                                "Friday Afternoon - 1:30 PM-5:30 PM PDT", 
-                                "Friday Evening - 7:00 PM-10:30 PM PDT", 
-                                "Saturday Morning - 9:00 AM-12:30 PM PDT", 
-                                "Saturday Afternoon - 1:30 PM-5:30 PM PDT", 
-                                "Saturday Evening - 7:00 PM-10:30 PM PDT", 
-                                "Sunday Morning - 9:00 AM-12:00 PM PDT", 
-                                "Sunday Afternoon - 1:00 PM-4:30 PM PDT",
-                                "Sunday Evening - 5:30 PM-8:30 PM PDT"
-                               ]
+                    scheduleTimeDetails() {
+                        return Object.keys(getSchedule());
                     },
+                    // scheduleTimes: {
+                    //     "-1": [
+                    //             "Friday Afternoon - 1:30 PM-5:30 PM PDT",
+                    //             "Friday Evening - 7:00 PM-10:30 PM PDT",
+                    //             "Saturday Morning - 9:00 AM-12:30 PM PDT",
+                    //             "Saturday Afternoon - 1:30 PM-5:30 PM PDT",
+                    //             "Saturday Evening - 7:00 PM-10:30 PM PDT",
+                    //             "Sunday Morning - 9:00 AM-12:00 PM PDT",
+                    //             "Sunday Afternoon - 1:00 PM-4:30 PM PDT",
+                    //             "Sunday Evening - 5:30 PM-8:30 PM PDT"
+                    //            ]
+                    // },
                     findName(array, name) {
                         return array.find(e => e.name === name)
                     },
