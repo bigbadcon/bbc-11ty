@@ -47,6 +47,7 @@ exports.handler = async function(event, context) {
                 userEmail: eventBody.userEmail,
                 assistanceTypes: eventBody.assistanceTypes,
                 identities: eventBody.identities,
+                identitiesOther: eventBody.identitiesOther,
                 gamingXp: eventBody.gamingXp, //not required
                 communityStandards: eventBody.communityStandards && "Agreed"
              })
