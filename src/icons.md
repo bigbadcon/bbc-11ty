@@ -110,3 +110,7 @@ If you are using WYSIWIG mode in Forestry just add the {.icon-hotel} immediately
 .icon-ticket-solid{.icon-ticket-solid}
 
 .icon-login{.icon-login}
+
+.icon-mastadon{.icon-mastodon}
+
+.icon-instagram{.icon-instagram}

@@ -674,6 +674,14 @@ a[class^='icon-']:hover {
   mask-image: url(/static/svgs/eye.svg)
 }
 
+.icon-mastodon:before {
+  mask-image: url(/static/svgs/mastodon.svg)
+}
+
+.icon-instagram:before {
+  mask-image: url(/static/svgs/instagram.svg)
+}
+
 /* ------------------------- Event / Volunteer List ------------------------- */
 
 .fav-star {
