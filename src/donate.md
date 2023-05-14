@@ -9,12 +9,12 @@ Big Bad Con, Inc.'s purpose is to provide and inclusive place to grow the gaming
 
 We’re a volunteer run [501c3 non-profit organization](https://www.bigbadcon.com/non-profit) comprised of wonderful volunteers, staff, GMs, and players.
 
-`<form action="https://www.paypal.com/donate" method="post" target="_top">`
+12
 
-`<input type="hidden" name="hosted_button_id" value="33D5DMTUEHWKE" />`
-
-`<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />`
-
-`<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />`
-
-`</form>`
+```html
+<form action="https://www.paypal.com/donate" method="post" target="_top">
+  <input type="hidden" name="hosted_button_id" value="33D5DMTUEHWKE" />
+  <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+  <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+</form>
+```
