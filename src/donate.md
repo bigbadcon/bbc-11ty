@@ -9,8 +9,6 @@ Big Bad Con, Inc.'s purpose is to provide and inclusive place to grow the gaming
 
 We’re a volunteer run [501c3 non-profit organization](https://www.bigbadcon.com/non-profit) comprised of wonderful volunteers, staff, GMs, and players.
 
-12
-
 ```html
 <form action="https://www.paypal.com/donate" method="post" target="_top">
   <input type="hidden" name="hosted_button_id" value="33D5DMTUEHWKE" />
