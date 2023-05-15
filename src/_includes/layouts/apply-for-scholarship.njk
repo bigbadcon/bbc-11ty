@@ -89,7 +89,7 @@
                                             </template>
                                         </div>
                                         <div class="required" x-data="{identities:['A person of color','A woman','Disabled','LGBTQIA+','Other (fill in below)']}">
-                                            <label>I identify as</label>
+                                            <label>I am...</label>
                                             <template x-for="(identity, i) in identities">
                                                 <div class="flex items-center">
                                                     <input type="checkbox" :name="'identity' + i" :id="'identity' + i" :value="identity" @change="setCheckboxArray($el,'identities')">
