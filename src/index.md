@@ -25,4 +25,4 @@ Burlingame, CA 94010
 
 Event submissions, Games on Demand, and volunteer signs ups are open now! Badges are available through our crowdfunding starting June 6, 2023!
 
-[Follow the Campaign](https://www.backerkit.com/c/big-bad-con-inc/big-bad-con-2023){.icon-calendar-clock}
+[Follow the Campaign](https://www.backerkit.com/call_to_action/79ab90a4-9eed-4b37-a417-01692df6f57c/landing){.icon-calendar-clock}
