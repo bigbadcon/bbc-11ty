@@ -13,7 +13,9 @@ _template: page
 
 Big Bad Con is committed to cultivating and supporting a spectacular and diverse gaming community. Part of the way we do that is by collecting donations to our scholarship program.
 
-Our scholarship funds go towards helping women and people from marginalized genders, people of color, disabled, and lgbtqia+ individuals attend the con. We use it to cover hotel rooms ($145+/night), convention badges ($75), and help with other fees. Depending on the number of applicants, we may be able cover full or partial costs.
+Our scholarship funds go towards helping women and people from marginalized genders, people of color, disabled, and lgbtqia+ individuals attend the con. We use it to cover hotel rooms ($145+/night), convention badges ($75), and help with other fees. Depending on the number of applicants, we may be able cover full or partial costs. Typical scholarship awards go up to $400.
+
+Note, the POC Programming Track is a separate program that runs in addition to the Big Bad Con scholarship. You can find out more [here](https://www.bigbadcon.com/blog/poc-programming-at-big-bad-con-2023/). 
 
 ### Timeline
 
