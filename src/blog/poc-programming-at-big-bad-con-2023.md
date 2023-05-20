@@ -1,7 +1,7 @@
 ---
 title: ' POC Programming 2023'
 published: true
-_template: blog
+date: 2023-05-18T07:00:00.000Z
 ---
 
 The Big Bad Con 2023 POC Programming is continuing our work to support POCs at Big Bad Con through financial aid, a community dinner, and an industry meet and greet event. This year we’re also working with local gamers in India, South East Asia, and Latin America to bring more international POCs to the con!
