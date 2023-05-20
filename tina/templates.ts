@@ -18,6 +18,13 @@ export function blogFields() {
 			label: "published",
 		},
 		{
+			type: "rich-text",
+			name: "body",
+			label: "Body of Document",
+			description: "This is the markdown body",
+			isBody: true,
+		},
+		{
 			type: "string",
 			name: "excerpt",
 			label: "excerpt",
