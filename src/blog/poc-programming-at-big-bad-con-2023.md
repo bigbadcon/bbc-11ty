@@ -1,5 +1,5 @@
 ---
-title: ' POC Programming 2023'
+title: POC Programming 2023
 published: true
 date: 2023-05-18T07:00:00.000Z
 ---
