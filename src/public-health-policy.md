@@ -16,7 +16,7 @@ For the safety of all our attendees, we have the following policies in place for
 * **Masks that provide KN95 or better protection are required in all convention spaces**. We’ll be giving out free Big Bad Con KN95 masks to all attendees!
 * **All attendees must show proof of COVID vaccination before entering the con.** Make sure to pack that vaccination card, update your app, or take a pic before you head out.
 * **We request that all attendees take COVID tests and confirm they are negative before the con**. We’ll have free rapid tests available upon request.
-* As part of our [community standards](https://www.bigbadcon.com/community-standards/) of respect, support, and kindness, and especially in consideration of Monkeypox, **we ask before giving hugs or making other physical contact.**
+* As part of our [community standards](https://www.bigbadcon.com/community-standards/) of respect, support, and kindness, **we ask before giving hugs or making other physical contact.**
 
 Keeping ourselves and each other safe is part of our community standards of respect, support, and kindness. We know that risk tolerances are different for everyone, so what might seem like overkill to one person, might still not be enough for others. We’re looking out for our most vulnerable attendees. Together, we believe we can host a wonderful event.
 
