@@ -7,6 +7,7 @@ excerpt: >-
   store for 2023
 coverImage: /images/Announcements_main_header.png
 coverImageAlt: Big Bad Con 2023
+date: 2023-05-17T07:00:00.000Z
 ---
 
 **September 28 - October 1 at the Hyatt Regency San Francisco Airport Hotel**
