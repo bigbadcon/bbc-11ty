@@ -10,7 +10,7 @@ Here is the programming for 2023:
 
 ## POC Scholarship
 
-Working with individual and industry donors we hope to raise $0,000+ to aid people of color in attending the con by paying for travel, boarding, admission, and related expenses. This program will complement our crowdfunding campaign and the Big Bad Con Scholarship program to give financial assistance to as many would-be attendees as we can.
+Working with individual and industry donors we hope to raise $50,000+ to aid people of color in attending the con by paying for travel, boarding, admission, and related expenses. This program will complement our crowdfunding campaign and the Big Bad Con Scholarship program to give financial assistance to as many would-be attendees as we can.
 
 ## POC Dinner
 
