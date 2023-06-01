@@ -1,6 +1,6 @@
 ---
 title: Volunteer
-order: 5
+order: 6
 published: true
 image: "/images/volunteer-hero.jpg"
 alt: Banner with a trophy and text reading "Featured Facilitators"
