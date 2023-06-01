@@ -1,7 +1,7 @@
 ---
 title: 2023 Shirts
 order: 1
-published: false
+published: true
 image: “/images/shirt_2023_final.png”
 alt: Go Play NW 2023 shirt design
 ---
