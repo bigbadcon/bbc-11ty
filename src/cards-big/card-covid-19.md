@@ -1,6 +1,6 @@
 ---
 title: COVID-19 Policy
-order: 4
+order: 5
 published: true
 image: "/images/vecteezy_covid-antigen-test-kit.jpg"
 alt: COVID-19 at home test kit with stethoscope
