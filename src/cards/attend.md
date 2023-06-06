@@ -7,7 +7,7 @@ image: ''
 alt: ''
 ---
 
-Baged available on BackerKit:
+Badges available on BackerKit:
 
 [Back Now!](https://www.backerkit.com/c/big-bad-con-inc/big-bad-con-2023){.icon-party}
 
