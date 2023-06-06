@@ -21,7 +21,7 @@ Join us on September 28 for Big Bad Con 2023, featuring four days of TTRPGs, LAR
 
 By pledging you'll help us put on Big Bad Con! Whether you'd like to get a badge to attend or support us from afar, we've got awards for you!
 
-[Pledge Now!](https://www.backerkit.com/c/big-bad-con-inc/big-bad-con-2023)
+[Pledge Now!](https://www.backerkit.com/c/big-bad-con-inc/big-bad-con-2023) {.icon-party}
 
 <!--## Big Bad Con 2023
 
