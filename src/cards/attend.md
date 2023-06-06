@@ -7,11 +7,11 @@ image: ''
 alt: ''
 ---
 
-Big Bad Con 2023:
+Baged available on BackerKit:
 
 [Book a Room](https://www.bigbadcon.com/hotel/){.icon-hotel}
 
-[Badges available on BackerKit](https://www.backerkit.com/c/big-bad-con-inc/big-bad-con-2023) now!{.icon-hotel}
+[Back Now!](https://www.backerkit.com/c/big-bad-con-inc/big-bad-con-2023){.icon-party}
 
 <!--Sign up to attend Big Bad Con!
 
