@@ -11,7 +11,7 @@ Big Bad Con 2023:
 
 [Book a Room](https://www.bigbadcon.com/hotel/){.icon-hotel}
 
-Badges available in June!
+[Badges available on BackerKit](https://www.backerkit.com/c/big-bad-con-inc/big-bad-con-2023) now!{.icon-hotel}
 
 <!--Sign up to attend Big Bad Con!
 
