@@ -17,11 +17,15 @@ _template: page
 
 ## Crowdfunding Now!
 
-Join us on September 28 for Big Bad Con 2023, featuring four days of TTRPGs, LARPs, board and card games, panels, workshops, and more. 
+Join us on September 28 for Big Bad Con 2023, featuring four days of TTRPGs, LARPs, board and card games, panels, workshops, and more.
 
-By pledging you'll help us put on Big Bad Con! Whether you'd like to get a badge to attend or support us from afar, we've got awards for you!
+By pledging you'll help us put on Big Bad Con. Whether you'd like to get a badge to attend or support us from afar, we've got awards for you!
 
-[Pledge Now!](https://www.backerkit.com/c/big-bad-con-inc/big-bad-con-2023) {.icon-party}
+[Pledge Now!](https://www.backerkit.com/c/big-bad-con-inc/big-bad-con-2023) {.icon-party}\
+\
+Hyatt Regency San Francisco Airport\
+1333 Old Bayshore Hwy\
+Burlingame, CA 94010
 
 <!--## Big Bad Con 2023
 
