@@ -9,9 +9,9 @@ alt: ''
 
 Baged available on BackerKit:
 
-[Book a Room](https://www.bigbadcon.com/hotel/){.icon-hotel}
-
 [Back Now!](https://www.backerkit.com/c/big-bad-con-inc/big-bad-con-2023){.icon-party}
+
+[Book a Room](https://www.bigbadcon.com/hotel/){.icon-hotel}
 
 <!--Sign up to attend Big Bad Con!
 
