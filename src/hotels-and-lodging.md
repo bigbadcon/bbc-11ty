@@ -14,6 +14,8 @@ We have compiled a list of places to stay within a half mile of the light rail a
 
 Our list is organized by neighborhood and ascending distance to the venue via the light rail.
 
+<iframe src="https://www.google.com/maps/d/embed?mid=13nKs0GI05snu_dv6XWrNiHASILkSt_8&ehbc=2E312F" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
 **On the light rail**
 * [International District/Chinatown](#international-district-chinatown)
 * [Belltown/Downtown](#belltown-downtown)
