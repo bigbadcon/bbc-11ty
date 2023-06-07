@@ -12,20 +12,27 @@ navTitle: ''
 _template: page
 ---
 
-## Will Big Bad Con return in-person?
+## When is Big Bad Con?
 
-Yes, we're coming back September 28 to October 1, 2023. Join us!
+September 28 to October 1, 2023. Join us!
 
 ## Where will it be?
 
-We'll be hosted by the Hyatt Regency San Francisco Airport
-
-1333 Old Bayshore Hwy  
+Hyatt Regency San Francisco Airport\
+1333 Old Bayshore Hwy\
 Burlingame, CA 94010
 
 <!--Big Bad Con Group Rate: $139/night ([booking link](https://www.hyatt.com/en-US/group-booking/SFOBU/G-BBC3)) -->
 
 [Hotel Information](/hotel){.icon-hotel}
+
+## When will you hear back?
+
+* New accounts should be created immediately and you should receive an email within a few minutes.
+* Event Submissions and Games on Demand sign ups are usually reviewed within two weeks. Our events team will be in touch!
+* Scholarship applications will be reviewed after the submission deadline (July 31) and we'll reach out to recipients by August 22.
+
+If you haven't heard back by any of these dates, email us at info@bigbadcon.com. 
 
 ## What safety precautions are we taking?
 
@@ -45,7 +52,7 @@ Yes, you can find out more about each of those here:
 
 ## Where are all the games at Big Bad Online?
 
-There are no scheduled games at Big Bad Online. We will have a Big Bad Online 2023 Discord the day of the event where people can chat and jump off into games if they like. You can register for the Big Bad Online Discord [here](/register). Note this is separate Discord from our year-round [Community Discord](/community-discord). 
+There are no scheduled games at Big Bad Online. We will have a Big Bad Online 2023 Discord the day of the event where people can chat and jump off into games if they like. You can register for the Big Bad Online Discord [here](/register). Note this is separate Discord from our year-round [Community Discord](/community-discord).
 
 ## Is Big Bad Con an official non-profit? Are my donations tax deductible?
 
