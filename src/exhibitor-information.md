@@ -1,5 +1,5 @@
 ---
-layout: layouts/form-exhibitor.njk
+layout: layouts/page.njk
 title: Exhibitor Information
 published: true
 description: ''
@@ -52,4 +52,4 @@ $300 plus a donation of 10% of your proceeds to the Big Bad Con Scholarship Fund
 
 ### Application
 
-Interested in becoming an exhibitor at Big Bad Con? Fill out the form below and we'll get back to you soon!
+Our exhibitor applications are now closed. We'll be announcing the exhibitors by 6/15/2023.
