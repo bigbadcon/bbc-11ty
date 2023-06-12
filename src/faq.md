@@ -63,6 +63,7 @@ Our event coordinators should reach out to you within two weeks. If you haven't 
 I'd like to demo a game I made. What's the best way to do that?
 
 * If you'd like to run short demos in the large ballroom, you can book time in the [Small Press Showcase](https://www.bigbadcon.com/small-press-showcase/) once sign ups open (requires a badge)
+* If you'd like to run full length games, you can run up to two sessions either [on our schedule](https://www.bigbadcon.com/run-an-event/) or in [Games on Demand](https://www.bigbadcon.com/games-on-demand/).
 
 ## Are my donations tax deductible?
 
