@@ -32,7 +32,7 @@ Burlingame, CA 94010
 * Event Submissions and Games on Demand sign ups are usually reviewed within two weeks. Our events team will be in touch!
 * Scholarship applications will be reviewed after the submission deadline (July 31) and we'll reach out to recipients by August 22.
 
-If you haven't heard back by any of these dates, email us at info@bigbadcon.com. 
+If you haven't heard back by any of these dates, email us at info@bigbadcon.com.
 
 ## What safety precautions are we taking?
 
@@ -50,13 +50,13 @@ Yes, you can find out more about each of those here:
 
 [Small Press Showcase sign ups](/small-press-showcase){.icon-book}
 
-## Where are all the games at Big Bad Online?
+# Event Submission FAQ
 
-There are no scheduled games at Big Bad Online. We will have a Big Bad Online 2023 Discord the day of the event where people can chat and jump off into games if they like. You can register for the Big Bad Online Discord [here](/register). Note this is separate Discord from our year-round [Community Discord](/community-discord).
+What's the difference between signing up to [Run and Event](https://www.bigbadcon.com/run-an-event/) and Games on Demand
 
-## Is Big Bad Con an official non-profit? Are my donations tax deductible?
+## Are my donations tax deductible?
 
-Yes! Big Bad Con is an official 501(c)(3) non-profit! Donations are tax deductible and we count as a charitable organization for volunteering. For more information on our non-profit status see [Proof of 501(c)(3) Status](/non-profit).
+Yes! Big Bad Con is an official 501(c)(3) non-profit. Donations are tax deductible and we count as a charitable organization for volunteering. For more information on our non-profit status see [Proof of 501(c)(3) Status](/non-profit).
 
 ## Who built the website?
 
@@ -73,3 +73,9 @@ The character illustrations of Red and The Wolf are done by [Eden Parkinson](htt
 The Logo and other design graphics are done by [Colin Fahrion](/staff/#colin-fahrion)
 
 The [SVG icons](/icons) are combination of stock, thanks to [Font Awesome](https://fontawesome.com/license) and [Icomoon](https://icomoon.io), and some additional svg art by Colin Fahrion.
+
+# Big Bad Online FAQ
+
+## Where are all the games at Big Bad Online?
+
+There are no scheduled games at Big Bad Online. We will have a Big Bad Online 2023 Discord the day of the event where people can chat and jump off into games if they like. You can register for the Big Bad Online Discord [here](/register). Note this is separate Discord from our year-round [Community Discord](/community-discord).
