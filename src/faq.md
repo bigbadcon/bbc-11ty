@@ -12,8 +12,6 @@ navTitle: ''
 _template: page
 ---
 
-# General Con FAQ
-
 ### When and Where is Big Bad Con?
 
 September 28 6PM to October 1, 2023 8PM.
