@@ -52,7 +52,7 @@ Yes, you can find out more about each of those here:
 
 # Event Submission FAQ
 
-What's the difference between signing up to [Run and Event](https://www.bigbadcon.com/run-an-event/) and Games on Demand
+What's the difference between signing up to [Run and Event](https://www.bigbadcon.com/run-an-event/) and GMing in [Games on Demand](<> "https://www.bigbadcon.com/games-on-demand/")
 
 ## Are my donations tax deductible?
 
