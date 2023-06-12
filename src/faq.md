@@ -52,7 +52,17 @@ Yes, you can find out more about each of those here:
 
 # Event Submission FAQ
 
-What's the difference between signing up to [Run and Event](https://www.bigbadcon.com/run-an-event/) and GMing in [Games on Demand](<> "https://www.bigbadcon.com/games-on-demand/")
+What's the difference between signing up to [Run and Event](https://www.bigbadcon.com/run-an-event/) and GMing in [Games on Demand?](<> "https://www.bigbadcon.com/games-on-demand/")
+
+Games on Demand is an offshoot of our TTRPG track that allows players to drop into games at the con rather than booking in advance. We ask GoD GMs to submit two possible games to run during a time slot and when it begins players will pick between them. Games on Demand is a great place to run if you'd like to try out different game systems and hangout out with the amazing rangers at Big Bad Con.
+
+When will I hear back after I've submitted an event?
+
+Our event coordinators should reach out to you within two weeks. If you haven't heard back by then, feel free to email us at events@bigbadcon.com to inquire.
+
+I'd like to demo a game I made. What's the best way to do that?
+
+* If you'd like to run short demos in the large ballroom, you can book time in the [Small Press Showcase](https://www.bigbadcon.com/small-press-showcase/) once sign ups open (requires a badge)
 
 ## Are my donations tax deductible?
 
