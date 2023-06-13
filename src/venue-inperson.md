@@ -165,7 +165,7 @@ Counter-service menu of traditional Mexican fare located inside La Esperanza Mer
 Address: 2500 Beacon Ave S, Seattle, WA 98144  
 Hours: Fri - Sun 11 AM - 9 PM
 
-## Banks and ATMs
+### Banks and ATMs
 * **Seattle Credit Union (1/2 block from venue)**  
 1604 S Roberto Maestas Festival St, Seattle, WA 98144 [(map)](https://goo.gl/maps/LkG6kxNgbBrKJzVb8)
 
