@@ -33,18 +33,18 @@ In person, the Donut runs almost every scheduled game session at Go Play NW EXCE
 Donuts for Go Play NW 2023 kick off at the following times:
 
 **Friday**
-* 1:30 PM-5:30 PM – Afternoon Game Session
-* 7:00 PM-10:30 PM – Evening Game Session
+* 1:30 PM-5:30 PM – Afternoon game session
+* 7:00 PM-10:30 PM – Evening game session
 
 **Saturday**
-* 9:00 AM-12:30 PM PDT – Morning Game Session
+* 9:00 AM-12:30 PM PDT – Morning game session
 * 1:30 PM–5:30 PM PDT – Afternoon Lottery! (No Donut)
-* 7:00 PM-10:30 PM PDT – Evening Game Session
+* 7:00 PM-10:30 PM PDT – Evening game session
 
 **Sunday**
-* 9:00 AM-12:00 PM PDT – Morning Game Session
-* 1:00 PM-4:30 PM PDT – Afternoon Game Session
-* 5:30 PM-8:30 PM PDT – Evening Game Session
+* 9:00 AM-12:00 PM PDT – Morning game session
+* 1:00 PM-4:30 PM PDT – Afternoon game session
+* 5:30 PM-8:30 PM PDT – Evening game session
 
 ## How do I sign up for a Donut?{#how-do-I-sign-up}
 There's no need to sign up in advance!
