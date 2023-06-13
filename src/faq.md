@@ -56,7 +56,9 @@ Yes! Big Bad Con is an official 501(c)(3) non-profit. Donations are tax deductib
 
 ### What's the difference between [Run an Event](https://www.bigbadcon.com/run-an-event/) and [Games on Demand?](<> "https://www.bigbadcon.com/games-on-demand/")
 
-Games on Demand is an offshoot of our TTRPG track that allows players to drop into games at the con rather than booking a slot to play in advance. We ask Games on Demand GMs to submit two possible games to run during a time slot. At the start of that time slot, players will come to the event space and pick between the games the GMs have prepped. Games on Demand is a great place to run games if you'd like to try out different game systems and hangout out with the amazing rangers at Big Bad Con.
+Games on Demand is an offshoot of our TTRPG track that allows players to drop into games at the con rather than booking a slot to play in advance. It's a great place to run games if you'd like to try out different game systems and hangout out with the amazing rangers at Big Bad Con.
+
+We ask Games on Demand GMs to submit two possible games to run during a time slot. At the start of that time slot, players will come to the event space and pick between the games the GMs have prepped. 
 
 ### When will I hear back after I've submitted an event?
 
