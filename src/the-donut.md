@@ -24,11 +24,11 @@ In the Saturday afternoon game session, instead of the normal Donut pitch circle
 [When is the Donut?](#when-is-the-donut)  
 [How do I sign up for a Donut?](#how-do-I-sign-up)  
 [How does the Donut work?](#how-does-the-donut-work)  
-[Tips For a Good Donut](#tips-for-a-good-donut)  
+[Tips for a good Donut](#tips-for-a-good-donut)  
 [How can I help with the Donut?](#want-to-help)
 
 ## When is the Donut?{#when-is-the-donut}
-In person, the Donut runs almost every scheduled game session at Go Play NW EXCEPT for Saturday afternoon. The Saturday afternoon game session is reserved for the Lottery, an event in which participants throw their name into a hat, and game groups are randomly assigned.
+In person, the Donut runs almost every scheduled game session at Go Play NW EXCEPT for Saturday afternoon, which is reserved for the Lottery.
 
 Donuts for Go Play NW 2023 kick off at the following times:
 
