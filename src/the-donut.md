@@ -17,6 +17,9 @@ When you join the Donut, you’re taking a chance. You might not get into exactl
 
 Simply put: it’s a great way to meet new friends and games!
 
+### What is the Lottery?{#what-is-the-lottery}
+In the Saturday afternoon game session, instead of the normal Donut pitch circle, we run the game group Lottery. In this case, we'll put everyone's name badges in a box and mix them together, then draw out four at a time to randomly group people together for the game session. Each group will then decide among themselves what game they'll play together. This provides a fun opportunity to meet new people and play games with groups you might not have been in before!
+
 ### Donut FAQ
 [When is the Donut?](#when-is-the-donut)  
 [How do I sign up for a Donut?](#how-do-I-sign-up)  
