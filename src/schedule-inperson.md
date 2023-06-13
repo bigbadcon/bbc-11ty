@@ -10,7 +10,7 @@ heroImagePosition: bottom
 
 Here is the schedule for Go Play NW 2023. The Donut pitch circle starts at the beginning of each game session except Saturday afternoon, when we hold the Lottery instead. See [The Donut](the-donut.ml) for more information. 
 
-Wondering where to go for meals during the lunch and dinner breaks? Or just a coffee and snack to go? Check out the [Venue](venue-inperson.ml#food) page for a map and list of the closest places.
+Wondering where to go for meals during the lunch and dinner breaks? Or just a coffee and snack to go? Check out the [Venue](venue-inperson.ml#the-neighborhood) page for a map and list of the closest places.
 
 ## Friday July 7
 | Time | Activity |
