@@ -37,14 +37,14 @@ Donuts for Go Play NW 2023 kick off at the following times:
 * 7:00 PM-10:30 PM – Evening Game Session
 
 **Saturday**
-* 9:00 AM-12:30 PM PDT - Morning Game Session
-* 1:30 PM–5:30 PM PDT - Afternoon Lottery! (No Donut)
-* 7:00 PM-10:30 PM PDT - Evening Game Session
+* 9:00 AM-12:30 PM PDT – Morning Game Session
+* 1:30 PM–5:30 PM PDT – Afternoon Lottery! (No Donut)
+* 7:00 PM-10:30 PM PDT – Evening Game Session
 
 **Sunday**
-* 9:00 AM-12:00 PM PDT - Morning Game Session
-* 1:00 PM-4:30 PM PDT - Afternoon Game Session
-* 5:30 PM-8:30 PM PDT - Evening Game Session
+* 9:00 AM-12:00 PM PDT – Morning Game Session
+* 1:00 PM-4:30 PM PDT – Afternoon Game Session
+* 5:30 PM-8:30 PM PDT – Evening Game Session
 
 ## How do I sign up for a Donut?{#how-do-I-sign-up}
 There's no need to sign up in advance!
