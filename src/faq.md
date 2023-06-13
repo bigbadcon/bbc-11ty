@@ -54,9 +54,9 @@ Yes! Big Bad Con is an official 501(c)(3) non-profit. Donations are tax deductib
 
 # Event Submission FAQ
 
-### What's the difference between [Run and Event](https://www.bigbadcon.com/run-an-event/) and [Games on Demand?](<> "https://www.bigbadcon.com/games-on-demand/")
+### What's the difference between [Run an Event](https://www.bigbadcon.com/run-an-event/) and [Games on Demand?](<> "https://www.bigbadcon.com/games-on-demand/")
 
-Games on Demand is an offshoot of our TTRPG track that allows players to drop into games at the con rather than booking in advance. We ask GoD GMs to submit two possible games to run during a time slot and when it begins players will pick between them. Games on Demand is a great place to run if you'd like to try out different game systems and hangout out with the amazing rangers at Big Bad Con.
+Games on Demand is an offshoot of our TTRPG track that allows players to drop into games at the con rather than booking a slot to play in advance. We ask Games on Demand GMs to submit two possible games to run during a time slot. At the start of that time slot, players will come to the event space and pick between the games the GMs have prepped. Games on Demand is a great place to run games if you'd like to try out different game systems and hangout out with the amazing rangers at Big Bad Con.
 
 ### When will I hear back after I've submitted an event?
 
@@ -64,10 +64,10 @@ Our event coordinators should reach out to you within two weeks. If you haven't 
 
 ### I'd like to demo a game I made. What's the best way to do that?
 
-* If you'd like to run short demos in the large ballroom, you can book time in the [Small Press Showcase](https://www.bigbadcon.com/small-press-showcase/) once sign ups open (requires a badge)
+* If you'd like to run short (under two hour) demos in the large ballroom, you can book a time slot in the [Small Press Showcase](https://www.bigbadcon.com/small-press-showcase/) once sign ups open (note: you will need a badge to book in the showcase).
 * If you'd like to run full length games, you can run up to two sessions either [on our schedule](https://www.bigbadcon.com/run-an-event/) or in [Games on Demand](https://www.bigbadcon.com/games-on-demand/).
 
-### When are games scheduled? 
+### When are games scheduled?
 
 We schedule all games after event submissions close on 7/31. You should hear back by 8/15 with your schedule.
 
