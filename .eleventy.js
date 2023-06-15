@@ -401,7 +401,7 @@ module.exports = (eleventyConfig) => {
 	// Event images is a kludge until we can get it working with event manager
 	eleventyConfig.addPassthroughCopy("./event-images/");
 	// TODO: fix this as it is going in a loop for dev
-	eleventyConfig.addPassthroughCopy("./event-images-cache/");
+	// eleventyConfig.addPassthroughCopy("./event-images-cache/");
 
 	// Watch for changes in tailwind css
 	eleventyConfig.addWatchTarget("./src/tailwind/tailwind.css");
