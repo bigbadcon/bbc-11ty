@@ -1,0 +1,14 @@
+{% extends 'layouts/base.njk' %}
+
+{% block content %}
+    <main id="content">
+        <div class="mx-auto max-w-content p-base">
+            <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
+            <div class="prose">{{ content | safe }}</div>
+            <div class="my-md">
+                <a href="https://www.paypal.com/donate?token=2195TZK33QAaQBeZ0jkYbNMcfxsL61u6yQ-d9uIBdx0V_wVta92-ZB3z9HyadMmWVUFybucpPGuwo5-P" 
+                class="font-bold uppercase transition-colors duration-200 rounded shadow text-form bg-highlight hover:bg-highlight-2 py-xs px-base">Donate</a>
+            </div>
+        </div>
+    </main>
+{% endblock %}
