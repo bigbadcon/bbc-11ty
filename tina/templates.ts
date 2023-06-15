@@ -257,6 +257,7 @@ export function pageFields() {
 			name: "layout",
 			label: "layout",
 			options: [
+				"layouts/donate.njk",
 				"layouts/events.njk",
 				"layouts/events-archive.njk",
 				"layouts/home.njk",
