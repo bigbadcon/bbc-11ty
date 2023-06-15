@@ -70,6 +70,7 @@
         {# Event Table List #}
         <table class="events-table" id="events-table">
             <caption class="italic text-left mb-xs">Table is sortable by clicking on headers</caption>
+            {# TODO add aria sort https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-sort #}
             <thead :class="isSort($el).ascending ? 'ascending' : 'descending'">
                 <tr>
                     <th>
