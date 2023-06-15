@@ -1,28 +1,24 @@
 {% extends 'layouts/base.njk' %}
 {% import 'components/bio-card.njk' as biocard %}
 
-{% block header %}
-  {% include 'components/header.njk' %}
-{% endblock %}
-
 {% block content %}
-  <main id="content">
-    <div class="mx-auto max-w-content p-base">
-      <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
-      <div class="prose">{{ content | safe }}</div>
-    </div>
-    <section class="flex flex-col mx-auto max-w-content p-base gap-lg">
-      {% for person in collections.staff | published | sort %}
-        {{ biocard.card(person)}}
-      {% endfor %}
-    </section>
-    {% if collections["staff-emeritus"] | published %}
-      <section class="flex flex-col mx-auto max-w-content p-base gap-lg">
-        <h1 class="font-serif text-5xl leading-none text-header">Staff Emeritus</h1>
-        {% for person in collections["staff-emeritus"] | published | sort %}
-          {{ biocard.card(person)}}
-        {% endfor %}
-      </section>
-    {% endif %}
-  </main>
+    <main id="content">
+        <div class="mx-auto max-w-content p-base">
+            <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
+            <div class="prose">{{ content | safe }}</div>
+        </div>
+        <section class="flex flex-col mx-auto max-w-content p-base gap-lg">
+            {% for person in collections.staff | published | sort %}
+                {{ biocard.card(person)}}
+            {% endfor %}
+        </section>
+        {% if collections["staff-emeritus"] | published %}
+            <section class="flex flex-col mx-auto max-w-content p-base gap-lg">
+                <h1 class="font-serif text-5xl leading-none text-header">Staff Emeritus</h1>
+                {% for person in collections["staff-emeritus"] | published | sort %}
+                    {{ biocard.card(person)}}
+                {% endfor %}
+            </section>
+        {% endif %}
+    </main>
 {% endblock %}
