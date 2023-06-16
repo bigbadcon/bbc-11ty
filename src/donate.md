@@ -9,8 +9,8 @@ Big Bad Con, Inc.'s purpose is to provide and inclusive place to grow the gaming
 
 We’re a volunteer run [501c3 non-profit organization](https://www.bigbadcon.com/non-profit) comprised of wonderful volunteers, staff, GMs, and players.
 
-<form action="https://www.paypal.com/donate" method="post" target="_top">
-  <input type="hidden" name="hosted_button_id" value="33D5DMTUEHWKE" />
-  <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-  <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-</form>
+<!-- Begin Give Lively Fundraising Widget -->
+
+<script>gl=document.createElement('script');gl.src='https://secure.givelively.org/widgets/simple_donation/big-bad-con-inc.js?show_suggested_amount_buttons=true&show_in_honor_of=true&address_required=false&has_required_custom_question=null&suggested_donation_amounts[]=50&suggested_donation_amounts[]=100&suggested_donation_amounts[]=200&suggested_donation_amounts[]=500';document.getElementsByTagName('head')[0].appendChild(gl);</script><div id="give-lively-widget" class="gl-simple-donation-widget"></div>
+
+<!-- End Give Lively Fundraising Widget -->
