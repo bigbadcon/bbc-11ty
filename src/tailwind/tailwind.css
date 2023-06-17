@@ -631,3 +631,8 @@ lite-youtube.lyt-activated > .lty-playbtn {
 	white-space: nowrap;
 	width: 1px;
 }
+
+/* -------------------------- Give Lively CSS Fixes ------------------------- */
+.gl-widget svg {
+	display: inline-block;
+}
