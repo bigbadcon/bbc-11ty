@@ -23,6 +23,8 @@ By pledging you'll help us put on Big Bad Con. Whether you'd like to get a badge
 
 [Pledge Now!](https://www.backerkit.com/c/big-bad-con-inc/big-bad-con-2023){.icon-backerkit}\
 \
+Location for 2023:
+
 Hyatt Regency San Francisco Airport\
 1333 Old Bayshore Hwy\
 Burlingame, CA 94010
