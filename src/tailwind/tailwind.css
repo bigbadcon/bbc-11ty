@@ -636,3 +636,6 @@ lite-youtube.lyt-activated > .lty-playbtn {
 .gl-widget svg {
 	display: inline-block;
 }
+.gl-widget__google-pay-button img {
+	margin-bottom: 0;
+}
