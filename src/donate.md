@@ -1,5 +1,5 @@
 ---
-layout: layouts/donate.njk
+layout: layouts/page.njk
 title: Donate
 published: true
 _template: page
