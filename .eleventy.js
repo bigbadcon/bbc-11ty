@@ -273,8 +273,8 @@ module.exports = (eleventyConfig) => {
       description: description,
       start: dateStart,
       end: dateEnd,
-      location: 'https://twitch.tv/bigbadcon',
-      url: 'https://twitch.tv/bigbadcon'
+      location: '',
+      url: ''
     };
 
     if (type === "google") return google(event);
