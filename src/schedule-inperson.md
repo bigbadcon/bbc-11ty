@@ -12,6 +12,8 @@ Here is the schedule for Go Play NW 2023. The Donut pitch circle starts at the b
 
 Wondering where to go for meals during the lunch and dinner breaks? Or just a coffee and snack to go? Check out the [Venue](venue-inperson.ml#the-neighborhood) page for a map and list of the closest places.
 
+***Note:*** The Beacon Arts organization will be holding a [street fair](https://www.beacon-arts.org/street-fairs) on S Roberto Maestas Festival Street, directly between the Centilia Cultural Center and the Beacon Hill Light Rail station. The street will be blocked off from 8 AM to 5 PM, with activities including live music between 10 AM and 4 PM. Anyone being dropped off by car should plan on using the El Centro parking lot which is accessed from 17th Ave S. Remember that parking in the lot is restricted to 2 hours; on-street parking for the day is available starting a block north, past S Bayview Street. We strongly recommend using public transit!
+
 ## Friday July 7
 | Time | Activity |
 | --- | --- |
