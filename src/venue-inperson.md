@@ -47,10 +47,13 @@ Notable features for navigating our event space in Cenitlia include:
 * We recognize that COVID-19 remains a serious threat to members of our community with weakened immune systems or underlying conditions. Proof of vaccination and masks are required; see our [COVID-19](/covid-1) Policies for more information on the requirements, protective measures, and recommendations in place for Go Play NW 2023.
 
 ## Directions and Parking{#directions-and-parking}
+
+***Note:*** On Saturday July 8, the Beacon Arts organization will be holding a [street fair](https://www.beacon-arts.org/street-fairs) on S Roberto Maestas Festival Street, directly between the Centilia Cultural Center and the Beacon Hill Light Rail station. The street will be blocked off from 8 AM to 5 PM. Anyone being dropped off by car should plan on using the El Centro de la Raza parking lot which is accessed from 17th Ave S. We strongly recommend using public transit! See [Parking](#parking) following for further information.
+
 ### Public Transit
 The Centilia Cultural Center is one block East of:
-* [Beacon Hill Light Rail station](https://goo.gl/maps/Jkvh1YYVrR93gRS16) 
-* [Beacon Ave S/S Lander St bus stop](https://goo.gl/maps/LJRb3cUWL9wBRaD89) (Routes 36 and 60, northbound)
+* [Beacon Hill Light Rail station](https://goo.gl/maps/Jkvh1YYVrR93gRS16) (when exiting the station, turn right and go around the corner)
+* [Beacon Ave S/S Lander St bus stop](https://goo.gl/maps/LJRb3cUWL9wBRaD89) (Routes 36 and 60, northbound and southbound)
 ### By Car
 **From SeaTac Airport**
 1. Take I-5 N to Exit 163 W Seattle Br/Columbian Way (appox 8 mi)
@@ -88,13 +91,15 @@ The Centilia Cultural Center is one block East of:
 
 ### Parking{#parking}
 **Handicap Accessible Parking**  
-Handicap parking spaces are available for two-hour parking in El Centro del Raza's side parking lot. Street parking is available throughout the neighborhood, and streets whithin a block of the venue are relatively flat.
+Handicap parking spaces are available for two-hour parking in El Centro de la Raza's side parking lot, accessed off 17th Ave S. Street parking is available throughout the neighborhood, and streets whithin a block of the venue are relatively flat.
 
 **Street Parking**  
-Street parking is available throughtout the neighborhood with the closest parking located along [17th Ave S](https://goo.gl/maps/jPcZ3USZysHNQXNc8) and [S Lander St](https://goo.gl/maps/kR6x4EjN4nfE5CK96). Along most streets in the neighborhood, street parking rules are as follows--
+Street parking is available throughout the neighborhood with the closest parking located along [17th Ave S](https://goo.gl/maps/jPcZ3USZysHNQXNc8) and [S Lander St](https://goo.gl/maps/kR6x4EjN4nfE5CK96). Along most streets in the neighborhood, street parking rules are as follows:
 
 * Friday: 2 hr parking from 7 AM - 6 PM
 * Saturday & Sunday: Available all day
+
+Note that _no parking_ is available on S Roberto Maestas Festival Street directly outside Centilia, and that parking in El Centro de la Raza's lot is restricted to two hours, all day every day.
 
 ## The Neighborhood{#the-neighborhood}
 ### Hotels and Lodging
