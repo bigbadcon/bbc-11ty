@@ -35,6 +35,11 @@ module.exports = [
 			 	"icon": "badge"
 			},
 			{
+				"title": "Schedule",
+				"url": "/schedule-inperson",
+				"icon": "badge"
+			},
+			{
 				"title": "Venue",
 				"url": "/venue-inperson",
 				"icon": "hotel"
