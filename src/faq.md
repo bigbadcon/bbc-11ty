@@ -36,9 +36,9 @@ If you haven't heard back by any of these dates, email us at info@bigbadcon.com.
 
 Find out about our COVID safety policies and risk mitigations efforts [here](/public-health-policy).
 
-### Are teens welcome?
+### What's the minimum age to attend?
 
-We invite all gamers 13 and older. Teens 13-17 can sign up for events marked "All Ages".
+We invite all gamers 13 and older. Teens 13-17 can sign up for events marked "All Ages". Games not marked "All Ages" are for players 18 and older.
 
 ### Will there be a Dealer Room or Small Press Showcase?
 
