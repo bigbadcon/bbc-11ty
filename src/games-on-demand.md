@@ -18,6 +18,6 @@ Time slots are four hours long. In each slot you can run either a single 4-hour 
 
 **Free admission**: attendees who sign up for any combination of 8+ hours of running events, GMing in Games on Demand, or volunteer shifts get a free 4-day badge to attend the con.
 
-[Games on Demand: How it works!](/games-on-demand-how-it-works/){.icon-games-on-demand}
+[Games on Demand FAQ](/games-on-demand-how-it-works/){.icon-games-on-demand}
 
 Excited to run in Games on Demand? Sign up here:
