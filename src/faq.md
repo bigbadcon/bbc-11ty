@@ -46,7 +46,7 @@ Yes, you can find out more about each of those here:
 
 [Exhibitor Information](/exhibitor-information){.icon-booth}
 
-[Small Press Showcase sign ups](/small-press-showcase){.icon-book}
+[Small Press Showcase](/small-press-showcase){.icon-book}
 
 ### Are my donations tax deductible?
 
