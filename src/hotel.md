@@ -42,7 +42,7 @@ The hotel offers parking for all attendees discounted from their rate of $36/day
 
 ![](/images/09-bigbadcon_hotel_map.jpg)
 
-**[Hotel Map](/images/09-bigbadcon_hotel_map.pdf)** **(PDF) and** **[Capacity Chart](https://assets.hyatt.com/content/dam/hyatt/hyattdam/documents/2018/07/09/1023/Hyatt-Regency-San-Francisco-Airport-Capacity-Charts-English-070918.pdf)** **(PDF)**
+**[Hotel Map](/images/09-bigbadcon_hotel_map.pdf)** **(PDF) and** **[Capacity Chart](https://assets.tina.io/ac22da7d-8579-4122-a2c1-78b362f0d955/Hyatt-Regency-San-Francisco-Airport-Capacity-Charts-English-070918.pdf)** **(PDF)**
 
 ### Internet Access
 
