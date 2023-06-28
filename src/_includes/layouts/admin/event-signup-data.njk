@@ -1,0 +1,144 @@
+{% extends 'layouts/admin/stripped_base.njk' %}
+
+
+{% block content %}
+<main id="content">
+    <div class="mx-auto p-base px-lg bg-card rounded-md shadow-md">
+        <section>
+            <div x-cloak x-show="isAuth && isRegistered === null"
+                 class="flex items-center justify-center gap-sm py-md">
+                <button class = "button" type="button" onclick="tableToCSV()">
+                    download CSV
+                </button>
+            </div>
+            <div x-cloak x-show="isAuth && isRegistered === null"
+                 x-data="{eventData: []}"
+                 x-init="getEventSignupData()
+                 .then(response => {eventData = response})"
+                 class="flex items-center justify-center gap-sm py-md">
+                <table style='
+                    font-family:"Courier New", Courier, monospace;
+                    font-size:80%;
+                    display: block;
+                    max-width: -moz-fit-content;
+                    max-width: fit-content;
+                    max-height: fit-content;
+                    margin: 0 auto;
+                    overflow-x: auto;
+                    overflow-y: auto;
+                    white-space: nowrap;
+                '>
+                    <tr>
+                        <th>Facilitator Name</th>
+                        <th>Game Title</th>
+                        <th>@GameArt</th>
+                        <th>Number of Players</th>
+                        <th>Game Time</th>
+                        <!-- <th>Game Pitch</th> -->
+                        <th>@GamePlayersLIst</th>
+                        <th>Player1</th>
+                        <th>Player2</th>
+                        <th>Player3</th>
+                        <th>Player4</th>
+                        <th>Player5</th>
+                        <th>Player6</th>
+                        <th>@Playtest</th>
+                        <th>Game Tags</th>
+                        <th>Content Warnings</th>
+                        <!-- <th>@FeaturedFacilitator</th> -->
+                        <!-- <th>Game Author</th> -->
+                        <th>System</th>
+                        <th>Safety Tools</th>
+                    </tr>
+                    <template x-for="event in eventData">
+                        <tr>
+                            <td x-text="event.facilitatorName"></td>
+                            <td x-text="event.gameTitle"></td>
+                            <td x-text="event.gameArt"></td>
+                            <td x-text="event.numberofPlayers"></td>
+                            <td x-text="event.gameTime"></td>
+                            <!-- <td x-text="event.gamePitch"></td> -->
+                            <td x-text="event.gamePlayersList"></td>
+                            <td x-text="event.player1"></td>
+                            <td x-text="event.player2"></td>
+                            <td x-text="event.player3"></td>
+                            <td x-text="event.player4"></td>
+                            <td x-text="event.player5"></td>
+                            <td x-text="event.player6"></td>
+                            <td x-text="event.playtest"></td>
+                            <td x-text="event.gameTags"></td>
+                            <td x-text="event.contentWarnings"></td>
+                            <td x-text="event.system"></td>
+                            <td x-text="event.safetyTools"></td>
+                        </tr>
+                    </template>
+                </table>
+            </div>
+            {# Registration info #}
+        </section>
+        <div class="prose">{{ content | safe }}</div>
+    </div>
+</main>
+
+<script type="text/javascript">
+    function tableToCSV() {
+
+        // Variable to store the final csv data
+        var csv_data = [];
+
+        // Get each row data
+        var rows = document.getElementsByTagName('tr');
+        for (var i = 0; i < rows.length; i++) {
+
+            // Get each column data
+            var cols = rows[i].querySelectorAll('td,th');
+
+            // Stores each csv row data
+            var csvrow = [];
+            for (var j = 0; j < cols.length; j++) {
+
+                // Get the text data of each cell
+                // of a row and push it to csvrow
+                csvrow.push(cols[j].innerHTML);
+            }
+
+            // Combine each column value with comma
+            csv_data.push(csvrow.join(","));
+        }
+
+        // Combine each row data with new line character
+        csv_data = csv_data.join('\n');
+
+        // Call this function to download csv file
+        downloadCSVFile(csv_data);
+
+    }
+
+    function downloadCSVFile(csv_data) {
+
+        // Create CSV file object and feed
+        // our csv_data into it
+        CSVFile = new Blob([csv_data], {
+            type: "text/csv"
+        });
+
+        // Create to temporary link to initiate
+        // download process
+        var temp_link = document.createElement('a');
+
+        // Download csv file
+        temp_link.download = "GfG.csv";
+        var url = window.URL.createObjectURL(CSVFile);
+        temp_link.href = url;
+
+        // This link should not be displayed
+        temp_link.style.display = "none";
+        document.body.appendChild(temp_link);
+
+        // Automatically click the link to
+        // trigger download
+        temp_link.click();
+        document.body.removeChild(temp_link);
+    }
+</script>
+{% endblock %}

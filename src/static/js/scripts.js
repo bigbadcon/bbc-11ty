@@ -334,6 +334,11 @@ document.addEventListener("alpine:init", () => {
 					this.getFavEvents();
 				}
 			},
+			async getEventSignupData() {
+				let data = await fetchData("/events/badgedata");
+				console.log("getEventSignupData", data);
+				return data;
+			},
 			isFav(id) {
 				return (
 					isFullArray(this.favEvents) &&

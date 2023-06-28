@@ -1,0 +1,29 @@
+{%- from "components/modal.njk" import authModal -%}
+
+<!doctype html>
+<html lang="en" class="min-h-screen" x-data="{timezone: $persist('America/Los_Angeles'), modal: false }">
+  {% include 'layouts/html_head.njk' %}
+  <body
+  data-theme="auto"
+  x-data="global"
+  class="min-h-screen bg-primary"
+  :style="(modal) && 'overflow: hidden; height: 100vh;'"
+  >
+
+  {# Bulletins if any are published #}
+  <div id="bulletin-wrapper">
+  </div>
+
+
+  <div id="main-content-wrapper" class="relative content-wrapper bg-gradient-to-b from-main-gradient-top to-main-gradient-bottom pb-lg" >
+      {# Main Content Area. main tag should live in content block #}
+      {% block content %}{% endblock %}
+  </div>
+    {# SVG Gradient used for svg icons sprite #}
+    {% include 'components/svg-gradient.njk' %}
+    {# Lil Red Status Notification #}
+    {% include 'components/lilredstatus.njk' %}
+
+  </body>
+
+</html>
