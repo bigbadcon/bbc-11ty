@@ -1,0 +1,10 @@
+name: Github runner demo
+on:
+  push:
+    branches:
+      - development
+jobs:
+  runner-demo:
+    runs-on: [self-hosted, linux]
+    steps:
+      - run: echo "I'm using my self-hosted runner for this."
