@@ -52,24 +52,24 @@
                     </tr>
                     <template x-for="event in eventData">
                         <tr>
-                            <td x-text="event.facilitatorName"></td>
-                            <td x-text="event.gameTitle"></td>
+                            <td x-text="event.facilitatorName.replaceAll(',','|')"></td>
+                            <td x-text="event.gameTitle.replaceAll(',','|')"></td>
                             <td x-text="event.gameArt"></td>
                             <td x-text="event.numberofPlayers"></td>
                             <td x-text="event.gameTime"></td>
-                            <td x-text="event.gamePitch"></td>
+                            <td x-text="event.gamePitch.replaceAll(',','|')"></td>
                             <td x-text="event.gamePlayersList"></td>
-                            <td x-text="event.player1"></td>
-                            <td x-text="event.player2"></td>
-                            <td x-text="event.player3"></td>
-                            <td x-text="event.player4"></td>
-                            <td x-text="event.player5"></td>
-                            <td x-text="event.player6"></td>
+                            <td x-text="event.player1.replaceAll(',','|')"></td>
+                            <td x-text="event.player2.replaceAll(',','|')"></td>
+                            <td x-text="event.player3.replaceAll(',','|')"></td>
+                            <td x-text="event.player4.replaceAll(',','|')"></td>
+                            <td x-text="event.player5.replaceAll(',','|')"></td>
+                            <td x-text="event.player6.replaceAll(',','|')"></td>
                             <td x-text="event.playtest"></td>
-                            <td x-text="event.gameTags"></td>
-                            <td x-text="event.contentWarnings"></td>
-                            <td x-text="event.system"></td>
-                            <td x-text="event.safetyTools"></td>
+                            <td x-text="event.gameTags.replaceAll(',','|')"></td>
+                            <td x-text="event.contentWarnings.replaceAll(',','|')"></td>
+                            <td x-text="event.system.replaceAll(',','|')"></td>
+                            <td x-text="event.safetyTools.replaceAll(',','|')"></td>
                         </tr>
                     </template>
                 </table>
