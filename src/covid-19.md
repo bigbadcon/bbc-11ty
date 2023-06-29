@@ -31,7 +31,7 @@ _We recommend you [stay up-to-date](https://www.cdc.gov/coronavirus/2019-ncov/va
 
 
 ## Protective measures{#protective-measures}
-The Centilia Cultural Center has a modern ventilation system that incorporates MERV-13 air filters and cycles the air 10.9 times per hour, or around once every 5.5 minutes. While the much-older El Centro de la Raza building lacks an HVAC system, we will be opening windows in the rooms and using [C-R boxes](#corsi-rosenthal-boxes) to cycle the air through MERV-13 filters as well.
+The Centilia Cultural Center has a modern ventilation system that incorporates MERV-13 air filters and cycles the air 10.9 times per hour, or around once every 5.5 minutes. While the much-older El Centro de la Raza building lacks an HVAC system, we will be opening windows in the rooms and using C-R boxes (described following) to cycle the air through MERV-13 filters as well.
 
 In addition to our [Vaccination and Masking Requirements](#vaccines-and-masks-are-required), Go Play NW is taking the following measures to help our community stay infection free!
 
