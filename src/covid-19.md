@@ -7,7 +7,7 @@ heroImage: /images/vecteezy_covid-antigen-test-kit.jpg
 heroImagePosition: center
 ---
  
-_Last updated: 15 Apr 2023_
+_Last updated: 29 Jun 2023_
 
 While many organizations and agencies have relaxed their COVID-19 policies and the CDC has seen a significant reduction in severe cases and hospitalizations, COVID-19 is still a serious threat for members of our community who are at higher risk due to a weakened immune system or underlying conditions.
 
