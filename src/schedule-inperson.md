@@ -10,7 +10,7 @@ heroImagePosition: bottom
 
 Here is the schedule for Go Play NW 2023. The Donut pitch circle starts at the beginning of each game session except Saturday afternoon, when we hold the Lottery instead. See [The Donut](the-donut.ml) for more information. 
 
-Wondering where to go for meals during the lunch and dinner breaks? Or just a coffee and snack to go? Check out the [Venue](venue-inperson.ml#the-neighborhood) page for a map and list of the closest places.
+Wondering where to go for meals during the lunch and dinner breaks? Or just a coffee and snack to go? Check out the [Venue](venue-inperson#the-neighborhood) page for a map and list of the closest places.
 
 ***Note:*** On Saturday July 8, the Beacon Arts organization will be holding a [street fair](https://www.beacon-arts.org/street-fairs) on S Roberto Maestas Festival Street, directly between the Centilia Cultural Center and the Beacon Hill Light Rail station. The street will be blocked off from 8 AM to 5 PM, with activities including live music between 10 AM and 4 PM. Also, we will be sharing the plaza outside the Centilia Cultural Center with vendor and food booths.
 
