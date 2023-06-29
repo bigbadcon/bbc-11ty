@@ -31,7 +31,7 @@ _We recommend you [stay up-to-date](https://www.cdc.gov/coronavirus/2019-ncov/va
 
 
 ## Protective measures{#protective-measures}
-In addition to our [Vaccination and Masking Requirements](#vaccines-and-masks-are-required), Go Play NW is taking the following measures to help our community stay infection free!
+The Centilia Cultural Center has a modern ventilation system that incorporates MERV-13 air filters and cycles the air 10.9 times per hour, or around once every 5.5 minutes. In addition to our [Vaccination and Masking Requirements](#vaccines-and-masks-are-required), Go Play NW is taking the following measures to help our community stay infection free!
 
 ### KN95 masks are available
 Disposable KN95 masks are available to Go Play NW attendees; please see the registration table for more information.
