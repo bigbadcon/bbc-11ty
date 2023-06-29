@@ -45,7 +45,7 @@ Notable features for navigating our event space in Cenitlia include:
     * Street parking is available throughout the neighborhood. Streets are relatively flat within a block of El Centro.
     * For more information see [Parking](#parking).
 
-We recognize that COVID-19 remains a serious threat to members of our community with weakened immune systems or underlying conditions. The Centilia Cultural Center has a modern ventilation system that incorporates MERV-13 air filters and cycles the air 10.9 times per hour, or around once every 5.5 minutes. Proof of vaccination and masks are required; see our [COVID-19](/covid-1) Policies for more information on the requirements, protective measures, and recommendations in place for Go Play NW 2023.
+We recognize that COVID-19 remains a serious threat to members of our community with weakened immune systems or underlying conditions. **Proof of vaccination and masks are required.** The Centilia Cultural Center has a modern ventilation system that incorporates MERV-13 air filters and cycles the air 10.9 times per hour, or around once every 5.5 minutes. While the much-older El Centro de la Raza building lacks an HVAC system, we will be opening windows in the rooms and using C-R boxes to cycle the air through MERV-13 filters as well. See our [COVID-19](/covid-1) Policies for more information on the requirements, protective measures, and recommendations in place for Go Play NW 2023.
 
 ## Directions and Parking{#directions-and-parking}
 
