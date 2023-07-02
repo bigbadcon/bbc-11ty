@@ -9,42 +9,43 @@ pagination:
   size: 10
   reverse: true
   alias: blog
-navGroup: Blog
-navTitle: Blog
+navGroup: Community
+navTitle: Big Bad Blog
 order: 0
+icon: bullhorn
 ---
 
 <section class="space-y-md mt-md">
-  {% for post in pagination.items %}
-    <article>
-      <a href="{{ post.url }}" class="hover:underline text-subheader hover:text-highlight">
-        <h2 class="font-serif text-3xl leading-none tracking-tight text-subheader">{{post.data.title}}</h2>
-      </a>
-      <div class="text-xs font-bold text-secondary">{{post.date | formatBlogDate }}</div>
-      <div class="mt-base">
-        <div class="prose">{% excerpt post %}</div>
-      </div>
-    </article>
-  {% endfor %}
+    {% for post in pagination.items %}
+        <article>
+            <a href="{{ post.url }}" class="hover:underline text-subheader hover:text-highlight">
+                <h2 class="font-serif text-3xl leading-none tracking-tight text-subheader">{{post.data.title}}</h2>
+            </a>
+            <div class="text-xs font-bold text-secondary">{{post.date | formatBlogDate }}</div>
+            <div class="mt-base">
+                <div class="prose">{% excerpt post %}</div>
+            </div>
+        </article>
+    {% endfor %}
 </section>
 <nav aria-labelledby="my-pagination" class="rounded-md shadow bg-primary p-sm mt-lg">
-  <h2 id="my-pagination" class="font-bold uppercase text-2xs text-subheader">Oh my, there are pages and pages of blog posts!</h2>
-  <ol class="flex flex-wrap items-center justify-start space-x-sm">
-    {%- for pageEntry in pagination.pages %}
-      <li>
-        <a class="pagination-link text-highlight hover:underline" href="{{ pagination.hrefs[ loop.index0 ] }}"{% if page.url == pagination.hrefs[ loop.index0 ] %} aria-current="page"{% endif %}>{{ loop.index }}</a>
-      </li>
-    {%- endfor %}
-  </ol>
+    <h2 id="my-pagination" class="font-bold uppercase text-2xs text-subheader">Oh my, there are pages and pages of blog posts!</h2>
+    <ol class="flex flex-wrap items-center justify-start space-x-sm">
+        {%- for pageEntry in pagination.pages %}
+            <li>
+                <a class="pagination-link text-highlight hover:underline" href="{{ pagination.hrefs[ loop.index0 ] }}"{% if page.url == pagination.hrefs[ loop.index0 ] %} aria-current="page"{% endif %}>{{ loop.index }}</a>
+            </li>
+        {%- endfor %}
+    </ol>
 </nav>
 <style>
-  .pagination-link[aria-current="page"] {
-    font-weight: 700;
-    color: var(--subheader);
-  }
-  article form,
-  article img,
-  article table {
-    display: none;
-  }
+    .pagination-link[aria-current="page"] {
+        font-weight: 700;
+        color: var(--subheader);
+    }
+    article form,
+    article img,
+    article table {
+        display: none;
+    }
 </style>
