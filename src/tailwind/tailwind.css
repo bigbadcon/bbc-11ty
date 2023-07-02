@@ -639,3 +639,11 @@ lite-youtube.lyt-activated > .lty-playbtn {
 .gl-widget__google-pay-button img {
 	margin-bottom: 0;
 }
+
+/* ----------------------- Donate nav item CSS styles ----------------------- */
+#main-nav > a[href^="/donate"] {
+	@apply p-0;
+}
+#main-nav > a[href^="/donate"] span {
+	@apply bg-menu-icon text-primary hover:bg-secondary transition-colors px-sm py-2xs inline-block rounded-md;
+}
