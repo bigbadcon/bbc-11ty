@@ -124,6 +124,7 @@ module.exports = (eleventyConfig) => {
 	/*                         Main Nav special collection                        */
 	/* -------------------------------------------------------------------------- */
 
+	// TODO: make this accessible from global configuration
 	const navGroups = ["Attend", "Events", "Volunteer", "Community", "Donate"];
 
 	eleventyConfig.addCollection("nav", function (collectionApi) {
