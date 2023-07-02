@@ -1,6 +1,6 @@
 ---
 layout: layouts/page.njk
-title: 'Games on Demand: How it Works'
+title: Games on Demand FAQ
 published: true
 description: ''
 ogImage: ''

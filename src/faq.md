@@ -36,9 +36,9 @@ If you haven't heard back by any of these dates, email us at info@bigbadcon.com.
 
 Find out about our COVID safety policies and risk mitigations efforts [here](/public-health-policy).
 
-### Are teens welcome?
+### What's the minimum age to attend?
 
-We invite all gamers 13 and older. Teens 13-17 can sign up for events marked "All Ages".
+We invite all gamers 13 and older. Teens 13-17 can sign up for events marked "All Ages". Games not marked "All Ages" are for players 18 and older.
 
 ### Will there be a Dealer Room or Small Press Showcase?
 
@@ -46,7 +46,7 @@ Yes, you can find out more about each of those here:
 
 [Exhibitor Information](/exhibitor-information){.icon-booth}
 
-[Small Press Showcase sign ups](/small-press-showcase){.icon-book}
+[Small Press Showcase](/small-press-showcase){.icon-book}
 
 ### Are my donations tax deductible?
 
@@ -58,7 +58,13 @@ Yes! Big Bad Con is an official 501(c)(3) non-profit. Donations are tax deductib
 
 Games on Demand is an offshoot of our TTRPG track that allows players to drop into games at the con rather than booking a slot to play in advance. It's a great place to run games if you'd like to try out different game systems and hangout out with the amazing rangers at Big Bad Con.
 
-We ask Games on Demand GMs to submit two possible games to run during a time slot. At the start of that time slot, players will come to the event space and pick between the games the GMs have prepped. 
+We ask Games on Demand GMs to submit two possible games to run during a time slot. At the start of that time slot, players will come to the event space and pick between the games the GMs have prepped.
+
+More detailed information on both tracks here:
+
+[Scheduled Events FAQ](https://www.bigbadcon.com/scheduled-events-faq/){.icon-calendar-clock}
+
+[Games on Demand FAQ](/games-on-demand-how-it-works/){.icon-games-on-demand}
 
 ### When will I hear back after I've submitted an event?
 
