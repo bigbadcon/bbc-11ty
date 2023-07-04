@@ -7,5 +7,5 @@ module.exports = {
     eventOnline: "ONLINE: 27 OCT - 29 OCT 2023 • Discord",
     eventType: "IN-PERSON", // IN-PERSON, ONLINE, HYBRID
     signupsOpen: false,
-    gameSubmissionOpen: true,
+    gameSubmissionOpen: false,
 };
