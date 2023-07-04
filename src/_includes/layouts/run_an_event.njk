@@ -22,7 +22,8 @@
       {% endif %}
     {# Page content #}
     <div class="mx-auto md:rounded-md shadow-md max-w-content p-base bg-card">
-      <div class="prose max-w-content2">{{ content | safe }}</div>
+      {% if sitemeta.gameSubmissionOpen %}
+        <div class="prose max-w-content2">{{ content | safe }}</div>
             <section class="my-base">
                 {# START Submit Form: only show if logged in #}
                 <div x-cloak x-show="!isAuth" class="prose">
@@ -231,6 +232,22 @@
                 {# END runAnEventData component #}
             </section>
         </div>
+      {% else %}
+      <div class="prose max-w-content2">
+          <header class="prose">
+              <h2>Go Play NW is happening now!</h2>
+          </header>
+          <p>
+              Online game submissions are now closed. All game submissions now must be submitted in person at the event, instead of on this site.
+          </p>
+          <p>
+              If you want to come play with us, this year's event is at the <a href = "https://goplaynw.org/venue-inperson/">Centilia Cultural Center</a> in Seattle, WA.
+          </p>
+          <p>
+              Please be sure to review our <a href = "https://goplaynw.org/covid-19/">COVID-19 policies</a> before arriving.
+          </p>
+      </div>
+      {% endif %}
     </main>
 {% endblock %}
 
