@@ -335,7 +335,12 @@ document.addEventListener("alpine:init", () => {
 				}
 			},
 			async getEventSignupData() {
-				let data = await fetchData("/events/badgedata");
+				let data = await fetchData("/events/eventdata");
+				console.log("getEventSignupData", data);
+				return data;
+			},
+			async getEventVolunteerData() {
+				let data = await fetchData("/events/volunteerdata");
 				console.log("getEventSignupData", data);
 				return data;
 			},

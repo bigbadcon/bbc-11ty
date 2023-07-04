@@ -13,7 +13,7 @@
             </div>
             <div x-cloak x-show="isAuth && isRegistered === null"
                  x-data="{eventData: []}"
-                 x-init="getEventSignupData()
+                 x-init="getEventVolunteerData()
                  .then(response => {eventData = response})"
                  class="flex items-center justify-center gap-sm py-md">
                 <table style='
