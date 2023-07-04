@@ -6,5 +6,6 @@ module.exports = {
     eventDate: "LIVE: 7 JUL - 9 JUL 2023 • Centilia Cultural Center ",
     eventOnline: "ONLINE: 27 OCT - 29 OCT 2023 • Discord",
     eventType: "IN-PERSON", // IN-PERSON, ONLINE, HYBRID
-    signupsOpen: true
+    signupsOpen: false,
+    gameSubmissionOpen: true,
 };
