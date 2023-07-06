@@ -1,20 +1,15 @@
 ---
-layout: layouts/register-eventbrite.njk
-title: Buy Tickets for Go Play NW 2023!
+layout: layouts/page.njk
+title: Go Play NW In-Person 2023 Is a Wrap!
 tags: pages
 ---
 
-We're stoked that you want to join us for Go Play NW 2023! Once we get you through our 4-step registration process you'll be ready to play some games, but first, here are a few key event details for the weekend.
+Go Play NW In-Person 2023 is finished for this year! Thank you to all of our attendees, volunteers, and organizers for joining us and making our event a success! We're looking forward to seeing you all again online in Fall!
 
-### Dates and Venue
-**When**: July 7&#8211;9, 2023  
-**Where**: Centilia Cultural Center, Seattle, WA 98144 [(view map)](https://goo.gl/maps/3B8WPNaPuSxCGybk9)  
-**COVID-19 Requirements**: Masks and full vaccinations are required.
+Want to keep in touch with Go Play NW?
 
-### Ticket Options
-| Ticket | Advanced Price (Apr 17&#8211;Jul 2) | Walk-in Price (Jul 3&#8211;9) |
-|--------------|-----------|------------|
-| Full Weekend | $175 | - |
-| Friday (Single day) | $60 | $65 |
-| Saturday (Single day) | $65 | $75 |
-| Sunday (single day) | $65 | $75 |
+[Join us on Discord](https://discord.gg/AqhayGFexQ){.icon-discord}
+
+[Consider becoming a volunteer!](http://localhost:8080/volunteer){.icon-people-group}
+
+[Follow us on Twitter](https://twitter.com/GoPlayNW){.icon-twitter}
