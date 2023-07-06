@@ -30,13 +30,13 @@
                     {% endif %}
                     <tr>
                         <td colspan="4">
-                            <h3 style="margin-top: 50px" class="py-sm  border-b-2 border-hr font-serif text-2xl font-bold leading-none text-header mb-2xs">
-                                <span x-html="formatEventDate('{{event.eventStartDate}}')"></span>
+                            <h3 style="margin-top: 30px" class="py-sm  border-b-2 border-hr font-serif text-2xl font-bold leading-none text-header mb-2xs">
+                                <span x-html="formatEventDateHeader('{{event.eventStartDate}}')"></span>
                             </h3>
                         </td>
                     <tr>
                         <th class="text-lg text-left pb-sm">Event</th>
-                        <th class="text-left pb-sm">Date Time</th>
+                        <th class="text-left pb-sm">Date/Time</th>
                         <th class="text-center pb-sm max-w-max">Dur</th>
                         <th class="text-center pb-sm max-w-max">Spaces</th>
                         <th class="w-8 text-center pb-sm" x-cloak x-show="isAuth">

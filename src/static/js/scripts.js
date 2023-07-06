@@ -32,7 +32,7 @@ function formatEventDate(date, tz = "America/Los_Angeles") {
 	);
 }
 
-function formatEventDate(date) {
+function formatEventDateHeader(date) {
 	var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 	return (
 		"<span style='white-space: nowrap;'>" +
