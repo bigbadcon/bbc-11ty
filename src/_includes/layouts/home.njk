@@ -20,7 +20,7 @@
 {# Homepage main content #}
 {% block content %}
     <main id="content">
-<!--
+    {% if sitemeta.eventStatus !== "OFF-SEASON"%}
         {# Card grid #}
         <section class="mx-auto max-w-hero p-base">
             <ul class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
@@ -32,7 +32,7 @@
                 {% endfor %}
             </ul>
         </section>
--->
+    {% endif %}
         {# Big full width cards with images #}
         <section class="grid gap-4 mx-auto max-w-hero p-base">
             <ul class="grid gap-4">
