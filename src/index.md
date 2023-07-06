@@ -9,6 +9,8 @@ tags: pages
 
 Thank you to all of our attendees, volunteers, and organizers for making Go Play NW In-Person 2023 a success! We're looking forward to seeing you all again online in Fall.
 
+<h3 style="margin-top: inherit;">{{sitemeta.eventDate}}</h3>
+
 In the meantime...
 
 [Hang out with us on Discord!](https://discord.gg/AqhayGFexQ){.icon-discord}
