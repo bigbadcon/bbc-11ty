@@ -32,7 +32,6 @@
                 {% endfor %}
             </ul>
         </section>
-    {% endif %}
         {# Big full width cards with images #}
         <section class="grid gap-4 mx-auto max-w-hero p-base">
             <ul class="grid gap-4">
@@ -49,19 +48,36 @@
                 {% endfor %}
             </ul>
         </section>
-<!--        <section class="space-y-md mt-md">
-        {% for post in collections.blogPublished %}
-            <article>
-            <a href="{{ post.url }}" class="hover:underline text-subheader hover:text-highlight">
-                <h2 class="font-serif text-3xl leading-none tracking-tight text-subheader">{{post.data.title}}</h2>
-            </a>
-            <div class="text-xs font-bold text-secondary">{{post.date | formatBlogDate }}</div>
-            <div class="mt-base">
-                <div class="prose">{% excerpt post %}</div>
-            </div>
-            </article>
-        {% endfor %}
+        {% else %}
+        <section class="grid gap-4 mx-auto max-w-hero p-base">
+            <ul class="grid gap-4">
+                {% for post in collections.blogPublished | reverse %}
+                    {% if loop.index < 5 %}
+                    <li class="grid overflow-hidden rounded shadow-md md:grid-cols-3 bg-card">
+                        <div class="md:col-span-2 px-md pt-base pb-md">
+                            <article>
+                            <a href="{{ post.url }}" class="hover:underline text-subheader hover:text-highlight">
+                                <h2 class="font-serif text-3xl leading-none tracking-tight text-subheader">{{post.data.title}}</h2>
+                            </a>
+                            <div class="text-xs font-bold text-secondary">{{post.date | formatBlogDate }}</div>
+                            <div class="mt-base">
+                                <div class="prose">{% excerpt post %}</div>
+                            </div>
+                            </article>
+                            </div>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+                <li class="grid overflow-hidden rounded shadow-md md:grid-cols-3 bg-card">
+                    <div class="md:col-span-2 px-md pt-base pb-base">
+                        <h2 class="font-serif text-2xl leading-none tracking-tight text-subheader">
+                        For more, see our
+                        <a href="blog" class="hover:underline text-subheader hover:text-highlight">Announcements</a>
+                        </h2>
+                    </div>
+                </li>
+            </ul>
         </section>
--->
+        {% endif %}
     </main>
 {% endblock %}
