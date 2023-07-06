@@ -1,8 +1,9 @@
-<section class="mt-md" x-data="{ filter: $persist({favsOnly: false,openOnly: false}) }">
+<section class="mt-md" x-data="{ lastDate: '01-01-1970', filter: $persist({favsOnly: false,openOnly: false}) }">
     <h2 class="font-serif text-3xl font-bold leading-none md:text-4xl text-header mb-2xs">Games list</h2>
     {% include 'components/event-table-filter.njk' %}
     {# Testing: <button @click="getFavEvents">load favs</button> #}
     <table class="w-full text-sm text-body">
+        <!--
         <thead>
             <tr>
                 <th class="text-lg text-left pb-sm">Event</th>
@@ -18,8 +19,33 @@
                 </th>
             </tr>
         </thead>
+        -->
         <tbody>
             {% for event in eventData.events %}
+                {# header for new day in schedule #}
+                {% if not (event.eventStartDate === lastDate) %}
+                    {% if not loop.first %}
+                        </tbody>
+                        <tbody>
+                    {% endif %}
+                    <tr>
+                        <td x-cloak x-show="isAuth" colspan="4">
+                            <h3 style="margin-top: 50px" class="py-sm  border-b-2 border-hr font-serif text-2xl font-bold leading-none text-header mb-2xs">
+                                <span x-html="formatEventDate('{{event.eventStartDate}}')"></span>
+                            </h3>
+                        </td>
+                    <tr>
+                        <th class="text-lg text-left pb-sm">Event</th>
+                        <th class="text-left pb-sm">Date Time</th>
+                        <th class="text-center pb-sm max-w-max">Dur</th>
+                        <th class="text-center pb-sm max-w-max">Spaces</th>
+                        <th class="w-8 text-center pb-sm" x-cloak x-show="isAuth">
+                            <span class="fav-star-header"></span>
+                        </th>
+                    </tr>
+                {% endif %}
+                {% set lastDate = event.eventStartDate %}
+
                 {# isFav is in Alpine.data("global") #}
                 <tr x-show="!filter.favsOnly || isFav({{event.eventId}})">
                     {# Event Name #}
@@ -51,6 +77,7 @@
                         {% endfor %}
                     </td class="py-sm pr-sm"> #}
                     {# Fav Event Icon #}
+                    <td class="font-bold text-center align-top py-sm px-xs">{{ event | eventSpaces }}</td>
                     <td x-cloak x-show="isAuth">
                         {# TODO: refactor toggleFav and isFav #}
                         <span @click="toggleFav({{event.eventId}})" class="fav-star" :class="isFav({{event.eventId}}) && 'favved'">{% icon 'star', 'fill-body' %}</span>
