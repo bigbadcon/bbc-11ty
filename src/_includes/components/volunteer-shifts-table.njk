@@ -1,5 +1,7 @@
 <section class="mt-md" x-data="{ filter: $persist({favsOnly: false,openOnly: false}) }">
     <h2 class="font-serif text-3xl font-bold leading-none md:text-4xl text-header mb-base">Volunteer Shift Schedule</h2>
+    Check back closer to our next event ({{sitemeta.eventDate}}) for volunteer shifts!
+<!--
     {% include 'components/event-table-filter.njk' %}
     <table class="w-full text-sm leading-tight text-body">
         <thead>
@@ -43,10 +45,10 @@
                     <td>
                         {# If booked add check mark, otherwise list number of spaces open #}
                         <div class="flex items-center justify-center py-sm">
-                            <span 
-                            style="width: 1.375rem; height: 1.375rem" 
-                            class="block text-center border-2 rounded border-body" 
-                            :class="spacesOpen === 0 && 'bg-card opacity-40'" 
+                            <span
+                            style="width: 1.375rem; height: 1.375rem"
+                            class="block text-center border-2 rounded border-body"
+                            :class="spacesOpen === 0 && 'bg-card opacity-40'"
                             x-text="(isBooked({{event.eventId}})) ? '&#10004;' : (typeof spacesOpen === 'number') ? spacesOpen : '{{event.metadata.Players}}'">{{ event.metadata.Players }}</span>
                         </div>
                     </td>
@@ -58,4 +60,5 @@
             {% endfor %}
         </tbody>
     </table>
+-->
 </section>
