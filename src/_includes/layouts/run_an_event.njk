@@ -22,231 +22,242 @@
       {% endif %}
     {# Page content #}
     <div class="mx-auto md:rounded-md shadow-md max-w-content p-base bg-card">
-      {% if sitemeta.gameSubmissionOpen %}
-        <div class="prose max-w-content2">{{ content | safe }}</div>
-            <section class="my-base">
-                {# START Submit Form: only show if logged in #}
-                <div x-cloak x-show="!isAuth" class="prose">
-                    <p>You must be <button @click.stop="modal = 'login'" class="font-bold underline text-highlight">logged in</button> to submit a game</p>
-                </div>
-                <div x-cloak x-show="isAuth && user" x-data="runAnEventData">
-                    <div x-show="!eventSubmitted" id="submit-your-event">
-                        <header class="prose">
-                            <h2>Submit your game</h2>
-                            <p>
-                                <span class="font-bold text-highlight">*</span>
-                                <em>required field</em>
-                            </p>
-                        </header>
-                        <form id="form" action="post" class="mt-base" id="form-run-an-event" @submit.prevent="submitEvent">
-                            {# TODO: add honeypot #}
-                            <input type="hidden" x-model="eventInfo.userDisplayName" x-init="event_type = '{{sitemeta.eventType}}';eventInfo.userDisplayName = user && user.displayName; $watch('user', value => eventInfo.userDisplayName = value && value.displayName)">
-                            {# Personal Info #}
-                            <fieldset>
-                                <legend>Personal info</legend>
-                                <div class="required">
-                                    <label for="publicName">Public badge name</label>
-                                    <p class="text-xs mb-sm text-body">We encourage attendees to list their first and last names. However, if for privacy reasons you would like to use another name, enter it here.</p>
-                                    <input id="publicName" name="publicName" type="text" value=""
-                                    x-init="eventInfo.publicName = user && user.displayName; $watch('user', value => eventInfo.publicName = value && value.displayName)"
-                                    x-model="eventInfo.publicName" @blur="validate"/>
-                                </div>
-                            </fieldset>
-                            <fieldset>
-                                <legend>Code of Conduct agreement</legend>
-                                <div class="prose mb-sm">
-                                    <p>Go Play NW is committed to cultivating a culture of respect, support, and kindness at both our in-person and online events. We ask that all of our attendees agree to abide by our Community Standards, please take a moment to read them before answering yes below.</p>
-                                    <p>
-                                        <a href="/code-of-conduct" class="icon-scroll">Code of Conduct</a>
-                                    </p>
-                                </div>
-                                <div class="required">
-                                    <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-model="eventInfo.communityStandards" required>
-                                    <label for="agree-to-community-standards" class="text-body-highlight"3324>
-                                        Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Go Play NW Code of Conduct
-                                    </label>
-                                </div>
-                            </fieldset>
+      {% if sitemeta.eventStatus !== "OFF-SEASON" %}
+        {% if sitemeta.gameSubmissionOpen %}
+          <div class="prose max-w-content2">{{ content | safe }}</div>
+              <section class="my-base">
+                  {# START Submit Form: only show if logged in #}
+                  <div x-cloak x-show="!isAuth" class="prose">
+                      <p>You must be <button @click.stop="modal = 'login'" class="font-bold underline text-highlight">logged in</button> to submit a game</p>
+                  </div>
+                  <div x-cloak x-show="isAuth && user" x-data="runAnEventData">
+                      <div x-show="!eventSubmitted" id="submit-your-event">
+                          <header class="prose">
+                              <h2>Submit your game</h2>
+                              <p>
+                                  <span class="font-bold text-highlight">*</span>
+                                  <em>required field</em>
+                              </p>
+                          </header>
+                          <form id="form" action="post" class="mt-base" id="form-run-an-event" @submit.prevent="submitEvent">
+                              {# TODO: add honeypot #}
+                              <input type="hidden" x-model="eventInfo.userDisplayName" x-init="event_type = '{{sitemeta.eventType}}';eventInfo.userDisplayName = user && user.displayName; $watch('user', value => eventInfo.userDisplayName = value && value.displayName)">
+                              {# Personal Info #}
+                              <fieldset>
+                                  <legend>Personal info</legend>
+                                  <div class="required">
+                                      <label for="publicName">Public badge name</label>
+                                      <p class="text-xs mb-sm text-body">We encourage attendees to list their first and last names. However, if for privacy reasons you would like to use another name, enter it here.</p>
+                                      <input id="publicName" name="publicName" type="text" value=""
+                                      x-init="eventInfo.publicName = user && user.displayName; $watch('user', value => eventInfo.publicName = value && value.displayName)"
+                                      x-model="eventInfo.publicName" @blur="validate"/>
+                                  </div>
+                              </fieldset>
+                              <fieldset>
+                                  <legend>Code of Conduct agreement</legend>
+                                  <div class="prose mb-sm">
+                                      <p>Go Play NW is committed to cultivating a culture of respect, support, and kindness at both our in-person and online events. We ask that all of our attendees agree to abide by our Community Standards, please take a moment to read them before answering yes below.</p>
+                                      <p>
+                                          <a href="/code-of-conduct" class="icon-scroll">Code of Conduct</a>
+                                      </p>
+                                  </div>
+                                  <div class="required">
+                                      <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-model="eventInfo.communityStandards" required>
+                                      <label for="agree-to-community-standards" class="text-body-highlight"3324>
+                                          Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Go Play NW Code of Conduct
+                                      </label>
+                                  </div>
+                              </fieldset>
 
-                            {# END Personal Info #}
-                            {# Event Info - Personal Info must be complete before showing #}
-                            <fieldset class="transition-opacity" :class="(isPersonalInfoComplete) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
-                                <legend>Game info</legend>
-                                <div class="required">
-                                    <label for="eventName">Game name</label>
-                                    <span>Please do not use emojis in your Game Name.</span>
-                                    <input id="eventName" name="eventName" type="text" value="" x-model="eventInfo.eventName" @blur="validate" class="w-full max-w-md"/>
-                                </div>
-                                <div class="required">
-                                    <label for="format">Format</label>                               
-                                    <select id="format" name="format" x-model="eventInfo.format" @blur="validate">
-                                        <option :disabled="eventInfo.format !== ''" selected value="">-- Choose One --</option>
-                                        <template x-for="type in format">
-                                            <option :value="type.name" x-text="type.name"></option>
-                                        </template>
-                                    </select>
-                                </div>
-                                <div x-show="isGame" class="required">
-                                    <label for="system">System</label>
-                                    <span>Please do not use emojis in the System field.</span><br />                                    
-                                    <input id="system" name="system" type="text" value="" x-model="eventInfo.system" @blur="validate"/>
-                                </div>
-                                <div class="required">
-                                    <label for="eventDescription">Description</label>
-                                    <span>Please do not use emojis in your Description.</span>                                         
-                                    <textarea cols="30" id="eventDescription" name="eventDescription" rows="3" x-model="eventInfo.eventDescription" @blur="validate"></textarea>
-                                </div>
-                                <div>
-                                    <label for="file">Game image</label>
-                                    <input type="file" name="file" id="file" accept="image/*" class="mr-base" @change="showPreview">
-                                    <img id="image-preview" class="hidden object-cover object-center rounded-md my-sm" x-ref="preview" style="aspect-ratio: 16/9"/>
-                                    <p class="text-sm my-sm prose">Images are cropped automatically at 16/9 ratio and centered. Images should be mininum 760x428 px and maximum 1,520x856 px (or there abouts) and formatted with jpg or webp (png or gif accepted but generally the former compress better).</p>
-                                </div>
-                                <div>
-                                    <label for="otherInfo">Other info we should know (this will not go in the program)</label>
-                                    <span>Please do not use emojis in this field.</span>                                     
-                                    <textarea cols="30" id="otherInfo" name="otherInfo" rows="3" x-model="eventInfo.otherInfo"></textarea>
-                                </div>
-                                {# <div>
-                                    <label for="imageUpload">Image Upload (NOT CURRENTLY WORKING)</label>
-                                    <input id="imageUpload" name="imageUpload" type="text" value="" x-model="eventInfo.imageUpload"/>
-                                </div> #}
-                            </fieldset>
-                            {# END Event Info #}
-                            {# Player/Attendee Info - all above must be completed #}
-                            <fieldset class="transition-opacity" :class="(isEventInfoComplete) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
-                                <legend>Player info</legend>
-                                {# Only required for games #}
-                                <div class="required">
-                                    <label for="minPlayers">Minimum players</label>
-                                    <input id="minPlayers" name="minPlayers" type="number" step="1" value="" x-model="eventInfo.minPlayers" @blur="validate"/>
-                                </div>
-                                {# Only required for games #}
-                                <div class="required">
-                                    <label for="maxPlayers" >Maximum players</label>
-                                    <input id="maxPlayers" name="maxPlayers" type="number" step="1" value="" x-model="eventInfo.maxPlayers" @blur="validate"/>
-                                </div>
-                                <div x-show="isRPGorLARP" class="required">
-                                    <label for="characters">Characters</label>
-                                    <select id="characters" name="characters" x-model="eventInfo.characters" @blur="validate">
-                                        <option :disabled="eventInfo.characters !== ''" selected value="">
-                                            -- Choose One --
-                                        </option>
-                                        <option>Provided</option>
-                                        <option>Created at the table</option>
-                                        <option>Other/Does not apply</option>
-                                    </select>
-                                </div>
-                            </fieldset>
-                            {# END Player Attendee Info #}
-                            {# Scheduling Info - player age must be completed #}
-                            <fieldset class="transition-opacity" :class="(isPlayerInfoComplete) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
-                                <legend>Scheduling info</legend>
-                                <div class="required">
-                                    <label for="eventLength">Event length</label>
-                                    <select id="eventLength" name="eventLength" x-model="eventInfo.eventLength" @blur="validate">
-                                        <option :disabled="eventInfo.eventLength !== '0'" selected value="0">
-                                            -- Choose One --
-                                        </option>
-                                        <option value="1">1 hour</option>
-                                        <option value="2">2 hours</option>
-                                        <option value="4">4 hours</option>
-                                    </select>
-                                </div>
-                                <div x-show="eventInfo.eventLength" class="required">
-                                    <label for="schedulePrefBlock">Scheduled Slot</label>
-                                    <div id="schedulePrefBlock" class="flex items-center">
-                                        <select id="schedulePrefSel" name="schedulePrefSel" x-model="eventInfo.schedulePref" @blur="validate">
-                                            <option :disabled="eventInfo.format !== ''" selected value="">-- Choose One --</option>
-                                            <template x-for="(time, i) in scheduleTimeDetails()">
-                                                <option :value="time" x-text="time"></option>
-                                            </template>
-                                        </select>
-                                    </div>
+                              {# END Personal Info #}
+                              {# Event Info - Personal Info must be complete before showing #}
+                              <fieldset class="transition-opacity" :class="(isPersonalInfoComplete) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
+                                  <legend>Game info</legend>
+                                  <div class="required">
+                                      <label for="eventName">Game name</label>
+                                      <span>Please do not use emojis in your Game Name.</span>
+                                      <input id="eventName" name="eventName" type="text" value="" x-model="eventInfo.eventName" @blur="validate" class="w-full max-w-md"/>
+                                  </div>
+                                  <div class="required">
+                                      <label for="format">Format</label>
+                                      <select id="format" name="format" x-model="eventInfo.format" @blur="validate">
+                                          <option :disabled="eventInfo.format !== ''" selected value="">-- Choose One --</option>
+                                          <template x-for="type in format">
+                                              <option :value="type.name" x-text="type.name"></option>
+                                          </template>
+                                      </select>
+                                  </div>
+                                  <div x-show="isGame" class="required">
+                                      <label for="system">System</label>
+                                      <span>Please do not use emojis in the System field.</span><br />
+                                      <input id="system" name="system" type="text" value="" x-model="eventInfo.system" @blur="validate"/>
+                                  </div>
+                                  <div class="required">
+                                      <label for="eventDescription">Description</label>
+                                      <span>Please do not use emojis in your Description.</span>
+                                      <textarea cols="30" id="eventDescription" name="eventDescription" rows="3" x-model="eventInfo.eventDescription" @blur="validate"></textarea>
+                                  </div>
+                                  <div>
+                                      <label for="file">Game image</label>
+                                      <input type="file" name="file" id="file" accept="image/*" class="mr-base" @change="showPreview">
+                                      <img id="image-preview" class="hidden object-cover object-center rounded-md my-sm" x-ref="preview" style="aspect-ratio: 16/9"/>
+                                      <p class="text-sm my-sm prose">Images are cropped automatically at 16/9 ratio and centered. Images should be mininum 760x428 px and maximum 1,520x856 px (or there abouts) and formatted with jpg or webp (png or gif accepted but generally the former compress better).</p>
+                                  </div>
+                                  <div>
+                                      <label for="otherInfo">Other info we should know (this will not go in the program)</label>
+                                      <span>Please do not use emojis in this field.</span>
+                                      <textarea cols="30" id="otherInfo" name="otherInfo" rows="3" x-model="eventInfo.otherInfo"></textarea>
+                                  </div>
+                                  {# <div>
+                                      <label for="imageUpload">Image Upload (NOT CURRENTLY WORKING)</label>
+                                      <input id="imageUpload" name="imageUpload" type="text" value="" x-model="eventInfo.imageUpload"/>
+                                  </div> #}
+                              </fieldset>
+                              {# END Event Info #}
+                              {# Player/Attendee Info - all above must be completed #}
+                              <fieldset class="transition-opacity" :class="(isEventInfoComplete) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
+                                  <legend>Player info</legend>
+                                  {# Only required for games #}
+                                  <div class="required">
+                                      <label for="minPlayers">Minimum players</label>
+                                      <input id="minPlayers" name="minPlayers" type="number" step="1" value="" x-model="eventInfo.minPlayers" @blur="validate"/>
+                                  </div>
+                                  {# Only required for games #}
+                                  <div class="required">
+                                      <label for="maxPlayers" >Maximum players</label>
+                                      <input id="maxPlayers" name="maxPlayers" type="number" step="1" value="" x-model="eventInfo.maxPlayers" @blur="validate"/>
+                                  </div>
+                                  <div x-show="isRPGorLARP" class="required">
+                                      <label for="characters">Characters</label>
+                                      <select id="characters" name="characters" x-model="eventInfo.characters" @blur="validate">
+                                          <option :disabled="eventInfo.characters !== ''" selected value="">
+                                              -- Choose One --
+                                          </option>
+                                          <option>Provided</option>
+                                          <option>Created at the table</option>
+                                          <option>Other/Does not apply</option>
+                                      </select>
+                                  </div>
+                              </fieldset>
+                              {# END Player Attendee Info #}
+                              {# Scheduling Info - player age must be completed #}
+                              <fieldset class="transition-opacity" :class="(isPlayerInfoComplete) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
+                                  <legend>Scheduling info</legend>
+                                  <div class="required">
+                                      <label for="eventLength">Event length</label>
+                                      <select id="eventLength" name="eventLength" x-model="eventInfo.eventLength" @blur="validate">
+                                          <option :disabled="eventInfo.eventLength !== '0'" selected value="0">
+                                              -- Choose One --
+                                          </option>
+                                          <option value="1">1 hour</option>
+                                          <option value="2">2 hours</option>
+                                          <option value="4">4 hours</option>
+                                      </select>
+                                  </div>
+                                  <div x-show="eventInfo.eventLength" class="required">
+                                      <label for="schedulePrefBlock">Scheduled Slot</label>
+                                      <div id="schedulePrefBlock" class="flex items-center">
+                                          <select id="schedulePrefSel" name="schedulePrefSel" x-model="eventInfo.schedulePref" @blur="validate">
+                                              <option :disabled="eventInfo.format !== ''" selected value="">-- Choose One --</option>
+                                              <template x-for="(time, i) in scheduleTimeDetails()">
+                                                  <option :value="time" x-text="time"></option>
+                                              </template>
+                                          </select>
+                                      </div>
 
-                                </div>
-                            </fieldset>
-                            {# END Scheduling Info #}
-                            {# Content Advisory & Safety Tools - show only if scheduling is completed #}
-                            <fieldset class="transition-opacity" :class="(isSchedulingInfoComplete) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
-                                <legend>Content warnings &amp; safety tools</legend>
-                                {# Break out to Maturity level and other stuff #}
-                                {# No Content Advisory vs Adult themes. Then add new list which is meta #}
-                                <div class="required">
-                                    <div>
-                                        <label for="triggerWarnings">Content warnings</label>
-                                        <span>Please do not use emojis in your content warnings.</span>                                             
-                                        <input id="triggerWarnings" name="triggerWarnings" type="text" value="" x-model="eventInfo.triggerWarnings" class="w-full max-w-md"/>
-                                    </div>
-                                </div>
-                                <div x-show="isGame">
-                                    <label>Safety Tools</label>
-                                    <div class="checkbox-grid">
-                                        <template x-for="(type, i) in safetyTools">
-                                            <div class="flex items-center">
-                                                <input type="checkbox" :name="'safetyTools' + i" :id="'safetyTools' + i" :value="type" @change="setCheckboxArray($el,'safetyTools')">
-                                                <label :for="'safetyTools' + i" x-text="type"></label>
-                                            </div>
-                                        </template>
-                                    </div>
-                                </div>
-                                <div x-show="isGame && isOnlineEvent">
-                                    <label>Accessibility Options</label>
-                                    <div class="checkbox-grid">
-                                        <template x-for="(type, i) in accessibilityOptions">
-                                            <div class="flex items-center">
-                                                <input type="checkbox" :name="'accessibilityOptions' + i" :id="'accessibilityOptions' + i" :value="type" @change="setCheckboxArray($el,'accessibilityOptions')">
-                                                <label :for="'accessibilityOptions' + i" x-text="type"></label>
-                                            </div>
-                                        </template>
-                                    </div>
-                                </div>
-                                <div x-show="isGame">
-                                    <label>Game Tags</label>
-                                    <div class="checkbox-grid">
-                                        <template x-for="(type, i) in eventTags">
-                                            <div class="flex items-center">
-                                                <input type="checkbox" :name="'eventTags' + i" :id="'eventTags' + i" :value="type" @change="setCheckboxArray($el,'eventTags')">
-                                                <label :for="'eventTags' + i" x-text="type"></label>
-                                            </div>
-                                        </template>
-                                    </div>
-                                </div>
-                                <div>
-                                    <label for="additionalRequirements">Additional information</label>
-                                    <span>Please do not use emojis in this field.</span>                                         
-                                    <textarea cols="30" id="additionalRequirements" name="additionalRequirements" rows="3" x-model="eventInfo.additionalRequirements"></textarea>
-                                </div>
-                            </fieldset>
-                            <button type="submit" :disabled="!isSchedulingInfoComplete">Submit</button>
-                        </form>
-                    </div>
-                    {# END event submission div #}
-                    {# event submitted #}
-                    <div class="prose" x-show="eventSubmitted" id="event-submitted">
-                        <h2>Thanks for submitting your event!</h2>
-                        <p>Our staff will review your <span x-text="eventInfo.format"></span> event, <span x-text="eventInfo.eventName" class="italic font-bold"></span>, and let you know about scheduling it!</p>
-                        <p>You can <a href="/run-an-event">submit another event</a> now if you'd like.</p>
-                    </div>
-                </div>
-                {# END runAnEventData component #}
-            </section>
+                                  </div>
+                              </fieldset>
+                              {# END Scheduling Info #}
+                              {# Content Advisory & Safety Tools - show only if scheduling is completed #}
+                              <fieldset class="transition-opacity" :class="(isSchedulingInfoComplete) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
+                                  <legend>Content warnings &amp; safety tools</legend>
+                                  {# Break out to Maturity level and other stuff #}
+                                  {# No Content Advisory vs Adult themes. Then add new list which is meta #}
+                                  <div class="required">
+                                      <div>
+                                          <label for="triggerWarnings">Content warnings</label>
+                                          <span>Please do not use emojis in your content warnings.</span>
+                                          <input id="triggerWarnings" name="triggerWarnings" type="text" value="" x-model="eventInfo.triggerWarnings" class="w-full max-w-md"/>
+                                      </div>
+                                  </div>
+                                  <div x-show="isGame">
+                                      <label>Safety Tools</label>
+                                      <div class="checkbox-grid">
+                                          <template x-for="(type, i) in safetyTools">
+                                              <div class="flex items-center">
+                                                  <input type="checkbox" :name="'safetyTools' + i" :id="'safetyTools' + i" :value="type" @change="setCheckboxArray($el,'safetyTools')">
+                                                  <label :for="'safetyTools' + i" x-text="type"></label>
+                                              </div>
+                                          </template>
+                                      </div>
+                                  </div>
+                                  <div x-show="isGame && isOnlineEvent">
+                                      <label>Accessibility Options</label>
+                                      <div class="checkbox-grid">
+                                          <template x-for="(type, i) in accessibilityOptions">
+                                              <div class="flex items-center">
+                                                  <input type="checkbox" :name="'accessibilityOptions' + i" :id="'accessibilityOptions' + i" :value="type" @change="setCheckboxArray($el,'accessibilityOptions')">
+                                                  <label :for="'accessibilityOptions' + i" x-text="type"></label>
+                                              </div>
+                                          </template>
+                                      </div>
+                                  </div>
+                                  <div x-show="isGame">
+                                      <label>Game Tags</label>
+                                      <div class="checkbox-grid">
+                                          <template x-for="(type, i) in eventTags">
+                                              <div class="flex items-center">
+                                                  <input type="checkbox" :name="'eventTags' + i" :id="'eventTags' + i" :value="type" @change="setCheckboxArray($el,'eventTags')">
+                                                  <label :for="'eventTags' + i" x-text="type"></label>
+                                              </div>
+                                          </template>
+                                      </div>
+                                  </div>
+                                  <div>
+                                      <label for="additionalRequirements">Additional information</label>
+                                      <span>Please do not use emojis in this field.</span>
+                                      <textarea cols="30" id="additionalRequirements" name="additionalRequirements" rows="3" x-model="eventInfo.additionalRequirements"></textarea>
+                                  </div>
+                              </fieldset>
+                              <button type="submit" :disabled="!isSchedulingInfoComplete">Submit</button>
+                          </form>
+                      </div>
+                      {# END event submission div #}
+                      {# event submitted #}
+                      <div class="prose" x-show="eventSubmitted" id="event-submitted">
+                          <h2>Thanks for submitting your event!</h2>
+                          <p>Our staff will review your <span x-text="eventInfo.format"></span> event, <span x-text="eventInfo.eventName" class="italic font-bold"></span>, and let you know about scheduling it!</p>
+                          <p>You can <a href="/run-an-event">submit another event</a> now if you'd like.</p>
+                      </div>
+                  </div>
+                  {# END runAnEventData component #}
+              </section>
+          </div>
+        {% else %}
+        <div class="prose max-w-content2">
+            <header class="prose">
+                <h2>Go Play NW is happening soon!</h2>
+            </header>
+            <p>
+                Online game submissions are now closed. All game submissions now must be submitted in person at the event, instead of on this site.
+            </p>
+            <p>
+                If you want to come play with us, this year's event is at the <a href = "https://goplaynw.org/venue-inperson/">Centilia Cultural Center</a> in Seattle, WA.
+            </p>
+            <p>
+                Please be sure to review our <a href = "https://goplaynw.org/covid-19/">COVID-19 policies</a> before arriving.
+            </p>
         </div>
+        {% endif %}
       {% else %}
-      <div class="prose max-w-content2">
+        <div class="prose max-w-content2">
           <header class="prose">
-              <h2>Go Play NW is happening soon!</h2>
+              <h2>Go Play NW is a wrap!</h2>
           </header>
           <p>
-              Online game submissions are now closed. All game submissions now must be submitted in person at the event, instead of on this site.
+              Thanks for joining us, and see you next time! Check back closer to {{sitemeta.eventDate}} to submit games for our next event.
           </p>
-          <p>
-              If you want to come play with us, this year's event is at the <a href = "https://goplaynw.org/venue-inperson/">Centilia Cultural Center</a> in Seattle, WA.
-          </p>
-          <p>
-              Please be sure to review our <a href = "https://goplaynw.org/covid-19/">COVID-19 policies</a> before arriving.
-          </p>
-      </div>
+        </div>
       {% endif %}
     </main>
 {% endblock %}
@@ -276,7 +287,7 @@
 //        "playtest": "string", //used
         "requestMediaEquipment": "string", // used
         "requestMediaRoom": true,   // used
-        "requestPrivateRoom": true, // use locationPref for boolean and add rest to additionalRequirements 
+        "requestPrivateRoom": true, // use locationPref for boolean and add rest to additionalRequirements
 //        "runNumberOfTimes": 0, // used
         "safetyTools": "string", // used convert to string
         "schedulingPref": "string", // convert to string
@@ -470,7 +481,7 @@
                     get isEventInfoComplete() {
                         const x = this.eventInfo;
                         let fields = [x.eventName, x.format, x.eventDescription]
-                        if (this.isGame) 
+                        if (this.isGame)
                             fields = [
                                 ...fields,
                                 x.system //,
@@ -483,7 +494,7 @@
                         const x = this.eventInfo;
                         //let fields = [x.playerAge, x.minPlayers, x.maxPlayers]
                         let fields = [x.minPlayers, x.maxPlayers]
-                        if (this.isRPGorLARP) 
+                        if (this.isRPGorLARP)
                             fields = [
                                 ...fields,
                                 x.characters
@@ -565,7 +576,7 @@
                             try {
                                 let response = await fetch(url, options)
                                 console.log(`RESPONSE:fetch for ${url}`, response)
-                                if (response.status !== 200) 
+                                if (response.status !== 200)
                                     throw `fetch fail status: ${response.status}`
                                 let result = await response.json()
                                 console.log(`RESULT:fetch for ${url}`, result)
@@ -649,7 +660,7 @@
                         return this.event_type === "ONLINE"
                     },
                     get isInPersonEvent() {
-                        return this.eventType === "IN-PERSON"
+                        return this.event_type === "IN-PERSON"
                     },
                     format: [
                         {
