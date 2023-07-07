@@ -7,6 +7,8 @@ _template: page
 
 Big Bad Con is a tabletop gaming convention focused on supporting gamers from marginalized backgrounds and nurturing a space to grow the gaming community. We welcome panels, shows steamed or recorded in our media room, and workshops that help further these goals 
 
+![Panels at Big Bad Con](/images/EventFAQ-Panels.png)
+
 ## Panels
 
 Our panel track is designed to share insight, knowledge, and experience with participants attending Big Bad Con. 
@@ -25,9 +27,6 @@ Our panel track is designed to share insight, knowledge, and experience with par
 
 ### Standard Equipment Available
 
-
-
-
 * Wired speaker system with 6 microphones.
 * Clear N95 masks available for speakers if they prefer to use those to aid with lip reading.
 * We do not have sign language interpreters unfortunately at this time. We are looking into options for future cons
@@ -36,9 +35,6 @@ Our panel track is designed to share insight, knowledge, and experience with par
 ### Additional Equipment Available upon request
 
 Please let us know when you submit your events if you’d like to request any of the following:
-
-
-
 
 * Wireless microphone (in place of a wired microphone)
 * Projector and Projector Screen (HDMI)
@@ -119,8 +115,3 @@ Smaller workshop events allow more hands-on and customized events to teach valua
 ### Equipment Available
 
 * We ask that presenters bring all equipment needed to run their workshops. If additional equipment is needed, please note that in your event submission, and we’ll reach out to let you know if we can accommodate the request. 
-
-
-
-
-
