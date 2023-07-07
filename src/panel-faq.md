@@ -40,7 +40,7 @@ Please let us know when you submit your events if you’d like to request any of
 * Projector and Projector Screen (HDMI)
 * 55” LCD Screen (HDMI)
 
-##
+![](/images/EventFAQ-MediaRoom.png)
 
 ## Media Room
 
@@ -94,7 +94,7 @@ The following lists our equipment suites available. For any equipment usage beyo
 * Ring Light
 * BBC Staff attendant to help with setup and breakdown
 
-##
+![](/images/EventFAQ-Workshops.png)
 
 ## Workshops
 
