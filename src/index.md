@@ -15,9 +15,13 @@ icon: ''
 _template: page
 ---
 
-## Crowdfunding Now!
+## Crowdfunding Complete!
+
+Thanks to many generous backers our [crowdfunding campaign](https://www.backerkit.com/c/big-bad-con-inc/big-bad-con-2023) not only funded, but also reached all of our stretch goals!
 
 Join us on September 28 for Big Bad Con 2023, featuring four days of TTRPGs, LARPs, board and card games, panels, workshops, and more.
+
+If you 
 
 By pledging you'll help us put on Big Bad Con. Whether you'd like to get a badge to attend or support us from afar, we've got awards for you!
 
