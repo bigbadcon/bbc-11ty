@@ -7,9 +7,7 @@ image: ''
 alt: ''
 ---
 
-Badges available on BackerKit:
-
-Badges available by 7/31.
+Badges available here starting 7/31.
 
 [Book a Room](https://www.bigbadcon.com/hotel/){.icon-hotel}
 
