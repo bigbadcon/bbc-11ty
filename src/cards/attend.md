@@ -7,9 +7,7 @@ image: ''
 alt: ''
 ---
 
-Badges available on BackerKit:
-
-[Back Now!](https://www.backerkit.com/c/big-bad-con-inc/big-bad-con-2023){.icon-party}
+Badges available here starting 7/31.
 
 [Book a Room](https://www.bigbadcon.com/hotel/){.icon-hotel}
 
