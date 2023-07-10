@@ -66,6 +66,8 @@ More detailed information on both tracks here:
 
 [Games on Demand FAQ](/games-on-demand-how-it-works/){.icon-games-on-demand}
 
+[Panel, Media Room, and Workshop FAQ](https://www.bigbadcon.com/panel-faq/){.icon-light-bulb}
+
 ### When will I hear back after I've submitted an event?
 
 Our event coordinators should reach out to you within two weeks. If you haven't heard back by then, feel free to email us at events@bigbadcon.com to inquire.
