@@ -17,4 +17,4 @@ Online badge sales are now closed but you can still buy at badge in person at th
 * Adulty: $35 (1-day) or $75 (4-day)  
 * Teen (13-17): $15 (1-day) or $25 (4-day)  
 
-<!--Get a badge for Big Bad Con 2022! If you are buying multiple badges for other people please submit this form more than once.-->
+<!--Get a badge for Big Bad Con 2023! If you are buying multiple badges for other people please submit this form more than once.-->
