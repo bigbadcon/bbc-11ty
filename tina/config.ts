@@ -14,6 +14,7 @@ import { globalFields } from "./templates";
 // Your hosting provider likely exposes this as an environment variable
 const branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || "main";
 
+// configuration
 export default defineConfig({
 	branch,
 	clientId: process.env.TINACMS_CLIENT_ID || "", // Get this from tina.io
