@@ -7,6 +7,8 @@ image: ''
 alt: ''
 ---
 
+Welcome to Big Bad Con:
+
 [Buy a Badge](/buy-a-badge){.icon-badge}
 
 [Book a Room](https://www.bigbadcon.com/hotel/){.icon-hotel}
