@@ -1,5 +1,17 @@
 ---
-tags: poc-scholar
+tags:
+  - p
+  - o
+  - c
+  - '-'
+  - s
+  - c
+  - h
+  - o
+  - l
+  - a
+  - r
+  - poc-emeritus
 order: 0
 title: Jaime Reyes-Mondragón
 position: ''
@@ -9,7 +21,6 @@ image: /images/jaime-reyes-mondragon.jpg
 twitter: JaimeRysmon
 website_name: ''
 website_url: ''
-_template: poc_scholar
 ---
 
 Jaime Reyes-Mondragón (He/Him) is a Mexican game designer and creative writer focused on TTRPGs and board games. He has been working for the past three years in indie publishing as part of Axo Stories, a small co-op that strives to see the art, ideas, and culture of more Latinos represented in the industry. In his free time, he enjoys reading fantasy, sci-fi, and crime novels, as well as drawing.
