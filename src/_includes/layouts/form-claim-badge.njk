@@ -1,0 +1,61 @@
+{% extends 'layouts/base.njk' %}
+
+{% block content %}
+    <main id="content">
+        <div class="mx-auto max-w-content p-base">
+            <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
+            <div class="prose">{{ content | safe }}</div>
+            <section class="my-base text-body">
+                {# State Machine:
+                1. Not logged in: display login link. When logged in check registration status using serverless function.
+                2. Logged in but not registered: display registration form. 
+                3. Logged in and registered: display registration info for user and discord and twitch info 
+                #}
+                {# Login disclaimer: only show if not registered and not logged in #}
+                <div x-cloak x-show="!isAuth" class="prose">
+                    <p>You must <button @click="modal = 'Login'" class="font-bold text-highlight">login</button> to claim your badge.</p>
+                </div>
+                {# Show if already has a paid badge #}
+                <div x-cloak x-show="isAuth && isPaid === true" class="prose">
+                    <p>You have a <strong>paid</strong> badge!</p>
+                </div>
+                {# Register form; only show if not registered and logged in #}
+                <form x-cloak x-show="isAuth && isPaid === false"
+                x-data="{agree:false}"
+                method="POST" name="claim-badge" 
+                data-netlify="true" netlify-honeypot="bot-field" 
+                action="/.netlify/functions/check-claim-badge" class="prose">
+                    <p class="hidden">
+                        <label>Don’t fill this out if you’re human: <input name="bot-field"/></label>
+                    </p>
+                    <input type="hidden" id="displayName" name="displayName" value="" :value="user && user.displayName">
+                    <input type="hidden" id="userEmail" name="userEmail" value="" :value="user && user.userEmail">
+                    <input type="hidden" id="userNicename" name="userNicename" value="" :value="user && user.userNicename">
+                    <input type="hidden" id="userId" name="userId" value="" :value="user && user.id">
+                    <input type="hidden" id="formName" name="formName" value="claim-badge">
+                    <p>Big Bad Con is committed to cultivating a culture of respect, support, and kindness at both our in-person and online events. We ask that all of our attendees agree to abide by our Community Standards, please take a moment to read them before answering yes below.</p>
+                    <p>
+                        <a href="/community-standards" class="icon-scroll">Community Standards</a>
+                    </p>
+                    <fieldset>
+                        <legend>Community Standards Agreement</legend>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-model="agree" required>
+                            <label for="agree-to-community-standards" class="text-body-highlight"3324>
+                                Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Big Bad Con Community Standards
+                            </label>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Badge Claim</legend>
+                        <label for="badgeClaimCode">Badge Claim Code</label>
+                        <input type="text" id="badgeClaimCode" name="badgeClaimCode" required>
+                    </fieldset>
+                    <p>
+                        <button type="submit" :disabled="!agree" disabled >Submit</button>
+                    </p>
+                </form>
+            </section>
+        </div>
+    </main>
+{% endblock %}
