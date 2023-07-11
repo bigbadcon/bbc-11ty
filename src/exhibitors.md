@@ -9,4 +9,4 @@ _template: page
 ---
 
 
-Big Bad Con exhibitors
+Big Bad Con 2023 exhibitors
