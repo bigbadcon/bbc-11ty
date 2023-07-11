@@ -396,7 +396,7 @@ export function poc_scholarsFields() {
 			name: "tags",
 			label: "tags",
 			list: true,
-			options: ["poc-scholar", "poc-team-member"],
+			options: ["poc-scholar", "poc-team-member", "poc-emeritus"],
 			required: true,
 		},
 		{

@@ -20,5 +20,13 @@
                 {% endfor %}
             </section>
         {% endif %}
+        {% if collections["poc-emeritus"] | published | sort %}
+            <section class="flex flex-col mx-auto max-w-content p-base gap-lg">
+                <h1 class="font-serif text-5xl leading-none text-header">Scholar Emeritus</h1>
+                {% for person in collections["poc-emeritus"] | published | sort %}
+                    {{ biocard.card(person)}}
+                {% endfor %}
+            </section>
+        {% endif %}
     </main>
 {% endblock %}
