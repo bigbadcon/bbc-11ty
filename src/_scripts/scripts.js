@@ -203,7 +203,8 @@ document.addEventListener("alpine:init", () => {
 			},
 			get badgeRoles() {
 				return (
-					this.user && compareArrays(this.user.roles, ["gm", "paidattendee", "volunteer", "comp", "staff"])
+					this.user &&
+					compareArrays(this.user.roles, ["gm", "paidattendee", "volunteer", "comp", "staff", "vendor"])
 				);
 			},
 			get hasBadge() {
