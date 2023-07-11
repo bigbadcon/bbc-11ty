@@ -506,6 +506,56 @@ export function staffFields() {
 		},
 	] as TinaField[];
 }
+export function exhibitorFields() {
+	return [
+		{
+			type: "string",
+			name: "title",
+			label: "Name",
+			required: true,
+		},
+		{
+			type: "boolean",
+			name: "published",
+			label: "published",
+		},
+		{
+			type: "number",
+			name: "order",
+			label: "order",
+		},
+		{
+			type: "image",
+			name: "logo",
+			label: "logo",
+		},
+		{
+			type: "string",
+			name: "twitter",
+			label: "twitter handle",
+		},
+		{
+			type: "string",
+			name: "mastodon",
+			label: "mastodon handle",
+		},
+		{
+			type: "string",
+			name: "instagram",
+			label: "instagram handle",
+		},
+		{
+			type: "string",
+			name: "website_name",
+			label: "website name",
+		},
+		{
+			type: "string",
+			name: "website_url",
+			label: "website url",
+		},
+	] as TinaField[];
+}
 export function globalFields() {
 	return [
 		{
