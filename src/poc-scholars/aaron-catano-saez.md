@@ -1,6 +1,6 @@
 ---
 tags:
-  - poc-scholar
+  - poc-emeritus
 order: 0
 title: Aaron Catano-Saez
 position: ''
