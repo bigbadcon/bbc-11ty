@@ -7,7 +7,7 @@ image: ''
 alt: ''
 ---
 
-Badges available here starting 7/31.
+[Buy a Badge](/buy-a-badge){.icon-badge}
 
 [Book a Room](https://www.bigbadcon.com/hotel/){.icon-hotel}
 
