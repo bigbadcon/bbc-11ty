@@ -400,6 +400,7 @@ module.exports = async () => {
 		// 0: draft or pending, 1: published, -1 or null: trashed
 		// TODO: issue found is that eventStatus = null when it is moved to trash back to drafts?
 		if (environment === "production") data = data.filter((event) => event.eventStatus === 1);
+		data = data.filter((event) => event.eventStatus === 1);
 		// Only show dates in the future (minus 1 month)
 		data = data.filter((event) => dayjs(event.eventStartDate).isAfter(dayjs().subtract(2, "weeks")));
 		console.log("Number of Events:", data.length);
@@ -448,9 +449,8 @@ module.exports = async () => {
 
 			// Save Event Images renamed as event slug
 			const image = metadata.event_image;
-			const imageBaseUrl = "https://admin.bigbadcon.com:8091/images/";
 			if (isAdminOnline && image) {
-				fetchImage(imageBaseUrl + image, event.eventSlug.toLowerCase());
+				//fetchImage("https://admin.bigbadcon.com:8091/images/" + image, event.eventSlug.toLowerCase());
 			}
 
 			/* ----------------------- Return modified event data ----------------------- */
