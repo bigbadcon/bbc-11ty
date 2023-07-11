@@ -49,6 +49,19 @@ function hoursToHHMM(hours) {
 	return h + ":" + m;
 }
 
+function slugify(str) {
+	return str
+		.toString()
+		.toLowerCase()
+		.trim()
+		.normalize("NFD") // separate accent from letter
+		.replace(/[\u0300-\u036f]/g, "") // remove all separated accents
+		.replace(/\s+/g, "-") // replace spaces with dash
+		.replace(/&/g, "-and-") // replace & with 'and'
+		.replace(/[^\w-]+/g, "") // remove all non-word chars
+		.replace(/--+/g, "-"); // replace multiple dash with single
+}
+
 /* ----- Sort by order frontmatter field then by fileSlug alphabetically ---- */
 function sortByOrder(a, b) {
 	return a.data.order - b.data.order || a.template.fileSlugStr.localeCompare(b.template.fileSlugStr);
@@ -92,13 +105,16 @@ module.exports = (eleventyConfig) => {
 
 	const markdownIt = require("markdown-it");
 	const markdownItAttrs = require("markdown-it-attrs");
+	const markdownItAnchor = require("markdown-it-anchor");
 
 	const markdownItOptions = {
 		html: true,
 		linkify: true,
 	};
 
-	const markdownLib = markdownIt(markdownItOptions).use(markdownItAttrs);
+	const markdownLib = markdownIt(markdownItOptions)
+		.use(markdownItAttrs)
+		.use(markdownItAnchor, { slugify: (str) => slugify(str) });
 	eleventyConfig.setLibrary("md", markdownLib);
 
 	/* -------------------------------------------------------------------------- */
@@ -230,18 +246,7 @@ module.exports = (eleventyConfig) => {
 	/* ------------------------------ Other Filters ----------------------------- */
 
 	// slugify
-	eleventyConfig.addFilter("slugify", (text) => {
-		return text
-			.toString()
-			.toLowerCase()
-			.trim()
-			.normalize("NFD") // separate accent from letter
-			.replace(/[\u0300-\u036f]/g, "") // remove all separated accents
-			.replace(/\s+/g, "-") // replace spaces with dash
-			.replace(/&/g, "-and-") // replace & with 'and'
-			.replace(/[^\w-]+/g, "") // remove all non-word chars
-			.replace(/--+/g, "-"); // replace multiple dash with single
-	});
+	eleventyConfig.addFilter("slugify", (str) => slugify(str));
 
 	// decode text
 	eleventyConfig.addFilter("decodeText", (text) => decodeText(text));
