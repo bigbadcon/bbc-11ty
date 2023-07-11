@@ -1,0 +1,45 @@
+{% extends 'layouts/base.njk' %}
+{% import 'components/bio-card.njk' as biocard %}
+
+{% block content %}
+    <main id="content">
+        <div class="mx-auto max-w-content p-base">
+            <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
+            <div class="prose">{{ content | safe }}</div>
+        </div>
+        <section class="flex flex-col mx-auto max-w-content p-base gap-lg">
+            {% for exhibitor in collections.exhibitor | published | sort %}
+                <article class="shadow rounded-xl bg-card" id="{{ exhibitor.data.title | slugify }}">
+                    <header class="grid gap-6 sm:grid-cols-3 bg-gradient-to-br from-primary to-primary-2 p-base rounded-t-xl">
+                        <div>
+                            <figure class="rounded aspect-w-1 aspect-h-1" >
+                                <img class="block object-cover object-center w-full h-full rounded-md "  src="{{exhibitor.data.logo}}" alt="logo of {{ exhibitor.data.name }}">
+                            </figure>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <h2 class="space-x-xs mb-2xs">
+                                <span class="font-serif text-4xl text-header">{{ exhibitor.data.title }}</span>
+                                <span class="font-bold text-body">{{exhibitor.data.gender}}</span></h2>
+                            <h3 class="font-serif text-3xl leading-none text-subheader mb-base">{{ exhibitor.data.position }}</h3>
+                            {% if exhibitor.data.twitter %}
+                                <a href="https://twitter.com/{{exhibitor.data.twitter}}" class="icon-twitter mb-xs">@{{exhibitor.data.twitter}}</a>
+                            {% endif %}
+                            {% if exhibitor.data.mastodon %}
+                                <a href="{{exhibitor.data.mastodon | mastodonLink}}" class="icon-mastodon mb-xs">{{exhibitor.data.mastodon}}</a>
+                            {% endif %}
+                            {% if exhibitor.data.instagram %}
+                                <a href="https://www.instagram.com/{{exhibitor.data.instagram}}" class="icon-instagram mb-xs">{{exhibitor.data.instagram}}</a>
+                            {% endif %}
+                            {% if exhibitor.data.website_url %}
+                                <a href="{{exhibitor.data.website_url}}" class="icon-website">{{exhibitor.data.website_name}}</a>
+                            {% endif %}
+                        </div>
+                    </header>
+                    <div class="py-base px-base">
+                        <div class="prose ">{{ exhibitor.templateContent | safe }}</div>
+                    </div>
+                </article>
+            {% endfor %}
+        </section>
+    </main>
+{% endblock %}

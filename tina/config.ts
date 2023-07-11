@@ -8,6 +8,7 @@ import { home_page_cardsFields } from "./templates";
 import { pageFields } from "./templates";
 import { poc_scholarsFields } from "./templates";
 import { staffFields } from "./templates";
+import { exhibitorFields } from "./templates";
 import { globalFields } from "./templates";
 
 // Your hosting provider likely exposes this as an environment variable
@@ -117,6 +118,25 @@ export default defineConfig({
 						isBody: true,
 					},
 					...staffFields(),
+				],
+			},
+			{
+				format: "md",
+				label: "Exhibitors",
+				name: "exhibitors",
+				path: "src/exhibitors",
+				match: {
+					include: "**/*",
+				},
+				fields: [
+					{
+						type: "rich-text",
+						name: "body",
+						label: "Body of Document",
+						description: "This is the markdown body",
+						isBody: true,
+					},
+					...exhibitorFields(),
 				],
 			},
 			{
