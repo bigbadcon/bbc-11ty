@@ -1,10 +1,7 @@
 /* global require process exports */
 require("dotenv").config();
 const environment = process.env.CONTEXT;
-const apiKey =
-	environment !== "production"
-		? process.env.STRIPE_TEST_KEY
-		: process.env.STRIPE_SECRET_KEY;
+const apiKey = environment !== "production" ? process.env.STRIPE_TEST_KEY : process.env.STRIPE_SECRET_KEY;
 
 const stripe = require("stripe")(apiKey);
 
@@ -35,18 +32,12 @@ exports.handler = async function (event) {
 	const entries = urlParams.entries();
 	const params = paramsToObject(entries);
 	// eslint-disable-next-line no-console
-	console.log(
-		"🚀 ~ file: createCheckoutSession.js ~ line 30 ~ params",
-		params
-	);
+	console.log("🚀 ~ file: createCheckoutSession.js ~ params, apiKey", params, apiKey.substring(0, 24));
 
 	// TODO: make this more automated
 	let successUrl = "https://www.bigbadcon.com/thanks-for-your-purchase/";
-	if (params.productType === "badge")
-		successUrl = "https://www.bigbadcon.com/buy-a-badge-thanks/";
-	if (params.productType === "poc-dinner")
-		successUrl =
-			"https://www.bigbadcon.com/poc-dinner-contribution-thanks/";
+	if (params.productType === "badge") successUrl = "https://www.bigbadcon.com/buy-a-badge-thanks/";
+	if (params.productType === "poc-dinner") successUrl = "https://www.bigbadcon.com/poc-dinner-contribution-thanks/";
 
 	try {
 		const session = await stripe.checkout.sessions.create({
@@ -63,8 +54,7 @@ exports.handler = async function (event) {
 				age: params.age,
 				recipient: params.recipient,
 				anon: params.anon,
-				recipientEmail:
-					params.recipientEmail && params.recipientEmail.trim(),
+				recipientEmail: params.recipientEmail && params.recipientEmail.trim(),
 				productType: params.productType, // "badge" or "poc dinner"
 			},
 			mode: "payment",
