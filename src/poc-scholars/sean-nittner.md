@@ -1,7 +1,7 @@
 ---
 tags:
   - poc-team-member
-order: 50
+order: 0
 title: Sean Nittner
 position: ''
 published: true
