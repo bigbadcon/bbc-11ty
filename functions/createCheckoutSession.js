@@ -32,7 +32,7 @@ exports.handler = async function (event) {
 	const entries = urlParams.entries();
 	const params = paramsToObject(entries);
 	// eslint-disable-next-line no-console
-	console.log("🚀 ~ file: createCheckoutSession.js ~ params, apiKey", params, apiKey?.substring(0, 24));
+	console.log("🚀 ~ file: createCheckoutSession.js ~ params, apiKey", params, environment, apiKey?.substring(0, 24));
 
 	// TODO: make this more automated
 	let successUrl = "https://www.bigbadcon.com/thanks-for-your-purchase/";
