@@ -1,7 +1,8 @@
 /* global require process exports */
 require("dotenv").config();
 const environment = process.env.CONTEXT;
-const apiKey = environment !== "production" ? process.env.STRIPE_TEST_KEY : process.env.STRIPE_SECRET_KEY;
+// const apiKey = environment !== "production" ? process.env.STRIPE_TEST_KEY : process.env.STRIPE_SECRET_KEY;
+const apiKey = process.env.STRIPE_SECRET_KEY;
 
 const stripe = require("stripe")(apiKey);
 
