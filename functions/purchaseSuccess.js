@@ -17,8 +17,7 @@ const apiKey = process.env.STRIPE_SECRET_KEY;
 const stripe = require("stripe")(apiKey);
 
 // locally these both use the Stripe CLI listener webhook
-const webhookSecret =
-	environment !== "production" ? process.env.STRIPE_TEST_WEBHOOK_SECRET : process.env.STRIPE_WEBHOOK_SECRET;
+const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
 // BBC API
 const bbcApiBaseUrl = "https://admin.bigbadcon.com:8091/api/";
@@ -194,7 +193,8 @@ exports.handler = async function (event) {
 			});
 			await doc.loadInfo(); // loads document properties and worksheets
 			console.log(doc.title);
-			const sheet = doc.sheetsByIndex[0];
+			//TODO: set this up for different years by title
+			const sheet = doc.sheetsByIndex[1];
 
 			/* ---------------------- Take submit event and add row --------------------- */
 

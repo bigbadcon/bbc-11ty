@@ -87,6 +87,7 @@ exports.handler = async function (event, context) {
 						`small-press-vendor role added for ${eventBody.userDisplayName} userId:${eventBody.userId}`
 					);
 
+					// TODO: test this with small press
 					try {
 						const bookEvent = await axios.post(
 							bbcApiBaseUrl + "bookings/addUserToGame",
@@ -100,20 +101,33 @@ exports.handler = async function (event, context) {
 							}
 						);
 						console.log("bookEvent", bookEvent);
-						if (bookEvent.status !== 200) throw "Status !== 200; Book PoC event failed";
-						console.log(
-							`eventId: ${eventBody.eventId} booked for ${eventBody.userDisplayName} userId:${eventBody.userId}`
-						);
+						if (bookEvent.status !== 200 || bookEvent.data.status === "FAILURE") {
+							// eslint-disable-next-line no-console
+							console.log(
+								`eventId: ${eventBody.eventId} failed to book for ${eventBody.userDisplayName} userId:${eventBody.userId}; due to ${bookEvent.data.message}`
+							);
+							return {
+								statusCode: 500,
+								body: "failed",
+							};
+						} else {
+							console.log(
+								`eventId: ${eventBody.eventId} booked for ${eventBody.userDisplayName} userId:${eventBody.userId}`
+							);
+							return {
+								statusCode: 200,
+								body: "user added volunteer role and booked event",
+							};
+						}
 					} catch (err) {
 						console.log(
 							`eventId: ${eventBody.eventId} failed to book for ${eventBody.userDisplayName} userId:${eventBody.userId}`
 						);
+						return {
+							statusCode: 500,
+							body: "failed",
+						};
 					}
-
-					return {
-						statusCode: 200,
-						body: "user added volunteer role and booked event",
-					};
 				} else {
 					return {
 						statusCode: 500,
