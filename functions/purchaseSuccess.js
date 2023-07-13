@@ -12,18 +12,13 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 // Stripe
 const environment = process.env.CONTEXT;
-const apiKey =
-	environment !== "production"
-		? process.env.STRIPE_TEST_KEY
-		: process.env.STRIPE_SECRET_KEY;
+const apiKey = process.env.STRIPE_SECRET_KEY;
 
 const stripe = require("stripe")(apiKey);
 
 // locally these both use the Stripe CLI listener webhook
 const webhookSecret =
-	environment !== "production"
-		? process.env.STRIPE_TEST_WEBHOOK_SECRET
-		: process.env.STRIPE_WEBHOOK_SECRET;
+	environment !== "production" ? process.env.STRIPE_TEST_WEBHOOK_SECRET : process.env.STRIPE_WEBHOOK_SECRET;
 
 // BBC API
 const bbcApiBaseUrl = "https://admin.bigbadcon.com:8091/api/";
@@ -38,21 +33,11 @@ exports.handler = async function (event) {
 		/* -------------------------------------------------------------------------- */
 
 		// Check that event came from Stripe
-		const stripeEvent = stripe.webhooks.constructEvent(
-			body,
-			headers["stripe-signature"],
-			webhookSecret
-		);
+		const stripeEvent = stripe.webhooks.constructEvent(body, headers["stripe-signature"], webhookSecret);
 
 		// Only run if this is a completed event
 		if (stripeEvent.type === "checkout.session.completed") {
-			const {
-				id,
-				client_reference_id,
-				customer_details,
-				customer_email,
-				metadata,
-			} = stripeEvent.data.object;
+			const { id, client_reference_id, customer_details, customer_email, metadata } = stripeEvent.data.object;
 
 			// Future Proof
 			// Get session data
@@ -113,14 +98,10 @@ exports.handler = async function (event) {
 						}
 					);
 
-					if (res.status !== 200)
-						throw new Error("Add user role failed");
+					if (res.status !== 200) throw new Error("Add user role failed");
 				} catch (err) {
 					// eslint-disable-next-line no-console
-					console.log(
-						"remove user role 'notattending' failed",
-						err.toString()
-					);
+					console.log("remove user role 'notattending' failed", err.toString());
 				}
 
 				try {
@@ -135,14 +116,10 @@ exports.handler = async function (event) {
 						}
 					);
 
-					if (res.status !== 200)
-						throw new Error("Add user role failed");
+					if (res.status !== 200) throw new Error("Add user role failed");
 				} catch (err) {
 					// eslint-disable-next-line no-console
-					console.log(
-						"remove user role 'subscriber' for failed",
-						err.toString()
-					);
+					console.log("remove user role 'subscriber' for failed", err.toString());
 				}
 
 				try {
@@ -157,14 +134,10 @@ exports.handler = async function (event) {
 						}
 					);
 
-					if (res.status !== 200)
-						throw new Error("Add user role failed");
+					if (res.status !== 200) throw new Error("Add user role failed");
 				} catch (err) {
 					// eslint-disable-next-line no-console
-					console.log(
-						"remove user role 'subscriber' for failed",
-						err.toString()
-					);
+					console.log("remove user role 'subscriber' for failed", err.toString());
 				}
 
 				if (metadata.age === "teen") {
@@ -200,8 +173,7 @@ exports.handler = async function (event) {
 							headers: { "x-api-key": bbcApiKey },
 						}
 					);
-					if (bookEvent.status !== 200)
-						throw "Status !== 200; Book PoC event failed";
+					if (bookEvent.status !== 200) throw "Status !== 200; Book PoC event failed";
 					// eslint-disable-next-line no-console
 					console.log("Book PoC Dinner Post", bookEvent);
 				} catch (err) {
@@ -218,10 +190,7 @@ exports.handler = async function (event) {
 
 			await doc.useServiceAccountAuth({
 				client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-				private_key: process.env.GOOGLE_PRIVATE_KEY.replace(
-					/\\n/g,
-					"\n"
-				),
+				private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"),
 			});
 			await doc.loadInfo(); // loads document properties and worksheets
 			console.log(doc.title);
@@ -231,9 +200,7 @@ exports.handler = async function (event) {
 
 			await sheet.addRow(purchaseData);
 			// eslint-disable-next-line no-console
-			console.log(
-				`added google sheet row for ${metadata.userDisplayName} purchase of ${name}`
-			);
+			console.log(`added google sheet row for ${metadata.userDisplayName} purchase of ${name}`);
 
 			/* -------------------------------------------------------------------------- */
 			/*                                Email People                                */
@@ -283,8 +250,7 @@ exports.handler = async function (event) {
 			};
 
 			// Only fire off admin email if production
-			if (environment === "production")
-				await sgMail.send(newUserAdminMsg);
+			if (environment === "production") await sgMail.send(newUserAdminMsg);
 		}
 	} catch (err) {
 		// eslint-disable-next-line no-console

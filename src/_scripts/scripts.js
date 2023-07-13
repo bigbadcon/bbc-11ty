@@ -225,6 +225,9 @@ document.addEventListener("alpine:init", () => {
 			get isVendor() {
 				return this.isRole("vendor");
 			},
+			get isSmallPressVendor() {
+				return this.isRole("small-press-vendor");
+			},
 			get isPaid() {
 				return this.isRole("paidattendee");
 			},
