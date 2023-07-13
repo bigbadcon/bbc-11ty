@@ -50,9 +50,12 @@ exports.handler = async function (event) {
 		const rows = await sheet.getRows();
 
 		// Search for Badge Claim Code to see if it exists
-		console.log("code", params.badgeClaimCode, rows.length);
+
+		const badgeClaimCode = params.badgeClaimCode.trim();
+
+		console.log("code", badgeClaimCode, rows.length);
 		const isBadgeCodeReal = rows.some((row) => {
-			return row.badgeClaimCode === params.badgeClaimCode;
+			return row.badgeClaimCode === badgeClaimCode;
 		});
 
 		// return to error page if code does not exist
@@ -66,7 +69,7 @@ exports.handler = async function (event) {
 		}
 
 		// grab row with matching badge code
-		const badgeRow = rows.findIndex((row) => row.badgeClaimCode === params.badgeClaimCode);
+		const badgeRow = rows.findIndex((row) => row.badgeClaimCode === badgeClaimCode);
 
 		const isBadgeCodeUsed = rows[badgeRow].dateClaimed;
 
