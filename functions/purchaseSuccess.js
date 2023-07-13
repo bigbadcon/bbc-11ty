@@ -12,12 +12,13 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 // Stripe
 const environment = process.env.CONTEXT;
-const apiKey = process.env.STRIPE_SECRET_KEY;
+const apiKey = environment === "dev" ? process.env.STRIPE_TEST_KEY : process.env.STRIPE_SECRET_KEY;
 
 const stripe = require("stripe")(apiKey);
 
 // locally these both use the Stripe CLI listener webhook
-const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+const webhookSecret =
+	environment === "dev" ? process.env.STRIPE_TEST_WEBHOOK_SECRET : process.env.STRIPE_WEBHOOK_SECRET;
 
 // BBC API
 const bbcApiBaseUrl = "https://admin.bigbadcon.com:8091/api/";
