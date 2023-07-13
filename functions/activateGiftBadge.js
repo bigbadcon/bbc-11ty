@@ -13,10 +13,7 @@ const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 // Stripe
-const apiKey =
-	environment !== "production"
-		? process.env.STRIPE_TEST_KEY
-		: process.env.STRIPE_SECRET_KEY;
+const apiKey = environment === "dev" ? process.env.STRIPE_TEST_KEY : process.env.STRIPE_SECRET_KEY;
 
 const stripe = require("stripe")(apiKey);
 
@@ -36,10 +33,7 @@ exports.handler = async function (event) {
 	try {
 		const session = await stripe.checkout.sessions.retrieve(id);
 		// eslint-disable-next-line no-console
-		console.log(
-			"🚀 ~ file: activateGiftBadge.js ~ session.metadata",
-			session.metadata
-		);
+		console.log("🚀 ~ file: activateGiftBadge.js ~ session.metadata", session.metadata);
 		// Make API call to get all line items for products when there is multiple products
 		// const items = await stripe.checkout.sessions.listLineItems(
 		//     id,
@@ -93,10 +87,7 @@ exports.handler = async function (event) {
 				if (res.status !== 200) throw new Error("Add user role failed");
 			} catch (err) {
 				// eslint-disable-next-line no-console
-				console.log(
-					"remove user role 'notattending' failed",
-					err.toString()
-				);
+				console.log("remove user role 'notattending' failed", err.toString());
 			}
 
 			try {
@@ -114,10 +105,7 @@ exports.handler = async function (event) {
 				if (res.status !== 200) throw new Error("Add user role failed");
 			} catch (err) {
 				// eslint-disable-next-line no-console
-				console.log(
-					"remove user role 'subscriber' for failed",
-					err.toString()
-				);
+				console.log("remove user role 'subscriber' for failed", err.toString());
 			}
 
 			try {
@@ -135,10 +123,7 @@ exports.handler = async function (event) {
 				if (res.status !== 200) throw new Error("Add user role failed");
 			} catch (err) {
 				// eslint-disable-next-line no-console
-				console.log(
-					"remove user role 'subscriber' for failed",
-					err.toString()
-				);
+				console.log("remove user role 'subscriber' for failed", err.toString());
 			}
 
 			/* -------------------------------------------------------------------------- */
@@ -149,10 +134,7 @@ exports.handler = async function (event) {
 
 			await doc.useServiceAccountAuth({
 				client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-				private_key: process.env.GOOGLE_PRIVATE_KEY.replace(
-					/\\n/g,
-					"\n"
-				),
+				private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"),
 			});
 			await doc.loadInfo(); // loads document properties and worksheets
 			// eslint-disable-next-line no-console
@@ -160,9 +142,7 @@ exports.handler = async function (event) {
 			const sheet = doc.sheetsByIndex[0];
 			const rows = await sheet.getRows();
 
-			const giftBadgeIndex = rows.findIndex(
-				(row) => row.recipientEmail === userEmail
-			);
+			const giftBadgeIndex = rows.findIndex((row) => row.recipientEmail === userEmail);
 
 			const date = new Date().toLocaleDateString();
 
@@ -206,8 +186,7 @@ exports.handler = async function (event) {
 				text: `${userDisplayName} (${userEmail}) activated their gift badge!`,
 			};
 			// Only fire off admin email if production
-			if (environment === "production")
-				await sgMail.send(newUserAdminMsg);
+			if (environment === "production") await sgMail.send(newUserAdminMsg);
 
 			return {
 				// return to referer page
