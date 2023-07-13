@@ -103,7 +103,7 @@
     </div>
 
     {# Only show booking if has role 'vendor'; reload getBooked Events as we need to check if this is booked via the form #}
-    <div x-cloak x-show="isAuth && isVendor" x-show="if (isVendor) getBookedEvents()">
+    <div x-cloak x-show="isAuth && isVendor" x-show="if (isSmallPressVendor) getBookedEvents()">
         <div class="prose rounded-md my-base bg-card py-base px-base">
             <p>Welcome <b x-text="user && user.displayName"></b> you are a registered Small Press Vendor!</p>
         </div>
