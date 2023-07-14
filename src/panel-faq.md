@@ -103,7 +103,7 @@ Smaller workshop events allow more hands-on and customized events to teach valua
 ### Time slots
 
 * Friday-Sunday 9AM-1PM, 2PM-6PM.
-* Workshops can be 1, 2, or 4 hours long
+* Workshops can be 1 or 2 hours long
 
 ### Seating and Capacity
 
