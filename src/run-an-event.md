@@ -1,5 +1,5 @@
 ---
-layout: layouts/form-run-an-event.njk
+layout: layouts/lilred-error.njk
 title: Run An Event
 published: true
 description: ''
