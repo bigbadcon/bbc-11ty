@@ -10,7 +10,7 @@
         <p>You must be 18 or older to be a Small Press Vendor.</p>
     </div>
 
-    <div x-cloak x-data="smallPressForm" x-show="isAuth && !isTeen && !isSmallPressVendor" class="prose rounded-md mt-base bg-card pt-sm pb-base px-base" x-init="if (isAuth) getUserData()">
+    <div x-cloak x-data="smallPressForm" x-show="isAuth && !isTeen && !isSmallPressVendor" class="prose rounded-md mt-base bg-card pt-sm pb-base px-base" x-init="if (isAuth) { getUserData(); getBookedEvents()}">
         <h2>Small Press Showcase Signup</h2>
 
         {# Show need for badge to those logged in #}
@@ -103,7 +103,7 @@
     </div>
 
     {# Only show booking if has role 'vendor'; reload getBooked Events as we need to check if this is booked via the form #}
-    <div x-cloak x-show="isAuth && isSmallPressVendor" x-init"if (isSmallPressVendor) getBookedEvents()">
+    <div x-cloak x-show="isAuth && isSmallPressVendor">
         <div class="prose rounded-md my-base bg-card py-base px-base">
             <p>Welcome <b x-text="user && user.displayName"></b> you are a registered Small Press Vendor!</p>
         </div>
