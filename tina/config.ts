@@ -1,15 +1,18 @@
 import { defineConfig } from "tinacms";
-import { blogFields } from "./templates";
-import { content_footerFields } from "./templates";
-import { eventsFields } from "./templates";
-import { footerFields } from "./templates";
-import { home_page_big_cardsFields } from "./templates";
-import { home_page_cardsFields } from "./templates";
-import { pageFields } from "./templates";
-import { poc_scholarsFields } from "./templates";
-import { staffFields } from "./templates";
-import { exhibitorFields } from "./templates";
-import { globalFields } from "./templates";
+import {
+	blogFields,
+	content_footerFields,
+	eventsFields,
+	footerFields,
+	home_page_big_cardsFields,
+	home_page_cardsFields,
+	pageFields,
+	poc_scholarsFields,
+	staffFields,
+	guestFields,
+	exhibitorFields,
+	globalFields,
+} from "./templates";
 
 // Your hosting provider likely exposes this as an environment variable
 const branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || "main";
@@ -119,6 +122,25 @@ export default defineConfig({
 						isBody: true,
 					},
 					...staffFields(),
+				],
+			},
+			{
+				format: "md",
+				label: "Guests",
+				name: "guests",
+				path: "src/guests",
+				match: {
+					include: "**/*",
+				},
+				fields: [
+					{
+						type: "rich-text",
+						name: "body",
+						label: "Body of Document",
+						description: "This is the markdown body",
+						isBody: true,
+					},
+					...guestFields(),
 				],
 			},
 			{

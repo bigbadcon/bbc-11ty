@@ -263,6 +263,7 @@ export function pageFields() {
 				"layouts/home.njk",
 				"layouts/page.njk",
 				"layouts/page-wide.njk",
+				"layouts/exhibitors.njk",
 				"layouts/form-activate-gift-badge.njk",
 				"layouts/form-apply-for-scholarship.njk",
 				"layouts/form-buy-a-badge.njk",
@@ -279,6 +280,7 @@ export function pageFields() {
 				"layouts/poc-scholars.njk",
 				"layouts/register-thank-you.njk",
 				"layouts/staff.njk",
+				"layouts/stretch-goal-guests.njk",
 				"layouts/volunteer-shifts.njk",
 			],
 		},
@@ -461,6 +463,57 @@ export function staffFields() {
 			label: "tags",
 			list: true,
 			options: ["staff", "staff-emeritus"],
+			required: true,
+		},
+		{
+			type: "boolean",
+			name: "published",
+			label: "published",
+		},
+		{
+			type: "string",
+			name: "gender",
+			label: "gender",
+			required: true,
+		},
+		{
+			type: "number",
+			name: "order",
+			label: "order",
+		},
+		{
+			type: "image",
+			name: "image",
+			label: "image",
+		},
+		{
+			type: "string",
+			name: "twitter",
+			label: "twitter handle",
+		},
+		{
+			type: "string",
+			name: "mastodon",
+			label: "mastodon handle",
+		},
+		{
+			type: "string",
+			name: "website_name",
+			label: "website name",
+		},
+		{
+			type: "string",
+			name: "website_url",
+			label: "website url",
+		},
+	] as TinaField[];
+}
+export function guestFields() {
+	return [
+		{
+			type: "string",
+			name: "title",
+			label: "Name",
 			required: true,
 		},
 		{
