@@ -5,7 +5,6 @@
     <main id="content">
         <div class="mx-auto max-w-content p-base">
             <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
-            <div class="prose">{{ content | safe }}</div>
         </div>
         <section class="flex flex-col mx-auto max-w-content p-base gap-lg">
             {% for exhibitor in collections.exhibitor | published | sort %}
@@ -40,6 +39,9 @@
                     </div>
                 </article>
             {% endfor %}
+        </section>
+        <section class="mx-auto max-w-content p-base">
+            <div class="prose">{{ content | safe }}</div>
         </section>
     </main>
 {% endblock %}
