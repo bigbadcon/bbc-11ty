@@ -38,7 +38,6 @@ Please let us know when you submit your events if you’d like to request any of
 
 * Wireless microphone (in place of a wired microphone)
 * Projector and Projector Screen (HDMI)
-* 55” LCD Screen (HDMI)
 
 ![](/images/EventFAQ-MediaRoom.png)
 
@@ -114,4 +113,5 @@ Smaller workshop events allow more hands-on and customized events to teach valua
 
 ### Equipment Available
 
-* We ask that presenters bring all equipment needed to run their workshops. If additional equipment is needed, please note that in your event submission, and we’ll reach out to let you know if we can accommodate the request. 
+* 55” LCD Screen (HDMI)
+* If additional equipment is needed, please note that in your event submission, and we’ll reach out to let you know if we can accommodate the request. 
