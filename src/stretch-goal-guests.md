@@ -7,7 +7,7 @@ tags: pages
 navGroup: Community
 navTitle: Stretch Goal Guests
 order: null
-icon: book
+icon: moon
 _template: page
 ---
 
