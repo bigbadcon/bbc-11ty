@@ -4,10 +4,10 @@ title: Stretch Goal Guests
 published: true
 description: The Big Bad Con Stretch Goal Guests
 tags: pages
-navGroup: null
-navTitle: null
+navGroup: Community
+navTitle: Stretch Goal Guests
 order: null
-icon: group
+icon: bullhorn
 _template: page
 ---
 
