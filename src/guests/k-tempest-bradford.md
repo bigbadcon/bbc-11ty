@@ -3,7 +3,7 @@ title: K. Tempest Bradford
 published: true
 gender: she/her
 image: /images/K. Tempest Bradford.jpg
-mastodon: 'https://wandering.shop/@tempest'
+mastodon: '@tempest@wandering.shop'
 website_name: K. Tempest Bradford
 website_url: 'https://ktempestbradford.com/'
 ---
