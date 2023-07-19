@@ -15,5 +15,4 @@ Conner will be running these games and panels:
 * Panel: Build a Character in Coyote & Crow
 * Running Naasii (with prizes)
 * Run Wolves (in development now)
-* Panel on worldbuilding
-
+* [Building a World from Scratch](https://www.bigbadcon.com/events/building-a-world-from-scracth)
