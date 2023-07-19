@@ -2,7 +2,7 @@
 published: true
 order: 0
 title: Michelle Nguyen Bradley
-gender: (she/they)
+gender: she/they
 image: /images/Michelle Nguyen Bradley.jpg
 twitter: iamchubbybunny
 website_name: Michelle Nguyen Bradley
@@ -15,4 +15,3 @@ Michelle will be running these panels:
 
 * Panel on producing a tabletop gaming show
 * Panel on content creation in the tabletop gaming space and its evolution.
-
