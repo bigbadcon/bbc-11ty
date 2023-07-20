@@ -13,6 +13,6 @@ Aaron is a Voice Actor, Podcaster, and TTRPG Enjoyer from glorious South Jersey,
 Aaron will be running these events:
 
 * [Big Bad Fashion Show](https://www.bigbadcon.com/events/big-bad-fashion-show)
-* Fantasy World-Building: Bringing Your Joy to the Table
-* So You Want to Start a TTRPG Podcast... 
-* Actor's Talking About the Roleplay Part of TTRPGs
+* [All OUR Fantasy Children](https://www.bigbadcon.com/events/all-our-fantasy-children/)
+* [Fantasy World-Building and You](https://www.bigbadcon.com/events/fantasy-world-building-and-you/)
+* [Starting a TTRPG Podcast?](https://www.bigbadcon.com/events/starting-a-ttrpg-podcast/)
