@@ -12,6 +12,7 @@ tags:
   - a
   - r
   - poc-emeritus
+  - poc-scholar
 order: 0
 title: Ethan Yen
 position: ''
@@ -23,4 +24,4 @@ website_name: ethanyen.com
 website_url: 'www.ethanyen.com '
 ---
 
-Ethan is a writer and tabletop game designer based out of Madison, WI. His work is featured in *Unbreakable Vol. 1*, and *The 12 Days of Midwinter*, as well as personal projects on DMs Guild. Ethan serves as a project manager and creative director for the Border Kingdoms at Gamehole Con. By day, Ethan is an environmental engineer, designing water resource recovery facilities. By night, Ethan enjoys reading sci-fi/fantasy and playing TTRPGS and board games.
+Ethan Yen is a tabletop game designer, writer, and editor from Madison, WI.  He has written for Ghostfire Gaming, Unbreakable Publishers, and Indie Games Cooperative, and has served as a project manager/creative director for the Border Kingdoms at Gamehole Con. His most recent creation is the solo journaling RPG Fetch My Blade. In addition to games, Ethan designs water resource recovery facilities, uplifting worlds both real and imaginary.
