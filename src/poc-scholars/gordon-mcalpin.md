@@ -12,6 +12,7 @@ tags:
   - a
   - r
   - poc-emeritus
+  - poc-scholar
 order: 0
 title: Gordon McAlpin
 position: ''
