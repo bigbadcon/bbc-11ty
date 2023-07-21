@@ -76,7 +76,7 @@
                                     <select id="gameLength" name="gameLength" x-model="eventInfo.gameLength" @blur="validate" >
                                         <option disabled selected value="">-- Choose One --</option>
                                         <option value="2hr">I want to run two 2 hour games</option>
-                                        <option value="4hr">I want to run one 4 hour games</option>
+                                        <option value="4hr">I want to run one 4 hour game</option>
                                     </select>
                                 </div>
                                 <div x-show="eventInfo.gmAge === '13+'" class="prose mb-base">
@@ -129,6 +129,7 @@
                                 </div>
                                 <div class="required">
                                     <label for="gameDescription">Elevator Pitch</label>
+                                    <div class="prose mb-sm" x-text="`Characters left: ${250 - eventInfo.gameDescription1.length}`"></div>
                                     <textarea cols="30" id="gameDescription" name="gameDescription" rows="3" x-model="eventInfo.gameDescription1" @blur="validate" maxlength="250"></textarea>
                                 </div>
                                 <div class="required">
@@ -191,6 +192,7 @@
                                 </div>
                                 <div class="required">
                                     <label for="gameDescription2">Elevator Pitch</label>
+                                    <div class="prose mb-sm" x-text="`Characters left: ${250 - eventInfo.gameDescription2.length}`"></div>
                                     <textarea cols="30" id="gameDescription2" name="gameDescription2" rows="3" x-model="eventInfo.gameDescription2" @blur="validate" maxlength="250"></textarea>
                                 </div>
                                 <div class="required">
