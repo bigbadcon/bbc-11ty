@@ -12,6 +12,7 @@ Several generous sponsors have made individual and corporate contributions to ma
 * [The Adventure Zone](https://maximumfun.org/podcasts/adventure-zone/)
 * [Start Playing Games](https://startplaying.games/)
 * [RPG Match](https://rpgmatch.org/)
+* [Cephalofair Games](https://cephalofair.com/)
 
 ### $10,000+
 
