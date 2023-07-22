@@ -291,7 +291,7 @@
                             console.log(`RESPONSE:fetch for ${url}`, response)
                             if (response.status !== 200) 
                                 throw `fetch fail status: ${response.status}`
-                            let result = await response.json()
+                            let result = await response
                             console.log(`RESULT:fetch for ${url}`, result)
                             return result
                         } catch (err) {
