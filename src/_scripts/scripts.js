@@ -529,7 +529,7 @@ document.addEventListener("alpine:init", () => {
 					categories.some((cat) => cat.toLowerCase() === this.filter.category.toLowerCase())
 				);
 			},
-			allDays: ["All", "Mar 31", "Apr 1"], // TODO: make this dynamic
+			allDays: ["All", "Sep 28", "Sep 29, Sep 30, Oct 1"], // TODO: make this dynamic
 			setDay(day) {
 				// TODO: make day range more dynamic
 				this.filter.day =
