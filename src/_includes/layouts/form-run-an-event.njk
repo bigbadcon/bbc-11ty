@@ -199,7 +199,7 @@
                                 {# Hide this for social event and podcast #}
                                 <div class="required" x-show="!(isSocialEvent || isPodcast)">
                                     <label for="runNumberOfTimes">Run this event</label>
-                                    <select id="runNumberOfTimes" name="runNumberOfTimes" :required="!isSocialEvent" data-error-msg="Number of times is required">
+                                    <select id="runNumberOfTimes" name="runNumberOfTimes" :required="!(isSocialEvent || isPodcast)" data-error-msg="Number of times is required">
                                         <option disabled selected value="">
                                             -- Choose One --
                                         </option>
@@ -454,7 +454,7 @@
         "players": "string", // this is maxPlayers
         "playtest": "string", //used
         "requestMediaEquipment": "string", // used
-        "requestMediaRoom": true,   // used
+        "requestMediaRoom": true,   // no longer used
         "requestPrivateRoom": true, // use locationPref for boolean and add rest to additionalRequirements 
         "runNumberOfTimes": 0, // used
         "safetyTools": "string", // used convert to string
@@ -864,10 +864,11 @@
                             .$validate
                             .formData("form");
 
-                        // Pull together data for second game
-                        const eventDescription2 = (formData.gameSignUp.value === 'Games on Demand')
+                        // GoD Code Pull together data for second game
+                        /*const eventDescription2 = (formData.gameSignUp.value === 'Games on Demand')
                             ? `; SECOND GAME: ${formData.eventName2.value} (${formData.system2.value} / Playtest? ${formData.playtest2.value}) DESCRIPTION: ${formData.description2.value})`
                             : ''
+                        */
 
                         const apiData = {
                             //accessabilityOptions: formData.accessabilityOptions,  not used
@@ -878,7 +879,7 @@
                             characters: formData.characters.value,
                             contentAdvisory: formData.contentAdvisory.value === "Yes", // this is a boolean in the API so we are using 1000000 is no-content-advisory; selection info goes into the eventMetadataIds
                             eventCategoryId: formData.eventCategoryId.value || 0,
-                            eventDescription: formData.eventDescription.value + eventDescription2,
+                            eventDescription: formData.eventDescription.value,
                             //eventFacilitators: formData.facilitators,  not used
                             eventMetadataIds: this.eventMetadataIds,
                             eventMetadataNames: this.eventMetadataNames || [], // This is not used in create event API; only for Google Sheet
@@ -899,7 +900,6 @@
                             requestMediaEquipment: (formData.requestMediaEquipment.value)
                                 ? `${formData.mediaEquipment.value} ${formData.requestMediaEquipment.value}`
                                 : formData.mediaEquipment.value,
-                            requestMediaRoom: formData.requestMediaRoom.value === "Yes",
                             requestPrivateRoom: formData.locationPref.value !== "No Preference", // add extra to additionalRequirements for now
                             runNumberOfTimes: parseInt(formData.runNumberOfTimes.value || 1),
                             safetyTools: formData.safetyTools.value,
