@@ -80,10 +80,13 @@ exports.handler = async function (event) {
 		// const headers = { headers: {"x-api-key": apiKey} }
 		// eslint-disable-next-line no-console
 		console.log(headers, body);
+		const dateAdded = new Date().toLocaleDateString();
 		try {
 			const res = await axios.post(apiBaseUrl + `/events/create`, body, headers);
 
 			if (res.status === 200) {
+				// eslint-disable-next-line no-console
+				console.log(`Event created: ${eventName} for ${userDisplayName} on ${dateAdded}`);
 				return {
 					statusCode: 200,
 					body: `events/create sent for ${eventName}`,
