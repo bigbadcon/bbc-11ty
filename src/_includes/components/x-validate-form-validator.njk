@@ -1,7 +1,7 @@
 {% macro log(id) %}
     <div class="fixed top-0 left-0 max-h-screen prose border-2 rounded w-60 text-2xs form-validation-log text-body bg-card border-hr"
     x-ref="log"
-    x-data="{log: true, p1: 0, p2:0, p3:0, p4:0, drag: (e) => {this.p1 = this.p3 - e.clientX; this.p2 = this.p4 - e.clientY; this.p3 = e.clientX; this.p4 = e.clientY; $el.style.top = ($el.offsetTop - this.p2) + 'px'; $el.style.left = ($el.offsetLeft - this.p1) + 'px'}}"
+    x-data="{log: false, p1: 0, p2:0, p3:0, p4:0, drag: (e) => {this.p1 = this.p3 - e.clientX; this.p2 = this.p4 - e.clientY; this.p3 = e.clientX; this.p4 = e.clientY; $el.style.top = ($el.offsetTop - this.p2) + 'px'; $el.style.left = ($el.offsetLeft - this.p1) + 'px'}}"
     >
         <div class="flex justify-between text-xs border-b-2 mb-2xs border-hr p-2xs bg-primary text-body gap-sm"
         @mousedown="(e) => { this.p3 = e.clientX; this.p4 = e.clientY; document.onmousemove=drag; document.onmouseup=()=>document.onmousemove=null}"
