@@ -69,7 +69,7 @@
                                 <div class="required">
                                     <label for="format">Format</label>
                                     <select id="format" name="format" required
-                                    @change="$validate.value('eventCategoryId',formatId($el.value)); if ($el.value === 'Panel' || $el.value === 'Workshop') { $validate.value('system',$el.value); $validate.value('eventLength','1')}; if ($el.value === 'Panel') {console.log('switch to panel');$validate.value('maxPlayers','50')}">
+                                    @change="$validate.value('eventCategoryId',formatId($el.value)); if ($el.value === 'Panel' || $el.value === 'Workshop' || $el.value === 'Podcast/Stream' || $el.value === 'Social Event') { $validate.value('system',$el.value); $validate.value('eventLength','1')}; if ($el.value === 'Panel') {$validate.value('maxPlayers','50')}">
                                         <option disabled selected value="">-- Choose One --</option>
                                         <template x-for="type in format">
                                             <option :value="type.name" x-text="type.name"></option>
