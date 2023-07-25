@@ -178,7 +178,7 @@
                                 </div>
                                 <div class="required">
                                     <label for="maxPlayers">Maximum players/attendees</label>
-                                    <input id="maxPlayers" x-ref="maxPlayers" name="maxPlayers" type="number" value="" required :max="($validate.value('format') === 'Workshop') && 25" data-error-msg="Max players is required"/>
+                                    <input id="maxPlayers" x-ref="maxPlayers" name="maxPlayers" type="number" value="" required :max="($validate.value('format') === 'Workshop') ? 25 : ($validate.value('format') === 'Panel') ? 50 : undefined" data-error-msg="Max players is required"/>
                                 </div>
                                 <div x-show="isRPGorLARP" class="required">
                                     <label for="characters">Characters</label>
@@ -282,9 +282,9 @@
                             {# END Scheduling Info #}
                             {# Content Advisory & Safety Tools - show only if scheduling is completed #}
                             <fieldset x-ref="contentAdvisory" class="transition-opacity" :class="(isPrevComplete($el)) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'" x-show="!isPodcast" :disabled="isPodcast">
-                                <legend>Content Advisory &amp; Safety Tools</legend>
+                                <legend>Content Advisory <span x-show="isGame">&amp; Safety Tools</span></legend>
                                 <div x-show="isAllAges" class="prose mb-base">
-                                    <p class="italic">Event designed for people aged 13+</p>
+                                    <p class="italic">Event designed for people aged 13+ (no strong content)</p>
                                 </div>
                                 <div x-show="isAdultOnly" class="prose mb-base">
                                     <p class="italic">Event designed for people aged 18+</p>

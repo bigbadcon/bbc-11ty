@@ -17,4 +17,4 @@ We are accepting [event submissions](/run-an-event/) for Big Bad Con 2023!
 
 [Games on Demand FAQ](/games-on-demand-how-it-works/){.icon-games-on-demand}
 
-[Panel, Media Room, and Workshop FAQ](https://www.bigbadcon.com/panel-faq/){.icon-light-bulb}
+[Panel and Workshop FAQ](https://www.bigbadcon.com/panel-faq/){.icon-light-bulb}
