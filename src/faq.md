@@ -66,7 +66,9 @@ More detailed information on both tracks here:
 
 [Games on Demand FAQ](/games-on-demand-how-it-works/){.icon-games-on-demand}
 
-[Panel, Media Room, and Workshop FAQ](https://www.bigbadcon.com/panel-faq/){.icon-light-bulb}
+[Panel and Workshop FAQ](https://www.bigbadcon.com/panel-faq/){.icon-light-bulb}
+
+[Podcast & Streaming FAQ](https://www.bigbadcon.com/podcast-streaming-faq/){.icon-party}
 
 ### When will I hear back after I've submitted an event?
 
