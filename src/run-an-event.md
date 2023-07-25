@@ -20,7 +20,9 @@ Event submissions are open until 7/31/2023.
 
 [Scheduled Events FAQ](https://www.bigbadcon.com/scheduled-events-faq/){.icon-calendar-clock}
 
-[Panel, Media Room, and Workshop FAQ](https://www.bigbadcon.com/panel-faq/){.icon-light-bulb}
+[Panel and Workshop FAQ](https://www.bigbadcon.com/panel-faq/){.icon-light-bulb}
+
+[Podcast & Streaming FAQ](https://www.bigbadcon.com/podcast-streaming-faq/){.icon-party}
 
 <!--We're looking for games, panels, workshops, and events to make Big Bad Con 2022 our best year yet!
 
