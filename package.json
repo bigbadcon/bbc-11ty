@@ -22,6 +22,7 @@
 		"build:tinacms": "tinacms build",
 		"build:11ty": "cross-env ELEVENTY_ENV=prod eleventy",
 		"build:js": "node esbuild.js",
+		"build_lite": "run-s build:11ty build:js",
 		"debug": "DEBUG=* eleventy",
 		"svgs": "npx svg-sprite-generate -d src/assets/svgs -o src/static/images/icons.svg",
 		"gd": "git checkout drafts && git merge main",

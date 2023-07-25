@@ -20,7 +20,6 @@
                                 <em>required field</em>
                             </p>
                         </header>
-                        {# TODO: update this to use x-validate #}
                         <form action="post" class="mt-base" id="form" x-ref="form" @submit.prevent="submitEvent" x-validate>
                             {# TODO: add honeypot #}
                             <input type="hidden" name="userDisplayName" :value="user && user.displayName" x-validate x-init="$watch('user',val => {if (val && val.displayName) $validate.updateData($el)})">
@@ -30,15 +29,15 @@
                                 <div class="required">
                                     <label for="publicName">Public Badge Name</label>
                                     <p class="text-xs mb-sm text-body">We encourage attendees to list their first and last names. However, if for privacy reasons you would like to use another name, enter it here.</p>
-                                    <input id="publicName" name="publicName" type="text" value="" :value="user && user.displayName"
-                                    x-validate.required x-init="$watch('user',val => {if (val && val.displayName) $validate.updateData($el)})"/>
+                                    <input id="publicName" name="publicName" type="text" value="" :value="user && user.displayName" data-error-msg="Name is required"
+                                    required x-init="$watch('user',val => {if (val && val.displayName) $validate.updateData($el)})"/>
                                 </div>
                                 <div class="required">
                                     <label for="yourAge">
                                         Your age at start of con:
                                         <span>{% include "components/date-range.njk" %}</span>
                                     </label>
-                                    <select id="yourAge" name="yourAge" @change="if ($el.value === '13+') { $validate.value('playerAge','13+')}" x-validate.required>
+                                    <select id="yourAge" name="yourAge" @change="if ($el.value === '13+') { $validate.value('playerAge','13+')}" required data-error-msg="Age is required">
                                         <option disabled selected value="">
                                             -- Choose One --
                                         </option>
@@ -46,7 +45,6 @@
                                         <option>18+</option>
                                     </select>
                                 </div>
-
                             </fieldset>
                             <fieldset x-ref="communityStandards" class="transition-opacity" :class="(isPrevComplete($el)) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'" >
                                 <legend>Community Standards Agreement</legend>
@@ -57,7 +55,7 @@
                                     </p>
                                 </div>
                                 <div class="required">
-                                    <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-validate.required>
+                                    <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" required>
                                     <label for="agree-to-community-standards" class="text-body-highlight">
                                         Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Big Bad Con Community Standards
                                     </label>
@@ -69,13 +67,9 @@
                             <fieldset x-ref="eventInfo" class="transition-opacity" :class="(isPrevComplete($el)) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
                                 <legend>Event Info</legend>
                                 <div class="required">
-                                    <label for="eventName">Event Name</label>
-                                    <input id="eventName" name="eventName" type="text" value="" x-validate.required class="w-full max-w-md" maxlength="30"/>
-                                </div>
-                                <div class="required">
                                     <label for="format">Format</label>
-                                    <select id="format" name="format" x-validate.required
-                                    @change="$validate.value('eventCategoryId',formatId($el.value)); if ($el.value === 'Panel' || $el.value === 'Workshop') { $validate.value('system',$el.value); $validate.value('eventLength','1')}; if ($el.value === 'Panel') {console.log('switch to panel');$validate.value('maxPlayers','50')}">
+                                    <select id="format" name="format" required
+                                    @change="$validate.value('eventCategoryId',formatId($el.value)); if ($el.value === 'Panel' || $el.value === 'Workshop' || $el.value === 'Podcast/Stream' || $el.value === 'Social Event') { $validate.value('system',$el.value); $validate.value('eventLength','1')}; if ($el.value === 'Panel') {$validate.value('maxPlayers','50')}">
                                         <option disabled selected value="">-- Choose One --</option>
                                         <template x-for="type in format">
                                             <option :value="type.name" x-text="type.name"></option>
@@ -84,22 +78,66 @@
                                 </div>
                                 {# This value is updated with format select onChange since x-validate does not detect the change in :value automatically #}
                                 <input type="hidden" name="eventCategoryId" :value="formatId($validate.data('format').value)" x-init="$watch('$el',val => $validate.value(val,formatId($el.value)))" x-validate>
+                                {# GoD code #}
+                                {# <div class="required" x-show="isRPG">
+                                    <label for="gameSignUp">I want to run the game...</label>
+                                    <select id="gameSignUp" name="gameSignUp" :required="isRPG" >
+                                        <option disabled selected value="">-- Choose One --</option>
+                                        <option value="Sign ups in Advance">With players signed up in advance</option>
+                                        <option value="Games on Demand">As part of Games on Demand</option>
+                                    </select>
+                                </div> #}
+                                <div class="required">
+                                    <label for="eventName">Event Name</label>
+                                    <input id="eventName" name="eventName" type="text" value="" required class="w-full max-w-md" maxlength="30" data-error-msg="Event Name is required"/>
+                                </div>
                                 <div x-show="isGame" class="required">
                                     <label for="system">System</label>
-                                    <input id="system" name="system" type="text" value="" x-required="isGame"/>
+                                    <input id="system" name="system" type="text" value="" :required="isGame"/>
                                 </div>
                                 <div x-show="isGame" class="required">
                                     <label for="playtest">Is this a playtest?</label>
-                                    <select id="playtest" name="playtest" x-required="isGame" >
+                                    <select id="playtest" name="playtest" :required="isGame" >
                                         <option disabled selected value="">-- Choose One --</option>
                                         <option>No</option>
                                         <option>Yes</option>
                                     </select>
                                 </div>
-                                <div class="required">
+                                <div class="required" x-data="{description:''}">
                                     <label for="eventDescription">Description</label>
-                                    <textarea cols="30" id="eventDescription" name="eventDescription" rows="3" x-validate.required></textarea>
+                                    <div class="italic prose my-xs" x-show="$validate.data('format').value === 'Podcast/Stream'">
+                                        <p>Include a description and where people can listen or watch it</p>
+                                    </div>
+                                    <div class="prose mb-sm" x-text="`Characters left: ${1400 - description.length}`"></div>
+                                    <textarea cols="30" id="eventDescription" name="eventDescription" rows="3" required data-error-msg="Description is required" maxlength="1400" x-model="description"></textarea>
                                 </div>
+                                {# GoD code #}
+                                {# <div x-show="$validate.value('gameSignUp') === 'Games on Demand'" class="flex flex-col gap-base">
+                                    <div class="prose">
+                                        <h3>Games on Demand: Alternate Game (optional)</h3>
+                                        <p>It is typical to offer two games for players to chose from when running Games on Demand. This is optional but encouraged. If you have a second game please enter it below.</p>
+                                    </div>
+                                    <div >
+                                        <label for="eventName2">Game 2: Event Name</label>
+                                        <input id="eventName2" name="eventName2" type="text" value=""  class="w-full max-w-md" maxlength="30"/>
+                                    </div>
+                                    <div>
+                                        <label for="system2">Game 2: System</label>
+                                        <input id="system2" name="system2" type="text" value=""/>
+                                    </div>
+                                    <div>
+                                        <label for="playtest2">Game 2: Is this a playtest?</label>
+                                        <select id="playtest2" name="playtest2" >
+                                            <option disabled selected value="">-- Choose One --</option>
+                                            <option>No</option>
+                                            <option>Yes</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="eventDescription2">Game 2: Description</label>
+                                        <textarea cols="30" id="eventDescription2" name="eventDescription2" rows="3" ></textarea>
+                                    </div>
+                                </div> #}
                                 <div>
                                     <label for="otherInfo">Other info we should know (this will not go in the program)</label>
                                     <textarea cols="30" id="otherInfo" name="otherInfo" rows="3" ></textarea>
@@ -115,7 +153,9 @@
                             </fieldset>
                             {# END Event Info #}
                             {# Player/Attendee Info - all above must be completed #}
-                            <fieldset x-ref="playerInfo" class="transition-opacity" :class="($validate.isComplete($el.previousElementSibling)) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
+                            {# This is hidden for podcast and send a 0 for player min #}
+                            <fieldset x-ref="playerInfo" class="transition-opacity" :class="($validate.isComplete($el.previousElementSibling)) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'" 
+                            :disabled="isPodcast" x-show="!isPodcast">
                                 <legend>Player/Attendee Info</legend>
                                 <div x-show="$validate.data('playerAge').value === '13+'" class="prose mb-base">
                                     <p class="italic">Event designed for people aged 13+</p>
@@ -124,7 +164,7 @@
                                     <label for="playerAge">
                                         Player/Attendee Age
                                     </label>
-                                    <select id="playerAge" name="playerAge" x-validate.required>
+                                    <select id="playerAge" name="playerAge" required data-error-msg="Player age is required">
                                         <option disabled selected value="">
                                             -- Choose One --
                                         </option>
@@ -134,16 +174,15 @@
                                 </div>
                                 <div class="required">
                                     <label for="minPlayers">Minimum players/attendees</label>
-                                    <input id="minPlayers" name="minPlayers" type="number" value="" x-validate.required/>
+                                    <input id="minPlayers" name="minPlayers" type="number" value="" :value="isPodcast ? '0' : ''" required data-error-msg="Minimum players is required"/>
                                 </div>
                                 <div class="required">
                                     <label for="maxPlayers">Maximum players/attendees</label>
-                                    {# TODO: make sure 'maximum' is correct here #}
-                                    <input id="maxPlayers" x-ref="maxPlayers" name="maxPlayers" type="number" value="" x-validate.required :max="($validate.value('format') === 'Workshop') && 25"/>
+                                    <input id="maxPlayers" x-ref="maxPlayers" name="maxPlayers" type="number" value="" required :max="($validate.value('format') === 'Workshop') && 25" data-error-msg="Max players is required"/>
                                 </div>
                                 <div x-show="isRPGorLARP" class="required">
                                     <label for="characters">Characters</label>
-                                    <select id="characters" name="characters" x-required="isRPGorLARP">
+                                    <select id="characters" name="characters" :required="isRPGorLARP">
                                         <option disabled selected value="">
                                             -- Choose One --
                                         </option>
@@ -157,9 +196,10 @@
                             {# Scheduling Info - player age must be completed #}
                             <fieldset x-ref="scheduling" class="transition-opacity" :class="(isPrevComplete($el)) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
                                 <legend>Scheduling Info</legend>
-                                <div class="required">
+                                {# Hide this for social event and podcast #}
+                                <div class="required" x-show="!(isSocialEvent || isPodcast)">
                                     <label for="runNumberOfTimes">Run this event</label>
-                                    <select id="runNumberOfTimes" name="runNumberOfTimes" x-validate.required>
+                                    <select id="runNumberOfTimes" name="runNumberOfTimes" :required="!(isSocialEvent || isPodcast)" data-error-msg="Number of times is required">
                                         <option disabled selected value="">
                                             -- Choose One --
                                         </option>
@@ -171,7 +211,7 @@
                                 </div>
                                 <div x-show="isTableTop" class="required">
                                     <label for="locationPref">Location Preference</label>
-                                    <select id="locationPref" name="locationPref" x-required="isTableTop">
+                                    <select id="locationPref" name="locationPref" :required="isTableTop" data-error-msg="required">
                                         <option disabled selected value="">
                                             -- Choose One --
                                         </option>
@@ -182,7 +222,7 @@
                                 </div>
                                 <div x-show="isBoardgame" class="required">
                                     <label for="tableType">Board game table type requested</label>
-                                    <select id="tableType" name="tableType" x-required="isBoardgame">
+                                    <select id="tableType" name="tableType" :required="isBoardgame" data-error-msg="Table type is required">
                                         <option disabled selected value="">
                                             -- Choose One --
                                         </option>
@@ -191,19 +231,11 @@
                                         <option>Either</option>
                                     </select>
                                 </div>
-                                <div x-show="!isGame" class="required">
-                                    <label for="requestMediaRoom">Request media room</label>
-                                    <select id="requestMediaRoom" name="requestMediaRoom" x-required="!isGame">
-                                        <option disabled selected value="">
-                                            -- Choose One --
-                                        </option>
-                                        <option>No</option>
-                                        <option>Yes</option>
-                                    </select>
-                                </div>
-                                <div x-show="$validate.data('requestMediaRoom').value === 'Yes'" class="required">
+
+                                {# Media only shows for Podcast event #}
+                                <div x-show="isPodcast" class="required">
                                     <label for="mediaEquipment">Media equipment</label>
-                                    <select id="mediaEquipment" name="mediaEquipment" x-required="$validate.data('requestMediaRoom').value === 'Yes'">
+                                    <select id="mediaEquipment" name="mediaEquipment" :required="isPodcast" data-error-msg="required">
                                         <option disabled selected value="">
                                             -- Choose One --
                                         </option>
@@ -213,11 +245,13 @@
                                 </div>
                                 <div x-show="$validate.data('mediaEquipment').value === 'Equipment requested'" class="required">
                                     <label for="requestMediaEquipment">Media equipment requested</label>
-                                    <input id="requestMediaEquipment" name="requestMediaEquipment" type="text" value="" x-required="$validate.data('mediaEquipment').value === 'Equipment requested'"/>
+                                    <div class="prose pb-sm">For a list of available equipment see <a href="/podcast-streaming-faq">Podcast/Streaming FAQ</a>
+                                    </div>
+                                    <input id="requestMediaEquipment" name="requestMediaEquipment" type="text" value="" :required="$validate.data('mediaEquipment').value === 'Equipment requested'" data-error-msg="required"/>
                                 </div>
                                 <div class="required">
                                     <label for="eventLength">Event Length</label>
-                                    <select id="eventLength" name="eventLength" x-validate.required>
+                                    <select id="eventLength" name="eventLength" required data-error-msg="Length required">
                                         <option disabled selected value="">
                                             -- Choose One --
                                         </option>
@@ -228,14 +262,17 @@
                                 </div>
                                 <div x-show="$validate.data('eventLength').value">
                                     <label>Scheduling Preferences</label>
+                                    <div class="prose my-sm" x-show="isSocialEvent">
+                                        <p>We have limited availablity Friday and Saturday night</p>
+                                    </div>
                                     <div class="flex flex-col gap-2xs">
                                         <div>
-                                            <input type="checkbox" name="schedulingPref" id="No-Preference" value="No Preference" x-validate>
+                                            <input type="checkbox" name="schedulingPref" id="No-Preference" value="No Preference">
                                             <label for="No-Preference">No Preference</label>
                                         </div>
                                         <template x-for="(time, i) in scheduleTimes($validate.value('format'),$validate.value('eventLength'))">
                                             <div>
-                                                <input type="checkbox" name="schedulingPref" :id="'time' + i" :value="time" x-validate>
+                                                <input type="checkbox" name="schedulingPref" :id="'time' + i" :value="time">
                                                 <label :for="'time' + i" x-text="time"></label>
                                             </div>
                                         </template>
@@ -244,7 +281,7 @@
                             </fieldset>
                             {# END Scheduling Info #}
                             {# Content Advisory & Safety Tools - show only if scheduling is completed #}
-                            <fieldset x-ref="contentAdvisory" class="transition-opacity" :class="(isPrevComplete($el)) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
+                            <fieldset x-ref="contentAdvisory" class="transition-opacity" :class="(isPrevComplete($el)) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'" x-show="!isPodcast" :disabled="isPodcast">
                                 <legend>Content Advisory &amp; Safety Tools</legend>
                                 <div x-show="isAllAges" class="prose mb-base">
                                     <p class="italic">Event designed for people aged 13+</p>
@@ -254,7 +291,7 @@
                                 </div>
                                 <div x-show="isAdultOnly" class="required">
                                     <label>Content Advisory</label>
-                                    <select id="contentAdvisory" name="contentAdvisory" x-required="isAdultOnly">
+                                    <select id="contentAdvisory" name="contentAdvisory" :required="isAdultOnly" data-error-msg="required">
                                         <option :disabled="$validate.data('contentAdvisory').value !== ''" selected value="">
                                             -- Choose One --
                                         </option>
@@ -263,12 +300,13 @@
                                     </select>
 
                                 </div>
+                                {# NOTE: x-validate required on templates as they are added after the form x-validate is loaded #}
                                 <div x-show="isAdultOnly && $validate.data('contentAdvisory').value === 'Yes'">
                                     <label>Types of Content Advisory</label>
                                     <div class="flex flex-col gap-2xs">
                                         <template x-for="(type, i) in contentAdvisoryOptions">
                                             <div class="flex items-center">
-                                                <input type="checkbox" name="contentAdvisoryOptions" :id="'contentAdvisoryOptions' + i" :value="type.id" x-validate >
+                                                <input type="checkbox" name="contentAdvisoryOptions" :id="'contentAdvisoryOptions' + i" :value="type.id" x-validate>
                                                 <label :for="'contentAdvisoryOptions' + i" x-text="type.name"></label>
                                             </div>
                                         </template>
@@ -283,7 +321,7 @@
                                     <div class="flex flex-col gap-2xs">
                                         <template x-for="(type, i) in safetyTools">
                                             <div class="flex items-center">
-                                                <input type="checkbox" name="safetyTools" :id="'safetyTools' + i" :value="type" x-validate >
+                                                <input type="checkbox" name="safetyTools" :id="'safetyTools' + i" :value="type" x-validate>
                                                 <label :for="'safetyTools' + i" x-text="type"></label>
                                             </div>
                                         </template>
@@ -299,7 +337,7 @@
                                     <div class="checkbox-grid">
                                         <template x-for="(type, i) in panelTopic">
                                             <div class="flex items-center">
-                                                <input type="checkbox" name="panelTopic" :id="'panelTopic' + i" :value="type.id" x-validate >
+                                                <input type="checkbox" name="panelTopic" :id="'panelTopic' + i" :value="type.id" x-validate>
                                                 <label :for="'panelTopic' + i" x-text="type.name"></label>
                                             </div>
                                         </template>
@@ -310,7 +348,7 @@
                                     <div class="checkbox-grid">
                                         <template x-for="(type, i) in gameFocus">
                                             <div class="flex items-center">
-                                                <input type="checkbox" name="gameFocus" :id="'gameFocus' + i" :value="type.id" x-validate >
+                                                <input type="checkbox" name="gameFocus" :id="'gameFocus' + i" :value="type.id" x-validate>
                                                 <label :for="'gameFocus' + i" x-text="type.name"></label>
                                             </div>
                                         </template>
@@ -321,7 +359,7 @@
                                     <div class="checkbox-grid">
                                         <template x-for="(type, i) in playerContributions">
                                             <div class="flex items-center">
-                                                <input type="checkbox" name="playerContributions" :id="'playerContributions' + i" :value="type.id" x-validate >
+                                                <input type="checkbox" name="playerContributions" :id="'playerContributions' + i" :value="type.id" x-validate>
                                                 <label :for="'playerContributions' + i" x-text="type.name"></label>
                                             </div>
                                         </template>
@@ -332,7 +370,7 @@
                                     <div class="checkbox-grid">
                                         <template x-for="(type, i) in gameGenre">
                                             <div class="flex items-center">
-                                                <input type="checkbox" name="gameGenre" :id="'gameGenre' + i" :value="type.id" x-validate >
+                                                <input type="checkbox" name="gameGenre" :id="'gameGenre' + i" :value="type.id" x-validate>
                                                 <label :for="'gameGenre' + i" x-text="type.name"></label>
                                             </div>
                                         </template>
@@ -343,7 +381,7 @@
                                     <div class="checkbox-grid">
                                         <template x-for="(type, i) in gameMood">
                                             <div class="flex items-center">
-                                                <input type="checkbox" name="gameMood" :id="'gameMood' + i" :value="type.id" x-validate >
+                                                <input type="checkbox" name="gameMood" :id="'gameMood' + i" :value="type.id" x-validate>
                                                 <label :for="'gameMood' + i" x-text="type.name"></label>
                                             </div>
                                         </template>
@@ -369,13 +407,13 @@
                             {% if (sitemeta.environment === 'dev') %}
                                 {% import 'components/x-validate-form-validator.njk' as validate %}
                                 {{ validate.log('form') }}
-                                <div class="fixed top-0 right-0 text-xs p-sm bg-slate-100">
+                                {# <div class="fixed top-0 right-0 text-xs p-sm bg-slate-100">
                                     <button @click.prevent="console.log(createEventAPIData)" class="border border-green-300 rounded p-xs">log eventAPI</button>
                                     <template x-for="id in eventMetadataIds">
                                         <div x-text="id"></div>
                                     </template>
 
-                                </div>
+                                </div> #}
                             {% endif %}
                         </form>
                     </div>
@@ -417,7 +455,7 @@
         "players": "string", // this is maxPlayers
         "playtest": "string", //used
         "requestMediaEquipment": "string", // used
-        "requestMediaRoom": true,   // used
+        "requestMediaRoom": true,   // no longer used
         "requestPrivateRoom": true, // use locationPref for boolean and add rest to additionalRequirements 
         "runNumberOfTimes": 0, // used
         "safetyTools": "string", // used convert to string
@@ -470,6 +508,18 @@
                         "term_id": 12,
                         "name": "Workshop",
                         "slug": "workshop"
+                    }, {
+                        "id": 212,
+                        "term_id": 212,
+                        "name": "Podcast/Stream",
+                        "slug": "podcast-stream",
+                        "type": "event-categories"
+                    }, {
+                        "id": 211,
+                        "term_id": 211,
+                        "name": "Social Event",
+                        "slug": "social-event",
+                        "type": "event-categories"
                     }
                 ],
                 panelTopic: [
@@ -815,6 +865,12 @@
                             .$validate
                             .formData("form");
 
+                        // GoD Code Pull together data for second game
+                        /*const eventDescription2 = (formData.gameSignUp.value === 'Games on Demand')
+                            ? `; SECOND GAME: ${formData.eventName2.value} (${formData.system2.value} / Playtest? ${formData.playtest2.value}) DESCRIPTION: ${formData.description2.value})`
+                            : ''
+                        */
+
                         const apiData = {
                             //accessabilityOptions: formData.accessabilityOptions,  not used
                             additionalGms: formData.additionalGMs.value,
@@ -845,7 +901,6 @@
                             requestMediaEquipment: (formData.requestMediaEquipment.value)
                                 ? `${formData.mediaEquipment.value} ${formData.requestMediaEquipment.value}`
                                 : formData.mediaEquipment.value,
-                            requestMediaRoom: formData.requestMediaRoom.value === "Yes",
                             requestPrivateRoom: formData.locationPref.value !== "No Preference", // add extra to additionalRequirements for now
                             runNumberOfTimes: parseInt(formData.runNumberOfTimes.value || 1),
                             safetyTools: formData.safetyTools.value,
@@ -962,26 +1017,34 @@
                         })
                         return data
                     },
-                    times1hr: [
-                        "Friday afternoon (between 2PM-6PM)",
-                        "Friday night (between 8PM-Midnight)",
-                        "Saturday morning (between 9AM-1PM)",
-                        "Saturday afternoon (between 2PM-6PM)",
-                        "Saturday night (between 8PM-Midnight)",
-                        "Sunday morning (between 9AM-1PM)",
-                        "Sunday afternoon (between 2PM-6PM)"
-                    ],
-                    eventLengthOptions(format) {
+                    eventLengthOptions() {
+                        const format = this
+                            .$validate
+                            .value('format')
+                        const gameSignUp = this
+                            .$validate
+                            .value('gameSignUp')
                         let options = [
                             {
                                 name: '1 hour',
                                 value: '1'
                             }
                         ]
+                        console.log('eventLengthOptions', format, format === 'Workshop')
                         if (format === 'Panel') {
                             // returns 1 hour
-                        } else if (format === 'Workshop') {
+                        } else if (format === 'Workshop' || format === 'Podcast/Stream' || format === 'Social Event') {
                             options.push({name: '2 hours', value: '2'})
+                        } else if (format === 'RPG' && gameSignUp === 'Games on Demand') {
+                            options = [
+                                {
+                                    name: '2 hours',
+                                    value: '2'
+                                }, {
+                                    name: '4 hours',
+                                    value: '4'
+                                }
+                            ]
                         } else {
                             options = [
                                 ...options, {
@@ -1003,11 +1066,20 @@
 
                     },
                     scheduleTimes(format, eventLength) {
-                        if (format === 'Panel' || format === 'Workshop') {
+                        if (format === 'Panel' || format === 'Workshop' || format === 'Podcast/Stream') {
                             return this.panelScheduleTimes[eventLength]
+                        } else if (format === 'Social Event') {
+                            return this.socialScheduleTimes[eventLength]
                         } else {
                             return this.gameScheduleTimes[eventLength]
                         }
+                    },
+                    socialScheduleTimes: {
+                        "0": [],
+                        "1": [
+                            "Thursday night (between 6PM-12AM)", "Friday night (between 8PM-12AM)", "Saturday night (between 8PM-12AM)"
+                        ],
+                        "2": ["Thursday night (between 6PM-12AM)", "Friday night (between 8PM-12AM)", "Saturday night (between 8PM-12AM)"]
                     },
                     panelScheduleTimes: {
                         "0": [],
@@ -1094,6 +1166,9 @@
                                 .toString()
                         }
                     },
+                    get isRPG() {
+                        return ["RPG"].includes(this.$validate.data('format').value)
+                    },
                     get isGame() {
                         return ["RPG", "LARP", "Board/Card Game"].includes(this.$validate.data('format').value)
                     },
@@ -1108,6 +1183,18 @@
                             .$validate
                             .data('format')
                             .value === "Board/Card Game"
+                    },
+                    get isPodcast() {
+                        return this
+                            .$validate
+                            .data('format')
+                            .value === "Podcast/Stream"
+                    },
+                    get isSocialEvent() {
+                        return this
+                            .$validate
+                            .data('format')
+                            .value === "Social Event"
                     },
                     get isAllAges() {
                         return this
