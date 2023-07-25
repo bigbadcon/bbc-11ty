@@ -1,6 +1,6 @@
 ---
 layout: layouts/page.njk
-title: 'Panel, Media Room, and Workshop FAQ'
+title: Panel and Workshop FAQ
 published: true
 _template: page
 ---
