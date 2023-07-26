@@ -12,5 +12,5 @@ Bee Zelda is your nonbinary busy bee. They are a professional TTRPG Twitch strea
 
 Bee will be running these games:
 
-* Paris Gondo the life-saving magic of Inventory
+* [Paris Gondo](https://www.bigbadcon.com/events/paris-gondo) (x2)
 * Apocalypse Keys
