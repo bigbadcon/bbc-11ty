@@ -509,6 +509,8 @@ document.addEventListener("alpine:init", () => {
 				"Panel",
 				"Workshop",
 				"GoD",
+				"Social Event",
+				"Podcast/Stream",
 				"All Ages",
 				"Early Signup",
 				"Vending",
