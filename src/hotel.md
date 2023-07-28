@@ -23,7 +23,10 @@ Burlingame, CA 94010\
 **Update**: The convention hotel is nearly full and not all nights are available. If you aren't able to book your full stay at the Hyatt, here are some nearby hotels that might have availability:
 
 * [Holiday Inn Express](https://www.ihg.com/holidayinnexpress/hotels/us/en/burlingame/urlbh/hoteldetail) (6 minute walk to the Hyatt)
+* [Bay Landing Hotel](https://baylandinghotel.com/) (8 minute walk to the Hyatt)
 * [Crowne Plaza San Francisco Airport](https://www.ihg.com/crowneplaza/hotels/us/en/burlingame/urlca/hoteldetail) (9 minute walk to the Hyatt)
+* [Vagabond Inn](https://www.vagabondinn.com/vagabond-inn-executive-san-francisco-airport-bayfront-sfo?) (10 minute walk to the Hyatt)
+* [San Francisco Airport Marriott Waterfront](https://www.marriott.com/reservation/rateListMenu.mi?dclid=CNel3fzHsoADFckxRAgdO-YBew\&cid=OMS_GLB0002Y27_GLE00070C9_GLF000C1AH\&defaultTab=prepay) (16 minute walk to the Hyatt)
 
 <!-- Big Bad Con Group Rate: $139/night ([booking link](https://www.hyatt.com/en-US/group-booking/SFOBU/G-BBC3)) -->
 
