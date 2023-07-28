@@ -15,5 +15,6 @@ Jeff will be running these events:
 * Party of One Retrospective: Eight Years of 2-Player Games (Panel)
 * Intro to Two-Player TTRPGs (Panel)
 * The Shared Language of TTRPGs & Pro Wrestling (Panel)
-* Mission: Accomplished! (Game)
-* Anyone Can Wear the Mask (Game)
+* [Mission: ACCOMPLISHED!](https://www.bigbadcon.com/events/mission-accomplished)
+* [Anyone Can Wear the Mask](https://www.bigbadcon.com/events/anyone-can-wear-the-mask) (x2)
+
