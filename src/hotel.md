@@ -20,6 +20,11 @@ Burlingame, CA 94010\
 
 [Big Bad Con Group Rate: $145/night](https://www.hyatt.com/en-US/group-booking/SFOBU/G-BBC4){.icon-hotel}
 
+**Update**: The convention hotel is nearly full and not all nights are available. If you aren't able to book your full stay at the Hyatt, here are some nearby hotels that might have availability:
+
+* [Holiday Inn Express](https://www.ihg.com/holidayinnexpress/hotels/us/en/burlingame/urlbh/hoteldetail) (6 minute walk to the Hyatt)
+* [Crowne Plaza San Francisco Airport](https://www.ihg.com/crowneplaza/hotels/us/en/burlingame/urlca/hoteldetail) (9 minute walk to the Hyatt)
+
 <!-- Big Bad Con Group Rate: $139/night ([booking link](https://www.hyatt.com/en-US/group-booking/SFOBU/G-BBC3)) -->
 
 ### Getting to the Hotel
