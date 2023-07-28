@@ -14,3 +14,4 @@ Vincent Baker has been creating and publishing independent role-playing games si
 Vincent will be running the following games:
 
 * [Under Hollow Hills: Dreaming King's Hunt](https://www.bigbadcon.com/events/under-hollow-hills-2) (x2)
+* [Breakfast and Game Design!](https://www.bigbadcon.com/events/breakfast-and-game-design-2/) (x2)
