@@ -243,11 +243,11 @@
                                         <option>Equipment requested</option>
                                     </select>
                                 </div>
-                                <div x-show="$validate.data('mediaEquipment').value === 'Equipment requested'" class="required">
+                                <div x-show="isPodcast && $validate.data('mediaEquipment').value === 'Equipment requested'" class="required">
                                     <label for="requestMediaEquipment">Media equipment requested</label>
                                     <div class="prose pb-sm">For a list of available equipment see <a href="/podcast-streaming-faq">Podcast/Streaming FAQ</a>
                                     </div>
-                                    <input id="requestMediaEquipment" name="requestMediaEquipment" type="text" value="" :required="$validate.data('mediaEquipment').value === 'Equipment requested'" data-error-msg="required"/>
+                                    <input id="requestMediaEquipment" name="requestMediaEquipment" type="text" value="" :required="isPodcast && $validate.data('mediaEquipment').value === 'Equipment requested'" data-error-msg="required"/>
                                 </div>
                                 <div class="required">
                                     <label for="eventLength">Event Length</label>
