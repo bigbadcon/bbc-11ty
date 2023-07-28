@@ -64,12 +64,13 @@
 
                             {# END Personal Info #}
                             {# Event Info - Personal Info must be complete before showing #}
+                            {# TODO: simplify this code that updates the eventlength #}
                             <fieldset x-ref="eventInfo" class="transition-opacity" :class="(isPrevComplete($el)) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
                                 <legend>Event Info</legend>
                                 <div class="required">
                                     <label for="format">Format</label>
                                     <select id="format" name="format" required
-                                    @change="$validate.value('eventCategoryId',formatId($el.value)); if ($el.value === 'Panel' || $el.value === 'Workshop' || $el.value === 'Podcast/Stream' || $el.value === 'Social Event') { $validate.value('system',$el.value); $validate.value('eventLength','1')}; if ($el.value === 'Panel') {$validate.value('maxPlayers','50')}">
+                                    @change="$validate.value('eventCategoryId',formatId($el.value)); if ($el.value === 'Panel' || $el.value === 'Workshop' || $el.value === 'Podcast/Stream' || $el.value === 'Social Event') { $validate.value('system',$el.value); $validate.value('eventLength','1')}; if ($el.value === 'Podcast/Stream') {$validate.value('eventLength','2')}; if ($el.value === 'Panel') {$validate.value('maxPlayers','50')}">
                                         <option disabled selected value="">-- Choose One --</option>
                                         <template x-for="type in format">
                                             <option :value="type.name" x-text="type.name"></option>
@@ -109,7 +110,7 @@
                                         <p>Include a description and where people can listen or watch it</p>
                                     </div>
                                     <div class="prose mb-sm" x-text="`Characters left: ${1400 - description.length}`"></div>
-                                    <textarea cols="30" id="eventDescription" name="eventDescription" rows="3" required data-error-msg="Description is required" maxlength="1400" x-model="description"></textarea>
+                                    <textarea cols="30" id="eventDescription" name="eventDescription" rows="3" required data-error-msg="Description is required" maxlength="1400" x-model="description" x-validate.input></textarea>
                                 </div>
                                 {# GoD code #}
                                 {# <div x-show="$validate.value('gameSignUp') === 'Games on Demand'" class="flex flex-col gap-base">
@@ -178,7 +179,7 @@
                                 </div>
                                 <div class="required">
                                     <label for="maxPlayers">Maximum players/attendees</label>
-                                    <input id="maxPlayers" x-ref="maxPlayers" name="maxPlayers" type="number" value="" required :max="($validate.value('format') === 'Workshop') ? 25 : ($validate.value('format') === 'Panel') ? 50 : undefined" data-error-msg="Max players is required"/>
+                                    <input id="maxPlayers" x-ref="maxPlayers" name="maxPlayers" type="number" value="" required :max="($validate.value('format') === 'Panel') ? 50 : 25" data-error-msg="Max players is required"/>
                                 </div>
                                 <div x-show="isRPGorLARP" class="required">
                                     <label for="characters">Characters</label>
@@ -251,6 +252,7 @@
                                 </div>
                                 <div class="required">
                                     <label for="eventLength">Event Length</label>
+                                    <div class="italic prose my-sm" x-show="isPodcast">Podcast/Stream events are limited to 2-Hour blocks for 1 hour stream/recording (30 min setup and 30 min breakdown)</div>
                                     <select id="eventLength" name="eventLength" required data-error-msg="Length required">
                                         <option disabled selected value="">
                                             -- Choose One --
@@ -1033,8 +1035,15 @@
                         console.log('eventLengthOptions', format, format === 'Workshop')
                         if (format === 'Panel') {
                             // returns 1 hour
-                        } else if (format === 'Workshop' || format === 'Podcast/Stream' || format === 'Social Event') {
+                        } else if (format === 'Workshop' || format === 'Social Event') {
                             options.push({name: '2 hours', value: '2'})
+                        } else if (format === 'Podcast/Stream') {
+                            options = [
+                                {
+                                    name: '2 hours',
+                                    value: '2'
+                                }
+                            ]
                         } else if (format === 'RPG' && gameSignUp === 'Games on Demand') {
                             options = [
                                 {
