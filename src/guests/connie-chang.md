@@ -12,5 +12,5 @@ Connie Chang is a queer and trans Chinese-American game designer, screenwriter, 
 
 Connie will be running these events:
 
-* Transplanar live show
-* Trans/queer-oriented Q\&A panel
+* [Transplanar live show](https://www.bigbadcon.com/events/transplanar-live-show/)
+* [Trans Joy & Monstrosity in APs](https://www.bigbadcon.com/events/trans-joy-monstrosity-in-aps/)
