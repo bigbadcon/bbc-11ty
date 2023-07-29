@@ -18,9 +18,9 @@ Big Bad Con will be hosted at the:
 Burlingame, CA 94010\
 (650) 347-1234
 
-[Big Bad Con Group Rate: $145/night](https://www.hyatt.com/en-US/group-booking/SFOBU/G-BBC4){.icon-hotel}
+[Book a room at the Hyatt](https://www.hyatt.com/en-US/group-booking/SFOBU/G-BBC4){.icon-hotel}
 
-**Update**: The convention hotel is nearly full and not all nights are available. If you aren't able to book your full stay at the Hyatt, here are some nearby hotels that might have availability:
+**Update 7/28**: The convention hotel is nearly full and not all nights are available, or may be available but no longer at our group rate of $145/night. If you aren't able to book your stay at the Hyatt, here are some nearby hotels that may have availability:
 
 * [Holiday Inn Express](https://www.ihg.com/holidayinnexpress/hotels/us/en/burlingame/urlbh/hoteldetail) (6 minute walk to the Hyatt)
 * [Bay Landing Hotel](https://baylandinghotel.com/) (8 minute walk to the Hyatt)
