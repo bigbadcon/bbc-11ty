@@ -1,6 +1,7 @@
 ---
 title: Safety and Collaboration Tools
 published: true
+layout: layouts/page.njk
 _template: page
 ---
 
@@ -48,6 +49,3 @@ At any point during the game, if a player or GM finds that they are uncomfortabl
 ### More Tools
 
 We hope that you read more about these tools and find one that works best for your gaming style. If there are other methods that you feel belong on this list, [let us know](https://www.bigbadcon.com/contact-us/)!
-
-
-
