@@ -12,4 +12,4 @@ icon: ''
 _template: page
 ---
 
-Thank you for contributing to the [PoC Dinner](/events/poc-dinner/)!
+Thank you for contributing to the [PoC Dinner](/events/poc-dinner-2/)!
