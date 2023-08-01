@@ -133,7 +133,8 @@ eleventyComputed:
 {# TODO: when do we want event signups to start? 9/25 12pm PT #}
 {# TODO: If this is a Small Press event then make sure they sign up on the form #}
 
-{# Ad hoc form for PoC Dinner 3263 #}
+{# Ad hoc form for PoC Dinner #}
+{# TODO: make this dynamic so the event id can change each ye #}
 {% if event.eventId == 3998 %}
     {% include 'components/poc-dinner-form.njk' %}
 {% elif('Early Signup' in event.categories) %}
