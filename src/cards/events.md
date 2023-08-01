@@ -7,7 +7,7 @@ order: 2
 
 Scheduled events:
 
-[Events](https://www.bigbadcon.com/events/){icon-calendar-clock}
+[Events](https://www.bigbadcon.com/events/){.icon-calendar-clock}
 
 [GM in Games on Demand](https://www.bigbadcon.com/games-on-demand/){.icon-games-on-demand}
 
