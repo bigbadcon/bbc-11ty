@@ -13,5 +13,5 @@ Michelle Nguyen Bradley is a producer, show host, voice actor, writer & professi
 
 Michelle will be running these panels:
 
-* Panel on producing a tabletop gaming show
-* Panel on content creation in the tabletop gaming space and its evolution.
+* [Creating Content in TTRPGs](https://www.bigbadcon.com/events/creating-content-in-ttrpgs)
+* [Pitching Your Ideas](https://www.bigbadcon.com/events/pitching-your-ideas)

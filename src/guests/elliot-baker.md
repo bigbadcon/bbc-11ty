@@ -13,3 +13,4 @@ Elliot will be running the games:
 
 * [Haunted](https://www.bigbadcon.com/events/haunted-3)
 * [Numbwater Salvage](https://www.bigbadcon.com/events/numbwater-salvage)
+* [Breakfast and Game Design!](https://www.bigbadcon.com/events/breakfast-and-game-design-2/) (x2)
