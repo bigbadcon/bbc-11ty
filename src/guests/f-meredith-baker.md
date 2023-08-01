@@ -12,3 +12,4 @@ Meri inherited the Baker family curse of game design, and has been playing and d
 Meri will be running these games:
 
 * [Strike Wing!](https://www.bigbadcon.com/events/strike-wing) (x2)
+* [Breakfast and Game Design!](https://www.bigbadcon.com/events/breakfast-and-game-design-2/) (x2)

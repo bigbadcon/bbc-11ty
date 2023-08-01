@@ -11,7 +11,7 @@ icon: calendar-clock
 _template: page
 ---
 
-We are accepting [event submissions](/run-an-event/) for Big Bad Con 2023!
+<!--We are accepting [event submissions](/run-an-event/) for Big Bad Con 2023!-->
 
 [Scheduled Events FAQ](https://www.bigbadcon.com/scheduled-events-faq/){.icon-calendar-clock}
 
