@@ -14,12 +14,14 @@
                 method="POST" 
                 name="contact-us"  
                 action="/contact-us-thank-you"
+                x-data="{messageSubject:''}"
                 >
                     <div class="prose">
                         <p class="hidden">
                             <label>Don’t fill this out if you’re human: <input name="bot-field"/></label>
                         </p>
                     </div>
+                    <input type="hidden" name="subject" data-remove-prefix value="Big Bad Contact Us" :value="messageSubject ? `Big Bad Contact Us: ${messageSubject}` : 'Big Bad Contact Us'"/>
                     <fieldset>
                         <legend>Contact Form</legend>
                         <div class="space-y-sm">
@@ -38,10 +40,9 @@
 
                             {# Subject #}
                             <div>
-                                <label for="subject" class="text-xs uppercase">Subject <span class="font-bold text-highlight">*</span></label>
-                                <p class="text-xs text-body mb-sm">This is how your name will be displayed on your badge and online event signups</p>
-                                <select class="w-64" id="subject" name="subject" required value="">
-                                    <option default disabled>-- subject of message --</option>
+                                <label for="messageSubject" class="text-xs uppercase">Subject <span class="font-bold text-highlight">*</span></label>
+                                <select class="w-64" id="subject" name="messageSubject" required value="" x-model="messageSubject">
+                                    <option default disabled value="">-- subject of message --</option>
                                     <option>Lost my login or password</option>
                                     <option>Other user account question</option>
                                     <option>Site question or feedback</option>
