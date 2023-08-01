@@ -158,6 +158,7 @@ exports.handler = async function (event) {
 			/*          If this is the PoC Dinner 3263 then check them into the event     */
 			/* -------------------------------------------------------------------------- */
 
+			// TODO: make this dynamic so the event id can change each year
 			if (metadata.productType === "poc-dinner") {
 				// eslint-disable-next-line no-console
 				console.log("Attempt to Book PoC Dinner");
@@ -165,7 +166,7 @@ exports.handler = async function (event) {
 					const bookEvent = await axios.post(
 						bbcApiBaseUrl + "bookings/addUserToGame",
 						{
-							eventId: 3263,
+							eventId: 3998,
 							isGm: false,
 							userId: parseInt(client_reference_id),
 						},
