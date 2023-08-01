@@ -1,5 +1,5 @@
 ---
-layout: layouts/form-apply-for-scholarship.njk
+layout: layouts/page.njk
 title: Big Bad Con Scholarship
 published: true
 description: ''
@@ -19,7 +19,7 @@ Note, the POC Programming Track is a separate program that runs in addition to t
 
 ### Timeline
 
-* Scholarship applications will open from May 1 to July 31, 2023.
+* Scholarship applications are now closed for 2023. We'll re-open applications for the next year in 2024.
 * Determinations and reward disbursement will start August 22, 2023.
 
 ### Contributions
