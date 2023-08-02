@@ -119,14 +119,14 @@
                     x-show="filterCategory(categories) && (!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || (maxSpaces === 'Any' || $store.events.spaces[id] > 0))"
                     {% elif not global.isEventOnline and global.showEventTimes %}
                     x-init="id = {{event.eventId}}; maxSpaces = {{maxSpaces}}; categories = [{{event.categories | alpineArray}}];"
-                    x-show="filterCategory(categories) && (!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || (maxSpaces === 'Any' || $store.events.spaces[id] > 0)) && filterDay($refs.date{{event.eventId}}.textContent) && ( !filter.overlap || !doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}) )"
+                    x-show="filterCategory(categories) && (!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || (maxSpaces === 'Any' || $store.events.spaces[id] > 0)) && filterDay($refs.date{{event.eventId}}?.textContent) && ( !filter.overlap || !doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}) )"
                     :class="doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}) && 'overlap'"
                     {% elif global.isEventOnline and not global.showEventTimes %}
                     x-init="id = {{event.eventId}}; categories = [{{event.categories | alpineArray}}];"
                     x-show="filterCategory(categories) && (!filter.favsOnly || isFav({{event.eventId}}))"
                     {% elif global.isEventOnline and global.showEventTimes %}
                     x-init="id = {{event.eventId}}; categories = [{{event.categories | alpineArray}}];"
-                    x-show="filterCategory(categories) && filterDay($refs.date{{event.eventId}}.textContent) && (!filter.favsOnly || isFav({{event.eventId}}))"
+                    x-show="filterCategory(categories) && filterDay($refs.date{{event.eventId}}?.textContent) && (!filter.favsOnly || isFav({{event.eventId}}))"
                     {% endif %}
                     >
                         {# TODO: make this more modular so that it does not filter by day if there is no date or is not live #}
@@ -153,7 +153,7 @@
                             <td class="events-table-cell--system">{{event.metadata.System}}</td>
                         {% endif %}
 
-                        {% if global.isEventOnline %}
+                        {% if global.showEventTimes %}
                             {# Event Start Date/Time #}
                             <td class="events-table-cell--date" data-sort="{{ event.eventStartDateTime | unixtime }}">
                                 {% include 'components/events-table-date.njk' %}
