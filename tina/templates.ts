@@ -661,11 +661,12 @@ export function globalFields() {
 		{
 			name: "showEventTimes",
 			label: "Show Event Times",
+			description: "Show date/times on events table on the events page",
 			type: "boolean",
 		},
 		{
 			name: "showEventForm",
-			label: "Show Event Times",
+			label: "Show Link to Event Form",
 			type: "boolean",
 			description: "Show the Run an Event (for Con) or Suggest an Event (for Online) link on events page",
 		},
