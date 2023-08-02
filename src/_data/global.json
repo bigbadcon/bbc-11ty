@@ -8,6 +8,6 @@
   "showVolunteerShifts": true,
   "showVolunteerShiftsTimes": true,
   "showEvents": true,
-  "showEventTimes": false,
+  "showEventTimes": true,
   "showEventForm": false
 }
