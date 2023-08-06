@@ -32,17 +32,6 @@ function formatEventDate(date, tz = "America/Los_Angeles") {
 	);
 }
 
-function formatEventDateHeader(date) {
-	var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-	return (
-		"<span style='white-space: nowrap;'>" +
-		days[dayjs(date).day()] + ", " +
-		"</span> <span>" +
-		dayjs(date).format("MMMM D") +
-		"</span>"
-	);
-}
-
 /* ------------ Transform metadata from events to a keyed object ------------ */
 function metadataArrayToObject(arr) {
 	if (!Array.isArray(arr)) return false;

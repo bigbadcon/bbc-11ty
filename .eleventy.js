@@ -157,17 +157,6 @@ module.exports = (eleventyConfig) => {
     const eventEndDateTime = createDateObject(event.eventEndDate, event.eventEndTime)
     return getDuration(eventStartDateTime,eventEndDateTime)
   });
-
-  eleventyConfig.addFilter("eventSpaces", (event) => {
-    const bookings = event.bookings.filter(
-        (booking) =>
-            booking.bookingStatus === 1 &&
-            booking.bookingComment !== "GM"
-    );
-      const seats = parseInt(event.metadata.Players,10)
-      return seats - bookings.length;
-
-  });
   
   // event year
   eleventyConfig.addFilter("eventYear", (event) => event.eventStartDate.slice(0,4));
