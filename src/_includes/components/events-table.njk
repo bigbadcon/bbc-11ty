@@ -3,7 +3,7 @@
     {# Event Table Filter #}
     <div class="flex flex-wrap items-center justify-start border-t-2 border-b-2 mb-base text-body gap-sm py-sm border-hr" >
         {# date filter #}
-        {% if global.showEventsTimes %}
+        {% if global.showEventTimes %}
             <div class="flex flex-col justify-start sm:items-center sm:flex-row gap-2xs sm:gap-xs">
                 <label class="text-xs font-bold sm:text-sm" for="filter-by-date">Date:</label>
                 <select id="filter-by-date" class="mb-0 text-sm cursor-pointer pl-xs py-2xs" x-model="filter.day">
