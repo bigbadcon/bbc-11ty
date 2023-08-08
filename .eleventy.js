@@ -306,6 +306,12 @@ module.exports = (eleventyConfig) => {
 		return dayjs(today).format("YYYYMMDD");
 	});
 
+	// Current Date
+	eleventyConfig.addShortcode("currentDateUNIX", function () {
+		const today = new Date();
+		return dayjs(today).unix();
+	});
+
 	eleventyConfig.addShortcode("dateRange", function (start, end) {
 		if (dayjs(start).isValid() && dayjs(end).isValid()) {
 			const dateRange = `${dayjs(start).format("MMM D")} - ${dayjs(end).format("MMM D")} ${dayjs(start).format(
