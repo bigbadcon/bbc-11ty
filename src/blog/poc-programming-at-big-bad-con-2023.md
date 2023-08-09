@@ -25,7 +25,7 @@ We're also hosting another meet and greet for POC writers, artists, editors, and
 Here is the amazing team organizing the scholarship and putting these events together.
 
 * Ajit George
-* Whitney Beltran
+* Whitney Beltrán
 * Surena Marie
 * Carlos Luna
 * Mario Ortegon
