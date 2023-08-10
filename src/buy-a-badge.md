@@ -14,8 +14,8 @@ _template: page
 
 Get a badge for Big Bad Con 2023! If you are buying multiple badges for other people please submit this form more than once.
 
-* Adulty: $35 (1-day) or $75 (4-day)
-* Teen (13-17): $15 (1-day) or $25 (4-day)
+* Adulty: $25 (1-day) or $75 (4-day)
+* Teen (13-17): $15 (1-day) or $35 (4-day)
 
 If you purchased a badge on BackerKit, you can redeem it [here](https://www.bigbadcon.com/badge-claim/).
 
