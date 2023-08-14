@@ -26,7 +26,7 @@ Burlingame, CA 94010
 * Thursday 6PM-Midnight (Social Events)
 * Friday 9AM-Midnight (Games and Events)
 * Saturday 9AM-Midnight (Games and Events)
-* Sunday 9AM-8PM (Games Events)
+* Sunday 9AM-8PM (Games and Events)
 
 <!--## Big Bad Con 2023
 
