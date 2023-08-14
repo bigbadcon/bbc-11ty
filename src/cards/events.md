@@ -5,9 +5,7 @@ published: true
 order: 2
 ---
 
-Scheduled events:
-
-[Schedued Events](https://www.bigbadcon.com/events/){.icon-calendar-clock}
+[Scheduled Events](https://www.bigbadcon.com/events/){.icon-calendar-clock}
 
 [Run an Event](https://www.bigbadcon.com/run-an-event/){.icon-dice}
 
