@@ -2,7 +2,6 @@
 title: Allegro
 tags:
   - poc-scholar
-  - poc-team-member
 published: true
 gender: they/any
 image: /images/Allegro.jpg
