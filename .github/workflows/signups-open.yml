@@ -1,6 +1,6 @@
 # ./.github/workflows/main.yml
 
-name: Trigger Netlify Build
+name: Trigger Netlify Build - Event Signups Open
 on:
     schedule:
         - cron: "57 18 * * 5-6" # at the 7am aka 11:57am on Saturday our time
