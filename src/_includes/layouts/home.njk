@@ -1,60 +1,16 @@
 {% extends 'layouts/base.njk' %}
 
-{% block header %}
-    {% include 'components/header.njk' %}
-    <section class="bg-primary">
-        <div class="grid mx-auto md:grid-cols-2 lg:grid-cols-3 max-w-hero px-base">
-            {# Intro Content #}
-            <div class="text-sm prose pb-base md:pt-base xl:text-base">
-                {{ content | safe }}
-            </div>
-            {# Illustration Graphic #}
-            <div class="relative row-start-1 lg:col-span-2 md:row-start-auto">
-                {# background forest svg #}
-                {% include 'components/forest.njk' %}
-                {# absolutely placed Red illustration #}
-                <div class="absolute top-0 left-0 w-full aspect-w-3 aspect-h-2">
-                    <div class="flex items-end justify-end">
-                        <div style="width:44%">
-                            {% include 'components/mascots-2022.njk' %}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-{% endblock %}
-
 {% block content %}
 
-    <main id="content">
-        {# Card grid #}
-        <section class="mx-auto max-w-hero p-base">
-            <ul class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-                {% for card in collections.cards | published | sort %}
-                    <li class="rounded shadow-md bg-card px-base pt-sm pb-base">
-                        <h2 class="font-serif text-3xl leading-none text-header">{{ card.data.title }}</h2>
-                        <div class="prose">{{ card.templateContent | safe }}</div>
-                    </li>
-                {% endfor %}
-            </ul>
-        </section>
-        {# Big full width cards with images #}
-        <section class="grid gap-4 mx-auto max-w-hero p-base">
-            <ul class="grid gap-4">
-                {% for card in collections.bigcards | published | sort %}
-                    <li class="grid overflow-hidden rounded shadow-md md:grid-cols-3 bg-card">
-                        <figure class="aspect-w-2 aspect-h-1">
-                            <img src="{{card.data.image}}" class="object-cover object-center" alt="{{card.data.alt}}">
-                        </figure>
-                        <div class="md:col-span-2 px-md pt-base pb-md">
-                            <h2 class="font-serif text-3xl leading-none text-header">{{ card.data.title }}</h2>
-                            <div class="prose">{{ card.templateContent | safe }}</div>
-                        </div>
-                    </li>
-                {% endfor %}
-            </ul>
-        </section>
-    </main>
+    <div class="relative content-wrapper bg-gradient-to-b from-main-gradient-top to-main-gradient-bottom pb-lg" >
+
+        <main id="content">
+            <div class="mx-auto max-w-content p-base">
+                <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">Site Issues</h1>
+                <div class="prose">Sorry we are having backend issues. Site is currently down. Please refresh in a moment.</div>
+            </div>
+        </main>
+
+    </div>
 
 {% endblock %}
