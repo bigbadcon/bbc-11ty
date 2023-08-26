@@ -15,7 +15,7 @@ _template: page
 
 The event schedule is now available [here](https://docs.google.com/spreadsheets/d/1VmxraTllYScL33AH-5EzrqAkwppS5EPHMDq1oz7BobA/edit?mc_cid=eaf52d5fe0\&mc_eid=UNIQID#gid=161509786).
 
-Sign ups begin on 8/26 at 12PM PTD!
+Signups begin 8/26 at 12PM Pacific Time (GMT -7).
 
 [Scheduled Events FAQ](https://www.bigbadcon.com/scheduled-events-faq/){.icon-calendar-clock}
 
