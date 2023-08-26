@@ -1,4 +1,3 @@
-/* global process require exports */
 const axios = require("axios");
 require("dotenv").config();
 // TODO: replace this with URL for this function and all others!!!!
@@ -43,8 +42,10 @@ exports.handler = async function (event) {
 		// Get first product as right now there is only one product
 		// const {name,metadata} = items.data[0]["price"]["product"]
 
+		const recipientEmail = session.metadata.recipientEmail;
+
 		/* ----------------- If user email matches then add a badge ----------------- */
-		if (userEmail === session.metadata.recipientEmail) {
+		if (userEmail.toLowerCase() === recipientEmail.toLowerCase()) {
 			// if email matches the one indicated in the purchase then add the paidattendee role
 			await axios.post(
 				bbcApiBaseUrl + `users/addRoleToUser`,
