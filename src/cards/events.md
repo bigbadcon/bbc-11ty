@@ -5,9 +5,9 @@ published: true
 order: 2
 ---
 
-[Scheduled Events](https://www.bigbadcon.com/events/){.icon-calendar-clock}
-
 On the menu:
+
+[Scheduled Events](https://www.bigbadcon.com/events/){.icon-calendar-clock}
 
 <!--[Run an Event](https://www.bigbadcon.com/run-an-event/){.icon-dice}-->
 
