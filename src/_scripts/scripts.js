@@ -20,10 +20,10 @@ window.lilRed = lilRed;
 
 const lilRedApiUrl = "https://admin.bigbadcon.com:8091/api";
 
-// lilRed.init({
-// 	lilRedApiUrl: lilRedApiUrl,
-// 	verbose: true,
-// });
+lilRed.init({
+	lilRedApiUrl: lilRedApiUrl,
+	verbose: true,
+});
 /* -------------------------------------------------------------------------- */
 /*                              Helper functions                              */
 /* -------------------------------------------------------------------------- */
