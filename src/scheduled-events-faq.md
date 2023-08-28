@@ -22,7 +22,7 @@ Our scheduled RPGs, LARPs, board games, panels, and workshops are the core of Bi
 To sign up for events you'll need an badge for the con. You can get one [here](https://www.bigbadcon.com/attend).
 
 * Signups begin August 26th at 12:00 PM PDT (GMT-7:00).
-* All event signups for Big Bad Con are done from from our [event page](https://www.bigbadcon.com/events/). To sign up for an event, go to the event page, and if there are spaces left, click Book Now at the bottom.
+* All event signups for Big Bad Con are done from from our event page.<!--(https://www.bigbadcon.com/events/)--> To sign up for an event, go to the event page, and if there are spaces left, click Book Now at the bottom.
 * Not everyone is available the moment signups open. To give as many people as possible a chance to get into games an events, we have the following singup phases:
   * Phase I (Saturday 8/26 12PM PDT) — Everyone can sign up for a maximum of 2 events.
   * Phase II (Monday 9/4 7PM PDT) — Everyone can sign up for 2 more events, a maximum of 4 total.
