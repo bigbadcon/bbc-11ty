@@ -11,7 +11,7 @@ Big Bad Con is a tabletop gaming convention focused on supporting gamers from ma
 
 ## Panels
 
-Our panel track is designed to share insight, knowledge, and experience with participants attending Big Bad Con. 
+Our panel track is designed to share insight, knowledge, and experience with participants attending Big Bad Con. We're looking for panels that share industry insights, offer practical advice, and discuss current topics in game design and the gaming community.
 
 ### Time slots
 
@@ -21,7 +21,7 @@ Our panel track is designed to share insight, knowledge, and experience with par
 ### Seating and Capacity
 
 * Room for up to six (6) presenters (including a moderator, if any) and 50 attendees.
-* Our panels are held in the Cyprus rooms ([Salon A and C](https://www.bigbadcon.com/images/09-bigbadcon_hotel_map.pdf))
+* Our panels are held in the Cyprus rooms (Salon A and C) and the Harbour Room. ([map](https://www.bigbadcon.com/images/Hotel_Map%202023.pdf))
 * Chairs are set up in classroom style arrangement but they can be adjusted as needed if requested in advance.
 * Accessible seats and spaces at the front and on a number of aisles are reserved for those who need them.
 
@@ -53,7 +53,7 @@ Smaller workshop events allow more hands-on and customized events to teach valua
 ### Seating and Capacity
 
 * Room for up to 20 participants.
-* Workshops are held in multiple locations throughout the con, based on their space needs.
+* Workshops are held in multiple locations throughout the con, based on their space needs. ([map](https://www.bigbadcon.com/images/Hotel_Map%202023.pdf))
 * Chairs are set up in classroom style arrangement but they can be adjusted as needed. 
 * Accessible seats and spaces at the front are reserved for those who need them.
 
