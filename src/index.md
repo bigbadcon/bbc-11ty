@@ -15,8 +15,6 @@ icon: ''
 _template: page
 ---
 
-We welcome you to join us on September 28 for Big Bad Con 2023, featuring four days of TTRPGs, LARPs, board and card games, panels, workshops, and more. 
-
 Big Bad Con is a tabletop gaming convention focused on supporting gamers from marginalized backgrounds and nurturing a space to grow the gaming community by hosting a convention that is as physically, socially, and financially accessible as possible.
 
 Hyatt Regency San Francisco Airport\
@@ -27,6 +25,8 @@ Burlingame, CA 94010
 * Friday 9AM-Midnight (Games and Events)
 * Saturday 9AM-Midnight (Games and Events)
 * Sunday 9AM-8PM (Games and Events)
+
+Big Bad Con welcomes attendees 13 years and older.
 
 <!--## Big Bad Con 2023
 
