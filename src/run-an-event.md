@@ -21,9 +21,14 @@ _template: page
 * Saturday 8PM-Midnight - 12 slots
 * Sunday 9AM-1PM - 6 slots
 * Sunday 2PM-6PM  - 2 slots
--->
+
 
 **Free admission:** attendees who sign up for any combination of 8+ hours of running events, GMing in Games on Demand, or volunteer shifts get a free 4-day badge to attend the con.
+-->
+
+Event submissions are currently closed. Check out all our amazing games, panels, and more [here](https://www.bigbadcon.com/events/)!
+
+If you would like to run games, we still have submissions open for [Games on Demand](https://www.bigbadcon.com/games-on-demand/).
 
 [Scheduled Events FAQ](https://www.bigbadcon.com/scheduled-events-faq/){.icon-calendar-clock}
 
