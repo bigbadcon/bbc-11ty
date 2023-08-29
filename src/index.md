@@ -21,9 +21,9 @@ Hyatt Regency San Francisco Airport\
 1333 Old Bayshore Hwy\
 Burlingame, CA 94010
 
-* Thursday 6PM-Midnight (Social Events)
-* Friday 9AM-Midnight (Games and Events)
-* Saturday 9AM-Midnight (Games and Events)
+* Thursday 6PM-12AM (Social Events)
+* Friday 9AM-12AM (Games and Events)
+* Saturday 9AM-12AM (Games and Events)
 * Sunday 9AM-8PM (Games and Events)
 
 Big Bad Con welcomes attendees 13 years and older.
