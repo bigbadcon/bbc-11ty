@@ -52,4 +52,4 @@ $300 plus a donation of 10% of your proceeds to the Big Bad Con Scholarship Fund
 
 ### Application
 
-Our exhibitor applications are now closed. We'll be announcing the exhibitors by 6/15/2023.
+Our exhibitor applications are now closed. We will re-open applications in 2024.
