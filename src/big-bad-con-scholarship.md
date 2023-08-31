@@ -20,7 +20,7 @@ Note, the POC Programming Track is a separate program that runs in addition to t
 ### Timeline
 
 * Scholarship applications are now closed for 2023. We'll re-open applications for the next year in 2024.
-* Determinations and reward disbursement will start August 22, 2023.
+* Determinations and reward disbursement were sent August 22, 2023.
 
 ### Contributions
 
@@ -35,6 +35,7 @@ Any contributions made after September will be set aside for next year’s fund.
 
 We started the scholarship program in 2015. Here's the number of people we've been able to give financial support to so far.
 
+* 2023: 68 awards
 * 2022: 9 awards
 * 2020-2021: No in-person convention held.
 * 2019: 20 awards
