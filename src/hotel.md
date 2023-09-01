@@ -22,7 +22,7 @@ Burlingame, CA 94010\
 
 **Update 7/28**: The convention hotel is nearly full and not all nights are available, or may be available but no longer at our group rate of $145/night.
 
-Update 8/8: All rooms at the Hyatt are now booked, however we've secured a group rate at a nearby hotel:
+**Update 8/8:** All rooms at the Hyatt are now booked, however we've secured a group rate at a nearby hotel:
 
 * [Crowne Plaza San Francisco Airport](https://www.crowneplaza.com/redirect?path=hd\&brandCode=CP\&localeCode=en\&regionCode=1\&hotelCode=URLCA&_PMID=99801505\&GPC=BIG\&cn=no\&viewfullsite=true) (Group Rate of $124/night. 9 minute walk to the Hyatt)
 
@@ -73,6 +73,10 @@ The Hotels' ADA compliance:
 * Accessible bathrooms
 
 Additionally, half of their shuttles are equipped with wheelchair lifts/ramps, there is a lift to grant access to the foyer, and they have MERV-8 in public spaces and MERV-10 in sleeping/gaming rooms. The Atrium has MERV-15 filters pulling air up and exhausting it through the roof.
+
+### Credit Card Deposits
+
+The hotel holds a $50/night fully refundable deposit per room for incidental charges (such as room service and meals). The first person to check into the hotel will need to use a credit or debit card to cover the deposit. After your final bill is paid the hotel will release the funds.
 
 ### Gender Neutral Bathrooms
 
