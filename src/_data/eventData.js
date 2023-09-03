@@ -11,9 +11,16 @@ dayjs.extend(timezone)
 
 /* ------------------------- Convert odd characters ------------------------- */
 const decodeText = text => {
-    return utf8.decode(windows1252.encode(text,{
-        mode: 'html'
-    }));
+    try {
+        var line = utf8.decode(windows1252.encode(text, {
+            mode: 'html'
+        }));
+        return line;
+    } catch (e) {
+        console.error("ERROR :" + e)
+        console.log(text);
+        return text
+    }
 }
 
 /* ---------------------------- Main url for API ---------------------------- */

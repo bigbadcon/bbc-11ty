@@ -86,48 +86,6 @@
                         </td>
                 </tr>
             {% endfor %}
-            <tbody>
-                {% for event in eventData.events %}
-                    {# isFav is in Alpine.data("global") #}
-                    <tr x-show="!filter.favsOnly || isFav({{event.eventId}})">
-                        {# Event Name #}
-                        <td class="py-sm pr-sm">
-                            <h3>
-                                <a href="/events/{{event.eventSlug}}" class="font-bold transition-colors text-header hover:text-highlight">{{event.eventName | safe }}</a>
-                            </h3>
-                            <p>{{event.metadata.GM | safe}}</p>
-                        </td>
-                        {# Event Start Date/Time #}
-                        {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
-                        {# formatEventDate filter is in eleventy.js and returns html with date and time in seperate span tags #}
-                        <td class="flex flex-col py-sm gap-x-2xs" x-cloak x-show="timezone" x-html="formatEventDate('{{event.eventStartDateTime}}', timezone)">{{ event.eventStartDateTime | formatEventDate | safe }}</td>
-                        {# Event Duration #}
-                        <td class="font-bold text-center align-top py-sm px-xs">
-                            {% eventDuration event.eventStartDateTime,
-                            event.eventEndDateTime %}
-                        </td>
-                        {# System #}
-                        {# <td class="py-sm pr-sm">{{event.metadata.System}}</td> #}
-                        {# Event Categories #}
-                        <!--
-                        <td class="py-sm pr-sm">
-                            {% for category in event.categories %}
-                                {% if loop.last %}
-                                    <span>{{category.name}}</span>
-                                {% else %}
-                                    <span>{{category.name}}</span>,
-                                {% endif %}
-                            {% endfor %}
-                        </td>
-                        -->
-                        {# Fav Event Icon #}
-                        <td x-cloak x-show="isAuth">
-                            {# TODO: refactor toggleFav and isFav #}
-                            <span @click="toggleFav({{event.eventId}})" class="fav-star" :class="isFav({{event.eventId}}) && 'favved'">{% icon 'star', 'fill-body' %}</span>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
         </table>
     {% endif %}
 </section>

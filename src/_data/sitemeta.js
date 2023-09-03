@@ -6,7 +6,7 @@ module.exports = {
     eventDate: "27 OCT - 29 OCT 2023",
     eventLocation: "Discord",
     eventType: "ONLINE", // IN-PERSON, ONLINE, HYBRID
-    eventStatus: "OFF-SEASON", // UPCOMING, ONGOING, OFF-SEASON
+    eventStatus: "UPCOMING", // UPCOMING, ONGOING, OFF-SEASON
     signupsOpen: false,
     gameSubmissionOpen: false,
 };
