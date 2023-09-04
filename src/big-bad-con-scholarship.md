@@ -35,7 +35,7 @@ Any contributions made after September will be set aside for next year’s fund.
 
 We started the scholarship program in 2015. Here's the number of people we've been able to give financial support to so far.
 
-* 2023: 68 awards
+* 2023: 69 awards
 * 2022: 9 awards
 * 2020-2021: No in-person convention held.
 * 2019: 20 awards
