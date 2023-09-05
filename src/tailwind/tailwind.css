@@ -321,7 +321,7 @@ form[x-validate] [data-error]:after {
 /* -------------------------------------------------------------------------- */
 
 [class^="icon-"] {
-	@apply text-body-highlight font-serif no-underline flex items-center gap-sm;
+	@apply text-body-highlight font-serif no-underline inline-flex items-center gap-sm;
 	font-size: 1.3em;
 	line-height: 0.9;
 	text-decoration-color: var(--highlight);
