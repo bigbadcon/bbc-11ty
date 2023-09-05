@@ -388,19 +388,6 @@ document.addEventListener("alpine:init", () => {
 					this.bookedEvents.some((item) => doesDateOverlap(item.date, item.dur, date, dur))
 				);
 			},
-			async changePassword(userId, password) {
-				const data = await fetchData("/users/setMyPassword", {
-					method: "POST",
-					body: { userId: userId, password: password },
-				});
-				return data;
-			},
-			async hello() {
-				const response = await fetch(apiBaseUrl + "/", {
-					method: "GET",
-				});
-				return response.status === 200;
-			},
 			formatEventDate(date, tz = "America/Los_Angeles") {
 				return dayjs(date).tz(tz).format("MMM D");
 			},
