@@ -14,8 +14,8 @@ _template: page
 
 Badge sales are now closed. You can still get a badge doing 8+ hours of either:
 
-* [Volunteering as a Ranger](https://www.bigbadcon.com/rangers/){.icon-paw}
-* [GMing in Games on Demand](https://www.bigbadcon.com/games-on-demand/){.icon-games-on-demand}
+[Volunteering as a Ranger](https://www.bigbadcon.com/rangers/){.icon-paw}
+[GMing in Games on Demand](https://www.bigbadcon.com/games-on-demand/){.icon-games-on-demand}
 
 <!--Get a badge for Big Bad Con 2023! If you are buying multiple badges for other people please submit this form more than once.
 
