@@ -44,7 +44,7 @@ const getDurationInHours = (dateStart, dateEnd) => {
 };
 
 function hoursToHHMM(hours) {
-	var h = String(Math.trunc(hours)).padStart(2, "0");
+	var h = String(Math.trunc(hours));
 	var m = String(Math.abs(Math.round((hours - h) * 60))).padStart(2, "0");
 	return h + ":" + m;
 }
