@@ -21,6 +21,7 @@ Time slots are four hours long. In each slot you can run either a single 4-hour 
 * Friday 9AM-1PM (5 spots)
 * Friday 2PM-6PM (4 spots)
 * Friday 8PM-Midnight (2 spots)
+* Saturday \[**All slots filled**]
 * Sunday 9AM-1PM (4 spots)
 * Sunday 2PM-6PM (4 spots)
 
