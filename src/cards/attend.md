@@ -7,9 +7,9 @@ image: ''
 alt: ''
 ---
 
-[Volunteering as a Ranger](https://www.bigbadcon.com/rangers/){.icon-paw}
+[Volunteer as a Ranger](https://www.bigbadcon.com/rangers/){.icon-paw}
 
-[GMing in Games on Demand](https://www.bigbadcon.com/games-on-demand/){.icon-games-on-demand}
+[GM in Games on Demand](https://www.bigbadcon.com/games-on-demand/){.icon-games-on-demand}
 
 [Book a Room](https://www.bigbadcon.com/hotel/){.icon-hotel}
 
