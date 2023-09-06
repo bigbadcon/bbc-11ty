@@ -7,11 +7,11 @@ image: ''
 alt: ''
 ---
 
-[Volunteer as a Ranger](https://www.bigbadcon.com/rangers/){.icon-paw}
+Welcome to Big Bad Con:
 
-[GM in Games on Demand](https://www.bigbadcon.com/games-on-demand/){.icon-games-on-demand}
-
-[Book a Room](https://www.bigbadcon.com/hotel/){.icon-hotel}
+* [Volunteer as a Ranger](https://www.bigbadcon.com/rangers/){.icon-paw}
+* [GM in Games on Demand](https://www.bigbadcon.com/games-on-demand/){.icon-games-on-demand}
+* [Book a Room](https://www.bigbadcon.com/hotel/){.icon-hotel}
 
 <!--Sign up to attend Big Bad Con!
 
