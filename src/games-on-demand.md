@@ -18,12 +18,12 @@ Time slots are four hours long. In each slot you can run either a single 4-hour 
 
 **Limited times available**. The schedule is close to full but we still have some time slots available. When submitting your entries, please choose from these time:
 
-* Friday 9AM-1PM (5 spots)
-* Friday 2PM-6PM (4 spots)
-* Friday 8PM-Midnight (2 spots)
+* Friday 9AM-1PM (3 spots)
+* Friday 2PM-6PM \[**All slots filled**]
+* Friday 8PM-Midnight \[**All slots filled**]
 * Saturday \[**All slots filled**]
-* Sunday 9AM-1PM (4 spots)
-* Sunday 2PM-6PM (4 spots)
+* Sunday 9AM-1PM (2 spots)
+* Sunday 2PM-6PM (2 spots)
 
 **Free admission**: attendees who sign up for any combination of 8+ hours of running events, GMing in Games on Demand, or volunteer shifts get a free 4-day badge to attend the con.
 
