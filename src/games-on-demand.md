@@ -18,7 +18,7 @@ Time slots are four hours long. In each slot you can run either a single 4-hour 
 
 **Limited times available**. The schedule is close to full but we still have some time slots available. When submitting your entries, please choose from these time:
 
-* Friday 9AM-1PM (3 spots)
+* Friday 9AM-1PM (1 spot)
 * Friday 2PM-6PM \[**All slots filled**]
 * Friday 8PM-Midnight \[**All slots filled**]
 * Saturday \[**All slots filled**]
