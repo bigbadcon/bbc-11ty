@@ -9,9 +9,9 @@ alt: ''
 
 Welcome to Big Bad Con:
 
-**Big Bad Con is sold out! ***We hope to see you in 2024!*
+**Big Bad Con is sold out!** *We hope to see you in 2024!*
 
-[Book a Room](https://www.bigbadcon.com/hotel/){.icon-hotel}
+[Hotel Info](https://www.bigbadcon.com/hotel/){.icon-hotel}
 
 <!--Sign up to attend Big Bad Con!
 
