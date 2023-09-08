@@ -12,9 +12,7 @@ ogImage: ''
 _template: page
 ---
 
-Badge sales are now closed. You can still get a badge doing 8+ hours of either:
-
-[Volunteering as a Ranger](https://www.bigbadcon.com/rangers/){.icon-paw}
+Badge sales are now closed. You can still get a badge doing 8+ hours of:
 
 [GMing in Games on Demand](https://www.bigbadcon.com/games-on-demand/){.icon-games-on-demand}
 
