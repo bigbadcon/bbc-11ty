@@ -4,8 +4,8 @@ title: Games on Demand FAQ
 published: true
 description: ''
 ogImage: ''
-navGroup: ''
-navTitle: ''
+navGroup: Events
+navTitle: Games on Demand
 order: null
 icon: games-on-demand
 _template: page
