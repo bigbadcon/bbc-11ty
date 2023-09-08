@@ -6,7 +6,7 @@ description: >-
   Our Rangers are the folks that make Big Bad Online possible. To join, sign up
   for a shift!
 tags: pages
-navGroup: Volunteer
+navGroup: ''
 navTitle: Volunteers Shifts
 order: 1
 icon: calendar-clock
@@ -14,6 +14,8 @@ ogImage: ''
 _template: page
 ---
 
-Our Rangers are the folks that make Big Bad Con and Big Bad Online possible. To join, sign up for one or more shift below! 
+Our Rangers are the folks that make Big Bad Con and Big Bad Online possible. To join, sign up for one or more shift below!
+
 <!--you must first [sign up as a volunteer](/rangers/#signup). Once you are registered you can book a shift below! -->
+
 [Learn more about the Rangers](/rangers){.icon-paw}
