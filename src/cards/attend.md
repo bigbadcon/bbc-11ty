@@ -9,7 +9,7 @@ alt: ''
 
 Welcome to Big Bad Con:
 
-[GM in Games on Demand](https://www.bigbadcon.com/games-on-demand/){.icon-games-on-demand}
+**Big Bad Con is sold out! ***We hope to see you in 2024!*
 
 [Book a Room](https://www.bigbadcon.com/hotel/){.icon-hotel}
 
