@@ -3,10 +3,11 @@ title: Rangers at Big Bad Con
 published: true
 location: rangers
 order: 1
-_template: contentfooter
 ---
 
-**Free admission**: anyone who signs up for 8+ hours of volunteer shifts and/or running games gets a free 4-day badge to attend the con.
+**All our volunteer shifts are full.** Thank you to all of our rangers!
+
+<!--**Free admission**: anyone who signs up for 8+ hours of volunteer shifts and/or running games gets a free 4-day badge to attend the con.-->
 
 ### Big Bad Con Ranger Roles
 
@@ -26,4 +27,4 @@ Here's all the work we do. If you're ready to engage with our community, conside
 
 Plus, all Rangers have access to our Ranger Station, a place to relax behind the scenes!
 
-[Volunteer Shifts](/volunteer-shifts){.icon-calendar-clock}
+<!--[Volunteer Shifts](/volunteer-shifts){.icon-calendar-clock}-->
