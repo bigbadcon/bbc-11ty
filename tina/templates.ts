@@ -248,6 +248,16 @@ export function home_page_cardsFields() {
 			name: "published",
 			label: "published",
 		},
+		{
+			type: "image",
+			name: "image",
+			label: "image",
+		},
+		{
+			type: "string",
+			name: "alt",
+			label: "image alt text",
+		},
 	] as TinaField[];
 }
 export function pageFields() {

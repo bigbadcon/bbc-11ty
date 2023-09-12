@@ -32,7 +32,7 @@
         <section class="mx-auto max-w-hero p-base">
             <ul class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
                 {% for card in collections.cards | published | sort %}
-                    <li class="rounded shadow-md bg-card px-base pt-sm pb-base">
+                    <li class="bg-right-bottom bg-no-repeat rounded shadow-md bg-card px-base pt-sm pb-base" {%- if card.data.image -%} style="background-image: url({{card.data.image}}); background-size: auto 90%; padding-right: 6em;" {%- endif -%}>
                         <h2 class="font-serif text-3xl leading-none text-header">{{ card.data.title }}</h2>
                         <div class="prose">{{ card.templateContent | safe }}</div>
                     </li>
