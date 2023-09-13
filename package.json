@@ -63,6 +63,7 @@
 		"markdown-it": "^13.0.1",
 		"markdown-it-anchor": "^8.6.7",
 		"markdown-it-attrs": "^4.1.4",
+		"netlify-cli": "^16.3.1",
 		"netlify-plugin-inline-functions-env": "^1.0.9",
 		"node-fetch": "^3.1.0",
 		"npm": "^9.4.1",
