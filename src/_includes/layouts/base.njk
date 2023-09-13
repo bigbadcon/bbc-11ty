@@ -1,12 +1,11 @@
 <!doctype html>
-<html lang="en" class="min-h-screen" x-data="{timezone: $persist('America/Los_Angeles') }">
+<html lang="en" class="min-h-screen" x-data="{timezone: $persist('America/Los_Angeles') }" data-theme="auto">
     {% include 'layouts/html-head.njk' %}
     <body
-  data-theme="auto"
   x-data="global"
   @offline.window="$dispatch('toast','You are currently offline! Booking and forms will not work.')"
   @online.window="$dispatch('toast','You are back online!')"
-  class="min-h-screen bg-primary"
+  class="min-h-screen bg-bg"
   :style="(modal) && 'overflow: hidden; height: 100vh;'"
   >
         <div class="relative z-10 grid min-h-screen shadow page-wrapper">
@@ -16,14 +15,14 @@
                     {% include 'components/header.njk' %}
                 {% endblock %}
             </div>
-            <div class="relative content-wrapper bg-gradient-to-b from-main-gradient-top to-main-gradient-bottom pb-lg" >
+            <div class="relative content-wrapper bg-gradient-start bg-gradient-to-b from-gradient-start to-gradient-end pb-lg" >
                 {# Login / Account Button #}
                 {% if sitemeta.dataService %}
                     <button @click.stop="modal = (authToken) ? 'My Account' : 'Login'" class="absolute top-0 font-bold uppercase transition-all transform border rounded-b cursor-pointer text-form right-base bg-highlight px-base pb-xs pt-md hover:bg-highlight-2 hover:pt-lg border-highlight" 
                     x-text="(authToken) ? 'My Account' : 'Login'">Login</button>
                 {% endif %}
                 {# Decorative underbrush svg #}
-                <div style="-webkit-mask: url(/static/images/underbrush.svg) repeat-x; mask: url(/static/images/underbrush.svg) repeat-x; pointer-events: none;" class="h-10 underbrush bg-primary mb-sm"></div>
+                <div style="-webkit-mask: url(/static/images/underbrush.svg) repeat-x; mask: url(/static/images/underbrush.svg) repeat-x; pointer-events: none;" class="h-10 underbrush bg-bg mb-sm"></div>
                 {# Main Content Area. <main> tag should live in content block #}
                 {% block content %}
                     <main id="content">

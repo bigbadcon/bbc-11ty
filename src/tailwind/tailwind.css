@@ -6,11 +6,42 @@
 /*                               Color Variables                              */
 /* -------------------------------------------------------------------------- */
 
+:root {
+	--d-bg: #392755;
+	--l-bg: #ffdad1;
+	--d-title: #4dd7bc;
+	--l-title: #392755;
+	--d-highlight: #deaed2;
+	--l-highlight: ##ff7272;
+	--d-header: #b5eadf;
+	--l-header: #6c3a86;
+	--d-body: #d5e3ed;
+	--l-body: #353e3f;
+	--d-link: #ffffff;
+	--l-link: #71008b;
+	--d-gradient-start: #004f6e;
+	--d-gradient-end: #052038;
+	--l-gradient-start: #c399d0;
+	--l-gradient-end: #f2d0ff;
+	--d-card: rgb(18 24 57 / 0.59);
+	--l-card: rgb(255 255 255 / 0.59);
+}
+
 :root,
 .light,
 [data-theme="light"] {
 	/* ---------------------------- Base Light Theme ---------------------------- */
-	--primary: #e1eac4;
+	--bg: var(--l-bg);
+	--title: var(--l-title);
+	--highlight: var(--l-highlight);
+	--header: var(--l-header);
+	--body: var(--l-body);
+	--link: var(--l-link);
+	--gradient-start: var(--l-gradient-start);
+	--gradient-end: var(--l-gradient-end);
+	--card: var(--l-card);
+
+	/* --primary: #e1eac4;
 	--primary-2: #c4d0a0;
 	--primary-3: #94a268;
 	--primary-4: #849357;
@@ -33,13 +64,23 @@
 	--bg-form: #fcf8f3;
 	--hr: #6e897c;
 	--fill-highlight: url(#highlight-gradient) var(--highlight);
-	--backdrop: rgba(16, 52, 55, 0.58);
+	--backdrop: rgb(16 52 55 / 0.58); */
 }
 
 /* ------------------------------- Dark Theme ------------------------------- */
 @media (prefers-color-scheme: dark) {
 	:root {
-		--primary: #171b30;
+		--bg: var(--d-bg);
+		--title: var(--d-title);
+		--highlight: var(--d-highlight);
+		--header: var(--d-header);
+		--body: var(--d-body);
+		--link: var(--d-link);
+		--gradient-start: var(--d-gradient-start);
+		--gradient-end: var(--d-gradient-end);
+		--card: var(--d-card);
+
+		/* --primary: #171b30;
 		--primary-2: #122436;
 		--primary-3: #142f40;
 		--primary-4: #254152;
@@ -61,11 +102,21 @@
 		--main-gradient-bottom: #1e1c3f;
 		--bg-form: #2f2d31;
 		--hr: #6c89a6;
-		--backdrop: rgba(90, 100, 120, 0.6);
+		--backdrop: rgba(90, 100, 120, 0.6); */
 	}
 	[data-theme="light"] {
 		/* ---------------------------- Base Light Theme ---------------------------- */
-		--primary: #e1eac4;
+		--bg: var(--l-bg);
+		--title: var(--l-title);
+		--highlight: var(--l-highlight);
+		--header: var(--l-header);
+		--body: var(--l-body);
+		--link: var(--l-link);
+		--gradient-start: var(--l-gradient-start);
+		--gradient-end: var(--l-gradient-end);
+		--card: var(--l-card);
+
+		/* --primary: #e1eac4;
 		--primary-2: #c4d0a0;
 		--primary-3: #94a268;
 		--primary-4: #849357;
@@ -88,13 +139,23 @@
 		--bg-form: #fcf8f3;
 		--hr: #6e897c;
 		--fill-highlight: url(#highlight-gradient) var(--highlight);
-		--backdrop: rgba(16, 52, 55, 0.58);
+		--backdrop: rgba(16, 52, 55, 0.58); */
 	}
 }
 
 .dark,
 [data-theme="dark"] {
-	--primary: #171b30;
+	--bg: var(--d-bg);
+	--title: var(--d-title);
+	--highlight: var(--d-highlight);
+	--header: var(--d-header);
+	--body: var(--d-body);
+	--link: var(--d-link);
+	--gradient-start: var(--d-gradient-start);
+	--gradient-end: var(--d-gradient-end);
+	--card: var(--d-card);
+
+	/* --primary: #171b30;
 	--primary-2: #122436;
 	--primary-3: #142f40;
 	--primary-4: #254152;
@@ -116,7 +177,7 @@
 	--main-gradient-bottom: #1e1c3f;
 	--bg-form: #2f2d31;
 	--hr: #6c89a6;
-	--backdrop: rgba(90, 100, 120, 0.6);
+	--backdrop: rgba(90, 100, 120, 0.6); */
 }
 
 /* -------------------------------------------------------------------------- */
@@ -274,7 +335,7 @@ form[x-validate] [data-error]:after {
 /* -------------------------------------------------------------------------- */
 
 .bbc-logo path {
-	fill: var(--secondary);
+	fill: var(--title);
 }
 
 .page-wrapper {
@@ -438,7 +499,7 @@ a[class^="icon-"]:hover {
 }
 
 .filter-btn {
-	@apply flex items-center transition-colors rounded gap-x-xs bg-card px-sm py-2xs hover:bg-primary border border-card;
+	@apply flex items-center transition-colors rounded gap-x-xs bg-card px-sm py-2xs hover:bg-bg border border-card;
 }
 .filter-btn svg {
 	@apply w-4 h-4 fill-body;
@@ -523,7 +584,7 @@ a[class^="icon-"]:hover {
 }
 
 .modal-panel {
-	@apply flex flex-col transition-all rounded-md shadow p-base bg-primary max-w-[90%] max-h-[90%] w-96;
+	@apply flex flex-col transition-all rounded-md shadow p-base bg-bg max-w-[90%] max-h-[90%] w-96;
 }
 
 .modal-header {
