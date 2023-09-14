@@ -26,6 +26,8 @@ Burlingame, CA 94010\
 
 * [Crowne Plaza San Francisco Airport](https://www.crowneplaza.com/redirect?path=hd\&brandCode=CP\&localeCode=en\&regionCode=1\&hotelCode=URLCA&_PMID=99801505\&GPC=BIG\&cn=no\&viewfullsite=true) (Group Rate of $124/night. 9 minute walk to the Hyatt)
 
+**Update 9/14**: The Hyatt has release a few more rooms. There's a limited number, but if you haven't already booked a room, or booked somewhere else and want to move closer, follow the link above to book at the Hyatt.
+
 If you aren't able to book your stay at the Hyatt or Crown Plaza, here are some nearby hotels that may have availability:
 
 * [Holiday Inn Express](https://www.ihg.com/holidayinnexpress/hotels/us/en/burlingame/urlbh/hoteldetail) (6 minute walk to the Hyatt)
