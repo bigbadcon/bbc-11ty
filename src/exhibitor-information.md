@@ -42,7 +42,7 @@ Burlingame, CA 94010
 
 ### Booth Information
 
-* 1/5 of the 1545 square foot exhibitors hall (~300 square feet)
+* \~300 square feet.
 * Power outlets available.
 * Two 6' long tables available.
 * A locked space that only the hotel and the convention steward has access to, to keep your products secure when the dealers room is closed.
