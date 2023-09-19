@@ -44,7 +44,8 @@ Burlingame, CA 94010
 
 * \~300 square feet.
 * Power outlets available.
-* Two 6' long tables available.
+* Two 6' long banquet tables available.
+* Four banquet chairs available.
 * A locked space that only the hotel and the convention steward has access to, to keep your products secure when the dealers room is closed.
 
 ### Cost
