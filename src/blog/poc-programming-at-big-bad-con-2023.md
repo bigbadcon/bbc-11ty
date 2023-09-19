@@ -54,6 +54,7 @@ Several generous sponsors have made individual and corporate contributions to ma
 * [MCDM Productions](https://www.mcdmproductions.com/)
 * [Foundry VTT](https://foundryvtt.com/)
 * [Roll20](https://roll20.net/)
+* [Wizards of the Coast](https://company.wizards.com/en)
 
 ## Would you like to contribute?
 
