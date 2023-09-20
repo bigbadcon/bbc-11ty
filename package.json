@@ -18,6 +18,7 @@
 		"dev:tinacms": "tinacms dev",
 		"dev:11ty": "cross-env ELEVENTY_ENV=dev eleventy --serve --quiet",
 		"dev:js": "node esbuild.js --watch",
+		"dev_lite": "run-s dev:11ty dev:js",
 		"build": "run-s build:*",
 		"build:tinacms": "tinacms build",
 		"build:11ty": "cross-env ELEVENTY_ENV=prod eleventy",
@@ -63,7 +64,6 @@
 		"markdown-it": "^13.0.1",
 		"markdown-it-anchor": "^8.6.7",
 		"markdown-it-attrs": "^4.1.4",
-		"netlify-cli": "^16.3.1",
 		"netlify-plugin-inline-functions-env": "^1.0.9",
 		"node-fetch": "^3.1.0",
 		"npm": "^9.4.1",
@@ -81,6 +81,7 @@
 		"windows-1252": "1.1.0"
 	},
 	"devDependencies": {
+		"netlify-cli": "^16.4.1",
 		"@playwright/test": "^1.22.2",
 		"eslint": "^8.24.0",
 		"svg-sprite-generator": "^0.0.7"
