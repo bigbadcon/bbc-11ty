@@ -1,7 +1,7 @@
 ---
 layout: layouts/form-buy-a-badge.njk
 title: Buy a Badge - Late Purchase
-published: false
+published: true
 _template: page
 ---
 
