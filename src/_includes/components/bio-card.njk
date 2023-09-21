@@ -10,7 +10,7 @@
                 <h2 class="space-x-xs mb-2xs">
                     <span class="font-serif text-4xl text-header">{{ person.data.title }}</span>
                     <span class="font-bold text-body">{{person.data.gender}}</span></h2>
-                <h3 class="font-serif text-3xl leading-none text-subheader mb-base">{{ person.data.position }}</h3>
+                <h3 class="font-serif text-3xl leading-none text-header mb-base">{{ person.data.position }}</h3>
                 {% if person.data.twitter %}
                     <a href="https://twitter.com/{{person.data.twitter}}" class="icon-twitter mb-xs">@{{person.data.twitter}}</a>
                 {% endif %}

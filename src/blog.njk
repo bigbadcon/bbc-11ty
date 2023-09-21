@@ -18,8 +18,8 @@ icon: bullhorn
 <section class="space-y-md mt-md">
     {% for post in pagination.items %}
         <article>
-            <a href="{{ post.url }}" class="hover:underline text-subheader hover:text-highlight">
-                <h2 class="font-serif text-3xl leading-none tracking-tight text-subheader">{{post.data.title}}</h2>
+            <a href="{{ post.url }}" class="hover:underline text-header hover:text-highlight">
+                <h2 class="font-serif text-3xl leading-none tracking-tight text-header">{{post.data.title}}</h2>
             </a>
             <div class="text-xs font-bold text-secondary">{{post.date | formatBlogDate }}</div>
             <div class="mt-base">
@@ -29,7 +29,7 @@ icon: bullhorn
     {% endfor %}
 </section>
 <nav aria-labelledby="my-pagination" class="rounded-md shadow bg-header-bg p-sm mt-lg">
-    <h2 id="my-pagination" class="font-bold uppercase text-2xs text-subheader">Oh my, there are pages and pages of blog posts!</h2>
+    <h2 id="my-pagination" class="font-bold uppercase text-2xs text-header">Oh my, there are pages and pages of blog posts!</h2>
     <ol class="flex flex-wrap items-center justify-start space-x-sm">
         {%- for pageEntry in pagination.pages %}
             <li>
@@ -41,7 +41,7 @@ icon: bullhorn
 <style>
     .pagination-link[aria-current="page"] {
         font-weight: 700;
-        color: var(--subheader);
+        color: var(--header);
     }
     article form,
     article img,

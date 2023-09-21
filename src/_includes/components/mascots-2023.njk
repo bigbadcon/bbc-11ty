@@ -1,0 +1,33 @@
+<picture class="dark-home-img">
+    <source type="image/webp" srcset="/static/images/red-home-2023.webp">
+    <img src="/static/images/red-home-2023.jpg" class="object-contain object-center w-full h-full" alt="Little Red, lassoing up some varmints!">
+</picture>
+<picture class="light-home-img">
+    <source type="image/webp" srcset="/static/images/wolf-home-2023.webp">
+    <img src="/static/images/wolf-home-2023.jpg" style="w-full h-full object-contain object-center" alt="Little Red, lassoing up some varmints!">
+</picture>
+
+<style>
+    .light-home-img {
+        display: block;
+    }
+    .dark-home-img {
+        display: none;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        html:not([data-theme='light']) .dark-home-img {
+            display: block;
+        }
+        html:not([data-theme='light']) .light-home-img {
+            display: none;
+        }
+    }
+
+    [data-theme='dark'] .dark-home-img {
+        display: block;
+    }
+    [data-theme='dark'] .light-home-img {
+        display: none;
+    }
+</style>

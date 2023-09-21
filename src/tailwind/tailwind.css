@@ -387,7 +387,7 @@ a[class^="icon-"]:hover {
 }
 
 .events-table th {
-	@apply pb-xs text-subheader sm:pr-sm;
+	@apply pb-xs text-tile sm:pr-sm;
 }
 
 .fav-star {
