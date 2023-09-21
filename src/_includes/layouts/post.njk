@@ -17,7 +17,7 @@
             {# Content #}
             <div class="prose">{{ content | safe }}</div>
             {# Pagination #}
-            <div class="grid items-center justify-between grid-cols-2 text-sm leading-tight rounded-md shadow bg-bg p-sm mt-lg">
+            <div class="grid items-center justify-between grid-cols-2 text-sm leading-tight rounded-md shadow bg-header-bg p-sm mt-lg">
                 {% set previousPost = collections.blog | getPreviousCollectionItem(page) %}
                 {% set nextPost = collections.blog | getNextCollectionItem(page) %}
                 <div class="flex items-center h-full border-r border-primary-2 pr-sm mr-sm">

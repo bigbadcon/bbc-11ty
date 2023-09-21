@@ -11,13 +11,13 @@ eleventyComputed:
 ---
 
 <div class="grid w-full h-full" style="grid-template-columns: 347px 853px; grid-template-rows: 480px">
-    <div class="flex flex-col items-center bg-bg-4">
+    <div class="flex flex-col items-center bg-header-bg-4">
         <div class="pt-base text-primary" style="height: 380px">{% include 'components/bigbadcon-logo-vert.njk' %}</div>
         <div class="flex items-center text-3xl font-bold leading-none text-center text-primary gap-sm px-sm">
             <span>{% include "components/date-range.njk" %}</span>
         </div>
     </div>
-    <div class="overflow-hidden bg-bg">
+    <div class="overflow-hidden bg-header-bg">
         {% if (event.metadata.event_image) %}
             {% set src = "https://admin.bigbadcon.com:8091/images/" + event.metadata.event_image %}
         {% else %}
