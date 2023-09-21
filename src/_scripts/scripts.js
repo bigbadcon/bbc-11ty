@@ -11,7 +11,7 @@ import "array-flat-polyfill";
 import Alpine from "alpinejs";
 import persist from "@alpinejs/persist";
 import validate from "@colinaut/alpinejs-plugin-simple-validate";
-import "./lil-red-theme-switch";
+import "@colinaut/theme-multi-switch";
 Alpine.plugin(persist);
 Alpine.plugin(validate);
 window.Alpine = Alpine;

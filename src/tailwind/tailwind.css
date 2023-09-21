@@ -97,13 +97,24 @@ html,
 /* -------------------------------------------------------------------------- */
 
 :root {
-	--lil-red-switch-border-radius: 4px;
-	--lil-red-switch-highlight: var(--highlight);
-	--lil-red-switch-track: var(--card);
-	--lil-red-switch-track-border: 2px solid var(--hr);
-	--lil-red-switch-color: var(--hr);
-	--lil-red-switch-knob: var(--hr);
+	--theme-switch-knob: var(--highlight);
+	--theme-switch-highlight: var(--highlight);
+    --theme-switch-track: var(--card);
 }
+
+theme-switch::part(track) {
+	border-radius: 9999px;
+	box-shadow: 0.05em 0.1em 0.05em rgb(50 50 50 / 0.6) inset;
+}
+
+theme-switch::part(knob) {
+	border-radius: 9999px;
+	box-shadow: -0.05em -0.1em 0.05em rgb(50 50 50 / 0.6) inset, 0.1em 0.1em 0.05em rgb(50 50 50 / 0.6);
+	border: 1px solid var(--track);
+	box-sizing: border-box;
+}
+
+
 
 /* -------------------------------------------------------------------------- */
 /*                                   Global                                   */
@@ -260,29 +271,6 @@ form[x-validate] [data-error]:after {
 
 .page-wrapper {
 	grid-template-rows: min-content auto;
-}
-
-/* -------------------------- Light Dark Switch ----------------------------- */
-
-.switch input[type="checkbox"]:checked ~ .thumb {
-	@apply transform translate-x-full;
-}
-
-.switch input[type="checkbox"]:checked ~ .track {
-	@apply transition-colors transform;
-}
-
-.switch input[type="checkbox"]:disabled ~ .track {
-	@apply bg-gray-500;
-}
-
-.switch input[type="checkbox"]:disabled ~ .thumb {
-	@apply bg-gray-100 border-gray-500;
-}
-
-.switch input[type="checkbox"]:focus + .track,
-.switch input[type="checkbox"]:active + .track {
-	/* @apply shadow-outline; */
 }
 
 /* -------------------------------------------------------------------------- */
