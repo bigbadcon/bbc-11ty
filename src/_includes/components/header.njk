@@ -81,7 +81,7 @@
                   x-transition:leave-end="transform opacity-0 scale-95"
                   class="right-0 z-20 mt-2 origin-top-right md:w-64 md:absolute"
                   aria-labelledby="{{ key | slugify }}">
-                                        <div class="md:px-base md:py-base md:bg-gradient-end ring-2 ring-highlight md:rounded-md md:shadow-lg mb-xs">
+                                        <div class="rounded-md p-sm md:p-base bg-card md:bg-gradient-end md:ring-2 ring-highlight md:shadow-lg mb-xs">
                                             <div class="grid grid-cols-1 gap-sm md:gap-base">
                                                 {% for item in group %}
                                                     <a href="{{item.url}}" class="icon-{{item.icon}} focus:outline-none focus:underline rounded">{{item.title}}</a>
