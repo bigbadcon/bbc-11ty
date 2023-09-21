@@ -13,9 +13,9 @@ eleventyComputed:
 ---
 {# TODO: make this more modular #}
 <div class="grid w-full h-full" style="grid-template-columns: 240px 960px; grid-template-rows: 480px 156px">
-    <div class="flex flex-col bg-header-bg-4">
+    <div class="flex flex-col bg-header-bg">
         <div class="h-72 p-base">{% include 'components/bigbadonline-logo-vert.njk' %}</div>
-        <div class="flex flex-col items-center font-bold text-primary">
+        <div class="flex flex-col items-center font-bold text-highlight">
             <div class="text-2xl">Oct 23-24</div>
             <div class="text-5xl">2021</div>
         </div>
@@ -28,10 +28,10 @@ eleventyComputed:
             "eager" %}
         </div class="relative">
     </div>
-    <div class="text-form bg-secondary col-span-full">
+    <div class="text-form bg-gradient-start col-span-full">
         <div class="col-span-9 px-md py-base ">
             <h1 class="font-serif text-4xl font-bold leading-8">{{ event.eventName | safe }}</h1>
-            <div class="text-base font-bold mt-2xs">{% metaValue event.metadata,
+            <div class="text-base font-bold text-body mt-2xs">{% metaValue event.metadata,
                 "GM" %}</div>
         </div>
     </div>

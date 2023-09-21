@@ -12,7 +12,7 @@
                 <p>Welcome <b x-text="user && user.displayName"></b>
                 You have a <span class="inline-flex items-center gap-2xs">
                         <template x-for="role in badgeRoles">
-                            <span x-text="(role === 'paidattendee') ? 'paid' : role" class="py-[.1rem] text-xs font-bold uppercase rounded-full bg-hr text-primary px-xs"></span>
+                            <span x-text="(role === 'paidattendee') ? 'paid' : role" class="py-[.1rem] text-xs font-bold uppercase rounded-full bg-hr text-header-bg px-xs"></span>
                         </template>
                     </span>
                 badge! <span x-show="isPaid">While you already have a badge, you can purchase a gift badge for someone else below.</span>
@@ -99,7 +99,7 @@
                             <legend>Community Standards</legend>
                             <div class="flex flex-wrap items-center required">
                                 <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-validate.required x-ref="agree">
-                                <label for="agree-to-community-standards" class="text-body-highlight">
+                                <label for="agree-to-community-standards" class="text-highlight">
                                     Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Big Bad Con <a href="/community-standards/">Community Standards</a>.
                                     </label>
                                 <span class="error-msg basis-full pt-sm">Agreeing to our <a href="/community-standards/">Community Standards</a> is required</span>

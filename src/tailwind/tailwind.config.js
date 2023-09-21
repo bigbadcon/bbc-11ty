@@ -23,20 +23,8 @@ const colors = {
 	"gradient-mid": "var(--gradient-mid)",
 	"gradient-end": "var(--gradient-end)",
 	card: "var(--card)",
-
-	primary: "red",
-	"primary-2": "red",
-	"primary-3": "red",
-	"primary-4": "red",
-	secondary: "red",
-	sky: "red",
-	"body-highlight": "red",
-	subheader: "red",
-	"menu-icon": "red",
-	"main-gradient-top": "red",
-	"main-gradient-bottom": "red",
 	form: "var(--card)",
-	backdrop: "var(--card)",
+	backdrop: "var(--backdrop)",
 };
 
 module.exports = {

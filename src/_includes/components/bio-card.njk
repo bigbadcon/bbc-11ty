@@ -1,6 +1,6 @@
 {% macro card(person) %}
     <article class="shadow rounded-xl bg-card" id="{{ person.data.title | slugify }}">
-        <header class="grid gap-6 sm:grid-cols-3 bg-gradient-to-br from-primary to-primary-2 p-base rounded-t-xl">
+        <header class="grid gap-6 sm:grid-cols-3 bg-header-bg p-base rounded-t-xl">
             <div>
                 <figure class="aspect-w-1 aspect-h-1" style="clip-path: circle(50% at 50% 50%);" >
                     <img class="block object-cover object-center w-full h-full rounded-md "  src="{{person.data.image}}" alt="image of {{ person.data.name }}">

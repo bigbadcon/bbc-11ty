@@ -9,7 +9,7 @@
         <section class="flex flex-col mx-auto max-w-content p-base gap-lg">
             {% for exhibitor in collections.exhibitor | published | sort %}
                 <article class="shadow rounded-xl bg-card" id="{{ exhibitor.data.title | slugify }}">
-                    <header class="grid gap-6 sm:grid-cols-3 bg-gradient-to-br from-primary to-primary-2 p-base rounded-t-xl">
+                    <header class="grid gap-6 sm:grid-cols-3 bg-header-bg p-base rounded-t-xl">
                         <div>
                             <figure class="rounded aspect-w-1 aspect-h-1" >
                                 <img class="block object-cover object-center w-full h-full rounded-md "  src="{{exhibitor.data.logo}}" alt="logo of {{ exhibitor.data.name }}">

@@ -21,7 +21,7 @@ icon: bullhorn
             <a href="{{ post.url }}" class="hover:underline text-header hover:text-highlight">
                 <h2 class="font-serif text-3xl leading-none tracking-tight text-header">{{post.data.title}}</h2>
             </a>
-            <div class="text-xs font-bold text-secondary">{{post.date | formatBlogDate }}</div>
+            <div class="text-xs font-bold text-highlight">{{post.date | formatBlogDate }}</div>
             <div class="mt-base">
                 <div class="prose">{% excerpt post %}</div>
             </div>

@@ -11,9 +11,9 @@ eleventyComputed:
 ---
 
 <div class="grid w-full h-full" style="grid-template-columns: 347px 853px; grid-template-rows: 480px">
-    <div class="flex flex-col items-center bg-header-bg-4">
-        <div class="pt-base text-primary" style="height: 380px">{% include 'components/bigbadcon-logo-vert.njk' %}</div>
-        <div class="flex items-center text-3xl font-bold leading-none text-center text-primary gap-sm px-sm">
+    <div class="flex flex-col items-center bg-header-bg">
+        <div class="pt-base text-title" style="height: 380px">{% include 'components/bigbadcon-logo-vert.njk' %}</div>
+        <div class="flex items-center text-3xl font-bold leading-none text-center text-highlight gap-sm px-sm">
             <span>{% include "components/date-range.njk" %}</span>
         </div>
     </div>
@@ -25,10 +25,10 @@ eleventyComputed:
         {% endif %}
         <img src="{{src}}" class="object-cover w-full" style="aspect-ratio: 16/9;"/>
     </div>
-    <div class="bg-secondary text-form col-span-full">
+    <div class="bg-gradient-start text-form col-span-full">
         <div class="col-span-9 px-md py-base ">
-            <h1 class="font-serif text-4xl font-bold leading-8">{{ event.eventName | safe }}</h1>
-            <div class="text-2xl font-bold text-red-100 mt-2xs">{{event.metadata.GM}}</div>
+            <h1 class="font-serif text-4xl font-bold leading-8 text-header">{{ event.eventName | safe }}</h1>
+            <div class="text-2xl font-bold text-body mt-2xs">{{event.metadata.GM}}</div>
         </div>
     </div>
 </div>

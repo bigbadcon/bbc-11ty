@@ -11,10 +11,10 @@
 	--l-header-bg: #ffdad1;
 	--d-title: #4dd7bc;
 	--l-title: #392755;
-	--d-highlight: #deaed2;
+	--d-highlight: #f4c6e8;
 	--d-highlight-2: #f0a8de;
-	--l-highlight: #ff5874;
-	--l-highlight-2: #e93d57;
+	--l-highlight: #ff2c4f;
+	--l-highlight-2: #df1c39;
 	--d-header: #b5eadf;
 	--l-header: #562670;
 	--d-body: #d5e3ed;
@@ -31,6 +31,8 @@
 	--l-gradient-end: #f4eaf7;
 	--d-card: rgb(18 24 57 / 0.59);
 	--l-card: rgb(255 255 255 / 0.59);
+	--l-backdrop: rgba(33, 18, 57, 0.59);
+	--d-backdrop: rgba(195, 243, 255, 0.59);
 }
 
 html,
@@ -48,6 +50,7 @@ html,
 	--gradient-mid: var(--l-gradient-mid);
 	--gradient-end: var(--l-gradient-end);
 	--card: var(--l-card);
+	--backdrop: var(--l-backdrop);
 }
 
 /* ------------------------------- Dark Theme ------------------------------- */
@@ -64,6 +67,7 @@ html,
 	--gradient-mid: var(--d-gradient-mid);
 	--gradient-end: var(--d-gradient-end);
 	--card: var(--d-card);
+	--backdrop: var(--d-backdrop);
 
 }
 
@@ -82,6 +86,7 @@ html,
 		--gradient-mid: var(--d-gradient-mid);
 		--gradient-end: var(--d-gradient-end);
 		--card: var(--d-card);
+        --backdrop: var(--d-backdrop);
 	}
 }
 
@@ -387,7 +392,7 @@ a[class^="icon-"]:hover {
 }
 
 .events-table th {
-	@apply pb-xs text-tile sm:pr-sm;
+	@apply pb-xs text-title sm:pr-sm;
 }
 
 .fav-star {
@@ -420,7 +425,7 @@ a[class^="icon-"]:hover {
 	@apply w-4 h-4 fill-body;
 }
 .filter-btn:hover svg {
-	@apply fill-secondary;
+	@apply fill-highlight;
 }
 .filter-btn.active {
 	@apply border-highlight;

@@ -20,16 +20,16 @@
             <div class="grid items-center justify-between grid-cols-2 text-sm leading-tight rounded-md shadow bg-header-bg p-sm mt-lg">
                 {% set previousPost = collections.blog | getPreviousCollectionItem(page) %}
                 {% set nextPost = collections.blog | getNextCollectionItem(page) %}
-                <div class="flex items-center h-full border-r border-primary-2 pr-sm mr-sm">
+                <div class="flex items-center h-full border-r border-header-bg pr-sm mr-sm">
                     {% if nextPost %}
                         <a href="{{ nextPost.url }}" class="flex items-center text-highlight hover:underline gap-sm">{% include 'components/arrow-left.njk' %}
-                            <span class="text-body-highlight">{{ nextPost.data.title }}</span></a>
+                            <span class="text-highlight">{{ nextPost.data.title }}</span></a>
                     {% endif %}
                 </div>
                 <div class="justify-self-end">
                     {% if previousPost %}
                         <a href="{{ previousPost.url }}" class="flex items-center text-highlight hover:underline gap-sm">
-                            <span class="text-body-highlight">{{ previousPost.data.title }}</span>{% include 'components/arrow-right.njk' %}</a>
+                            <span class="text-highlight">{{ previousPost.data.title }}</span>{% include 'components/arrow-right.njk' %}</a>
                     {% endif %}
                 </div>
             </div>

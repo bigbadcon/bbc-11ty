@@ -38,7 +38,7 @@ eleventyComputed:
     <div x-cloak x-show="isAuth" class="absolute right-0 top-sm">
         <span @click="toggleFav({{event.eventId}})" class="fav-star fav-star--event-page" :class="isFav({{event.eventId}}) && 'favved'">&starf;</span>
     </div>
-    <div class="text-2xl font-semibold leading-snug text-body-highlight pr-base">
+    <div class="text-2xl font-semibold leading-snug text-highlight pr-base">
         {{ event.metadata.GM }}
     </div>
     <div class="not-prose">
@@ -188,16 +188,16 @@ eleventyComputed:
 </div>
 {# Pagination #}
 <div class="grid items-center justify-between grid-cols-2 text-sm leading-tight rounded-md shadow bg-header-bg p-sm mt-lg">
-    <div class="flex items-center h-full border-r border-primary-2 pr-sm mr-sm">
+    <div class="flex items-center h-full border-r border-header-bg pr-sm mr-sm">
         {% if pagination.href.previous %}
             <a href="{{ pagination.href.previous }}" class="flex items-center text-highlight hover:underline gap-sm">{% include 'components/arrow-left.njk' %}
-                <span class="text-body-highlight">{{pagination.page.previous.eventName}}</span></a>
+                <span class="text-highlight">{{pagination.page.previous.eventName}}</span></a>
         {% endif %}
     </div>
     <div class="justify-self-end">
         {% if pagination.href.next %}
             <a href="{{ pagination.href.next }}" class="flex items-center text-highlight hover:underline gap-sm">
-                <span class="text-body-highlight">{{pagination.page.next.eventName}}</span>{% include 'components/arrow-right.njk' %}</a>
+                <span class="text-highlight">{{pagination.page.next.eventName}}</span>{% include 'components/arrow-right.njk' %}</a>
         {% endif %}
     </div>
 </div>
