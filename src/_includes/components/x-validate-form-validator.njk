@@ -3,13 +3,13 @@
     x-ref="log"
     x-data="{log: true, p1: 0, p2:0, p3:0, p4:0, drag: (e) => {this.p1 = this.p3 - e.clientX; this.p2 = this.p4 - e.clientY; this.p3 = e.clientX; this.p4 = e.clientY; $el.style.top = ($el.offsetTop - this.p2) + 'px'; $el.style.left = ($el.offsetLeft - this.p1) + 'px'}}"
     >
-        <div class="flex justify-between text-xs border-b-2 mb-2xs border-hr p-2xs bg-primary text-body gap-sm"
+        <div class="flex justify-between text-xs border-b-2 mb-2xs border-hr p-2xs bg-header-bg text-body gap-sm"
         @mousedown="(e) => { this.p3 = e.clientX; this.p4 = e.clientY; document.onmousemove=drag; document.onmouseup=()=>document.onmousemove=null}"
         >
-            <button class="text-highlight hover:text-secondary" @click.prevent @mousedown.stop.prevent="() => { $refs.log.style.top = 0; $refs.log.style.left = 0}">&#9700;</button>
+            <button class="text-highlight hover:text-highlight-2" @click.prevent @mousedown.stop.prevent="() => { $refs.log.style.top = 0; $refs.log.style.left = 0}">&#9700;</button>
             <span class="cursor-pointer grow">$validate.data('{{id}}')</span>
 
-            <button class="transition-transform text-highlight hover:text-secondary" @click.prevent @mousedown.stop.prevent="log = !log" :class="log && 'rotate-180'">&#9650;</button>
+            <button class="transition-transform text-highlight hover:text-highlight-2" @click.prevent @mousedown.stop.prevent="log = !log" :class="log && 'rotate-180'">&#9650;</button>
         </div>
         <div class="h-screen max-h-full overflow-scroll p-sm" x-show="log">
             <div class="flex gap-sm">

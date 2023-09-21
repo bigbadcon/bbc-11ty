@@ -1,4 +1,4 @@
-<header role="banner" class="bg-primary">
+<header role="banner" class="bg-header-bg">
     <!-- component -->
     <div class="mx-auto max-w-hero px-base">
         <div class="">
@@ -49,7 +49,7 @@
                             {% if group | length > 1 %}
                                 <div @click.away="open = false" @keydown.window.escape="open = false" class="relative" x-data="{ open: false }">
                                     <button @click="open = !open"
-                  class="flex flex-row items-center w-full text-left rounded py-2xs md:w-auto md:inline md:mt-0 focus:outline-none focus:ring-2 focus:ring-primary-4"
+                  class="flex flex-row items-center w-full text-left rounded py-2xs pl-2xs md:w-auto md:inline md:mt-0 focus:outline-none focus:underline underline-offset-4 decoration-highlight"
                   aria-haspopup="true"
                   :aria-expanded="open"
                   id="{{ key | slugify }}">
@@ -57,10 +57,11 @@
                                         {# subnav down angle caret svg #}
                                         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" 
                     :class="{'rotate-180': open, 'rotate-0': !open}"
-                    class="w-4 h-4 mt-1 transition-transform duration-200 transform ml-xs lg:ml-0 md:hidden text-primary-4 lg:inline md:mt-[-0.1rem]">
-                                            <path fill="var(--menu-icon)" d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"></path>
+                    class="w-4 h-4 mt-1 transition-transform duration-200 transform ml-xs lg:ml-0 md:hidden text-higlight lg:inline md:mt-[-0.1rem]">
+                                            <path fill="var(--highlight)" d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"></path>
                                         </svg>
                                     </button>
+                                    {# subnav #}
                                     <div x-cloak x-show="open" x-transition:enter="transition ease-out duration-100"
                   x-transition:enter-start="transform opacity-0 scale-95"
                   x-transition:enter-end="transform opacity-100 scale-100"
@@ -69,10 +70,10 @@
                   x-transition:leave-end="transform opacity-0 scale-95"
                   class="right-0 z-20 mt-2 origin-top-right md:w-64 md:absolute"
                   aria-labelledby="{{ key | slugify }}">
-                                        <div class="md:px-base md:py-base md:bg-main-gradient-top ring-2 ring-primary md:rounded-md md:shadow-lg mb-xs">
+                                        <div class="md:px-base md:py-base md:bg-gradient-end ring-2 ring-highlight md:rounded-md md:shadow-lg mb-xs">
                                             <div class="grid grid-cols-1 gap-sm md:gap-base">
                                                 {% for item in group %}
-                                                    <a href="{{item.url}}" class="icon-{{item.icon}}">{{item.title}}</a>
+                                                    <a href="{{item.url}}" class="icon-{{item.icon}} focus:outline-none focus:underline rounded">{{item.title}}</a>
                                                 {% endfor %}
                                             </div>
                                         </div>
@@ -81,7 +82,7 @@
                             {% else %}
                                 {% set item = group[0] %}
                                 {# Primany Link without subpanel #}
-                                <a href="{{item.url}}" class="flex flex-row items-center w-full text-left rounded py-2xs md:w-auto md:inline md:mt-0 md:ml-4 focus:outline-none focus:ring-2 focus:ring-primary-4">
+                                <a href="{{item.url}}" class="flex flex-row items-center w-full text-left rounded py-2xs pl-2xs md:w-auto md:inline md:mt-0 md:ml-4 focus:underline underline-offset-4 decoration-highlight">
                                     <span class="font-bold md:font-normal">{{item.title}}</span></a>
                             {% endif %}
                         {% endfor %}

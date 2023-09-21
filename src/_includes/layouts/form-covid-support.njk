@@ -96,7 +96,7 @@
 
                     </fieldset>
                     <div x-data="{submitted: false}" @pageshow.window="submitted = false">
-                        <button type="submit" :disabled="!$validate.isComplete('form')" class="btn btn-primary" x-show="!submitted" @click="submitted = true">Submit</button>
+                        <button type="submit" :disabled="!$validate.isComplete('form')" class="btn btn-header-bg" x-show="!submitted" @click="submitted = true">Submit</button>
                         <div x-cloak x-show="submitted">
                             {% import 'components/loading-spinner-macro.njk' as loading %}
                             {{ loading.spinner('Submitting')}}
