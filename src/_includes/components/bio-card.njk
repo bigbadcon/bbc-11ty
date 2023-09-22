@@ -1,6 +1,6 @@
 {% macro card(person) %}
-    <article class="shadow rounded-xl bg-card" id="{{ person.data.title | slugify }}">
-        <header class="grid gap-6 sm:grid-cols-3 bg-header-bg p-base rounded-t-xl">
+    <article class="shadow-lg rounded-xl bg-card" id="{{ person.data.title | slugify }}">
+        <header class="grid gap-6 sm:grid-cols-3 bg-header-bg bg-gradient-to-br from-header-bg via-header-bg-2 to-header-bg-2 p-base rounded-t-xl">
             <div>
                 <figure class="aspect-w-1 aspect-h-1" style="clip-path: circle(50% at 50% 50%);" >
                     <img class="block object-cover object-center w-full h-full rounded-md "  src="{{person.data.image}}" alt="image of {{ person.data.name }}">
@@ -22,6 +22,12 @@
                 {% endif %}
             </div>
         </header>
+        <div class="w-full h-[20px] overflow-hidden relative z-10 top-[-1px]">
+            {# header bottom wave #}
+            <svg width="4000" height="18" xmlns="http://www.w3.org/2000/svg">
+                <rect fill="url(#bio-wave-pattern)" stroke="transparent" width="4000" height="18"/>
+            </svg>
+        </div>
         <div class="py-base px-base">
             <div class="prose ">{{ person.templateContent | safe }}</div>
         </div>

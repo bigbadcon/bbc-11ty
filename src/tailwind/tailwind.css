@@ -15,6 +15,10 @@
 :root {
 	--d-header-bg: #392755;
 	--l-header-bg: #ffdad1;
+	--d-header-bg-2: #2c174f;
+	--l-header-bg-2: #fee7e2;
+	--d-header-bg-3: #16072f;
+	--l-header-bg-3: #fff9f8;
 	--d-title: #4dd7bc;
 	--l-title: #392755;
 	--d-highlight: #f4c6e8;
@@ -45,6 +49,8 @@ html,
 [data-theme="light"] {
 	/* ---------------------------- Base Light Theme ---------------------------- */
 	--header-bg: var(--l-header-bg);
+	--header-bg-2: var(--l-header-bg-2);
+	--header-bg-3: var(--l-header-bg-3);
 	--title: var(--l-title);
 	--highlight: var(--l-highlight);
 	--highlight-2: var(--l-highlight-2);
@@ -62,6 +68,8 @@ html,
 /* ------------------------------- Dark Theme ------------------------------- */
 [data-theme="dark"] {
 	--header-bg: var(--d-header-bg);
+	--header-bg-2: var(--d-header-bg-2);
+	--header-bg-3: var(--d-header-bg-3);
 	--title: var(--d-title);
 	--highlight: var(--d-highlight);
 	--highlight-2: var(--d-highlight-2);
@@ -74,13 +82,14 @@ html,
 	--gradient-end: var(--d-gradient-end);
 	--card: var(--d-card);
 	--backdrop: var(--d-backdrop);
-
 }
 
 /* ---------------------- Dark Theme repeated for auto ---------------------- */
 @media (prefers-color-scheme: dark) {
 	html:not([data-theme="light"]) {
 		--header-bg: var(--d-header-bg);
+		--header-bg-2: var(--d-header-bg-2);
+		--header-bg-3: var(--d-header-bg-3);
 		--title: var(--d-title);
 		--highlight: var(--d-highlight);
 		--highlight-2: var(--d-highlight-2);
@@ -95,8 +104,6 @@ html,
         --backdrop: var(--d-backdrop);
 	}
 }
-
-
 
 /* -------------------------------------------------------------------------- */
 /*                                Theme Switch                                */
@@ -126,9 +133,7 @@ theme-switch::part(knob) {
 /*                                   Global                                   */
 /* -------------------------------------------------------------------------- */
 
-.content-wrapper {
-    background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
-}
+
 
 /* -------------------------------------------------------------------------- */
 /*                                 Typography                                 */

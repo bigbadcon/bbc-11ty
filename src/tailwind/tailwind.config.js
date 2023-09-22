@@ -12,6 +12,8 @@ const scale = {
 
 const colors = {
 	"header-bg": "var(--header-bg)",
+	"header-bg-2": "var(--header-bg-2)",
+	"header-bg-3": "var(--header-bg-3)",
 	title: "var(--title)",
 	highlight: "var(--highlight)",
 	"highlight-2": "var(--highlight-2)",
