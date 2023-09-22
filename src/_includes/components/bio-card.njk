@@ -11,15 +11,23 @@
                     <span class="font-serif text-4xl text-header">{{ person.data.title }}</span>
                     <span class="font-bold text-body">{{person.data.gender}}</span></h2>
                 <h3 class="font-serif text-3xl leading-none text-header mb-base">{{ person.data.position }}</h3>
-                {% if person.data.twitter %}
-                    <a href="https://twitter.com/{{person.data.twitter}}" class="icon-twitter mb-xs">@{{person.data.twitter}}</a>
-                {% endif %}
-                {% if person.data.mastodon %}
-                    <a href="{{person.data.mastodon | mastodonLink}}" class="icon-mastodon mb-xs">{{person.data.mastodon}}</a>
-                {% endif %}
-                {% if person.data.website_url %}
-                    <a href="{{person.data.website_url}}" class="icon-website">{{person.data.website_name}}</a>
-                {% endif %}
+                <ul>
+                    {% if person.data.twitter %}
+                        <li>
+                            <a href="https://twitter.com/{{person.data.twitter}}" class="icon-twitter mb-xs">@{{person.data.twitter}}</a>
+                        </li>
+                    {% endif %}
+                    {% if person.data.mastodon %}
+                        <li>
+                            <a href="{{person.data.mastodon | mastodonLink}}" class="icon-mastodon mb-xs">{{person.data.mastodon}}</a>
+                        </li>
+                    {% endif %}
+                    {% if person.data.website_url %}
+                        <li>
+                            <a href="{{person.data.website_url}}" class="icon-website">{{person.data.website_name}}</a>
+                        </li>
+                    {% endif %}
+                </ul>
             </div>
         </header>
         <div class="w-full h-[20px] overflow-hidden relative z-10 top-[-1px]">
