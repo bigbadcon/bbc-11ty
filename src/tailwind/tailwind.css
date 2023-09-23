@@ -44,8 +44,8 @@
 	--l-gradient-end: #f4eaf7;
 	--d-card: rgb(18 24 57 / 0.59);
 	--l-card: rgb(255 255 255 / 0.59);
-	--l-backdrop: rgba(33, 18, 57, 0.59);
-	--d-backdrop: rgba(195, 243, 255, 0.59);
+	--l-backdrop: rgba(184, 159, 222, 0.59);
+	--d-backdrop: rgba(0, 19, 42, 0.909);
 	--l-shadow: rgba(123, 106, 191, 0.9);
 	--d-shadow: rgba(72, 68, 175, 0.9);
 }
@@ -140,8 +140,6 @@ theme-switch::part(knob) {
 /* -------------------------------------------------------------------------- */
 /*                                   Global                                   */
 /* -------------------------------------------------------------------------- */
-
-
 
 /* -------------------------------------------------------------------------- */
 /*                                 Typography                                 */
@@ -504,10 +502,15 @@ a[class^="icon-"]:hover {
 
 .modal-wrapper {
 	@apply fixed inset-0 z-50 flex items-center justify-center bg-backdrop backdrop-blur;
+    background-image: url(/static/images/bbc-stars-red.svg);
+}
+
+[data-theme="light"] .modal-wrapper {
+    background-image: url(/static/images/bbc-stars-wolf.svg);
 }
 
 .modal-panel {
-	@apply flex flex-col transition-all rounded-md shadow p-base bg-header-bg max-w-[90%] max-h-[90%] w-96;
+	@apply flex flex-col transition-all rounded-lg shadow-xl border-4 border-card p-base bg-header-bg max-w-[90%] max-h-[90%] w-96;
 }
 
 .modal-header {
