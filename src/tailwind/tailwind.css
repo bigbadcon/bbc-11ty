@@ -46,8 +46,8 @@
 	--l-card: rgb(255 255 255 / 0.59);
 	--l-backdrop: rgba(33, 18, 57, 0.59);
 	--d-backdrop: rgba(195, 243, 255, 0.59);
-	--l-shadow: rgba(123, 106, 191, 0.7);
-	--d-shadow: rgba(72, 68, 175, 0.7);
+	--l-shadow: rgba(123, 106, 191, 0.9);
+	--d-shadow: rgba(72, 68, 175, 0.9);
 }
 
 html,
