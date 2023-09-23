@@ -629,5 +629,5 @@ lite-youtube.lyt-activated > .lty-playbtn {
 	@apply p-0;
 }
 #main-nav > a[href^="/donate"] span {
-	@apply inline-block transition-colors border rounded-md bg-card border-highlight hover:bg-highlight hover:text-header-bg underline-offset-4 decoration-highlight px-sm py-2xs;
+	@apply inline-block transition-colors border-2 rounded-md bg-card border-highlight hover:bg-highlight hover:text-header-bg underline-offset-4 decoration-highlight px-sm py-2xs;
 }

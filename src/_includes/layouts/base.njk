@@ -41,7 +41,7 @@
                     {# Login / Account Button #}
                     {% if sitemeta.dataService %}
                         <button @click.stop="modal = (authToken) ? 'My Account' : 'Login'" 
-                        class="absolute top-[-18px] font-bold uppercase transition-all transform border rounded-b cursor-pointer text-gradient-end right-base bg-highlight px-base pb-xs pt-base hover:bg-highlight-2 hover:pt-lg border-highlight" 
+                        class="absolute top-[-18px] font-bold uppercase transition-all transform border-2 rounded-b cursor-pointer text-gradient-end right-base bg-highlight px-base pb-xs pt-base hover:bg-highlight-2 hover:pt-lg border-highlight" 
                         style="filter: drop-shadow(0 2px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 1px 1px rgb(0 0 0 / 0.06));"
                         x-text="(authToken) ? 'My Account' : 'Login'">Login</button>
                     {% endif %}
