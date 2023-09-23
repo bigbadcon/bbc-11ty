@@ -16,7 +16,7 @@ eleventyComputed:
     {# If it has a image than put it in place and replace it if a different image is available #}
     {# {% set src = "/event-images-cache/" + event.eventSlug + ".png" %} #}
     {% set src = "https://admin.bigbadcon.com:8091/images/" + event.metadata.event_image %}
-    <div class="w-full rounded-md bg-card mb-base" style="aspect-ratio: 16/9;"
+    <div class="w-full rounded-xl bg-card mb-base" style="aspect-ratio: 16/9;"
     x-data="{src: '{{src}}', defaultImg: '{{event.metadata.event_image}}'}">
         <img src="{{src}}" class="object-cover w-full border-4 border-white rounded-xl event-image drop-shadow-bbc" style="aspect-ratio: 16/9;"
         x-init="if (event_image && event_image !== defaultImg) $el.setAttribute('src', 'https://admin.bigbadcon.com:8091/images/' + event_image)"
@@ -24,7 +24,7 @@ eleventyComputed:
     </div>
 {% else %}
     {# If there is no image than make it hidden unless there is an image available #}
-    <div class="w-full rounded-md bg-card mb-base" style="aspect-ratio: 16/9;"
+    <div class="w-full rounded-xl bg-card mb-base" style="aspect-ratio: 16/9;"
     x-cloak x-show="event_image" x-transitition.opacity>
         <img class="object-cover w-full border-4 border-white rounded-xl event-image drop-shadow-bbc" style="aspect-ratio: 16/9;"
         x-init="if (event_image) $el.setAttribute('src', 'https://admin.bigbadcon.com:8091/images/' + event_image)"
