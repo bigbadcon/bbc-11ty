@@ -6,6 +6,9 @@
     .grid-rows-min-content-auto {
         grid-template-rows: min-content auto;
     }
+    .drop-shadow-bbc {
+        filter: drop-shadow(.3rem .3rem 0 var(--shadow));
+    }
 }
 
 /* -------------------------------------------------------------------------- */
@@ -43,6 +46,8 @@
 	--l-card: rgb(255 255 255 / 0.59);
 	--l-backdrop: rgba(33, 18, 57, 0.59);
 	--d-backdrop: rgba(195, 243, 255, 0.59);
+	--l-shadow: rgba(123, 106, 191, 0.7);
+	--d-shadow: rgba(72, 68, 175, 0.7);
 }
 
 html,
@@ -63,6 +68,7 @@ html,
 	--gradient-end: var(--l-gradient-end);
 	--card: var(--l-card);
 	--backdrop: var(--l-backdrop);
+	--shadow: var(--l-shadow);
 }
 
 /* ------------------------------- Dark Theme ------------------------------- */
@@ -82,6 +88,7 @@ html,
 	--gradient-end: var(--d-gradient-end);
 	--card: var(--d-card);
 	--backdrop: var(--d-backdrop);
+	--shadow: var(--d-shadow);
 }
 
 /* ---------------------- Dark Theme repeated for auto ---------------------- */
@@ -102,6 +109,7 @@ html,
 		--gradient-end: var(--d-gradient-end);
 		--card: var(--d-card);
         --backdrop: var(--d-backdrop);
+        --shadow: var(--d-shadow);
 	}
 }
 
