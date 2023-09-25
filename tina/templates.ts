@@ -278,6 +278,7 @@ export function pageFields() {
 				"layouts/form-apply-for-scholarship.njk",
 				"layouts/form-buy-a-badge.njk",
 				"layouts/form-change-password.njk",
+				"layouts/form-claim-badge.njk",
 				"layouts/form-contact-us.njk",
 				"layouts/form-covid-support.njk",
 				"layouts/form-create-account.njk",

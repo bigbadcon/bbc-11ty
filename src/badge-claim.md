@@ -1,6 +1,6 @@
 ---
 title: Claim Your Badge
-layout: layouts/form-claim-badge.njk
+layout: layouts/page.njk
 _template: page
 ---
 
