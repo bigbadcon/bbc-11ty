@@ -9,7 +9,7 @@
   :style="(modal) && 'overflow: hidden; height: 100vh;'"
   >
         <div class="relative z-10">
-            <div class="grid min-h-screen grid-rows-min-content-auto bg-gradient-start">
+            <div class="flex flex-col min-h-screen grid-rows-min-content-auto bg-gradient-start">
                 {# Header with branding and nav #}
                 <div class="header-wrapper bg-header-bg">
                     {% block header %}
@@ -37,7 +37,7 @@
                         <rect fill="url(#wave-pattern)" stroke="transparent" width="4000" height="18"/>
                     </svg>
                 </div>
-                <div class="relative content-wrapper bg-gradient-start bg-gradient-to-b from-gradient-start via-gradient-mid via-[100px] to-gradient-end pt-md pb-lg" >
+                <div class="relative content-wrapper bg-gradient-start bg-gradient-to-b from-gradient-start via-gradient-mid via-[100px] to-gradient-end pt-md pb-lg grow" >
                     {# Login / Account Button #}
                     {% if sitemeta.dataService %}
                         <button @click.stop="modal = (authToken) ? 'My Account' : 'Login'" 
