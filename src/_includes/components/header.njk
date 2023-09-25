@@ -60,7 +60,7 @@
                             {% if group | length > 1 %}
                                 <div @click.away="open = false" @keydown.window.escape="open = false" class="relative" x-data="{ open: false }">
                                     <button @click="open = !open"
-                  class="flex flex-row items-center w-full text-left rounded py-2xs pl-2xs md:w-auto md:inline md:mt-0 focus:outline-none focus:underline underline-offset-4 decoration-highlight"
+                  class="flex flex-row items-center w-full text-left rounded py-2xs pl-2xs md:w-auto md:inline md:mt-0 focus:outline-none focus:underline hover:underline underline-offset-4 decoration-highlight"
                   aria-haspopup="true"
                   :aria-expanded="open"
                   id="{{ key | slugify }}">
