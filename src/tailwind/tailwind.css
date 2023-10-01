@@ -502,7 +502,7 @@ a[class^="icon-"]:hover {
 
 .modal-wrapper {
 	@apply fixed inset-0 z-50 flex items-center justify-center bg-backdrop backdrop-blur;
-    background-image: url(/static/images/bbc-stars.svg);
+    /* background-image: url(/static/images/bbc-stars.svg); */
 }
 
 .modal-panel {
