@@ -506,7 +506,7 @@ a[class^="icon-"]:hover {
 }
 
 .modal-panel {
-	@apply flex flex-col transition-all rounded-lg shadow-xl border-4 border-card p-base bg-header-bg max-w-[90%] max-h-[90%] w-96;
+	@apply flex flex-col transition-all rounded-lg shadow-xl border-4 border-card p-base bg-header-bg max-w-[90%] max-h-[90%] w-96 relative z-10;
 }
 
 .modal-header {

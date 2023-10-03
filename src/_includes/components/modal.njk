@@ -10,6 +10,7 @@ x-init="$watch('modal',val => { if (isAuth && val === 'My Account') { getUserDat
 @get-user-data.window="getUserData()"
 @get-booked-events.window="getBookedEvents()"
 >
+    <img src="/static/images/bbc-stars.svg" alt=" " class="absolute top-0 left-0 object-cover w-full h-full cursor-pointer motion-reduce:hidden">
     {# Panel Loading Spinner #}
     <div id="modal-loading" class="modal-panel" x-show="modal === 'Loading'" @click.stop>
         <div class="inline-flex items-center italic font-bold gap-sm py-xs">
