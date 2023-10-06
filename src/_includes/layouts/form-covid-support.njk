@@ -13,7 +13,7 @@
                         <em>required field</em>
                     </p>
                 </header>
-                <form class="prose mt-base" id="form" method="post" action="/.netlify/functions/submit-covid-support" x-validate x-data={financialSupport:false} @pageshow.window="$el.reset()" @submit="$validate.submit()">
+                <form class="prose mt-base" id="form" method="post" action="/.netlify/functions/submit-covid-support" x-validate @pageshow.window="$el.reset()" @submit="$validate.submit()">
                     {# Honeypot #}
                     <div class="hidden">
                         <label for="fax_number">Fax Number</label>
@@ -39,15 +39,15 @@
                         <h3>Financial Support</h3>
                         <p>We can offer limited financial support (up to $100 USD) for those affected financially by exposure to COVID-19 at BBC.</p>
                         <div class="flex items-center justify-start">
-                            <label for="financial_support"><input type="checkbox" name="financial_support" id="financial_support" value="yes" x-model="financialSupport">
+                            <label for="financial_support"><input type="checkbox" name="financial_support" id="financial_support" value="yes" >
                                     I'd like to request financial support</label>
                         </div>
                     </fieldset>
-                    <fieldset x-cloak x-show="financialSupport" x-transition>
+                    <fieldset x-cloak x-show="$validate.value('financial_support')" x-transition>
                         <legend>Financial Support</legend>
                         <div class="required">
                             <label for="amount_requested">Amount Requested</label>
-                            <select name="amount_requested" id="amount_requested" x-required="financialSupport">
+                            <select name="amount_requested" id="amount_requested" :required="$validate.value('financial_support') === 'yes'">
                                 <option value="" disabled selected>-- Choose One --</option>
                                 <option>$25</option>
                                 <option>$50</option>
@@ -57,7 +57,7 @@
                         </div>
                         <div class="required">
                             <label for="preferred_payment_method">Preferred Payment Method</label>
-                            <select name="preferred_payment_method" id="preferred_payment_method" x-required="financialSupport">
+                            <select name="preferred_payment_method" id="preferred_payment_method" :required="$validate.value('financial_support') === 'yes'">
                                 <option value="" disabled selected>-- Choose One --</option>
                                 <option value="paypal">Paypal</option>
                                 <option value="check">Check (USA only)</option>
@@ -66,20 +66,20 @@
                     </fieldset>
                     <fieldset>
                         <legend>Personal Info</legend>
-                        <p x-cloak x-show="!financialSupport" class="">Any and all personal info you'd like to provide is optional.</p>
-                        <p x-cloak x-show="financialSupport" class="!mt-0 font-bold">Personal info is required if you are requesting financial support.</p>
+                        <p x-cloak x-show="!$validate.value('financial_support') === 'yes'" class="">Any and all personal info you'd like to provide is optional.</p>
+                        <p x-cloak x-show="$validate.value('financial_support') === 'yes'" class="!mt-0 font-bold">Personal info is required if you are requesting financial support.</p>
                         <p class="italic">All contact tracing will be anonymous.</p>
-                        <div :class="financialSupport && 'required'">
+                        <div :class="$validate.value('financial_support') === 'yes' && 'required'">
                             <label for="name">Name</label>
-                            <input type="text" name="name" id="name" value="" x-required="financialSupport">
+                            <input type="text" name="name" id="name" value="" :required="$validate.value('financial_support') === 'yes'">
                         </div>
-                        <div :class="financialSupport && 'required'">
+                        <div :class="$validate.value('financial_support') === 'yes' && 'required'">
                             <label for="phone">Phone</label>
-                            <input type="tel" name="phone" id="phone" value="" x-required="financialSupport">
+                            <input type="tel" name="phone" id="phone" value="" :required="$validate.value('financial_support') === 'yes'">
                         </div>
-                        <div :class="financialSupport && 'required'">
+                        <div :class="$validate.value('financial_support') === 'yes' && 'required'">
                             <label for="email">Email</label>
-                            <input type="email" name="email" id="email" value="" x-required="financialSupport">
+                            <input type="email" name="email" id="email" value="" :required="$validate.value('financial_support') === 'yes'">
                         </div>
                         <div x-show="$formData.preferred_payment_method.value === 'paypal'" x-transition>
                             <label for="paypal_email">Paypal Email, if different than above</label>
@@ -87,7 +87,7 @@
                         </div>
                         <div class="required" x-show="$formData.preferred_payment_method.value === 'check'" x-transition>
                             <label for="address">Address to send check</label>
-                            <textarea name="address" id="address" cols="30" rows="3" x-required="$formData.preferred_payment_method.value === 'check'"></textarea>
+                            <textarea name="address" id="address" cols="30" rows="3" :required="$validate.value('preferred_payment_method') === 'check'"></textarea>
                         </div>
                         <div>
                             <label for="other">Any other info we should know</label>
