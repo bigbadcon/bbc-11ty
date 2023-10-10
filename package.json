@@ -78,6 +78,7 @@
 		"stripe": "^13.9.0",
 		"tailwindcss": "latest",
 		"tinacms": "^1.5.21",
+		"urlpattern-polyfill": "^9.0.0",
 		"utf8": "^3.0.0",
 		"uuid": "^9.0.1",
 		"windows-1252": "1.1.0"
