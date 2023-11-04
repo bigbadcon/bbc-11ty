@@ -282,6 +282,13 @@ module.exports = (eleventyConfig) => {
 		return `https://${mastodon[2]}/@${mastodon[1]}`;
 	});
 
+	// TODO: fix this
+	// Bluesky link filter
+	// https://bsky.app/profile/seannittner.bsky.social
+	eleventyConfig.addFilter("blueskyLink", (handle) => {
+		return `https://bsky.app/profile/${handle}`;
+	});
+
 	/* -------------------------------------------------------------------------- */
 	/*                                 Shortcodes                                 */
 	/* -------------------------------------------------------------------------- */

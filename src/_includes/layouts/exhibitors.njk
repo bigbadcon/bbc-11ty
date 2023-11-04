@@ -1,5 +1,4 @@
 {% extends 'layouts/base.njk' %}
-{% import 'components/bio-card.njk' as biocard %}
 
 {% block content %}
     <main id="content">
@@ -12,7 +11,9 @@
                     <header class="grid gap-6 sm:grid-cols-3 bg-header-bg p-base rounded-t-xl">
                         <div>
                             <figure class="rounded aspect-w-1 aspect-h-1" >
-                                <img class="block object-cover object-center w-full h-full rounded-md "  src="{{exhibitor.data.logo}}" alt="logo of {{ exhibitor.data.name }}">
+                                {% if exhibitor.data.logo %}
+                                    <img class="block object-cover object-center w-full h-full rounded-md "  src="{{exhibitor.data.logo}}" alt="logo of {{ exhibitor.data.name }}">
+                                {% endif %}
                             </figure>
                         </div>
                         <div class="sm:col-span-2">
@@ -35,7 +36,9 @@
                         </div>
                     </header>
                     <div class="py-base px-base">
-                        <div class="prose ">{{ exhibitor.templateContent | safe }}</div>
+                        {% if exhibitor.templateContent %}
+                            <div class="prose ">{{ exhibitor.templateContent | safe }}</div>
+                        {% endif %}
                     </div>
                 </article>
             {% endfor %}

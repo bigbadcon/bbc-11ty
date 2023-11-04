@@ -7,7 +7,7 @@ _template: footer
 
 [@bigbadcon@dice.camp](https://dice.camp/@bigbadcon){.icon-mastodon}
 
-[@bigbadcon](https://twitter.com/bigbadcon){.icon-twitter}
+[Big Bad Con](https://www.facebook.com/BigBadCon/){.icon-facebook}
 
 [Join Our Discord](/community-discord){.icon-discord}
 

@@ -12,14 +12,35 @@
                     <span class="font-bold text-body">{{person.data.gender}}</span></h2>
                 <h3 class="font-serif text-3xl leading-none text-header mb-base">{{ person.data.position }}</h3>
                 <ul>
-                    {% if person.data.twitter %}
-                        <li>
-                            <a href="https://twitter.com/{{person.data.twitter}}" class="icon-twitter mb-xs">@{{person.data.twitter}}</a>
-                        </li>
-                    {% endif %}
+
                     {% if person.data.mastodon %}
                         <li>
                             <a href="{{person.data.mastodon | mastodonLink}}" class="icon-mastodon mb-xs">{{person.data.mastodon}}</a>
+                        </li>
+                    {% endif %}
+                    {% if person.data.bluesky %}
+                        <li>
+                            <a href="https://bluesky.app/profile/{{person.data.bluesky}}" class="icon-bluesky mb-xs">{{person.data.bluesky}}</a>
+                        </li>
+                    {% endif %}
+                    {% if person.data.twitch %}
+                        <li>
+                            <a href="https://www.twitch.tv/{{person.data.twitch}}" class="icon-twitch mb-xs">{{person.data.twitch}}</a>
+                        </li>
+                    {% endif %}
+                    {% if person.data.instagram %}
+                        <li>
+                            <a href="https://www.instagram.com/{{person.data.instagram}}" class="icon-instagram mb-xs">{{person.data.instagram}}</a>
+                        </li>
+                    {% endif %}
+                    {% if person.data.facebook %}
+                        <li>
+                            <a href="https://www.facebook.com/{{person.data.facebook}}" class="icon-facebook mb-xs">{{person.data.facebook}}</a>
+                        </li>
+                    {% endif %}
+                    {% if person.data.twitter %}
+                        <li>
+                            <a href="https://twitter.com/{{person.data.twitter}}" class="icon-twitter mb-xs">@{{person.data.twitter}}</a>
                         </li>
                     {% endif %}
                     {% if person.data.website_url %}

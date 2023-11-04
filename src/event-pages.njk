@@ -165,11 +165,6 @@ eleventyComputed:
         <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, event.metadata.room, 'outlook' %}">Outlook</a>
     </div>
     <div class="text-sm">
-        {% set tweeturl = "https://twitter.com/intent/tweet?text=Check+out+this+event+at+BigBadCon!+https://www.bigbadcon.com/events/" + event.eventSlug %}
-
-        <a class="icon-twitter" href="{{tweeturl}}">Tweet This!</a>
-    </div>
-    <div class="text-sm">
         <a href="{{ogAPIImage | ogCacheBuster }}" class="icon-image">Social Image Card</a>
     </div>
 </div>
