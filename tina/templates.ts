@@ -1,4 +1,47 @@
 import type { TinaField } from "tinacms";
+
+const socials = [
+	{
+		type: "string",
+		name: "twitter",
+		label: "X (formerly known as twitter) handle without the @",
+	},
+	{
+		type: "string",
+		name: "mastodon",
+		label: "mastodon handle (full handle: @name@server.place)",
+	},
+	{
+		type: "string",
+		name: "bluesky",
+		label: "bluesky handle",
+	},
+	{
+		type: "string",
+		name: "twitch",
+		label: "twitch handle",
+	},
+	{
+		type: "string",
+		name: "instagram",
+		label: "instagram handle",
+	},
+	{
+		type: "string",
+		name: "facebook",
+		label: "facebook handle (name or page name for facebook link. If you reach your page with facebook.com/catgame then your handle is catgame",
+	},
+	{
+		type: "string",
+		name: "website_name",
+		label: "website name",
+	},
+	{
+		type: "string",
+		name: "website_url",
+		label: "website url (full url with https://)",
+	},
+];
 export function blogFields() {
 	return [
 		{
@@ -433,26 +476,7 @@ export function poc_scholarsFields() {
 			name: "image",
 			label: "image",
 		},
-		{
-			type: "string",
-			name: "twitter",
-			label: "twitter handle",
-		},
-		{
-			type: "string",
-			name: "mastodon",
-			label: "mastodon handle",
-		},
-		{
-			type: "string",
-			name: "website_name",
-			label: "website name",
-		},
-		{
-			type: "string",
-			name: "website_url",
-			label: "website url",
-		},
+		...socials,
 	] as TinaField[];
 }
 export function staffFields() {
@@ -497,26 +521,7 @@ export function staffFields() {
 			name: "image",
 			label: "image",
 		},
-		{
-			type: "string",
-			name: "twitter",
-			label: "twitter handle",
-		},
-		{
-			type: "string",
-			name: "mastodon",
-			label: "mastodon handle",
-		},
-		{
-			type: "string",
-			name: "website_name",
-			label: "website name",
-		},
-		{
-			type: "string",
-			name: "website_url",
-			label: "website url",
-		},
+		...socials,
 	] as TinaField[];
 }
 export function guestFields() {
@@ -548,26 +553,7 @@ export function guestFields() {
 			name: "image",
 			label: "image",
 		},
-		{
-			type: "string",
-			name: "twitter",
-			label: "twitter handle",
-		},
-		{
-			type: "string",
-			name: "mastodon",
-			label: "mastodon handle",
-		},
-		{
-			type: "string",
-			name: "website_name",
-			label: "website name",
-		},
-		{
-			type: "string",
-			name: "website_url",
-			label: "website url",
-		},
+		...socials,
 	] as TinaField[];
 }
 export function exhibitorFields() {
@@ -593,31 +579,7 @@ export function exhibitorFields() {
 			name: "logo",
 			label: "logo",
 		},
-		{
-			type: "string",
-			name: "twitter",
-			label: "twitter handle",
-		},
-		{
-			type: "string",
-			name: "mastodon",
-			label: "mastodon handle",
-		},
-		{
-			type: "string",
-			name: "instagram",
-			label: "instagram handle",
-		},
-		{
-			type: "string",
-			name: "website_name",
-			label: "website name",
-		},
-		{
-			type: "string",
-			name: "website_url",
-			label: "website url",
-		},
+		...socials,
 	] as TinaField[];
 }
 export function globalFields() {
