@@ -1,8 +1,7 @@
 ---
 title: How to Attend
 order: -1
-tags: cards
-published: true
+published: false
 image: ''
 alt: ''
 ---
