@@ -1,7 +1,6 @@
 ---
 title: Volunteer
 order: 1
-tags: cards
 published: false
 ---
 
@@ -10,7 +9,5 @@ published: false
 Join the Rangers:
 
 [Learn about the Rangers](https://www.bigbadcon.com/rangers/){.icon-paw}
-
-**All our volunteer shifts are full.** Thank you to all of our rangers!
 
 <!--[Sign up to help!](https://www.bigbadcon.com/volunteer-shifts/){.icon-pencil-square}--> 
