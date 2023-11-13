@@ -1,7 +1,7 @@
 ---
 title: Virtual Office Hours
 order: -2
-published: false
+published: true
 image: /images/2.png
 alt: Virtual Office Hours
 ---
