@@ -1,4 +1,5 @@
 ---
+tags: pages
 layout: layouts/home.njk
 title: Big Bad Con
 published: true
@@ -6,7 +7,6 @@ description: >-
   Big Bad Con is a tabletop and live action gaming convention featuring
   fantastic games and even better company! We’re a volunteer run 501c3
   non-profit!
-tags: pages
 ogImage: ''
 navGroup: ''
 navTitle: ''
@@ -15,18 +15,9 @@ icon: ''
 _template: page
 ---
 
-**Update: Big Bad Con 2023 is sold out and we will not be accepting walk-ins.** We thank everyone who has contributed to making this year incredible. We have now reached capacity and will not have badges for sale on-line or in-person. If we missed you this year, we hope you can make it in 2024!
+### Big Bad Con is complete!
 
-Hyatt Regency San Francisco Airport\
-1333 Old Bayshore Hwy\
-Burlingame, CA 94010
-
-* Thursday 6PM-12AM (Social Events)
-* Friday 9AM-12AM (Games and Events)
-* Saturday 9AM-12AM (Games and Events)
-* Sunday 9AM-8PM (Games and Events)
-
-Big Bad Con welcomes attendees 13 years and older.
+Thank you all for your incredible support. Stay tuned for information about Big Bad Online and Big Bad Con in 2024.
 
 <!--## Big Bad Con 2023
 
