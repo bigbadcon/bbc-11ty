@@ -2,7 +2,7 @@
 title: Big Bad World
 date: 2016-10-28T00:00:00.000Z
 published: true
-coverImage: /imagesBig-Bad-World-1.0.jpg
+coverImage: ''
 ---
 
 ****![](</images/Big Bad World.jpg>)
