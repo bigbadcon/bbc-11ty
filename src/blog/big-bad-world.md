@@ -1,14 +1,13 @@
 ---
 title: Big Bad World
-tags: blog
-published: true
 date: 2016-10-28T00:00:00.000Z
-categories:
-  - the-making-of
+published: true
 coverImage: /imagesBig-Bad-World-1.0.jpg
 ---
 
-[![Big Bad World 1.0](/images/Big-Bad-World-1.0-232x300.jpg)](/images/Big-Bad-World-1.0.jpg)**Big Bad World is a meta-game that we created for Big Bad Con 2016.** To play, attendees select from the basic playbooks (Ambassador, Explorer, Mage, Rogue, Alchemist, or Tracker) and slide the playbooks behind their badge. On the front of the playbooks are our principles of play:
+****![](</images/Big Bad World.jpg>)
+
+**Big Bad World is a meta-game that we created for Big Bad Con 2016.** To play, attendees select from the basic playbooks (Ambassador, Explorer, Mage, Rogue, Alchemist, or Tracker) and slide the playbooks behind their badge. On the front of the playbooks are our principles of play:
 
 * Think about the well-being of those around you.
 * Address yourself to the other attendees.
@@ -22,9 +21,9 @@ Mark XP when you... ...introduce someone to a group of people. ...play a game yo
 
 After the players have marked their fifth XP, they can turn in their playbook, get a shiny pin showing the playbook was completed, and get a new playbook! Once all basic playbooks are completed, our attendees can move onto the *Advanced Playbooks*, Wolf and Little Red.
 
-[![2016-10-31 07.05.20](/images/2016-10-31-07.05.20-300x267.jpg)](/images/2016-10-31-07.05.20.jpg)**If you're interested in running Big Bad World at your convention:**
+**If you're interested in running Big Bad World at your convention:**
 
-* Here are the [playbooks](https://drive.google.com/drive/search?q=big%20bad%20world).
+* Here are the [playbooks](https://drive.google.com/file/d/1giveOz4-X9aua64Ggh39IX-OcKk226da/view?usp=sharing).
 * This is the [initial planning document](https://docs.google.com/document/d/1irKobG3S7_-Po_1UIZAm1bMuH6U0HVGTBqdb6uroW7I/edit#).
 * If you'd like to modify the playbooks for your own use here's the [InDesign package](https://drive.google.com/file/d/1wB9xaQ2zT-G5gl7wM78MA-KVIsEerwnO/view?usp=sharing). If you do end up changing them, email [info@bigbadcon.com](mailto:info@bigbadcon.com) to let us know what you did with them! we're excited to hear stories how they work for you!
 
