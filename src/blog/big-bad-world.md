@@ -5,7 +5,7 @@ published: true
 coverImage: ''
 ---
 
-****![](</images/Big Bad World.jpg>)
+![](</images/Big Bad World_Ambassador.jpg>)
 
 **Big Bad World is a meta-game that we created for Big Bad Con 2016.** To play, attendees select from the basic playbooks (Ambassador, Explorer, Mage, Rogue, Alchemist, or Tracker) and slide the playbooks behind their badge. On the front of the playbooks are our principles of play:
 
