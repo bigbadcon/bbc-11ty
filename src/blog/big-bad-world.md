@@ -7,10 +7,10 @@ coverImage: ''
 
 ![](</images/Big Bad World_Ambassador.jpg>)
 
-**Big Bad World is a meta-game that we created for Big Bad Con 2016.** To play, attendees select from the basic playbooks (Ambassador, Explorer, Mage, Rogue, Alchemist, or Tracker) and slide the playbooks behind their badge. On the front of the playbooks are our principles of play:
+**Big Bad World is a meta-game that we created for Big Bad Con 2016.** To play, attendees select from the basic playbooks (Ambassador, Explorer, Mage, Rogue, Alchemist, Ascetic or Lorekeeper) and slide the playbooks behind their badge. On the front of the playbooks are our principles of play:
 
 * Think about the well-being of those around you.
-* Address yourself to the other attendees.
+* We respect each other's boundaries.
 * Make room for others at the table.
 * Shine the spotlight on your fellow players.
 * Learn everyone’s name, let them be human.
@@ -30,6 +30,12 @@ After the players have marked their fifth XP, they can turn in their playbook, g
 The goal is to gamify a way to promote the behaviors we want to see at the con. Something that won’t feel like a list of “Thou shalt…” and instead feel like a fun way to invite, encourage, and for some people permit good behavior (i.e. someone might be too shy to introduce themselves to a stranger, but of the game tells you that you get XP for doing it, they may feel more comfortable trying it).
 
 Big Bad World, Powered by the Apocalypse.
+
+### Updates
+
+* 2019 - Alchemist and Tracker playbooks added
+* 2022 - Ascetic playbook added. Layout updated.
+* 2023 - Lorekeeper playbook added. Basic moves updated.
 
 **Variations other cons have made**
 
