@@ -41,6 +41,7 @@ eleventyComputed:
     <div class="text-2xl font-semibold leading-snug text-highlight pr-base">
         {{ event.metadata.GM }}
     </div>
+
     <div class="not-prose">
         <ul class="flex justify-start text-sm gap-xs">
             {% for category in event.categories %}
@@ -128,6 +129,32 @@ eleventyComputed:
         {% endif %}
     </div>
 {% endif %}
+{# Add another GM (only shown for logged in users who is a gm for this event) #}
+{% set facilitatorTitle = "GM" %}
+{% if event.metadata.System === "Panel" %}
+    {% set facilitatorTitle = "Panelist" %}
+{% endif %}
+<div x-cloak x-show="user && isGm(user.id)" class="prose rounded-md my-base bg-card p-base" 
+        x-data="{gmGuidLink: '' }"
+        x-init="if (user && gm && gm.some(gm => gm.user.id === user.id)) gmGuidLink = await getAddtlGMCode({{event.eventId}})">
+    <h3>Add Another {{facilitatorTitle}}</h3>
+    <p>
+        <strong>You are a {{facilitatorTitle}} for this event.</strong> If you need to add another {{facilitatorTitle}}, send them the following link which they can use to add themselves to the event.</p>
+    <p>
+        <a :href="gmGuidLink" x-text="gmGuidLink"></a>
+    </p>
+    <p>
+        <button class="button" type="button" @click="navigator.clipboard.writeText(gmGuidLink)">Copy Link</button>
+    </p>
+</div>
+{# Add Yourself as a GM: only shown if the guid is on the link #}
+<div x-cloak x-show="user && !isGm(user.id) && getEventGUID()" class="prose rounded-md my-base bg-card p-base" >
+    <h3>Add Yourself as a {{facilitatorTitle}}</h3>
+    <p>You have been given a link code to add yourself as a {{facilitatorTitle}} to this event. To add yourself click "Add Me To Event" below.</p>
+    <p>
+        <button class="button" type="button" @click="addAsGm({{event.eventId}}, getEventGUID())">Add Me To Event</button>
+    </p>
+</div>
 {# Event Signup / Booking #}
 {# TODO: make this visible for all when events open. Figure out a way to set this automatically. #}
 {# TODO: when do we want event signups to start? 9/25 12pm PT #}

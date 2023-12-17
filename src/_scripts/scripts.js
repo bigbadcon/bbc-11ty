@@ -94,6 +94,8 @@ async function fetchData(url, options, authToken) {
 
 	if (options.body) options.body = JSON.stringify(options.body);
 
+	console.log("fetchData", url, options);
+
 	try {
 		let response = await fetch(apiBaseUrl + url, options);
 		// eslint-disable-next-line no-console
@@ -428,6 +430,13 @@ document.addEventListener("alpine:init", () => {
 		},
 	});
 
+	/* TODO: convert above to custom elements
+	 * 1. element for loading all spaces and storing in localStorage.
+	 * 2. element to display event space using localStorage
+	 *    a. with option to trigger getSpace() method to retrieve from API the event space and update if changed. This is useful for the event page.
+	 *    b. getSpace() needs to be a public async method. This is useful for when booking is triggered.
+	 */
+
 	/* -------------------------------------------------------------------------- */
 	/*                             Alpine Event Table                             */
 	/* -------------------------------------------------------------------------- */
@@ -645,11 +654,15 @@ document.addEventListener("alpine:init", () => {
 		// See init on page
 		return {
 			id: 0, // this is filled in in nunjucks
-			categories: [], // this is filled in in nunjucks
+			categories: [], // this is filled in nunjucks
 			maxSpaces: null, // this is filled in nunjucks; it is either a number or null, which mean "Any"
 			bookings: [],
 			gm: [],
 			event_image: "",
+			isGm(userId) {
+				if (!userId) return false;
+				return this.gm.some((gm) => gm.user.id === userId);
+			},
 			async getEventInfo(id) {
 				id = id || this.id;
 				let eventsLS = JSON.parse(localStorage.getItem("events")) || {};
@@ -658,6 +671,7 @@ document.addEventListener("alpine:init", () => {
 					this.bookings = eventsLS[id].bookings;
 					this.gm = eventsLS[id].gm;
 					this.event_image = eventsLS[id].event_image;
+					this.categories = eventsLS[id].categories;
 				}
 
 				try {
@@ -689,12 +703,14 @@ document.addEventListener("alpine:init", () => {
 							.sort((a, b) => a.user.displayName.localeCompare(b.user.displayName)) || [];
 					// get event_image
 					this.event_image = metadata.event_image;
+					this.categories = data.categories.map((cat) => cat.name);
 
 					/* -------------------------- Update Local Storage -------------------------- */
 					eventsLS[id] = {
 						bookings: this.bookings,
 						gm: this.gm,
 						event_image: this.event_image,
+						categories: this.categories,
 					};
 					localStorage.setItem("events", JSON.stringify(eventsLS));
 				} catch (e) {
@@ -738,6 +754,33 @@ document.addEventListener("alpine:init", () => {
 					preview.style.display = "block";
 					button.style.display = "inline-block";
 				}
+			},
+			getEventGUID() {
+				// Function to check Event GUID on page load
+				if (location.search) {
+					const params = new URLSearchParams(location.search);
+					let gmGuid = params.get("guid");
+					if (gmGuid) {
+						return gmGuid;
+					}
+				}
+				return false;
+			},
+			async getAddtlGMCode(eventId) {
+				const result = await lilRed.events.getAddtlGMCode(eventId);
+				return result && `${window.location.href}?guid=${result}`;
+			},
+			async addAsGm(eventId, gmGuid) {
+				console.log("addAsGm", eventId, gmGuid);
+				if (!gmGuid) return;
+				const result = await lilRed.bookings.addAsAddtlGM(eventId, gmGuid);
+				if (result) {
+					location.reload();
+				}
+				return result;
+			},
+			hello() {
+				console.log("hello");
 			},
 		};
 	});
