@@ -7,6 +7,8 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const googleSheetId = process.env.GOOGLE_SHEET_RUN_AN_EVENT;
 
+//TODO: Fix this google auth issue https://stackoverflow.com/questions/76910780/typeerror-doc-useserviceaccountauth-is-not-a-function
+
 exports.handler = async function (event) {
 	if (event.httpMethod === "POST") {
 		/* -------------------------------------------------------------------------- */

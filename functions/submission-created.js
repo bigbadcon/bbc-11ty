@@ -19,20 +19,10 @@ exports.handler = async function (event, context) {
 	/* -------------------------------------------------------------------------- */
 	if (data.formName === "create-account") {
 		console.log("create account function start");
-		const {
-			displayName,
-			firstName,
-			lastName,
-			nickname,
-			userEmail,
-			userNicename,
-			userLogin,
-			userPass,
-			twitter,
-		} = data;
+		const { displayName, firstName, lastName, nickname, userEmail, userNicename, userLogin, userPass, twitter } =
+			data;
 
-		const properNickname =
-			!nickname || nickname === "" ? displayName : nickname;
+		const properNickname = !nickname || nickname === "" ? displayName : nickname;
 
 		const params = {
 			displayName: displayName,
@@ -56,7 +46,6 @@ exports.handler = async function (event, context) {
 
 		let token = null;
 		let isUser = false;
-		let auth = token;
 
 		try {
 			console.log("1. try login");
@@ -74,21 +63,14 @@ exports.handler = async function (event, context) {
 		try {
 			console.log("2. try check username");
 			const config = { headers: { Authorization: token } };
-			const res = await axios.get(
-				apiBaseUrl + `users/username/${userNicename}`,
-				config
-			);
+			const res = await axios.get(apiBaseUrl + `users/username/${userNicename}`, config);
 
 			if (res.status === 200) {
 				isUser = true;
 			} else {
 			}
 		} catch (err) {
-			console.log(
-				"User does not exist",
-				err.response.config.url,
-				err.response.status
-			);
+			console.log("User does not exist", err.response.config.url, err.response.status);
 		}
 
 		// If there isn't a user with that name then create it. If not send an email indicating that the user exists
@@ -98,17 +80,9 @@ exports.handler = async function (event, context) {
 			/* -------------------------------------------------------------------------- */
 			try {
 				console.log("3a. try create user");
-				const res = await axios.put(
-					apiBaseUrl + "users/create",
-					params
-				);
+				const res = await axios.put(apiBaseUrl + "users/create", params);
 				// console.log("put response", res);
-				console.log(
-					"New user successfully created for",
-					userNicename,
-					userEmail,
-					displayName
-				);
+				console.log("New user successfully created for", userNicename, userEmail, displayName);
 
 				/* -------------------------------------------------------------------------- */
 				/*                     If successful try above send emails                    */
@@ -210,8 +184,7 @@ exports.handler = async function (event, context) {
 					text: `The user ${displayName} attempted but failed to create an account due to the same username ${userNicename} already being in the system. They have been emailed explaining this. Email: ${userEmail}; Full name: ${firstName} ${lastName}; userNicename: ${userNicename}`,
 					html: `The user ${displayName} attempted but failed to create an account due to the same username ${userNicename} already being in the system. They have been emailed explaining this. Email: ${userEmail}; Full name: ${firstName} ${lastName}; userNicename: ${userNicename}`,
 				};
-				if (environment === "production")
-					await sgMail.send(newUserAdminMsg);
+				if (environment === "production") await sgMail.send(newUserAdminMsg);
 
 				// finalize function
 				return {
@@ -236,17 +209,12 @@ exports.handler = async function (event, context) {
 		console.log(process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"));
 		try {
 			// Initialize the sheet - doc ID is the long id in the sheets URL
-			const doc = new GoogleSpreadsheet(
-				process.env.GOOGLE_SHEET_REGISTER_BIGBADONLINE
-			);
+			const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_REGISTER_BIGBADONLINE);
 
 			// Initialize Auth - see more available options at https://theoephraim.github.io/node-google-spreadsheet/#/getting-started/authentication
 			await doc.useServiceAccountAuth({
 				client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-				private_key: process.env.GOOGLE_PRIVATE_KEY.replace(
-					/\\n/g,
-					"\n"
-				),
+				private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"),
 			});
 
 			await doc.loadInfo(); // loads document properties and worksheets
@@ -262,13 +230,9 @@ exports.handler = async function (event, context) {
 				userEmail: data.userEmail,
 				userNicename: data.userNicename,
 				userId: data.userId,
-				"Agree To Community Standards":
-					data["agree-to-community-standards"],
+				"Agree To Community Standards": data["agree-to-community-standards"],
 			});
-			console.log(
-				"🚀 ~ file: submission-created.js ~ line 149 ~ exports.handler=function ~ addedRow",
-				addedRow
-			);
+			console.log("🚀 ~ file: submission-created.js ~ line 149 ~ exports.handler=function ~ addedRow", addedRow);
 
 			// TODO: add Volunteer Role to any registered users. TEST THIS!!!
 			const body = {
@@ -279,11 +243,7 @@ exports.handler = async function (event, context) {
 			const headers = { headers: { "x-api-key": apiKey } };
 			console.log("addRoleToUser API POST", headers, body);
 			try {
-				const res = await axios.post(
-					apiBaseUrl + `users/addRoleToUser`,
-					body,
-					headers
-				);
+				const res = await axios.post(apiBaseUrl + `users/addRoleToUser`, body, headers);
 
 				if (res.status === 200) {
 					return {
@@ -297,10 +257,7 @@ exports.handler = async function (event, context) {
 					};
 				}
 			} catch (err) {
-				console.log(
-					"add user role for voluteer failed",
-					err.toString()
-				);
+				console.log("add user role for voluteer failed", err.toString());
 				return {
 					statusCode: 200,
 					body: "add user role for voluteer failed",
