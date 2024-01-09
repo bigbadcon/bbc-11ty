@@ -329,6 +329,7 @@ export function pageFields() {
 				"layouts/form-register.njk",
 				"layouts/form-run-games-on-demand.njk",
 				"layouts/form-run-an-event.njk",
+				"layouts/form-submit-a-panel.njk",
 				"layouts/form-suggest-event.njk",
 				"layouts/form-volunteer-signup.njk",
 				"layouts/poc-scholars.njk",
