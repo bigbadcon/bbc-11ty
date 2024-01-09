@@ -185,6 +185,10 @@ input[type="submit"],
 	@apply font-bold uppercase transition-colors duration-200 border-2 rounded shadow text-header-bg bg-highlight hover:bg-highlight-2 py-xs px-sm sm:px-base border-highlight;
 }
 
+.button.clicked {
+    @apply bg-body border-hr;
+}
+
 input[type="file"] {
 	@apply font-bold uppercase transition-colors duration-200 rounded shadow bg-card py-xs px-sm sm:px-base;
 }

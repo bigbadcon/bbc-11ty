@@ -663,6 +663,14 @@ document.addEventListener("alpine:init", () => {
 				if (!userId) return false;
 				return this.gm.some((gm) => gm.user.id === userId);
 			},
+			isOwner(userId) {
+				if (!userId) return false;
+				return this.owner === userId;
+			},
+			get gmString() {
+				if (this.gm.length === 0) return "";
+				return this.gm.map((gm) => gm.user.displayName).join(", ");
+			},
 			async getEventInfo(id) {
 				id = id || this.id;
 				let eventsLS = JSON.parse(localStorage.getItem("events")) || {};
@@ -670,6 +678,7 @@ document.addEventListener("alpine:init", () => {
 				if (eventsLS[id]) {
 					this.bookings = eventsLS[id].bookings;
 					this.gm = eventsLS[id].gm;
+					this.owner = eventsLS[id].owner;
 					this.event_image = eventsLS[id].event_image;
 					this.categories = eventsLS[id].categories;
 				}
@@ -696,6 +705,7 @@ document.addEventListener("alpine:init", () => {
 					/* ------------------------ Update all data variables ----------------------- */
 					// get only active bookings that are gms/speakers (bookingComment is null if not labelled)
 					this.gm = bookings.filter((booking) => booking.bookingComment) || [];
+					this.owner = data.eventOwner.id || "";
 					// get only active bookings that are not gms/speakers (bookingComment is null if not labelled)
 					this.bookings =
 						bookings
@@ -709,6 +719,7 @@ document.addEventListener("alpine:init", () => {
 					eventsLS[id] = {
 						bookings: this.bookings,
 						gm: this.gm,
+						owner: this.owner,
 						event_image: this.event_image,
 						categories: this.categories,
 					};
@@ -772,15 +783,12 @@ document.addEventListener("alpine:init", () => {
 			},
 			async addAsGm(eventId, gmGuid) {
 				console.log("addAsGm", eventId, gmGuid);
-				if (!gmGuid) return;
+				if (!gmGuid && this.gm.length >= 6) return;
 				const result = await lilRed.bookings.addAsAddtlGM(eventId, gmGuid);
 				if (result) {
 					location.reload();
 				}
 				return result;
-			},
-			hello() {
-				console.log("hello");
 			},
 		};
 	});
