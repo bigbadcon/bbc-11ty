@@ -62,6 +62,7 @@
 		"fast-glob": "^3.3.1",
 		"fs-extra": "^11.1.0",
 		"google-spreadsheet": "^4.1.0",
+		"husky": "^8.0.3",
 		"install": "^0.13.0",
 		"lite-youtube-embed": "^0.3.0",
 		"markdown-it": "^13.0.2",

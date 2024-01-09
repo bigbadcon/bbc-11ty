@@ -30,3 +30,4 @@ valsby.sh
 /playwright/.cache/
 
 node_modules
+.cache_ggshield
