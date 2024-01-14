@@ -15,11 +15,15 @@ icon: ''
 _template: page
 ---
 
-### Big Bad Con is complete!
+### Big Bad Online
+
+We excited to announce Big Bad Online will be April 5 6PM PDT to April 6 6PM PDT. More details including speakers and how you can support the event coming soon!
+
+<!--### Big Bad Con is complete!
 
 Thank you all for your incredible support. Stay tuned for information about Big Bad Online and Big Bad Con in 2024.
 
-<!--## Big Bad Con 2023
+## Big Bad Con 2023
 
 Dates: September 28 - October 1
 
