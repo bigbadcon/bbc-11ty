@@ -3,7 +3,6 @@ title: Brenden Sparks
 position: Facilities Ranger Captain
 tags:
   - staff
-  - staff-emeritus
 published: true
 gender: (he/him)
 order: 0
