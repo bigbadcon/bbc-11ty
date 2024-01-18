@@ -6,7 +6,7 @@ tags:
 published: true
 gender: (he/him)
 order: 0
-image: ''
+image: /images/James Mendez Hodes.png
 twitter: LulaVampiro
 website_name: jamesmendezhodes.com
 website_url: 'http://jamesmendezhodes.com/'
