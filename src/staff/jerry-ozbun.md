@@ -1,7 +1,8 @@
 ---
 title: Jerry Ozbun
-position: Setup and Breakdown Ranger Captain
-tags: staff
+position: Facilities Coordinator
+tags:
+  - staff
 published: true
 gender: he/him
 image: /images/Jerry Ozbun.png
