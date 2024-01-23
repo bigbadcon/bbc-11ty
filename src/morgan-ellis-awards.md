@@ -16,7 +16,7 @@ Morgan Ellis was a dear friend and treasured member of Big Bad Con who died in 2
 
 Morgan will continue on in our memories of him. Big Bad Online 2021 and Big Bad Con 2022 were dedicated in his honor. We also created an award in his name, the Big Bad Morgan Ellis Award (or BigBad-ME!)
 
-This award goes to folks who have gone above and beyond to support Big Bad Con, but more importantly to help the con grow and welcome new folks into the community.  We would normally give this award to a single GM but we’ve got 10 years of backlog to make up so in 2021 we gave the award to 10 very deserving recipients.
+This award goes to folks who have gone above and beyond to support Big Bad Con, but more importantly to help the con grow and welcome new folks into the community.  We would normally give this award to a one or two people, but when we created it we had 10 years of backlog to make up so in 2021 we gave the award to 10 very deserving recipients.
 
 **A note here**: There are so many rangers, coordinators, and other Big Bad staff members that we wanted to give this award to. While we’re not including any of the BBC staff, they all deserve incredible accolades for the countless hours, endless cheer, and dedication they have and continue to show.
 
