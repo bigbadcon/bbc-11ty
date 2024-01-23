@@ -43,7 +43,6 @@
 		"@netlify/node-cookies": "^0.1.0",
 		"@netlify/serverless-functions-api": "^1.8.0",
 		"@sendgrid/mail": "^7.7.0",
-		"@slack/bolt": "^3.14.0",
 		"@tailwindcss/aspect-ratio": "^0.4.2",
 		"@tailwindcss/forms": "^0.5.6",
 		"@tailwindcss/typography": "^0.5.10",
