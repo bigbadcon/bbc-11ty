@@ -41,6 +41,7 @@ exports.handler = async function (event, context) {
 		/*                                Login as Admin                              */
 		/* -------------------------------------------------------------------------- */
 
+		// TODO: fix this so it uses the API Key
 		const username = process.env.ADMIN_LOGIN;
 		const password = process.env.ADMIN_PASSWORD;
 

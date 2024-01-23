@@ -542,7 +542,26 @@
 
                         const apiData = {
                             //accessabilityOptions: formData.accessabilityOptions,  not used
-
+                            // Unused fields
+                            additionalGms: "",
+                            additionalRequirements: "",
+                            characters: "",
+                            contentAdvisory: false, // this is a boolean in the API so we are using 1000000 is no-content-advisory; selection info goes into the eventMetadataIds
+                            gmAge: "",
+                            length: "",
+                            minPlayers: "",
+                            otherInfo: "",
+                            playerAge: "",
+                            players: "",
+                            playtest: "",
+                            requestMediaEquipment: "",
+                            requestPrivateRoom: "", // add extra to additionalRequirements for now
+                            runNumberOfTimes: 1,
+                            safetyTools: "",
+                            schedulingPref: "",
+                            tableType: "",
+                            triggerWarnings: "",
+                            // END Unused
                             eventCategoryId: formData.eventCategoryId.value || 0,
                             eventDescription: formData.eventDescription.value,
                             //eventFacilitators: formData.facilitators,  not used
@@ -578,6 +597,7 @@
 
                         try {
                             // Submit to Little Red Event Manager
+
                             const lilRedResult = await lilRed
                                 .events
                                 .create(this.createEventAPIData)
@@ -591,12 +611,7 @@
                                     // Build data for google sheet
                                     const googleFormData = {
                                         ...this.createEventAPIData,
-                                        eventId: lilRedResult,
-                                        eventMetadataIds: this.createEventAPIData.eventMetadataIds && this
-                                            .createEventAPIData
-                                            .eventMetadataIds
-                                            .toString(),
-                                        eventMetadataNames: this.createEventAPIData.eventMetadataNamesString
+                                        eventId: lilRedResult
                                     }
 
                                     // Post to serverless function for Google Sheet

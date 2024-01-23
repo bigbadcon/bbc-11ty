@@ -61,6 +61,7 @@
 		"esbuild": "^0.19.4",
 		"fast-glob": "^3.3.1",
 		"fs-extra": "^11.1.0",
+		"google-auth-library": "^8.9.0",
 		"google-spreadsheet": "^4.1.0",
 		"install": "^0.13.0",
 		"lite-youtube-embed": "^0.3.0",
@@ -88,6 +89,6 @@
 		"@playwright/test": "^1.22.2",
 		"eslint": "^8.24.0",
 		"husky": "^8.0.3",
-		"netlify-cli": "^16.4.1"
+		"netlify-cli": "^17.15.1"
 	}
 }
