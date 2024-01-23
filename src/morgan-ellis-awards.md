@@ -1,14 +1,14 @@
 ---
+tags: pages
 layout: layouts/page.njk
 title: Morgan Ellis Award
 published: true
 description: ''
-tags: pages
+ogImage: ''
 navGroup: ''
+navTitle: ''
 order: null
 icon: ''
-ogImage: ''
-navTitle: ''
 _template: page
 ---
 
@@ -38,6 +38,7 @@ This award goes to folks who have gone above and beyond to support Big Bad Con, 
 * Hamish Cameron
 * Pam Punzalan
 
-2023 Big Bad Morgan Ellis award winner:
+2023 Big Bad Morgan Ellis award winners:
 
 * Elise Rezendes
+* Poorna Mazumdar
