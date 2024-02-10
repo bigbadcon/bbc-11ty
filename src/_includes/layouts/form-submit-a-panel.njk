@@ -86,7 +86,7 @@
                             {# END Event Info #}
 
                             <div class="prose pb-base">
-                                <p>If your event is approved, we'll send you information about how to add additional speakers (up to a total of 6).</p>
+                                <p class="font-bold">If your event is approved, we'll send you information about how to add additional speakers (up to a total of 6).</p>
                             </div>
                             <div x-show="submittingState === 'unsubmitted'">
                                 <button type="submit" :disabled="!$validate.isComplete('form')">Submit</button>
