@@ -113,8 +113,8 @@
                     {# event submitted #}
                     <div class="prose" x-show="submittingState === 'complete'" id="event-submitted">
                         <h2>Thanks for submitting your event!</h2>
-                        <p>Our staff will review your <span id="submit-format" x-text="$validate.data('format').value"></span> event, <span id="submit-name" x-text="$validate.data('eventName').value" class="italic font-bold"></span>, and let you know about scheduling it!</p>
-                        <p>You can <a href="/run-an-event">submit another event</a> now if you'd like.</p>
+                        <p>Our staff will review your panel, <span id="submit-name" x-text="$validate.data('eventName').value" class="italic font-bold"></span>, and let you know about scheduling it!</p>
+                        <p>You can <a href="/submit-a-panel">submit another panel</a> now if you'd like.</p>
                     </div>
                 </div>
                 {# END runAnEventData component #}
@@ -594,65 +594,68 @@
 
                         console.log("🚀 ~ file: form-run-an-event.njk ~ line 783 ~ submitEvent ~ createEventAPIData", this.createEventAPIData)
 
+                        let lilRedResult = undefined;
                         try {
                             // Submit to Little Red Event Manager
 
-                            const lilRedResult = await lilRed
+                            lilRedResult = await lilRed
                                 .events
                                 .create(this.createEventAPIData)
 
                             console.log("🚀 ~ file: form-run-an-event.njk ~ line 805 ~ submitEvent ~ lilRedResult", lilRedResult)
-
-                            // If result is a success it returns the event ID.
-                            if (lilRedResult && !isNaN(lilRedResult)) {
-
-                                try {
-                                    // Build data for google sheet
-                                    const googleFormData = {
-                                        ...this.createEventAPIData,
-                                        eventId: lilRedResult
-                                    }
-
-                                    // Post to serverless function for Google Sheet
-
-                                    const options = {
-                                        method: 'POST',
-                                        headers: {
-                                            'Content-Type': 'application/json;charset=utf-8'
-                                        },
-                                        body: JSON.stringify(googleFormData)
-                                    }
-
-                                    const url = "/.netlify/functions/submit-run-an-event"
-
-                                    let response = await fetch(url, options)
-                                    console.log(`RESPONSE:fetch for ${url}`, response)
-                                    if (!response || response.status !== 200) {
-                                        throw new Error(`fetch fail status: ${response && response.status}`)
-                                    }
-                                    let result = await response.json()
-                                    console.log(`RESULT:fetch for ${url}`, result)
-
-                                    this.$dispatch('toast', 'Event submitted!')
-                                    window.scroll({top: 0, behavior: 'smooth'});
-                                    this.submittingState = "complete"
-                                    form.reset()
-                                    return result
-                                } catch (err) {
-                                    console.error(`ERROR:fetch for ${url}`, err)
-                                    this.submittingState = "unsubmitted"
-                                    this.$dispatch('toast', 'ERROR: event submission to spreadsheet failed!')
-                                    return false
-                                }
-                            } else {
-                                this.$dispatch('toast', 'ERROR: event submission failed!')
-                                this.submittingState = "unsubmitted"
-                            }
                         } catch (e) {
                             this.submittingState = "unsubmitted"
                             console.log('ERROR:submitting form to /events/create', e)
                             this.$dispatch('toast', 'ERROR: event submission to Little Red Event Manager failed!')
                         }
+
+                        if (lilRedResult && !isNaN(lilRedResult)) {
+                            try {
+                                // Build data for google sheet
+                                const googleFormData = {
+                                    ...this.createEventAPIData,
+                                    eventId: lilRedResult
+                                }
+
+                                // Post to serverless function for Google Sheet
+
+                                const body = JSON.stringify(googleFormData)
+
+                                const options = {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json;charset=utf-8'
+                                    },
+                                    body
+                                }
+
+                                const url = "/.netlify/functions/submit-run-an-event"
+
+                                let response = await fetch(url, options)
+                                console.log(`RESPONSE:fetch for ${url}`, response)
+                                if (!response || response.status !== 200) {
+                                    throw new Error(`fetch fail status: ${response && response.status}`)
+                                }
+                                let result = await response.json()
+                                console.log(`RESULT:fetch for ${url}`, result)
+
+                                this.$dispatch('toast', 'Event submitted!')
+                                window.scroll({top: 0, behavior: 'smooth'});
+                                this.submittingState = "complete"
+                                form.reset()
+                                return result
+                            } catch (err) {
+                                console.error(`ERROR:fetch for ${url}`, err)
+                                this.submittingState = "unsubmitted"
+                                this.$dispatch('toast', 'ERROR: event submission to spreadsheet failed!')
+                                return false
+                            }
+                        } else {
+                            this.$dispatch('toast', 'ERROR: event submission failed!')
+                            this.submittingState = "unsubmitted"
+                        }
+
+                        // If result is a success it returns the event ID.
                     },
                     async uploadEventImage(form, eventId) {
                         // TODO: get this working
