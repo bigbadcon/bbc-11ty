@@ -59,6 +59,7 @@
                                 {# This value is updated with format select onChange since x-validate does not detect the change in :value automatically #}
 
                                 <input type="hidden" name="eventCategoryId" :value="formatId($validate.data('format').value)" x-init="$watch('$el',val => $validate.value(val,formatId($el.value)))" x-validate>
+                                <input type="hidden" name="players" :value="50" x-validate>
 
                                 <div class="required" x-data="{description:''}">
                                     <label for="eventName">Panel Name</label>
