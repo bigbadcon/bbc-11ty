@@ -1,10 +1,11 @@
 ---
 layout: layouts/page.njk
 title: Big Bad Timeline
-published: true
+published: false
 description: ''
 ogImage: ''
 _template: page
+event: 'in person'
 ---
 
 ## January

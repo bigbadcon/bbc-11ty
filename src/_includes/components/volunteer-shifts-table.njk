@@ -10,7 +10,7 @@
                 </template>
             </select>
         </div>
-        {% if global.isEventOnline %}
+        {% if global.event === "online" %}
             <div>{% include "components/timezone-select.njk" %}</div>
         {% endif %}
         <div class="flex flex-wrap items-center justify-start gap-xs"

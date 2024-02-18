@@ -1,13 +1,25 @@
 ---
-title: Rangers at Big Bad Con
-published: false
-location: rangers
-order: 1
+layout: layouts/page.njk
+title: Join The Rangers
+published: true
+permalink: rangers/
+description: ''
+tags: pages
+ogImage: ''
+navGroup: Volunteer
+navTitle: Join The Rangers
+order: null
+icon: paw
+nav title: ''
+event: 'in person'
+_template: page
 ---
+
+Rangers are the folks that make Big Bad Con possible! We're here to greet people when they arrive, get them registered, and help them find their way throughout the con. We also get to work with amazing folks. Rangers provide an atmosphere of calm during an otherwise hectic weekend of activities. Want to join us? Here's all the deets:
 
 **Free admission**: anyone who signs up for 8+ hours of volunteer shifts and/or running games gets a free 4-day badge to attend the con.
 
-### Big Bad Con Ranger Roles
+## Big Bad Con Ranger Roles
 
 Here's all the work we do. If you're ready to engage with our community, consider one of these roles!
 

@@ -1,13 +1,11 @@
-// TODO: add ability to see drafts in dev and on netlify either with branch or with preview link
 module.exports = {
-    published: true,
-    eleventyComputed: {
-        permalink: data => {
-            if (data.published !== true) {
-                return false
-            } else {
-                return data.permalink
-            }
-        }
-    }
-}
+	published: true,
+	eleventyComputed: {
+		permalink: (data) => {
+			if (data.published === true && (!data.event || data.event === "both" || data.global.event === data.event)) {
+				return data.permalink;
+			}
+			return false;
+		},
+	},
+};

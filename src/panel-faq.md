@@ -2,6 +2,7 @@
 layout: layouts/page.njk
 title: Panel and Workshop FAQ
 published: true
+event: 'in person'
 _template: page
 ---
 

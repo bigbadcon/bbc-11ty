@@ -5,8 +5,14 @@
         <div class="mx-auto max-w-content p-base">
             <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
             <div class="prose">{{ content | safe }}</div>
-            {% if global.showVolunteerShifts %}
+            {% if eventData.volunteer.length > 0 %}
                 {% include 'components/volunteer-shifts-table.njk' %}
+            {% else %}
+                <div class="prose my-base">
+                    <p>
+                        <em>There are no volunteer shifts currently posted. Please check back later.</em>
+                    </p>
+                </div>
             {% endif %}
         </div>
     </main>

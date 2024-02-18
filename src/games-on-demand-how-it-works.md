@@ -1,13 +1,14 @@
 ---
 layout: layouts/page.njk
 title: Games on Demand FAQ
-published: true
+published: false
 description: ''
 ogImage: ''
 navGroup: Events
 navTitle: Games on Demand
 order: null
 icon: games-on-demand
+event: 'in person'
 _template: page
 ---
 

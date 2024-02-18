@@ -12,12 +12,13 @@ navGroup: ''
 navTitle: ''
 order: null
 icon: ''
+event: 'both'
 _template: page
 ---
 
 ### Big Bad Online
 
-We are excited to announce Big Bad Online will be April 5 6PM PDT to April 6 6PM PDT. More details including speakers and how you can support the event coming soon!
+We are excited to announce Big Bad Online will be April 5 6PM PDT to April 6 6PM PDT. More details including speakers and how you can support the event coming soon! 
 
 <!--### Big Bad Con is complete!
 

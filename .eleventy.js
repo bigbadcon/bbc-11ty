@@ -156,6 +156,7 @@ module.exports = (eleventyConfig) => {
 				title: c.data.navTitle || c.data.title,
 				order: c.data.order,
 				icon: c.data.icon,
+				event: c.data.event,
 				url: c.url,
 			};
 		});

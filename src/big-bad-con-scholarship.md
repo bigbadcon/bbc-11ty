@@ -1,13 +1,14 @@
 ---
 layout: layouts/page.njk
 title: Big Bad Con Scholarship
-published: true
+published: false
 description: ''
 ogImage: ''
 navGroup: Attend
 navTitle: Scholarship
 order: 2
 icon: gift
+event: 'in person'
 _template: page
 ---
 

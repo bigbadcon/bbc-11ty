@@ -9,6 +9,7 @@ navTitle: ''
 order: null
 icon: ''
 _template: page
+event: 'both'
 ---
 
 <style type="text/css">

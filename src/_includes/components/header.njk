@@ -77,7 +77,9 @@
                                         <div class="rounded-md p-sm md:p-base bg-card md:bg-gradient-end md:ring-2 ring-highlight md:shadow-lg mb-xs">
                                             <div class="grid grid-cols-1 gap-sm md:gap-base">
                                                 {% for item in group %}
-                                                    <a href="{{item.url}}" class="icon-{{item.icon}} focus:outline-none focus:underline rounded">{{item.title}}</a>
+                                                    {% if item.event === 'both' or item.event === global.event %}
+                                                        <a href="{{item.url}}" class="icon-{{item.icon}} focus:outline-none focus:underline rounded">{{item.title}}</a>
+                                                    {% endif %}
                                                 {% endfor %}
                                             </div>
                                         </div>

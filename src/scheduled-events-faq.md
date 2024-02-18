@@ -2,6 +2,7 @@
 layout: layouts/page.njk
 title: Scheduled Events FAQ
 published: true
+event: 'in person'
 description: >-
   Information on submitting, scheduling, and signing up for events on our
   roster.

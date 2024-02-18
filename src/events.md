@@ -1,5 +1,5 @@
 ---
-layout: layouts/page.njk
+layout: layouts/events.njk
 title: Events
 published: true
 description: ''
@@ -8,6 +8,7 @@ navGroup: Events
 navTitle: Events
 order: 0
 icon: calendar-clock
+event: 'both'
 _template: page
 ---
 
@@ -21,4 +22,4 @@ _template: page
 
 [Panel and Workshop FAQ](https://www.bigbadcon.com/panel-faq/){.icon-light-bulb} -->
 
-Big Bad Online will be happening this Spring. We will announce more information as soon as available.
+Big Bad Online will be happening Apr 5 - Apr 6 2024. We will be populating the events list as panels are added.

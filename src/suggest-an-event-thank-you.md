@@ -5,6 +5,7 @@ published: true
 description: ''
 tags: pages
 _template: page
+event: 'online'
 ---
 
 All the entries will be reviewed by our coordinators before we reach out to prospective panelists.

@@ -5,18 +5,15 @@
         <div class="mx-auto max-w-hero p-base">
             <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
             <div class="prose max-w-content">{{ content | safe }}</div>
-            {% if global.showEvents %}
+            {% if eventData.events.length > 0 %}
                 {% include 'components/events-table.njk' %}
-            {% endif %}
-            {% if global.isEventOnline and global.showEventForm %}
-                <div class="mx-auto border-t-4 border-solid max-w-hero border-hr mt-md pt-base">
-                    <a href="/suggest-an-event" class="icon-light-bulb">Suggest an Event</a>
+            {% else %}
+                <div class="prose my-base">
+                    <p>
+                        <em>There are no events currently posted. Please check back later.</em>
+                    </p>
                 </div>
-            {% endif %}
-            {% if not global.isEventOnline and global.showEventForm %}
-                <div class="mx-auto border-t-4 border-solid max-w-hero border-hr mt-md pt-base">
-                    <a href="/run-an-event" class="icon-dice">Run an Event</a>
-                </div>
+
             {% endif %}
         </div>
     </main>

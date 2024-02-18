@@ -1,7 +1,7 @@
 ---
 title: Crowdfunding Complete
 order: -10
-published: true
+published: false
 image: /images/k5gfp4riqijgn2wqyba8m5g21ueh.avif
 ---
 

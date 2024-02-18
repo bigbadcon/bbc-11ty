@@ -1,22 +1,23 @@
 ---
 layout: layouts/page.njk
-title: Big Bad Online Rangers
-published: false
+title: Join The Rangers
+permalink: rangers/
+published: true
 description: ''
 tags: pages
-permalink: false
 ogImage: ''
-navGroup: ''
-navTitle: ''
+navGroup: Volunteer
+navTitle: Join The Rangers
 order: null
-icon: ''
+icon: paw
+nav title: ''
 event: 'online'
 _template: page
 ---
 
-This year, Big Bad is going online! We’re going to have 24 hours of panels and hangout time on Discord! Because of all the energy, joy, and passion our rangers poured into Big Bad Con in the past, 2019 was an incredible success. We want to foster that same joy this year for our online experience and would love to have you rejoin the ranks of the Rangers!
+Rangers are the folks that make Big Bad Online possible! We're here to greet people in the discord, announce panels, and help produce the online stream. We also get to work with amazing folks. Want to join us? Here's all the deets:
 
-Here’re the roles we’re looking for this year:
+## Big Bad Online Ranger Roles
 
 **Discord Greeter**: Just as we welcome folks when they walk in the physical doors of the con, this year we want to welcome folks when they arrive on the Discord server. Greeters will roam the Discord lobby as well as the other channels to:
 

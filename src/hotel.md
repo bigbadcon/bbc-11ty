@@ -8,6 +8,7 @@ navGroup: Attend
 navTitle: ''
 order: 1
 icon: hotel
+event: 'in person'
 _template: page
 ---
 

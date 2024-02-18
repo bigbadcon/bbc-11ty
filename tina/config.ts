@@ -89,6 +89,11 @@ export default defineConfig({
 						name: "page",
 					},
 				],
+				defaultItem: () => {
+					return {
+						event: "both",
+					};
+				},
 			},
 			{
 				format: "md",

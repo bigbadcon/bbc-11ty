@@ -10,6 +10,7 @@ order: 4
 icon: badge
 ogImage: ''
 _template: page
+event: 'in-person'
 ---
 
 **Big Bad Con 2023 is sold out!** We thank everyone who has contributed to making this year incredible. We have now reached capacity and will not have badges for sale on-line or in-person. If we missed you this year, we hope you can make it in 2024!

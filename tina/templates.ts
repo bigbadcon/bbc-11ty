@@ -350,6 +350,13 @@ export function pageFields() {
 			label: "published",
 		},
 		{
+			name: "event",
+			label: "Event Type",
+			description: "Site mode: Big Bad Online or the Big Bad Con in person event",
+			type: "string",
+			options: ["both", "in person", "online"],
+		},
+		{
 			type: "string",
 			name: "description",
 			label: "description",
@@ -432,6 +439,12 @@ export function pageFields() {
 				"wolf",
 				"youtube",
 			],
+		},
+		{
+			type: "string",
+			name: "permalink",
+			label: "permalink",
+			description: "Permalink for the page. If not set, the filename will be used.",
 		},
 	] as TinaField[];
 }
@@ -615,34 +628,17 @@ export function globalFields() {
 			description: "When game sign-ups are opened",
 		},
 		{
-			name: "isEventOnline",
-			label: "Online Event",
-			type: "boolean",
-			description: "Is the current event Big Bad Online",
-		},
-		{
-			name: "showVolunteerShifts",
-			label: "Show Volunteer Shifts",
-			type: "boolean",
-			description: "Show the volunteer shifts on the events page",
-		},
-		{
-			name: "showEvents",
-			label: "Show Events",
-			type: "boolean",
-			description: "Show the events table on the events page",
+			name: "event",
+			label: "Event Type",
+			description: "Site mode: Big Bad Online or the Big Bad Con in person event",
+			type: "string",
+			options: ["in person", "online"],
 		},
 		{
 			name: "showEventTimes",
 			label: "Show Event Times",
 			description: "Show date/times on events table on the events page",
 			type: "boolean",
-		},
-		{
-			name: "showEventForm",
-			label: "Show Link to Event Form",
-			type: "boolean",
-			description: "Show the Run an Event (for Con) or Suggest an Event (for Online) link on events page",
 		},
 	] as TinaField[];
 }

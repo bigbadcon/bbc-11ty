@@ -1,13 +1,10 @@
 {
-  "showVolunteerShiftsTimes": true,
-  "onlineEventStartDate": "2024-04-05T07:00:00.000Z",
-  "onlineEventEndDate": "2024-04-06T07:00:00.000Z",
-  "conEventStartDate": "2024-10-24T07:00:00.000Z",
-  "conEventEndDate": "2024-10-27T07:00:00.000Z",
-  "conEventSignUpsOpen": "2024-09-21T18:57:00.000Z",
-  "isEventOnline": true,
-  "showVolunteerShifts": true,
-  "showEvents": true,
-  "showEventTimes": true,
-  "showEventForm": false
+	"showVolunteerShiftsTimes": true,
+	"onlineEventStartDate": "2024-04-05T07:00:00.000Z",
+	"onlineEventEndDate": "2024-04-06T07:00:00.000Z",
+	"conEventStartDate": "2024-10-24T07:00:00.000Z",
+	"conEventEndDate": "2024-10-27T07:00:00.000Z",
+	"conEventSignUpsOpen": "2024-09-21T18:57:00.000Z",
+	"event": "online",
+	"showEventTimes": true
 }

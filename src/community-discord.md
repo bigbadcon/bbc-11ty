@@ -10,6 +10,7 @@ order: 3
 icon: discord
 navTitle: ''
 _template: page
+event: 'both'
 ---
 
 Want to stay connected with Big Bad Con year round?

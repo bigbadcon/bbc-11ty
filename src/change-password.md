@@ -9,6 +9,7 @@ navTitle: ''
 order: null
 icon: ''
 _template: page
+event: 'both'
 ---
 
 Reset your password by adding your email and a new password below.
