@@ -8,7 +8,7 @@ navGroup: Events
 navTitle: ''
 order: null
 icon: price-tags
-event: 'in person'
+eventType: 'in person'
 _template: page
 ---
 

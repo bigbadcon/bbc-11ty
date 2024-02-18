@@ -5,6 +5,6 @@
 	"conEventStartDate": "2024-10-24T07:00:00.000Z",
 	"conEventEndDate": "2024-10-27T07:00:00.000Z",
 	"conEventSignUpsOpen": "2024-09-21T18:57:00.000Z",
-	"event": "online",
+	"eventType": "online",
 	"showEventTimes": true
 }

@@ -8,7 +8,7 @@ navGroup: Attend
 navTitle: Scholarship
 order: 2
 icon: gift
-event: 'in person'
+eventType: 'in person'
 _template: page
 ---
 

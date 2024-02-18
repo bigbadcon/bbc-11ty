@@ -8,7 +8,7 @@ navGroup: Community
 navTitle: ''
 order: null
 icon: health
-event: 'both'
+eventType: 'both'
 _template: page
 ---
 

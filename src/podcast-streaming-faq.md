@@ -3,7 +3,7 @@ layout: layouts/page.njk
 title: 'Podcasting & Streaming FAQ'
 published: true
 _template: page
-event: 'in person'
+eventType: 'in person'
 ---
 
 Big Bad Con welcomes podcasters, interviewers, and streamers to use our Media Room to share your content around the world! To submit an event in the media room, choose the “Podcast/Streaming” Format.

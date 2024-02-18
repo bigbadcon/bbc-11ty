@@ -350,7 +350,7 @@ export function pageFields() {
 			label: "published",
 		},
 		{
-			name: "event",
+			name: "eventType",
 			label: "Event Type",
 			description: "Site mode: Big Bad Online or the Big Bad Con in person event",
 			type: "string",
@@ -628,7 +628,7 @@ export function globalFields() {
 			description: "When game sign-ups are opened",
 		},
 		{
-			name: "event",
+			name: "eventType",
 			label: "Event Type",
 			description: "Site mode: Big Bad Online or the Big Bad Con in person event",
 			type: "string",

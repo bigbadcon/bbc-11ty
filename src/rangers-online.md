@@ -11,7 +11,7 @@ navTitle: Join The Rangers
 order: null
 icon: paw
 nav title: ''
-event: 'online'
+eventType: 'online'
 _template: page
 ---
 

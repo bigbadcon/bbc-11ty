@@ -5,7 +5,7 @@ published: false
 description: ''
 ogImage: ''
 _template: page
-event: 'in person'
+eventType: 'in person'
 ---
 
 ## January

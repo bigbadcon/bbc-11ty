@@ -2,7 +2,7 @@
 layout: layouts/form-run-games-on-demand.njk
 title: Games on Demand - Late Submissions
 _template: page
-event: 'in person'
+eventType: 'in person'
 ---
 
 General submissions are closed. If you were sent this link, however, you've still got an opportunity to run a a few Games on Demand. Please submit as soon as possible so we can get your event(s) on the schedule!

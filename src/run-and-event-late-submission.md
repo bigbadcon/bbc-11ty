@@ -4,7 +4,7 @@ title: Run an Event (late submission)
 published: false
 description: ''
 ogImage: ''
-event: 'in person'
+eventType: 'in person'
 _template: page
 ---
 

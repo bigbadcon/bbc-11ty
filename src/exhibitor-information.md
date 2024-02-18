@@ -8,7 +8,7 @@ navGroup: Attend
 navTitle: Exhibitors
 order: 3
 icon: booth
-event: 'in person'
+eventType: 'in person'
 _template: page
 ---
 

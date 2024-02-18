@@ -10,7 +10,7 @@ navGroup: Volunteer
 navTitle: Volunteers Shifts
 order: 1
 icon: calendar-clock
-event: 'both'
+eventType: 'both'
 ogImage: ''
 _template: page
 ---

@@ -10,7 +10,7 @@ navTitle: ''
 order: null
 icon: ''
 _template: page
-event: 'both'
+eventType: 'both'
 ---
 
 If you have any questions about the event or issues with the site please use the contact form below.

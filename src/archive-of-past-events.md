@@ -8,7 +8,7 @@ navGroup: ''
 navTitle: ''
 order: null
 icon: calendar-star
-event: 'both'
+eventType: 'both'
 _template: page
 ---
 

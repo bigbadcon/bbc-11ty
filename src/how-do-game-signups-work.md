@@ -8,7 +8,7 @@ navGroup: Events
 navTitle: ''
 order: 10
 icon: scroll
-event: 'in person'
+eventType: 'in person'
 _template: page
 ---
 

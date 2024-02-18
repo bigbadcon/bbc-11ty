@@ -9,7 +9,7 @@ navTitle: ''
 order: null
 icon: health
 _template: page
-event: 'both'
+eventType: 'both'
 ---
 
 Our highest priority in returning is addressing how we can do it as safely as possible. We know that no matter what precautions we take, we cannot eliminate risk of COVID or other airborne pathogens completely, however here’s the steps we’re taking toward mitigation:

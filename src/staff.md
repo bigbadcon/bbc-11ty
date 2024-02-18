@@ -8,7 +8,7 @@ navGroup: Volunteer
 navTitle: Our Staff
 order: 2
 icon: wolf
-event: 'both'
+eventType: 'both'
 _template: page
 ---
 

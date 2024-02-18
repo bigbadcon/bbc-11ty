@@ -3,7 +3,7 @@ title: Safety and Collaboration Tools
 published: true
 layout: layouts/page.njk
 _template: page
-event: 'both'
+eventType: 'both'
 ---
 
 Sometimes a game can go in an unexpected direction, or explore difficult subjects, and situations or topics may come up that causes players to feel uncomfortable, scared, or even trigger memories of traumatic events.

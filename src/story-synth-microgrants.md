@@ -13,7 +13,7 @@ navTitle: ''
 order: null
 icon: ''
 _template: page
-event: 'both'
+eventType: 'both'
 ---
 
 Hello!

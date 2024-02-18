@@ -9,7 +9,7 @@ icon: scholar
 published: true
 ogImage: ''
 navTitle: ''
-event: 'both'
+eventType: 'both'
 _template: page
 ---
 

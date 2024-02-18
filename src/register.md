@@ -3,7 +3,7 @@ layout: layouts/page.njk
 title: Big Bad Online Registration
 description: ''
 tags: pages
-event: 'online'
+eventType: 'online'
 navGroup: Attend
 navTitle: Register
 order: 1

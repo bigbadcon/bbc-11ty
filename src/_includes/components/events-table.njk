@@ -12,13 +12,13 @@
                     </template>
                 </select>
             </div>
-            {% if global.event === "online" %}
+            {% if global.eventType === "online" %}
                 <div>{% include "components/timezone-select.njk" %}</div>
             {% endif %}
         {% endif %}
         {# Filter Catagories #}
         {# TODO: make this dynamic based on the categories currently in events #}
-        {% if global.event === "online" %}
+        {% if global.eventType === "online" %}
             <div class="flex flex-col justify-start sm:items-center sm:flex-row gap-2xs sm:gap-xs">
                 <label for="filter-by-category" class="text-xs font-bold sm:text-sm">Category:</label>
                 <select id-"filter-by-category" class="mb-0 text-sm cursor-pointer pl-xs py-2xs" x-model="filter.category" x-init="console.log(filter.category)">
@@ -43,7 +43,7 @@
         <div class="flex flex-wrap items-center justify-start gap-xs"
         x-init="if (!isAuth) resetUserFilters(); $watch('isAuth', val => { if (!val) resetUserFilters() })"
         >
-            {% if global.event === "in person" and global.showEventTimes %}
+            {% if global.eventType === "in person" and global.showEventTimes %}
                 <button @click="filter.openOnly = !filter.openOnly" class="filter-btn" :class="filter.openOnly && 'active'">
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 28">
                         <title>square</title>
@@ -59,7 +59,7 @@
                 </svg>
                 <span class="text-sm">Favs</span>
             </button>
-            {% if global.event === "in person" and global.showEventTimes %}
+            {% if global.eventType === "in person" and global.showEventTimes %}
                 <button @click="filter.overlap = !filter.overlap" class="filter-btn" :class="filter.overlap && 'active'" x-cloak x-show="isAuth">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 164.51 164.52"><path d="M147.37,31.31h-14.17v-14.17c0-9.45-7.69-17.15-17.15-17.15H17.15C7.69,0,0,7.69,0,17.15V116.06c0,9.45,7.69,17.15,17.15,17.15h14.17v14.17c0,9.45,7.69,17.15,17.15,17.15h98.91c9.45,0,17.15-7.69,17.15-17.15V48.46c0-9.45-7.69-17.15-17.15-17.15Zm-27.17,66.54l-22.35,22.35h-13.51l35.86-35.86v13.51Zm0,17.13v1.08c0,2.29-1.86,4.15-4.15,4.15h-1.08l5.22-5.22Zm0-47.76l-52.98,52.98h-13.51L120.2,53.71v13.51Zm-75.89,1.11l24.01-24.01h13.51l-37.52,37.52v-13.51Zm0-17.13v-2.74c0-2.29,1.86-4.15,4.15-4.15h2.74l-6.89,6.89Zm0,47.76l54.65-54.65h13.51L44.31,112.47v-13.51Zm-27.17,21.24c-2.29,0-4.15-1.86-4.15-4.15V17.15c0-2.29,1.86-4.15,4.15-4.15H116.06c2.29,0,4.15,1.86,4.15,4.15v14.17H48.46c-9.45,0-17.15,7.69-17.15,17.15V120.2h-14.17Zm134.37,27.17c0,2.29-1.86,4.15-4.15,4.15H48.46c-2.29,0-4.15-1.86-4.15-4.15v-14.17H116.06c9.45,0,17.15-7.69,17.15-17.15V44.31h14.17c2.29,0,4.15,1.86,4.15,4.15v98.91Z"/></svg>
                     <span class="text-sm">Hide My Event Conflicts</span>
@@ -77,7 +77,7 @@
                     <th>
                         <button x-bind="sortable" title="Sort by event">Event</button>
                     </th>
-                    {% if global.event === "in person" %}
+                    {% if global.eventType === "in person" %}
                         <th>
                             <button x-bind="sortable" title="Sort by system">System</button>
                         </th>
@@ -95,7 +95,7 @@
                     <th class="events-table-header--categories">
                         <button x-bind="sortable" title="Sort by Categories">Categories</button>
                     </th>
-                    {% if global.event === "in person" %}
+                    {% if global.eventType === "in person" %}
                         <th class="events-table-header--spaces">
                             <button x-bind="sortable" title="Sort by Spaces">Space</button>
                         </th>
@@ -114,17 +114,17 @@
                     {% endif %}
                     {# isFav is in Alpine.data("global") #}
                     <tr x-cloak x-data="eventInfo"
-                {% if global.event === "in person" and not global.showEventTimes %}
+                {% if global.eventType === "in person" and not global.showEventTimes %}
                     x-init="id = {{event.eventId}}; maxSpaces = {{maxSpaces}}; categories = [{{event.categories | alpineArray}}];"
                     x-show="filterCategory(categories) && (!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || (maxSpaces === 'Any' || $store.events.spaces[id] > 0))"
-                    {% elif global.event === "in person" and global.showEventTimes %}
+                    {% elif global.eventType === "in person" and global.showEventTimes %}
                     x-init="id = {{event.eventId}}; maxSpaces = {{maxSpaces}}; categories = [{{event.categories | alpineArray}}];"
                     x-show="filterCategory(categories) && (!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || (maxSpaces === 'Any' || $store.events.spaces[id] > 0)) && filterDay($refs.date{{event.eventId}}?.textContent) && ( !filter.overlap || !doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}) )"
                     :class="doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}) && 'overlap'"
-                    {% elif global.event === "online" and not global.showEventTimes %}
+                    {% elif global.eventType === "online" and not global.showEventTimes %}
                     x-init="id = {{event.eventId}}; categories = [{{event.categories | alpineArray}}];"
                     x-show="filterCategory(categories) && (!filter.favsOnly || isFav({{event.eventId}}))"
-                    {% elif global.event === "online" and global.showEventTimes %}
+                    {% elif global.eventType === "online" and global.showEventTimes %}
                     x-init="id = {{event.eventId}}; categories = [{{event.categories | alpineArray}}];"
                     x-show="filterCategory(categories) && filterDay($refs.date{{event.eventId}}?.textContent) && (!filter.favsOnly || isFav({{event.eventId}}))"
                     {% endif %}
@@ -148,7 +148,7 @@
                             <p>{{event.metadata.GM | safe}}</p>
                         </td>
 
-                        {% if global.event === "in person" %}
+                        {% if global.eventType === "in person" %}
                             {# System #}
                             <td class="events-table-cell--system">{{event.metadata.System}}</td>
                         {% endif %}
@@ -172,7 +172,7 @@
                                 {% endfor %}
                             </div>
                         </td>
-                        {% if global.event === "in person" %}
+                        {% if global.eventType === "in person" %}
                             {# Spaces #}
                             <td class="events-table-cell--spaces">
                                 {% include 'components/events-table-spaces.njk' %}

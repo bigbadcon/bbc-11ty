@@ -10,7 +10,7 @@ order: 10
 icon: faq
 navTitle: ''
 permalink: 'faq/'
-event: 'in person'
+eventType: 'in person'
 _template: page
 ---
 

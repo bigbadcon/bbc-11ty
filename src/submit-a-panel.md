@@ -9,7 +9,7 @@ navGroup: ''
 navTitle: Submit an Online Panel
 order: 2
 icon: twitch
-event: 'online'
+eventType: 'online'
 ---
 
 

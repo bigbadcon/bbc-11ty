@@ -8,6 +8,7 @@ permalink: "events/{{ event.eventSlug }}/"
 eleventyComputed:
     title: "{{ event.eventName | safe }}"
     published: true
+    eventType: "both"
     ogAPIImage: "https://v1.screenshot.11ty.dev/https%3A%2F%2Fwww.bigbadcon.com%2Fog%2Fevents%2F{{event.eventSlug}}%2F/opengraph/"
 ---
 

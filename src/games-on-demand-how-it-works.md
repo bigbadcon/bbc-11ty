@@ -8,7 +8,7 @@ navGroup: Events
 navTitle: Games on Demand
 order: null
 icon: games-on-demand
-event: 'in person'
+eventType: 'in person'
 _template: page
 ---
 

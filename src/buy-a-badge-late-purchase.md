@@ -3,7 +3,7 @@ layout: layouts/form-buy-a-badge.njk
 title: Buy a Badge - Late Purchase
 published: false
 _template: page
-event: 'in person'
+eventType: 'in person'
 ---
 
 Badge sales are now closed but if you have been sent this link, you're still eligible to buy one until 9/13/2023. Please only purchase one for yourself as our quantities are very limited.

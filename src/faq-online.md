@@ -9,7 +9,7 @@ navGroup: Attend
 order: 10
 icon: faq
 navTitle: ''
-event: 'online'
+eventType: 'online'
 permalink: 'faq/'
 _template: page
 ---

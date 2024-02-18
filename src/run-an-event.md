@@ -9,7 +9,7 @@ navGroup: ''
 navTitle: Run an Event
 order: 2
 icon: dice
-event: 'in person'
+eventType: 'in person'
 _template: page
 ---
 

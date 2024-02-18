@@ -9,7 +9,7 @@ navGroup: ''
 navTitle: ''
 order: null
 icon: ''
-event: 'both'
+eventType: 'both'
 _template: page
 ---
 

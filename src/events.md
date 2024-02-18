@@ -8,7 +8,7 @@ navGroup: Events
 navTitle: Events
 order: 0
 icon: calendar-clock
-event: 'both'
+eventType: 'both'
 _template: page
 ---
 
