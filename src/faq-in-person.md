@@ -6,15 +6,17 @@ description: ''
 tags: pages
 ogImage: ''
 navGroup: Attend
-order: null
+order: 10
 icon: faq
 navTitle: ''
+permalink: 'faq/'
+event: 'in person'
 _template: page
 ---
 
 ### When and Where is Big Bad Con?
 
-September 28 6PM to October 1, 2023 8PM.
+October 24 6PM to October 27, 2023 8PM.
 
 Hyatt Regency San Francisco Airport\
 1333 Old Bayshore Hwy\
@@ -100,9 +102,3 @@ The front-end of the website is built by hand using the static site generator [1
 * Graphic design by [Cris Viana](/staff/#cris-viana)
 
 The [SVG icons](/icons) are combination of stock, thanks to [Font Awesome](https://fontawesome.com/license) and [Icomoon](https://icomoon.io), and some additional svg art by Colin Fahrion.
-
-# Big Bad Online FAQ
-
-### Where are all the games at Big Bad Online?
-
-There are no scheduled games at Big Bad Online. We will have a Big Bad Online 2023 Discord the day of the event where people can chat and jump off into games if they like. You can register for the Big Bad Online Discord [here](/register). Note this is separate Discord from our year-round [Community Discord](/community-discord).
