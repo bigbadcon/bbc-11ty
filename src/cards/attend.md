@@ -1,7 +1,7 @@
 ---
 title: How to Attend
 order: -1
-published: false
+published: true
 image: ''
 alt: ''
 ---
