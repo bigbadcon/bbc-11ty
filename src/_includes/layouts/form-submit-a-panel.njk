@@ -63,8 +63,8 @@
 
                                 <div class="required" x-data="{description:''}">
                                     <label for="eventName">Panel Name</label>
-                                    <div class="prose mb-sm" x-text="`Characters left: ${50 - description.length}`"></div>
-                                    <input id="eventName" name="eventName" type="text" value="" required class="w-full max-w-md" maxlength="50" x-model="description" data-error-msg="Event Name is required"/>
+                                    <div class="prose mb-sm" x-text="`Characters left: ${75 - description.length}`"></div>
+                                    <input id="eventName" name="eventName" type="text" value="" required class="w-full max-w-md" maxlength="75" x-model="description" data-error-msg="Event Name is required"/>
                                 </div>
                                 <div class="required" x-data="{description:''}">
                                     <label for="eventDescription">Description</label>
