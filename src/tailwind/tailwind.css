@@ -407,8 +407,8 @@ action-table-filter-menu select:focus-visible {
 	outline: 1px solid var(--highlight);
 	outline-offset: 0;
 }
-action-table-filter-menu .selected,
-action-table-filter-menu .selected:focus {
+action-table-filters .selected,
+action-table-filters .selected:focus {
 	outline: 3px solid var(--highlight);
 	outline-offset: 0;
 }
