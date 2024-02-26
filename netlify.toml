@@ -10,3 +10,5 @@
   # Use a local non-Git-tracked .env file to set this to "development"; 
   # "netlify dev" picks up ".env" and "netlify build" does not.
   NODE_ENV = "production"
+[context.branch-deploy]
+  command = "npm run build_lite"

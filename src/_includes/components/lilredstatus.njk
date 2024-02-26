@@ -6,15 +6,15 @@
     @lil-red-status.window="lilRedStatus = $event.detail"
     @lil-red-error.window="if (/STATUS/.test($event.detail)) { lilRedStatus = false; msg = 'Please check again later.' }"
     >
-    <div class="flex justify-between border-t-4 shadow-lg gap-base bg-primary text-body px-base pt-xs border-highlight">
+    <div class="flex justify-between border-t-4 shadow-lg gap-base bg-header-bg text-body px-base pt-xs border-highlight">
         <img src="/static/images/red-portrait-2017-sm.png" alt="Illustration of Little Red" class="self-end h-16">
         <div class="self-center flex-grow text-sm pb-sm">
             <p>
-                <strong class="text-secondary">Little Red Event Manager is down!</strong> Booking and forms are not available. <em x-text="msg"></em>
+                <strong class="text-body">Little Red Event Manager is down!</strong> Booking and forms are not available. <em x-text="msg"></em>
             </p>
         </div>
         <div x-show="msg === 'Please check again later.'">
-            <button @click="await lilRed.status()" class="text-xs font-bold leading-tight uppercase border-2 rounded bg-highlight border-highlight py-xs px-sm text-primary hover:bg-header">Check Status</button>
+            <button @click="await lilRed.status()" class="text-xs font-bold leading-tight uppercase border-2 rounded bg-highlight border-highlight py-xs px-sm text-header-bg hover:bg-header">Check Status</button>
         </div>
     </div>
 </div>

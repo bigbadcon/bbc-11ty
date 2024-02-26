@@ -44,7 +44,7 @@ const getDurationInHours = (dateStart, dateEnd) => {
 };
 
 function hoursToHHMM(hours) {
-	var h = String(Math.trunc(hours)).padStart(2, "0");
+	var h = String(Math.trunc(hours));
 	var m = String(Math.abs(Math.round((hours - h) * 60))).padStart(2, "0");
 	return h + ":" + m;
 }
@@ -156,6 +156,7 @@ module.exports = (eleventyConfig) => {
 				title: c.data.navTitle || c.data.title,
 				order: c.data.order,
 				icon: c.data.icon,
+				eventType: c.data.eventType,
 				url: c.url,
 			};
 		});
@@ -282,6 +283,13 @@ module.exports = (eleventyConfig) => {
 		return `https://${mastodon[2]}/@${mastodon[1]}`;
 	});
 
+	// TODO: fix this
+	// Bluesky link filter
+	// https://bsky.app/profile/seannittner.bsky.social
+	eleventyConfig.addFilter("blueskyLink", (handle) => {
+		return `https://bsky.app/profile/${handle}`;
+	});
+
 	/* -------------------------------------------------------------------------- */
 	/*                                 Shortcodes                                 */
 	/* -------------------------------------------------------------------------- */
@@ -304,6 +312,12 @@ module.exports = (eleventyConfig) => {
 	eleventyConfig.addShortcode("currentDate", function () {
 		const today = new Date();
 		return dayjs(today).format("YYYYMMDD");
+	});
+
+	// Current Date
+	eleventyConfig.addShortcode("currentDateUNIX", function () {
+		const today = new Date();
+		return dayjs(today).unix();
 	});
 
 	eleventyConfig.addShortcode("dateRange", function (start, end) {

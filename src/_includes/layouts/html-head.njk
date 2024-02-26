@@ -1,11 +1,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#c4d0a0">
-    <link rel="stylesheet" href="/tailwindoutlive.css"/>
+    <meta name="theme-color" content="#ffdad1">
+    <link rel="stylesheet" href="/tailwindoutlive.css?v={% currentDateUNIX %}"/>
     <link rel="stylesheet" href="/svg-icons.css"/>
     <script src="/js/lite-youtube-embed.js" defer></script>
-    <script src="/js/scripts.min.js" defer></script>
+    <script src="/js/scripts.min.js?v={% currentDateUNIX %}" defer></script>
     <link rel="stylesheet" href="/css/lite-youtube-embed.css"/>
 
     {# Compiled with esbuild #}
@@ -15,8 +15,6 @@
     <link rel="preload" as="font" href="/static/fonts/open-sans-v23-latin-700.woff2" type="font/woff2" crossorigin="anonymous">
     <link rel="preload" as="font" href="/static/fonts/rokkitt-v20-latin-500.woff2" type="font/woff2" crossorigin="anonymous">
     <link rel="preload" as="font" href="/static/fonts/rokkitt-v20-latin-700.woff2" type="font/woff2" crossorigin="anonymous"> #}
-    {# Preload the underbrush images under the header so it doesn't flash #}
-    <link rel="preload" as="image" href="/static/images/underbrush.svg" type="image/svg+xml" crossorigin="anonymous">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

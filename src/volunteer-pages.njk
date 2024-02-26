@@ -5,6 +5,7 @@ pagination:
     size: 1
     alias: event
 permalink: "volunteer/{{ event.eventSlug }}/"
+eventType: 'both'
 eleventyComputed:
     title: "{{ event.eventName | safe }}"
     published: true

@@ -8,6 +8,7 @@ navGroup: Community
 order: 2
 icon: accessibility
 _template: page
+eventType: 'both'
 ---
 
 As part of our principles of respect, support, and kindness, Big Bad Con works to provide games, events, and social spaces that are accessible to as many people as possible, specifically:

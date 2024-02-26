@@ -1,0 +1,13 @@
+# ./.github/workflows/main.yml
+
+name: Trigger Netlify Build - Event Signups Open
+on:
+    schedule:
+        - cron: "57 18 * * 5-6" # at the 7am aka 11:57am on Saturday our time
+jobs:
+    build:
+        name: Request Netlify Webhook
+        runs-on: ubuntu-latest
+        steps:
+            - name: POST to Build Hook
+              run: curl -X POST -d {} https://api.netlify.com/build_hooks/61142e796c4fa50f4bf0bc1d

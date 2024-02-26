@@ -1,47 +1,89 @@
 <!doctype html>
-<html lang="en" class="min-h-screen" x-data="{timezone: $persist('America/Los_Angeles') }">
+<html lang="en" class="min-h-screen" x-data="{timezone: $persist('America/Los_Angeles') }" data-theme="auto">
     {% include 'layouts/html-head.njk' %}
     <body
-  data-theme="auto"
   x-data="global"
   @offline.window="$dispatch('toast','You are currently offline! Booking and forms will not work.')"
   @online.window="$dispatch('toast','You are back online!')"
-  class="min-h-screen bg-primary"
+  class="min-h-screen bg-header-bg"
   :style="(modal) && 'overflow: hidden; height: 100vh;'"
   >
-        <div class="relative z-10 grid min-h-screen shadow page-wrapper">
-            {# Header with branding and nav #}
-            <div class="header-wrapper">
-                {% block header %}
-                    {% include 'components/header.njk' %}
-                {% endblock %}
-            </div>
-            <div class="relative content-wrapper bg-gradient-to-b from-main-gradient-top to-main-gradient-bottom pb-lg" >
-                {# Login / Account Button #}
-                {% if sitemeta.dataService %}
-                    <button @click.stop="modal = (authToken) ? 'My Account' : 'Login'" class="absolute top-0 font-bold uppercase transition-all transform border rounded-b cursor-pointer text-form right-base bg-highlight px-base pb-xs pt-md hover:bg-highlight-2 hover:pt-lg border-highlight" 
-                    x-text="(authToken) ? 'My Account' : 'Login'">Login</button>
-                {% endif %}
-                {# Decorative underbrush svg #}
-                <div style="-webkit-mask: url(/static/images/underbrush.svg) repeat-x; mask: url(/static/images/underbrush.svg) repeat-x; pointer-events: none;" class="h-10 underbrush bg-primary mb-sm"></div>
-                {# Main Content Area. <main> tag should live in content block #}
-                {% block content %}
-                    <main id="content">
-                        <div class="mx-auto max-w-content p-base">
-                            <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
-                            <div class="prose">{{ content | safe }}</div>
-                        </div>
-                    </main>
-                {% endblock %}
-                {# Add any content footers her e#}
-                {% for contentfooter in collections.contentfooter | published | sort %}
-                    {% if (contentfooter.data.location === page.fileSlug) %}
-                        <section class="mx-auto max-w-content p-base">
-                            <h2 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{ contentfooter.data.title }}</h2>
-                            <div class="prose">{{ contentfooter.templateContent | safe }}</div>
-                        </section>
+        <div class="relative z-10">
+            <div class="flex flex-col min-h-screen grid-rows-min-content-auto bg-gradient-start">
+                {# Header with branding and nav #}
+                <div class="header-wrapper bg-header-bg">
+                    {% block header %}
+                        {% include 'components/header.njk' %}
+                    {% endblock %}
+                </div>
+                <div class="w-full h-[20px] overflow-hidden relative z-10 top-[-1px]">
+                    {# header bottom wave #}
+                    <svg width="4000" height="18" xmlns="http://www.w3.org/2000/svg" class="drop-shadow">
+                        <style type="text/css">
+                            .wave-stroke {
+                                fill: var(--wave-stroke,#ffffff);
+                            }
+                            .wave-top {
+                                fill: var(--header-bg,#000000);
+                            }
+                        </style>
+                        <defs>
+                            <pattern id="wave-pattern" x="0" y="0" width=".01791" height="1">
+                                <path d="M71.6,8.4V0H0v8.4c9.9,9.7,29.3,9.7,39.1,0C47.2,0.5,63.5,0.5,71.6,8.4z" class="wave-top"/>
+                                <path d="M71.6,5.8C62.3-1.7,46.2-1.3,37.7,7c-9.2,9-27.2,9-36.3,0L0,5.6v5.5c5.2,4.4,12.4,6.5,19.6,6.5
+    		c7.8,0,15.7-2.6,21-7.8c7.2-7.1,22.4-7.1,29.6,0l1.4,1.4V5.8z" class="wave-stroke"/>
+                            </pattern>
+                        </defs>
+                        <rect fill="url(#wave-pattern)" stroke="transparent" width="4000" height="18"/>
+                    </svg>
+                </div>
+                <div class="relative content-wrapper bg-gradient-start bg-gradient-to-b from-gradient-start via-gradient-mid via-[100px] to-gradient-end pt-md pb-lg grow" >
+                    {# Login / Account Button #}
+                    {% if sitemeta.dataService %}
+                        <button @click.stop="modal = (authToken) ? 'My Account' : 'Login'" 
+                        class="absolute top-[-18px] font-bold uppercase transition-all transform border-2 rounded-b cursor-pointer text-gradient-end right-base bg-highlight px-base pb-xs pt-base hover:bg-highlight-2 hover:pt-lg border-highlight" 
+                        style="filter: drop-shadow(0 2px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 1px 1px rgb(0 0 0 / 0.06));"
+                        x-text="(authToken) ? 'My Account' : 'Login'">Login</button>
                     {% endif %}
-                {% endfor %}
+                    {# Main Content Area. <main> tag should live in content block #}
+                    {% block content %}
+                        <main id="content">
+                            <div class="mx-auto max-w-content p-base ">
+                                <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
+                                <div class="prose">{{ content | safe }}</div>
+                            </div>
+                        </main>
+                    {% endblock %}
+                    {# Add any content footers here #}
+                    {% for contentfooter in collections.contentfooter | published | sort %}
+                        {% if (contentfooter.data.location === page.fileSlug) %}
+                            <section class="mx-auto max-w-content p-base">
+                                <h2 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{ contentfooter.data.title }}</h2>
+                                <div class="prose">{{ contentfooter.templateContent | safe }}</div>
+                            </section>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="w-full h-[20px] overflow-hidden relative z-10">
+                <svg width="4000" height="18" xmlns="http://www.w3.org/2000/svg" class="drop-shadow">
+                    <style type="text/css">
+                        .footer-wave-stroke {
+                            fill: var(--wave-stroke,#ffffff);
+                        }
+                        .footer-wave-top {
+                            fill: var(--gradient-end,#000000);
+                        }
+                    </style>
+                    <defs>
+                        <pattern id="footer-wave-pattern" x="0" y="0" width=".01791" height="1">
+                            <path d="M71.6,8.4V0H0v8.4c9.9,9.7,29.3,9.7,39.1,0C47.2,0.5,63.5,0.5,71.6,8.4z" class="footer-wave-top"/>
+                            <path d="M71.6,5.8C62.3-1.7,46.2-1.3,37.7,7c-9.2,9-27.2,9-36.3,0L0,5.6v5.5c5.2,4.4,12.4,6.5,19.6,6.5
+    		c7.8,0,15.7-2.6,21-7.8c7.2-7.1,22.4-7.1,29.6,0l1.4,1.4V5.8z" class="footer-wave-stroke"/>
+                        </pattern>
+                    </defs>
+                    <rect fill="url(#footer-wave-pattern)" stroke="transparent" width="4000" height="18"/>
+                </svg>
             </div>
         </div>
         {% include 'components/footer.njk' %}

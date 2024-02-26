@@ -1,7 +1,8 @@
 ---
 title: Akemi Maniwa
-position: Reg Desk Ranger Captain
-tags: staff
+position: Facilities Ranger Captain
+tags:
+  - staff
 published: true
 gender: she/they
 image: /images/Akemi Maniwa.jpg

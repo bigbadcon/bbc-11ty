@@ -12,5 +12,4 @@ Sen is constantly dreaming, even when he’s awake. He is passionate about helpi
 
 Sen will be running these events:
 
-* Tiān Dēng
-* Panels (TBD)
+* [Attack the Blockade](https://www.bigbadcon.com/events/attack-the-blockade/) (Tiān Dēng)

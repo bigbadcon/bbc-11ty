@@ -8,6 +8,7 @@ navGroup: Attend
 navTitle: ''
 order: 1
 icon: hotel
+eventType: 'in person'
 _template: page
 ---
 
@@ -18,7 +19,22 @@ Big Bad Con will be hosted at the:
 Burlingame, CA 94010\
 (650) 347-1234
 
-[Big Bad Con Group Rate: $145/night](https://www.hyatt.com/en-US/group-booking/SFOBU/G-BBC4){.icon-hotel}
+[Book a room at the Hyatt](https://www.hyatt.com/en-US/group-booking/SFOBU/G-BBC4){.icon-hotel}
+
+**Update 7/28**: The convention hotel is nearly full and not all nights are available, or may be available but no longer at our group rate of $145/night.
+
+**Update 8/8:** All rooms at the Hyatt are now booked, however we've secured a group rate at a nearby hotel:
+
+* [Crowne Plaza San Francisco Airport](https://www.crowneplaza.com/redirect?path=hd\&brandCode=CP\&localeCode=en\&regionCode=1\&hotelCode=URLCA&_PMID=99801505\&GPC=BIG\&cn=no\&viewfullsite=true) (Group Rate of $124/night. 9 minute walk to the Hyatt)
+
+**Update 9/14**: The Hyatt has release a few more rooms. There's a limited number, but if you haven't already booked a room, or booked somewhere else and want to move closer, follow the link above to book at the Hyatt.
+
+If you aren't able to book your stay at the Hyatt or Crown Plaza, here are some nearby hotels that may have availability:
+
+* [Holiday Inn Express](https://www.ihg.com/holidayinnexpress/hotels/us/en/burlingame/urlbh/hoteldetail) (6 minute walk to the Hyatt)
+* [Bay Landing Hotel](https://baylandinghotel.com/) (8 minute walk to the Hyatt)
+* [Vagabond Inn](https://www.vagabondinn.com/vagabond-inn-executive-san-francisco-airport-bayfront-sfo?) (10 minute walk to the Hyatt)
+* [San Francisco Airport Marriott Waterfront](https://www.marriott.com/reservation/rateListMenu.mi?dclid=CNel3fzHsoADFckxRAgdO-YBew\&cid=OMS_GLB0002Y27_GLE00070C9_GLF000C1AH\&defaultTab=prepay) (16 minute walk to the Hyatt)
 
 <!-- Big Bad Con Group Rate: $139/night ([booking link](https://www.hyatt.com/en-US/group-booking/SFOBU/G-BBC3)) -->
 
@@ -40,9 +56,9 @@ The hotel offers parking for all attendees discounted from their rate of $36/day
 
 ### Hotel Map
 
-![](/images/09-bigbadcon_hotel_map.jpg)
+![](</images/Hotel_Map 2023.jpg>)
 
-**[Hotel Map](/images/09-bigbadcon_hotel_map.pdf)** **(PDF) and** **[Capacity Chart](https://assets.tina.io/ac22da7d-8579-4122-a2c1-78b362f0d955/Hyatt-Regency-San-Francisco-Airport-Capacity-Charts-English-070918.pdf)** **(PDF)**
+**[Hotel Map](</images/Hotel_Map 2023.pdf>)** **(PDF) and** **[Capacity Chart](https://assets.tina.io/ac22da7d-8579-4122-a2c1-78b362f0d955/Hyatt-Regency-San-Francisco-Airport-Capacity-Charts-English-070918.pdf)** **(PDF)**
 
 ### Internet Access
 
@@ -60,6 +76,10 @@ The Hotels' ADA compliance:
 * Accessible bathrooms
 
 Additionally, half of their shuttles are equipped with wheelchair lifts/ramps, there is a lift to grant access to the foyer, and they have MERV-8 in public spaces and MERV-10 in sleeping/gaming rooms. The Atrium has MERV-15 filters pulling air up and exhausting it through the roof.
+
+### Credit Card Deposits
+
+The hotel holds a $50/night fully refundable deposit per room for incidental charges (such as room service and meals). The first person to check into the hotel will need to use a credit or debit card to cover the deposit. After your final bill is paid the hotel will release the funds.
 
 ### Gender Neutral Bathrooms
 

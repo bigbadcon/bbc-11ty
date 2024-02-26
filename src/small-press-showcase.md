@@ -1,13 +1,14 @@
 ---
 layout: layouts/page.njk
 title: Small Press Showcase
-published: true
+published: false
 description: ''
 ogImage: ''
 navGroup: Events
 navTitle: ''
 order: null
 icon: price-tags
+eventType: 'in person'
 _template: page
 ---
 

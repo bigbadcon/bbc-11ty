@@ -10,6 +10,7 @@ order: 4
 icon: badge
 ogImage: ''
 _template: page
+eventType: 'in person'
 ---
 
 Get a badge for Big Bad Con! If you are buying multiple badges for other people please submit this form more than once.

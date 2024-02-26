@@ -1,15 +1,16 @@
 ---
-tags: staff
-published: true
-order: 0
 title: Ash Cheshire
-position: Baba Yaga Gift Box Curator
-gender: (they/them)
-image: /images/ash_cheshire_300x400.jpg
-twitter: divinecheshire
-website_name: divinecheshire.com
-website_url: 'http://divinecheshire.com/'
-_template: staff
+position: Steward
+tags:
+  - staff
+published: true
+gender: (fae/they)
+order: 0
+image: /images/0.jpg
+twitter: theashcheshire
+bluesky: theashcheshire
+website_name: Ash Can Games
+website_url: 'https://ashcangames.itch.io/'
 ---
 
-Ash Cheshire (they/them) has been a Big Bad Con GM since the beginning, and a staff member for a couple of years, and they couldn’t be more excited. Ash is committed to helping make BBC even more inclusive and awesome for all gamers.
+Ash Cheshire (fae/they) has been a Big Bad Con GM since the beginning, and created the Baba Yaga Gift Totes and Zinethology. Ash is committed to helping make every year of BBC even more inclusive and awesome for all. Long live our annual geek sleepover camp!

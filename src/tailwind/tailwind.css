@@ -2,121 +2,115 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+    .grid-rows-min-content-auto {
+        grid-template-rows: min-content auto;
+    }
+    .drop-shadow-bbc {
+        filter: drop-shadow(.3rem .3rem 0 var(--shadow));
+    }
+}
+
 /* -------------------------------------------------------------------------- */
 /*                               Color Variables                              */
 /* -------------------------------------------------------------------------- */
 
-:root,
-.light,
+:root {
+	--d-header-bg: #392755;
+	--l-header-bg: #ffdad1;
+	--d-header-bg-2: #2c174f;
+	--l-header-bg-2: #fee7e2;
+	--d-header-bg-3: #16072f;
+	--l-header-bg-3: #fff9f8;
+	--d-title: #4dd7bc;
+	--l-title: #392755;
+	--d-highlight: #f4c6e8;
+	--d-highlight-2: #f0a8de;
+	--l-highlight: #ff2c4f;
+	--l-highlight-2: #df1c39;
+	--d-header: #b5eadf;
+	--l-header: #562670;
+	--d-body: #d5e3ed;
+	--l-body: #353e3f;
+	--d-hr: #b7c6d0;
+	--l-hr: #515c5d;
+	--d-link: #ffffff;
+	--l-link: #670139;
+	--d-gradient-start: #004f6e;
+	--d-gradient-mid: #063357;
+	--d-gradient-end: #052038;
+    --l-gradient-start: #C399D0;
+	--l-gradient-mid: #E0C7E6;
+	--l-gradient-end: #f4eaf7;
+	--d-card: rgb(18 24 57 / 0.59);
+	--l-card: rgb(255 255 255 / 0.59);
+	--l-backdrop: rgba(184, 159, 222, 0.59);
+	--d-backdrop: rgba(0, 19, 42, 0.909);
+	--l-shadow: rgba(123, 106, 191, 0.9);
+	--d-shadow: rgba(72, 68, 175, 0.9);
+}
+
+html,
 [data-theme="light"] {
 	/* ---------------------------- Base Light Theme ---------------------------- */
-	--primary: #e1eac4;
-	--primary-2: #c4d0a0;
-	--primary-3: #94a268;
-	--primary-4: #849357;
-	--secondary: #843232;
-	--highlight: #e65800;
-	--highlight-2: #f22600;
-	--card: rgba(255, 255, 255, 0.6);
-	--body: #313a3c;
-	--body-highlight: #003312;
-	--header: var(--secondary);
-	--subheader: #304a3b;
-	--menu-icon: #6f693f;
-	--sky: #baedff;
-	--mountain: #83a0ad;
-	--sunmoon: #fff965;
-	--tree: #86815f;
-	--tree-2: #aca57e;
-	--main-gradient-top: #afcfdd;
-	--main-gradient-bottom: #e4eff2;
-	--bg-form: #fcf8f3;
-	--hr: #6e897c;
-	--fill-highlight: url(#highlight-gradient) var(--highlight);
-	--backdrop: rgba(16, 52, 55, 0.58);
+	--header-bg: var(--l-header-bg);
+	--header-bg-2: var(--l-header-bg-2);
+	--header-bg-3: var(--l-header-bg-3);
+	--title: var(--l-title);
+	--highlight: var(--l-highlight);
+	--highlight-2: var(--l-highlight-2);
+	--header: var(--l-header);
+	--body: var(--l-body);
+	--link: var(--l-link);
+	--hr: var(--l-hr);
+	--gradient-start: var(--l-gradient-start);
+	--gradient-mid: var(--l-gradient-mid);
+	--gradient-end: var(--l-gradient-end);
+	--card: var(--l-card);
+	--backdrop: var(--l-backdrop);
+	--shadow: var(--l-shadow);
 }
 
 /* ------------------------------- Dark Theme ------------------------------- */
-@media (prefers-color-scheme: dark) {
-	:root {
-		--primary: #171b30;
-		--primary-2: #122436;
-		--primary-3: #142f40;
-		--primary-4: #254152;
-		--secondary: #ffd800;
-		--highlight: #ffb53b;
-		--highlight-2: #ff7f00;
-		--card: rgba(37, 5, 46, 0.4);
-		--body: #d5e3ed;
-		--body-highlight: #fff;
-		--header: var(--secondary);
-		--subheader: #bdcfd5;
-		--menu-icon: #9dbfd5;
-		--sky: #97a0bf;
-		--mountain: #7f84a5;
-		--sunmoon: #f5f9ff;
-		--tree: #282a3f;
-		--tree-2: #4f536c;
-		--main-gradient-top: #274555;
-		--main-gradient-bottom: #1e1c3f;
-		--bg-form: #2f2d31;
-		--hr: #6c89a6;
-		--backdrop: rgba(90, 100, 120, 0.6);
-	}
-	[data-theme="light"] {
-		/* ---------------------------- Base Light Theme ---------------------------- */
-		--primary: #e1eac4;
-		--primary-2: #c4d0a0;
-		--primary-3: #94a268;
-		--primary-4: #849357;
-		--secondary: #843232;
-		--highlight: #e65800;
-		--highlight-2: #f22600;
-		--card: rgba(255, 255, 255, 0.6);
-		--body: #313a3c;
-		--body-highlight: #003312;
-		--header: var(--secondary);
-		--subheader: #304a3b;
-		--menu-icon: #6f693f;
-		--sky: #baedff;
-		--mountain: #83a0ad;
-		--sunmoon: #fff965;
-		--tree: #86815f;
-		--tree-2: #aca57e;
-		--main-gradient-top: #afcfdd;
-		--main-gradient-bottom: #e4eff2;
-		--bg-form: #fcf8f3;
-		--hr: #6e897c;
-		--fill-highlight: url(#highlight-gradient) var(--highlight);
-		--backdrop: rgba(16, 52, 55, 0.58);
-	}
+[data-theme="dark"] {
+	--header-bg: var(--d-header-bg);
+	--header-bg-2: var(--d-header-bg-2);
+	--header-bg-3: var(--d-header-bg-3);
+	--title: var(--d-title);
+	--highlight: var(--d-highlight);
+	--highlight-2: var(--d-highlight-2);
+	--header: var(--d-header);
+	--body: var(--d-body);
+	--link: var(--d-link);
+	--hr: var(--d-hr);
+	--gradient-start: var(--d-gradient-start);
+	--gradient-mid: var(--d-gradient-mid);
+	--gradient-end: var(--d-gradient-end);
+	--card: var(--d-card);
+	--backdrop: var(--d-backdrop);
+	--shadow: var(--d-shadow);
 }
 
-.dark,
-[data-theme="dark"] {
-	--primary: #171b30;
-	--primary-2: #122436;
-	--primary-3: #142f40;
-	--primary-4: #254152;
-	--secondary: #ffd800;
-	--highlight: #ffb53b;
-	--highlight-2: #ff7f00;
-	--card: rgba(37, 5, 46, 0.4);
-	--body: #d5e3ed;
-	--body-highlight: #fff;
-	--header: var(--secondary);
-	--subheader: #dddddd;
-	--menu-icon: #9dbfd5;
-	--sky: #97a0bf;
-	--mountain: #7f84a5;
-	--sunmoon: #f5f9ff;
-	--tree: #282a3f;
-	--tree-2: #4f536c;
-	--main-gradient-top: #274555;
-	--main-gradient-bottom: #1e1c3f;
-	--bg-form: #2f2d31;
-	--hr: #6c89a6;
-	--backdrop: rgba(90, 100, 120, 0.6);
+/* ---------------------- Dark Theme repeated for auto ---------------------- */
+@media (prefers-color-scheme: dark) {
+	html:not([data-theme="light"]) {
+		--header-bg: var(--d-header-bg);
+		--header-bg-2: var(--d-header-bg-2);
+		--header-bg-3: var(--d-header-bg-3);
+		--title: var(--d-title);
+		--highlight: var(--d-highlight);
+		--highlight-2: var(--d-highlight-2);
+		--header: var(--d-header);
+		--body: var(--d-body);
+		--link: var(--d-link);
+		--hr: var(--d-hr);
+		--gradient-start: var(--d-gradient-start);
+		--gradient-mid: var(--d-gradient-mid);
+		--gradient-end: var(--d-gradient-end);
+		--card: var(--d-card);
+        --backdrop: var(--d-backdrop);
+        --shadow: var(--d-shadow);
+	}
 }
 
 /* -------------------------------------------------------------------------- */
@@ -124,13 +118,28 @@
 /* -------------------------------------------------------------------------- */
 
 :root {
-	--lil-red-switch-border-radius: 4px;
-	--lil-red-switch-highlight: var(--highlight);
-	--lil-red-switch-track: var(--card);
-	--lil-red-switch-track-border: 2px solid var(--hr);
-	--lil-red-switch-color: var(--hr);
-	--lil-red-switch-knob: var(--hr);
+	--theme-switch-knob: var(--highlight);
+	--theme-switch-highlight: var(--highlight);
+    --theme-switch-track: var(--card);
 }
+
+theme-switch::part(track) {
+	border-radius: 9999px;
+	box-shadow: 0.05em 0.1em 0.05em rgb(50 50 50 / 0.6) inset;
+}
+
+theme-switch::part(knob) {
+	border-radius: 9999px;
+	box-shadow: -0.05em -0.1em 0.05em rgb(50 50 50 / 0.6) inset, 0.1em 0.1em 0.05em rgb(50 50 50 / 0.6);
+	border: 1px solid var(--track);
+	box-sizing: border-box;
+}
+
+
+
+/* -------------------------------------------------------------------------- */
+/*                                   Global                                   */
+/* -------------------------------------------------------------------------- */
 
 /* -------------------------------------------------------------------------- */
 /*                                 Typography                                 */
@@ -159,7 +168,7 @@ input[type="phone"],
 input[type="number"],
 input[type="tel"],
 input[type="url"] {
-	@apply px-sm py-xs border rounded-md bg-form border-body text-body focus:ring-highlight focus:border-highlight;
+	@apply border rounded-md px-sm py-xs bg-form border-body text-body focus:ring-highlight focus:border-highlight;
 }
 
 label {
@@ -173,7 +182,11 @@ select {
 button[type="submit"],
 input[type="submit"],
 .button {
-	@apply font-bold uppercase transition-colors duration-200 rounded shadow text-form bg-highlight hover:bg-highlight-2 py-xs px-sm sm:px-base border border-highlight;
+	@apply font-bold uppercase transition-colors duration-200 border-2 rounded shadow text-header-bg bg-highlight hover:bg-highlight-2 py-xs px-sm sm:px-base border-highlight;
+}
+
+.button.clicked {
+    @apply bg-body border-hr;
 }
 
 input[type="file"] {
@@ -187,11 +200,11 @@ input[type="submit"]:disabled,
 }
 
 .button-sm {
-	@apply font-bold uppercase transition-colors duration-200 rounded shadow text-form text-sm bg-highlight hover:bg-highlight-2 py-2xs px-sm border border-highlight;
+	@apply text-sm font-bold uppercase transition-colors duration-200 border rounded shadow text-form bg-highlight hover:bg-highlight-2 py-2xs px-sm border-highlight;
 }
 
 button:disabled {
-	@apply opacity-70 bg-hr hover:bg-hr border-hr cursor-default;
+	@apply cursor-default opacity-70 bg-hr hover:bg-hr border-hr;
 }
 
 textarea {
@@ -199,7 +212,7 @@ textarea {
 }
 
 fieldset {
-	@apply border-t-4 border-solid border-hr pt-base my-md space-y-4 transition-opacity;
+	@apply space-y-4 transition-opacity border-t-4 border-solid border-hr pt-base my-md;
 }
 
 fieldset > legend + * {
@@ -223,10 +236,10 @@ input[type="checkbox"] ~ label {
 }
 
 .error-required {
-	@apply bg-card p-sm rounded-md;
+	@apply rounded-md bg-card p-sm;
 }
 .error-required:after {
-	@apply ml-xs text-highlight italic font-bold;
+	@apply italic font-bold ml-xs text-highlight;
 	content: "required";
 }
 /* If specific data error text specified use that instead */
@@ -234,15 +247,15 @@ input[type="checkbox"] ~ label {
 	content: attr(data-error);
 }
 [data-error] {
-	@apply bg-card p-sm rounded-md;
+	@apply rounded-md bg-card p-sm;
 }
 [data-error]:after {
-	@apply ml-xs text-highlight italic font-bold;
+	@apply italic font-bold ml-xs text-highlight;
 	content: attr(data-error);
 }
 
 .error-msg {
-	@apply ml-sm text-highlight italic font-bold;
+	@apply italic font-bold ml-sm text-highlight;
 }
 
 /* Hide the error message for forms that use x-validate */
@@ -274,34 +287,7 @@ form[x-validate] [data-error]:after {
 /* -------------------------------------------------------------------------- */
 
 .bbc-logo path {
-	fill: var(--secondary);
-}
-
-.page-wrapper {
-	grid-template-rows: min-content auto;
-}
-
-/* -------------------------- Light Dark Switch ----------------------------- */
-
-.switch input[type="checkbox"]:checked ~ .thumb {
-	@apply transform translate-x-full;
-}
-
-.switch input[type="checkbox"]:checked ~ .track {
-	@apply transform transition-colors;
-}
-
-.switch input[type="checkbox"]:disabled ~ .track {
-	@apply bg-gray-500;
-}
-
-.switch input[type="checkbox"]:disabled ~ .thumb {
-	@apply bg-gray-100 border-gray-500;
-}
-
-.switch input[type="checkbox"]:focus + .track,
-.switch input[type="checkbox"]:active + .track {
-	/* @apply shadow-outline; */
+	fill: var(--title);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -321,7 +307,7 @@ form[x-validate] [data-error]:after {
 /* -------------------------------------------------------------------------- */
 
 [class^="icon-"] {
-	@apply text-body-highlight font-serif no-underline flex items-center gap-sm;
+	@apply inline-flex items-center font-serif no-underline text-link gap-sm;
 	font-size: 1.3em;
 	line-height: 0.9;
 	text-decoration-color: var(--highlight);
@@ -332,7 +318,7 @@ a[class^="icon-"]:hover {
 }
 
 [class^="icon-"]:before {
-	@apply block h-6 w-6 bg-highlight bg-gradient-to-br from-highlight via-highlight to-highlight-2 shrink-0;
+	@apply block w-6 h-6 bg-highlight bg-gradient-to-br from-highlight via-highlight to-highlight-2 shrink-0;
 	mask-repeat: no-repeat;
 	content: " ";
 }
@@ -348,7 +334,7 @@ a[class^="icon-"]:hover {
 }
 
 .events-table thead tr {
-	@apply w-full flex flex-wrap justify-between sm:table-row relative border-b-2 border-card;
+	@apply relative flex flex-wrap justify-between w-full border-b-2 sm:table-row border-card;
 }
 
 .events-table thead th {
@@ -360,20 +346,20 @@ a[class^="icon-"]:hover {
 }
 
 .events-table .events-table-header--spaces {
-	@apply hidden sm:table-cell text-center;
+	@apply hidden text-center sm:table-cell;
 }
 
 .events-table .events-table-header--fav {
-	@apply pb-sm justify-self-end flex justify-end;
+	@apply flex justify-end pb-sm justify-self-end;
 }
 
 .events-table tbody tr {
 	/* pr-8 leaves room for absolute placed fav star in mobile */
-	@apply w-full flex flex-wrap sm:table-row py-sm relative pr-8 sm:pr-0 gap-x-xs border-b-2 border-card;
+	@apply relative flex flex-wrap w-full pr-8 border-b-2 sm:table-row py-sm sm:pr-0 gap-x-xs border-card;
 }
 .volunteer-shifts-table tbody tr {
 	/* pr-8 leaves room for absolute placed fav star in mobile */
-	@apply w-full flex flex-wrap sm:table-row py-sm relative pr-lg sm:pr-0 gap-x-xs border-b-2 border-card;
+	@apply relative flex flex-wrap w-full border-b-2 sm:table-row py-sm pr-lg sm:pr-0 gap-x-xs border-card;
 }
 
 .events-table td {
@@ -397,13 +383,13 @@ a[class^="icon-"]:hover {
 .events-table .events-table-cell--categories {
 }
 .events-table .events-table-cell--spaces {
-	@apply absolute sm:static bottom-0 right-0 text-center;
+	@apply absolute bottom-0 right-0 text-center sm:static;
 }
 .volunteer-shifts-table .events-table-cell--spaces {
-	@apply absolute sm:static top-sm right-lg text-center;
+	@apply absolute text-center sm:static top-sm right-lg;
 }
 .events-table .events-table-cell--fav {
-	@apply absolute sm:static right-0 top-sm;
+	@apply absolute right-0 sm:static top-sm;
 }
 
 .events-table thead tr {
@@ -411,13 +397,13 @@ a[class^="icon-"]:hover {
 }
 
 .events-table th {
-	@apply pb-xs text-subheader sm:pr-sm;
+	@apply pb-xs text-title sm:pr-sm;
 }
 
 .fav-star {
 	mask-image: url(/static/icons/star.svg);
 	mask-repeat: no-repeat;
-	@apply block w-6 h-6 cursor-pointer opacity-30 hover:opacity-100 bg-body text-transparent;
+	@apply block w-6 h-6 text-transparent cursor-pointer opacity-30 hover:opacity-100 bg-body;
 }
 
 .fav-star-header {
@@ -438,13 +424,13 @@ a[class^="icon-"]:hover {
 }
 
 .filter-btn {
-	@apply flex items-center transition-colors rounded gap-x-xs bg-card px-sm py-2xs hover:bg-primary border border-card;
+	@apply flex items-center transition-colors border rounded gap-x-xs bg-card px-sm py-2xs hover:bg-header-bg border-card;
 }
 .filter-btn svg {
 	@apply w-4 h-4 fill-body;
 }
 .filter-btn:hover svg {
-	@apply fill-secondary;
+	@apply fill-highlight;
 }
 .filter-btn.active {
 	@apply border-highlight;
@@ -520,10 +506,11 @@ a[class^="icon-"]:hover {
 
 .modal-wrapper {
 	@apply fixed inset-0 z-50 flex items-center justify-center bg-backdrop backdrop-blur;
+    /* background-image: url(/static/images/bbc-stars.svg); */
 }
 
 .modal-panel {
-	@apply flex flex-col transition-all rounded-md shadow p-base bg-primary max-w-[90%] max-h-[90%] w-96;
+	@apply flex flex-col transition-all rounded-lg shadow-xl border-4 border-card p-base bg-header-bg max-w-[90%] max-h-[90%] w-96 relative z-10;
 }
 
 .modal-header {
@@ -539,7 +526,7 @@ a[class^="icon-"]:hover {
 }
 
 .link-btn {
-	@apply text-highlight underline font-bold;
+	@apply font-bold underline text-highlight;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -645,5 +632,5 @@ lite-youtube.lyt-activated > .lty-playbtn {
 	@apply p-0;
 }
 #main-nav > a[href^="/donate"] span {
-	@apply bg-menu-icon text-primary hover:bg-secondary transition-colors px-sm py-2xs inline-block rounded-md;
+	@apply inline-block transition-colors border-2 rounded-md bg-card border-highlight hover:bg-highlight hover:text-header-bg underline-offset-4 decoration-highlight px-sm py-2xs;
 }

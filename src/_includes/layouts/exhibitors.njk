@@ -1,5 +1,4 @@
 {% extends 'layouts/base.njk' %}
-{% import 'components/bio-card.njk' as biocard %}
 
 {% block content %}
     <main id="content">
@@ -9,17 +8,19 @@
         <section class="flex flex-col mx-auto max-w-content p-base gap-lg">
             {% for exhibitor in collections.exhibitor | published | sort %}
                 <article class="shadow rounded-xl bg-card" id="{{ exhibitor.data.title | slugify }}">
-                    <header class="grid gap-6 sm:grid-cols-3 bg-gradient-to-br from-primary to-primary-2 p-base rounded-t-xl">
+                    <header class="grid gap-6 sm:grid-cols-3 bg-header-bg p-base rounded-t-xl">
                         <div>
                             <figure class="rounded aspect-w-1 aspect-h-1" >
-                                <img class="block object-cover object-center w-full h-full rounded-md "  src="{{exhibitor.data.logo}}" alt="logo of {{ exhibitor.data.name }}">
+                                {% if exhibitor.data.logo %}
+                                    <img class="block object-cover object-center w-full h-full rounded-md "  src="{{exhibitor.data.logo}}" alt="logo of {{ exhibitor.data.name }}">
+                                {% endif %}
                             </figure>
                         </div>
                         <div class="sm:col-span-2">
                             <h2 class="space-x-xs mb-2xs">
                                 <span class="font-serif text-4xl text-header">{{ exhibitor.data.title }}</span>
                                 <span class="font-bold text-body">{{exhibitor.data.gender}}</span></h2>
-                            <h3 class="font-serif text-3xl leading-none text-subheader mb-base">{{ exhibitor.data.position }}</h3>
+                            <h3 class="font-serif text-3xl leading-none text-header mb-base">{{ exhibitor.data.position }}</h3>
                             {% if exhibitor.data.twitter %}
                                 <a href="https://twitter.com/{{exhibitor.data.twitter}}" class="icon-twitter mb-xs">@{{exhibitor.data.twitter}}</a>
                             {% endif %}
@@ -35,7 +36,9 @@
                         </div>
                     </header>
                     <div class="py-base px-base">
-                        <div class="prose ">{{ exhibitor.templateContent | safe }}</div>
+                        {% if exhibitor.templateContent %}
+                            <div class="prose ">{{ exhibitor.templateContent | safe }}</div>
+                        {% endif %}
                     </div>
                 </article>
             {% endfor %}
@@ -44,4 +47,23 @@
             <div class="prose">{{ content | safe }}</div>
         </section>
     </main>
+{% endblock %}
+{% block pagebottom %}
+    <svg width="0" height="0" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <style type="text/css">
+            .bio-wave-stroke {
+                fill: var(--card,#ffffff);
+            }
+            .bio-wave-top {
+                fill: var(--header-bg-2,#000000);
+            }
+        </style>
+        <defs>
+            <pattern id="bio-wave-pattern" x="0" y="0" width=".01791" height="1">
+                <path d="M71.6,8.4V0H0v8.4c9.9,9.7,29.3,9.7,39.1,0C47.2,0.5,63.5,0.5,71.6,8.4z" class="bio-wave-top"/>
+                <path d="M71.6,5.8C62.3-1.7,46.2-1.3,37.7,7c-9.2,9-27.2,9-36.3,0L0,5.6v5.5c5.2,4.4,12.4,6.5,19.6,6.5
+    		c7.8,0,15.7-2.6,21-7.8c7.2-7.1,22.4-7.1,29.6,0l1.4,1.4V5.8z" class="bio-wave-stroke"/>
+            </pattern>
+        </defs>
+    </svg>
 {% endblock %}

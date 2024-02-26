@@ -279,26 +279,27 @@ var require_windows_1252 = __commonJS({
   }
 });
 
-// src/index.js
+// src/index.ts
 var import_utf8 = __toESM(require_utf8());
 var import_windows_1252 = __toESM(require_windows_1252());
 var lilRedDefaults = {
-  lilRedApiUrl: null,
+  lilRedApiUrl: "",
   statusResponse: "roll plus login",
   logoutIfStale: true,
   daysTillLogout: 10,
-  serverApiKey: null,
-  verbose: false
+  serverApiKey: "",
+  verbose: false,
+  fetch: void 0
 };
 var lilRedSettings;
 var auth = {
-  token: null,
-  lastLogin: null
+  token: "",
+  lastLogin: ""
 };
 var AUTH_TOKEN = "lilRedAuthToken";
 var LAST_LOGIN = "lilRedLastLogin";
 var isBrowser = typeof window !== "undefined" && typeof window.document !== "undefined";
-function dispatch(name, detail, additional = "", bubbles = true) {
+function dispatch(name, detail, additional = null, bubbles = true) {
   if (name === "lil-red-error") {
     console.error(name, detail, additional);
   } else {
@@ -313,7 +314,7 @@ function dispatch(name, detail, additional = "", bubbles = true) {
     );
   }
 }
-var decodeText = (text) => {
+function decodeText(text) {
   try {
     text = import_windows_1252.default.encode(text, {
       mode: "html"
@@ -322,11 +323,12 @@ var decodeText = (text) => {
   } catch (error) {
     return text;
   }
-};
+}
 async function fetcher(url, options) {
   const apiPath = url.replace(lilRedSettings.lilRedApiUrl, "");
+  const daFetch = lilRedSettings.fetch || fetch;
   try {
-    let response = await fetch(url, options);
+    let response = await daFetch(url, options);
     if (lilRedSettings.verbose)
       console.log(`RESPONSE:lilFetch for ${apiPath}`, response);
     if (response.status === 401) {
@@ -335,8 +337,7 @@ async function fetcher(url, options) {
     }
     if (!response || response.status !== 200)
       throw new Error(`fetch fail status: ${response.status}`);
-    const contentType = response.headers.get("content-type");
-    const result = contentType && contentType.indexOf("application/json") !== -1 ? await response.json() : await response.text();
+    const result = await parseJSONOrText(response);
     if (lilRedSettings.verbose)
       console.log(`RESULT: lilFetch for ${apiPath}`, result);
     return result;
@@ -345,6 +346,15 @@ async function fetcher(url, options) {
       dispatch("lil-red-error", `(FETCH) lilFetch failed for ${apiPath}`, err);
     }
     return null;
+  }
+}
+async function parseJSONOrText(response) {
+  let text = await response.text();
+  try {
+    const result = JSON.parse(text);
+    return result;
+  } catch (error) {
+    return text;
   }
 }
 async function lilAuth(username, password2) {
@@ -367,12 +377,12 @@ async function lilAuth(username, password2) {
       dispatch(
         "lil-red-error",
         "(LOGIN) Unauthorized. Either username or password is incorrect.",
-        response.status
+        response.status.toString()
       );
       return null;
     }
     if (response.status === 200 && response.headers.get("authorization")) {
-      const token = response.headers.get("authorization");
+      const token = response.headers.get("authorization") || "";
       const lastLogin = new Date().toISOString();
       auth = {
         token,
@@ -392,25 +402,26 @@ async function lilAuth(username, password2) {
     return null;
   }
 }
-async function lilFetch(settings) {
-  settings = { jsonStringify: true, method: "GET", publicMethod: false, ...settings };
+async function lilFetch(settings = { api: "/", method: "GET" }) {
   if (!lilRedSettings?.lilRedApiUrl || !settings.api)
     return null;
-  const publicMethod = settings.publicMethod || settings.api === "/" || /public/.test(settings.api);
-  const serverApiKey = settings.serverApiKey || lilRedSettings.serverApiKey;
   const url = lilRedSettings.lilRedApiUrl + settings.api;
   const options = {
     method: settings.method,
     headers: {}
   };
-  if (settings.jsonStringify) {
-    settings.body = settings.body && JSON.stringify(settings.body);
-    options.headers["Content-Type"] = "application/json;charset=utf-8";
+  if (settings.body) {
+    if (settings.body instanceof FormData) {
+      options.body = settings.body;
+    } else {
+      options.body = JSON.stringify(settings.body);
+      options.headers["Content-Type"] = "application/json;charset=utf-8";
+    }
   }
-  if (settings.body)
-    options.body = settings.body;
-  if (!publicMethod && !settings.serverApiKey) {
-    const tokenLS = isBrowser ? localStorage.getItem(AUTH_TOKEN) : null;
+  const publicMethod = settings.publicMethod || settings.api === "/" || /public/.test(settings.api);
+  const serverApiKey = settings.serverApiKey || lilRedSettings.serverApiKey;
+  if (!publicMethod && !serverApiKey) {
+    const tokenLS = isBrowser ? localStorage.getItem(AUTH_TOKEN) || "" : "";
     const authToken = settings.token || auth.token || tokenLS;
     if (authToken) {
       options.headers.Authorization = authToken;
@@ -424,11 +435,13 @@ async function lilFetch(settings) {
       return null;
     }
     if (lilRedSettings.logoutIfStale) {
-      auth.lastLogin = auth.lastLogin || isBrowser ? localStorage.getItem(LAST_LOGIN) : null;
+      auth.lastLogin = auth.lastLogin || isBrowser ? localStorage.getItem(LAST_LOGIN) || "" : "";
       const lastLogin = Date.parse(auth.lastLogin);
       const now = new Date();
       const daysTillLogout = lilRedSettings.daysTillLogout || 10;
-      const earliestAllowedLogin = Date.parse(new Date(now.setDate(now.getDate() - daysTillLogout)));
+      const earliestAllowedLogin = Date.parse(
+        new Date(now.setDate(now.getDate() - daysTillLogout)).toISOString()
+      );
       const isStale = isNaN(lastLogin) || isNaN(earliestAllowedLogin) || lastLogin < earliestAllowedLogin;
       if (isStale) {
         dispatch(
@@ -447,7 +460,7 @@ async function lilFetch(settings) {
   let response = await fetcher(url, options);
   return response;
 }
-var lilGet = (api, settings) => lilFetch({ api, ...settings });
+var lilGet = (api, settings) => lilFetch({ api, method: "GET", ...settings });
 var lilPost = (api, body, settings) => lilFetch({
   api,
   method: "POST",
@@ -496,7 +509,7 @@ var status = async (maxCount = 1, delay = 5e3, multiplier = 1) => {
       delay = multiplier * delay;
     }
     status2 = await lilGet("/");
-    dispatch("lil-red-status", status2 === successResponse, `check: ${i + 1}`);
+    dispatch("lil-red-status", (status2 === successResponse).toString(), `check: ${i + 1}`);
     if (status2 === successResponse)
       i = maxCount;
   }
@@ -508,7 +521,10 @@ var status = async (maxCount = 1, delay = 5e3, multiplier = 1) => {
 var login = (username, password2) => lilAuth(username, password2);
 var logout = () => {
   dispatch("lil-red-logout", "You have been logged out of Lil Red", new Date());
-  auth = {};
+  auth = {
+    token: "",
+    lastLogin: ""
+  };
   if (isBrowser) {
     localStorage.removeItem(AUTH_TOKEN);
     localStorage.removeItem(LAST_LOGIN);
@@ -522,7 +538,8 @@ var bookings = {
   add: (id) => lilPost("/bookings/bookMeIntoGame", { gameId: Number(id) }),
   delete: (id) => lilDelete("/bookings/removeMeFromGame", {
     gameId: Number(id)
-  })
+  }),
+  addAsAddtlGM: (id, gmGuid) => lilPost("/bookings/addPlayerAsAddtlGmToGame", { eventId: Number(id), additionalGmGuid: gmGuid })
 };
 var favorites = {
   get: () => lilGet("/events/me/favorites"),
@@ -559,27 +576,32 @@ var password = {
 var events = {
   me: () => lilGet("/events/me"),
   find: (id) => lilPost("/events/find", { id: Number(id) }),
+  getAddtlGMCode: (id) => lilGet(`/events/getAddtlGmCode/${id}`),
   bookings: async (event) => {
     if (!isNaN(Number(event)))
       event = await lilPost("/events/find", { id: Number(event) });
-    const bookings2 = event.bookings.filter((booking) => booking.bookingStatus === 1).map((booking) => {
+    if (typeof event === "object" && event.bookings) {
+      const bookings2 = event.bookings.filter((booking) => booking.bookingStatus === 1).map((booking) => {
+        return {
+          id: booking.user.id,
+          displayName: decodeText(booking.user.displayName),
+          bookingComment: booking.bookingComment
+        };
+      });
+      const hosts = bookings2.filter((booking) => booking.bookingComment).sort((a, b) => a.displayName.localeCompare(b.displayName)) || [];
+      const attendees = bookings2.filter((booking) => !booking.bookingComment).map((booking) => {
+        return {
+          id: booking.id,
+          displayName: decodeText(booking.displayName)
+        };
+      }).sort((a, b) => a.displayName.localeCompare(b.displayName)) || [];
       return {
-        id: booking.user.id,
-        displayName: decodeText(booking.user.displayName),
-        bookingComment: booking.bookingComment
+        hosts,
+        attendees
       };
-    });
-    const hosts = bookings2.filter((booking) => booking.bookingComment).sort((a, b) => a.displayName.localeCompare(b.displayName)) || [];
-    const attendees = bookings2.filter((booking) => !booking.bookingComment).map((booking) => {
-      return {
-        id: booking.id,
-        displayName: decodeText(booking.displayName)
-      };
-    }).sort((a, b) => a.displayName.localeCompare(b.displayName)) || [];
-    return {
-      hosts,
-      attendees
-    };
+    } else {
+      return false;
+    }
   },
   all: () => lilGet("/events/all"),
   category: (category) => lilGet(`/events/category/${category}`),
@@ -588,8 +610,7 @@ var events = {
   uploadImage: async (formData) => lilFetch({
     api: "/events/image",
     method: "POST",
-    body: formData,
-    jsonStringify: false
+    body: formData
   }),
   currentYear: (length, offset) => lilGet(`/events/page/${length}/${offset}`),
   since: (epochtime) => lilGet(`/events/since/${epochtime}`),
@@ -598,14 +619,18 @@ var events = {
     currentYear: (length, offset) => lilGet(`/events/page/public/${length}/${offset}`),
     spaces: () => lilGet("/events/spaces/public"),
     space: (id) => lilGet(`/events/${id}/spaces/public`),
+    image: (id) => lilGet(`/events/image/${id}`),
     categories: async (events2) => {
       events2 = events2 || await lilGet("/events/all/public");
-      const allCategories = events2.reduce((acc, cur) => {
-        const simpleArray = cur.categories.map((cat) => cat.name) || [];
-        return [...acc, ...simpleArray];
-      }, []);
-      const uniqueCategories = [...new Set(allCategories)];
-      return uniqueCategories;
+      if (events2) {
+        const allCategories = events2.reduce((acc, cur) => {
+          const simpleArray = cur.categories.map((cat) => cat.name) || [];
+          return [...acc, ...simpleArray];
+        }, []);
+        const uniqueCategories = [...new Set(allCategories)];
+        return uniqueCategories;
+      } else
+        return false;
     }
   }
 };
@@ -642,13 +667,22 @@ function metadataArrayToObject(arr) {
   return object;
 }
 function getRoles(user) {
-  const capabilities = user.metadata.find((md) => /capabilities/.test(md.metaKey)).metaValue;
-  const roles = [...capabilities.matchAll(/"([a-z-]+)/g)].map((match) => match[1]);
-  return roles;
+  const capabilities = user.metadata.find((md) => /capabilities/.test(md.metaKey))?.metaValue;
+  if (capabilities) {
+    return [...capabilities.matchAll(/"([a-z-]+)/g)].map((match) => match[1]);
+  } else
+    return void 0;
 }
 function eventSort(events2) {
-  return events2.sort((a, b) => new Date(a.start) - new Date(b.start) || a.name.localeCompare(b.name));
+  return events2.sort(
+    (a, b) => new Date(a.start).valueOf() - new Date(b.start).valueOf() || a.name.localeCompare(b.name)
+  );
 }
+var getDurationInHours = (dateStart, dateEnd) => {
+  dateStart = new Date(dateStart);
+  dateEnd = new Date(dateEnd);
+  return Math.abs(dateEnd - dateStart) / 1e3 / 3600 % 24;
+};
 function simpleEvent(event, slim = false) {
   const start = event.eventStartDate + "T" + event.eventStartTime + "-07:00";
   const end = event.eventEndDate + "T" + event.eventEndTime + "-07:00";
@@ -659,60 +693,69 @@ function simpleEvent(event, slim = false) {
     GM: metadata.GM && decodeText(metadata.GM),
     System: metadata.System && decodeText(metadata.System)
   };
-  event = {
+  const simpleEvent2 = {
     id: event.eventId,
     name: event.eventName,
     slug: event.eventSlug,
     status: event.eventStatus,
     start,
     end,
-    dur: Number(metadata.Length),
+    dur: parseInt(metadata.Length) || getDurationInHours(start, end),
     categories,
     metadata,
     description: decodeText(event.postContent)
   };
   if (slim) {
-    delete event.description;
-    delete event.metadata;
+    delete simpleEvent2.description;
+    delete simpleEvent2.metadata;
   }
-  return event;
+  return simpleEvent2;
 }
 function simpleEvents(events2, slim = false) {
-  events2 = Array.isArray(events2) && events2.map((event) => {
+  const simpleEvents2 = events2.map((event) => {
     return simpleEvent(event, slim);
   });
-  return eventSort(events2);
+  return eventSort(simpleEvents2);
 }
 function bookedEvents(events2, bookings2) {
-  bookings2 = bookings2.map((id) => events2.find((event) => event.eventId === id || event.id === id)).filter((event) => event).sort((a, b) => {
-    let aDate = a.start || a.eventStartDate + "T" + a.eventStartTime + "-07:00";
-    let bDate = b.start || b.eventStartDate + "T" + b.eventStartTime + "-07:00";
-    aDate = new Date(aDate);
-    bDate = new Date(bDate);
-    return aDate - bDate;
+  if (bookings2.length === 0)
+    return bookings2;
+  let bookingsEventData = [];
+  bookings2.forEach((id) => {
+    const event = events2.find((event2) => event2.eventId === id);
+    if (event)
+      bookingsEventData.push(event);
   });
-  return bookings2;
+  if (bookingsEventData.length === 0)
+    return bookingsEventData;
+  return bookingsEventData.sort((a, b) => {
+    const aDate = a.eventStartDate + "T" + a.eventStartTime + "-07:00";
+    const bDate = b.eventStartDate + "T" + b.eventStartTime + "-07:00";
+    const aDateNum = new Date(aDate).valueOf();
+    const bDateNum = new Date(bDate).valueOf();
+    return aDateNum - bDateNum;
+  });
 }
 function simpleUser(user) {
   let metadata = user.metadata.filter((md) => !/capabilities/.test(md.metaKey));
-  user = {
+  const simpleUser2 = {
     id: user.id,
     email: user.userEmail,
     nicename: user.userNicename,
     metadata: metadataArrayToObject(metadata),
     roles: getRoles(user),
-    displayName: decodeText(user.displayName) || user.displayName
+    displayName: decodeText(user.displayName)
   };
-  return user;
+  return simpleUser2;
 }
 function simpleUsersAll(users) {
-  users = Array.isArray(users) && users.map((user) => simpleUser(user));
-  return users.sort((a, b) => a.displayName.localeCompare(b.displayName));
+  const simpleUsers = users.map((user) => simpleUser(user));
+  return simpleUsers.sort((a, b) => a.displayName.localeCompare(b.displayName));
 }
 function simpleUsersAttending(users) {
   let simpleUsers = simpleUsersAll(users);
   const badgeRoles = ["gm", "paidattendee", "volunteer", "comp", "staff"];
-  return simpleUsers.filter((user) => badgeRoles.some((role) => user.roles.includes(role)));
+  return simpleUsers.filter((user) => badgeRoles.some((role) => user.roles?.includes(role)));
 }
 export {
   admin,

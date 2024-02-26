@@ -12,6 +12,7 @@ navGroup: ''
 navTitle: ''
 order: null
 icon: ''
+eventType: 'both'
 _template: page
 ---
 

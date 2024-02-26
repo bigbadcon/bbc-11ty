@@ -8,6 +8,7 @@ navGroup: Attend
 navTitle: Exhibitors
 order: 3
 icon: booth
+eventType: 'in person'
 _template: page
 ---
 
@@ -42,9 +43,11 @@ Burlingame, CA 94010
 
 ### Booth Information
 
-* 1/5 of the 1545 square foot exhibitors hall (~300 square feet)
+* \~300 square feet.
 * Power outlets available.
-* A locked space that only the hotel and the convention steward (myself) has access to, to keep your products secure when the dealers room is closed.
+* Two 6' long banquet tables available.
+* Four banquet chairs available.
+* A locked space that only the hotel and the convention steward has access to, to keep your products secure when the dealers room is closed.
 
 ### Cost
 
@@ -52,4 +55,4 @@ $300 plus a donation of 10% of your proceeds to the Big Bad Con Scholarship Fund
 
 ### Application
 
-Our exhibitor applications are now closed. We'll be announcing the exhibitors by 6/15/2023.
+Our exhibitor applications are now closed. We will re-open applications in 2024.

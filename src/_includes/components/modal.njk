@@ -10,6 +10,7 @@ x-init="$watch('modal',val => { if (isAuth && val === 'My Account') { getUserDat
 @get-user-data.window="getUserData()"
 @get-booked-events.window="getBookedEvents()"
 >
+    <img src="/static/images/bbc-stars.svg" alt=" " class="absolute top-0 left-0 object-cover w-full h-full cursor-pointer motion-reduce:hidden">
     {# Panel Loading Spinner #}
     <div id="modal-loading" class="modal-panel" x-show="modal === 'Loading'" @click.stop>
         <div class="inline-flex items-center italic font-bold gap-sm py-xs">
@@ -165,7 +166,7 @@ x-init="$watch('modal',val => { if (isAuth && val === 'My Account') { getUserDat
                 <div class="flex flex-wrap items-center gap-2xs">
                     <span>You have a <span x-show="isTeen">Teen</span> badge!</span>
                     <template x-for="role in badgeRoles">
-                        <span x-text="(role === 'paidattendee') ? 'paid' : role" class="py-[.1rem] text-xs font-bold uppercase rounded-full bg-hr text-primary px-xs"></span>
+                        <span x-text="(role === 'paidattendee') ? 'paid' : role" class="py-[.1rem] text-xs font-bold uppercase rounded-full bg-hr text-header-bg px-xs"></span>
                     </template>
                 </div>
                 <div class="text-sm whitespace-nowrap" x-show="availableSlots !== undefined && availableSlots < 100">QUOTA: <b x-text="availableSlots"></b>

@@ -9,6 +9,7 @@ navTitle: Past Events
 order: 3
 icon: library
 ogImage: ''
+eventType: 'both'
 _template: page
 ---
 

@@ -8,6 +8,7 @@ permalink: "events/{{ event.eventSlug }}/"
 eleventyComputed:
     title: "{{ event.eventName | safe }}"
     published: true
+    eventType: "both"
     ogAPIImage: "https://v1.screenshot.11ty.dev/https%3A%2F%2Fwww.bigbadcon.com%2Fog%2Fevents%2F{{event.eventSlug}}%2F/opengraph/"
 ---
 
@@ -16,17 +17,17 @@ eleventyComputed:
     {# If it has a image than put it in place and replace it if a different image is available #}
     {# {% set src = "/event-images-cache/" + event.eventSlug + ".png" %} #}
     {% set src = "https://admin.bigbadcon.com:8091/images/" + event.metadata.event_image %}
-    <div class="w-full rounded-md bg-card mb-base" style="aspect-ratio: 16/9;"
+    <div class="w-full rounded-xl bg-card mb-base" style="aspect-ratio: 16/9;"
     x-data="{src: '{{src}}', defaultImg: '{{event.metadata.event_image}}'}">
-        <img src="{{src}}" class="object-cover w-full rounded-md event-image" style="aspect-ratio: 16/9;"
+        <img src="{{src}}" class="object-cover w-full border-4 border-white rounded-xl event-image drop-shadow-bbc" style="aspect-ratio: 16/9;"
         x-init="if (event_image && event_image !== defaultImg) $el.setAttribute('src', 'https://admin.bigbadcon.com:8091/images/' + event_image)"
 />
     </div>
 {% else %}
     {# If there is no image than make it hidden unless there is an image available #}
-    <div class="w-full rounded-md bg-card mb-base" style="aspect-ratio: 16/9;"
+    <div class="w-full rounded-xl bg-card mb-base" style="aspect-ratio: 16/9;"
     x-cloak x-show="event_image" x-transitition.opacity>
-        <img class="object-cover w-full rounded-md event-image" style="aspect-ratio: 16/9;"
+        <img class="object-cover w-full border-4 border-white rounded-xl event-image drop-shadow-bbc" style="aspect-ratio: 16/9;"
         x-init="if (event_image) $el.setAttribute('src', 'https://admin.bigbadcon.com:8091/images/' + event_image)"
 />
     </div>
@@ -34,11 +35,12 @@ eleventyComputed:
 
 {# TODO: add time when it is ready #}
 
-<div class="relative flex flex-col w-full prose border-t-2 border-b-2 mb-base text-body gap-sm border-hr pr-md py-sm">
+<div class="relative flex flex-col w-full prose border-b-2 mb-base text-body gap-sm border-hr pr-md py-sm" >
     <div x-cloak x-show="isAuth" class="absolute right-0 top-sm">
         <span @click="toggleFav({{event.eventId}})" class="fav-star fav-star--event-page" :class="isFav({{event.eventId}}) && 'favved'">&starf;</span>
     </div>
-    <div class="text-2xl font-semibold leading-snug text-body-highlight pr-base">
+    {# List of GMs #}
+    <div class="text-2xl font-semibold leading-snug text-highlight pr-base"  x-text="gmString || $el.textContent" x-init="console.log(gmString)">
         {{ event.metadata.GM }}
     </div>
     <div class="not-prose">
@@ -114,7 +116,7 @@ eleventyComputed:
     </div>
 {% endif %}
 
-{% if sitemeta.context === 'dev' or sitemeta.context === 'branch-deploy' %}
+{% if false and sitemeta.context === 'dev' or sitemeta.context === 'branch-deploy' %}
     <div class="border-2 border-header p-base mt-base">
         <h3 class="font-bold text-header">DEV ONLY</h3>
         {# Event Tags #}
@@ -128,13 +130,52 @@ eleventyComputed:
         {% endif %}
     </div>
 {% endif %}
+{# Add another GM (only shown for logged in users who is a gm for this event) #}
+{% set facilitatorTitle = "GM" %}
+{% if event.metadata.System === "Panel" %}
+    {% set facilitatorTitle = "Panelist" %}
+{% endif %}
+{# this should only show for event owner and admin; if GM list has 6 then this does not show. #}
+<div x-cloak x-show="(isOwner(user?.id) || isAdmin) && gm.length < 6" class="prose rounded-md my-base bg-card p-base" 
+    x-data="{gmGuidLink: '' }"
+    x-init="if (isOwner(user?.id) || isAdmin) gmGuidLink = await getAddtlGMCode({{event.eventId}}); $watch('user', async value => {if (isOwner(value?.id) || isAdmin) gmGuidLink = await getAddtlGMCode({{event.eventId}});})">
+    <div x-show="gmGuidLink">
+        <h3>Add Another {{facilitatorTitle}}</h3>
+        <p>
+            <strong x-show="isOwner(user?.id)">You are the owner of this event.</strong> If you need to add another {{facilitatorTitle}}, send them the following link which they can use to add themselves to the event.
+        </p>
+        <p>
+            <a :href="gmGuidLink" x-text="gmGuidLink"></a>
+        </p>
+        <p x-data="{clicked: false}">
+            <button  class="button" :class="clicked && 'clicked'" type="button" @click="navigator.clipboard.writeText(gmGuidLink); clicked = true;" @mouseenter="clicked = false">Copy Link</button>
+            <span x-show="clicked" class="italic ml-base" x-transition>Link copied!</span>
+        </p>
+    </div>
+</div>
+{# Add Yourself as a GM: only shown if the guid is on the link #}
+<div x-cloak x-show="user && !isGm(user.id) && getEventGUID() && gm.length < 6" class="prose rounded-md my-base bg-card p-base" >
+    <h3>Add Yourself as a {{facilitatorTitle}}</h3>
+    <div x-show="gm.length < 6">
+        <p>You have been given a link code to add yourself as a {{facilitatorTitle}} to this event. To add yourself click "Add Me To Event" below.</p>
+        <p>
+            <button class="button" type="button" @click="addAsGm({{event.eventId}}, getEventGUID())">Add Me To Event</button>
+        </p>
+    </div>
+    <div x-show="gm.length >= 6">
+        <h3>Max {{facilitatorTitle}}s</h3>
+        <p>The link code you have been given cannot be used we limit events to a maximum of 6 {{facilitatorTitle}}s</p>
+    </div>
+</div>
 {# Event Signup / Booking #}
 {# TODO: make this visible for all when events open. Figure out a way to set this automatically. #}
 {# TODO: when do we want event signups to start? 9/25 12pm PT #}
 {# TODO: If this is a Small Press event then make sure they sign up on the form #}
 
-{# Ad hoc form for PoC Dinner 3263 #}
-{% if event.eventId == 3263 %}
+{# Ad hoc form for PoC Dinner #}
+{# TODO: make this dynamic so the event id can change each year #}
+{% if ('Early Signup' in event.categories) 
+    and event.eventId == 3998 %}
     {% include 'components/poc-dinner-form.njk' %}
 {% elif('Early Signup' in event.categories) %}
     {% include 'components/event-booking-panel.njk' %}
@@ -163,11 +204,6 @@ eleventyComputed:
         <a href="{% calendarLink title, calendarDescription, event.eventStartDateTime, event.eventEndDateTime, event.metadata.room, 'outlook' %}">Outlook</a>
     </div>
     <div class="text-sm">
-        {% set tweeturl = "https://twitter.com/intent/tweet?text=Check+out+this+event+at+BigBadCon!+https://www.bigbadcon.com/events/" + event.eventSlug %}
-
-        <a class="icon-twitter" href="{{tweeturl}}">Tweet This!</a>
-    </div>
-    <div class="text-sm">
         <a href="{{ogAPIImage | ogCacheBuster }}" class="icon-image">Social Image Card</a>
     </div>
 </div>
@@ -180,22 +216,22 @@ eleventyComputed:
         <label for="file">Event Image Upload Add/Replace</label>
         <p class="text-sm my-sm">Images are cropped automatically at 16/9 ratio and centered. Images should be mininum 760x428 px and maximum 1,520x856 px (or there abouts) and formatted with jpg or webp (png or gif accepted but generally the former compress better).</p>
         <input type="file" name="file" id="file" accept="image/*" class="w-full cursor-pointer mr-base" @change="showPreview">
-        <img id="image-preview" class="hidden object-cover object-center w-full rounded-md my-base" x-ref="preview" style="aspect-ratio: 16/9"/>
+        <img id="image-preview" class="hidden object-cover object-center w-full rounded-xl my-base" x-ref="preview" style="aspect-ratio: 16/9"/>
         <button type="submit" class="hidden" id="upload-button">Upload</button>
     </form>
 </div>
 {# Pagination #}
-<div class="grid items-center justify-between grid-cols-2 text-sm leading-tight rounded-md shadow bg-primary p-sm mt-lg">
-    <div class="flex items-center h-full border-r border-primary-2 pr-sm mr-sm">
+<div class="grid items-center justify-between grid-cols-2 text-sm leading-tight rounded-md shadow bg-header-bg p-sm mt-lg">
+    <div class="flex items-center h-full border-r border-header-bg pr-sm mr-sm">
         {% if pagination.href.previous %}
             <a href="{{ pagination.href.previous }}" class="flex items-center text-highlight hover:underline gap-sm">{% include 'components/arrow-left.njk' %}
-                <span class="text-body-highlight">{{pagination.page.previous.eventName}}</span></a>
+                <span class="text-highlight">{{pagination.page.previous.eventName}}</span></a>
         {% endif %}
     </div>
     <div class="justify-self-end">
         {% if pagination.href.next %}
             <a href="{{ pagination.href.next }}" class="flex items-center text-highlight hover:underline gap-sm">
-                <span class="text-body-highlight">{{pagination.page.next.eventName}}</span>{% include 'components/arrow-right.njk' %}</a>
+                <span class="text-highlight">{{pagination.page.next.eventName}}</span>{% include 'components/arrow-right.njk' %}</a>
         {% endif %}
     </div>
 </div>

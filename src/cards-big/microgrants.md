@@ -4,7 +4,6 @@ order: 2
 published: false
 image: /images/story-synth-cards.jpg
 alt: Stack of cards with Story Synth logo
-_template: home_page_cards_big
 ---
 
 **We’re excited to announce that we've disbursed all 100 grants (a total of $30,000) to grant recipients!**

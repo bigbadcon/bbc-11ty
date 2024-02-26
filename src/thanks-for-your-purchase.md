@@ -10,6 +10,7 @@ navTitle: ''
 order: null
 icon: ''
 _template: page
+eventType: 'in person'
 ---
 
 Thanks for your purchase!

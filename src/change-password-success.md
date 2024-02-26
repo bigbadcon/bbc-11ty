@@ -9,6 +9,7 @@ navTitle: ''
 order: null
 icon: ''
 _template: page
+eventType: 'both'
 ---
 
 You have successfully reset your password. You can now login with your new password.

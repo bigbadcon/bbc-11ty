@@ -11,25 +11,22 @@ const scale = {
 };
 
 const colors = {
-	primary: "var(--primary)",
-	"primary-2": "var(--primary-2)",
-	"primary-3": "var(--primary-3)",
-	"primary-4": "var(--primary-4)",
-	secondary: "var(--secondary)",
+	"header-bg": "var(--header-bg)",
+	"header-bg-2": "var(--header-bg-2)",
+	"header-bg-3": "var(--header-bg-3)",
+	title: "var(--title)",
 	highlight: "var(--highlight)",
 	"highlight-2": "var(--highlight-2)",
-	sky: "var(--sky)",
-	body: "var(--body)",
-	"body-highlight": "var(--body-highlight)",
 	header: "var(--header)",
-	subheader: "var(--subheader)",
-	card: "var(--card)",
-	"menu-icon": "var(--menu-icon)",
-	"main-gradient-top": "var(--main-gradient-top)",
-	"main-gradient-bottom": "var(--main-gradient-bottom)",
-	form: "var(--bg-form)",
+	body: "var(--body)",
+	link: "var(--link)",
 	hr: "var(--hr)",
-	backdrop: `var(--backdrop)`,
+	"gradient-start": "var(--gradient-start)",
+	"gradient-mid": "var(--gradient-mid)",
+	"gradient-end": "var(--gradient-end)",
+	card: "var(--card)",
+	form: "var(--card)",
+	backdrop: "var(--backdrop)",
 };
 
 module.exports = {
@@ -49,7 +46,7 @@ module.exports = {
 						color: "var(--body)",
 						lineHeight: "1.45",
 						h1: {
-							color: "var(--header)",
+							color: "var(--title)",
 							fontFamily: "var(--serif)",
 							fontSize: "3rem",
 							lineHeight: "1.20",
@@ -57,7 +54,7 @@ module.exports = {
 							marginTop: "1.4rem",
 						},
 						h2: {
-							color: "var(--header)",
+							color: "var(--title)",
 							fontFamily: "var(--serif)",
 							fontSize: "2.25rem",
 							lineHeight: "1.10",
@@ -65,7 +62,7 @@ module.exports = {
 							marginTop: "1.3rem",
 						},
 						h3: {
-							color: "var(--subheader)",
+							color: "var(--header)",
 							fontFamily: "var(--serif)",
 							fontSize: "1.75rem",
 							lineHeight: "1.05",
@@ -73,7 +70,7 @@ module.exports = {
 							marginTop: "1.1rem",
 						},
 						h4: {
-							color: "var(--subheader)",
+							color: "var(--header)",
 							fontFamily: "var(--serif)",
 							fontSize: "1.60rem",
 							lineHeight: "1.00",
@@ -81,9 +78,11 @@ module.exports = {
 							marginTop: "1em",
 						},
 						a: {
-							color: "var(--highlight)",
+							color: "var(--link)",
 							transition: "color 500ms",
 							fontWeight: "inherit",
+							textDecorationColor: "var(--highlight)",
+							textUnderlineOffset: "2px",
 							"&:hover": {
 								color: "var(--body)",
 							},
@@ -111,7 +110,7 @@ module.exports = {
 							borderBottomColor: "var(--hr)",
 						},
 						"thead th": {
-							color: "var(--subheader)",
+							color: "var(--header)",
 						},
 						"tbody tr": {
 							borderBottomColor: "var(--hr)",

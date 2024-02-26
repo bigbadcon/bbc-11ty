@@ -1,0 +1,900 @@
+{% extends 'layouts/base.njk' %}
+
+{% block content %}
+    <main id="content">
+        <div class="mx-auto max-w-content p-base">
+            <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
+            <div class="prose">{{ content | safe }}</div>
+            <section class="my-base" >
+                {# START Submit Form: only show if logged in #}
+                <div x-cloak x-show="!isAuth" class="prose">
+                    <p>You must be <button @click.stop="modal = 'Login'" class="font-bold underline text-highlight">logged in</button> to submit a game</p>
+                </div>
+                {# submittingState: 'unsubmitted', // unsubmitted, submitted, complete #}
+                <div x-cloak x-show="isAuth && user" x-data="runAnEventData" x-init="if(isAuth) getUserData()">
+                    <div x-show="submittingState !== 'complete'" id="submit-your-event">
+                        <header class="prose">
+                            <h2>Submit Your Panel</h2>
+                            <p>
+                                <span class="font-bold text-highlight">*</span>
+                                <em>required field</em>
+                            </p>
+                        </header>
+                        <form action="post" class="mt-base" id="form" x-ref="form" @submit.prevent="submitEvent" x-validate>
+                            {# TODO: add honeypot #}
+                            <input type="hidden" name="userDisplayName" :value="user && user.displayName" x-validate x-init="$watch('user',val => {if (val && val.displayName) $validate.updateData($el)})">
+                            {# Personal Info #}
+                            <fieldset x-ref="personalInfo">
+                                <legend>Personal Info</legend>
+                                <div class="required">
+                                    <label for="publicName">Public Name</label>
+                                    <p class="text-xs mb-sm text-body">We encourage attendees to list their first and last names. However, if for privacy reasons you would like to use another name, enter it here.</p>
+                                    <input id="publicName" name="publicName" type="text" value="" :value="user && user.displayName" data-error-msg="Name is required"
+                                    required x-init="$watch('user',val => {if (val && val.displayName) $validate.updateData($el)})"/>
+                                </div>
+
+                            </fieldset>
+                            <fieldset x-ref="communityStandards" >
+                                <legend>Community Standards Agreement</legend>
+                                <div class="prose mb-sm">
+                                    <p>Big Bad Con is committed to cultivating a culture of respect, support, and kindness at both our in-person and online events. We ask that all of our attendees agree to abide by our Community Standards, please take a moment to read them before answering yes below.</p>
+                                    <p>
+                                        <a href="/community-standards" class="icon-scroll">Community Standards</a>
+                                    </p>
+                                </div>
+                                <div class="required">
+                                    <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" required>
+                                    <label for="agree-to-community-standards" >
+                                        Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Big Bad Con Community Standards
+                                    </label>
+                                </div>
+                            </fieldset>
+
+                            {# END Personal Info #}
+                            {# Event Info - Personal Info must be complete before showing #}
+                            <fieldset x-ref="eventInfo" >
+                                <legend>Panel Info</legend>
+                                <input type="hidden" name="format" value="Panel" x-validate>
+
+                                {# This value is updated with format select onChange since x-validate does not detect the change in :value automatically #}
+
+                                <input type="hidden" name="eventCategoryId" :value="formatId($validate.data('format').value)" x-init="$watch('$el',val => $validate.value(val,formatId($el.value)))" x-validate>
+                                <input type="hidden" name="players" :value="50" x-validate>
+
+                                <div class="required" x-data="{description:''}">
+                                    <label for="eventName">Panel Name</label>
+                                    <div class="prose mb-sm" x-text="`Characters left: ${75 - description.length}`"></div>
+                                    <input id="eventName" name="eventName" type="text" value="" required class="w-full max-w-md" maxlength="75" x-model="description" data-error-msg="Event Name is required"/>
+                                </div>
+                                <div class="required" x-data="{description:''}">
+                                    <label for="eventDescription">Description</label>
+                                    <div class="italic prose my-xs" x-show="$validate.data('format').value === 'Podcast/Stream'">
+                                        <p>Include a description and where people can listen or watch it</p>
+                                    </div>
+                                    <div class="prose mb-sm" x-text="`Characters left: ${1400 - description.length}`"></div>
+                                    <textarea cols="30" id="eventDescription" name="eventDescription" rows="3" required data-error-msg="Description is required" maxlength="1400" x-model="description" x-validate.input></textarea>
+                                </div>
+
+                                {# <div x-data="{src: ''}">
+                                    <label for="file">Event Image Upload Add/Replace</label>
+                                    <p class="text-sm my-sm">Images are cropped automatically at 16/9 ratio and centered. Images should be mininum 760x428 px and maximum 1,520x856 px (or there abouts) and formatted with jpg or webp (png or gif accepted but generally the former compress better).</p>
+                                    <input type="file" name="file" id="file" accept="image/*" class="mr-base" 
+                                    @change="if ($el.files.length > 0) src = URL.createObjectURL($el.files[0])">
+                                    <img id="image-preview" class="hidden object-cover object-center rounded-md my-sm" style="aspect-ratio: 16/9"
+                                    :src="src" :style="src && 'display:block'"/>
+                                </div> #}
+                            </fieldset>
+                            {# END Event Info #}
+
+                            <div class="prose pb-base">
+                                <p class="font-bold">If your event is approved, we'll send you information about how to add additional speakers (up to a total of 6).</p>
+                            </div>
+                            <div x-show="submittingState === 'unsubmitted'">
+                                <button type="submit" :disabled="!$validate.isComplete('form')">Submit</button>
+                            </div>
+                            <div x-show="submittingState === 'submitted'">
+                                {% import 'components/loading-spinner-macro.njk' as loading %}
+                                {{ loading.spinner('Submitting')}}
+                            </div>
+                            {# x-validate form log #}
+                            {% if (sitemeta.environment === 'dev') %}
+                                {% import 'components/x-validate-form-validator.njk' as validate %}
+                                {{ validate.log('form') }}
+                                {# <div class="fixed top-0 right-0 text-xs p-sm bg-slate-100">
+                                    <button @click.prevent="console.log(createEventAPIData)" class="border border-green-300 rounded p-xs">log eventAPI</button>
+                                    <template x-for="id in eventMetadataIds">
+                                        <div x-text="id"></div>
+                                    </template>
+
+                                </div> #}
+                            {% endif %}
+                        </form>
+                    </div>
+                    {# END event submission div #}
+                    {# event submitted #}
+                    <div class="prose" x-show="submittingState === 'complete'" id="event-submitted">
+                        <h2>Thanks for submitting your event!</h2>
+                        <p>Our staff will review your panel, <span id="submit-name" x-text="$validate.data('eventName').value" class="italic font-bold"></span>, and let you know about scheduling it!</p>
+                        <p>You can <a href="/submit-a-panel">submit another panel</a> now if you'd like.</p>
+                    </div>
+                </div>
+                {# END runAnEventData component #}
+            </section>
+        </div>
+    </main>
+{% endblock %}
+
+{#
+    PUT /events/create API
+    {
+        // "accessabilityOptions": "string", //  not used
+        "additionalGms": "string", // used
+        "additionalRequirements": "string", //used
+        "characters": "string", //used
+        "contentAdvisory": true, // used but using a checkbox
+        "eventCategoryId": 0, // this is format
+        "eventDescription": "string", // used
+        "eventFacilitators": "string", // not used
+        "eventMetadataIds": [
+        0
+        ], // need to combine multiple
+        "eventName": "string", // used
+        "gm": "string", // need to convert from publicName?
+        "gmAge": "string", //need to convert from yourAge
+        "length": "string", // used but named eventLength
+        "minPlayers": "string", //used
+        "otherInfo": "string", //used
+        "playerAge": "string", //used
+        "players": "string", // this is maxPlayers
+        "playtest": "string", //used
+        "requestMediaEquipment": "string", // used
+        "requestMediaRoom": true,   // no longer used
+        "requestPrivateRoom": true, // use locationPref for boolean and add rest to additionalRequirements 
+        "runNumberOfTimes": 0, // used
+        "safetyTools": "string", // used convert to string
+        "schedulingPref": "string", // convert to string
+        "system": "string", //  used
+        "tableType": "string",  // used
+        "triggerWarnings": "string",    // used
+        "userDisplayName": "string" , // matches user.displayName
+    }
+ #}
+
+{% block pagebottom %}
+
+    <script type="text/javascript">
+
+        document.addEventListener('alpine:init', () => {
+
+            /* -------------------------------------------------------------------------- */
+            /* Metadata Stuff */
+            /* -------------------------------------------------------------------------- */
+            // Metadata grouped by types
+
+            // TODO: Alphabetize tags before sending as a string
+            // TODO: Make sure tags display correctly on the event page
+
+            const metadata = {
+                format: [
+                    {
+                        "id": 11,
+                        "term_id": 10,
+                        "name": "Board/Card Game",
+                        "slug": "board-game"
+                    }, {
+                        "id": 10,
+                        "term_id": 9,
+                        "name": "LARP",
+                        "slug": "larp"
+                    }, {
+                        "id": 154,
+                        "term_id": 154,
+                        "name": "Panel",
+                        "slug": "panel"
+                    }, {
+                        "id": 9,
+                        "term_id": 8,
+                        "name": "RPG",
+                        "slug": "rpg"
+                    }, {
+                        "id": 13,
+                        "term_id": 12,
+                        "name": "Workshop",
+                        "slug": "workshop"
+                    }, {
+                        "id": 212,
+                        "term_id": 212,
+                        "name": "Podcast/Stream",
+                        "slug": "podcast-stream",
+                        "type": "event-categories"
+                    }, {
+                        "id": 211,
+                        "term_id": 211,
+                        "name": "Social Event",
+                        "slug": "social-event",
+                        "type": "event-categories"
+                    }
+                ],
+                panelTopic: [
+                    {
+                        "id": 160,
+                        "term_id": 160,
+                        "name": "GMing Advice",
+                        "slug": "gming-advice"
+                    }, {
+                        "id": 159,
+                        "term_id": 159,
+                        "name": "Literature",
+                        "slug": "literature"
+                    }, {
+                        "id": 161,
+                        "term_id": 161,
+                        "name": "Player Advice",
+                        "slug": "player-advice"
+                    }, {
+                        "id": 163,
+                        "term_id": 163,
+                        "name": "Safety Tools",
+                        "slug": "safety-tools"
+                    }, {
+                        "id": 162,
+                        "term_id": 162,
+                        "name": "Social Contracts",
+                        "slug": "social-contracts"
+                    }, {
+                        "id": 158,
+                        "term_id": 158,
+                        "name": "Social Justice",
+                        "slug": "social-justice"
+                    }
+                ],
+                gameFocus: [
+                    {
+                        "id": 56,
+                        "term_id": 55,
+                        "name": "Adventure",
+                        "slug": "adventure"
+                    }, {
+                        "id": 63,
+                        "term_id": 62,
+                        "name": "Combat",
+                        "slug": "combat"
+                    }, {
+                        "id": 60,
+                        "term_id": 59,
+                        "name": "Drama",
+                        "slug": "drama"
+                    }, {
+                        "id": 57,
+                        "term_id": 56,
+                        "name": "Exploration",
+                        "slug": "exploration"
+                    }, {
+                        "id": 62,
+                        "term_id": 61,
+                        "name": "Hijinx",
+                        "slug": "hijinx"
+                    }, {
+                        "id": 191,
+                        "term_id": 191,
+                        "name": "Improv",
+                        "slug": "improv"
+                    }, {
+                        "id": 59,
+                        "term_id": 58,
+                        "name": "Intrigue",
+                        "slug": "intrigue"
+                    }, {
+                        "id": 58,
+                        "term_id": 57,
+                        "name": "Investigation",
+                        "slug": "investigation"
+                    }, {
+                        "id": 181,
+                        "term_id": 181,
+                        "name": "LGBTQ themes",
+                        "slug": "lgbtq-themes"
+                    }, {
+                        "id": 167,
+                        "term_id": 167,
+                        "name": "Mystery",
+                        "slug": "mystery"
+                    }, {
+                        "id": 61,
+                        "term_id": 60,
+                        "name": "Romance",
+                        "slug": "romance"
+                    }
+                ],
+                playerContributions: [
+                    {
+                        "id": 67,
+                        "term_id": 66,
+                        "name": "Collaborative",
+                        "slug": "collaborative"
+                    }, {
+                        "id": 188,
+                        "term_id": 188,
+                        "name": "Freeform",
+                        "slug": "freeform"
+                    }, {
+                        "id": 68,
+                        "term_id": 67,
+                        "name": "GM-less",
+                        "slug": "gm-less"
+                    }, {
+                        "id": 65,
+                        "term_id": 64,
+                        "name": "Play to find out",
+                        "slug": "play-to-find-out"
+                    }, {
+                        "id": 66,
+                        "term_id": 65,
+                        "name": "Player antagonism",
+                        "slug": "player-antagonism"
+                    }, {
+                        "id": 69,
+                        "term_id": 68,
+                        "name": "Rotating authority",
+                        "slug": "rotating-authority"
+                    }, {
+                        "id": 64,
+                        "term_id": 63,
+                        "name": "Strong storyline",
+                        "slug": "strong-storyline"
+                    }
+                ],
+                gameGenre: [
+                    {
+                        "id": 171,
+                        "term_id": 171,
+                        "name": "Aliens",
+                        "slug": "aliens"
+                    }, {
+                        "id": 74,
+                        "term_id": 73,
+                        "name": "Alternate History",
+                        "slug": "alternate-history"
+                    }, {
+                        "id": 77,
+                        "term_id": 76,
+                        "name": "Apocalyptic",
+                        "slug": "apocalyptic"
+                    }, {
+                        "id": 156,
+                        "term_id": 156,
+                        "name": "Cyberpunk",
+                        "slug": "cyberpunk"
+                    }, {
+                        "id": 78,
+                        "term_id": 77,
+                        "name": "Espionage",
+                        "slug": "espionage"
+                    }, {
+                        "id": 72,
+                        "term_id": 71,
+                        "name": "Fantasy",
+                        "slug": "fantasy"
+                    }, {
+                        "id": 70,
+                        "term_id": 69,
+                        "name": "Horror",
+                        "slug": "horror"
+                    }, {
+                        "id": 79,
+                        "term_id": 78,
+                        "name": "Military",
+                        "slug": "military"
+                    }, {
+                        "id": 73,
+                        "term_id": 72,
+                        "name": "Modern",
+                        "slug": "modern"
+                    }, {
+                        "id": 76,
+                        "term_id": 75,
+                        "name": "Noir",
+                        "slug": "noir"
+                    }, {
+                        "id": 75,
+                        "term_id": 74,
+                        "name": "Pulp",
+                        "slug": "pulp"
+                    }, {
+                        "id": 71,
+                        "term_id": 70,
+                        "name": "Sci-Fi",
+                        "slug": "sci-fi"
+                    }, {
+                        "id": 121,
+                        "term_id": 120,
+                        "name": "Super Powers",
+                        "slug": "super-powers"
+                    }
+                ],
+                gameMood: [
+                    {
+                        "id": 81,
+                        "term_id": 80,
+                        "name": "Comical",
+                        "slug": "comical"
+                    }, {
+                        "id": 175,
+                        "term_id": 175,
+                        "name": "Cute",
+                        "slug": "cute"
+                    }, {
+                        "id": 83,
+                        "term_id": 82,
+                        "name": "Dark",
+                        "slug": "dark"
+                    }, {
+                        "id": 84,
+                        "term_id": 83,
+                        "name": "Emotional",
+                        "slug": "emotional"
+                    }, {
+                        "id": 85,
+                        "term_id": 81,
+                        "name": "Light",
+                        "slug": "light"
+                    }, {
+                        "id": 134,
+                        "term_id": 133,
+                        "name": "Melancholy",
+                        "slug": "melancholy"
+                    }, {
+                        "id": 80,
+                        "term_id": 79,
+                        "name": "Serious",
+                        "slug": "serious"
+                    }, {
+                        "id": 187,
+                        "term_id": 187,
+                        "name": "Silly",
+                        "slug": "silly"
+                    }, {
+                        "id": 85,
+                        "term_id": 84,
+                        "name": "Suspenseful",
+                        "slug": "suspenseful"
+                    }
+                ],
+                contentAdvisoryOptions: [
+                    {
+                        "id": 92,
+                        "term_id": 91,
+                        "name": "Gore",
+                        "slug": "gore"
+                    }, {
+                        "id": 91,
+                        "term_id": 90,
+                        "name": "Graphic Violence",
+                        "slug": "graphic-violence"
+                    }, {
+                        "id": 89,
+                        "term_id": 88,
+                        "name": "Provocative",
+                        "slug": "provocative"
+                    }, {
+                        "id": 90,
+                        "term_id": 89,
+                        "name": "Sex and Sexuality",
+                        "slug": "sex-and-sexuality"
+                    }
+                ]
+            }
+
+            // Metadata as one big array
+            let allMetadata = []
+            Object
+                .keys(metadata)
+                .forEach(key => allMetadata = [
+                    ...allMetadata,
+                    ...metadata[key]
+                ])
+
+            /* -------------------------------------------------------------------------- */
+            /* Alpine data for form */
+            /* -------------------------------------------------------------------------- */
+
+            Alpine.data('runAnEventData', function () {
+                return {
+                    submittingState: 'unsubmitted', // State Machine: unsubmitted, submitted, complete
+                    convertFormDataToCreateEventAPI(formData) {
+                        convertFormDataToCreateEventAPI(formData)
+                    },
+                    isPrevComplete($el) {
+                        return this
+                            .$validate
+                            .isComplete($el.previousElementSibling)
+                    },
+                    get eventMetadataNames() {
+                        const namesArray = this
+                            .eventMetadataIds
+                            .map(id => {
+                                const metadata = allMetadata.find(val => val.id === id)
+                                return metadata && metadata.name
+                            })
+
+                        return namesArray
+                    },
+                    get eventMetadataIds() {
+                        const formData = this
+                            .$validate
+                            .formData("form");
+
+                        let eventMetadataIds = [formData.eventCategoryId.value].map(id => parseInt(id));
+
+                        return eventMetadataIds
+                    },
+                    get createEventAPIData() {
+
+                        const formData = this
+                            .$validate
+                            .formData("form");
+
+                        // GoD Code Pull together data for second game
+                        /*const eventDescription2 = (formData.gameSignUp.value === 'Games on Demand')
+                            ? `; SECOND GAME: ${formData.eventName2.value} (${formData.system2.value} / Playtest? ${formData.playtest2.value}) DESCRIPTION: ${formData.description2.value})`
+                            : ''
+                        */
+
+                        const apiData = {
+                            //accessabilityOptions: formData.accessabilityOptions,  not used
+                            // Unused fields
+                            additionalGms: "",
+                            additionalRequirements: "",
+                            characters: "",
+                            contentAdvisory: false, // this is a boolean in the API so we are using 1000000 is no-content-advisory; selection info goes into the eventMetadataIds
+                            gmAge: "",
+                            length: "",
+                            minPlayers: "",
+                            otherInfo: "",
+                            playerAge: "",
+                            players: "",
+                            playtest: "",
+                            requestMediaEquipment: "",
+                            requestPrivateRoom: "", // add extra to additionalRequirements for now
+                            runNumberOfTimes: 1,
+                            safetyTools: "",
+                            schedulingPref: "",
+                            tableType: "",
+                            triggerWarnings: "",
+                            // END Unused
+                            eventCategoryId: formData.eventCategoryId.value || 0,
+                            eventDescription: formData.eventDescription.value,
+                            //eventFacilitators: formData.facilitators,  not used
+                            eventMetadataIds: this.eventMetadataIds,
+                            eventMetadataNames: this.eventMetadataNames || [], // This is not used in create event API; only for Google Sheet
+                            eventMetadataNamesString: this.eventMetadataNames && this
+                                .eventMetadataNames
+                                .toString(),
+                            eventName: formData.eventName.value,
+                            eventTags: this.eventMetadataNames || [],
+                            format: formData.format.value,
+                            gm: formData.publicName.value,
+
+                            system: formData.format.value, // Same as format as this is Panel
+
+                            userDisplayName: formData.userDisplayName.value
+                        }
+                        return apiData;
+                    },
+                    async submitEvent(e) {
+                        const form = e.target
+
+                        // Check network status and dataservice before submitting event
+                        const status = await lilRed.status()
+                        if (!status) {
+                            return false
+                        }
+
+                        // Change status to submitted
+                        this.submittingState = "submitted"
+
+                        console.log("🚀 ~ file: form-run-an-event.njk ~ line 783 ~ submitEvent ~ createEventAPIData", this.createEventAPIData)
+
+                        let lilRedResult = undefined;
+                        try {
+                            // Submit to Little Red Event Manager
+
+                            lilRedResult = await lilRed
+                                .events
+                                .create(this.createEventAPIData)
+
+                            console.log("🚀 ~ file: form-run-an-event.njk ~ line 805 ~ submitEvent ~ lilRedResult", lilRedResult)
+                        } catch (e) {
+                            this.submittingState = "unsubmitted"
+                            console.log('ERROR:submitting form to /events/create', e)
+                            this.$dispatch('toast', 'ERROR: event submission to Little Red Event Manager failed!')
+                        }
+
+                        if (lilRedResult && !isNaN(lilRedResult)) {
+                            try {
+                                // Build data for google sheet
+                                const googleFormData = {
+                                    ...this.createEventAPIData,
+                                    eventId: lilRedResult
+                                }
+
+                                // Post to serverless function for Google Sheet
+
+                                const body = JSON.stringify(googleFormData)
+
+                                const options = {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json;charset=utf-8'
+                                    },
+                                    body
+                                }
+
+                                const url = "/.netlify/functions/submit-run-an-event"
+
+                                let response = await fetch(url, options)
+                                console.log(`RESPONSE:fetch for ${url}`, response)
+                                if (!response || response.status !== 200) {
+                                    throw new Error(`fetch fail status: ${response && response.status}`)
+                                }
+                                let result = await response.json()
+                                console.log(`RESULT:fetch for ${url}`, result)
+
+                                this.$dispatch('toast', 'Event submitted!')
+                                window.scroll({top: 0, behavior: 'smooth'});
+                                this.submittingState = "complete"
+                                form.reset()
+                                return result
+                            } catch (err) {
+                                console.error(`ERROR:fetch for ${url}`, err)
+                                this.submittingState = "unsubmitted"
+                                this.$dispatch('toast', 'ERROR: event submission to spreadsheet failed!')
+                                return false
+                            }
+                        } else {
+                            this.$dispatch('toast', 'ERROR: event submission failed!')
+                            this.submittingState = "unsubmitted"
+                        }
+
+                        // If result is a success it returns the event ID.
+                    },
+                    async uploadEventImage(form, eventId) {
+                        // TODO: get this working
+                        const formDataObject = new FormData(form)
+
+                        async function customFetch(url, options) {
+                            try {
+                                let response = await fetch(url, options)
+                                console.log(`RESPONSE:fetch for ${url}`, response)
+                                if (response.status !== 200) 
+                                    throw `fetch fail status: ${response.status}`
+                                let result = await response.json()
+                                console.log(`RESULT:fetch for ${url}`, result)
+                                return result
+                            } catch (err) {
+                                console.error(`ERROR:fetch for ${url}`, err)
+                                return false
+                            }
+                        }
+                        formDataObject.append('eventId', eventId)
+
+                        let data = await customFetch('/.netlify/functions/submit-event-image', {
+                            method: 'POST',
+                            body: formDataObject
+                        })
+                        return data
+                    },
+                    eventLengthOptions() {
+                        const format = this
+                            .$validate
+                            .value('format')
+                        const gameSignUp = this
+                            .$validate
+                            .value('gameSignUp')
+                        let options = [
+                            {
+                                name: '1 hour',
+                                value: '1'
+                            }
+                        ]
+                        console.log('eventLengthOptions', format, format === 'Workshop')
+                        if (format === 'Panel') {
+                            // returns 1 hour
+                        } else if (format === 'Workshop' || format === 'Social Event') {
+                            options.push({name: '2 hours', value: '2'})
+                        } else if (format === 'Podcast/Stream') {
+                            options = [
+                                {
+                                    name: '2 hours',
+                                    value: '2'
+                                }
+                            ]
+                        } else if (format === 'RPG' && gameSignUp === 'Games on Demand') {
+                            options = [
+                                {
+                                    name: '2 hours',
+                                    value: '2'
+                                }, {
+                                    name: '4 hours',
+                                    value: '4'
+                                }
+                            ]
+                        } else {
+                            options = [
+                                ...options, {
+                                    name: '2 hours',
+                                    value: '2'
+                                }, {
+                                    name: '4 hours',
+                                    value: '4'
+                                }, {
+                                    name: '6 hours',
+                                    value: '6'
+                                }, {
+                                    name: '8 hours',
+                                    value: '8'
+                                }
+                            ]
+                        }
+                        return options
+
+                    },
+                    scheduleTimes(format, eventLength) {
+                        if (format === 'Panel' || format === 'Workshop' || format === 'Podcast/Stream') {
+                            return this.panelScheduleTimes[eventLength]
+                        } else if (format === 'Social Event') {
+                            return this.socialScheduleTimes[eventLength]
+                        } else {
+                            return this.gameScheduleTimes[eventLength]
+                        }
+                    },
+                    socialScheduleTimes: {
+                        "0": [],
+                        "1": [
+                            "Thursday night (between 6PM-12AM)", "Friday night (between 8PM-12AM)", "Saturday night (between 8PM-12AM)"
+                        ],
+                        "2": ["Thursday night (between 6PM-12AM)", "Friday night (between 8PM-12AM)", "Saturday night (between 8PM-12AM)"]
+                    },
+                    panelScheduleTimes: {
+                        "0": [],
+                        "1": [
+                            "Between 6PM-12AM", "Between 12AM-6AM", "Between 6AM-12PM", "Between 12PM-6PM"
+                        ],
+                        "2": [
+                            "Friday 9AM-11AM",
+                            "Friday 11AM-1PM",
+                            "Friday 2PM-4PM",
+                            "Friday 4PM-6PM",
+                            "Saturday 9AM-11AM",
+                            "Saturday 11AM-1PM",
+                            "Saturday 2PM-4PM",
+                            "Saturday 4PM-6PM",
+                            "Sunday 9AM-11AM",
+                            "Sunday 11AM-1PM",
+                            "Sunday 2PM-4PM",
+                            "Sunday 4PM-6PM"
+                        ]
+                    },
+                    gameScheduleTimes: {
+                        "0": [],
+                        "1": [
+                            "Friday morning (between 9AM-1PM)",
+                            "Friday afternoon (between 2PM-6PM)",
+                            "Friday night (between 8PM-Midnight)",
+                            "Saturday morning (between 9AM-1PM)",
+                            "Saturday afternoon (between 2PM-6PM)",
+                            "Saturday night (between 8PM-Midnight)",
+                            "Sunday morning (between 9AM-1PM)",
+                            "Sunday afternoon (between 2PM-6PM)"
+                        ],
+                        "2": [
+                            "Friday 9AM-11AM",
+                            "Friday 11AM-1PM",
+                            "Friday 2PM-4PM",
+                            "Friday 4PM-6PM",
+                            "Friday 8PM-10PM",
+                            "Friday 10PM-Midnight",
+                            "Saturday 9AM-11AM",
+                            "Saturday 11AM-1PM",
+                            "Saturday 2PM-4PM",
+                            "Saturday 4PM-6PM",
+                            "Saturday 8PM-10PM",
+                            "Saturday 8PM-Midnight",
+                            "Sunday 9AM-11AM",
+                            "Sunday 11AM-1PM",
+                            "Sunday 2PM-4PM",
+                            "Sunday 4PM-6PM"
+                        ],
+                        "4": [
+                            "Friday 9AM-1PM",
+                            "Friday 2PM-6PM",
+                            "Friday 8PM-Midnight",
+                            "Saturday 9AM-1PM",
+                            "Saturday 2PM-6PM",
+                            "Saturday 8PM-Midnight",
+                            "Sunday 9AM-1PM",
+                            "Sunday 2PM-6PM"
+                        ],
+                        "6": [
+                            "Friday 10AM-4PM",
+                            "Friday 6PM-Midnight",
+                            "Saturday 10AM-4PM",
+                            "Saturday 6PM-Midnight",
+                            "Sunday 9AM-3PM",
+                            "Sunday 2PM-8PM"
+                        ],
+                        "8": ["Friday 10AM-6PM", "Friday 2PM-10PM", "Saturday 10AM-6PM", "Saturday 2PM-10PM", "Sunday 10AM-6PM"]
+                    },
+                    formatId(name) {
+                        if (name) {
+                            const formatType = this
+                                .format
+                                .find(e => e.name === name)
+                            return formatType && formatType.id && formatType
+                                .id
+                                .toString()
+                        }
+                    },
+                    get isRPG() {
+                        return ["RPG"].includes(this.$validate.data('format').value)
+                    },
+                    get isGame() {
+                        return ["RPG", "LARP", "Board/Card Game"].includes(this.$validate.data('format').value)
+                    },
+                    get isRPGorLARP() {
+                        return ["RPG", "LARP"].includes(this.$validate.data('format').value)
+                    },
+                    get isTableTop() {
+                        return ["RPG", "Board/Card Game"].includes(this.$validate.data('format').value)
+                    },
+                    get isBoardgame() {
+                        return this
+                            .$validate
+                            .data('format')
+                            .value === "Board/Card Game"
+                    },
+                    get isPodcast() {
+                        return this
+                            .$validate
+                            .data('format')
+                            .value === "Podcast/Stream"
+                    },
+                    get isSocialEvent() {
+                        return this
+                            .$validate
+                            .data('format')
+                            .value === "Social Event"
+                    },
+                    get isAllAges() {
+                        return this
+                            .$validate
+                            .data('playerAge')
+                            .value === '13+'
+                    },
+                    get isAdultOnly() {
+                        return this
+                            .$validate
+                            .data('playerAge')
+                            .value === '18+'
+                    },
+                    format: metadata.format,
+                    panelTopic: metadata.panelTopic,
+                    gameFocus: metadata.gameFocus,
+                    playerContributions: metadata.playerContributions,
+                    gameGenre: metadata.gameGenre,
+                    gameMood: metadata.gameMood,
+                    contentAdvisoryOptions: metadata.contentAdvisoryOptions,
+                    safetyTools: [
+                        'X-card',
+                        'Lines/Veils',
+                        'Cut/Brake',
+                        'Open Door Policy',
+                        'Script Change',
+                        'Other'
+                    ]
+                }
+            })
+        })
+    </script>
+
+{% endblock %}

@@ -10,6 +10,7 @@ icon: scroll
 ogImage: ''
 navTitle: ''
 _template: page
+eventType: 'both'
 ---
 
 At Big Bad Con, we foster a community that welcomes marginalized genders, queer folks, people of color, and people with disabilities. We actively work to make the con as physically, socially, and financially accessible as possible, and to cultivate a culture of **respect**, **support**, and **kindness**.

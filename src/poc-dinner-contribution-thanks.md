@@ -10,6 +10,7 @@ navTitle: ''
 order: null
 icon: ''
 _template: page
+eventType: 'both'
 ---
 
-Thank you for contributing to the [PoC Dinner](/events/poc-dinner/)!
+Thank you for contributing to the [PoC Dinner](/events/poc-dinner-2/)!

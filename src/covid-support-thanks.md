@@ -9,6 +9,7 @@ navTitle: ''
 order: null
 icon: ''
 _template: page
+eventType: 'both'
 ---
 
 Thank you for submitting the COVID-19 Form. We will perform the any necessary anonymous contact tracing and if you requested financial assistance we you get back in touch about that shortly.

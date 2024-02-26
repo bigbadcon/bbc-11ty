@@ -13,7 +13,8 @@ Meguey Baker has been creating and publishing independent role-playing games sin
 
 Meg will be running:
 
-* Under Hollow Hills
-* Psi\&Run
-* A Mending With Meg workshop
-* The King Is Dead
+* [Under Hollow Hills](https://www.bigbadcon.com/events/under-hollow-hills-2-2)
+* [PsiRun: Dockside](https://www.bigbadcon.com/events/psirun-dockside)
+* [The King Is Dead](https://www.bigbadcon.com/events/the-king-is-dead-2)
+* [Mending With Meg](https://www.bigbadcon.com/events/mending-with-meg/)
+* [Breakfast and Game Design!](https://www.bigbadcon.com/events/breakfast-and-game-design-2/) (x2)

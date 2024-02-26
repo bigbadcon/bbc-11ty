@@ -1,13 +1,10 @@
 {
-	"conEventStartDate": "2023-09-28T07:00:00.000Z",
-	"conEventEndDate": "2023-10-01T07:00:00.000Z",
-	"conEventSignUpsOpen": "2023-08-01T19:00:00.000Z",
-	"onlineEventStartDate": "2023-03-31T07:00:00.000Z",
-	"onlineEventEndDate": "2023-04-01T07:00:00.000Z",
-	"isEventOnline": false,
-	"showVolunteerShifts": true,
 	"showVolunteerShiftsTimes": true,
-	"showEvents": true,
-	"showEventTimes": false,
-	"showEventForm": true
+	"onlineEventStartDate": "2024-04-05T07:00:00.000Z",
+	"onlineEventEndDate": "2024-04-06T07:00:00.000Z",
+	"conEventStartDate": "2024-10-24T07:00:00.000Z",
+	"conEventEndDate": "2024-10-27T07:00:00.000Z",
+	"conEventSignUpsOpen": "2024-09-21T18:57:00.000Z",
+	"eventType": "online",
+	"showEventTimes": true
 }

@@ -25,7 +25,7 @@ We're also hosting another meet and greet for POC writers, artists, editors, and
 Here is the amazing team organizing the scholarship and putting these events together.
 
 * Ajit George
-* Whitney Beltran
+* Whitney Beltrán
 * Surena Marie
 * Carlos Luna
 * Mario Ortegon
@@ -34,6 +34,27 @@ Here is the amazing team organizing the scholarship and putting these events tog
 * Justice Arman
 * Anthony Joyce-Rivera
 * Sean Nittner
+
+## Sponsors
+
+Several generous sponsors have made individual and corporate contributions to make our POC Programming possible. Their support of transformative change in games is so important, and we are grateful for their generous contributions. We would like to add a special thanks to our major donors:
+
+### $10,000+
+
+* [Critical Role](https://critrole.com/)
+* [Darrington Press](https://darringtonpress.com/)
+* [Dropout TV](https://signup.dropout.tv/)
+
+### $5,000+
+
+* [The Adventure Zone](https://maximumfun.org/podcasts/adventure-zone/)
+* [Start Playing Games](https://startplaying.games/)
+* [RPG Match](https://rpgmatch.org/)
+* [Cephalofair Games](https://cephalofair.com/)
+* [MCDM Productions](https://www.mcdmproductions.com/)
+* [Foundry VTT](https://foundryvtt.com/)
+* [Roll20](https://roll20.net/)
+* [Wizards of the Coast](https://company.wizards.com/en)
 
 ## Would you like to contribute?
 

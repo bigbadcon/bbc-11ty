@@ -1,4 +1,47 @@
 import type { TinaField } from "tinacms";
+
+const socials = [
+	{
+		type: "string",
+		name: "twitter",
+		label: "X (formerly known as twitter) handle without the @",
+	},
+	{
+		type: "string",
+		name: "mastodon",
+		label: "mastodon handle (full handle: @name@server.place)",
+	},
+	{
+		type: "string",
+		name: "bluesky",
+		label: "bluesky handle",
+	},
+	{
+		type: "string",
+		name: "twitch",
+		label: "twitch handle",
+	},
+	{
+		type: "string",
+		name: "instagram",
+		label: "instagram handle",
+	},
+	{
+		type: "string",
+		name: "facebook",
+		label: "facebook handle (name or page name for facebook link. If you reach your page with facebook.com/catgame then your handle is catgame",
+	},
+	{
+		type: "string",
+		name: "website_name",
+		label: "website name",
+	},
+	{
+		type: "string",
+		name: "website_url",
+		label: "website url (full url with https://)",
+	},
+];
 export function blogFields() {
 	return [
 		{
@@ -248,6 +291,16 @@ export function home_page_cardsFields() {
 			name: "published",
 			label: "published",
 		},
+		{
+			type: "image",
+			name: "image",
+			label: "image",
+		},
+		{
+			type: "string",
+			name: "alt",
+			label: "image alt text",
+		},
 	] as TinaField[];
 }
 export function pageFields() {
@@ -268,6 +321,7 @@ export function pageFields() {
 				"layouts/form-apply-for-scholarship.njk",
 				"layouts/form-buy-a-badge.njk",
 				"layouts/form-change-password.njk",
+				"layouts/form-claim-badge.njk",
 				"layouts/form-contact-us.njk",
 				"layouts/form-covid-support.njk",
 				"layouts/form-create-account.njk",
@@ -275,6 +329,7 @@ export function pageFields() {
 				"layouts/form-register.njk",
 				"layouts/form-run-games-on-demand.njk",
 				"layouts/form-run-an-event.njk",
+				"layouts/form-submit-a-panel.njk",
 				"layouts/form-suggest-event.njk",
 				"layouts/form-volunteer-signup.njk",
 				"layouts/poc-scholars.njk",
@@ -293,6 +348,13 @@ export function pageFields() {
 			type: "boolean",
 			name: "published",
 			label: "published",
+		},
+		{
+			name: "eventType",
+			label: "Event Type",
+			description: "Site mode: Big Bad Online or the Big Bad Con in person event",
+			type: "string",
+			options: ["both", "in person", "online"],
 		},
 		{
 			type: "string",
@@ -378,6 +440,12 @@ export function pageFields() {
 				"youtube",
 			],
 		},
+		{
+			type: "string",
+			name: "permalink",
+			label: "permalink",
+			description: "Permalink for the page. If not set, the filename will be used.",
+		},
 	] as TinaField[];
 }
 export function poc_scholarsFields() {
@@ -422,26 +490,7 @@ export function poc_scholarsFields() {
 			name: "image",
 			label: "image",
 		},
-		{
-			type: "string",
-			name: "twitter",
-			label: "twitter handle",
-		},
-		{
-			type: "string",
-			name: "mastodon",
-			label: "mastodon handle",
-		},
-		{
-			type: "string",
-			name: "website_name",
-			label: "website name",
-		},
-		{
-			type: "string",
-			name: "website_url",
-			label: "website url",
-		},
+		...socials,
 	] as TinaField[];
 }
 export function staffFields() {
@@ -486,26 +535,7 @@ export function staffFields() {
 			name: "image",
 			label: "image",
 		},
-		{
-			type: "string",
-			name: "twitter",
-			label: "twitter handle",
-		},
-		{
-			type: "string",
-			name: "mastodon",
-			label: "mastodon handle",
-		},
-		{
-			type: "string",
-			name: "website_name",
-			label: "website name",
-		},
-		{
-			type: "string",
-			name: "website_url",
-			label: "website url",
-		},
+		...socials,
 	] as TinaField[];
 }
 export function guestFields() {
@@ -537,26 +567,7 @@ export function guestFields() {
 			name: "image",
 			label: "image",
 		},
-		{
-			type: "string",
-			name: "twitter",
-			label: "twitter handle",
-		},
-		{
-			type: "string",
-			name: "mastodon",
-			label: "mastodon handle",
-		},
-		{
-			type: "string",
-			name: "website_name",
-			label: "website name",
-		},
-		{
-			type: "string",
-			name: "website_url",
-			label: "website url",
-		},
+		...socials,
 	] as TinaField[];
 }
 export function exhibitorFields() {
@@ -582,31 +593,7 @@ export function exhibitorFields() {
 			name: "logo",
 			label: "logo",
 		},
-		{
-			type: "string",
-			name: "twitter",
-			label: "twitter handle",
-		},
-		{
-			type: "string",
-			name: "mastodon",
-			label: "mastodon handle",
-		},
-		{
-			type: "string",
-			name: "instagram",
-			label: "instagram handle",
-		},
-		{
-			type: "string",
-			name: "website_name",
-			label: "website name",
-		},
-		{
-			type: "string",
-			name: "website_url",
-			label: "website url",
-		},
+		...socials,
 	] as TinaField[];
 }
 export function globalFields() {
@@ -641,33 +628,17 @@ export function globalFields() {
 			description: "When game sign-ups are opened",
 		},
 		{
-			name: "isEventOnline",
-			label: "Online Event",
-			type: "boolean",
-			description: "Is the current event Big Bad Online",
-		},
-		{
-			name: "showVolunteerShifts",
-			label: "Show Volunteer Shifts",
-			type: "boolean",
-			description: "Show the volunteer shifts on the events page",
-		},
-		{
-			name: "showEvents",
-			label: "Show Events",
-			type: "boolean",
-			description: "Show the events table on the events page",
+			name: "eventType",
+			label: "Event Type",
+			description: "Site mode: Big Bad Online or the Big Bad Con in person event",
+			type: "string",
+			options: ["in person", "online"],
 		},
 		{
 			name: "showEventTimes",
 			label: "Show Event Times",
+			description: "Show date/times on events table on the events page",
 			type: "boolean",
-		},
-		{
-			name: "showEventForm",
-			label: "Show Event Times",
-			type: "boolean",
-			description: "Show the Run an Event (for Con) or Suggest an Event (for Online) link on events page",
 		},
 	] as TinaField[];
 }

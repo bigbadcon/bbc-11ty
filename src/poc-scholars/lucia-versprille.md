@@ -11,16 +11,16 @@ tags:
   - l
   - a
   - r
-  - poc-emeritus
+  - poc-scholar
 order: 0
 title: Lucia Versprille
 position: ''
 published: true
-gender: she/they
+gender: she/her
 image: /images/lucia-versprille.png
 twitter: seersword
 website_name: Seersword
 website_url: 'https://seersword.com/'
 ---
 
-Lucia Versprille is a TTRPG content creator, artist behind Seersword, and Lead Director for all things Sina Una. Lucia likes to work in everything, from writing, to illustration, and more. Her goals are to make the community a better place and putting out quality content that inspires her and everyone.
+Lucia Versprille is a TTRPG content author, the creator of her company Seersword and the project Sina Una. Lucia likes to do everything, but loves most to assemble and lead a creative project team. Her hope is to introduce people to new perspectives in gaming by way of supporting the community, making art, and sharing stories!
