@@ -137,19 +137,21 @@ eleventyComputed:
 {% endif %}
 {# this should only show for event owner and admin; if GM list has 6 then this does not show. #}
 <div x-cloak x-show="(isOwner(user?.id) || isAdmin) && gm.length < 6" class="prose rounded-md my-base bg-card p-base" 
-        x-data="{gmGuidLink: '' }"
-        x-init="if (isOwner(user?.id) || isAdmin) gmGuidLink = await getAddtlGMCode({{event.eventId}}); $watch('isAuth', async value => {if (value === true && (isOwner(user?.id) || isAdmin)) gmGuidLink = await getAddtlGMCode({{event.eventId}});})">
-    <h3>Add Another {{facilitatorTitle}}</h3>
-    <p>
-        <strong x-show="isOwner(user?.id)">You are the owner of this event.</strong> If you need to add another {{facilitatorTitle}}, send them the following link which they can use to add themselves to the event.
-    </p>
-    <p>
-        <a :href="gmGuidLink" x-text="gmGuidLink"></a>
-    </p>
-    <p x-data="{clicked: false}">
-        <button  class="button" :class="clicked && 'clicked'" type="button" @click="navigator.clipboard.writeText(gmGuidLink); clicked = true;" @mouseenter="clicked = false">Copy Link</button>
-        <span x-show="clicked" class="italic ml-base" x-transition>Link copied!</span>
-    </p>
+    x-data="{gmGuidLink: '' }"
+    x-init="if (isOwner(user?.id) || isAdmin) gmGuidLink = await getAddtlGMCode({{event.eventId}}); $watch('user', async value => {if (isOwner(value?.id) || isAdmin) gmGuidLink = await getAddtlGMCode({{event.eventId}});})">
+    <div x-show="gmGuidLink">
+        <h3>Add Another {{facilitatorTitle}}</h3>
+        <p>
+            <strong x-show="isOwner(user?.id)">You are the owner of this event.</strong> If you need to add another {{facilitatorTitle}}, send them the following link which they can use to add themselves to the event.
+        </p>
+        <p>
+            <a :href="gmGuidLink" x-text="gmGuidLink"></a>
+        </p>
+        <p x-data="{clicked: false}">
+            <button  class="button" :class="clicked && 'clicked'" type="button" @click="navigator.clipboard.writeText(gmGuidLink); clicked = true;" @mouseenter="clicked = false">Copy Link</button>
+            <span x-show="clicked" class="italic ml-base" x-transition>Link copied!</span>
+        </p>
+    </div>
 </div>
 {# Add Yourself as a GM: only shown if the guid is on the link #}
 <div x-cloak x-show="user && !isGm(user.id) && getEventGUID() && gm.length < 6" class="prose rounded-md my-base bg-card p-base" >
