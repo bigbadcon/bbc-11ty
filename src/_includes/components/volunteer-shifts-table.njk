@@ -2,13 +2,13 @@
     <h2 class="font-serif text-3xl font-bold leading-none md:text-4xl text-header mb-base">Volunteer Shift List</h2>
     {# date timezone changer #}
     {% if global.eventType === "online" %}
-        <div class="flex items-center gap-sm pb-base">
+        <div class="flex flex-wrap items-center gap-x-sm pb-base">
             <label for="timezone">Set Timezone</label>
             {% include "components/timezone-select.njk" %}</div>
     {% endif %}
     {# Event Table Filters #}
-    <action-table class="block w-full mb-base py-sm" id="events-action-table" store>
-        <action-table-filters class="flex flex-wrap items-center rounded gap-x-md gap-y-sm bg-card p-sm">
+    <action-table class="block w-full mb-base" id="events-action-table" store>
+        <action-table-filters class="flex flex-wrap items-center rounded gap-x-md gap-y-base bg-card p-sm">
             <div class="flex flex-wrap items-center gap-x-base gap-y-xs">
                 {% if global.showEventTimes %}
                     <action-table-filter-menu name="Date" ></action-table-filter-menu>
