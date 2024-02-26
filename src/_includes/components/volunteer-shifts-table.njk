@@ -25,7 +25,7 @@
             <thead>
                 <tr>
                     <th>Event</th>
-                    <th data-col="Date">Date/Time (dur)</th>
+                    <th data-col="date">Date/Time (dur)</th>
                     {% if sitemeta.context === 'dev' or sitemeta.context === 'branch-deploy' %}
                         <th class="!text-center">ID</th>
                     {% endif %}
@@ -51,9 +51,14 @@
                             </h3>
                         </td>
                         {# Event Start Date/Time #}
-                        {# formatEventDate() is in scripts.js and returns html with date and time in seperate span tags #}
                         {# formatEventDate filter is in eleventy.js and returns html with date and time in seperate span tags #}
-                        <td class="events-table-cell--date" data-sort="{{ event.eventStartDateTime | unixtime }}" data-filter="{{ event.eventStartDateTime | formatDate }}">
+                        {% if (event.eventDuration > 0) %}
+                            {% set filterDate = event.eventStartDateTime | formatDate %}
+                        {% else %}
+                            {% set filterDate = "TBD" %}
+                        {% endif %}
+
+                        <td class="events-table-cell--date" data-sort="{{ event.eventStartDateTime | unixtime }}" data-filter="{{ filterDate }}">
                             {% include 'components/events-table-date.njk' %}
                         </td>
                         {% if sitemeta.context === 'dev' or sitemeta.context === 'branch-deploy'%}
