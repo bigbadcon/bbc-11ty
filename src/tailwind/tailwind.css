@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 @layer utilities {
-    .grid-rows-min-content-auto {
-        grid-template-rows: min-content auto;
-    }
-    .drop-shadow-bbc {
-        filter: drop-shadow(.3rem .3rem 0 var(--shadow));
-    }
+	.grid-rows-min-content-auto {
+		grid-template-rows: min-content auto;
+	}
+	.drop-shadow-bbc {
+		filter: drop-shadow(0.3rem 0.3rem 0 var(--shadow));
+	}
 }
 
 /* -------------------------------------------------------------------------- */
@@ -39,8 +39,8 @@
 	--d-gradient-start: #004f6e;
 	--d-gradient-mid: #063357;
 	--d-gradient-end: #052038;
-    --l-gradient-start: #C399D0;
-	--l-gradient-mid: #E0C7E6;
+	--l-gradient-start: #c399d0;
+	--l-gradient-mid: #e0c7e6;
 	--l-gradient-end: #f4eaf7;
 	--d-card: rgb(18 24 57 / 0.59);
 	--l-card: rgb(255 255 255 / 0.59);
@@ -108,8 +108,8 @@ html,
 		--gradient-mid: var(--d-gradient-mid);
 		--gradient-end: var(--d-gradient-end);
 		--card: var(--d-card);
-        --backdrop: var(--d-backdrop);
-        --shadow: var(--d-shadow);
+		--backdrop: var(--d-backdrop);
+		--shadow: var(--d-shadow);
 	}
 }
 
@@ -120,7 +120,7 @@ html,
 :root {
 	--theme-switch-knob: var(--highlight);
 	--theme-switch-highlight: var(--highlight);
-    --theme-switch-track: var(--card);
+	--theme-switch-track: var(--card);
 }
 
 theme-switch::part(track) {
@@ -134,8 +134,6 @@ theme-switch::part(knob) {
 	border: 1px solid var(--track);
 	box-sizing: border-box;
 }
-
-
 
 /* -------------------------------------------------------------------------- */
 /*                                   Global                                   */
@@ -186,7 +184,7 @@ input[type="submit"],
 }
 
 .button.clicked {
-    @apply bg-body border-hr;
+	@apply bg-body border-hr;
 }
 
 input[type="file"] {
@@ -200,7 +198,7 @@ input[type="submit"]:disabled,
 }
 
 .button-sm {
-	@apply text-sm font-bold uppercase transition-colors duration-200 border rounded shadow text-form bg-highlight hover:bg-highlight-2 py-2xs px-sm border-highlight;
+	@apply text-sm font-bold uppercase transition-colors duration-200 border rounded shadow text-form text-header-bg bg-highlight hover:bg-highlight-2 py-2xs px-sm border-highlight;
 }
 
 button:disabled {
@@ -329,6 +327,209 @@ a[class^="icon-"]:hover {
 /*                           Event / Volunteer List                           */
 /* -------------------------------------------------------------------------- */
 
+action-table :where(th[no-sort]) {
+	padding: 0.2em 0.5em 0.2em 0.5em;
+}
+
+action-table :where(th button) {
+	cursor: pointer;
+	font-weight: bold;
+	border: 0;
+	width: 100%;
+	height: 100%;
+	display: block;
+	padding-block-end: 0.5em;
+	position: relative;
+	text-align: left;
+	font-size: inherit;
+	line-height: inherit;
+	transition: color 0.3s ease-in-out;
+}
+
+action-table :where(th button:hover, th:has(button):hover, th button:focus-visible, th:has(button):focus-visible) {
+	color: var(--highlight);
+}
+
+action-table :where(th button)::after {
+	content: "";
+	width: 0;
+	height: 0;
+	border-left: 0.4em solid transparent; /* Half the width of the triangle */
+	border-right: 0.4em solid transparent; /* Half the width of the triangle */
+	border-top: 0.7em solid var(--highlight); /* Height of the triangle */
+	display: inline-block;
+	position: relative;
+	top: 0.4em;
+	margin-inline-start: 0.4em;
+	opacity: 0.2;
+	transform: translateY(-50%);
+	transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+action-table :where(th[aria-sort$="ing"] button, th[aria-sort$="ing"]:has(button)) {
+	/* background-color: var(--th-sorted); */
+}
+
+action-table :where(th[aria-sort$="ing"] button)::after {
+	opacity: 1;
+}
+
+action-table :where(th[aria-sort="descending"] button)::after {
+	opacity: 1;
+	transform: translateY(-50%) rotate(180deg);
+}
+
+action-table-filter-menu {
+	display: flex;
+	align-items: center;
+	gap: 0.5em;
+}
+
+action-table-filter-menu select {
+	padding: 0.1em 0.5em;
+	font-size: 0.9em;
+	cursor: pointer;
+	padding-inline-end: 3em;
+	box-shadow: none;
+}
+action-table-filter-menu select:focus {
+	outline: 0;
+	outline-offset: 0;
+	border-color: var(--body);
+	box-shadow: none;
+}
+action-table-filter-menu select:focus-visible {
+	outline: 1px solid var(--highlight);
+	outline-offset: 0;
+}
+action-table-filter-menu .selected,
+action-table-filter-menu .selected:focus {
+	outline: 3px solid var(--highlight);
+	outline-offset: 0;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                Switch Toggle                               */
+/* -------------------------------------------------------------------------- */
+action-table label {
+	margin-block-end: 0;
+}
+action-table .switch label {
+	display: inline-flex;
+	align-items: center;
+	margin: 0;
+}
+action-table .switch input {
+	appearance: none;
+	position: relative;
+	display: inline-block;
+	background: var(--card);
+	cursor: pointer;
+	height: 1.4em;
+	width: 2.45em;
+	vertical-align: middle;
+	border-color: var(--hr);
+	border-radius: 2em;
+	box-shadow: 0px 1px 3px #0003 inset;
+	transition: 0.25s linear background;
+}
+action-table .switch input::before {
+	content: "";
+	display: block;
+	width: 1em;
+	height: 1em;
+	background: var(--body);
+	border-radius: 1em;
+	position: absolute;
+	top: 0.15em;
+	left: 0.2em;
+	box-shadow: 0px 1px 3px #0003;
+	transition: 0.25s linear transform;
+	transform: translateX(0em);
+}
+
+action-table .switch :checked,
+action-table .switch :checked:hover,
+action-table .switch :checked:focus,
+action-table .switch input:hover {
+	background: var(--shadow);
+	border-color: var(--hr);
+}
+action-table .switch :checked::before {
+	transform: translateX(1em);
+}
+action-table .switch input:focus,
+action-table .star input:focus {
+	outline: transparent;
+}
+action-table .switch input:focus-visible,
+action-table .star input:focus-visible {
+	outline: 2px solid var(--highlight-2);
+	outline-offset: 2px;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                             Star Switch Toggle                             */
+/* -------------------------------------------------------------------------- */
+
+action-table .star label {
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.2em;
+}
+action-table .star input {
+	--star-checked: var(--highlight);
+	--star-unchecked: var(--highlight);
+	appearance: none;
+	position: relative;
+	cursor: pointer;
+	height: 1.6em;
+	width: 1.6em;
+	vertical-align: middle;
+	border: 0;
+	background: none;
+	transition: opacity 0.25s ease-in-out;
+	opacity: 0.3;
+	margin-right: 0;
+}
+action-table .star input:checked,
+action-table .star input:checked:hover,
+action-table .star input:checked:focus {
+	background: none;
+	border: 0;
+	opacity: 1;
+}
+action-table .star input:focus,
+action-table .star input:hover {
+	outline: none;
+	background: none;
+	border: 0;
+	box-shadow: none;
+}
+action-table .star input:hover,
+action-table .star input:focus-visible,
+action-table .star input:checked:hover,
+action-table .star input:checked:focus-visible {
+	opacity: 1;
+	background: var(--card);
+}
+action-table .star input::before {
+	content: "";
+	background: var(--star-unchecked);
+	cursor: pointer;
+	position: absolute;
+	height: 1.6em;
+	width: 1.6em;
+	vertical-align: middle;
+	transition: 0.25s linear background;
+	clip-path: polygon(50% 0%, 62% 29%, 98% 35%, 74% 58%, 79% 91%, 50% 76%, 21% 91%, 26% 58%, 2% 35%, 34% 29%);
+}
+
+action-table .star input:checked::before {
+	background: var(--star-checked);
+}
+
 .events-table {
 	@apply w-full text-sm text-body;
 }
@@ -338,7 +539,7 @@ a[class^="icon-"]:hover {
 }
 
 .events-table thead th {
-	@apply text-left last:pr-0 py-sm;
+	@apply text-left last:pr-0 py-2xs;
 }
 
 .events-table .events-table-header--categories {
@@ -506,7 +707,7 @@ a[class^="icon-"]:hover {
 
 .modal-wrapper {
 	@apply fixed inset-0 z-50 flex items-center justify-center bg-backdrop backdrop-blur;
-    /* background-image: url(/static/images/bbc-stars.svg); */
+	/* background-image: url(/static/images/bbc-stars.svg); */
 }
 
 .modal-panel {

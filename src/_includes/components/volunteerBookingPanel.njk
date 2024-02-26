@@ -30,6 +30,7 @@
             <input type="hidden" id="userId" name="userId" value="" :value="user && user.id" x-validate>
             <input type="hidden" id="formName" name="formName" value="volunteer-signup">
             <input type="hidden" id="eventId" name="eventId" value="{{event.eventId}}" x-validate>
+            <input type="hidden" id="eventName" name="eventName" value="{{event.eventName}}" x-validate>
             <p>
                 <span class="font-bold text-highlight">*</span>
                 <em>required field</em>
@@ -71,11 +72,12 @@
             </p>
             <fieldset>
                 <legend>Community Standards Agreement</legend>
-                <div class="flex items-center required">
-                    <input type="checkbox" id="communityStandards" name="communityStandards" value="Yes" required>
-                    <label for="communityStandards" class="text-highlight">
-                                    Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Big Bad Con Community Standards
-                                </label>
+                <div class="flex flex-wrap items-center required">
+                    <input type="checkbox" id="communityStandards" name="communityStandards" value="Yes" required >
+                    <label for="communityStandards">
+                        Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Big Bad Con Community Standards
+                    </label>
+                    <div class="error-msg basis-full pt-sm">Required</div>
                 </div>
             </fieldset>
             <div x-show="submittingState === 'unsubmitted'">

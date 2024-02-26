@@ -12,6 +12,7 @@ import Alpine from "alpinejs";
 import persist from "@alpinejs/persist";
 import validate from "@colinaut/alpinejs-plugin-simple-validate";
 import "@colinaut/theme-multi-switch";
+import "@colinaut/action-table";
 Alpine.plugin(persist);
 Alpine.plugin(validate);
 window.Alpine = Alpine;
