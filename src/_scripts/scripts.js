@@ -780,7 +780,7 @@ document.addEventListener("alpine:init", () => {
 			},
 			async getAddtlGMCode(eventId) {
 				const result = await lilRed.events.getAddtlGMCode(eventId);
-				return result && `${window.location.href}?guid=${result}`;
+				return result && `${window.location.href.split("?")[0]}?guid=${result}`;
 			},
 			async addAsGm(eventId, gmGuid) {
 				console.log("addAsGm", eventId, gmGuid);
