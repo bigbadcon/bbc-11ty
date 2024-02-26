@@ -1,6 +1,7 @@
 const axios = require("axios");
 require("dotenv").config();
 const { GoogleSpreadsheet } = require("google-spreadsheet");
+const { JWT } = require("google-auth-library");
 
 // const apiBaseUrl = 'http://www.logictwine.com:8092/'
 const apiBaseUrl = "https://admin.bigbadcon.com:8091/api/";
@@ -24,19 +25,21 @@ exports.handler = async function (event) {
 		console.log("Try submit to Google Sheet");
 
 		try {
+			const serviceAccountAuth = new JWT({
+				email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+				key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"),
+				scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+			});
 			// Initialize the sheet - doc ID is the long id in the sheets URL
-			const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_VOLUNTEER_BIGBADCON_2022);
+			const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_VOLUNTEER_BIGBADCON, serviceAccountAuth);
 
 			// Initialize Auth - see more available options at https://theoephraim.github.io/node-google-spreadsheet/#/getting-started/authentication
-			await doc.useServiceAccountAuth({
-				client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-				private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"),
-			});
 
 			await doc.loadInfo(); // loads document properties and worksheets
 			// eslint-disable-next-line no-console
 			console.log(doc.title);
-			const sheet = doc.sheetsByIndex[0];
+			const year = new Date().getFullYear();
+			const sheet = doc.sheetsByTitle[year.toString()];
 
 			/* ---------------------- Take submit event and add row --------------------- */
 
@@ -52,6 +55,7 @@ exports.handler = async function (event) {
 				otherInfo: eventBody.otherInfo, //not required
 				communityStandards: eventBody.communityStandards && "Agreed",
 				eventId: eventBody.eventId,
+				eventName: eventBody.eventName,
 			});
 			// eslint-disable-next-line no-console
 			console.log("addedRow", addedRow);

@@ -1,108 +1,85 @@
 <section class="mt-md" x-data="eventsTable" x-init="$store.events.getAllSpaces()">
     <h2 class="font-serif text-3xl font-bold leading-none md:text-4xl text-header mb-2xs">Events List</h2>
-    {# Event Table Filter #}
-    <div class="flex flex-wrap items-center justify-start border-t-2 border-b-2 mb-base text-body gap-sm py-sm border-hr" >
-        {# date filter #}
-        {% if global.showEventTimes %}
-            <div class="flex flex-col justify-start sm:items-center sm:flex-row gap-2xs sm:gap-xs">
-                <label class="text-xs font-bold sm:text-sm" for="filter-by-date">Date:</label>
-                <select id="filter-by-date" class="mb-0 text-sm cursor-pointer pl-xs py-2xs" x-model="filter.day">
-                    <template x-for="day in allDays">
-                        <option x-text="day" :selected="filter.day.toLowerCase() === day.toLowerCase()"></option>
-                    </template>
-                </select>
-            </div>
-            {% if global.eventType === "online" %}
-                <div>{% include "components/timezone-select.njk" %}</div>
-            {% endif %}
-        {% endif %}
-        {# Filter Catagories #}
-        {# TODO: make this dynamic based on the categories currently in events #}
-        {% if global.eventType === "online" %}
-            <div class="flex flex-col justify-start sm:items-center sm:flex-row gap-2xs sm:gap-xs">
-                <label for="filter-by-category" class="text-xs font-bold sm:text-sm">Category:</label>
-                <select id-"filter-by-category" class="mb-0 text-sm cursor-pointer pl-xs py-2xs" x-model="filter.category" x-init="console.log(filter.category)">
-                    <template x-for="category in onlineCategories">
-                        <option x-text="category" :selected="filter.category.toLowerCase() === category.toLowerCase()"></option>
-                    </template>
-                </select>
-            </div>
-        {% else %}
-            <div class="flex flex-col justify-start sm:items-center sm:flex-row gap-2xs sm:gap-xs">
-                <label for="filter-by-category" class="text-xs font-bold sm:text-sm">Category:</label>
-                <select id-"filter-by-category" class="mb-0 text-sm cursor-pointer pl-xs py-2xs" x-model="filter.category" x-init="console.log(filter.category)">
-                    <template x-for="category in allCategories">
-                        <option x-text="category" :selected="filter.category.toLowerCase() === category.toLowerCase()"></option>
-                    </template>
-                </select>
-            </div>
-        {% endif %}
+    {# date timezone changer #}
+    {% if global.eventType === "online" %}
+        <div class="flex items-center gap-sm pb-base">
+            <label for="timezone">Set Timezone</label>
+            {% include "components/timezone-select.njk" %}</div>
+    {% endif %}
+    {# Event Table Filters #}
+    <action-table class="block w-full border-t-2 border-b-2 mb-base py-sm" id="events-action-table" store>
+        <action-table-filters class="flex flex-wrap items-center gap-x-md gap-y-xs">
+            <div class="flex flex-wrap items-center gap-x-base gap-y-xs">
+                {% if global.showEventTimes %}
+                    <action-table-filter-menu name="Date" options="TBD, Apr 5, Apr 6" ></action-table-filter-menu>
+                {% endif %}
+                {# Filter Catagories #}
+                <action-table-filter-menu name="Categories"></action-table-filter-menu>
 
-        {# favsOnly data is in x-data="eventFilter" in wrapping div in base.njk #}
-        {# These Filters require user login #}
-        <div class="flex flex-wrap items-center justify-start gap-xs"
-        x-init="if (!isAuth) resetUserFilters(); $watch('isAuth', val => { if (!val) resetUserFilters() })"
-        >
-            {% if global.eventType === "in person" and global.showEventTimes %}
-                <button @click="filter.openOnly = !filter.openOnly" class="filter-btn" :class="filter.openOnly && 'active'">
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 28">
-                        <title>square</title>
-                        <path d="M24 6.5v15c0 2.484-2.016 4.5-4.5 4.5h-15c-2.484 0-4.5-2.016-4.5-4.5v-15c0-2.484 2.016-4.5 4.5-4.5h15c2.484 0 4.5 2.016 4.5 4.5z"></path>
-                    </svg>
-                    <span class="text-sm">Open Spaces</span>
-                </button>
-            {% endif %}
-            <button @click="filter.favsOnly = !filter.favsOnly" class="filter-btn" :class="filter.favsOnly && 'active'" x-cloak x-show="isAuth">
-                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-                    <title>star</title>
-                    <path d="M32 12.408l-11.056-1.607-4.944-10.018-4.944 10.018-11.056 1.607 8 7.798-1.889 11.011 9.889-5.199 9.889 5.199-1.889-11.011 8-7.798z"></path>
-                </svg>
-                <span class="text-sm">Favs</span>
-            </button>
-            {% if global.eventType === "in person" and global.showEventTimes %}
-                <button @click="filter.overlap = !filter.overlap" class="filter-btn" :class="filter.overlap && 'active'" x-cloak x-show="isAuth">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 164.51 164.52"><path d="M147.37,31.31h-14.17v-14.17c0-9.45-7.69-17.15-17.15-17.15H17.15C7.69,0,0,7.69,0,17.15V116.06c0,9.45,7.69,17.15,17.15,17.15h14.17v14.17c0,9.45,7.69,17.15,17.15,17.15h98.91c9.45,0,17.15-7.69,17.15-17.15V48.46c0-9.45-7.69-17.15-17.15-17.15Zm-27.17,66.54l-22.35,22.35h-13.51l35.86-35.86v13.51Zm0,17.13v1.08c0,2.29-1.86,4.15-4.15,4.15h-1.08l5.22-5.22Zm0-47.76l-52.98,52.98h-13.51L120.2,53.71v13.51Zm-75.89,1.11l24.01-24.01h13.51l-37.52,37.52v-13.51Zm0-17.13v-2.74c0-2.29,1.86-4.15,4.15-4.15h2.74l-6.89,6.89Zm0,47.76l54.65-54.65h13.51L44.31,112.47v-13.51Zm-27.17,21.24c-2.29,0-4.15-1.86-4.15-4.15V17.15c0-2.29,1.86-4.15,4.15-4.15H116.06c2.29,0,4.15,1.86,4.15,4.15v14.17H48.46c-9.45,0-17.15,7.69-17.15,17.15V120.2h-14.17Zm134.37,27.17c0,2.29-1.86,4.15-4.15,4.15H48.46c-2.29,0-4.15-1.86-4.15-4.15v-14.17H116.06c9.45,0,17.15-7.69,17.15-17.15V44.31h14.17c2.29,0,4.15,1.86,4.15,4.15v98.91Z"/></svg>
-                    <span class="text-sm">Hide My Event Conflicts</span>
-                </button>
-            {% endif %}
-            <button x-show="!isFilterDefault" x-transition @click="resetFilters" class="text-sm filter-btn">Reset Filters</button>
-        </div>
+            </div>
+            {# favsOnly data is in x-data="eventFilter" in wrapping div in base.njk #}
+            {# These Filters require user login #}
+            <div class="flex flex-wrap items-center justify-start gap-xs" x-show="isAuth">
+                <action-table-filter-switch name="Fav" value="favved" class="flex flex-wrap items-center star" exact></action-table-filter-switch>
+
+                {% if global.eventType === "in person" and global.showEventTimes %}
+                    {# TODO: replace this with action-table-filter-switch #}
+                    <button @click="filter.openOnly = !filter.openOnly" class="filter-btn" :class="filter.openOnly && 'active'">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 28">
+                            <title>square</title>
+                            <path d="M24 6.5v15c0 2.484-2.016 4.5-4.5 4.5h-15c-2.484 0-4.5-2.016-4.5-4.5v-15c0-2.484 2.016-4.5 4.5-4.5h15c2.484 0 4.5 2.016 4.5 4.5z"></path>
+                        </svg>
+                        <span class="text-sm">Open Spaces</span>
+                    </button>
+                {% endif %}
+
+                {% if global.eventType === "in person" and global.showEventTimes %}
+                    {# TODO: replace this with action-table-filter-switch #}
+                    <button @click="filter.overlap = !filter.overlap" class="filter-btn" :class="filter.overlap && 'active'" x-cloak x-show="isAuth">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 164.51 164.52"><path d="M147.37,31.31h-14.17v-14.17c0-9.45-7.69-17.15-17.15-17.15H17.15C7.69,0,0,7.69,0,17.15V116.06c0,9.45,7.69,17.15,17.15,17.15h14.17v14.17c0,9.45,7.69,17.15,17.15,17.15h98.91c9.45,0,17.15-7.69,17.15-17.15V48.46c0-9.45-7.69-17.15-17.15-17.15Zm-27.17,66.54l-22.35,22.35h-13.51l35.86-35.86v13.51Zm0,17.13v1.08c0,2.29-1.86,4.15-4.15,4.15h-1.08l5.22-5.22Zm0-47.76l-52.98,52.98h-13.51L120.2,53.71v13.51Zm-75.89,1.11l24.01-24.01h13.51l-37.52,37.52v-13.51Zm0-17.13v-2.74c0-2.29,1.86-4.15,4.15-4.15h2.74l-6.89,6.89Zm0,47.76l54.65-54.65h13.51L44.31,112.47v-13.51Zm-27.17,21.24c-2.29,0-4.15-1.86-4.15-4.15V17.15c0-2.29,1.86-4.15,4.15-4.15H116.06c2.29,0,4.15,1.86,4.15,4.15v14.17H48.46c-9.45,0-17.15,7.69-17.15,17.15V120.2h-14.17Zm134.37,27.17c0,2.29-1.86,4.15-4.15,4.15H48.46c-2.29,0-4.15-1.86-4.15-4.15v-14.17H116.06c9.45,0,17.15-7.69,17.15-17.15V44.31h14.17c2.29,0,4.15,1.86,4.15,4.15v98.91Z"/></svg>
+                        <span class="text-sm">Hide My Event Conflicts</span>
+                    </button>
+                {% endif %}
+
+            </div>
+
+            <button type="reset" class="button-sm">Reset Filters</button>
+        </action-table-filters>
 
         {# Event Table List #}
-        <table class="events-table" id="events-table">
+        <table class="events-table mt-base" id="events-table">
             <caption class="italic text-left mb-xs">Table is sortable by clicking on headers</caption>
-            {# TODO add aria sort https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-sort #}
-            <thead :class="isSort($el).ascending ? 'ascending' : 'descending'">
+            <thead>
                 <tr>
                     <th>
-                        <button x-bind="sortable" title="Sort by event">Event</button>
-                    </th>
+                            Event
+                        </th>
                     {% if global.eventType === "in person" %}
                         <th>
-                            <button x-bind="sortable" title="Sort by system">System</button>
-                        </th>
+                                System
+                            </th>
                     {% endif %}
                     {% if global.showEventTimes %}
-                        <th>
-                            <button x-bind="sortable" title="Sort by Date/Time">Date/Time (dur)</button>
-                        </th>
+                        <th data-col="date">
+                                Date/Time (dur)
+                            </th>
                     {% endif %}
                     {% if sitemeta.context === 'dev' or sitemeta.context === 'branch-deploy' %}
                         <th class="!text-center">
-                            <button x-bind="sortable">ID</button>
-                        </th>
+                                ID
+                            </th>
                     {% endif %}
                     <th class="events-table-header--categories">
-                        <button x-bind="sortable" title="Sort by Categories">Categories</button>
-                    </th>
+                            Categories
+                        </th>
                     {% if global.eventType === "in person" %}
                         <th class="events-table-header--spaces">
-                            <button x-bind="sortable" title="Sort by Spaces">Space</button>
-                        </th>
+                                Space
+                            </th>
                     {% endif %}
                     <th class="events-table-header--fav" x-cloak x-show="isAuth">
-                        <button title="filter by favs" class="fav-star-header" @click="filter.favsOnly = !filter.favsOnly" :class="filter.favsOnly && '!bg-highlight'"></button>
-                    </th>
+                            Fav
+                        </th>
                 </tr>
             </thead>
             <tbody>
@@ -113,22 +90,7 @@
                         {% set maxSpaces = "'Any'" %}
                     {% endif %}
                     {# isFav is in Alpine.data("global") #}
-                    <tr x-cloak x-data="eventInfo"
-                {% if global.eventType === "in person" and not global.showEventTimes %}
-                    x-init="id = {{event.eventId}}; maxSpaces = {{maxSpaces}}; categories = [{{event.categories | alpineArray}}];"
-                    x-show="filterCategory(categories) && (!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || (maxSpaces === 'Any' || $store.events.spaces[id] > 0))"
-                    {% elif global.eventType === "in person" and global.showEventTimes %}
-                    x-init="id = {{event.eventId}}; maxSpaces = {{maxSpaces}}; categories = [{{event.categories | alpineArray}}];"
-                    x-show="filterCategory(categories) && (!filter.favsOnly || isFav({{event.eventId}})) && (!filter.openOnly || (maxSpaces === 'Any' || $store.events.spaces[id] > 0)) && filterDay($refs.date{{event.eventId}}?.textContent) && ( !filter.overlap || !doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}) )"
-                    :class="doesEventOverlap('{{event.eventStartDateTime}}', {{event.eventDuration}}) && 'overlap'"
-                    {% elif global.eventType === "online" and not global.showEventTimes %}
-                    x-init="id = {{event.eventId}}; categories = [{{event.categories | alpineArray}}];"
-                    x-show="filterCategory(categories) && (!filter.favsOnly || isFav({{event.eventId}}))"
-                    {% elif global.eventType === "online" and global.showEventTimes %}
-                    x-init="id = {{event.eventId}}; categories = [{{event.categories | alpineArray}}];"
-                    x-show="filterCategory(categories) && filterDay($refs.date{{event.eventId}}?.textContent) && (!filter.favsOnly || isFav({{event.eventId}}))"
-                    {% endif %}
-                    >
+                    <tr x-cloak x-data="eventInfo">
                         {# TODO: make this more modular so that it does not filter by day if there is no date or is not live #}
 
                         {# Event Name #}
@@ -180,15 +142,37 @@
                         {% endif %}
                         {# Fav Event Icon #}
                         <td class="events-table-cell--fav" x-cloak x-show="isAuth">
-                            <div class="flex justify-end">
-                                <span @click="toggleFav({{event.eventId}})" class="fav-star" :class="isFav({{event.eventId}}) && 'favved'"></span>
-                            </div>
+                            <button @click="toggleFav({{event.eventId}})" class="fav-star" :class="isFav({{event.eventId}}) && 'favved'" x-text="isFav({{event.eventId}}) ? 'favved' : 'unfavved'" aria-label="toggle favorite"></button>
                         </td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
-    </div>
+        <action-table-no-results class="prose p-base">
+            <p class="flex items-center gap-base">
+                <strong>
+                    <em>No results found</em>
+                </strong>
+                <button type="reset" class="button">Reset Filters</button>
+            </p>
+        </action-table-no-results>
+    </action-table>
+    <script>
+        // document ready
+        document.addEventListener("DOMContentLoaded", function () {
+            const actionTable = document.querySelector("action-table");
+            console.log("🚀 ~ actionTable:", actionTable)
+
+            actionTable.addEventListener("action-table", function (event) {
+                // Your event handling code here
+                console.log("Action-table event triggered on #action-table element", event);
+            });
+            actionTable.addEventListener("action-table-filter", function (event) {
+                // Your event handling code here
+                console.log("Action-table-filter event triggered on #action-table element", event);
+            });
+        });
+    </script>
 </section>
 {% if sitemeta.context === "dev" or sitemeta.context === 'branch-deploy' %}
     <style>

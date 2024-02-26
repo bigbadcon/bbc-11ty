@@ -37,6 +37,7 @@
 		"@11ty/eleventy-plugin-rss": "^1.2.0",
 		"@alpinejs/intersect": "^3.10.3",
 		"@alpinejs/persist": "^3.10.3",
+		"@colinaut/action-table": "^2.4.11",
 		"@colinaut/alpinejs-plugin-simple-validate": "^1.7.20",
 		"@colinaut/theme-multi-switch": "^0.8.2",
 		"@netlify/functions": "^2.2.1",

@@ -1,7 +1,7 @@
 {# Timezones from here: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones #}
 {# timezone data is in x-data=in html element base.njk #}
 {# TODO: make this moduler so it can be toggled on and off for online or in person events. Or better make it an account setting #}
-<select id="timezone" class="mb-0 text-sm cursor-pointer px-xs py-2xs" 
+<select id="timezone" class="mb-0 text-sm cursor-pointer px-xs py-2xs" name="timezone"
     @change="timezone = $el.value"
     x-init="$el.value = timezone"
     x-cloak x-show="timezone">
