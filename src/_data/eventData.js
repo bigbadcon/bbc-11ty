@@ -30,21 +30,21 @@ const decodeText = (text) => {
 
 /* ------------- Fetch image and save to event-images for cache ------------- */
 
-async function fetchImage(url, slug) {
-	try {
-		const response = await fetch(url);
-		const blob = await response.blob();
-		const arrayBuffer = await blob.arrayBuffer();
-		const buffer = Buffer.from(arrayBuffer);
-		await fs.writeFile(`./event-images-cache/${slug}.png`, buffer);
-		await fs.writeFile(`./dist/event-images-cache/${slug}.png`, buffer);
-		return buffer;
-	} catch (error) {
-		// eslint-disable-next-line no-console
-		console.log(`fetchImage failed for ${slug}`);
-		return false;
-	}
-}
+// async function fetchImage(url, slug) {
+// 	try {
+// 		const response = await fetch(url);
+// 		const blob = await response.blob();
+// 		const arrayBuffer = await blob.arrayBuffer();
+// 		const buffer = Buffer.from(arrayBuffer);
+// 		await fs.writeFile(`./event-images-cache/${slug}.png`, buffer);
+// 		await fs.writeFile(`./dist/event-images-cache/${slug}.png`, buffer);
+// 		return buffer;
+// 	} catch (error) {
+// 		// eslint-disable-next-line no-console
+// 		console.log(`fetchImage failed for ${slug}`);
+// 		return false;
+// 	}
+// }
 
 /* ------------------- Sort by start time& alphabetically ------------------- */
 function eventSort(events) {
@@ -399,7 +399,9 @@ module.exports = async () => {
 		// TODO: figure out a better way to handle this for main vs drafts
 		// 0: draft or pending, 1: published, -1 or null: trashed
 		// TODO: issue found is that eventStatus = null when it is moved to trash back to drafts?
-		if (environment === "production") data = data.filter((event) => event.eventStatus === 1);
+		if (environment === "production") {
+			data = data.filter((event) => event.eventStatus === 1 && event.eventName !== "BBC Hidden Test Event");
+		}
 		data = data.filter((event) => event.eventStatus === 1);
 		// Only show dates in the future (minus 1 month)
 		data = data.filter((event) => dayjs(event.eventStartDate).isAfter(dayjs().subtract(2, "weeks")));
@@ -433,6 +435,12 @@ module.exports = async () => {
 
 			// convert to simple array sorted alphabetically
 			const categories = event.categories.map((val) => val.name).sort((a, b) => a.localeCompare(b));
+
+			// Check if Test Event
+			const isTestEvent = event.eventName.includes("BBC Hidden Test Event");
+			if (isTestEvent) {
+				categories.push("Test");
+			}
 
 			/* ------------------ Build tags list from eventMetadataIds ----------------- */
 			const tags = event.eventMetadataIds.reduce((acc, val) => {
