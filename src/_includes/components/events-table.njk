@@ -11,7 +11,7 @@
         <action-table-filters class="flex flex-wrap items-center rounded gap-x-md gap-y-base bg-card p-sm">
             <div class="flex flex-wrap items-center gap-x-base gap-y-xs">
                 {% if global.showEventTimes %}
-                    <action-table-filter-menu name="Date" options="TBD, Apr 5, Apr 6" ></action-table-filter-menu>
+                    <action-table-filter-menu name="Date" ></action-table-filter-menu>
                 {% endif %}
                 {# Filter Catagories #}
                 <action-table-filter-menu name="Categories"></action-table-filter-menu>
@@ -117,7 +117,12 @@
 
                         {% if global.showEventTimes %}
                             {# Event Start Date/Time #}
-                            <td class="events-table-cell--date" data-sort="{{ event.eventStartDateTime | unixtime }}">
+                            {% if (event.eventDuration > 0) %}
+                                {% set filterDate = event.eventStartDateTime | formatDate %}
+                            {% else %}
+                                {% set filterDate = "TBD" %}
+                            {% endif %}
+                            <td class="events-table-cell--date" data-sort="{{ event.eventStartDateTime | unixtime }}" data-filter="{{ filterDate }}">
                                 {% include 'components/events-table-date.njk' %}
                             </td>
                         {% endif %}
