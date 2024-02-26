@@ -8,8 +8,9 @@
     {% endif %}
     {# Event Table Filters #}
     <action-table class="block w-full mb-base" id="events-action-table" store>
-        <action-table-filters class="flex flex-wrap items-center rounded gap-x-md gap-y-base bg-card p-sm">
+        <action-table-filters class="flex flex-wrap items-center rounded gap-x-base gap-y-base bg-card p-sm">
             <div class="flex flex-wrap items-center gap-x-base gap-y-xs">
+                <input type="search" name="event" id="search" placeholder="Search Event">
                 {% if global.showEventTimes %}
                     {% if global.eventType === "online" %}
                         <action-table-filter-menu name="Date" id="dateFilter" x-ref="dateFilter" x-init="$watch('timezone', value => $el.connectedCallback())"></action-table-filter-menu>

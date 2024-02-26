@@ -165,7 +165,8 @@ input[type="email"],
 input[type="phone"],
 input[type="number"],
 input[type="tel"],
-input[type="url"] {
+input[type="url"],
+input[type="search"] {
 	@apply border rounded-md px-sm py-xs bg-form border-body text-body focus:ring-highlight focus:border-highlight;
 }
 
@@ -379,10 +380,14 @@ action-table :where(th[aria-sort="descending"] button)::after {
 	transform: translateY(-50%) rotate(180deg);
 }
 
+action-table-filters label {
+	font-size: 0.9em;
+}
+
 action-table-filter-menu {
 	display: flex;
 	align-items: center;
-	gap: 0.5em;
+	gap: 0.3em;
 }
 
 action-table-filter-menu select {
@@ -406,6 +411,11 @@ action-table-filter-menu .selected,
 action-table-filter-menu .selected:focus {
 	outline: 3px solid var(--highlight);
 	outline-offset: 0;
+}
+
+action-table-filters input[type="search"] {
+	padding: 0.1em 0.5em;
+	font-size: 0.9em;
 }
 
 /* -------------------------------------------------------------------------- */
