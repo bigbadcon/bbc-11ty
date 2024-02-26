@@ -11,7 +11,11 @@
         <action-table-filters class="flex flex-wrap items-center rounded gap-x-md gap-y-base bg-card p-sm">
             <div class="flex flex-wrap items-center gap-x-base gap-y-xs">
                 {% if global.showEventTimes %}
-                    <action-table-filter-menu name="Date" ></action-table-filter-menu>
+                    {% if global.eventType === "online" %}
+                        <action-table-filter-menu name="Date" id="dateFilter" x-ref="dateFilter" x-init="$watch('timezone', value => $el.connectedCallback())"></action-table-filter-menu>
+                    {% else %}
+                        <action-table-filter-menu name="Date" id="dateFilter" ></action-table-filter-menu>
+                    {% endif %}
                 {% endif %}
                 {# Filter Catagories #}
                 <action-table-filter-menu name="Categories"></action-table-filter-menu>
@@ -122,9 +126,16 @@
                             {% else %}
                                 {% set filterDate = "TBD" %}
                             {% endif %}
-                            <td class="events-table-cell--date" data-sort="{{ event.eventStartDateTime | unixtime }}" data-filter="{{ filterDate }}">
-                                {% include 'components/events-table-date.njk' %}
-                            </td>
+
+                            {% if global.eventType === "online" and event.eventDuration > 0 %}
+                                <td class="events-table-cell--date" data-sort="{{ event.eventStartDateTime | unixtime }}" data-filter="{{ filterDate }}" :data-filter="formatEventDate('{{ event.eventStartDateTime }}', timezone)">
+                                    {% include 'components/events-table-date.njk' %}
+                                </td>
+                            {% else %}
+                                <td class="events-table-cell--date" data-sort="{{ event.eventStartDateTime | unixtime }}" data-filter="{{ filterDate }}" >
+                                    {% include 'components/events-table-date.njk' %}
+                                </td>
+                            {% endif %}
                         {% endif %}
                         {% if sitemeta.context === 'dev' or sitemeta.context === 'branch-deploy' %}
                             <td class="text-center">
@@ -153,6 +164,10 @@
                 {% endfor %}
             </tbody>
         </table>
+        {% if global.eventType === "online" %}
+            {# Kludge to make sure the date filter reloads and grabs dynamic timezone dates #}
+            <div x-init="$refs.dateFilter.connectedCallback()"></div>
+        {% endif %}
         <action-table-no-results class="prose p-base">
             <p class="flex items-center gap-base">
                 <strong>
