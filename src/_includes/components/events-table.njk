@@ -48,7 +48,7 @@
 
             </div>
 
-            <button type="reset" class="button-sm">Reset Filters</button>
+            <button type="reset" class="button-sm" disabled>Reset Filters</button>
         </action-table-filters>
 
         {# Event Table List #}
@@ -82,7 +82,7 @@
                                 Space
                             </th>
                     {% endif %}
-                    <th class="events-table-header--fav" x-cloak x-show="isAuth">
+                    <th x-cloak x-show="isAuth">
                             Fav
                         </th>
                 </tr>
