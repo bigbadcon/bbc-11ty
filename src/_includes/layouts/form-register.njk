@@ -27,10 +27,10 @@
                 <form x-cloak x-show="isAuth && isRegistered === false"
                 x-data="{agree:false}"
                 method="POST" name="register-bigbadonline" 
-                data-netlify="true" netlify-honeypot="bot-field" 
-                action="/register-thank-you/" class="prose">
+                action="/.netlify/functions/register-big-bad-online" class="prose">
                     <p class="hidden">
-                        <label>Don’t fill this out if you’re human: <input name="bot-field"/></label>
+                        <label>Don't fill this out if you're human: <input name="bot-field" type="email"></input>
+                        </label>
                     </p>
                     <input type="hidden" id="displayName" name="displayName" value="" :value="user && user.displayName">
                     <input type="hidden" id="userEmail" name="userEmail" value="" :value="user && user.userEmail">
@@ -45,7 +45,7 @@
                         <legend>Community Standards Agreement</legend>
                         <div class="flex items-center">
                             <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-model="agree" required>
-                            <label for="agree-to-community-standards" class="text-highlight"3324>
+                            <label for="agree-to-community-standards" >
                                 Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Big Bad Con Community Standards
                             </label>
                         </div>

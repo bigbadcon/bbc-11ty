@@ -3,33 +3,35 @@
 {% block content %}
     <main id="content">
         <div class="mx-auto max-w-content p-base">
-            <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
-            <section>
-                {# Loading spinner #}
-                <div x-cloak x-show="isAuth && isRegistered === null" 
+            <h1 x-show="isAuth && isRegistered === true" class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
+            <h1 x-show="isAuth && isRegistered === false" class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">You are not registered</h1>
+            {# Loading spinner #}
+            <div x-cloak x-show="isAuth && isRegistered === null" 
                 x-init="checkRegistration(); $watch('user', value => {checkRegistration()})"
                 class="flex items-center justify-center gap-sm animate-pulse py-md">
-                    <div class="w-8 h-8 rounded-full bg-body"></div>
-                    <div class="w-8 h-8 rounded-full bg-body"></div>
-                    <div class="w-8 h-8 rounded-full bg-body"></div>
-                </div>
-                {# Registration info #}
-                <div x-cloak x-show="isAuth && isRegistered === true" class="prose">
-                    <h2>You are registered!</h2>
-                    <p>
-                        You, <strong>
-                            <span x-text="user.displayName"></span> (<span x-text="user.userNicename"></span>)</strong>, are registered for Big Bad Online. You can prepare for the event by join the special event Discord using the invite link below and following us on Twitch.
-                    </p>
-                    <p x-show="bboDiscordInvite">
-                        <strong>Join</strong> the <a :href="'https://discord.gg/' + bboDiscordInvite">Big Bad Online 2022 Discord</a>!
-                    </p>
-                    <p x-show="!bboDiscordInvite">We will post the event Discord invite link here once it gets closer to the date.</p>
-                    <p>
-                        <strong>Follow</strong> the <a href="https://twitch.tv/bigbadcon">Big Bad Con Twitch Channel</a>!</em>
-                </p>
+                <div class="w-8 h-8 rounded-full bg-body"></div>
+                <div class="w-8 h-8 rounded-full bg-body"></div>
+                <div class="w-8 h-8 rounded-full bg-body"></div>
             </div>
-        </section>
-        <div class="prose">{{ content | safe }}</div>
-    </div>
-</main>
+            {# Registration info #}
+            <div x-cloak x-show="isAuth && isRegistered === true" class="prose">
+                <p>
+                        You, <strong>
+                        <span x-text="user.displayName"></span> (<span x-text="user.userNicename"></span>)</strong>, are registered for Big Bad Online. You can prepare for the event by join the special event Discord using the invite link below and following us on Twitch.
+                    </p>
+                <p x-show="bboDiscordInvite">
+                    <strong>Join</strong> the <a :href="'https://discord.gg/' + bboDiscordInvite">Big Bad Online 2022 Discord</a>!
+                    </p>
+                <p x-show="!bboDiscordInvite">We will post the event Discord invite link here once it gets closer to the date.</p>
+                <p>
+                    <strong>Follow</strong> the <a href="https://twitch.tv/bigbadcon">Big Bad Con Twitch Channel</a>!
+                </p>
+                <div class="prose">{{ content | safe }}</div>
+            </div>
+            <div x-cloak x-show="isAuth && isRegistered === false" class="prose">
+                <h2>You are not registered. Please head over to our [Big Bad Online registration](/register) page.</h2>
+            </div>
+
+        </div>
+    </main>
 {% endblock %}
