@@ -16,16 +16,14 @@
             {# Registration info #}
             <div x-cloak x-show="isAuth && isRegistered === true" class="prose">
                 <p>
-                        You, <strong>
-                        <span x-text="user.displayName"></span> (<span x-text="user.userNicename"></span>)</strong>, are registered for Big Bad Online. You can prepare for the event by join the special event Discord using the invite link below and following us on Twitch.
-                    </p>
+                    You, <strong>
+                        <span x-text="user.displayName"></span> (<span x-text="user.userNicename"></span>)</strong>, are registered for Big Bad Online.
+                </p>
                 <p x-show="bboDiscordInvite">
                     <strong>Join</strong> the <a :href="'https://discord.gg/' + bboDiscordInvite">Big Bad Online 2022 Discord</a>!
-                    </p>
-                <p x-show="!bboDiscordInvite">We will post the event Discord invite link here once it gets closer to the date.</p>
-                <p>
-                    <strong>Follow</strong> the <a href="https://twitch.tv/bigbadcon">Big Bad Con Twitch Channel</a>!
                 </p>
+                <p x-show="!bboDiscordInvite">We will post the event Discord invite link here once it gets closer to the date.</p>
+
                 <div class="prose">{{ content | safe }}</div>
             </div>
             <div x-cloak x-show="isAuth && isRegistered === false" class="prose">
