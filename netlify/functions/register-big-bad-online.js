@@ -26,7 +26,7 @@ function getParams(body) {
 
 exports.handler = async function (event) {
 	const successUrl = event.headers.origin + "/register-thank-you/";
-	const failUrl = event.headers.origin + "/register-failed/";
+	const failUrl = event.headers.origin + "/register-fail/";
 	const params = getParams(event.body);
 
 	console.log(`Try find ${params.userNicename} in Google Sheet`);
@@ -61,7 +61,7 @@ exports.handler = async function (event) {
 
 		console.log("addedRow", addedRow);
 	} catch (e) {
-		console.log("fail adding user to google sheet", error);
+		console.log(`fail adding user ${params.userNicename} (${params.userId}) to google sheet`, error);
 		return {
 			statusCode: 500,
 			body: e.toString(),
@@ -83,9 +83,10 @@ exports.handler = async function (event) {
 		};
 		const res = await fetch(apiBaseUrl + `users/addRoleToUser`, config);
 
-		console.log("🚀 ~ res:", res);
-
 		if (res.status === 200) {
+			console.log(
+				`Added volunteer user role for ${params.userNicename} (${params.userId}) with status ${res.status}`
+			);
 			return {
 				statusCode: 303,
 				headers: {
@@ -93,7 +94,9 @@ exports.handler = async function (event) {
 				},
 			};
 		} else {
-			console.log("fail adding user role");
+			console.log(
+				`fail adding volunteer user role for ${params.userNicename} (${params.userId}) with status ${res.status}`
+			);
 			return {
 				statusCode: 303,
 				headers: {
@@ -102,7 +105,7 @@ exports.handler = async function (event) {
 			};
 		}
 	} catch (error) {
-		console.log("fail adding user role", error);
+		console.log(`fail adding user role for ${params.userNicename} (${params.userId}); ERROR:`, error);
 		return {
 			statusCode: 303,
 			headers: {

@@ -7,4 +7,4 @@ eventType: 'online'
 _template: page
 ---
 
-Sorry registration has failed for some reason. Please [try again](/register) or contact use at info@bigbagcon.com.
+Sorry registration has failed for some reason. Please [try again](/register) or contact us at info@bigbagcon.com for help.
