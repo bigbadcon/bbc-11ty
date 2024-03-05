@@ -199,7 +199,7 @@ input[type="submit"]:disabled,
 }
 
 .button-sm {
-	@apply text-sm font-bold uppercase transition-colors duration-200 border rounded shadow text-form text-header-bg bg-highlight hover:bg-highlight-2 py-2xs px-sm border-highlight;
+	@apply text-sm font-bold uppercase transition-colors duration-200 border rounded shadow text-header-bg bg-highlight hover:bg-highlight-2 py-2xs px-sm border-highlight;
 }
 
 button:disabled {

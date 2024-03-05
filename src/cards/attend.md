@@ -10,6 +10,8 @@ Welcome to Big Bad Online!
 
 [Register to Attend](https://www.bigbadcon.com/register/){.icon-calendar-clock}
 
+[Support our Fundraiser](https://www.mightycause.com/story/Bigbadonline2024){.icon-party}
+
 <!--Welcome to Big Bad Con:
 
 **Big Bad Con is sold out!** *We hope to see you in 2024!*
