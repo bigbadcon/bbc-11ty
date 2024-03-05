@@ -651,148 +651,164 @@ document.addEventListener("alpine:init", () => {
 
 	/* ----------- eventInfo Used for Event Table Rows and Event Pages ---------- */
 
-	Alpine.data("eventInfo", function () {
-		// See init on page
-		return {
-			id: 0, // this is filled in in nunjucks
-			categories: [], // this is filled in nunjucks
-			maxSpaces: null, // this is filled in nunjucks; it is either a number or null, which mean "Any"
-			bookings: [],
-			gm: [],
-			event_image: "",
-			isGm(userId) {
-				if (!userId) return false;
-				return this.gm.some((gm) => gm.user.id === userId);
-			},
-			isOwner(userId) {
-				if (!userId) return false;
-				return this.owner === userId;
-			},
-			get gmString() {
-				if (this.gm.length === 0) return "";
-				return this.gm.map((gm) => gm.user.displayName).join(", ");
-			},
-			async getEventInfo(id) {
-				id = id || this.id;
-				let eventsLS = JSON.parse(localStorage.getItem("events")) || {};
+	/**
+	 * @typedef {Object} EventInfo
+	 * @property {number} id - the id of the event; filled in via nunjucks
+	 * @property {number | null} maxSpaces - the maximum number of spaces; also filled in via nunjucks; null means "Any"
+	 * @property {Object[]} bookings - array of the bookings.
+	 * @property {Object[]} gm - array of the game masters.
+	 * @property {string} event_image - the image url of the event
+	 * @property {(userId: number) => boolean} isGm - check if the user is a game master
+	 * @property {(userId: number) => boolean} isOwner - check if the user is the owner
+	 * @property {string} gmString - getter for combined string of the game masters
+	 * @property {(id: number) => Promise<void>} getEventInfo - get the event info
+	 */
 
-				if (eventsLS[id]) {
-					this.bookings = eventsLS[id].bookings;
-					this.gm = eventsLS[id].gm;
-					this.owner = eventsLS[id].owner;
-					this.event_image = eventsLS[id].event_image;
-					this.categories = eventsLS[id].categories;
-				}
-
-				try {
-					// TODO: replace this with simpler API call when Jerry builds it; Also move it to events store.
-					/* ------------------------ Get data from events/find ----------------------- */
-					const data = await lilRed.events.find(id);
-					// convert metadata to object
-					const metadata = metadataArrayToObject(data.metadata);
-					// filter out canceled bookings and fix name issues with odd characters
-					const bookings = data.bookings
-						.filter((booking) => booking.bookingStatus === 1)
-						.map((booking) => {
-							return {
-								...booking,
-								user: {
-									...booking.user,
-									displayName: decodeText(booking.user.displayName),
-								},
-							};
-						});
-
-					/* ------------------------ Update all data variables ----------------------- */
-					// get only active bookings that are gms/speakers (bookingComment is null if not labelled)
-					this.gm = bookings.filter((booking) => booking.bookingComment) || [];
-					this.owner = data.eventOwner.id || "";
-					// get only active bookings that are not gms/speakers (bookingComment is null if not labelled)
-					this.bookings =
-						bookings
-							.filter((booking) => !booking.bookingComment)
-							.sort((a, b) => a.user.displayName.localeCompare(b.user.displayName)) || [];
-					// get event_image
-					this.event_image = metadata.event_image;
-					this.categories = data.categories.map((cat) => cat.name);
-
-					/* -------------------------- Update Local Storage -------------------------- */
-					eventsLS[id] = {
-						bookings: this.bookings,
-						gm: this.gm,
-						owner: this.owner,
-						event_image: this.event_image,
-						categories: this.categories,
-					};
-					localStorage.setItem("events", JSON.stringify(eventsLS));
-				} catch (e) {
-					// eslint-disable-next-line no-console
-					console.log(e);
-				}
-			},
-			async uploadImage(e) {
-				// Check network and data service before submitting event
-				const status = await lilRed.status();
-				if (!status) return false;
-
-				const eventId = e.target.eventId.value;
-				const formData = new FormData(e.target);
-
-				let data = await lilRed.events.uploadImage(formData);
-
-				if (data) {
-					// if data update event data with new image
+	Alpine.data(
+		"eventInfo",
+		/**
+		 * Returns the event info x-data function for the event table rows and event pages
+		 * @return {EventInfo}
+		 */
+		function () {
+			// See init on page
+			return {
+				id: 0,
+				maxSpaces: null,
+				bookings: [],
+				gm: [],
+				event_image: "",
+				isGm(userId) {
+					if (!userId) return false;
+					return this.gm.some((gm) => gm.user.id === userId);
+				},
+				isOwner(userId) {
+					if (!userId) return false;
+					return this.owner === userId;
+				},
+				get gmString() {
+					if (this.gm.length === 0) return "";
+					return this.gm.map((gm) => gm.user.displayName).join(", ");
+				},
+				async getEventInfo(id) {
+					id = id || this.id;
 					let eventsLS = JSON.parse(localStorage.getItem("events")) || {};
-					if (eventsLS[eventId]) {
-						this.event_image = data.fileName;
-					}
-					eventsLS[eventId] = {
-						bookings: this.bookings,
-						gm: this.gm,
-						event_image: this.event_image,
-					};
-					localStorage.setItem("events", JSON.stringify(eventsLS));
-					location.reload();
-				}
 
-				return data;
-			},
-			showPreview(e) {
-				if (e.target.files.length > 0) {
-					const src = URL.createObjectURL(e.target.files[0]);
-					const preview = document.getElementById("image-preview");
-					const button = document.getElementById("upload-button");
-					preview.src = src;
-					preview.style.display = "block";
-					button.style.display = "inline-block";
-				}
-			},
-			getEventGUID() {
-				// Function to check Event GUID on page load
-				if (location.search) {
-					const params = new URLSearchParams(location.search);
-					let gmGuid = params.get("guid");
-					if (gmGuid) {
-						return gmGuid;
+					if (eventsLS[id]) {
+						this.bookings = eventsLS[id].bookings;
+						this.gm = eventsLS[id].gm;
+						this.owner = eventsLS[id].owner;
+						this.event_image = eventsLS[id].event_image;
 					}
-				}
-				return false;
-			},
-			async getAddtlGMCode(eventId) {
-				const result = await lilRed.events.getAddtlGMCode(eventId);
-				return result && `${window.location.href.split("?")[0]}?guid=${result}`;
-			},
-			async addAsGm(eventId, gmGuid) {
-				console.log("addAsGm", eventId, gmGuid);
-				if (!gmGuid && this.gm.length >= 6) return;
-				const result = await lilRed.bookings.addAsAddtlGM(eventId, gmGuid);
-				if (result) {
-					location.reload();
-				}
-				return result;
-			},
-		};
-	});
+
+					try {
+						// TODO: replace this with simpler API call when Jerry builds it; Also move it to events store.
+						/* ------------------------ Get data from events/find ----------------------- */
+						const data = await lilRed.events.find(id);
+						// convert metadata to object
+						const metadata = metadataArrayToObject(data.metadata);
+						// filter out canceled bookings and fix name issues with odd characters
+						const bookings = data.bookings
+							.filter((booking) => booking.bookingStatus === 1)
+							.map((booking) => {
+								return {
+									...booking,
+									user: {
+										...booking.user,
+										displayName: decodeText(booking.user.displayName),
+									},
+								};
+							});
+
+						/* ------------------------ Update all data variables ----------------------- */
+						// get only active bookings that are gms/speakers (bookingComment is null if not labelled)
+						this.gm = bookings.filter((booking) => booking.bookingComment) || [];
+						this.owner = data.eventOwner.id || "";
+						// get only active bookings that are not gms/speakers (bookingComment is null if not labelled)
+						this.bookings =
+							bookings
+								.filter((booking) => !booking.bookingComment)
+								.sort((a, b) => a.user.displayName.localeCompare(b.user.displayName)) || [];
+						// get event_image
+						this.event_image = metadata.event_image;
+
+						/* -------------------------- Update Local Storage -------------------------- */
+						eventsLS[id] = {
+							bookings: this.bookings,
+							gm: this.gm,
+							owner: this.owner,
+							event_image: this.event_image,
+						};
+						localStorage.setItem("events", JSON.stringify(eventsLS));
+					} catch (e) {
+						// eslint-disable-next-line no-console
+						console.log(e);
+					}
+				},
+				async uploadImage(e) {
+					// Check network and data service before submitting event
+					const status = await lilRed.status();
+					if (!status) return false;
+
+					const eventId = e.target.eventId.value;
+					const formData = new FormData(e.target);
+
+					let data = await lilRed.events.uploadImage(formData);
+
+					if (data) {
+						// if data update event data with new image
+						let eventsLS = JSON.parse(localStorage.getItem("events")) || {};
+						if (eventsLS[eventId]) {
+							this.event_image = data.fileName;
+						}
+						eventsLS[eventId] = {
+							bookings: this.bookings,
+							gm: this.gm,
+							event_image: this.event_image,
+						};
+						localStorage.setItem("events", JSON.stringify(eventsLS));
+						location.reload();
+					}
+
+					return data;
+				},
+				showPreview(e) {
+					if (e.target.files.length > 0) {
+						const src = URL.createObjectURL(e.target.files[0]);
+						const preview = document.getElementById("image-preview");
+						const button = document.getElementById("upload-button");
+						preview.src = src;
+						preview.style.display = "block";
+						button.style.display = "inline-block";
+					}
+				},
+				getEventGUID() {
+					// Function to check Event GUID on page load
+					if (location.search) {
+						const params = new URLSearchParams(location.search);
+						let gmGuid = params.get("guid");
+						if (gmGuid) {
+							return gmGuid;
+						}
+					}
+					return false;
+				},
+				async getAddtlGMCode(eventId) {
+					const result = await lilRed.events.getAddtlGMCode(eventId);
+					return result && `${window.location.href.split("?")[0]}?guid=${result}`;
+				},
+				async addAsGm(eventId, gmGuid) {
+					console.log("addAsGm", eventId, gmGuid);
+					if (!gmGuid && this.gm.length >= 6) return;
+					const result = await lilRed.bookings.addAsAddtlGM(eventId, gmGuid);
+					if (result) {
+						location.reload();
+					}
+					return result;
+				},
+			};
+		}
+	);
 
 	Alpine.data("createAccount", () => ({
 		agree: false,
