@@ -1,7 +1,7 @@
 {% extends 'layouts/base.njk' %}
 
 {% block content %}
-    <main id="content">
+    <main id="content" x-init="if (!isAuth || !isRegistered) window.location = '/register'">
         <div class="mx-auto max-w-content p-base">
             <h1 x-show="isAuth && isRegistered === true" class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
             <h1 x-show="isAuth && isRegistered === false" class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">You are not registered</h1>
@@ -27,7 +27,7 @@
                 <div class="prose">{{ content | safe }}</div>
             </div>
             <div x-cloak x-show="isAuth && isRegistered === false" class="prose">
-                <h2>You are not registered. Please head over to our [Big Bad Online registration](/register) page.</h2>
+                <p>You are not registered. Please head over to our <a href="/registet">Big Bad Online registration</a> page.</p>
             </div>
 
         </div>
