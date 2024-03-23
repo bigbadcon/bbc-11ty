@@ -10,4 +10,6 @@ Join the Rangers:
 
 [Learn about the Rangers](https://www.bigbadcon.com/rangers/){.icon-paw}
 
+[Volunteer Shifts](https://www.bigbadcon.com/volunteer-shifts/){.icon-calendar-clock}
+
 <!--[Sign up to help!](https://www.bigbadcon.com/volunteer-shifts/){.icon-pencil-square}--> 
