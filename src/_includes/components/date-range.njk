@@ -1,4 +1,4 @@
-{%- if global.onlineEventStartDate | isBeforeDate -%}{%- dateRange global.onlineEventStartDate, global.onlineEventEndDate -%}
+{%- if global.eventType === "online" -%}{%- dateRange global.onlineEventStartDate, global.onlineEventEndDate -%}
 {%- endif -%}
-{%- if global.conEventStartDate | isBeforeDate -%}{%- dateRange global.conEventStartDate, global.conEventEndDate -%}
+{%- if global.eventType === "in person" -%}{%- dateRange global.conEventStartDate, global.conEventEndDate -%}
 {%- endif -%}
