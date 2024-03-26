@@ -2,13 +2,13 @@
 layout: layouts/page.njk
 title: Public Health Policy
 published: true
+eventType: both
 description: ''
 ogImage: ''
 navGroup: Community
 navTitle: ''
 order: null
 icon: health
-eventType: 'both'
 _template: page
 ---
 
@@ -51,7 +51,7 @@ By attending the event, you acknowledge this inherent risk on behalf of yourself
   * Congestion or runny nose
   * Nausea or vomiting
   * Diarrhea
-* That prior to attending the event You have not been in contact with someone with confirmed or suspected COVID-19 symptoms without completing a[ CDC-recommended quarantine](https://www.cdc.gov/coronavirus/2019-ncov/your-health/quarantine-isolation.html);
+* That prior to attending the event You have not been in contact with someone with confirmed or suspected COVID-19 symptoms without completing a[ CDC-recommended quarantine](https://www.cdc.gov/respiratory-viruses/guidance/faq.html#:~:text=Updated%20Guidance%3A%20The%20updated%20Respiratory,using%20fever%2Dreducing%20medication\).);
 * You are not under any self-quarantine or isolation orders or subject to any[ CDC self-quarantine or isolation protocol](https://www.cdc.gov/coronavirus/2019-ncov/your-health/isolation.html); and
 * You are fully vaccinated from COVID-19, meaning at the time you are attending it has been at least fourteen (14) days since:
   * Your second dose in a two-dose COVID-19 vaccine series approved or authorized by the FDA or by the WHO, or
