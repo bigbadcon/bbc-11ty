@@ -52,7 +52,7 @@ By attending the event, you acknowledge this inherent risk on behalf of yourself
   * Nausea or vomiting
   * Diarrhea
 * That prior to attending the event You have not been in contact with someone with confirmed or suspected COVID-19 symptoms without completing a[ CDC-recommended quarantine](https://www.cdc.gov/respiratory-viruses/guidance/faq.html#:~:text=Updated%20Guidance%3A%20The%20updated%20Respiratory,using%20fever%2Dreducing%20medication\).);
-* You are not under any self-quarantine or isolation orders or subject to any[ CDC self-quarantine or isolation protocol](https://www.cdc.gov/coronavirus/2019-ncov/your-health/isolation.html); and
+* You are not under any self-quarantine or isolation orders or subject to any[ CDC self-quarantine or isolation protocol](https://emergency.cdc.gov/newsletters/epic/012522.htm#:~:text=Quarantine%20when%20you%20might%20have,you%20don't%20have%20symptoms.); and
 * You are fully vaccinated from COVID-19, meaning at the time you are attending it has been at least fourteen (14) days since:
   * Your second dose in a two-dose COVID-19 vaccine series approved or authorized by the FDA or by the WHO, or
   * Your single dose of a single-dose COVID-19 vaccine authorized by the FDA or by the WHO.
