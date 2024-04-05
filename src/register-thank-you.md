@@ -8,8 +8,6 @@ _template: page
 
 Check out our ever growing [list of events](/events)!
 
-Join everyone attending the con in Discord. Here's an [invite](https://discord.gg/nqHMvqz6cZ)!
-
 We encourage you to back our [fundraiser](https://www.mightycause.com/story/Bigbadonline2024) and follow and promote us on mastodon [@bigbadcon@dice.camp](https://dice.camp/@robindlaws/109819027187621882)
 
 **Subscribe** to the [Big Bad Con YouTube Channel](https://www.youtube.com/@BigBadCon) where our online panels will be!

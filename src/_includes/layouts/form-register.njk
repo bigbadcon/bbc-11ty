@@ -54,6 +54,10 @@
                         <button type="submit" :disabled="!agree" disabled @click="if (agree) isRegistered = true">Submit</button>
                     </p>
                 </form>
+                <div x-show="isAuth && isRegistered === true" class="prose">
+                    <p>Thank you for registering! <a href="register-thank-you/">More info here</a>.</p>
+
+                </div>
             </section>
         </div>
     </main>
