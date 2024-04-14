@@ -2,6 +2,7 @@
 tags: pages
 layout: layouts/home.njk
 title: Big Bad Con
+permalink: /
 published: true
 description: >-
   Big Bad Con is a tabletop and live action gaming convention featuring
@@ -12,7 +13,7 @@ navGroup: ''
 navTitle: ''
 order: null
 icon: ''
-eventType: 'both'
+eventType: 'online'
 _template: page
 ---
 

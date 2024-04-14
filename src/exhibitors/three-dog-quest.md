@@ -1,6 +1,6 @@
 ---
 title: Three Dog Quest LLC (Indie Press Revolution)
-published: true
+published: false
 logo: /images/Three Dog Quest.jpg
 website_name: Three Dog Quest
 website_url: 'https://www.facebook.com/threedogquest'

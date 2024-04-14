@@ -6,11 +6,9 @@ image: ''
 alt: ''
 ---
 
-Welcome to Big Bad Online!
+Badges for Big Bad Con will be available via out fundraiser which we will be announcing soon!
 
-[Register to Attend](https://www.bigbadcon.com/register/){.icon-calendar-clock}
-
-[Support our Fundraiser](https://www.mightycause.com/story/Bigbadonline2024){.icon-party}
+[Hotel Info](https://www.bigbadcon.com/hotel/){.icon-hotel}
 
 <!--Welcome to Big Bad Con:
 

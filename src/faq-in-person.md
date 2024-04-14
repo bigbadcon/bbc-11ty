@@ -16,7 +16,7 @@ _template: page
 
 ### When and Where is Big Bad Con?
 
-October 24 6PM to October 27, 2023 8PM.
+October 24 6PM to October 27, 2024 8PM.
 
 Hyatt Regency San Francisco Airport\
 1333 Old Bayshore Hwy\
@@ -30,7 +30,7 @@ Burlingame, CA 94010
 
 * New accounts should be created immediately and you should receive an email within a few minutes.
 * Event Submissions and Games on Demand sign ups are usually reviewed within two weeks. Our events team will be in touch!
-* Scholarship applications will be reviewed after the submission deadline (July 31) and we'll reach out to recipients by August 22.
+* Scholarship applications will be reviewed after the submission deadline and we'll reach out to recipients shortly after.
 
 If you haven't heard back by any of these dates, email us at info@bigbadcon.com.
 
@@ -83,7 +83,7 @@ Our event coordinators should reach out to you within two weeks. If you haven't 
 
 ### When are games scheduled?
 
-We schedule all games after event submissions close on 7/31. You should hear back by 8/15 with your schedule.
+We schedule all games after event submissions close. You should hear back shortly after with your schedule.
 
 # Website FAQ
 

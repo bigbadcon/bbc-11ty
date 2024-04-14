@@ -5,7 +5,7 @@ published: true
 order: 2
 ---
 
-On the menu:
+We will be opening for event submissions soon!
 
 [Scheduled Events](/events/){.icon-calendar-clock}
 

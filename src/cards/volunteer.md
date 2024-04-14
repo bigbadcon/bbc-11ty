@@ -4,12 +4,8 @@ order: 1
 published: true
 ---
 
-<!--Big Bad Con is a purely volunteer run organization. Starting in early 2023 we'll re-open recruitment for Rangers. Check back here to join the team!--> 
-
-Join the Rangers:
+Big Bad Con is a purely volunteer run organization. We'll be open for volunteer shifts soon!
 
 [Learn about the Rangers](https://www.bigbadcon.com/rangers/){.icon-paw}
 
-[Volunteer Shifts](https://www.bigbadcon.com/volunteer-shifts/){.icon-calendar-clock}
-
-<!--[Sign up to help!](https://www.bigbadcon.com/volunteer-shifts/){.icon-pencil-square}--> 
+<!-- [Volunteer Shifts](https://www.bigbadcon.com/volunteer-shifts/){.icon-calendar-clock} -->

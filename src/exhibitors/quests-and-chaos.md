@@ -1,6 +1,6 @@
 ---
 title: Quests and Chaos
-published: true
+published: false
 logo: /images/Quests and Chaos.png
 twitter: ''
 website_name: Quests and Chaos
