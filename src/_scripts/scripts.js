@@ -12,7 +12,6 @@ import Alpine from "alpinejs";
 import persist from "@alpinejs/persist";
 import validate from "@colinaut/alpinejs-plugin-simple-validate";
 import "@colinaut/theme-multi-switch";
-import "@colinaut/action-table";
 Alpine.plugin(persist);
 Alpine.plugin(validate);
 window.Alpine = Alpine;
@@ -76,42 +75,42 @@ const getDurationInHours = (dateStart, dateEnd) => {
 
 // TODO: refactor all this to simpler global functions
 
-const apiBaseUrl = "https://admin.bigbadcon.com:8091/api";
+// const apiBaseUrl = "https://admin.bigbadcon.com:8091/api";
 // Dev API using Caddy server reverse proxy
 // const apiBaseUrl = '/apidev'
 
 // Global Fetch Function for API
-async function fetchData(url, options, authToken) {
-	authToken = authToken || JSON.parse(localStorage.getItem("_x_authToken"));
-	options = {
-		method: "GET",
-		headers: {
-			"Content-Type": "application/json;charset=utf-8",
-		},
-		...options,
-	};
+// async function fetchData(url, options, authToken) {
+// 	authToken = authToken || JSON.parse(localStorage.getItem("_x_authToken"));
+// 	options = {
+// 		method: "GET",
+// 		headers: {
+// 			"Content-Type": "application/json;charset=utf-8",
+// 		},
+// 		...options,
+// 	};
 
-	if (authToken) options.headers.Authorization = authToken;
+// 	if (authToken) options.headers.Authorization = authToken;
 
-	if (options.body) options.body = JSON.stringify(options.body);
+// 	if (options.body) options.body = JSON.stringify(options.body);
 
-	console.log("fetchData", url, options);
+// 	console.log("fetchData", url, options);
 
-	try {
-		let response = await fetch(apiBaseUrl + url, options);
-		// eslint-disable-next-line no-console
-		console.log(`RESPONSE:fetch for ${url}`, response);
-		if (response.status !== 200) throw `fetch fail status: ${response.status}`;
-		let result = await response.json();
-		// eslint-disable-next-line no-console
-		console.log(`RESULT:fetch for ${url}`, result);
-		return result;
-	} catch (err) {
-		// eslint-disable-next-line no-console
-		console.error(`ERROR:fetch for ${url}`, err);
-		return false;
-	}
-}
+// 	try {
+// 		let response = await fetch(apiBaseUrl + url, options);
+// 		// eslint-disable-next-line no-console
+// 		console.log(`RESPONSE:fetch for ${url}`, response);
+// 		if (response.status !== 200) throw `fetch fail status: ${response.status}`;
+// 		let result = await response.json();
+// 		// eslint-disable-next-line no-console
+// 		console.log(`RESULT:fetch for ${url}`, result);
+// 		return result;
+// 	} catch (err) {
+// 		// eslint-disable-next-line no-console
+// 		console.error(`ERROR:fetch for ${url}`, err);
+// 		return false;
+// 	}
+// }
 
 /* -------------------------------------------------------------------------- */
 /*                                Alpine Stuff                                */
@@ -652,6 +651,10 @@ document.addEventListener("alpine:init", () => {
 	/* ----------- eventInfo Used for Event Table Rows and Event Pages ---------- */
 
 	/**
+	 * Alpine Event Info x-data object
+	 * TODO: need to review this to make sure the JSDoc is correct.
+	 * * The lilRed.s promises are the unknowns. I need to improve the TypeScript in that for all the Promise returns as a bunch are just any.
+	 *
 	 * @typedef {Object} EventInfo
 	 * @property {number} id - the id of the event; filled in via nunjucks
 	 * @property {number | null} maxSpaces - the maximum number of spaces; also filled in via nunjucks; null means "Any"
@@ -662,6 +665,11 @@ document.addEventListener("alpine:init", () => {
 	 * @property {(userId: number) => boolean} isOwner - check if the user is the owner
 	 * @property {string} gmString - getter for combined string of the game masters
 	 * @property {(id: number) => Promise<void>} getEventInfo - get the event info
+	 * @property {(e: Event) => Promise<boolean>} uploadImage - get the spaces
+	 * @property {(e: Event) => void} showPreview - show the preview of the image that has been added
+	 * @property {() => string | false} getEventGUID - check Event GUID on page load; only if guid is in the URLSearchParams
+	 * @property {(eventId: number) => Promise<string>} getAddtlGMCode - get event guid code and return it as a url with guid as a search param
+	 * @property {(eventId: number, gmGuid: string) => Promise<string | null>} addAsGm - get event guid code and return it as a url with guid as a search param
 	 */
 
 	Alpine.data(
@@ -753,6 +761,9 @@ document.addEventListener("alpine:init", () => {
 					const eventId = e.target.eventId.value;
 					const formData = new FormData(e.target);
 
+					/**
+					 * @type {boolean}
+					 */
 					let data = await lilRed.events.uploadImage(formData);
 
 					if (data) {
@@ -783,7 +794,6 @@ document.addEventListener("alpine:init", () => {
 					}
 				},
 				getEventGUID() {
-					// Function to check Event GUID on page load
 					if (location.search) {
 						const params = new URLSearchParams(location.search);
 						let gmGuid = params.get("guid");
@@ -800,6 +810,9 @@ document.addEventListener("alpine:init", () => {
 				async addAsGm(eventId, gmGuid) {
 					console.log("addAsGm", eventId, gmGuid);
 					if (!gmGuid && this.gm.length >= 6) return;
+					/**
+					 * @type {string}
+					 */
 					const result = await lilRed.bookings.addAsAddtlGM(eventId, gmGuid);
 					if (result) {
 						location.reload();
@@ -810,32 +823,58 @@ document.addEventListener("alpine:init", () => {
 		}
 	);
 
-	Alpine.data("createAccount", () => ({
-		agree: false,
-		userNicename: "",
-		userNicenameExists: false,
-		userEmail: "",
-		userPass: "",
-		firstName: "",
-		lastName: "",
-		howToDisplay: "firstlast",
-		nickname: "",
-		displayName: "",
-		twitter: "", // not set up yet in API
-		userLogin: "",
-		// TODO: change to fetch
-		async checkUsername() {
-			try {
-				const res = await axios.get(`/.netlify/functions/check-user/${this.userNicename}`);
-				if (res && res.data === "user exists") {
-					this.userNicenameExists = true;
+	/**
+	 * Alpine Data createAccount return object
+	 * TODO: should this be moved all to the serverless function?
+	 * TODO: this JSDoc isn't working right with the implicit return object
+	 *
+	 * @typedef {Object} CreateAccount
+	 * @property {boolean} agree - agree to community agreement
+	 * @property {string} userNicename - user name
+	 * @property {boolean} userNicenameExists - if the username is already taken
+	 * @property {string} userEmail - email address
+	 * @property {string} userPass - password
+	 * @property {string} firstName - first name
+	 * @property {string} lastName - last name
+	 * @property {"nickname" | "firstlast"} howToDisplay - how to display name firstlast or as nickname
+	 * @property {string} nickname - nickname
+	 * @property {string} displayName - display name
+	 * @property {string} twitter - twitter handle
+	 * @property {string} userLogin - login
+	 */
+
+	Alpine.data("createAccount", () =>
+		/**
+		 * Returns the create account x-data function for the creating an account form.
+		 * @return {CreateAccount}
+		 */
+		({
+			agree: false,
+			userNicename: "",
+			userNicenameExists: false,
+			userEmail: "",
+			userPass: "",
+			firstName: "",
+			lastName: "",
+			howToDisplay: "firstlast",
+			nickname: "",
+			displayName: "",
+			twitter: "", // not set up yet in API
+			userLogin: "",
+			// TODO: change to fetch
+			async checkUsername() {
+				try {
+					const res = await axios.get(`/.netlify/functions/check-user/${this.userNicename}`);
+					if (res && res.data === "user exists") {
+						this.userNicenameExists = true;
+					}
+				} catch (err) {
+					// eslint-disable-next-line no-console
+					console.log(err);
 				}
-			} catch (err) {
-				// eslint-disable-next-line no-console
-				console.log(err);
-			}
-		},
-	}));
+			},
+		})
+	);
 
 	// Change Password
 	Alpine.data("resetPasswordForm", () => ({

@@ -167,15 +167,17 @@ input[type="number"],
 input[type="tel"],
 input[type="url"],
 input[type="search"] {
-	@apply border rounded-md px-sm py-xs bg-form border-body text-body focus:ring-highlight focus:border-highlight;
+	@apply max-w-full border rounded-md px-sm py-xs bg-form border-body text-body focus:ring-highlight focus:border-highlight;
 }
 
 label {
-	@apply block font-bold text-body mb-2xs;
+	@apply block font-bold text-body mb-xs mt-base;
 }
-
+label:first-child {
+	@apply mt-0;
+}
 select {
-	@apply rounded bg-form text-body border-body focus:ring-highlight focus:border-highlight;
+	@apply rounded bg-form text-body py-xs border-body focus:ring-highlight focus:border-highlight;
 }
 
 button[type="submit"],
@@ -202,6 +204,10 @@ input[type="submit"]:disabled,
 	@apply text-sm font-bold uppercase transition-colors duration-200 border rounded shadow text-header-bg bg-highlight hover:bg-highlight-2 py-2xs px-sm border-highlight;
 }
 
+.button-title {
+	@apply bg-title border-header;
+}
+
 button:disabled {
 	@apply cursor-default opacity-70 bg-hr hover:bg-hr border-hr;
 }
@@ -211,7 +217,11 @@ textarea {
 }
 
 fieldset {
-	@apply space-y-4 transition-opacity border-t-4 border-solid border-hr pt-base my-md;
+	@apply transition-opacity my-md;
+}
+
+fieldset:has(> legend) {
+	@apply border-t-4 border-solid border-hr;
 }
 
 fieldset > legend + * {
@@ -219,7 +229,8 @@ fieldset > legend + * {
 }
 
 legend {
-	@apply font-serif text-3xl font-bold pr-base text-header;
+	@apply font-serif text-2xl font-bold leading-tight pr-base text-header;
+	margin-block-end: 0.2em;
 }
 
 input[type="checkbox"] {
@@ -227,7 +238,11 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"] ~ label {
-	@apply inline-block font-normal m-0 leading-[1.1rem];
+	@apply inline-block font-normal m-0 leading-[1.1rem] mr-sm;
+}
+
+label:has(input[type="checkbox"]) {
+	@apply inline-flex items-center font-normal m-0 leading-[1.1rem] mr-sm;
 }
 
 .required > label {
@@ -855,4 +870,171 @@ lite-youtube.lyt-activated > .lty-playbtn {
 }
 #main-nav > a[href^="/donate"] span {
 	@apply inline-block transition-colors border-2 rounded-md bg-card border-highlight hover:bg-highlight hover:text-header-bg underline-offset-4 decoration-highlight px-sm py-2xs;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                FOrm Testing                                */
+/* -------------------------------------------------------------------------- */
+
+/* --------------------------- TODO: REMOVE LATER --------------------------- */
+/* input:invalid {
+	outline: 2px solid red;
+	outline-offset: 2px;
+} */
+
+/* -------------------------------------------------------------------------- */
+/*                                 Action Form                                */
+/* -------------------------------------------------------------------------- */
+
+label:has(~ [required])::after,
+[required] + label::after,
+label.required::after {
+	content: "*";
+	@apply font-bold text-highlight ml-2xs;
+}
+
+af-error {
+	visibility: hidden;
+}
+
+af-error[invalid] {
+	visibility: visible;
+}
+
+af-error {
+	--error-text: var(--highlight);
+	color: var(--error-text, red);
+	font-weight: bold;
+	display: inline-block;
+	padding: 0.2em;
+}
+
+af-progress {
+	margin-block: 1em;
+	--step-border-size: 0.22em;
+	--step-bg: var(--header-bg);
+	--step-text: inherit;
+	--inactive: var(--header-bg-3);
+	--active: var(--title);
+	--incomplete: var(--highlight);
+	--valid: var(--active);
+	--valid-bg: var(--active);
+	--valid-text: var(--header-bg-3);
+}
+
+.js af-step {
+	display: none;
+}
+.js af-step.active {
+	display: grid;
+}
+
+af-step {
+	display: block;
+	padding: 1em;
+	border-radius: 1em;
+	border: 0.22em solid var(--header-bg-3);
+	--button-valid-bg: var(--highlight);
+}
+
+af-step > fieldset {
+	margin-block: 0;
+}
+
+af-step::part(step-nav),
+af-step [part="step-nav"] {
+	display: flex;
+	justify-content: space-between;
+	padding-block: 1.6em 0;
+}
+af-step::part(step-btn),
+af-step .af-step-nav button {
+	@apply text-sm font-bold uppercase transition-colors duration-200 border-2 rounded shadow text-header-bg bg-title hover:bg-highlight-2 hover:border-highlight py-xs px-sm sm:px-base border-header;
+}
+
+af-step[valid] .af-step-next,
+af-step[valid]::part(next) {
+	background-color: var(--highlight);
+	border-color: var(--highlight-2);
+	transition: color;
+}
+.af-step-next::after,
+af-step::part(next)::after {
+	content: var(--next-icon, "\2192");
+	margin-inline-start: 0.5em;
+}
+.af-step-prev::before,
+af-step::part(prev)::before {
+	content: var(--prev-icon, "\2190");
+	margin-inline-end: 0.5em;
+}
+
+.no-steps af-step {
+	display: block;
+	margin-block: 1em;
+}
+
+.no-steps af-step .af-step-nav,
+.no-steps af-step::part(step-nav) {
+	display: none;
+}
+
+.no-steps af-progress {
+	display: none;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                              Action Form Misc                              */
+/* -------------------------------------------------------------------------- */
+
+fieldset fieldset {
+	margin-block: 0 1em;
+}
+
+fieldset .directions {
+	@apply mt-0 text-sm mb-sm text-body;
+}
+
+input[readonly] {
+	background: transparent;
+	border: none;
+	padding: 0;
+}
+/* -------------------------------------------------------------------------- */
+/*                         Run An Event Form Specific                         */
+/* -------------------------------------------------------------------------- */
+
+.form-group-cols-1:not([hidden]) {
+	@apply grid gap-sm;
+}
+
+.form-group-cols-2:not([hidden]) {
+	@apply grid md:grid-cols-2 gap-sm;
+}
+
+.form-group-cols-3:not([hidden]) {
+	@apply grid grid-cols-2 md:grid-cols-3 gap-sm;
+}
+
+.form-group-cols-4:not([hidden]) {
+	@apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-sm;
+}
+
+.no-preference:has(input[type="checkbox"]) {
+	@apply mb-base;
+}
+
+af-step-toggle::part(button) {
+	@apply font-bold uppercase transition-colors duration-200 border-2 rounded shadow text-header-bg bg-highlight hover:bg-highlight-2 py-xs px-sm sm:px-base border-highlight;
+}
+
+.label-error-wrapper {
+	@apply flex justify-start gap-sm;
+}
+.label-error-wrapper af-error {
+	@apply p-0;
+}
+
+.prose af-preview p {
+	@apply my-xs;
 }
