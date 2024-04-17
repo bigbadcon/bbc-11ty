@@ -19,15 +19,7 @@ Big Bad Con will be hosted at the:
 Burlingame, CA 94010\
 (650) 347-1234
 
-[Book a room at the Hyatt](https://www.hyatt.com/en-US/group-booking/SFOBU/G-BBC4){.icon-hotel}
-
-**Update 7/28**: The convention hotel is nearly full and not all nights are available, or may be available but no longer at our group rate of $145/night.
-
-**Update 8/8:** All rooms at the Hyatt are now booked, however we've secured a group rate at a nearby hotel:
-
-* [Crowne Plaza San Francisco Airport](https://www.crowneplaza.com/redirect?path=hd\&brandCode=CP\&localeCode=en\&regionCode=1\&hotelCode=URLCA&_PMID=99801505\&GPC=BIG\&cn=no\&viewfullsite=true) (Group Rate of $124/night. 9 minute walk to the Hyatt)
-
-**Update 9/14**: The Hyatt has release a few more rooms. There's a limited number, but if you haven't already booked a room, or booked somewhere else and want to move closer, follow the link above to book at the Hyatt.
+<!-- [Book a room at the Hyatt](https://www.hyatt.com/en-US/group-booking/SFOBU/G-BBC4){.icon-hotel} -->
 
 If you aren't able to book your stay at the Hyatt or Crown Plaza, here are some nearby hotels that may have availability:
 

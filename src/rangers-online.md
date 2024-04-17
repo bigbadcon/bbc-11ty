@@ -25,9 +25,9 @@ Rangers are the folks that make Big Bad Online possible! We're here to greet peo
 * Help them find events and hangout areas
 * Spread cheer!
 
-**Twitch Moderators**: All of our panels this year will be streamed on Twitch. Twitch Moderators will perform three important tasks:
+**Stream Moderators**: All of our panels this year will be streamed on YouTube. Stream Moderators will perform three important tasks:
 
-* Welcome folks in Twitch Chat
+* Welcome folks in Stream Chat
 * Moderate chat to enforce our code of conduct
 * Convey questions that come up in chat to the panel moderator.
 
@@ -36,7 +36,7 @@ Rangers are the folks that make Big Bad Online possible! We're here to greet peo
 * Keep the conversation going
 * Spread the spotlight around
 * Remind them of the time remaining
-* When applicable, ask  question(s) sourced from chat (as sent by the Twitch moderator)
+* When applicable, ask  question(s) sourced from chat (as sent by the Stream Moderator)
 
 **Stream Producers**: For each panel we’ll have one producer who will manage the Streamyard account and produce the stream. Specific task will be to:
 

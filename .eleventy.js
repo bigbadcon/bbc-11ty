@@ -273,10 +273,6 @@ module.exports = (eleventyConfig) => {
 	// eventStartDateTime
 	eleventyConfig.addFilter("convertCentsToDollars", (unit) => unit / 100);
 
-	// convert any array fo strings to a string with single quotes for use in Alpine
-	// this is used mainly for the events-table list of categories for filtering
-	eleventyConfig.addFilter("alpineArray", (array) => array.map((item) => "'" + item + "'").toString());
-
 	// Mastodon link filter
 	eleventyConfig.addFilter("mastodonLink", (handle) => {
 		const mastodon = handle.split("@");

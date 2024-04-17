@@ -37,11 +37,16 @@
                     </header>
                     <div class="py-base px-base">
                         {% if exhibitor.templateContent %}
-                            <div class="prose ">{{ exhibitor.templateContent | safe }}</div>
+                            <div class="prose">{{ exhibitor.templateContent | safe }}</div>
                         {% endif %}
                     </div>
                 </article>
             {% endfor %}
+            {% if collections.exhibitor | length %}
+                <div class="prose shadow rounded-xl bg-card p-base">
+                    <em>Our Big Bad Con exhibitors will be listed here as they are accepted</em>
+                </div>
+            {% endif %}
         </section>
         <section class="mx-auto max-w-content p-base">
             <div class="prose">{{ content | safe }}</div>

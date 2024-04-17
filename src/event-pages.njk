@@ -40,7 +40,7 @@ eleventyComputed:
         <span @click="toggleFav({{event.eventId}})" class="fav-star fav-star--event-page" :class="isFav({{event.eventId}}) && 'favved'">&starf;</span>
     </div>
     {# List of GMs #}
-    <div class="text-2xl font-semibold leading-snug text-highlight pr-base"  x-text="gmString || $el.textContent" x-init="console.log(gmString)">
+    <div class="text-2xl font-semibold leading-snug text-highlight pr-base"  x-text="gmString || $el.textContent" >
         {{ event.metadata.GM }}
     </div>
     <div class="not-prose">

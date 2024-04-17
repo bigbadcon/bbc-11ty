@@ -8,10 +8,15 @@
     {% endif %}
     {# Event Table Filters #}
     <action-table class="block w-full mb-base" id="volunteer-action-table" store>
-        <action-table-filters class="flex flex-wrap items-center rounded gap-x-md gap-y-base bg-card p-sm">
+        <action-table-filters class="flex flex-wrap items-center rounded gap-x-base gap-y-base bg-card p-sm">
             <div class="flex flex-wrap items-center gap-x-base gap-y-xs">
+                <input type="search" name="event" id="search" placeholder="Search Event">
                 {% if global.showEventTimes %}
-                    <action-table-filter-menu name="Date" ></action-table-filter-menu>
+                    {% if global.eventType === "online" %}
+                        <action-table-filter-menu name="Date" id="dateFilter" x-ref="dateFilter" x-init="$watch('timezone', value => $el.connectedCallback())"></action-table-filter-menu>
+                    {% else %}
+                        <action-table-filter-menu name="Date" id="dateFilter" ></action-table-filter-menu>
+                    {% endif %}
                 {% endif %}
             </div>
             <div class="flex flex-wrap items-center justify-start gap-sm" x-show="isAuth">
@@ -19,7 +24,8 @@
                 <action-table-filter-switch name="Space" value="^[1-9][0-9]*$" class="flex flex-wrap items-center switch" regex label="Open"></action-table-filter-switch>
                 <action-table-filter-switch name="Conflict" class="flex flex-wrap items-center switch" label="Hide My Event Conflicts" value="No"></action-table-filter-switch>
             </div>
-            <button type="reset" class="button-sm">Reset Filters</button>
+            <button type="reset" class="button-sm" disabled>Reset Filters</button>
+
         </action-table-filters>
         <table class="events-table volunteer-shifts-table mt-base" id="events-table">
             <thead>
@@ -58,9 +64,16 @@
                             {% set filterDate = "TBD" %}
                         {% endif %}
 
-                        <td class="events-table-cell--date" data-sort="{{ event.eventStartDateTime | unixtime }}" data-filter="{{ filterDate }}">
-                            {% include 'components/events-table-date.njk' %}
-                        </td>
+                        {% if global.eventType === "online" and event.eventDuration > 0 %}
+                            <td class="events-table-cell--date" data-sort="{{ event.eventStartDateTime | unixtime }}" data-filter="{{ filterDate }}" :data-filter="formatEventDate('{{ event.eventStartDateTime }}', timezone)">
+                                {% include 'components/events-table-date.njk' %}
+                            </td>
+                        {% else %}
+                            <td class="events-table-cell--date" data-sort="{{ event.eventStartDateTime | unixtime }}" data-filter="{{ filterDate }}" >
+                                {% include 'components/events-table-date.njk' %}
+                            </td>
+                        {% endif %}
+
                         {% if sitemeta.context === 'dev' or sitemeta.context === 'branch-deploy'%}
                             <td>
                                 <span class="text-xs border-2 border-header px-xs py-2xs">{{event.eventId}}</span>
@@ -81,6 +94,18 @@
                 {% endfor %}
             </tbody>
         </table>
+        <action-table-no-results class="prose p-base">
+            <p class="flex items-center gap-base">
+                <strong>
+                    <em>No results found</em>
+                </strong>
+                <button type="reset" class="button">Reset Filters</button>
+            </p>
+        </action-table-no-results>
+        {% if global.eventType === "online" %}
+            {# Kludge to make sure the date filter reloads and grabs dynamic timezone dates #}
+            <div x-init="$refs.dateFilter.connectedCallback()"></div>
+        {% endif %}
     </action-table>
 </section>
 {% if sitemeta.context === "dev" or sitemeta.context === 'branch-deploy' %}

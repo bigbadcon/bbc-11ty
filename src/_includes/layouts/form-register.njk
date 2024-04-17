@@ -1,7 +1,7 @@
 {% extends 'layouts/base.njk' %}
 
 {% block content %}
-    <main id="content">
+    <main id="content" x-init="if (isAuth && isRegistered === true) window.location = '/register-thank-you'">
         <div class="mx-auto max-w-content p-base">
             <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
 
@@ -9,7 +9,7 @@
                 {# State Machine:
                 1. Not logged in: display login link. When logged in check registration status using serverless function.
                 2. Logged in but not registered: display registration form. 
-                3. Logged in and registered: display registration info for user and discord and twitch info 
+                3. Logged in and registered: redirect to thanks page.
                 #}
                 {# Login disclaimer: only show if not registered and not logged in #}
                 <div x-cloak x-show="!isAuth" class="prose">
@@ -27,10 +27,10 @@
                 <form x-cloak x-show="isAuth && isRegistered === false"
                 x-data="{agree:false}"
                 method="POST" name="register-bigbadonline" 
-                data-netlify="true" netlify-honeypot="bot-field" 
-                action="/register-thank-you/" class="prose">
+                action="/.netlify/functions/register-big-bad-online" class="prose">
                     <p class="hidden">
-                        <label>Don’t fill this out if you’re human: <input name="bot-field"/></label>
+                        <label>Don't fill this out if you're human: <input name="bot-field" type="email"></input>
+                        </label>
                     </p>
                     <input type="hidden" id="displayName" name="displayName" value="" :value="user && user.displayName">
                     <input type="hidden" id="userEmail" name="userEmail" value="" :value="user && user.userEmail">
@@ -45,7 +45,7 @@
                         <legend>Community Standards Agreement</legend>
                         <div class="flex items-center">
                             <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-model="agree" required>
-                            <label for="agree-to-community-standards" class="text-highlight"3324>
+                            <label for="agree-to-community-standards" >
                                 Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Big Bad Con Community Standards
                             </label>
                         </div>
@@ -54,20 +54,9 @@
                         <button type="submit" :disabled="!agree" disabled @click="if (agree) isRegistered = true">Submit</button>
                     </p>
                 </form>
+                <div x-show="isAuth && isRegistered === true" class="prose">
+                    <p>Thank you for registering! <a href="register-thank-you/">More info here</a>.</p>
 
-                {# You are Registered notification. Show only when registered and logged in.  #}
-                <div x-cloak x-show="isAuth && isRegistered === true" class="prose">
-                    <h2>You are registered!</h2>
-                    <p>You, <strong>
-                            <span x-text="user && user.displayName"></span> (<span x-text="user && user.userNicename"></span>)</strong>, are registered for Big Bad Online.</p>
-                    <p x-show="bboDiscordInvite">
-                        <strong>Join</strong> the <a :href="'https://discord.gg/' + bboDiscordInvite">Big Bad Online Discord</a>!
-                    </p>
-                    <p x-show="!bboDiscordInvite">We will post the event Discord invite link here once it gets closer to the date.</p>
-                    <p>
-                        <strong>Follow</strong> the <a href="https://twitch.tv/bigbadcon">Big Bad Con Twitch Channel</a>! <em>You must be a follower for 10 minutes before you can enter the twitch chat.</em>
-                    </p>
-                    <div class="prose">{{ content | safe }}</div>
                 </div>
             </section>
         </div>

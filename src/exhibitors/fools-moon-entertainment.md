@@ -1,6 +1,6 @@
 ---
 title: Fool's Moon Entertainment
-published: true
+published: false
 logo: /images/Fools Moon Entertainment.gif
 twitter: foolsmoonei
 instagram: foolsmoonei

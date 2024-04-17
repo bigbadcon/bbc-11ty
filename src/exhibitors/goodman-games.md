@@ -1,6 +1,6 @@
 ---
 title: Goodman Games
-published: true
+published: false
 logo: /images/Goodman Games.png
 website_name: Goodman Games
 website_url: 'http://goodman-games.com/'

@@ -2,6 +2,7 @@
 tags: pages
 layout: layouts/home.njk
 title: Big Bad Con
+permalink: /
 published: true
 description: >-
   Big Bad Con is a tabletop and live action gaming convention featuring
@@ -12,13 +13,17 @@ navGroup: ''
 navTitle: ''
 order: null
 icon: ''
-eventType: 'both'
+eventType: 'online'
 _template: page
 ---
 
 ### Big Bad Online
 
-We are excited to announce Big Bad Online will be April 5 6PM PDT to April 6 6PM PDT. More details including speakers and how you can support the event coming soon! 
+We are excited to announce Big Bad Online will be April 5 6PM PDT to April 6 6PM PDT. Support our fundraiser on [MightyCause](https://www.mightycause.com/story/Bigbadonline2024)! 
+
+<iframe width="375" height="400"
+    src="https://www.mightycause.com/forms/Bigbadonline2024?id=h6jslf&embed=tile"
+    scrolling="no" marginHeight="0" marginWidth="0" frameBorder="0" class="bg-transparent rounded"></iframe>
 
 <!--### Big Bad Con is complete!
 
