@@ -58,6 +58,7 @@
 		"cross-env": "^7.0.3",
 		"dayjs": "^1.10.7",
 		"dotenv": "^16.3.1",
+		"eleventy-plugin-add-web-component-definitions": "^2.2.0",
 		"eleventy-plugin-blog-tools": "^0.4.1",
 		"esbuild": "^0.19.4",
 		"fast-glob": "^3.3.1",
@@ -88,7 +89,6 @@
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.22.2",
-		"eleventy-plugin-add-web-component-definitions": "^2.2.0",
 		"eslint": "^8.24.0",
 		"husky": "^8.0.3",
 		"netlify-cli": "^17.15.1"
