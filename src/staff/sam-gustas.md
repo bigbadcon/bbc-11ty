@@ -2,7 +2,7 @@
 title: Sam Gustas
 position: Board Game Ranger Captain
 tags:
-  - staff
+  - staff-emeritus
 published: true
 gender: he/him
 image: /images/Sam Gustas.jpg
