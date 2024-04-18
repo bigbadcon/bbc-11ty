@@ -3,6 +3,7 @@ title: Val Taylor
 position: Panel Ranger Captain
 tags:
   - staff
+published: true
 gender: (she/they)
 order: 0
 image: /images/Val Taylor Headshot.jpeg
