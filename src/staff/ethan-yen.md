@@ -5,6 +5,7 @@ tags:
   - staff
 published: true
 gender: (he/him)
+order: 0
 image: /images/EthanYenHeadshot900x900.jpg
 website_name: ethanyen.com
 website_url: ethanyen.com
