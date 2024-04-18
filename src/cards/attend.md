@@ -10,7 +10,7 @@ Badges for Big Bad Con will be available via out fundraiser which we will be ann
 
 [Hotel Info](https://www.bigbadcon.com/hotel/){.icon-hotel}
 
-[Crowdfunding Soon!](https://www.backerkit.com/call_to_action/b00667bb-67cd-45b2-8ff3-35a2cf9b285e/landing){.icon-backerkitl}
+[Crowdfunding Soon!](https://www.backerkit.com/call_to_action/b00667bb-67cd-45b2-8ff3-35a2cf9b285e/landing){.icon-backerkit}
 
 <!--Welcome to Big Bad Con:
 
