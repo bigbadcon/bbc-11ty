@@ -5,6 +5,7 @@ tags:
   - staff
 published: true
 gender: she/they
+order: 0
 image: /images/Akemi Maniwa.jpg
 twitter: NinjaPenguinAM
 mastodon: '@NinjaPenguinAM@dice.camp'
