@@ -5,6 +5,7 @@ tags:
   - staff
 published: true
 gender: (she/her)
+order: 0
 image: /images/Lyla.jpg
 twitter: CeruleanOtter
 bluesky: lyla
