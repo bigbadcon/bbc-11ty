@@ -5,6 +5,7 @@ tags:
   - staff
 published: true
 gender: they/them
+order: 0
 image: /images/Red Strange.jpg
 ---
 
