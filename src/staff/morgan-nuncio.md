@@ -1,6 +1,6 @@
 ---
 title: Morgan Nuncio
-position: Reg Desk Ranger Captain and Volunteer Coordinator
+position: Volunteer Coordinator
 tags:
   - staff
 published: true
