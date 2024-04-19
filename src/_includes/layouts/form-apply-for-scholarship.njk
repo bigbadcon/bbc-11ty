@@ -59,7 +59,7 @@
                                 </div>
                                 <div class="required">
                                     <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-model="formInfo.communityStandards" required>
-                                    <label for="agree-to-community-standards" class="text-highlight"3324>
+                                    <label for="agree-to-community-standards" >
                                         Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Big Bad Con Community Standards
                                     </label>
                                 </div>
@@ -68,12 +68,12 @@
                                 <legend>Social Media</legend>
                                 <div class="prose">
                                     <p>
-                                    Where can we connect with you on Twitter, Facebook, Instagram, etc. (all optional but we like to connect with people and promote them if possible/desired)
+                                    Where can we connect with you on social media, etc. (all optional but we like to connect with people and promote them if possible/desired)
                                 </p>
                                 </div>
                                 <div>
-                                    <label for="twitter">Twitter</label>
-                                    <input id="twitter" name="twitter" type="text" value="" x-model="formInfo.twitter"/>
+                                    <label for="mastodon">Mastodon</label>
+                                    <input id="mastodon" name="mastodon" type="text" value="" x-model="formInfo.mastodon"/>
                                 </div>
                                 <div>
                                     <label for="instagram">Instagram</label>
@@ -82,6 +82,10 @@
                                 <div>
                                     <label for="facebook">Facebook</label>
                                     <input id="facebook" name="facebook" type="text" value="" x-model="formInfo.facebook"/>
+                                </div>
+                                <div>
+                                    <label for="xSocial">X (formally Twitter)</label>
+                                    <input id="xSocial" name="xSocial" type="text" value="" x-model="formInfo.xSocial"/>
                                 </div>
                             </fieldset>
                             <fieldset :class="!isPersonalInfoComplete && 'fieldset-disabled'">
