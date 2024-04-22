@@ -1,23 +1,22 @@
 ---
+tags: pages
 layout: layouts/form-apply-for-scholarship.njk
 title: Apply For Scholarship
 published: false
+eventType: in person
 description: ''
-tags: pages
 ogImage: ''
 navGroup: ''
 navTitle: ''
 order: null
 icon: ''
 _template: page
-eventType: 'in person'
 ---
 
-Our scholarship funds go towards helping women, people of color, disabled, and lgbtqia+ individuals attend the con. We use it to cover hotel rooms ($139+/night), convention badges ($75), and help with other fees. Depending on the number of applicants, we may be able cover full or partial costs. Typical scholarship awards go up to $400.
+Our scholarship funds go towards helping our marginalized community members (people of color, women, people with disabilities, lgbtqia2s+ people) attend the con. We use it to cover hotel rooms ($149+/night), convention badges ($75), and help with other costs. Depending on the number of applicants and levels of need, we may be able cover full or partial cost of attendance. Typical scholarship awards go up to $400.
 
 ### Timeline
 
-* Scholarship applications are now closed for 2022. We'll re-open applications for the next year in 2023.
-* Determinations and reward disbursement will start August 22, 2022.
+* Scholarship applications are not yet open, we will announce them soon!
 
-For more info including how you can donate to our Scholarship Fund visit [Big Bad Con Scholarship](/big-bad-con-scholarship)
+For more information including how you can donate to our Scholarship Fund visit [Big Bad Con Scholarship](/big-bad-con-scholarship)
