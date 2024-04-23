@@ -18,7 +18,7 @@ Our scholarship funds go towards helping women and people from marginalized gend
 
 ### Timeline
 
-* 4/23/2024 Scholarship applications are now open! Application window will close on Saturday, June 15th. [Apply here!](/apply-for-scholarship "Apply for scholarship")
+* Scholarship applications are now open! Application window will close on Saturday, June 15th. [Apply here!](/apply-for-scholarship "Apply for scholarship")
 
 ### Contributions
 
