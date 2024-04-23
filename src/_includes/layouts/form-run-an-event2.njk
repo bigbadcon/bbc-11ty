@@ -28,12 +28,13 @@
                                 {# HoneyPot Email. If this is filled then ditch response #}
                                 <label for="email" style="display:none;">Email<input type="email" name="email" id="email"></label>
 
+                                {# TODO: test hidden with reset button #}
                                 {# Hidden fields with user data grabbed from localStorage #}
-                                <input type="hidden" name="userId" data-stored="_x_user.id">
-                                <input type="hidden" name="userEmail" data-stored="_x_user.userEmail">
+                                <input type="hidden" name="userId" data-store-watch="_x_user.id">
+                                <input type="hidden" name="userEmail" data-store-watch="_x_user.userEmail">
 
                                 {# Step Progress Bar #}
-                                <af-progress enable-all></af-progress>
+                                <af-progress></af-progress>
 
                                 {# Start of form steps #}
                                 <!-- ---------------------------- Personal Info ------------------------------ -->
@@ -45,6 +46,7 @@
                                         <fieldset>
                                             <label for="publicName">Public Badge Name</label>
                                             <p class="directions">We encourage attendees to use thier first and last names. However, if for privacy reasons you want to use another name, enter it here.</p>
+                                            {# TODO: fix this with login on mobile #}
                                             <input id="publicName" name="publicName" type="text" value="" data-store-watch="_x_user.displayName" data-persist
                                             required/>
                                             <af-error for="publicName">Required</af-error>
@@ -284,32 +286,38 @@
 
                                 <af-step data-title="Players/Attendees">
                                     <fieldset>
-                                        <legend>Player Info</legend>
+                                        <legend data-if="format" data-if-regex="RPG|LARP|Board Game|Games on Demand">Player Info</legend>
+                                        <legend data-if="format" data-if-regex="Panel|Special Event|Workshop|Podcast/Stream">Attendee Info</legend>
                                         <fieldset data-if="yourAge" data-if-value="18+">
-                                            <label for="playerAge18">Player Age</label>
-                                            <select id="playerAge18" name="playerAge" required>
+                                            <label for="playerAttendeeAge18" data-if="format" data-if-regex="RPG|LARP|Board Game|Games on Demand">Player Age</label>
+                                            <label for="playerAttendeeAge18" data-if="format" data-if-regex="Panel|Special Event|Workshop|Podcast/Stream">Attendee Age</label>
+                                            <select id="playerAttendeeAge18" name="playerAge" required>
                                                 <option disabled selected value=""> -- Choose One -- </option>
                                                 <option>13+</option>
                                                 <option>18+</option>
                                             </select>
-                                            <af-error for="playerAge18">Required</af-error>
+                                            <af-error for="playerAttendeeAge18">Required</af-error>
                                         </fieldset>
                                         <fieldset data-if="yourAge" data-if-value="13+">
-                                            <label for="playerAge13">Player Age</label>
-                                            <input type="text" name="playerAge13" readonly value="13+">
+                                            <label for="playerAttendeeAge13" data-if="format" data-if-regex="RPG|LARP|Board Game|Games on Demand">Player Age</label>
+                                            <label for="playerAttendeeAge13" data-if="format" data-if-regex="Panel|Special Event|Workshop|Podcast/Stream">Attendee Age</label>
+                                            <input type="text" name="playerAttendeeAge13" readonly value="13+">
                                         </fieldset>
+                                        {# Min/Max is not used for panels or podcast/streams #}
                                         {# Podcast / Stream has no attendees #}
                                         {# Panel set to min 1 and max 50 on backend #}
                                         <fieldset class="form-group-cols-3" data-if="format" data-if-regex="RPG|LARP|Board Game|Games on Demand|Special Event|Workshop">
                                             <div>
-                                                <label for="minPlayers">Min Players</label>
-                                                <input id="minPlayers" name="minPlayers" type="number" size="2" class="w-20" required min="1" value="1"/>
-                                                <af-error for="minPlayers">Required</af-error>
+                                                <label for="minPeople" data-if="format" data-if-regex="RPG|LARP|Board Game|Games on Demand">Min Players</label>
+                                                <label for="minPeople" data-if="format" data-if-regex="Special Event|Workshop">Min Attendees</label>
+                                                <input id="minPeople" name="minPeople" type="number" size="2" class="w-20" required min="1" value="1"/>
+                                                <af-error for="minPeople">Required</af-error>
                                             </div>
                                             <div>
-                                                <label for="maxPlayers">Max Players</label>
-                                                <input id="maxPlayers" name="maxPlayers" type="number" size="2" class="w-20" required min="1" max="25"/>
-                                                <af-error for="maxPlayers">Required</af-error>
+                                                <label for="maxPeople" data-if="format" data-if-regex="RPG|LARP|Board Game|Games on Demand">Max Players</label>
+                                                <label for="maxPeople" data-if="format" data-if-regex="Special Event|Workshop">Max Attendees</label>
+                                                <input id="maxPeople" name="maxPeople" type="number" size="2" class="w-20" required min="1" max="25"/>
+                                                <af-error for="maxPeople">Required</af-error>
                                             </div>
                                         </fieldset>
                                     </fieldset>
