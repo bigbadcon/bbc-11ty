@@ -201,6 +201,11 @@ document.addEventListener("alpine:init", () => {
 					displayName: decodeText(user.displayName) || user.displayName,
 				};
 				this.user = user;
+				window.dispatchEvent(
+					new StorageEvent("storage", {
+						key: "_x_user",
+					})
+				);
 				return user;
 			},
 			get badgeRoles() {
