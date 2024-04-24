@@ -1,6 +1,7 @@
 ---
 title: POC Programming 2024
 date: 2024-04-24T18:32:43.909Z
+published: true
 excerpt: >-
   This year, we have united the powerhouses of our POC Programming Track and our
   Big Bad Con Scholarship program! Bringing these two scholarship programs
