@@ -15,36 +15,28 @@ Here is the programming for 2024:
 
 ## POC Scholarship
 
-Working with individual and industry donors we hope to raise $50,000+ to aid people of color from around the world in attending the con by paying for travel, boarding, admission, and related expenses.
+Working with individual and industry donors we hope to raise $75,000+ to aid people of color from around the world in attending the con by paying for travel, boarding, admission, and related expenses.
 
 ## POC Meet & Greet
 
-We're also hosting another meet and greet for POC writers, artists, editors, and creators to their fellow peers and industry contacts. Non-POC industry attendees will also be invited with the specific goal to offer mentorship, publishing, or employment opportunities to the attendees of color.
+We're hosting a meet and greet for POC writers, artists, editors, and creators to their fellow peers and industry contacts. Non-POC industry attendees will also be invited with the specific goal to offer mentorship, publishing, or employment opportunities to the attendees of color.
 
 ## Office Hours
 
-Following on the success of the office hours facilitated for us by the excellent folks over at Pixel Circus during our Big Bad Online event, we will be offering our industry attendees conference rooms to meet with interested attendees who would like to connect directly with them. This will expand upon the opportunities of the Meet & Greet, providing additional time and flexibility for our POC Scholars to build connections and explore professional opportunities.
+Following on the success of the virtual office hours facilitated for us by the excellent folks over at Pixel Circus during our Big Bad Online event, we will be offering our industry attendees conference rooms to meet with interested attendees who would like to connect directly with them. This will expand upon the opportunities of the Meet & Greet, providing additional time and flexibility for our POC Scholars to build connections and explore professional opportunities.
+
+## POC Lounge
+
+This year we're adding a new POC Lounge, as a space available to all POC attendees throughout the con to connect, relax, and socialize. We are hosting this space in place of the POC Dinner, an event that we deeply valued but which, due to the presence of food, placed an undue burden of risk on our POC attendees. The POC Lounge will be a masking-required space, as are all con spaces and events this year.
 
 ## Sponsors
 
-Several generous sponsors have made individual and corporate contributions to make our POC Programming possible. Their support of transformative change in games is so important, and we are grateful for their generous contributions. We would like to add a special thanks to our major donors:
+Several generous sponsors have already made individual and corporate contributions to make our POC Programming possible. Their support of transformative change in games is so important, and we are grateful for their generous contributions. We would like to add a special thanks to our major donors:
 
 ### $10,000+
 
 * [Critical Role](https://critrole.com/)
 * [Darrington Press](https://darringtonpress.com/)
-* [Dropout TV](https://signup.dropout.tv/)
-
-### $5,000+
-
-* [The Adventure Zone](https://maximumfun.org/podcasts/adventure-zone/)
-* [Start Playing Games](https://startplaying.games/)
-* [RPG Match](https://rpgmatch.org/)
-* [Cephalofair Games](https://cephalofair.com/)
-* [MCDM Productions](https://www.mcdmproductions.com/)
-* [Foundry VTT](https://foundryvtt.com/)
-* [Roll20](https://roll20.net/)
-* [Wizards of the Coast](https://company.wizards.com/en)
 
 ## Would you like to contribute?
 
