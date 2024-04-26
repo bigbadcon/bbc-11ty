@@ -34,7 +34,7 @@ This year we're adding a new POC Lounge, as a space available to all POC attende
 
 Thank you to all of our sponsors! Their support of transformative change in games is so important, and we are grateful for their generous contributions. Our crowdfunding and fundraising efforts are starting in May 2024, and we look forward to listing them here as they are added to our list for this year. 
 
-\<!-- 
+<!-- 
 
 Several generous sponsors have already made individual and corporate contributions to make our POC Programming possible.
 
@@ -48,11 +48,11 @@ Darrington Press
 
 And more to come! 
 
-\-->
+-->
 
 ## Questions and Further Information
 
-This post will be updated as more details become available. Everyone at Big Bad Con is excited about the PoC focused events, and many of us have been involved in planning and organizing them! If you have any questions, please feel free to reach out to us at events\@bigbadcon.com
+This post will be updated as more details become available. Everyone at Big Bad Con is excited about the PoC focused events, and many of us have been involved in planning and organizing them! If you have any questions, please feel free to reach out to us at [events@bigbadcon.com](mailto:events@bigbadcon.com)
 
 ## Would you like to contribute?
 
