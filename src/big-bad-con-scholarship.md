@@ -1,7 +1,7 @@
 ---
 layout: layouts/page.njk
 title: Big Bad Con Scholarship
-published: false
+published: true
 eventType: in person
 description: ''
 ogImage: ''
