@@ -72,16 +72,6 @@ Not permitted:
 * Cloth Masks
 * Costume Masks
 
-## Mask Optional Events
-
-We have three mask optional events:
-
-* POC Dinner (Friday 7PM in the Poolside Pavilion)
-* POC Meet & Greet (Saturday 7PM in the Atrium)
-* Wolf Run (Sunday 7AM outside)
-
-These events are mask optional, either because food will be served or because they involve running outside. We still recommend wearing a mask whenever possible.
-
 ## Food & Drink
 
 We encourage Big Bad Con attendees to limit eating, drinking, and mask breaks to non-convention and outdoor spaces like the hotel bar and poolside whenever possible. We recognize that limiting eating and drinking can present its own safety and health issues for many members of our community, and we ask that you do your best to respect this policy while balancing your own needs and risks.
