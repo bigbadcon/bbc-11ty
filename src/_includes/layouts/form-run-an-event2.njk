@@ -16,7 +16,7 @@
                         <header class="prose">
                             <h2>Submit Your Event</h2>
                         </header>
-                        <action-form novalidate auto-error store id="af-run-an-event">
+                        <action-form novalidate auto-error store="run-an-event">
                             <form action="post" class="prose mt-base" id="form" x-ref="form">
                                 <div class="flex justify-between">
                                     <div>
@@ -30,24 +30,23 @@
 
                                 {# TODO: test hidden with reset button #}
                                 {# Hidden fields with user data grabbed from localStorage #}
-                                <input type="hidden" name="userId" data-store-watch="_x_user.id">
-                                <input type="hidden" name="userEmail" data-store-watch="_x_user.userEmail">
+                                <input type="hidden" name="userId" data-store-get="_x_user.id" data-store-listen>
+                                <input type="hidden" name="userEmail" data-store-get="_x_user.userEmail" data-store-listen>
 
                                 {# Step Progress Bar #}
                                 <af-progress></af-progress>
 
                                 {# Start of form steps #}
                                 <!-- ---------------------------- Personal Info ------------------------------ -->
-                                {# Using Alpine here to persist store Age and Community Standards #}
-                                {# TODO: make this work without Alpine. Maybe with data-persist? #}
-                                <af-step data-title="Personal" x-data="{yourAge: $persist(''), agreeToCommunityStandards: $persist(false)}">
+
+                                <af-step data-title="Personal">
                                     <fieldset>
                                         <legend>Personal Info</legend>
                                         <fieldset>
                                             <label for="publicName">Public Badge Name</label>
                                             <p class="directions">We encourage attendees to use thier first and last names. However, if for privacy reasons you want to use another name, enter it here.</p>
                                             {# TODO: fix this with login on mobile #}
-                                            <input id="publicName" name="publicName" type="text" value="" data-store-watch="_x_user.displayName" data-persist
+                                            <input id="publicName" name="publicName" type="text" value="" data-store-get="_x_user.displayName" data-store-listen data-persist
                                             required/>
                                             <af-error for="publicName">Required</af-error>
                                         </fieldset>
@@ -56,7 +55,7 @@
                                                 Your age at the start of con
                                             </label>
                                             <p class="directions">Big Bad Con is {% include "components/date-range.njk" %}</p>
-                                            <select id="yourAge" name="yourAge" required x-model="yourAge">
+                                            <select id="yourAge" name="yourAge" required data-store-get="af-con-form.age" data-store-set="af-con-form.age" data-persist>
                                                 <option disabled selected value="">
                                                     -- Choose One --
                                                 </option>
@@ -73,7 +72,7 @@
                                         <p class="directions">Big Bad Con is committed to cultivating a culture of respect, support, and kindness. Please take a moment to read our <a href="/community-standards">Community Standards</a> before answering yes below.</p>
 
                                         <div class="flex items-center gap-xs">
-                                            <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" required x-model="agreeToCommunityStandards">
+                                            <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" required data-persist>
                                             <label for="agree-to-community-standards" class="italic">
                                             Yes &mdash; I agree to the Big Bad Con Community Standards
                                         </label>
@@ -159,8 +158,8 @@
                                     </fieldset>
                                     <fieldset data-if="format" data-if-value="RPG">
                                         <legend>Location</legend>
-                                        <label for="locationPref">Location Preference</label>
-                                        <select id="locationPref" name="locationPref" required>
+                                        <label for="locationPrefRPG">Location Preference</label>
+                                        <select id="locationPrefRPG" name="locationPref" required>
                                             <option disabled selected value="">
                                                     -- Choose One --
                                                 </option>
@@ -168,12 +167,12 @@
                                             <option>Private Room</option>
                                             <option>Atrium</option>
                                         </select>
-                                        <af-error for="locationPref">Required</af-error>
+                                        <af-error for="locationPrefRPG">Required</af-error>
                                     </fieldset>
                                     <fieldset data-if="format" data-if-value="Board Game">
                                         <legend>Location</legend>
-                                        <label for="locationPref">Location Preference</label>
-                                        <select id="locationPref" name="locationPref" required>
+                                        <label for="locationPrefBoardGame">Location Preference</label>
+                                        <select id="locationPrefBoardGame" name="locationPref" required>
                                             <option disabled selected value="">
                                                     -- Choose One --
                                                 </option>
@@ -181,7 +180,7 @@
                                             <option>Board Game Room</option>
                                             <option>Atrium</option>
                                         </select>
-                                        <af-error for="locationPref">Required</af-error>
+                                        <af-error for="locationPrefBoardGame">Required</af-error>
                                     </fieldset>
                                     <fieldset data-if="format" data-if-regex="Podcast/Stream|Panel|Workshop">
                                         <legend>Media equipment</legend>
