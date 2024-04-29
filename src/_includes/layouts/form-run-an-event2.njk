@@ -16,7 +16,7 @@
                         <header class="prose">
                             <h2>Submit Your Event</h2>
                         </header>
-                        <action-form novalidate auto-error store="run-an-event">
+                        <action-form novalidate auto-error >
                             <form action="post" class="prose mt-base" id="form" x-ref="form">
                                 <div class="flex justify-between">
                                     <div>
@@ -34,7 +34,7 @@
                                 <input type="hidden" name="userEmail" data-store-get="_x_user.userEmail" data-store-listen>
 
                                 {# Step Progress Bar #}
-                                <af-progress enable-all></af-progress>
+                                <af-progress></af-progress>
 
                                 {# Start of form steps #}
                                 <!-- ---------------------------- Personal Info ------------------------------ -->
@@ -255,7 +255,7 @@
                                                 </p>
                                                 <af-error for="eventDescription">Required</af-error>
                                             </div>
-                                            <textarea name="eventDescription" id="description" cols="30" rows="4" maxlength="1400" required></textarea>
+                                            <textarea name="eventDescription" id="eventDescription" cols="30" rows="4" maxlength="1400" required></textarea>
                                         </fieldset>
                                         {# Games On Demand has shorter maxLength #}
                                         <fieldset data-if="format" data-if-value="Games on Demand">
@@ -481,14 +481,14 @@
                                             <label><input type="checkbox" name="schedulingPref" value="Sunday 2PM-6PM">Sunday 2PM-6PM</label>
                                         </div>
                                         <div data-if="format" data-if-regex="Workshop|RPG|LARP|Podcast|Board Game">
-                                            <fieldset data-if="length" data-if-value="1" class="form-group-cols-1">
+                                            <div data-if="length" data-if-value="1" class="form-group-cols-1">
                                                 <label><input type="checkbox" name="schedulingPref" value="Friday morning (between 9AM-1PM)">Friday morning (between 9AM-1PM)</label>
                                                 <label><input type="checkbox" name="schedulingPref" value="Friday afternoon (between 2PM-6PM)">Friday afternoon (between 2PM-6PM)</label>
                                                 <label><input type="checkbox" name="schedulingPref" value="Saturday morning (between 9AM-1PM)">Saturday morning (between 9AM-1PM)</label>
                                                 <label><input type="checkbox" name="schedulingPref" value="Saturday afternoon (between 2PM-6PM)">Saturday afternoon (between 2PM-6PM)</label>
                                                 <label><input type="checkbox" name="schedulingPref" value="Sunday morning (between 9AM-1PM)">Sunday morning (between 9AM-1PM)</label>
                                                 <label><input type="checkbox" name="schedulingPref" value="Sunday afternoon (between 2PM-6PM)">Sunday afternoon (between 2PM-6PM)</label>
-                                            </fieldset>
+                                            </div>
 
                                             <div data-if="length" data-if-value="2" class="form-group-cols-2">
                                                 <label><input type="checkbox" name="schedulingPref" value="Friday 9AM-11AM">Friday 9AM-11AM</label>
@@ -629,9 +629,97 @@
                                 <!-- ---------------------------- Event Review ------------------------------ -->
 
                                 <af-step data-title="Review">
-                                    <fieldset>
+                                    <fieldset class="grid gap-xs">
                                         <legend>Event Submission Review</legend>
-                                        <af-preview title-case></af-preview>
+                                        <div>
+                                            <span data-text="gm"></span>
+                                            (age at start of con: <span data-text="gmAge"></span>)
+                                        </div>
+                                        <div>
+                                            <div>
+                                                <strong>Format:</strong>
+                                                <span data-text="format"></span>
+                                            </div>
+                                            <div data-if="requestPrivateRoom">
+                                                <strong>Location:</strong>
+                                                <span data-text="requestPrivateRoom"></span>
+                                            </div>
+                                            <div data-if="requestMediaEquipment">
+                                                <strong>Media Equipment Requested:</strong>
+                                                <span data-text="requestMediaEquipment"></span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div>
+                                                <strong>Event Name:</strong>
+                                                <span class="font-bold" data-text="eventName"></span></div>
+                                            <div data-if="format" data-if-regex="RPG|LARP|Board Game|Games on Demand">
+                                                <strong>System: </strong>
+                                                <span data-text="system"></span>
+                                                <em data-if="playtest" data-if-value="Yes">Playtest</em>
+                                            </div>
+                                            <div class="mt-base">
+                                                <strong>Description:</strong>
+                                            </div>
+                                            <div data-text="eventDescription" class="my-base"></div>
+                                            <div data-if="characters">
+                                                <strong>Characters:</strong>
+                                                <span data-text="characters"></span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h4 data-if="format" data-if-regex="RPG|LARP|Board Game|Games on Demand">Player Info</h4>
+                                            <h4 data-if="format" data-if-regex="Panel|Special Event|Workshop|Podcast/Stream">Attendee Info</h4>
+                                            <p class="italic" data-if="gmAge" data-if-value="13+">
+                                                Event designed for people aged 13+ (no strong content)
+                                            </p>
+                                            <div>
+                                                <strong>Age:</strong>
+                                                <span data-text="playerAge"></span></div>
+                                            <div data-if="format" data-if-regex="RPG|LARP|Board Game|Games on Demand|Special Event|Workshop">
+                                                <strong>Min:</strong>
+                                                <span data-text="minPlayers"></span>
+                                                <strong>Max:</strong>
+                                                <span data-text="players"></span>
+                                            </div>
+                                            <div data-if="contentAdvisory">
+                                                <strong>Content Advisory:</strong>
+                                                <span data-text="contentAdvisory"></span></div>
+                                            <div data-text="triggerWarnings"></div>
+                                            <div data-if="format" data-if-regex="RPG|LARP|Board Game|Games on Demand">
+                                                <h4>Safety Tools</h4>
+                                                <span data-text="safetyTools"></span>
+                                                <em data-text="safetyToolsOther"></em>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h4>Scheduling</h4>
+                                            <div>
+                                                <strong>Event Length:</strong>
+                                                <span data-text="length"></span> hour(s)</div>
+                                            <div>
+                                                <strong>Number of times to run:</strong>
+                                                <span data-text="runNumberOfTimes"></span></div>
+                                            <div>
+                                                <strong>Preferences:</strong>
+                                                <span data-text="schedulingPref"></span></div>
+                                        </div>
+                                        <div>
+                                            <div data-if="eventTags">
+                                                <h4>Event Tags</h4>
+                                                <div data-text="eventTags"></div>
+                                            </div>
+                                            <div data-if="format" data-if-value="Games on Demand">
+                                                <strong>Phone:</strong>
+                                                <span data-text="phone"></span>
+                                                <strong>Discord:</strong>
+                                                <span data-text="discord"></span>
+                                            </div>
+                                            <div data-if="additionalRequirements">
+                                                <h4>Additional Requirements</h4>
+                                                <div data-text="additionalRequirements"></div>
+                                            </div>
+                                        </div>
                                     </fieldset>
                                 </af-step>
                             </form>
