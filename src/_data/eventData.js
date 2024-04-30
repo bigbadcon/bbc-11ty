@@ -400,9 +400,11 @@ module.exports = async () => {
 		// 0: draft or pending, 1: published, -1 or null: trashed
 		// TODO: issue found is that eventStatus = null when it is moved to trash back to drafts?
 		if (environment === "production") {
-			// in production hide drafts and hide any event called "BBC Hidden Test Event"
+			// in production filter to only show published and hide any event called "BBC Hidden Test Event" or "BBC_TEST!"
 			data = data.filter(
-				(event) => event.eventStatus === 1 && !event.eventName.includes("BBC Hidden Test Event")
+				(event) =>
+					event.eventStatus === 1 &&
+					!(event.eventName.includes("BBC Hidden Test Event") || event.eventName.includes("BBC_TEST!"))
 			);
 		}
 		data = data.filter((event) => event.eventStatus === 1);
