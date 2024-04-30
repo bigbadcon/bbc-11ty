@@ -235,7 +235,7 @@
                                         <fieldset data-if="mediaEquipment" data-if-value="Equipment requested">
                                             <legend>Media equipment requested</legend>
 
-                                            <div class="form-group-cols-2" data-if="format" data-if-value="Panel">
+                                            <div class="form-group-cols-2" data-if="format" data-if-regex="Panel|Workshop">
                                                 <label><input type="checkbox" name="requestMediaEquipment" value="Wireless microphone">Wireless microphone</label>
                                                 <label><input type="checkbox" name="requestMediaEquipment" value="Projector (HDMI) with screen">Projector (HDMI) with screen</label>
                                             </div>
@@ -575,8 +575,8 @@
                                 <af-step data-title="Extra Info">
                                     <fieldset>
                                         <legend>Additional Info</legend>
-                                        <p class="directions">Please select no more than 1-3 per category</p>
                                         <fieldset data-if="format" data-if-value="Panel">
+                                            <p class="directions">Please select no more than 1-3 per category</p>
                                             <label>Panel Topic</label>
                                             <div class="form-group-cols-3" >
                                                 <label><input type="checkbox" name="eventTags" value="GMing Advice">GMing Advice</label>
@@ -588,6 +588,7 @@
                                             </div>
                                         </fieldset>
                                         <fieldset data-if="format" data-if-regex="RPG|LARP|Board Game">
+                                            <p class="directions">Please select no more than 1-3 per category</p>
                                             <label>Game Focus</label>
                                             <div class="form-group-cols-3">
                                                 <label><input type="checkbox" name="eventTags" value="Adventure">Adventure</label>
