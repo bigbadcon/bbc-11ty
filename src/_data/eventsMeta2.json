@@ -1,0 +1,387 @@
+[
+	{
+		"id": 193,
+		"name": "All Ages",
+		"slug": "all-ages",
+		"type": "event-categories"
+	},
+	{
+		"id": 11,
+		"name": "Board/Card Game",
+		"slug": "board-game",
+		"type": "event-categories"
+	},
+	{
+		"id": 209,
+		"name": "GoD",
+		"slug": "god",
+		"type": "event-categories"
+	},
+	{
+		"id": 10,
+		"name": "LARP",
+		"slug": "larp",
+		"type": "event-categories"
+	},
+	{
+		"id": 154,
+		"name": "Panel",
+		"slug": "panel",
+		"type": "event-categories"
+	},
+	{
+		"id": 157,
+		"name": "Playtest",
+		"slug": "playtest",
+		"type": "event-categories"
+	},
+	{
+		"id": 9,
+		"name": "RPG",
+		"slug": "rpg",
+		"type": "event-categories"
+	},
+	{
+		"id": 201,
+		"name": "Vending",
+		"slug": "vending",
+		"type": "event-categories"
+	},
+	{
+		"id": 200,
+		"name": "Volunteer Shift",
+		"slug": "volunteer-shift",
+		"type": "event-categories"
+	},
+	{
+		"id": 13,
+		"name": "Workshop",
+		"slug": "workshop",
+		"type": "event-categories"
+	},
+	{
+		"id": 212,
+		"name": "Podcast/Stream",
+		"slug": "podcast-stream",
+		"type": "event-categories"
+	},
+	{
+		"id": 211,
+		"name": "Social Event",
+		"slug": "social-event",
+		"type": "event-categories"
+	},
+	{
+		"id": 56,
+		"name": "Adventure",
+		"slug": "adventure",
+		"type": "event-tags"
+	},
+	{
+		"id": 171,
+		"name": "Aliens",
+		"slug": "aliens",
+		"type": "event-tags"
+	},
+	{
+		"id": 74,
+		"name": "Alternate History",
+		"slug": "alternate-history",
+		"type": "event-tags"
+	},
+	{
+		"id": 77,
+		"name": "Apocalyptic",
+		"slug": "apocalyptic",
+		"type": "event-tags"
+	},
+	{
+		"id": 67,
+		"name": "Collaborative",
+		"slug": "collaborative",
+		"type": "event-tags"
+	},
+
+	{
+		"id": 63,
+		"name": "Combat",
+		"slug": "combat",
+		"type": "event-tags"
+	},
+	{
+		"id": 81,
+		"name": "Comical",
+		"slug": "comical",
+		"type": "event-tags"
+	},
+	{
+		"id": 175,
+		"name": "Cute",
+		"slug": "cute",
+		"type": "event-tags"
+	},
+	{
+		"id": 156,
+		"name": "Cyberpunk",
+		"slug": "cyberpunk",
+		"type": "event-tags"
+	},
+	{
+		"id": 83,
+		"name": "Dark",
+		"slug": "dark",
+		"type": "event-tags"
+	},
+	{
+		"id": 60,
+		"name": "Drama",
+		"slug": "drama",
+		"type": "event-tags"
+	},
+	{
+		"id": 84,
+		"name": "Emotional",
+		"slug": "emotional",
+		"type": "event-tags"
+	},
+	{
+		"id": 78,
+		"name": "Espionage",
+		"slug": "espionage",
+		"type": "event-tags"
+	},
+	{
+		"id": 57,
+		"name": "Exploration",
+		"slug": "exploration",
+		"type": "event-tags"
+	},
+	{
+		"id": 72,
+		"name": "Fantasy",
+		"slug": "fantasy",
+		"type": "event-tags"
+	},
+	{
+		"id": 188,
+		"name": "Freeform",
+		"slug": "freeform",
+		"type": "event-tags"
+	},
+	{
+		"id": 68,
+		"name": "GM-less",
+		"slug": "gm-less",
+		"type": "event-tags"
+	},
+	{
+		"id": 160,
+		"name": "GMing Advice",
+		"slug": "gming-advice",
+		"type": "event-tags"
+	},
+	{
+		"id": 92,
+		"name": "Gore",
+		"slug": "gore",
+		"type": "event-tags"
+	},
+	{
+		"id": 91,
+		"name": "Graphic Violence",
+		"slug": "graphic-violence",
+		"type": "event-tags"
+	},
+	{
+		"id": 62,
+		"name": "Hijinx",
+		"slug": "hijinx",
+		"type": "event-tags"
+	},
+	{
+		"id": 70,
+		"name": "Horror",
+		"slug": "horror",
+		"type": "event-tags"
+	},
+	{
+		"id": 191,
+		"name": "Improv",
+		"slug": "improv",
+		"type": "event-tags"
+	},
+	{
+		"id": 59,
+		"name": "Intrigue",
+		"slug": "intrigue",
+		"type": "event-tags"
+	},
+	{
+		"id": 58,
+		"name": "Investigation",
+		"slug": "investigation",
+		"type": "event-tags"
+	},
+	{
+		"id": 181,
+		"name": "LGBTQ themes",
+		"slug": "lgbtq-themes",
+		"type": "event-tags"
+	},
+	{
+		"id": 82,
+		"name": "Light",
+		"slug": "light",
+		"type": "event-tags"
+	},
+	{
+		"id": 159,
+		"name": "Literature",
+		"slug": "literature",
+		"type": "event-tags"
+	},
+	{
+		"id": 134,
+		"name": "Melancholy",
+		"slug": "melancholy",
+		"type": "event-tags"
+	},
+	{
+		"id": 79,
+		"name": "Military",
+		"slug": "military",
+		"type": "event-tags"
+	},
+	{
+		"id": 73,
+		"name": "Modern",
+		"slug": "modern",
+		"type": "event-tags"
+	},
+	{
+		"id": 102,
+		"name": "Mutant",
+		"slug": "mutant",
+		"type": "event-tags"
+	},
+	{
+		"id": 167,
+		"name": "Mystery",
+		"slug": "mystery",
+		"type": "event-tags"
+	},
+	{
+		"id": 76,
+		"name": "Noir",
+		"slug": "noir",
+		"type": "event-tags"
+	},
+	{
+		"id": 65,
+		"name": "Play to find out",
+		"slug": "play-to-find-out",
+		"type": "event-tags"
+	},
+	{
+		"id": 161,
+		"name": "Player Advice",
+		"slug": "player-advice",
+		"type": "event-tags"
+	},
+	{
+		"id": 66,
+		"name": "Player antagonism",
+		"slug": "player-antagonism",
+		"type": "event-tags"
+	},
+	{
+		"id": 89,
+		"name": "Provocative",
+		"slug": "provocative",
+		"type": "event-tags"
+	},
+	{
+		"id": 75,
+		"name": "Pulp",
+		"slug": "pulp",
+		"type": "event-tags"
+	},
+	{
+		"id": 61,
+		"name": "Romance",
+		"slug": "romance",
+		"type": "event-tags"
+	},
+	{
+		"id": 69,
+		"name": "Rotating authority",
+		"slug": "rotating-authority",
+		"type": "event-tags"
+	},
+	{
+		"id": 163,
+		"name": "Safety Tools",
+		"slug": "safety-tools",
+		"type": "event-tags"
+	},
+	{
+		"id": 71,
+		"name": "Sci-Fi",
+		"slug": "sci-fi",
+		"type": "event-tags"
+	},
+	{
+		"id": 80,
+		"name": "Serious",
+		"slug": "serious",
+		"type": "event-tags"
+	},
+	{
+		"id": 90,
+		"name": "Sex and Sexuality",
+		"slug": "sex-and-sexuality",
+		"type": "event-tags"
+	},
+	{
+		"id": 187,
+		"name": "Silly",
+		"slug": "silly",
+		"type": "event-tags"
+	},
+	{
+		"id": 162,
+		"name": "Social Contracts",
+		"slug": "social-contracts",
+		"type": "event-tags"
+	},
+	{
+		"id": 158,
+		"name": "Social Justice",
+		"slug": "social-justice",
+		"type": "event-tags"
+	},
+	{
+		"id": 121,
+		"name": "Super Powers",
+		"slug": "super-powers",
+		"type": "event-tags"
+	},
+	{
+		"id": 64,
+		"name": "Strong storyline",
+		"slug": "strong-storyline",
+		"type": "event-tags"
+	},
+	{
+		"id": 120,
+		"name": "Super Powers",
+		"slug": "super-powers",
+		"type": "event-tags"
+	},
+	{
+		"id": 85,
+		"name": "Suspenseful",
+		"slug": "suspenseful",
+		"type": "event-tags"
+	}
+]

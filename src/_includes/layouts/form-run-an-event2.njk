@@ -16,8 +16,8 @@
                         <header class="prose">
                             <h2>Submit Your Event</h2>
                         </header>
-                        <action-form novalidate auto-error >
-                            <form action="post" class="prose mt-base" id="form" x-ref="form">
+                        <action-form novalidate auto-error>
+                            <form method="POST" action="/.netlify/functions/submit-run-an-event2" class="prose mt-base" id="form" x-ref="form">
                                 <div class="flex justify-between">
                                     <div>
                                         <span class="font-bold text-highlight">*</span>
@@ -28,10 +28,16 @@
                                 {# HoneyPot Email. If this is filled then ditch response #}
                                 <label for="email" style="display:none;">Email<input type="email" name="email" id="email"></label>
 
-                                {# TODO: test hidden with reset button #}
                                 {# Hidden fields with user data grabbed from localStorage #}
+                                {# Login triggers storageEvent with _x_user key that this listens for #}
                                 <input type="hidden" name="userId" data-store-get="_x_user.id" data-store-listen>
                                 <input type="hidden" name="userEmail" data-store-get="_x_user.userEmail" data-store-listen>
+                                <input type="hidden" name="userDisplayName" data-store-get="_x_user.displayName" data-store-listen>
+                                {# TODO: fix action-table so Alpine is not needed here #}
+                                {# authToken is needed as this needs to be sent as the logged in user #}
+                                <input type="hidden" name="authToken" :value="authToken">
+                                <input type="hidden" name="successPage" value="run-an-event-success">
+                                <input type="hidden" name="failurePage" value="run-an-event-failure">
 
                                 {# Step Progress Bar #}
                                 <af-progress></af-progress>
@@ -96,7 +102,7 @@
                                                 <option>RPG</option>
                                                 <option>Board Game</option>
                                                 <option>LARP</option>
-                                                <option>Games on Demand</option>
+                                                <option value="GoD">Games on Demand (GoD)</option>
                                                 <option>Workshop</option>
                                                 <option>Panel</option>
                                                 <option>Podcast/Stream</option>
@@ -104,7 +110,29 @@
                                             </select>
                                             <af-error for="format">Required</af-error>
                                         </fieldset>
-                                        <div data-if="format" data-if-value="Games on Demand" >
+                                        <div data-if="format" data-if-value="RPG" class="directions">
+                                            <h4>RPG FAQ</h4>
+                                            <ul>
+                                                <li>Hosted in private game rooms and in the atrium</li>
+                                                <li>We encourage playtests, but demo games should be run in the <a href="/small-press-showcase">Small Press Showcase</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div data-if="format" data-if-value="Board Game" class="directions">
+                                            <h4>Board Game FAQ</h4>
+                                            <ul>
+                                                <li>Hosted in the Board Game Room (Grand Peninsula Ballroom)</li>
+                                                <li>Round and long table available</li>
+                                            </ul>
+                                        </div>
+                                        <div data-if="format" data-if-value="LARP" class="directions">
+                                            <h4>LARP FAQ</h4>
+                                            <ul>
+                                                <li>Hosted in private game rooms</li>
+                                                <li>Capacity: up to 25 players</li>
+                                            </ul>
+                                        </div>
+                                        <div data-if="format" data-if-value="GoD" class="directions">
                                             <h4>Games on Demand FAQ</h4>
                                             <ul>
                                                 <li>Game on Demand slots are 4 hours long; either one 4 hour game or two 2 hour games</li>
@@ -123,7 +151,7 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div data-if="format" data-if-value="Workshop"  class="directions">
+                                        <div data-if="format" data-if-value="Workshop" class="directions">
                                             <h4>Workshop FAQ</h4>
                                             <ul >
                                                 <li>Workshops can be 1 to 2 hours</li>
@@ -134,13 +162,20 @@
                                             </ul>
                                         </div>
                                         <div data-if="format" data-if-value="Podcast/Stream" class="directions">
-                                            <h4>Podcasting & Streaming FAQ</h4>
+                                            <h4>Podcast/Stream FAQ</h4>
                                             <ul>
-                                                <li>Audio recordings: Up to six (6) people</li>
-                                                <li>Video recording/streaming: Up to three (3) people (plus a tech)</li>
+                                                <li>The media room has space for up to 6 people for audio and 3 people for video</li>
+                                                <li>There is no room for a live audience</li>
                                                 <li>BBC staff can help with setup and wifi access, but production is up to you</li>
                                                 <li>For more info and equipment available read <a href="/podcast-streaming-faq/">Podcasting &amp; Streaming FAQ</a>
                                                 </li>
+                                            </ul>
+                                        </div>
+                                        <div data-if="format" data-if-value="Special Event" class="directions">
+                                            <h4>Special Event FAQ</h4>
+                                            <ul>
+                                                <li>Thursday evening events hosted throughout the con</li>
+                                                <li>Friday-Sunday special events hosted in the Poolside Pavilion</li>
                                             </ul>
                                         </div>
                                     </fieldset>
@@ -227,7 +262,7 @@
                                             <input type="text" id="eventName" name="eventName" required maxlength="75">
                                             <af-error for="eventName">Required</af-error>
                                         </fieldset>
-                                        <fieldset data-if="format" data-if-regex="RPG|LARP|Board Game|Games on Demand" class="form-group-cols-2">
+                                        <fieldset data-if="format" data-if-regex="RPG|LARP|Board Game|GoD" class="form-group-cols-2">
                                             <div>
                                                 <div class="label-error-wrapper">
                                                     <label for="system" class="required">System</label>
@@ -248,7 +283,7 @@
                                                 </select>
                                             </div>
                                         </fieldset>
-                                        <fieldset data-if="format" data-if-not-value="Games on Demand">
+                                        <fieldset data-if="format" data-if-not-value="GoD">
                                             <label for="eventDescription">Description</label>
                                             <div class="flex justify-between">
                                                 <p class="directions">Characters left: <af-text-count for="eventDescription" remaining></af-text-count>
@@ -257,8 +292,8 @@
                                             </div>
                                             <textarea name="eventDescription" id="eventDescription" cols="30" rows="4" maxlength="1400" required></textarea>
                                         </fieldset>
-                                        {# Games On Demand has shorter maxLength #}
-                                        <fieldset data-if="format" data-if-value="Games on Demand">
+                                        {# GoD has shorter maxLength #}
+                                        <fieldset data-if="format" data-if-value="GoD">
                                             <label for="eventDescriptionGoD">Description</label>
                                             <div class="flex justify-between">
                                                 <p class="directions">Characters left: <af-text-count for="eventDescriptionGoD" remaining></af-text-count>
@@ -267,7 +302,7 @@
                                             </div>
                                             <textarea name="eventDescription" id="eventDescriptionGoD" cols="30" rows="3" maxlength="250" required></textarea>
                                         </fieldset>
-                                        <fieldset data-if="format" data-if-regex="RPG|LARP|Games on Demand">
+                                        <fieldset data-if="format" data-if-regex="RPG|LARP|GoD">
                                             <label for="characters">Characters</label>
                                             <select id="characters" name="characters" required>
                                                 <option disabled selected value=""> -- Choose One -- </option>
@@ -285,10 +320,10 @@
 
                                 <af-step data-title="Players/Attendees">
                                     <fieldset>
-                                        <legend data-if="format" data-if-regex="RPG|LARP|Board Game|Games on Demand">Player Info</legend>
+                                        <legend data-if="format" data-if-regex="RPG|LARP|Board Game|GoD">Player Info</legend>
                                         <legend data-if="format" data-if-regex="Panel|Special Event|Workshop|Podcast/Stream">Attendee Info</legend>
                                         <fieldset data-if="gmAge" data-if-value="18+">
-                                            <label for="playerAttendeeAge18" data-if="format" data-if-regex="RPG|LARP|Board Game|Games on Demand">Player Age</label>
+                                            <label for="playerAttendeeAge18" data-if="format" data-if-regex="RPG|LARP|Board Game|GoD">Player Age</label>
                                             <label for="playerAttendeeAge18" data-if="format" data-if-regex="Panel|Special Event|Workshop|Podcast/Stream">Attendee Age</label>
                                             <select id="playerAttendeeAge18" name="playerAge" required>
                                                 <option disabled selected value=""> -- Choose One -- </option>
@@ -298,22 +333,22 @@
                                             <af-error for="playerAttendeeAge18">Required</af-error>
                                         </fieldset>
                                         <fieldset data-if="gmAge" data-if-value="13+">
-                                            <label for="playerAttendeeAge13" data-if="format" data-if-regex="RPG|LARP|Board Game|Games on Demand">Player Age</label>
+                                            <label for="playerAttendeeAge13" data-if="format" data-if-regex="RPG|LARP|Board Game|GoD">Player Age</label>
                                             <label for="playerAttendeeAge13" data-if="format" data-if-regex="Panel|Special Event|Workshop|Podcast/Stream">Attendee Age</label>
                                             <input type="text" name="playerAttendeeAge13" readonly value="13+">
                                         </fieldset>
                                         {# Min/Max is not used for panels or podcast/streams #}
                                         {# Podcast / Stream has no attendees #}
                                         {# Panel set to min 1 and max 50 on backend #}
-                                        <fieldset class="form-group-cols-3" data-if="format" data-if-regex="RPG|LARP|Board Game|Games on Demand|Special Event|Workshop">
+                                        <fieldset class="form-group-cols-3" data-if="format" data-if-regex="RPG|LARP|Board Game|GoD|Special Event|Workshop">
                                             <div>
-                                                <label for="minPlayers" data-if="format" data-if-regex="RPG|LARP|Board Game|Games on Demand">Min Players</label>
+                                                <label for="minPlayers" data-if="format" data-if-regex="RPG|LARP|Board Game|GoD">Min Players</label>
                                                 <label for="minPlayers" data-if="format" data-if-regex="Special Event|Workshop">Min Attendees</label>
                                                 <input id="minPlayers" name="minPlayers" type="number" size="2" class="w-20" required min="1" value="1"/>
                                                 <af-error for="minPlayers">Required</af-error>
                                             </div>
                                             <div>
-                                                <label for="players" data-if="format" data-if-regex="RPG|LARP|Board Game|Games on Demand">Max Players</label>
+                                                <label for="players" data-if="format" data-if-regex="RPG|LARP|Board Game|GoD">Max Players</label>
                                                 <label for="players" data-if="format" data-if-regex="Special Event|Workshop">Max Attendees</label>
                                                 <input id="players" name="players" type="number" size="2" class="w-20" required min="1" max="25"/>
                                                 <af-error for="players">Required</af-error>
@@ -355,7 +390,7 @@
                                             </fieldset>
                                         </fieldset>
                                     </fieldset>
-                                    <fieldset data-if="format" data-if-regex="RPG|LARP|Board Game|Games on Demand">
+                                    <fieldset data-if="format" data-if-regex="RPG|LARP|Board Game|GoD">
                                         <legend>Safety Tools</legend>
                                         <div class="directions">For a description of tools see <a href="/safety-collaboration-tools/">Safety and Collaboration Tools</a>
                                         </div>
@@ -379,20 +414,22 @@
                                 <af-step data-title="Scheduling">
                                     <fieldset>
                                         <legend>Event Duration</legend>
-                                        {# Event Length varies by event format; uses watch to hide display #}
-                                        <fieldset data-if="format" data-if-value="Panel">
+                                        {# Event Length varies by event format; uses data-if to hide display #}
+                                        {# Must be set to disabled initially or it breaks the data-if later as it the value is set #}
+                                        <fieldset data-if="format" data-if-value="Panel" disabled>
                                             <label for="lengthPanel">Event Length</label>
                                             <p class="directions">Panels are limited to 1 hour</p>
-                                            <select id="lengthPanel" name="length" required data-error-msg="Length required">
+                                            <select id="lengthPanel" name="eventLength" required data-error-msg="Length required">
                                                 <option value="1" selected>1 hour</option>
                                             </select>
                                             <af-error for="lengthPanel">Required</af-error>
                                         </fieldset>
-                                        <fieldset data-if="format" data-if-value="Podcast/Stream">
+                                        {# Must be set to disabled initially or it breaks the data-if later as it the value is set #}
+                                        <fieldset data-if="format" data-if-value="Podcast/Stream" disabled>
                                             <label for="lengthPodcast">Event Length</label>
                                             <p class="directions" >Limited to 2 hours: <em>1 hour recording; 30 min setup and 30 min breakdown</em>
                                             </p>
-                                            <select id="lengthPodcast" name="length" required data-error-msg="Length required">
+                                            <select id="lengthPodcast" name="eventLength" required data-error-msg="Length required">
 
                                                 <option value="2" selected>2 hours</option>
                                             </select>
@@ -400,7 +437,7 @@
                                         </fieldset>
                                         <fieldset data-if="format" data-if-regex="Workshop|Special Event">
                                             <label for="lengthWorkshopSocial">Event Length</label>
-                                            <select id="lengthWorkshopSocial" name="length" required>
+                                            <select id="lengthWorkshopSocial" name="eventLength" required>
                                                 <option disabled selected value="">
                                                         -- Choose One --
                                                     </option>
@@ -409,10 +446,10 @@
                                             </select>
                                             <af-error for="lengthWorkshopSocial">Required</af-error>
                                         </fieldset>
-                                        <fieldset data-if="format" data-if-value="Games on Demand">
+                                        <fieldset data-if="format" data-if-value="GoD">
                                             <label for="lengthGoD">Games on Demand Event Length</label>
                                             <p class="directions">Games on Demand slots are 4 hours long. Two hour long games are run twice in the same slot.</p>
-                                            <select id="lengthGoD" name="length" required>
+                                            <select id="lengthGoD" name="eventLength" required>
                                                 <option disabled selected value="">
                                                         -- Choose One --
                                                     </option>
@@ -423,7 +460,7 @@
                                         </fieldset>
                                         <fieldset data-if="format" data-if-regex="RPG|LARP|Board Game">
                                             <label for="lengthGame">Event Length</label>
-                                            <select id="lengthGame" name="length" required>
+                                            <select id="lengthGame" name="eventLength" required>
                                                 <option disabled selected value="">
                                                         -- Choose One --
                                                     </option>
@@ -437,10 +474,10 @@
                                         </fieldset>
                                         {# End event length options #}
                                     </fieldset>
-                                    <fieldset data-if="format" data-if-regex="RPG|LARP|Board Game|Games on Demand">
+                                    <fieldset data-if="format" data-if-regex="RPG|LARP|Board Game|GoD">
                                         <legend>Event Repeatability</legend>
-                                        <label for="runNumberOfTimes" data-if="format" data-if-regex="^(?!Games on Demand$).*">How many times do you want to run your event?</label>
-                                        <label for="runNumberOfTimes" data-if="format" data-if-value="Games on Demand" class="m-0">How many 4 hour Games on Demand slots do you want to run?</label>
+                                        <label for="runNumberOfTimes" data-if="format" data-if-not-value="GoD">How many times do you want to run your event?</label>
+                                        <label for="runNumberOfTimes" data-if="format" data-if-value="GoD" class="m-0">How many 4 hour Games on Demand slots do you want to run?</label>
                                         <select id="runNumberOfTimes" name="runNumberOfTimes" required>
                                             <option disabled selected value="">
                                                     -- Choose One --
@@ -452,7 +489,7 @@
                                         </select>
                                         <af-error for="runNumberOfTimes">Required</af-error>
                                     </fieldset>
-                                    <fieldset data-if="length" class="mt-base">
+                                    <fieldset data-if="eventLength" class="mt-base">
                                         <legend>Scheduling Preferences</legend>
                                         <label class="no-preference"><input type="checkbox" name="schedulingPref" value="No Preference"> No Preference</label>
 
@@ -470,7 +507,7 @@
                                         </div>
 
                                         {# Scheduling Preference Games On Demand. 4hr Regardless of choosing 2 or 4 for length #}
-                                        <div data-if="format" data-if-value="Games on Demand" class="form-group-cols-2">
+                                        <div data-if="format" data-if-value="GoD" class="form-group-cols-2">
                                             <label><input type="checkbox" name="schedulingPref" value="Friday 9AM-1PM">Friday 9AM-1PM</label>
                                             <label><input type="checkbox" name="schedulingPref" value="Friday 2PM-6PM">Friday 2PM-6PM</label>
                                             <label><input type="checkbox" name="schedulingPref" value="Friday 8PM-Midnight">Friday 8PM-Midnight</label>
@@ -481,7 +518,7 @@
                                             <label><input type="checkbox" name="schedulingPref" value="Sunday 2PM-6PM">Sunday 2PM-6PM</label>
                                         </div>
                                         <div data-if="format" data-if-regex="Workshop|RPG|LARP|Podcast|Board Game">
-                                            <div data-if="length" data-if-value="1" class="form-group-cols-1">
+                                            <div data-if="eventLength" data-if-value="1" class="form-group-cols-1">
                                                 <label><input type="checkbox" name="schedulingPref" value="Friday morning (between 9AM-1PM)">Friday morning (between 9AM-1PM)</label>
                                                 <label><input type="checkbox" name="schedulingPref" value="Friday afternoon (between 2PM-6PM)">Friday afternoon (between 2PM-6PM)</label>
                                                 <label><input type="checkbox" name="schedulingPref" value="Saturday morning (between 9AM-1PM)">Saturday morning (between 9AM-1PM)</label>
@@ -490,7 +527,7 @@
                                                 <label><input type="checkbox" name="schedulingPref" value="Sunday afternoon (between 2PM-6PM)">Sunday afternoon (between 2PM-6PM)</label>
                                             </div>
 
-                                            <div data-if="length" data-if-value="2" class="form-group-cols-2">
+                                            <div data-if="eventLength" data-if-value="2" class="form-group-cols-2">
                                                 <label><input type="checkbox" name="schedulingPref" value="Friday 9AM-11AM">Friday 9AM-11AM</label>
                                                 <label><input type="checkbox" name="schedulingPref" value="Friday 11AM-1PM">Friday 11AM-1PM</label>
                                                 <label><input type="checkbox" name="schedulingPref" value="Friday 2PM-4PM">Friday 2PM-4PM</label>
@@ -505,7 +542,7 @@
                                                 <label><input type="checkbox" name="schedulingPref" value="Sunday 4PM-6PM">Sunday 4PM-6PM</label>
                                             </div>
 
-                                            <div data-if="length" data-if-value="4" class="form-group-cols-2">
+                                            <div data-if="eventLength" data-if-value="4" class="form-group-cols-2">
                                                 <label><input type="checkbox" name="schedulingPref" value="Friday 9AM-1PM">Friday 9AM-1PM</label>
                                                 <label><input type="checkbox" name="schedulingPref" value="Friday 2PM-6PM">Friday 2PM-6PM</label>
                                                 <label><input type="checkbox" name="schedulingPref" value="Friday 8PM-Midnight">Friday 8PM-Midnight</label>
@@ -515,7 +552,7 @@
                                                 <label><input type="checkbox" name="schedulingPref" value="Sunday 9AM-1PM">Sunday 9AM-1PM</label>
                                                 <label><input type="checkbox" name="schedulingPref" value="Sunday 2PM-6PM">Sunday 2PM-6PM</label>
                                             </div>
-                                            <div data-if="length" data-if-value="6" class="form-group-cols-1">
+                                            <div data-if="eventLength" data-if-value="6" class="form-group-cols-1">
                                                 <label><input type="checkbox" name="schedulingPref" value="Friday 10AM-4PM">Friday 10AM-4PM</label>
                                                 <label><input type="checkbox" name="schedulingPref" value="Friday 6PM-Midnight">Friday 6PM-Midnight</label>
                                                 <label><input type="checkbox" name="schedulingPref" value="Saturday 10AM-4PM">Saturday 10AM-4PM</label>
@@ -523,7 +560,7 @@
                                                 <label><input type="checkbox" name="schedulingPref" value="Sunday 9AM-3PM">Sunday 9AM-3PM</label>
                                                 <label><input type="checkbox" name="schedulingPref" value="Sunday 2PM-8PM">Sunday 2PM-8PM</label>
                                             </div>
-                                            <div data-if="length" data-if-value="8" class="form-group-cols-1">
+                                            <div data-if="eventLength" data-if-value="8" class="form-group-cols-1">
                                                 <label><input type="checkbox" name="schedulingPref" value="Friday 10AM-6PM">Friday 10AM-6PM</label>
                                                 <label><input type="checkbox" name="schedulingPref" value="Friday 2PM-10PM">Friday 2PM-10PM</label>
                                                 <label><input type="checkbox" name="schedulingPref" value="Saturday 10AM-6PM">Saturday 10AM-6PM</label>
@@ -610,12 +647,12 @@
                                                 <label><input type="checkbox" name="eventTags" value="Suspenseful">Suspenseful</label>
                                             </div>
                                         </fieldset>
-                                        <fieldset data-if="format" data-if-value="Games on Demand">
+                                        <fieldset data-if="format" data-if-value="GoD">
                                             <label for="phone">Phone Number</label>
                                             <p class="directions">This info will only be used by our GoD rangers in case you are late for your shift.</p>
                                             <input type="tel" name="phone" id="phone" required>
                                         </fieldset>
-                                        <fieldset data-if="format" data-if-value="Games on Demand">
+                                        <fieldset data-if="format" data-if-value="GoD">
                                             <label for="discord">Discord Handle</label>
                                             <input type="tel" name="discord" id="discord">
                                         </fieldset>
@@ -652,8 +689,8 @@
                                         <div>
                                             <div>
                                                 <strong>Event Name:</strong>
-                                                <span class="font-bold" data-text="eventName"></span></div>
-                                            <div data-if="format" data-if-regex="RPG|LARP|Board Game|Games on Demand">
+                                                <span data-text="eventName"></span></div>
+                                            <div data-if="format" data-if-regex="RPG|LARP|Board Game|GoD">
                                                 <strong>System: </strong>
                                                 <span data-text="system"></span>
                                                 <em data-if="playtest" data-if-value="Yes">Playtest</em>
@@ -661,14 +698,14 @@
                                             <div class="mt-base">
                                                 <strong>Description:</strong>
                                             </div>
-                                            <div data-text="eventDescription" class="my-base"></div>
+                                            <div data-text="eventDescription" class="mb-base"></div>
                                             <div data-if="characters">
                                                 <strong>Characters:</strong>
                                                 <span data-text="characters"></span>
                                             </div>
                                         </div>
                                         <div>
-                                            <h4 data-if="format" data-if-regex="RPG|LARP|Board Game|Games on Demand">Player Info</h4>
+                                            <h4 data-if="format" data-if-regex="RPG|LARP|Board Game|GoD">Player Info</h4>
                                             <h4 data-if="format" data-if-regex="Panel|Special Event|Workshop|Podcast/Stream">Attendee Info</h4>
                                             <p class="italic" data-if="gmAge" data-if-value="13+">
                                                 Event designed for people aged 13+ (no strong content)
@@ -676,7 +713,7 @@
                                             <div>
                                                 <strong>Age:</strong>
                                                 <span data-text="playerAge"></span></div>
-                                            <div data-if="format" data-if-regex="RPG|LARP|Board Game|Games on Demand|Special Event|Workshop">
+                                            <div data-if="format" data-if-regex="RPG|LARP|Board Game|GoD|Special Event|Workshop">
                                                 <strong>Min:</strong>
                                                 <span data-text="minPlayers"></span>
                                                 <strong>Max:</strong>
@@ -686,7 +723,7 @@
                                                 <strong>Content Advisory:</strong>
                                                 <span data-text="contentAdvisory"></span></div>
                                             <div data-text="triggerWarnings"></div>
-                                            <div data-if="format" data-if-regex="RPG|LARP|Board Game|Games on Demand">
+                                            <div data-if="format" data-if-regex="RPG|LARP|Board Game|GoD">
                                                 <h4>Safety Tools</h4>
                                                 <span data-text="safetyTools"></span>
                                                 <em data-text="safetyToolsOther"></em>
@@ -696,7 +733,7 @@
                                             <h4>Scheduling</h4>
                                             <div>
                                                 <strong>Event Length:</strong>
-                                                <span data-text="length"></span> hour(s)</div>
+                                                <span data-text="eventLength"></span> hour(s)</div>
                                             <div>
                                                 <strong>Number of times to run:</strong>
                                                 <span data-text="runNumberOfTimes"></span></div>
@@ -709,7 +746,7 @@
                                                 <h4>Event Tags</h4>
                                                 <div data-text="eventTags"></div>
                                             </div>
-                                            <div data-if="format" data-if-value="Games on Demand">
+                                            <div data-if="format" data-if-value="GoD">
                                                 <strong>Phone:</strong>
                                                 <span data-text="phone"></span>
                                                 <strong>Discord:</strong>
