@@ -89,8 +89,6 @@ exports.handler = async function (event) {
 		!params.gm ||
 		!params.gmAge ||
 		!params.eventLength ||
-		!params.minPlayers ||
-		!params.players ||
 		!params.playerAge ||
 		!params.userDisplayName ||
 		!eventCategoryId
@@ -154,10 +152,10 @@ exports.handler = async function (event) {
 		gm: params.gm,
 		gmAge: params.gmAge,
 		length: params.eventLength,
-		minPlayers: params.minPlayers,
+		minPlayers: params.minPlayers || "1",
 		otherInfo: params.phone || params.discord ? `Phone: ${params.phone} Discord: ${params.discord}` : "", // params.discord,
 		playerAge: params.playerAge,
-		players: params.players,
+		players: params.players || "50",
 		playtest: params.playtest || "",
 		requestMediaEquipment: params.requestMediaEquipment || "",
 		requestMediaRoom: params.format === "Podcast/Stream",
