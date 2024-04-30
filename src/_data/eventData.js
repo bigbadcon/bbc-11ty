@@ -402,7 +402,9 @@ module.exports = async () => {
 		if (environment === "production") {
 			// in production hide drafts and hide any event called "BBC Hidden Test Event"
 			data = data.filter(
-				(event) => event.eventStatus === 1 && !event.eventName.includes("BBC Hidden Test Event")
+				(event) =>
+					event.eventStatus === 1 &&
+					!(event.eventName.includes("BBC Hidden Test Event") || event.eventName.includes("BBC_TEST"))
 			);
 		}
 		data = data.filter((event) => event.eventStatus === 1);
