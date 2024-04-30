@@ -23,6 +23,7 @@ Burlingame, CA 94010\
 
 If you aren't able to book your stay at the Hyatt or Crown Plaza, here are some nearby hotels that may have availability:
 
+* [Crown Plaza](https://sfocp.com/) (6 minute walk to the Hyatt)
 * [Holiday Inn Express](https://www.ihg.com/holidayinnexpress/hotels/us/en/burlingame/urlbh/hoteldetail) (6 minute walk to the Hyatt)
 * [Bay Landing Hotel](https://baylandinghotel.com/) (8 minute walk to the Hyatt)
 * [Vagabond Inn](https://www.vagabondinn.com/vagabond-inn-executive-san-francisco-airport-bayfront-sfo?) (10 minute walk to the Hyatt)
