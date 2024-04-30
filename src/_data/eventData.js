@@ -404,7 +404,7 @@ module.exports = async () => {
 			data = data.filter(
 				(event) =>
 					event.eventStatus === 1 &&
-					!(event.eventName.includes("BBC Hidden Test Event") || event.eventName.includes("BBC_TEST!"))
+					!(event.eventName.includes("BBC Hidden Test Event") || event.eventName.includes("BBC_TEST"))
 			);
 		}
 		data = data.filter((event) => event.eventStatus === 1);
