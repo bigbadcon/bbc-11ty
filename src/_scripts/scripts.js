@@ -140,6 +140,12 @@ document.addEventListener("alpine:init", () => {
 				if (!dayjs(this.lastLogin).isValid() || dayjs(this.lastLogin).diff(dayjs(), "hour") < -240) {
 					this.logout("It has been more than 10 days since your last login so you are being logged out");
 				}
+				// check for error in url search params and dispatch toast if exists
+				const url = new URL(window.location.href);
+				const error = url.searchParams.get("error");
+				if (error) {
+					this.$dispatch("toast", `ERROR: ${error}`);
+				}
 			},
 			modal: null, // this is a state machine basically with named string values for each panel and null for none
 			lastLogin: this.$persist(null),
@@ -170,6 +176,12 @@ document.addEventListener("alpine:init", () => {
 					await this.getBookedEvents();
 					this.modal = "My Account";
 					await this.getFavEvents();
+					// trigger storage event for Run an Event Form
+					window.dispatchEvent(
+						new StorageEvent("storage", {
+							key: "_x_authToken",
+						})
+					);
 				} else {
 					// eslint-disable-next-line no-console
 					console.log("Login no token");
