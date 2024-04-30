@@ -406,8 +406,10 @@ module.exports = async () => {
 					event.eventStatus === 1 &&
 					!(event.eventName.includes("BBC Hidden Test Event") || event.eventName.includes("BBC_TEST"))
 			);
+		} else {
+			// in development filter to only show published and draft
+			data = data.filter((event) => event.eventStatus === 1 || event.eventStatus === 0);
 		}
-		data = data.filter((event) => event.eventStatus === 1);
 		// Only show dates in the future (minus 1 month)
 		data = data.filter((event) => dayjs(event.eventStartDate).isAfter(dayjs().subtract(1, "weeks")));
 		console.log("Number of Events:", data.length);
