@@ -92,7 +92,6 @@ exports.handler = async function (event) {
 		!params.minPlayers ||
 		!params.players ||
 		!params.playerAge ||
-		!params.runNumberOfTimes ||
 		!params.userDisplayName ||
 		!eventCategoryId
 	) {
