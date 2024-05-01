@@ -1,6 +1,6 @@
 ---
 title: Pam Punzalan
-position: Special Events Co-Coordinator
+position: Special Events Coordinator
 tags:
   - staff
 published: true

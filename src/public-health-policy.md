@@ -12,7 +12,7 @@ icon: health
 _template: page
 ---
 
-For the safety of all our attendees, we have the following policies in place for Big Bad Con 2023:
+For the safety of all our attendees, we have the following policies in place for Big Bad Con 2024:
 
 * **Masks that provide KN95 or better protection are required in all convention spaces**. We’ll be giving out free Big Bad Con KN95 masks to all attendees!
 * **All attendees must show proof of COVID vaccination before entering the con.** Make sure to pack that vaccination card, update your app, or take a pic before you head out.
@@ -71,16 +71,6 @@ Not permitted:
 * Mesh materials
 * Cloth Masks
 * Costume Masks
-
-## Mask Optional Events
-
-We have three mask optional events:
-
-* POC Dinner (Friday 7PM in the Poolside Pavilion)
-* POC Meet & Greet (Saturday 7PM in the Atrium)
-* Wolf Run (Sunday 7AM outside)
-
-These events are mask optional, either because food will be served or because they involve running outside. We still recommend wearing a mask whenever possible.
 
 ## Food & Drink
 

@@ -4,6 +4,7 @@ position: Board Game Ranger Captain
 tags:
   - staff
 gender: (she/they)
+order: 0
 image: /images/0.png
 twitter: ChaoticDarby
 website_url: 'https://chaoticdarby.carrd.co/'

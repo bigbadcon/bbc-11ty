@@ -1,34 +1,31 @@
 ---
 layout: layouts/page.njk
 title: Big Bad Con Scholarship
-published: false
+published: true
+eventType: in person
 description: ''
 ogImage: ''
 navGroup: Attend
 navTitle: Scholarship
 order: 2
 icon: gift
-eventType: 'in person'
 _template: page
 ---
 
 Big Bad Con is committed to cultivating and supporting a spectacular and diverse gaming community. Part of the way we do that is by collecting donations to our scholarship program.
 
-Our scholarship funds go towards helping women and people from marginalized genders, people of color, disabled, and lgbtqia+ individuals attend the con. We use it to cover hotel rooms ($145+/night), convention badges ($75), and help with other fees. Depending on the number of applicants, we may be able cover full or partial costs. Typical scholarship awards go up to $400.
-
-Note, the POC Programming Track is a separate program that runs in addition to the Big Bad Con scholarship. You can find out more [here](https://www.bigbadcon.com/blog/poc-programming-at-big-bad-con-2023/).
+Our scholarship funds go towards helping women and people from marginalized genders, people of color, disabled, and lgbtqia+ individuals attend the con. We use it to cover hotel rooms ($149+/night), convention badges ($75), and help with other fees. Depending on the number of applicants, we may be able cover full or partial costs.
 
 ### Timeline
 
-* Scholarship applications are now closed for 2023. We'll re-open applications for the next year in 2024.
-* Determinations and reward disbursement were sent August 22, 2023.
+* Scholarship applications are now open! Application window will close on Saturday, June 15th. [Apply here!](/apply-for-scholarship "Apply for scholarship")
 
 ### Contributions
 
 If you would like to contribute to the Scholarship Fund, there are a few ways to do it.
 
-* During crowdfunding (starting soon) you can back at the scholarship level, or add a scholarship contribution as an add-on to another pledge.
-* You can also donate direct vial our [PayPal giving fund](https://www.paypal.com/us/fundraiser/charity/1653860).
+* During crowdfunding (starting soon!) you can back at the scholarship level, or add a scholarship contribution as an add-on to another pledge.
+* You can also donate directly via our [PayPal giving fund](https://www.paypal.com/us/fundraiser/charity/1653860).
 
 Any contributions made after September will be set aside for next year’s fund. Thank you very much for your support!
 

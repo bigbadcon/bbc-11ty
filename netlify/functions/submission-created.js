@@ -19,20 +19,21 @@ exports.handler = async function (event, context) {
 	/* -------------------------------------------------------------------------- */
 	if (data.formName === "create-account") {
 		console.log("create account function start");
-		const { displayName, firstName, lastName, nickname, userEmail, userNicename, userLogin, userPass, twitter } =
-			data;
+		const { displayName, firstName, lastName, nickname, userEmail, userPass } = data;
 
+		const userNicename = userEmail;
+		const userLogin = userEmail;
 		const properNickname = !nickname || nickname === "" ? displayName : nickname;
 
 		const params = {
-			displayName: displayName,
-			firstName: firstName,
-			lastName: lastName,
-			nickname: properNickname,
-			userEmail: userEmail,
-			userNicename: userNicename,
-			userLogin: userLogin,
-			userPass: userPass,
+			displayName,
+			firstName,
+			lastName,
+			properNickname,
+			userEmail,
+			userNicename,
+			userLogin,
+			userPass,
 			userUrl: "",
 			// twitter: twitter
 		};
@@ -69,6 +70,7 @@ exports.handler = async function (event, context) {
 			if (res.status === 200) {
 				isUser = true;
 			} else {
+				console.log("Error with 2. try check password");
 			}
 		} catch (err) {
 			console.log("User does not exist", err.response.config.url, err.response.status);
@@ -81,7 +83,7 @@ exports.handler = async function (event, context) {
 			/* -------------------------------------------------------------------------- */
 			try {
 				console.log("3a. try create user");
-				const res = await axios.put(apiBaseUrl + "users/create", params);
+				await axios.put(apiBaseUrl + "users/create", params);
 				// console.log("put response", res);
 				console.log("New user successfully created for", userNicename, userEmail, displayName);
 

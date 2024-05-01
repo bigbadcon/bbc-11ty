@@ -59,7 +59,7 @@
                                 </div>
                                 <div class="required">
                                     <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-model="formInfo.communityStandards" required>
-                                    <label for="agree-to-community-standards" class="text-highlight"3324>
+                                    <label for="agree-to-community-standards" >
                                         Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Big Bad Con Community Standards
                                     </label>
                                 </div>
@@ -68,12 +68,16 @@
                                 <legend>Social Media</legend>
                                 <div class="prose">
                                     <p>
-                                    Where can we connect with you on Twitter, Facebook, Instagram, etc. (all optional but we like to connect with people and promote them if possible/desired)
+                                    Where can we connect with you on social media, etc. (all optional but we like to connect with people and promote them if possible/desired)
                                 </p>
                                 </div>
                                 <div>
-                                    <label for="twitter">Twitter</label>
-                                    <input id="twitter" name="twitter" type="text" value="" x-model="formInfo.twitter"/>
+                                    <label for="mastodon">Mastodon</label>
+                                    <input id="mastodon" name="mastodon" type="text" value="" x-model="formInfo.mastodon"/>
+                                </div>
+                                <div>
+                                    <label for="bluesky">Bluesky</label>
+                                    <input id="bluesky" name="bluesky" type="text" value="" x-model="formInfo.bluesky"/>
                                 </div>
                                 <div>
                                     <label for="instagram">Instagram</label>
@@ -83,10 +87,14 @@
                                     <label for="facebook">Facebook</label>
                                     <input id="facebook" name="facebook" type="text" value="" x-model="formInfo.facebook"/>
                                 </div>
+                                <div>
+                                    <label for="xSocial">X (formerly Twitter)</label>
+                                    <input id="xSocial" name="xSocial" type="text" value="" x-model="formInfo.xSocial"/>
+                                </div>
                             </fieldset>
                             <fieldset :class="!isPersonalInfoComplete && 'fieldset-disabled'">
                                 <legend>Scholarship Assistance</legend>
-                                <div class="required" x-data="{assistanceTypes:['Attendance (4-day badge)','Hotel Room','Travel']}">
+                                <div class="flex flex-col items-start required gap-2xs" x-data="{assistanceTypes:['Attendance (4-day badge)','Hotel Room','Travel']}">
                                     <label>Request assistance with</label>
                                     <template x-for="(atype, i) in assistanceTypes">
                                         <div class="flex items-center">
@@ -95,7 +103,7 @@
                                         </div>
                                     </template>
                                 </div>
-                                <div class="required" x-data="{nights:['Thursday','Friday','Saturday','Sunday']}">
+                                <div class="flex flex-col items-start required gap-2xs" x-data="{nights:['Thursday','Friday','Saturday','Sunday']}">
                                     <label>Which nights do you plan on staying?</label>
                                     <template x-for="(night, i) in nights">
                                         <div class="flex items-center">
@@ -127,7 +135,11 @@
                                 </div>
                                 <div class="required">
                                     <label for="travelCosts">Estimated Travel Costs</label>
-                                    <input id="travelCosts" name="travelCosts" type="text" value="" x-model="formInfo.travelCosts" @blur="validate" class="w-full max-w-md"/>
+                                    <div class="text-sm italic prose mb-xs">
+                                        <p>Please only include transportation costs, not hotel or badge expenses</p>
+                                    </div>
+                                    <div class="flex items-center justify-start gap-sm"><input id="travelCosts" name="travelCosts" type="number" value="" x-model="formInfo.travelCosts" @blur="validate"/>
+                                        <span class="text-body">(in USD)</span></div>
                                 </div>
                                 <div class="required">
                                     <label for="fundsRequired">Funds required to attend</label>
@@ -138,8 +150,8 @@
                                         <option>Partial assistance (1-50% covered)</option>
                                     </select>
                                 </div>
-                                <div class="required" x-data="{identities:['A person of color','A woman','Disabled','LGBTQIA+','Other (fill in below)']}">
-                                    <label>I identify as</label>
+                                <div class="flex flex-col items-start required gap-2xs" x-data="{identities:['A person of color','A marginalized gender','Disabled','LGBTQIA+','Other (fill in below)']}">
+                                    <label>I am</label>
                                     <template x-for="(identity, i) in identities">
                                         <div class="flex items-center">
                                             <input type="checkbox" :name="'identity' + i" :id="'identity' + i" :value="identity" @change="setCheckboxArray($el,'identities')">
@@ -151,9 +163,18 @@
                                     <label for="identitiesOther">Other identity</label>
                                     <input id="identitiesOther" name="identitiesOther" type="text" value="" x-model="formInfo.identitiesOther" @blur="validate"/>
                                 </div>
+                                <div class="flex flex-col items-start required gap-2xs" x-data="{interests:['Gaming and attending events','Building community','Industry connections']}">
+                                    <label>While attending Big Bad Con, I'm interested in</label>
+                                    <template x-for="(interest, i) in interests">
+                                        <div class="flex items-center">
+                                            <input type="checkbox" :name="'interest' + i" :id="'interest' + i" :value="interest" @change="setCheckboxArray($el,'interests')">
+                                            <label :for="'interest' + i" x-text="interest"></label>
+                                        </div>
+                                    </template>
+                                </div>
                                 <div class="required">
                                     <label for="gamingXp">Gaming Community Experience</label>
-                                    <div class="prose">
+                                    <div class="text-sm italic prose mb-xs">
                                         <p>Please tell us a bit about your experiences in the gaming community and why you would like to attend Big Bad Con.</p>
                                     </div>
                                     <textarea cols="30" id="gamingXp" name="gamingXp" rows="3" x-model="formInfo.gamingXp" @blur="validate"></textarea>
@@ -209,6 +230,7 @@
                             x.travelCosts,
                             x.fundsRequired,
                             x.identities,
+                            x.interests,
                             x.gamingXp
                         ].every(isFull);
                     },

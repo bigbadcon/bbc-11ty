@@ -3,7 +3,9 @@ title: Yoshi Creelman
 position: Games on Demand Ranger Captain
 tags:
   - staff
+published: true
 gender: (he/him)
+order: 0
 image: /images/Yoshi-GPNW.jpg
 ---
 

@@ -1,16 +1,16 @@
 ---
-title: Sean Nittner
-gender: (he/him)
-tags: staff
-published: true
-twitter: seannittner
 website: 'http://www.seannittner.com'
-image: /images/sean_seattle.jpg
+title: Sean Nittner
 position: Steward
+tags:
+  - staff
+published: true
+gender: (he/him)
+order: 0
+image: /images/sean_seattle.jpg
+twitter: seannittner
 website_name: seannittner.com
 website_url: 'http://www.seannittner.com/'
-order: 10
-_template: staff
 ---
 
 Sean is a system administrator, event coordinator, twitch streamer, podcaster, project manager, and fundraiser. He started gaming at age 12 and he’s never stopped.

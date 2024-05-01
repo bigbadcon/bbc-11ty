@@ -5,6 +5,7 @@ tags:
   - staff
 published: true
 gender: (she/her)
+order: 0
 image: /images/Poorna.png
 website_name: 'https://poorna.carrd.co'
 website_url: 'https://poorna.carrd.co'

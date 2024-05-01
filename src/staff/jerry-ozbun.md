@@ -5,6 +5,7 @@ tags:
   - staff
 published: true
 gender: he/him
+order: 0
 image: /images/Jerry Ozbun.png
 ---
 

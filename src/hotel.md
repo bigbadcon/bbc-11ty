@@ -2,13 +2,13 @@
 layout: layouts/page.njk
 title: Hotel
 published: true
+eventType: in person
 description: Big Bad Con will be hosted at the Hyatt Regency San Francisco Airport
 ogImage: /images/hyatt-768x419.jpg
 navGroup: Attend
 navTitle: ''
 order: 1
 icon: hotel
-eventType: 'in person'
 _template: page
 ---
 
@@ -19,10 +19,11 @@ Big Bad Con will be hosted at the:
 Burlingame, CA 94010\
 (650) 347-1234
 
-<!-- [Book a room at the Hyatt](https://www.hyatt.com/en-US/group-booking/SFOBU/G-BBC4){.icon-hotel} -->
+[Book a room at the Hyatt](https://www.hyatt.com/en-US/group-booking/SFOBU/G-STND){.icon-hotel}
 
 If you aren't able to book your stay at the Hyatt or Crown Plaza, here are some nearby hotels that may have availability:
 
+* [Crown Plaza](https://sfocp.com/) (6 minute walk to the Hyatt)
 * [Holiday Inn Express](https://www.ihg.com/holidayinnexpress/hotels/us/en/burlingame/urlbh/hoteldetail) (6 minute walk to the Hyatt)
 * [Bay Landing Hotel](https://baylandinghotel.com/) (8 minute walk to the Hyatt)
 * [Vagabond Inn](https://www.vagabondinn.com/vagabond-inn-executive-san-francisco-airport-bayfront-sfo?) (10 minute walk to the Hyatt)

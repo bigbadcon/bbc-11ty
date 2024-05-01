@@ -778,9 +778,6 @@ document.addEventListener("alpine:init", () => {
 					const eventId = e.target.eventId.value;
 					const formData = new FormData(e.target);
 
-					/**
-					 * @type {boolean}
-					 */
 					let data = await lilRed.events.uploadImage(formData);
 
 					if (data) {
@@ -811,6 +808,7 @@ document.addEventListener("alpine:init", () => {
 					}
 				},
 				getEventGUID() {
+					// Function to check Event GUID on page load
 					if (location.search) {
 						const params = new URLSearchParams(location.search);
 						let gmGuid = params.get("guid");
@@ -822,14 +820,11 @@ document.addEventListener("alpine:init", () => {
 				},
 				async getAddtlGMCode(eventId) {
 					const result = await lilRed.events.getAddtlGMCode(eventId);
-					return result && `${window.location.href.split("?")[0]}?guid=${result}`;
+					return result && `${window.location.href}?guid=${result}`;
 				},
 				async addAsGm(eventId, gmGuid) {
 					console.log("addAsGm", eventId, gmGuid);
 					if (!gmGuid && this.gm.length >= 6) return;
-					/**
-					 * @type {string}
-					 */
 					const result = await lilRed.bookings.addAsAddtlGM(eventId, gmGuid);
 					if (result) {
 						location.reload();
@@ -839,26 +834,6 @@ document.addEventListener("alpine:init", () => {
 			};
 		}
 	);
-
-	/**
-	 * Alpine Data createAccount return object
-	 * TODO: should this be moved all to the serverless function?
-	 * TODO: this JSDoc isn't working right with the implicit return object
-	 *
-	 * @typedef {Object} CreateAccount
-	 * @property {boolean} agree - agree to community agreement
-	 * @property {string} userNicename - user name
-	 * @property {boolean} userNicenameExists - if the username is already taken
-	 * @property {string} userEmail - email address
-	 * @property {string} userPass - password
-	 * @property {string} firstName - first name
-	 * @property {string} lastName - last name
-	 * @property {"nickname" | "firstlast"} howToDisplay - how to display name firstlast or as nickname
-	 * @property {string} nickname - nickname
-	 * @property {string} displayName - display name
-	 * @property {string} twitter - twitter handle
-	 * @property {string} userLogin - login
-	 */
 
 	Alpine.data("createAccount", () =>
 		/**
