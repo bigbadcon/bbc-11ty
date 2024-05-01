@@ -400,14 +400,16 @@ module.exports = async () => {
 		// 0: draft or pending, 1: published, -1 or null: trashed
 		// TODO: issue found is that eventStatus = null when it is moved to trash back to drafts?
 		if (environment === "production") {
-			// in production hide drafts and hide any event called "BBC Hidden Test Event"
+			// in production filter to only show published and hide any event called "BBC Hidden Test Event" or "BBC_TEST!"
 			data = data.filter(
 				(event) =>
 					event.eventStatus === 1 &&
 					!(event.eventName.includes("BBC Hidden Test Event") || event.eventName.includes("BBC_TEST"))
 			);
+		} else {
+			// in development filter to only show published and draft
+			data = data.filter((event) => event.eventStatus === 1 || event.eventStatus === 0);
 		}
-		data = data.filter((event) => event.eventStatus === 1);
 		// Only show dates in the future (minus 1 month)
 		data = data.filter((event) => dayjs(event.eventStartDate).isAfter(dayjs().subtract(1, "weeks")));
 		console.log("Number of Events:", data.length);

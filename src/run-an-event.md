@@ -1,5 +1,5 @@
 ---
-layout: layouts/page.njk
+layout: layouts/form-run-an-event.njk
 title: Run An Event
 published: true
 description: ''
@@ -27,24 +27,25 @@ _template: page
 **Free admission:** attendees who sign up for any combination of 8+ hours of running events, GMing in Games on Demand, or volunteer shifts get a free 4-day badge to attend the con.
 -->
 
-Event submissions are currently closed. Check out all our amazing games, panels, and more [here](https://www.bigbadcon.com/events/)!
+<!-- Event submissions are currently closed. Check out all our amazing games, panels, and more [here](https://www.bigbadcon.com/events/)!
 
 If you would like to run games, we still have submissions open for [Games on Demand](https://www.bigbadcon.com/games-on-demand/).
 
-[Scheduled Events FAQ](https://www.bigbadcon.com/scheduled-events-faq/){.icon-calendar-clock}
+[Scheduled Events FAQ](/scheduled-events-faq/){.icon-calendar-clock}
 
-[Panel and Workshop FAQ](https://www.bigbadcon.com/panel-faq/){.icon-light-bulb}
+[Panel and Workshop FAQ](/panel-faq/){.icon-light-bulb}
 
-[Podcast & Streaming FAQ](https://www.bigbadcon.com/podcast-streaming-faq/){.icon-party}
+[Podcast & Streaming FAQ](/podcast-streaming-faq/){.icon-party} -->
 
-<!--We're looking for games, panels, workshops, and events to make Big Bad Con 2023 our best year yet! We welcome indie and small press games, including established titles and new games in playtest.
+We're looking for games, panels, workshops, and events to make Big Bad Con 2024 our best year yet! We welcome indie and small press games, including established titles and new games in playtest.
 
-Event submissions are open until 7/31/2023.
+* **Free admission**: attendees who sign up for any combination of 8+ hours of running events or volunteer shifts get a free 4-day con badge.
+* After your event is submitted, our coordinators will review it (usually within two weeks) and follow up.
+* Once your event is approved, it will appear on our [events page](/events)
+* After submissions close, our event coordinators will schedule all the events, confirm them with you, and then publish the event times and locations!
+* Event submissions are open until 7/31/2024.
 
-**Free admission**: attendees who sign up for any combination of 8+ hours of running events, GMing in Games on Demand, or volunteer shifts get a free 4-day badge to attend the con.
-
-
-
+<!--
 We're looking for games, panels, workshops, and events to make Big Bad Con 2022 our best year yet!
 
 

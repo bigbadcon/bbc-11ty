@@ -4,7 +4,6 @@
     {% set isAllAges = true %}
 {% endif %}
 {% set isQuotaExempt = false %}
-{# TODO: add 'Panel' in event.categories or 'Vending' in event.categories to if statement when Jerry has this working #}
 {% if event.metadata.exempt %}
     {% set isQuotaExempt = true %}
 {% endif %}

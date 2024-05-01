@@ -11,1232 +11,763 @@
                     <p>You must be <button @click.stop="modal = 'Login'" class="font-bold underline text-highlight">logged in</button> to submit a game</p>
                 </div>
                 {# submittingState: 'unsubmitted', // unsubmitted, submitted, complete #}
-                <div x-cloak x-show="isAuth && user" x-data="runAnEventData" x-init="if(isAuth) getUserData()">
-                    <div x-show="submittingState !== 'complete'" id="submit-your-event">
+                <div x-cloak x-show="isAuth && user" x-init="if(isAuth) getUserData()">
+                    <div id="submit-your-event">
                         <header class="prose">
                             <h2>Submit Your Event</h2>
-                            <p>
-                                <span class="font-bold text-highlight">*</span>
-                                <em>required field</em>
-                            </p>
                         </header>
-                        <form action="post" class="mt-base" id="form" x-ref="form" @submit.prevent="submitEvent" x-validate>
-                            {# TODO: add honeypot #}
-                            <input type="hidden" name="userDisplayName" :value="user && user.displayName" x-validate x-init="$watch('user',val => {if (val && val.displayName) $validate.updateData($el)})">
-                            {# Personal Info #}
-                            <fieldset x-ref="personalInfo">
-                                <legend>Personal Info</legend>
-                                <div class="required">
-                                    <label for="publicName">Public Badge Name</label>
-                                    <p class="text-xs mb-sm text-body">We encourage attendees to list their first and last names. However, if for privacy reasons you would like to use another name, enter it here.</p>
-                                    <input id="publicName" name="publicName" type="text" value="" :value="user && user.displayName" data-error-msg="Name is required"
-                                    required x-init="$watch('user',val => {if (val && val.displayName) $validate.updateData($el)})"/>
+                        <action-form novalidate auto-error>
+                            <form method="POST" action="/.netlify/functions/submit-run-an-event" class="prose mt-base" id="form" x-ref="form">
+                                <div class="flex justify-between">
+                                    <div>
+                                        <span class="font-bold text-highlight">*</span>
+                                        <em>required field</em>
+                                    </div>
+                                    <button type="reset" class="button-sm button-title">Reset Form</button>
                                 </div>
-                                <div class="required">
-                                    <label for="yourAge">
-                                        Your age at start of con:
-                                        <span>{% include "components/date-range.njk" %}</span>
-                                    </label>
-                                    <select id="yourAge" name="yourAge" @change="if ($el.value === '13+') { $validate.value('playerAge','13+')}" required data-error-msg="Age is required">
-                                        <option disabled selected value="">
-                                            -- Choose One --
-                                        </option>
-                                        <option>13+</option>
-                                        <option>18+</option>
-                                    </select>
-                                </div>
-                            </fieldset>
-                            <fieldset x-ref="communityStandards" class="transition-opacity" :class="(isPrevComplete($el)) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'" >
-                                <legend>Community Standards Agreement</legend>
-                                <div class="prose mb-sm">
-                                    <p>Big Bad Con is committed to cultivating a culture of respect, support, and kindness at both our in-person and online events. We ask that all of our attendees agree to abide by our Community Standards, please take a moment to read them before answering yes below.</p>
-                                    <p>
-                                        <a href="/community-standards" class="icon-scroll">Community Standards</a>
-                                    </p>
-                                </div>
-                                <div class="required">
-                                    <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" required>
-                                    <label for="agree-to-community-standards" class="text-highlight">
-                                        Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Big Bad Con Community Standards
-                                    </label>
-                                </div>
-                            </fieldset>
+                                {# HoneyPot Email. If this is filled then ditch response #}
+                                <label for="email" style="display:none;">Email<input type="email" name="email" id="email" tabindex="-1" value="" autocomplete="off"></label>
 
-                            {# END Personal Info #}
-                            {# Event Info - Personal Info must be complete before showing #}
-                            {# TODO: simplify this code that updates the eventlength #}
-                            <fieldset x-ref="eventInfo" class="transition-opacity" :class="(isPrevComplete($el)) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
-                                <legend>Event Info</legend>
-                                <div class="required">
-                                    <label for="format">Format</label>
-                                    <select id="format" name="format" required
-                                    @change="$validate.value('eventCategoryId',formatId($el.value)); if ($el.value === 'Panel' || $el.value === 'Workshop' || $el.value === 'Podcast/Stream' || $el.value === 'Social Event') { $validate.value('system',$el.value); $validate.value('eventLength','1')}; if ($el.value === 'Podcast/Stream') {$validate.value('eventLength','2')}; if ($el.value === 'Panel') {$validate.value('maxPlayers','50')}">
-                                        <option disabled selected value="">-- Choose One --</option>
-                                        <template x-for="type in format">
-                                            <option :value="type.name" x-text="type.name"></option>
-                                        </template>
-                                    </select>
-                                </div>
-                                {# This value is updated with format select onChange since x-validate does not detect the change in :value automatically #}
-                                <input type="hidden" name="eventCategoryId" :value="formatId($validate.data('format').value)" x-init="$watch('$el',val => $validate.value(val,formatId($el.value)))" x-validate>
-                                {# GoD code #}
-                                {# <div class="required" x-show="isRPG">
-                                    <label for="gameSignUp">I want to run the game...</label>
-                                    <select id="gameSignUp" name="gameSignUp" :required="isRPG" >
-                                        <option disabled selected value="">-- Choose One --</option>
-                                        <option value="Sign ups in Advance">With players signed up in advance</option>
-                                        <option value="Games on Demand">As part of Games on Demand</option>
-                                    </select>
-                                </div> #}
-                                <div class="required">
-                                    <label for="eventName">Event Name</label>
-                                    <input id="eventName" name="eventName" type="text" value="" required class="w-full max-w-md" maxlength="30" data-error-msg="Event Name is required"/>
-                                </div>
-                                <div x-show="isGame" class="required">
-                                    <label for="system">System</label>
-                                    <input id="system" name="system" type="text" value="" :required="isGame"/>
-                                </div>
-                                <div x-show="isGame" class="required">
-                                    <label for="playtest">Is this a playtest?</label>
-                                    <select id="playtest" name="playtest" :required="isGame" >
-                                        <option disabled selected value="">-- Choose One --</option>
-                                        <option>No</option>
-                                        <option>Yes</option>
-                                    </select>
-                                </div>
-                                <div class="required" x-data="{description:''}">
-                                    <label for="eventDescription">Description</label>
-                                    <div class="italic prose my-xs" x-show="$validate.data('format').value === 'Podcast/Stream'">
-                                        <p>Include a description and where people can listen or watch it</p>
-                                    </div>
-                                    <div class="prose mb-sm" x-text="`Characters left: ${1400 - description.length}`"></div>
-                                    <textarea cols="30" id="eventDescription" name="eventDescription" rows="3" required data-error-msg="Description is required" maxlength="1400" x-model="description" x-validate.input></textarea>
-                                </div>
-                                {# GoD code #}
-                                {# <div x-show="$validate.value('gameSignUp') === 'Games on Demand'" class="flex flex-col gap-base">
-                                    <div class="prose">
-                                        <h3>Games on Demand: Alternate Game (optional)</h3>
-                                        <p>It is typical to offer two games for players to chose from when running Games on Demand. This is optional but encouraged. If you have a second game please enter it below.</p>
-                                    </div>
-                                    <div >
-                                        <label for="eventName2">Game 2: Event Name</label>
-                                        <input id="eventName2" name="eventName2" type="text" value=""  class="w-full max-w-md" maxlength="30"/>
-                                    </div>
-                                    <div>
-                                        <label for="system2">Game 2: System</label>
-                                        <input id="system2" name="system2" type="text" value=""/>
-                                    </div>
-                                    <div>
-                                        <label for="playtest2">Game 2: Is this a playtest?</label>
-                                        <select id="playtest2" name="playtest2" >
-                                            <option disabled selected value="">-- Choose One --</option>
-                                            <option>No</option>
-                                            <option>Yes</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <label for="eventDescription2">Game 2: Description</label>
-                                        <textarea cols="30" id="eventDescription2" name="eventDescription2" rows="3" ></textarea>
-                                    </div>
-                                </div> #}
-                                <div>
-                                    <label for="otherInfo">Other info we should know (this will not go in the program)</label>
-                                    <textarea cols="30" id="otherInfo" name="otherInfo" rows="3" ></textarea>
-                                </div>
-                                {# <div x-data="{src: ''}">
-                                    <label for="file">Event Image Upload Add/Replace</label>
-                                    <p class="text-sm my-sm">Images are cropped automatically at 16/9 ratio and centered. Images should be mininum 760x428 px and maximum 1,520x856 px (or there abouts) and formatted with jpg or webp (png or gif accepted but generally the former compress better).</p>
-                                    <input type="file" name="file" id="file" accept="image/*" class="mr-base" 
-                                    @change="if ($el.files.length > 0) src = URL.createObjectURL($el.files[0])">
-                                    <img id="image-preview" class="hidden object-cover object-center rounded-md my-sm" style="aspect-ratio: 16/9"
-                                    :src="src" :style="src && 'display:block'"/>
-                                </div> #}
-                            </fieldset>
-                            {# END Event Info #}
-                            {# Player/Attendee Info - all above must be completed #}
-                            {# This is hidden for podcast and send a 0 for player min #}
-                            <fieldset x-ref="playerInfo" class="transition-opacity" :class="($validate.isComplete($el.previousElementSibling)) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'" 
-                            :disabled="isPodcast" x-show="!isPodcast">
-                                <legend>Player/Attendee Info</legend>
-                                <div x-show="$validate.data('playerAge').value === '13+'" class="prose mb-base">
-                                    <p class="italic">Event designed for people aged 13+</p>
-                                </div>
-                                <div x-show="$validate.data('yourAge').value === '18+'" class="required">
-                                    <label for="playerAge">
-                                        Player/Attendee Age
-                                    </label>
-                                    <select id="playerAge" name="playerAge" required data-error-msg="Player age is required">
-                                        <option disabled selected value="">
-                                            -- Choose One --
-                                        </option>
-                                        <option>13+</option>
-                                        <option>18+</option>
-                                    </select>
-                                </div>
-                                <div class="required">
-                                    <label for="minPlayers">Minimum players/attendees</label>
-                                    <input id="minPlayers" name="minPlayers" type="number" value="" :value="isPodcast ? '0' : ''" required data-error-msg="Minimum players is required"/>
-                                </div>
-                                <div class="required">
-                                    <label for="maxPlayers">Maximum players/attendees</label>
-                                    <input id="maxPlayers" x-ref="maxPlayers" name="maxPlayers" type="number" value="" required :max="($validate.value('format') === 'Panel') ? 50 : 25" data-error-msg="Max players is required"/>
-                                </div>
-                                <div x-show="isRPGorLARP" class="required">
-                                    <label for="characters">Characters</label>
-                                    <select id="characters" name="characters" :required="isRPGorLARP">
-                                        <option disabled selected value="">
-                                            -- Choose One --
-                                        </option>
-                                        <option>Provided</option>
-                                        <option>Created at the table</option>
-                                        <option>Other/Does not apply</option>
-                                    </select>
-                                </div>
-                            </fieldset>
-                            {# END Player Attendee Info #}
-                            {# Scheduling Info - player age must be completed #}
-                            <fieldset x-ref="scheduling" class="transition-opacity" :class="(isPrevComplete($el)) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
-                                <legend>Scheduling Info</legend>
-                                {# Hide this for social event and podcast #}
-                                <div class="required" x-show="!(isSocialEvent || isPodcast)">
-                                    <label for="runNumberOfTimes">Run this event</label>
-                                    <select id="runNumberOfTimes" name="runNumberOfTimes" :required="!(isSocialEvent || isPodcast)" data-error-msg="Number of times is required">
-                                        <option disabled selected value="">
-                                            -- Choose One --
-                                        </option>
-                                        <option value="1">Once</option>
-                                        <option value="2">Twice</option>
-                                        <option value="3">I want to run this 3 times! Whoa!</option>
-                                        <option value="4">I want to run this 4 times! Yow!!!</option>
-                                    </select>
-                                </div>
-                                <div x-show="isTableTop" class="required">
-                                    <label for="locationPref">Location Preference</label>
-                                    <select id="locationPref" name="locationPref" :required="isTableTop" data-error-msg="required">
-                                        <option disabled selected value="">
-                                            -- Choose One --
-                                        </option>
-                                        <option>No Preference</option>
-                                        <option>Private Room</option>
-                                        <option>Atrium</option>
-                                    </select>
-                                </div>
-                                <div x-show="isBoardgame" class="required">
-                                    <label for="tableType">Board game table type requested</label>
-                                    <select id="tableType" name="tableType" :required="isBoardgame" data-error-msg="Table type is required">
-                                        <option disabled selected value="">
-                                            -- Choose One --
-                                        </option>
-                                        <option>Long</option>
-                                        <option>Round</option>
-                                        <option>Either</option>
-                                    </select>
-                                </div>
+                                {# Hidden fields with user data grabbed from localStorage #}
+                                {# Using AlpineJS here as it's already stored via Alpine #}
+                                {# Replace this later with data-store-get and data-store-listen #}
+                                <input type="hidden" name="userId" :value="user.id">
+                                <input type="hidden" name="userEmail" :value="user.userEmail">
+                                <input type="hidden" name="userDisplayName" :value="user.displayName">
+                                {# authToken is needed as this needs to be sent as the logged in user #}
+                                <input type="hidden" name="authToken" :value="authToken">
+                                <input type="hidden" name="successPage" value="run-an-event-success">
+                                <input type="hidden" name="failurePage" value="run-an-event-failure">
 
-                                {# Media only shows for Podcast event #}
-                                <div x-show="isPodcast" class="required">
-                                    <label for="mediaEquipment">Media equipment</label>
-                                    <select id="mediaEquipment" name="mediaEquipment" :required="isPodcast" data-error-msg="required">
-                                        <option disabled selected value="">
-                                            -- Choose One --
-                                        </option>
-                                        <option>I have my own</option>
-                                        <option>Equipment requested</option>
-                                    </select>
-                                </div>
-                                <div x-show="isPodcast && $validate.data('mediaEquipment').value === 'Equipment requested'" class="required">
-                                    <label for="requestMediaEquipment">Media equipment requested</label>
-                                    <div class="prose pb-sm">For a list of available equipment see <a href="/podcast-streaming-faq">Podcast/Streaming FAQ</a>
-                                    </div>
-                                    <input id="requestMediaEquipment" name="requestMediaEquipment" type="text" value="" :required="isPodcast && $validate.data('mediaEquipment').value === 'Equipment requested'" data-error-msg="required"/>
-                                </div>
-                                <div class="required">
-                                    <label for="eventLength">Event Length</label>
-                                    <div class="italic prose my-sm" x-show="isPodcast">Podcast/Stream events are limited to 2-Hour blocks for 1 hour stream/recording (30 min setup and 30 min breakdown)</div>
-                                    <select id="eventLength" name="eventLength" required data-error-msg="Length required">
-                                        <option disabled selected value="">
-                                            -- Choose One --
-                                        </option>
-                                        <template x-for="(option) in eventLengthOptions($validate.value('format'))">
-                                            <option :value="option.value" x-text="option.name"></option>
-                                        </template>
-                                    </select>
-                                </div>
-                                <div x-show="$validate.data('eventLength').value">
-                                    <label>Scheduling Preferences</label>
-                                    <div class="prose my-sm" x-show="isSocialEvent">
-                                        <p>We have limited availablity Friday and Saturday night</p>
-                                    </div>
-                                    <div class="flex flex-col gap-2xs">
-                                        <div>
-                                            <input type="checkbox" name="schedulingPref" id="No-Preference" value="No Preference">
-                                            <label for="No-Preference">No Preference</label>
+                                {# Step Progress Bar #}
+                                <af-progress></af-progress>
+
+                                {# Start of form steps #}
+                                <!-- ---------------------------- Personal Info ------------------------------ -->
+
+                                <af-step data-title="Personal">
+                                    <fieldset>
+                                        <legend>Personal Info</legend>
+                                        <fieldset>
+                                            <label for="gm">Public Badge Name</label>
+                                            <p class="directions">We encourage attendees to use thier first and last names. However, if for privacy reasons you want to use another name, enter it here.</p>
+                                            {# Using AlpineJS here as it's already available #}
+                                            <input id="gm" name="gm" type="text" value="" :value="user.displayName"
+                                            required/>
+                                            <af-error for="gm">Required</af-error>
+                                        </fieldset>
+                                        {# Using AlpineJS here until I replace all the forms with action-form #}
+                                        <fieldset x-data="{yourAge:$persist('')}">
+                                            <label for="gmAge">
+                                                Your age at the start of con
+                                            </label>
+                                            <p class="directions">Big Bad Con is {% include "components/date-range.njk" %}</p>
+                                            <select id="gmAge" name="gmAge" required x-model="yourAge">
+                                                <option disabled selected value="">
+                                                    -- Choose One --
+                                                </option>
+                                                <option>13+</option>
+                                                <option>18+</option>
+                                            </select>
+                                            <af-error for="gmAge">Required</af-error>
+                                        </fieldset>
+                                    </fieldset>
+
+                                    <fieldset>
+                                        <legend>Community Standards</legend>
+
+                                        <p class="directions">Big Bad Con is committed to cultivating a culture of respect, support, and kindness. Please take a moment to read our <a href="/community-standards">Community Standards</a> before answering yes below.</p>
+
+                                        <div class="flex items-center gap-xs">
+                                            <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" required data-persist>
+                                            <label for="agree-to-community-standards" class="italic">
+                                            Yes &mdash; I agree to the Big Bad Con Community Standards
+                                        </label>
                                         </div>
-                                        <template x-for="(time, i) in scheduleTimes($validate.value('format'),$validate.value('eventLength'))">
+                                        <af-error for="agree-to-community-standards">Required</af-error>
+                                    </fieldset>
+                                </af-step>
+
+                                <!-- ---------------------------- Event Format ------------------------------ -->
+
+                                <af-step data-title="Format">
+                                    <fieldset>
+                                        <legend>Event Format</legend>
+                                        <fieldset>
+                                            <label for="format">Format</label>
+
+                                            <select id="format" name="format" required>
+                                                <option disabled selected value="">
+                                                        -- Choose One --
+                                                    </option>
+                                                <option>RPG</option>
+                                                <option>Board/Card Game</option>
+                                                <option>LARP</option>
+                                                <option value="GoD">Games on Demand (GoD)</option>
+                                                <option>Workshop</option>
+                                                <option>Panel</option>
+                                                <option>Podcast/Stream</option>
+                                                <option>Special Event</option>
+                                            </select>
+                                            <af-error for="format">Required</af-error>
+                                        </fieldset>
+                                        <div data-if="format" data-if-value="RPG" class="directions">
+                                            <h4>RPG FAQ</h4>
+                                            <ul>
+                                                <li>Hosted in private game rooms and in the atrium</li>
+                                                <li>We encourage playtests, but demo games should be run in the <a href="/small-press-showcase">Small Press Showcase</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div data-if="format" data-if-value="Board/Card Game" class="directions">
+                                            <h4>Board/Card Game FAQ</h4>
+                                            <ul>
+                                                <li>Hosted in the Board Game Room (Grand Peninsula Ballroom) or the Atrium</li>
+                                                <li>Round and long tables available</li>
+                                                <li>We encourage playtests, but demo games should be run in the <a href="/small-press-showcase">Small Press Showcase</a>
+                                            </ul>
+                                        </div>
+                                        <div data-if="format" data-if-value="LARP" class="directions">
+                                            <h4>LARP FAQ</h4>
+                                            <ul>
+                                                <li>Hosted in private game rooms</li>
+                                                <li>Capacity: up to 25 players</li>
+                                            </ul>
+                                        </div>
+                                        <div data-if="format" data-if-value="GoD" class="directions">
+                                            <h4>Games on Demand FAQ</h4>
+                                            <ul>
+                                                <li>Game on Demand slots are 4 hours long; either one 4 hour game or two 2 hour games</li>
+                                                <li>You can offer players multiple game options by submitting this form again with another game</li>
+                                                <li>For more info, please read <a href="/games_on_demand-how-it-works">Games on Demand FAQ</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div data-if="format" data-if-value="Panel"  class="directions">
+                                            <h4>Panel FAQ</h4>
+                                            <ul >
+                                                <li>All Panels are 50 minutes long</li>
+                                                <li>Panels may have up to 6 presenters (including a moderator, if any) and 50 attendees</li>
+                                                <li>Basic equipment includes wired speaker system with 6 microphones</li>
+                                                <li>For more info read our <a href="/panel-faq/">Panel and Workshop FAQ</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div data-if="format" data-if-value="Workshop" class="directions">
+                                            <h4>Workshop FAQ</h4>
+                                            <ul >
+                                                <li>Workshops can be 1 to 2 hours</li>
+                                                <li>Workshops may have up to 6 presenters (including a moderator, if any) and 25 attendees</li>
+                                                <li>Basic equipment includes wired speaker system with 6 microphones</li>
+                                                <li>For more info read our <a href="/panel-faq/">Panel and Workshop FAQ</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div data-if="format" data-if-value="Podcast/Stream" class="directions">
+                                            <h4>Podcast/Stream FAQ</h4>
+                                            <ul>
+                                                <li>The media room has space for up to 6 people for audio and 3 people for video</li>
+                                                <li>There is no room for a live audience</li>
+                                                <li>BBC staff can help with setup and wifi access, but production is up to you</li>
+                                                <li>For more info and equipment available read <a href="/podcast-streaming-faq/">Podcasting &amp; Streaming FAQ</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div data-if="format" data-if-value="Special Event" class="directions">
+                                            <h4>Special Event FAQ</h4>
+                                            <ul>
+                                                <li>Thursday evening events hosted throughout the con</li>
+                                                <li>Friday-Sunday special events hosted in the Poolside Pavilion</li>
+                                            </ul>
+                                        </div>
+                                    </fieldset>
+                                    <fieldset data-if="format" data-if-value="Board/Card Game" class="mb-base">
+                                        <legend>Table Type</legend>
+                                        <label for="tableType">Board game table type requested</label>
+                                        <select id="tableType" name="tableType" required data-error-msg="Table type is required">
+                                            <option disabled selected value="">
+                                                    -- Choose One --
+                                                </option>
+                                            <option>Long</option>
+                                            <option>Round</option>
+                                            <option>Either</option>
+                                        </select>
+                                    </fieldset>
+                                    <fieldset data-if="format" data-if-value="RPG">
+                                        <legend>Location</legend>
+                                        <label for="requestPrivateRoomRPG">Location Preference</label>
+                                        <select id="requestPrivateRoomRPG" name="requestPrivateRoom" required>
+                                            <option disabled selected value="">
+                                                    -- Choose One --
+                                                </option>
+                                            <option>No Preference</option>
+                                            <option>Private Room</option>
+                                            <option>Atrium</option>
+                                        </select>
+                                        <af-error for="requestPrivateRoomRPG">Required</af-error>
+                                    </fieldset>
+                                    <fieldset data-if="format" data-if-value="Board/Card Game">
+                                        <legend>Location</legend>
+                                        <label for="requestPrivateRoomBoardGame">Location Preference</label>
+                                        <select id="requestPrivateRoomBoardGame" name="requestPrivateRoom" required>
+                                            <option disabled selected value="">
+                                                    -- Choose One --
+                                                </option>
+                                            <option>No Preference</option>
+                                            <option>Board Game Room</option>
+                                            <option>Atrium</option>
+                                        </select>
+                                        <af-error for="requestPrivateRoomBoardGame">Required</af-error>
+                                    </fieldset>
+                                    <fieldset data-if="format" data-if-regex="Podcast/Stream|Panel|Workshop">
+                                        <legend>Media equipment</legend>
+                                        <p class="directions" data-if="format" data-if-value="Panel">Included: Wired speaker system with 6 microphones and clear N95 masks for speakers</p>
+                                        <p class="directions" data-if="format" data-if-value="Podcast/Stream">Included: Big Bad Con backdrop and WiFi hotspot</p>
+                                        <fieldset>
+                                            <label for="mediaEquipment">Do you need other media equipment?</label>
+                                            <select id="mediaEquipment" name="mediaEquipment" required>
+                                                <option disabled selected value="">
+                                                        -- Choose One --
+                                                    </option>
+                                                <option>I have my own</option>
+                                                <option>Equipment requested</option>
+                                            </select>
+                                            <af-error for="mediaEquipment">Required</af-error>
+                                        </fieldset>
+                                        <fieldset data-if="mediaEquipment" data-if-value="Equipment requested">
+                                            <legend>Media equipment requested</legend>
+
+                                            <div class="form-group-cols-2" data-if="format" data-if-regex="Panel|Workshop">
+                                                <label><input type="checkbox" name="requestMediaEquipment" value="Wireless microphone">Wireless microphone</label>
+                                                <label><input type="checkbox" name="requestMediaEquipment" value="Projector (HDMI) with screen">Projector (HDMI) with screen</label>
+                                            </div>
+                                            <div class="form-group-cols-2" data-if="format" data-if-regex="Podcast/Stream|Wordshop">
+                                                <label><input type="checkbox" name="requestMediaEquipment" value="Yeti mic">Yeti mic</label>
+                                                <label><input type="checkbox" name="requestMediaEquipment" value="USB hub">USB hub</label>
+                                                <label><input type="checkbox" name="requestMediaEquipment" value="Logitech Webcam">Logitech Webcam</label>
+                                                <label><input type="checkbox" name="requestMediaEquipment" value="Tripod">Tripod</label>
+                                                <label><input type="checkbox" name="requestMediaEquipment" value="Ring light">Ring light</label>
+                                            </div>
+                                        </fieldset>
+                                    </fieldset>
+                                </af-step>
+
+                                <!-- ---------------------------- Event Info ------------------------------ -->
+
+                                <af-step data-title="Description">
+                                    <fieldset>
+                                        <legend>Event Info</legend>
+                                        <fieldset>
+                                            <label for="eventName">Event Name</label>
+                                            <input type="text" id="eventName" name="eventName" required maxlength="75">
+                                            <af-error for="eventName">Required</af-error>
+                                        </fieldset>
+                                        <fieldset data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD" class="form-group-cols-2">
                                             <div>
-                                                <input type="checkbox" name="schedulingPref" :id="'time' + i" :value="time">
-                                                <label :for="'time' + i" x-text="time"></label>
-                                            </div>
-                                        </template>
-                                    </div>
-                                </div>
-                            </fieldset>
-                            {# END Scheduling Info #}
-                            {# Content Advisory & Safety Tools - show only if scheduling is completed #}
-                            <fieldset x-ref="contentAdvisory" class="transition-opacity" :class="(isPrevComplete($el)) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'" x-show="!isPodcast" :disabled="isPodcast">
-                                <legend>Content Advisory <span x-show="isGame">&amp; Safety Tools</span></legend>
-                                <div x-show="isAllAges" class="prose mb-base">
-                                    <p class="italic">Event designed for people aged 13+ (no strong content)</p>
-                                </div>
-                                <div x-show="isAdultOnly" class="prose mb-base">
-                                    <p class="italic">Event designed for people aged 18+</p>
-                                </div>
-                                <div x-show="isAdultOnly" class="required">
-                                    <label>Content Advisory</label>
-                                    <select id="contentAdvisory" name="contentAdvisory" :required="isAdultOnly" data-error-msg="required">
-                                        <option :disabled="$validate.data('contentAdvisory').value !== ''" selected value="">
-                                            -- Choose One --
-                                        </option>
-                                        <option value="No">No content advisory needed</option>
-                                        <option value="Yes">Yes, contains strong content</option>
-                                    </select>
+                                                <div class="label-error-wrapper">
+                                                    <label for="system" class="required">System</label>
+                                                    <af-error for="system"></af-error>
+                                                </div>
+                                                <input id="system" name="system" type="text" required/>
 
-                                </div>
-                                {# NOTE: x-validate required on templates as they are added after the form x-validate is loaded #}
-                                <div x-show="isAdultOnly && $validate.data('contentAdvisory').value === 'Yes'">
-                                    <label>Types of Content Advisory</label>
-                                    <div class="flex flex-col gap-2xs">
-                                        <template x-for="(type, i) in contentAdvisoryOptions">
-                                            <div class="flex items-center">
-                                                <input type="checkbox" name="contentAdvisoryOptions" :id="'contentAdvisoryOptions' + i" :value="type.id" x-validate>
-                                                <label :for="'contentAdvisoryOptions' + i" x-text="type.name"></label>
                                             </div>
-                                        </template>
-                                    </div>
-                                </div>
-                                <div x-show="isAdultOnly && $validate.data('contentAdvisory').value === 'Yes'">
-                                    <label for="triggerWarnings">Potential trigger warnings</label>
-                                    <input id="triggerWarnings" name="triggerWarnings" type="text" value="" class="w-full max-w-md"/>
-                                </div>
-                                <div x-show="isGame">
-                                    <label>Safety Tools</label>
-                                    <div class="italic prose my-sm">For a description of tools see <a href="/safety-collaboration-tools/">Safety and Collaboration Tools</a>
-                                    </div>
-                                    <div class="flex flex-col gap-2xs">
-                                        <template x-for="(type, i) in safetyTools">
-                                            <div class="flex items-center">
-                                                <input type="checkbox" name="safetyTools" :id="'safetyTools' + i" :value="type" x-validate>
-                                                <label :for="'safetyTools' + i" x-text="type"></label>
+                                            <div>
+                                                <div class="label-error-wrapper">
+                                                    <label for="playtest" class="required">Is this a playtest?</label>
+                                                    <af-error for="playtest"></af-error>
+                                                </div>
+                                                <select id="playtest" name="playtest" required>
+                                                    <option disabled selected value="">-- Choose One --</option>
+                                                    <option>No</option>
+                                                    <option>Yes</option>
+                                                </select>
                                             </div>
-                                        </template>
-                                    </div>
-                                </div>
-                            </fieldset>
-                            {# END Content Advisory & Safety Tools #}
-                            {# Additional Info - not required #}
-                            <fieldset x-ref="additional" class="transition-opacity" :class="($validate.isComplete($refs.scheduling)) ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-20'">
-                                <legend>Additional Info</legend>
-                                <div x-show="$validate.data('format').value === 'Panel'">
-                                    <label>Panel Topic</label>
-                                    <div class="checkbox-grid">
-                                        <template x-for="(type, i) in panelTopic">
-                                            <div class="flex items-center">
-                                                <input type="checkbox" name="panelTopic" :id="'panelTopic' + i" :value="type.id" x-validate>
-                                                <label :for="'panelTopic' + i" x-text="type.name"></label>
+                                        </fieldset>
+                                        <fieldset data-if="format" data-if-not-value="GoD">
+                                            <label for="eventDescription">Description</label>
+                                            <div class="flex justify-between">
+                                                <p class="directions">Characters left: <af-text-count for="eventDescription" remaining></af-text-count>
+                                                </p>
+                                                <af-error for="eventDescription">Required</af-error>
                                             </div>
-                                        </template>
-                                    </div>
-                                </div>
-                                <div x-show="isGame">
-                                    <label>Game Focus</label>
-                                    <div class="checkbox-grid">
-                                        <template x-for="(type, i) in gameFocus">
-                                            <div class="flex items-center">
-                                                <input type="checkbox" name="gameFocus" :id="'gameFocus' + i" :value="type.id" x-validate>
-                                                <label :for="'gameFocus' + i" x-text="type.name"></label>
+                                            <textarea name="eventDescription" id="eventDescription" cols="30" rows="4" maxlength="1400" required></textarea>
+                                        </fieldset>
+                                        {# GoD has shorter maxLength #}
+                                        <fieldset data-if="format" data-if-value="GoD">
+                                            <label for="eventDescriptionGoD">Description</label>
+                                            <div class="flex justify-between">
+                                                <p class="directions">Characters left: <af-text-count for="eventDescriptionGoD" remaining></af-text-count>
+                                                </p>
+                                                <af-error for="eventDescriptionGoD">Required</af-error>
                                             </div>
-                                        </template>
-                                    </div>
-                                </div>
-                                <div x-show="isGame">
-                                    <label>Player Contributions</label>
-                                    <div class="checkbox-grid">
-                                        <template x-for="(type, i) in playerContributions">
-                                            <div class="flex items-center">
-                                                <input type="checkbox" name="playerContributions" :id="'playerContributions' + i" :value="type.id" x-validate>
-                                                <label :for="'playerContributions' + i" x-text="type.name"></label>
-                                            </div>
-                                        </template>
-                                    </div>
-                                </div>
-                                <div x-show="isGame">
-                                    <label>Game Genre</label>
-                                    <div class="checkbox-grid">
-                                        <template x-for="(type, i) in gameGenre">
-                                            <div class="flex items-center">
-                                                <input type="checkbox" name="gameGenre" :id="'gameGenre' + i" :value="type.id" x-validate>
-                                                <label :for="'gameGenre' + i" x-text="type.name"></label>
-                                            </div>
-                                        </template>
-                                    </div>
-                                </div>
-                                <div x-show="isGame">
-                                    <label>Game Mood</label>
-                                    <div class="checkbox-grid">
-                                        <template x-for="(type, i) in gameMood">
-                                            <div class="flex items-center">
-                                                <input type="checkbox" name="gameMood" :id="'gameMood' + i" :value="type.id" x-validate>
-                                                <label :for="'gameMood' + i" x-text="type.name"></label>
-                                            </div>
-                                        </template>
-                                    </div>
-                                </div>
-                                <div>
-                                    <label for="additionalGMs">List any additional GMs/facilitators</label>
-                                    <textarea cols="30" id="additionalGMs" name="additionalGMs" rows="3" ></textarea>
-                                </div>
-                                <div>
-                                    <label for="additionalRequirements">List any special requirements</label>
-                                    <textarea cols="30" id="additionalRequirements" name="additionalRequirements" rows="3" ></textarea>
-                                </div>
-                            </fieldset>
-                            <div x-show="submittingState === 'unsubmitted'">
-                                <button type="submit" :disabled="!$validate.isComplete('form')">Submit</button>
-                            </div>
-                            <div x-show="submittingState === 'submitted'">
-                                {% import 'components/loading-spinner-macro.njk' as loading %}
-                                {{ loading.spinner('Submitting')}}
-                            </div>
-                            {# x-validate form log #}
-                            {% if (sitemeta.environment === 'dev') %}
-                                {% import 'components/x-validate-form-validator.njk' as validate %}
-                                {{ validate.log('form') }}
-                                {# <div class="fixed top-0 right-0 text-xs p-sm bg-slate-100">
-                                    <button @click.prevent="console.log(createEventAPIData)" class="border border-green-300 rounded p-xs">log eventAPI</button>
-                                    <template x-for="id in eventMetadataIds">
-                                        <div x-text="id"></div>
-                                    </template>
+                                            <textarea name="eventDescription" id="eventDescriptionGoD" cols="30" rows="3" maxlength="250" required></textarea>
+                                        </fieldset>
+                                        <fieldset data-if="format" data-if-regex="RPG|LARP|GoD">
+                                            <label for="characters">Characters</label>
+                                            <select id="characters" name="characters" required>
+                                                <option disabled selected value=""> -- Choose One -- </option>
+                                                <option>Provided</option>
+                                                <option>Created at the table</option>
+                                                <option>Other/Does not apply</option>
+                                            </select>
+                                            <af-error for="characters">Required</af-error>
+                                        </fieldset>
+                                    </fieldset>
 
-                                </div> #}
-                            {% endif %}
-                        </form>
-                    </div>
-                    {# END event submission div #}
-                    {# event submitted #}
-                    <div class="prose" x-show="submittingState === 'complete'" id="event-submitted">
-                        <h2>Thanks for submitting your event!</h2>
-                        <p>Our staff will review your <span id="submit-format" x-text="$validate.data('format').value"></span> event, <span id="submit-name" x-text="$validate.data('eventName').value" class="italic font-bold"></span>, and let you know about scheduling it!</p>
-                        <p>You can <a href="/run-an-event">submit another event</a> now if you'd like.</p>
+                                </af-step>
+
+                                <!-- ---------------------------- Player Info, Content Advisory, Safety ------------------------------ -->
+
+                                <af-step data-title="Players/Attendees">
+                                    <fieldset>
+                                        <legend data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD">Player Info</legend>
+                                        <legend data-if="format" data-if-regex="Panel|Special Event|Workshop|Podcast/Stream">Attendee Info</legend>
+                                        <fieldset data-if="gmAge" data-if-value="18+">
+                                            <label for="playerAttendeeAge18" data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD">Player Age</label>
+                                            <label for="playerAttendeeAge18" data-if="format" data-if-regex="Panel|Special Event|Workshop|Podcast/Stream">Attendee Age</label>
+                                            <select id="playerAttendeeAge18" name="playerAge" required>
+                                                <option disabled selected value=""> -- Choose One -- </option>
+                                                <option>13+</option>
+                                                <option>18+</option>
+                                            </select>
+                                            <af-error for="playerAttendeeAge18">Required</af-error>
+                                        </fieldset>
+                                        <fieldset data-if="gmAge" data-if-value="13+">
+                                            <label for="playerAttendeeAge13" data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD">Player Age</label>
+                                            <label for="playerAttendeeAge13" data-if="format" data-if-regex="Panel|Special Event|Workshop|Podcast/Stream">Attendee Age</label>
+                                            <input type="text" name="playerAttendeeAge13" readonly value="13+">
+                                        </fieldset>
+                                        {# Min/Max is not used for panels or podcast/streams #}
+                                        {# Podcast / Stream has no attendees #}
+                                        {# Panel set to min 1 and max 50 on backend #}
+                                        <fieldset class="form-group-cols-3" data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD|Special Event|Workshop">
+                                            <div>
+                                                <label for="minPlayers" data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD">Min Players</label>
+                                                <label for="minPlayers" data-if="format" data-if-regex="Special Event|Workshop">Min Attendees</label>
+                                                <input id="minPlayers" name="minPlayers" type="number" size="2" class="w-20" required min="1" value="1"/>
+                                                <af-error for="minPlayers">Required</af-error>
+                                            </div>
+                                            <div>
+                                                <label for="players" data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD">Max Players</label>
+                                                <label for="players" data-if="format" data-if-regex="Special Event|Workshop">Max Attendees</label>
+                                                <input id="players" name="players" type="number" size="2" class="w-20" required min="1" max="25"/>
+                                                <af-error for="players">Required</af-error>
+                                            </div>
+                                        </fieldset>
+                                    </fieldset>
+                                    <fieldset data-if="format" data-if-not-value="Special Event">
+                                        <legend>Content Advisory</legend>
+                                        {# If GM age is 13+ then it is automatically 13+ content #}
+                                        <p class="italic" data-if="gmAge" data-if-value="13+">
+                                            Event designed for people aged 13+ (no strong content)
+                                        </p>
+                                        {# If GM age is 18+ then they can choose 13 or 18+ #}
+                                        <fieldset data-if="gmAge" data-if-value="18+">
+                                            <div class="italic mb-base" data-if="playerAge" data-if-value="13+">
+                                                Event designed for people aged 13+ (no strong content)
+                                            </div>
+                                            <fieldset data-if="playerAge" data-if-value="18+">
+                                                <fieldset>
+                                                    <div class="italic">Event designed for people aged 18+</div>
+                                                    <label>Content Advisory</label>
+                                                    <select id="contentAdvisory" name="contentAdvisory" required>
+                                                        <option disabled selected value=""> -- Choose One -- </option>
+                                                        <option value="No">No content advisory needed</option>
+                                                        <option value="Yes">Yes, contains strong content</option>
+                                                    </select>
+                                                </fieldset>
+                                                <fieldset data-if="contentAdvisory" data-if-value="Yes">
+                                                    <label for="contentAdvisory">Content Advisory Options</label>
+                                                    <div data-if="contentAdvisory" data-if-value="Yes" class="form-group-cols-2">
+                                                        <label><input type="checkbox" name="eventTags" value="Gore">Gore</label>
+                                                        <label><input type="checkbox" name="eventTags" value="Graphic Violence">Graphic Violence</label>
+                                                        <label><input type="checkbox" name="eventTags" value="Provocative">Provocative</label>
+                                                        <label><input type="checkbox" name="eventTags" value="Sex and Sexuality">Sex and Sexuality</label>
+                                                    </div>
+                                                    <label for="contentWarnings">Content Warnings</label>
+                                                    <input id="contentWarnings" name="triggerWarnings" type="text" value="" class="w-full max-w-md"/>
+                                                </fieldset>
+                                            </fieldset>
+                                        </fieldset>
+                                    </fieldset>
+                                    <fieldset data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD">
+                                        <legend>Safety Tools</legend>
+                                        <div class="directions">For a description of tools see <a href="/safety-collaboration-tools/">Safety and Collaboration Tools</a>
+                                        </div>
+                                        <div class="form-group-cols-3">
+                                            <label><input type="checkbox" name="safetyTools" value="X-Card">X-Card</label>
+                                            <label><input type="checkbox" name="safetyTools" value="Lines/Veils">Lines/Veils</label>
+                                            <label><input type="checkbox" name="safetyTools" value="Cut/Brake">Cut/Brake</label>
+                                            <label><input type="checkbox" name="safetyTools" value="Open Door Policy">Open Door Policy</label>
+                                            <label><input type="checkbox" name="safetyTools" value="Script Change">Script Change</label>
+                                            <label><input type="checkbox" name="safetyTools" value="Other">Other</label>
+                                        </div>
+                                        <fieldset data-if="safetyTools" data-if-value="Other" class="flex items-center gap-sm mt-base">
+                                            <label for="safetyToolsOther">Other</label>
+                                            <input type="text" name="safetyToolsOther" id="safetyToolsOther">
+                                        </fieldset>
+                                    </fieldset>
+                                </af-step>
+
+                                <!-- ---------------------------- Event Scheduling ------------------------------ -->
+
+                                <af-step data-title="Scheduling">
+                                    <fieldset>
+                                        <legend>Event Duration</legend>
+                                        {# Event Length varies by event format; uses data-if to hide display #}
+                                        {# Must be set to disabled initially or it breaks the data-if later as it the value is set #}
+                                        <fieldset data-if="format" data-if-value="Panel" disabled>
+                                            <label for="lengthPanel">Event Length</label>
+                                            <p class="directions">Panels are limited to 1 hour</p>
+                                            <select id="lengthPanel" name="eventLength" required data-error-msg="Length required">
+                                                <option value="1" selected>1 hour</option>
+                                            </select>
+                                            <af-error for="lengthPanel">Required</af-error>
+                                        </fieldset>
+                                        {# Must be set to disabled initially or it breaks the data-if later as it the value is set #}
+                                        <fieldset data-if="format" data-if-value="Podcast/Stream" disabled>
+                                            <label for="lengthPodcast">Event Length</label>
+                                            <p class="directions" >Limited to 2 hours: <em>1 hour recording; 30 min setup and 30 min breakdown</em>
+                                            </p>
+                                            <select id="lengthPodcast" name="eventLength" required data-error-msg="Length required">
+
+                                                <option value="2" selected>2 hours</option>
+                                            </select>
+                                            <af-error for="lengthPodcast">Required</af-error>
+                                        </fieldset>
+                                        <fieldset data-if="format" data-if-regex="Workshop|Special Event">
+                                            <label for="lengthWorkshopSocial">Event Length</label>
+                                            <select id="lengthWorkshopSocial" name="eventLength" required>
+                                                <option disabled selected value="">
+                                                        -- Choose One --
+                                                    </option>
+                                                <option value="1">1 hour</option>
+                                                <option value="2">2 hours</option>
+                                            </select>
+                                            <af-error for="lengthWorkshopSocial">Required</af-error>
+                                        </fieldset>
+                                        <fieldset data-if="format" data-if-value="GoD">
+                                            <label for="lengthGoD">Games on Demand Event Length</label>
+                                            <p class="directions">Games on Demand slots are 4 hours long. Two hour long games are run twice in the same slot.</p>
+                                            <select id="lengthGoD" name="eventLength" required>
+                                                <option disabled selected value="">
+                                                        -- Choose One --
+                                                    </option>
+                                                <option value="2">2 hours</option>
+                                                <option value="4">4 hours</option>
+                                            </select>
+                                            <af-error for="lengthGoD">Required</af-error>
+                                        </fieldset>
+                                        <fieldset data-if="format" data-if-regex="RPG|LARP|Board/Card Game">
+                                            <label for="lengthGame">Event Length</label>
+                                            <select id="lengthGame" name="eventLength" required>
+                                                <option disabled selected value="">
+                                                        -- Choose One --
+                                                    </option>
+                                                <option value="1">1 hour</option>
+                                                <option value="2">2 hours</option>
+                                                <option value="4">4 hours</option>
+                                                <option value="6">6 hours</option>
+                                                <option value="8">8 hours</option>
+                                            </select>
+                                            <af-error for="lengthGame">Required</af-error>
+                                        </fieldset>
+                                        {# End event length options #}
+                                    </fieldset>
+                                    <fieldset data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD">
+                                        <legend>Event Repeatability</legend>
+                                        <label for="runNumberOfTimes" data-if="format" data-if-not-value="GoD">How many times do you want to run your event?</label>
+                                        <label for="runNumberOfTimes" data-if="format" data-if-value="GoD" class="m-0">How many 4 hour Games on Demand slots do you want to run?</label>
+                                        <select id="runNumberOfTimes" name="runNumberOfTimes" required>
+                                            <option disabled selected value="">
+                                                    -- Choose One --
+                                                </option>
+                                            <option value="1">Once</option>
+                                            <option value="2">Twice</option>
+                                            <option value="3">I want to run this 3 times! Whoa!</option>
+                                            <option value="4">I want to run this 4 times! Yow!!!</option>
+                                        </select>
+                                        <af-error for="runNumberOfTimes">Required</af-error>
+                                    </fieldset>
+                                    <fieldset data-if="eventLength" class="mt-base">
+                                        <legend>Scheduling Preferences</legend>
+                                        <label class="no-preference"><input type="checkbox" name="schedulingPref" value="No Preference"> No Preference</label>
+
+                                        <div data-if="format" data-if-value="Special Event" class="form-group-cols-2">
+                                            <p class="col-span-2 directions">We have limited availablity Friday and Saturday night</p>
+                                            {# Same options for 1 or 2 hours #}
+                                            <label><input type="checkbox" name="schedulingPref" value="Thursday 6PM-Midnight">Thursday 6PM-Midnight</label>
+                                            <label><input type="checkbox" name="schedulingPref" value="Friday 9AM-1PM">Friday 9AM-1PM</label>
+                                            <label><input type="checkbox" name="schedulingPref" value="Friday 2PM-6PM">Friday 2PM-6PM</label>
+                                            <label><input type="checkbox" name="schedulingPref" value="Friday 8PM-Midnight">Friday 8PM-Midnight</label>
+                                            <label><input type="checkbox" name="schedulingPref" value="Saturday 9AM-1PM">Saturday 9AM-1PM</label>
+                                            <label><input type="checkbox" name="schedulingPref" value="Saturday 2PM-6PM">Saturday 2PM-6PM</label>
+                                            <label><input type="checkbox" name="schedulingPref" value="Saturday 8PM-Midnight">Saturday 8PM-Midnight</label>
+                                            <label><input type="checkbox" name="schedulingPref" value="Sunday 9AM-1PM">Sunday 9AM-1PM</label>
+                                        </div>
+
+                                        {# Scheduling Preference Games On Demand. 4hr Regardless of choosing 2 or 4 for length #}
+                                        <div data-if="format" data-if-value="GoD" class="form-group-cols-2">
+                                            <label><input type="checkbox" name="schedulingPref" value="Friday 9AM-1PM">Friday 9AM-1PM</label>
+                                            <label><input type="checkbox" name="schedulingPref" value="Friday 2PM-6PM">Friday 2PM-6PM</label>
+                                            <label><input type="checkbox" name="schedulingPref" value="Friday 8PM-Midnight">Friday 8PM-Midnight</label>
+                                            <label><input type="checkbox" name="schedulingPref" value="Saturday 9AM-1PM">Saturday 9AM-1PM</label>
+                                            <label><input type="checkbox" name="schedulingPref" value="Saturday 2PM-6PM">Saturday 2PM-6PM</label>
+                                            <label><input type="checkbox" name="schedulingPref" value="Saturday 8PM-Midnight">Saturday 8PM-Midnight</label>
+                                            <label><input type="checkbox" name="schedulingPref" value="Sunday 9AM-1PM">Sunday 9AM-1PM</label>
+                                            <label><input type="checkbox" name="schedulingPref" value="Sunday 2PM-6PM">Sunday 2PM-6PM</label>
+                                        </div>
+                                        <div data-if="format" data-if-regex="Workshop|RPG|LARP|Podcast|Board/Card Game">
+                                            <div data-if="eventLength" data-if-value="1" class="form-group-cols-1">
+                                                <label><input type="checkbox" name="schedulingPref" value="Friday morning (between 9AM-1PM)">Friday morning (between 9AM-1PM)</label>
+                                                <label><input type="checkbox" name="schedulingPref" value="Friday afternoon (between 2PM-6PM)">Friday afternoon (between 2PM-6PM)</label>
+                                                <label><input type="checkbox" name="schedulingPref" value="Saturday morning (between 9AM-1PM)">Saturday morning (between 9AM-1PM)</label>
+                                                <label><input type="checkbox" name="schedulingPref" value="Saturday afternoon (between 2PM-6PM)">Saturday afternoon (between 2PM-6PM)</label>
+                                                <label><input type="checkbox" name="schedulingPref" value="Sunday morning (between 9AM-1PM)">Sunday morning (between 9AM-1PM)</label>
+                                                <label><input type="checkbox" name="schedulingPref" value="Sunday afternoon (between 2PM-6PM)">Sunday afternoon (between 2PM-6PM)</label>
+                                            </div>
+
+                                            <div data-if="eventLength" data-if-value="2" class="form-group-cols-2">
+                                                <label><input type="checkbox" name="schedulingPref" value="Friday 9AM-11AM">Friday 9AM-11AM</label>
+                                                <label><input type="checkbox" name="schedulingPref" value="Friday 11AM-1PM">Friday 11AM-1PM</label>
+                                                <label><input type="checkbox" name="schedulingPref" value="Friday 2PM-4PM">Friday 2PM-4PM</label>
+                                                <label><input type="checkbox" name="schedulingPref" value="Friday 4PM-6PM">Friday 4PM-6PM</label>
+                                                <label><input type="checkbox" name="schedulingPref" value="Saturday 9AM-11AM">Saturday 9AM-11AM</label>
+                                                <label><input type="checkbox" name="schedulingPref" value="Saturday 11AM-1PM">Saturday 11AM-1PM</label>
+                                                <label><input type="checkbox" name="schedulingPref" value="Saturday 2PM-4PM">Saturday 2PM-4PM</label>
+                                                <label><input type="checkbox" name="schedulingPref" value="Saturday 4PM-6PM">Saturday 4PM-6PM</label>
+                                                <label><input type="checkbox" name="schedulingPref" value="Sunday 9AM-11AM">Sunday 9AM-11AM</label>
+                                                <label><input type="checkbox" name="schedulingPref" value="Sunday 11AM-1PM">Sunday 11AM-1PM</label>
+                                                <label><input type="checkbox" name="schedulingPref" value="Sunday 2PM-4PM">Sunday 2PM-4PM</label>
+                                                <label><input type="checkbox" name="schedulingPref" value="Sunday 4PM-6PM">Sunday 4PM-6PM</label>
+                                            </div>
+
+                                            <div data-if="eventLength" data-if-value="4" class="form-group-cols-2">
+                                                <label><input type="checkbox" name="schedulingPref" value="Friday 9AM-1PM">Friday 9AM-1PM</label>
+                                                <label><input type="checkbox" name="schedulingPref" value="Friday 2PM-6PM">Friday 2PM-6PM</label>
+                                                <label><input type="checkbox" name="schedulingPref" value="Friday 8PM-Midnight">Friday 8PM-Midnight</label>
+                                                <label><input type="checkbox" name="schedulingPref" value="Saturday 9AM-1PM">Saturday 9AM-1PM</label>
+                                                <label><input type="checkbox" name="schedulingPref" value="Saturday 2PM-6PM">Saturday 2PM-6PM</label>
+                                                <label><input type="checkbox" name="schedulingPref" value="Saturday 8PM-Midnight">Saturday 8PM-Midnight</label>
+                                                <label><input type="checkbox" name="schedulingPref" value="Sunday 9AM-1PM">Sunday 9AM-1PM</label>
+                                                <label><input type="checkbox" name="schedulingPref" value="Sunday 2PM-6PM">Sunday 2PM-6PM</label>
+                                            </div>
+                                            <div data-if="eventLength" data-if-value="6" class="form-group-cols-1">
+                                                <label><input type="checkbox" name="schedulingPref" value="Friday 10AM-4PM">Friday 10AM-4PM</label>
+                                                <label><input type="checkbox" name="schedulingPref" value="Friday 6PM-Midnight">Friday 6PM-Midnight</label>
+                                                <label><input type="checkbox" name="schedulingPref" value="Saturday 10AM-4PM">Saturday 10AM-4PM</label>
+                                                <label><input type="checkbox" name="schedulingPref" value="Saturday 6PM-Midnight">Saturday 6PM-Midnight</label>
+                                                <label><input type="checkbox" name="schedulingPref" value="Sunday 9AM-3PM">Sunday 9AM-3PM</label>
+                                                <label><input type="checkbox" name="schedulingPref" value="Sunday 2PM-8PM">Sunday 2PM-8PM</label>
+                                            </div>
+                                            <div data-if="eventLength" data-if-value="8" class="form-group-cols-1">
+                                                <label><input type="checkbox" name="schedulingPref" value="Friday 10AM-6PM">Friday 10AM-6PM</label>
+                                                <label><input type="checkbox" name="schedulingPref" value="Friday 2PM-10PM">Friday 2PM-10PM</label>
+                                                <label><input type="checkbox" name="schedulingPref" value="Saturday 10AM-6PM">Saturday 10AM-6PM</label>
+                                                <label><input type="checkbox" name="schedulingPref" value="Saturday 2PM-10PM">Saturday 2PM-10PM</label>
+                                                <label><input type="checkbox" name="schedulingPref" value="Sunday 10AM-6PM">Sunday 10AM-6PM</label>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </af-step>
+
+                                <!-- ---------------------------- Additional Info ------------------------------ -->
+                                <af-step data-title="Extra Info">
+                                    <fieldset>
+                                        <legend>Additional Info</legend>
+                                        <fieldset data-if="format" data-if-value="Panel">
+                                            <p class="directions">Please select no more than 1-3 per category</p>
+                                            <label>Panel Topic</label>
+                                            <div class="form-group-cols-3" >
+                                                <label><input type="checkbox" name="eventTags" value="GMing Advice">GMing Advice</label>
+                                                <label><input type="checkbox" name="eventTags" value="Literature">Literature</label>
+                                                <label><input type="checkbox" name="eventTags" value="Player Advice">Player Advice</label>
+                                                <label><input type="checkbox" name="eventTags" value="Safety Tools">Safety Tools</label>
+                                                <label><input type="checkbox" name="eventTags" value="Social Contracts">Social Contracts</label>
+                                                <label><input type="checkbox" name="eventTags" value="Social Justice">Social Justice</label>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset data-if="format" data-if-regex="RPG|LARP|Board/Card Game">
+                                            <p class="directions">Please select no more than 1-3 per category</p>
+                                            <label>Game Focus</label>
+                                            <div class="form-group-cols-3">
+                                                <label><input type="checkbox" name="eventTags" value="Adventure">Adventure</label>
+                                                <label><input type="checkbox" name="eventTags" value="Combat">Combat</label>
+                                                <label><input type="checkbox" name="eventTags" value="Drama">Drama</label>
+                                                <label><input type="checkbox" name="eventTags" value="Exploration">Exploration</label>
+                                                <label><input type="checkbox" name="eventTags" value="Hijinx">Hijinx</label>
+                                                <label><input type="checkbox" name="eventTags" value="Improv">Improv</label>
+                                                <label><input type="checkbox" name="eventTags" value="Intrigue">Intrigue</label>
+                                                <label><input type="checkbox" name="eventTags" value="Investigation">Investigation</label>
+                                                <label><input type="checkbox" name="eventTags" value="LGBTQ themes">LGBTQ themes</label>
+                                                <label><input type="checkbox" name="eventTags" value="Mystery">Mystery</label>
+                                                <label><input type="checkbox" name="eventTags" value="Romance">Romance</label>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset data-if="format" data-if-regex="RPG|LARP|Board/Card Game">
+                                            <label>Player Contributions</label>
+                                            <div class="form-group-cols-3">
+                                                <label><input type="checkbox" name="eventTags" value="Collaborative">Collaborative</label>
+                                                <label><input type="checkbox" name="eventTags" value="Freeform">Freeform</label>
+                                                <label><input type="checkbox" name="eventTags" value="GM-less">GM-less</label>
+                                                <label><input type="checkbox" name="eventTags" value="Play to find out">Play to find out</label>
+                                                <label><input type="checkbox" name="eventTags" value="Player Antagonism">Player Antagonism</label>
+                                                <label><input type="checkbox" name="eventTags" value="Rotating Authority">Rotating Authority</label>
+                                                <label><input type="checkbox" name="eventTags" value="Strong Storyline">Strong Storyline</label>
+                                            </div >
+                                        </fieldset>
+                                        <fieldset data-if="format" data-if-regex="RPG|LARP|Board/Card Game">
+                                            <label>Game Genre</label>
+                                            <div class="form-group-cols-3">
+                                                <label><input type="checkbox" name="eventTags" value="Aliens">Aliens</label>
+                                                <label><input type="checkbox" name="eventTags" value="Alternate History">Alternate History</label>
+                                                <label><input type="checkbox" name="eventTags" value="Apocalyptic">Apocalyptic</label>
+                                                <label><input type="checkbox" name="eventTags" value="Cyberpunk">Cyberpunk</label>
+                                                <label><input type="checkbox" name="eventTags" value="Espionage">Espionage</label>
+                                                <label><input type="checkbox" name="eventTags" value="Fantasy">Fantasy</label>
+                                                <label><input type="checkbox" name="eventTags" value="Horror">Horror</label>
+                                                <label><input type="checkbox" name="eventTags" value="Military">Military</label>
+                                                <label><input type="checkbox" name="eventTags" value="Modern">Modern</label>
+                                                <label><input type="checkbox" name="eventTags" value="Noir">Noir</label>
+                                                <label><input type="checkbox" name="eventTags" value="Pulp">Pulp</label>
+                                                <label><input type="checkbox" name="eventTags" value="Sci-Fi">Sci-Fi</label>
+                                                <label><input type="checkbox" name="eventTags" value="Super Powers">Super Powers</label>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset data-if="format" data-if-regex="RPG|LARP|Board/Card Game">
+                                            <label>Game Mood</label>
+                                            <div class="form-group-cols-3" >
+                                                <label><input type="checkbox" name="eventTags" value="Comical">Comical</label>
+                                                <label><input type="checkbox" name="eventTags" value="Cute">Cute</label>
+                                                <label><input type="checkbox" name="eventTags" value="Dark">Dark</label>
+                                                <label><input type="checkbox" name="eventTags" value="Emotional">Emotional</label>
+                                                <label><input type="checkbox" name="eventTags" value="Light">Light</label>
+                                                <label><input type="checkbox" name="eventTags" value="Melancholy">Melancholy</label>
+                                                <label><input type="checkbox" name="eventTags" value="Serious">Serious</label>
+                                                <label><input type="checkbox" name="eventTags" value="Silly">Silly</label>
+                                                <label><input type="checkbox" name="eventTags" value="Suspenseful">Suspenseful</label>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset data-if="format" data-if-value="GoD">
+                                            <label for="phone">Phone Number</label>
+                                            <p class="directions">This info will only be used by our GoD rangers in case you are late for your shift.</p>
+                                            <input type="tel" name="phone" id="phone" required>
+                                        </fieldset>
+                                        <fieldset data-if="format" data-if-value="GoD">
+                                            <label for="discord">Discord Handle</label>
+                                            <input type="tel" name="discord" id="discord">
+                                        </fieldset>
+                                        <fieldset>
+                                            <label for="additionalRequirements">List any special requirements</label>
+                                            <textarea cols="30" id="additionalRequirements" name="additionalRequirements" rows="2" ></textarea>
+                                        </fieldset>
+                                    </fieldset>
+                                </af-step>
+
+                                <!-- ---------------------------- Event Review ------------------------------ -->
+
+                                <af-step data-title="Review">
+                                    <fieldset class="grid gap-xs">
+                                        <legend>Event Submission Review</legend>
+                                        <div>
+                                            <span data-text="gm"></span>
+                                            (age at start of con: <span data-text="gmAge"></span>)
+                                        </div>
+                                        <div>
+                                            <div>
+                                                <strong>Format:</strong>
+                                                <span data-text="format"></span>
+                                            </div>
+                                            <div data-if="requestPrivateRoom">
+                                                <strong>Location:</strong>
+                                                <span data-text="requestPrivateRoom"></span>
+                                            </div>
+                                            <div data-if="requestMediaEquipment">
+                                                <strong>Media Equipment Requested:</strong>
+                                                <span data-text="requestMediaEquipment"></span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div>
+                                                <strong>Event Name:</strong>
+                                                <span data-text="eventName"></span></div>
+                                            <div data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD">
+                                                <strong>System: </strong>
+                                                <span data-text="system"></span>
+                                                <em data-if="playtest" data-if-value="Yes">Playtest</em>
+                                            </div>
+                                            <div class="mt-base">
+                                                <strong>Description:</strong>
+                                            </div>
+                                            <div data-text="eventDescription" class="mb-base"></div>
+                                            <div data-if="characters">
+                                                <strong>Characters:</strong>
+                                                <span data-text="characters"></span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h4 data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD">Player Info</h4>
+                                            <h4 data-if="format" data-if-regex="Panel|Special Event|Workshop|Podcast/Stream">Attendee Info</h4>
+                                            <p class="italic" data-if="gmAge" data-if-value="13+">
+                                                Event designed for people aged 13+ (no strong content)
+                                            </p>
+                                            <div>
+                                                <strong>Age:</strong>
+                                                <span data-text="playerAge"></span></div>
+                                            <div data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD|Special Event|Workshop">
+                                                <strong>Min:</strong>
+                                                <span data-text="minPlayers"></span>
+                                                <strong>Max:</strong>
+                                                <span data-text="players"></span>
+                                            </div>
+                                            <div data-if="contentAdvisory">
+                                                <strong>Content Advisory:</strong>
+                                                <span data-text="contentAdvisory"></span></div>
+                                            <div data-text="triggerWarnings"></div>
+                                            <div data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD">
+                                                <h4>Safety Tools</h4>
+                                                <span data-text="safetyTools"></span>
+                                                <em data-text="safetyToolsOther"></em>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h4>Scheduling</h4>
+                                            <div>
+                                                <strong>Event Length:</strong>
+                                                <span data-text="eventLength"></span> hour(s)</div>
+                                            <div>
+                                                <strong>Number of times to run:</strong>
+                                                <span data-text="runNumberOfTimes"></span></div>
+                                            <div>
+                                                <strong>Preferences:</strong>
+                                                <span data-text="schedulingPref"></span></div>
+                                        </div>
+                                        <div>
+                                            <div data-if="eventTags">
+                                                <h4>Event Tags</h4>
+                                                <div data-text="eventTags"></div>
+                                            </div>
+                                            <div data-if="format" data-if-value="GoD">
+                                                <strong>Phone:</strong>
+                                                <span data-text="phone"></span>
+                                                <strong>Discord:</strong>
+                                                <span data-text="discord"></span>
+                                            </div>
+                                            <div data-if="additionalRequirements">
+                                                <h4>Additional Requirements</h4>
+                                                <div data-text="additionalRequirements"></div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </af-step>
+                            </form>
+
+                        </action-form>
+                        {# TODO: add upload game art at submission page #}
+                        {# TODO: add easy link to submit another  #}
                     </div>
                 </div>
-                {# END runAnEventData component #}
             </section>
         </div>
     </main>
-{% endblock %}
-
-{#
-    PUT /events/create API
-    {
-        // "accessabilityOptions": "string", //  not used
-        "additionalGms": "string", // used
-        "additionalRequirements": "string", //used
-        "characters": "string", //used
-        "contentAdvisory": true, // used but using a checkbox
-        "eventCategoryId": 0, // this is format
-        "eventDescription": "string", // used
-        "eventFacilitators": "string", // not used
-        "eventMetadataIds": [
-        0
-        ], // need to combine multiple
-        "eventName": "string", // used
-        "gm": "string", // need to convert from publicName?
-        "gmAge": "string", //need to convert from yourAge
-        "length": "string", // used but named eventLength
-        "minPlayers": "string", //used
-        "otherInfo": "string", //used
-        "playerAge": "string", //used
-        "players": "string", // this is maxPlayers
-        "playtest": "string", //used
-        "requestMediaEquipment": "string", // used
-        "requestMediaRoom": true,   // no longer used
-        "requestPrivateRoom": true, // use locationPref for boolean and add rest to additionalRequirements 
-        "runNumberOfTimes": 0, // used
-        "safetyTools": "string", // used convert to string
-        "schedulingPref": "string", // convert to string
-        "system": "string", //  used
-        "tableType": "string",  // used
-        "triggerWarnings": "string",    // used
-        "userDisplayName": "string" , // matches user.displayName
-    }
- #}
-
-{% block pagebottom %}
-
-    <script type="text/javascript">
-
-        document.addEventListener('alpine:init', () => {
-
-            /* -------------------------------------------------------------------------- */
-            /* Metadata Stuff */
-            /* -------------------------------------------------------------------------- */
-            // Metadata grouped by types
-
-            // TODO: Alphabetize tags before sending as a string
-            // TODO: Make sure tags display correctly on the event page
-
-            const metadata = {
-                format: [
-                    {
-                        "id": 11,
-                        "term_id": 10,
-                        "name": "Board/Card Game",
-                        "slug": "board-game"
-                    }, {
-                        "id": 10,
-                        "term_id": 9,
-                        "name": "LARP",
-                        "slug": "larp"
-                    }, {
-                        "id": 154,
-                        "term_id": 154,
-                        "name": "Panel",
-                        "slug": "panel"
-                    }, {
-                        "id": 9,
-                        "term_id": 8,
-                        "name": "RPG",
-                        "slug": "rpg"
-                    }, {
-                        "id": 13,
-                        "term_id": 12,
-                        "name": "Workshop",
-                        "slug": "workshop"
-                    }, {
-                        "id": 212,
-                        "term_id": 212,
-                        "name": "Podcast/Stream",
-                        "slug": "podcast-stream",
-                        "type": "event-categories"
-                    }, {
-                        "id": 211,
-                        "term_id": 211,
-                        "name": "Social Event",
-                        "slug": "social-event",
-                        "type": "event-categories"
-                    }
-                ],
-                panelTopic: [
-                    {
-                        "id": 160,
-                        "term_id": 160,
-                        "name": "GMing Advice",
-                        "slug": "gming-advice"
-                    }, {
-                        "id": 159,
-                        "term_id": 159,
-                        "name": "Literature",
-                        "slug": "literature"
-                    }, {
-                        "id": 161,
-                        "term_id": 161,
-                        "name": "Player Advice",
-                        "slug": "player-advice"
-                    }, {
-                        "id": 163,
-                        "term_id": 163,
-                        "name": "Safety Tools",
-                        "slug": "safety-tools"
-                    }, {
-                        "id": 162,
-                        "term_id": 162,
-                        "name": "Social Contracts",
-                        "slug": "social-contracts"
-                    }, {
-                        "id": 158,
-                        "term_id": 158,
-                        "name": "Social Justice",
-                        "slug": "social-justice"
-                    }
-                ],
-                gameFocus: [
-                    {
-                        "id": 56,
-                        "term_id": 55,
-                        "name": "Adventure",
-                        "slug": "adventure"
-                    }, {
-                        "id": 63,
-                        "term_id": 62,
-                        "name": "Combat",
-                        "slug": "combat"
-                    }, {
-                        "id": 60,
-                        "term_id": 59,
-                        "name": "Drama",
-                        "slug": "drama"
-                    }, {
-                        "id": 57,
-                        "term_id": 56,
-                        "name": "Exploration",
-                        "slug": "exploration"
-                    }, {
-                        "id": 62,
-                        "term_id": 61,
-                        "name": "Hijinx",
-                        "slug": "hijinx"
-                    }, {
-                        "id": 191,
-                        "term_id": 191,
-                        "name": "Improv",
-                        "slug": "improv"
-                    }, {
-                        "id": 59,
-                        "term_id": 58,
-                        "name": "Intrigue",
-                        "slug": "intrigue"
-                    }, {
-                        "id": 58,
-                        "term_id": 57,
-                        "name": "Investigation",
-                        "slug": "investigation"
-                    }, {
-                        "id": 181,
-                        "term_id": 181,
-                        "name": "LGBTQ themes",
-                        "slug": "lgbtq-themes"
-                    }, {
-                        "id": 167,
-                        "term_id": 167,
-                        "name": "Mystery",
-                        "slug": "mystery"
-                    }, {
-                        "id": 61,
-                        "term_id": 60,
-                        "name": "Romance",
-                        "slug": "romance"
-                    }
-                ],
-                playerContributions: [
-                    {
-                        "id": 67,
-                        "term_id": 66,
-                        "name": "Collaborative",
-                        "slug": "collaborative"
-                    }, {
-                        "id": 188,
-                        "term_id": 188,
-                        "name": "Freeform",
-                        "slug": "freeform"
-                    }, {
-                        "id": 68,
-                        "term_id": 67,
-                        "name": "GM-less",
-                        "slug": "gm-less"
-                    }, {
-                        "id": 65,
-                        "term_id": 64,
-                        "name": "Play to find out",
-                        "slug": "play-to-find-out"
-                    }, {
-                        "id": 66,
-                        "term_id": 65,
-                        "name": "Player antagonism",
-                        "slug": "player-antagonism"
-                    }, {
-                        "id": 69,
-                        "term_id": 68,
-                        "name": "Rotating authority",
-                        "slug": "rotating-authority"
-                    }, {
-                        "id": 64,
-                        "term_id": 63,
-                        "name": "Strong storyline",
-                        "slug": "strong-storyline"
-                    }
-                ],
-                gameGenre: [
-                    {
-                        "id": 171,
-                        "term_id": 171,
-                        "name": "Aliens",
-                        "slug": "aliens"
-                    }, {
-                        "id": 74,
-                        "term_id": 73,
-                        "name": "Alternate History",
-                        "slug": "alternate-history"
-                    }, {
-                        "id": 77,
-                        "term_id": 76,
-                        "name": "Apocalyptic",
-                        "slug": "apocalyptic"
-                    }, {
-                        "id": 156,
-                        "term_id": 156,
-                        "name": "Cyberpunk",
-                        "slug": "cyberpunk"
-                    }, {
-                        "id": 78,
-                        "term_id": 77,
-                        "name": "Espionage",
-                        "slug": "espionage"
-                    }, {
-                        "id": 72,
-                        "term_id": 71,
-                        "name": "Fantasy",
-                        "slug": "fantasy"
-                    }, {
-                        "id": 70,
-                        "term_id": 69,
-                        "name": "Horror",
-                        "slug": "horror"
-                    }, {
-                        "id": 79,
-                        "term_id": 78,
-                        "name": "Military",
-                        "slug": "military"
-                    }, {
-                        "id": 73,
-                        "term_id": 72,
-                        "name": "Modern",
-                        "slug": "modern"
-                    }, {
-                        "id": 76,
-                        "term_id": 75,
-                        "name": "Noir",
-                        "slug": "noir"
-                    }, {
-                        "id": 75,
-                        "term_id": 74,
-                        "name": "Pulp",
-                        "slug": "pulp"
-                    }, {
-                        "id": 71,
-                        "term_id": 70,
-                        "name": "Sci-Fi",
-                        "slug": "sci-fi"
-                    }, {
-                        "id": 121,
-                        "term_id": 120,
-                        "name": "Super Powers",
-                        "slug": "super-powers"
-                    }
-                ],
-                gameMood: [
-                    {
-                        "id": 81,
-                        "term_id": 80,
-                        "name": "Comical",
-                        "slug": "comical"
-                    }, {
-                        "id": 175,
-                        "term_id": 175,
-                        "name": "Cute",
-                        "slug": "cute"
-                    }, {
-                        "id": 83,
-                        "term_id": 82,
-                        "name": "Dark",
-                        "slug": "dark"
-                    }, {
-                        "id": 84,
-                        "term_id": 83,
-                        "name": "Emotional",
-                        "slug": "emotional"
-                    }, {
-                        "id": 85,
-                        "term_id": 81,
-                        "name": "Light",
-                        "slug": "light"
-                    }, {
-                        "id": 134,
-                        "term_id": 133,
-                        "name": "Melancholy",
-                        "slug": "melancholy"
-                    }, {
-                        "id": 80,
-                        "term_id": 79,
-                        "name": "Serious",
-                        "slug": "serious"
-                    }, {
-                        "id": 187,
-                        "term_id": 187,
-                        "name": "Silly",
-                        "slug": "silly"
-                    }, {
-                        "id": 85,
-                        "term_id": 84,
-                        "name": "Suspenseful",
-                        "slug": "suspenseful"
-                    }
-                ],
-                contentAdvisoryOptions: [
-                    {
-                        "id": 92,
-                        "term_id": 91,
-                        "name": "Gore",
-                        "slug": "gore"
-                    }, {
-                        "id": 91,
-                        "term_id": 90,
-                        "name": "Graphic Violence",
-                        "slug": "graphic-violence"
-                    }, {
-                        "id": 89,
-                        "term_id": 88,
-                        "name": "Provocative",
-                        "slug": "provocative"
-                    }, {
-                        "id": 90,
-                        "term_id": 89,
-                        "name": "Sex and Sexuality",
-                        "slug": "sex-and-sexuality"
-                    }
-                ]
-            }
-
-            // Metadata as one big array
-            let allMetadata = []
-            Object
-                .keys(metadata)
-                .forEach(key => allMetadata = [
-                    ...allMetadata,
-                    ...metadata[key]
-                ])
-
-            /* -------------------------------------------------------------------------- */
-            /* Alpine data for form */
-            /* -------------------------------------------------------------------------- */
-
-            Alpine.data('runAnEventData', function () {
-                return {
-                    submittingState: 'unsubmitted', // State Machine: unsubmitted, submitted, complete
-                    convertFormDataToCreateEventAPI(formData) {
-                        convertFormDataToCreateEventAPI(formData)
-                    },
-                    isPrevComplete($el) {
-                        return this
-                            .$validate
-                            .isComplete($el.previousElementSibling)
-                    },
-                    get eventMetadataNames() {
-                        const namesArray = this
-                            .eventMetadataIds
-                            .map(id => {
-                                const metadata = allMetadata.find(val => val.id === id)
-                                return metadata && metadata.name
-                            })
-
-                        return namesArray
-                    },
-                    get eventMetadataIds() {
-                        const formData = this
-                            .$validate
-                            .formData("form");
-
-                        let eventMetadataIds = [
-                            ...formData.playerContributions.array,
-                            ...formData.gameFocus.array,
-                            ...formData.gameMood.array,
-                            ...formData.gameGenre.array,
-                            ...formData.contentAdvisoryOptions.array,
-                            ...formData.panelTopic.array,
-                            formData.eventCategoryId.value
-                        ].map(id => parseInt(id));
-
-                        //If player age is 13+ then add
-                        if (formData.playerAge.value === "13+") {
-                            eventMetadataIds = [
-                                ...eventMetadataIds,
-                                193
-                            ]
-                        }
-
-                        // If playtest than add that
-                        if (formData.playtest.value === "Yes") {
-                            eventMetadataIds = [
-                                ...eventMetadataIds,
-                                157
-                            ]
-                        }
-
-                        return eventMetadataIds
-                    },
-                    get createEventAPIData() {
-
-                        const formData = this
-                            .$validate
-                            .formData("form");
-
-                        // GoD Code Pull together data for second game
-                        /*const eventDescription2 = (formData.gameSignUp.value === 'Games on Demand')
-                            ? `; SECOND GAME: ${formData.eventName2.value} (${formData.system2.value} / Playtest? ${formData.playtest2.value}) DESCRIPTION: ${formData.description2.value})`
-                            : ''
-                        */
-
-                        const apiData = {
-                            //accessabilityOptions: formData.accessabilityOptions,  not used
-                            additionalGms: formData.additionalGMs.value,
-                            additionalRequirements: (formData.locationPref.value)
-                                ? formData.additionalRequirements.value + " Room Request: " + formData.locationPref.value
-                                : formData.additionalRequirements.value,
-                            characters: formData.characters.value,
-                            contentAdvisory: formData.contentAdvisory.value === "Yes", // this is a boolean in the API so we are using 1000000 is no-content-advisory; selection info goes into the eventMetadataIds
-                            eventCategoryId: formData.eventCategoryId.value || 0,
-                            eventDescription: formData.eventDescription.value,
-                            //eventFacilitators: formData.facilitators,  not used
-                            eventMetadataIds: this.eventMetadataIds,
-                            eventMetadataNames: this.eventMetadataNames || [], // This is not used in create event API; only for Google Sheet
-                            eventMetadataNamesString: this.eventMetadataNames && this
-                                .eventMetadataNames
-                                .toString(),
-                            eventName: formData.eventName.value,
-                            eventTags: this.eventMetadataNames || [],
-                            format: formData.format.value,
-                            gm: formData.publicName.value,
-                            gmAge: formData.yourAge.value,
-                            length: formData.eventLength.value,
-                            minPlayers: formData.minPlayers.value,
-                            otherInfo: formData.otherInfo.value,
-                            playerAge: formData.playerAge.value,
-                            players: formData.maxPlayers.value,
-                            playtest: formData.playtest.value,
-                            requestMediaEquipment: (formData.requestMediaEquipment.value)
-                                ? `${formData.mediaEquipment.value} ${formData.requestMediaEquipment.value}`
-                                : formData.mediaEquipment.value,
-                            requestPrivateRoom: formData.locationPref.value !== "No Preference", // add extra to additionalRequirements for now
-                            runNumberOfTimes: parseInt(formData.runNumberOfTimes.value || 1),
-                            safetyTools: formData.safetyTools.value,
-                            schedulingPref: formData.schedulingPref
-                                ?.value || "",
-                            system: formData.system.value,
-                            tableType: formData.tableType.value,
-                            triggerWarnings: formData.triggerWarnings.value,
-                            userDisplayName: formData.userDisplayName.value
-                        }
-                        return apiData;
-                    },
-                    async submitEvent(e) {
-                        const form = e.target
-
-                        // Check network status and dataservice before submitting event
-                        const status = await lilRed.status()
-                        if (!status) {
-                            return false
-                        }
-
-                        // Change status to submitted
-                        this.submittingState = "submitted"
-
-                        console.log("🚀 ~ file: form-run-an-event.njk ~ line 783 ~ submitEvent ~ createEventAPIData", this.createEventAPIData)
-
-                        try {
-                            // Submit to Little Red Event Manager
-                            const lilRedResult = await lilRed
-                                .events
-                                .create(this.createEventAPIData)
-
-                            console.log("🚀 ~ file: form-run-an-event.njk ~ line 805 ~ submitEvent ~ lilRedResult", lilRedResult)
-
-                            // If result is a success it returns the event ID.
-                            if (lilRedResult && !isNaN(lilRedResult)) {
-
-                                try {
-                                    // Build data for google sheet
-                                    const googleFormData = {
-                                        ...this.createEventAPIData,
-                                        eventId: lilRedResult,
-                                        eventMetadataIds: this.createEventAPIData.eventMetadataIds && this
-                                            .createEventAPIData
-                                            .eventMetadataIds
-                                            .toString(),
-                                        eventMetadataNames: this.createEventAPIData.eventMetadataNamesString
-                                    }
-
-                                    // Post to serverless function for Google Sheet
-
-                                    const options = {
-                                        method: 'POST',
-                                        headers: {
-                                            'Content-Type': 'application/json;charset=utf-8'
-                                        },
-                                        body: JSON.stringify(googleFormData)
-                                    }
-
-                                    const url = "/.netlify/functions/submit-run-an-event"
-
-                                    let response = await fetch(url, options)
-                                    console.log(`RESPONSE:fetch for ${url}`, response)
-                                    if (!response || response.status !== 200) {
-                                        throw new Error(`fetch fail status: ${response && response.status}`)
-                                    }
-                                    let result = await response.json()
-                                    console.log(`RESULT:fetch for ${url}`, result)
-
-                                    this.$dispatch('toast', 'Event submitted!')
-                                    window.scroll({top: 0, behavior: 'smooth'});
-                                    this.submittingState = "complete"
-                                    form.reset()
-                                    return result
-                                } catch (err) {
-                                    console.error(`ERROR:fetch for ${url}`, err)
-                                    this.submittingState = "unsubmitted"
-                                    this.$dispatch('toast', 'ERROR: event submission to spreadsheet failed!')
-                                    return false
-                                }
-                            } else {
-                                this.$dispatch('toast', 'ERROR: event submission failed!')
-                                this.submittingState = "unsubmitted"
-                            }
-                        } catch (e) {
-                            this.submittingState = "unsubmitted"
-                            console.log('ERROR:submitting form to /events/create', e)
-                            this.$dispatch('toast', 'ERROR: event submission to Little Red Event Manager failed!')
-                        }
-                    },
-                    async uploadEventImage(form, eventId) {
-                        // TODO: get this working
-                        const formDataObject = new FormData(form)
-
-                        async function customFetch(url, options) {
-                            try {
-                                let response = await fetch(url, options)
-                                console.log(`RESPONSE:fetch for ${url}`, response)
-                                if (response.status !== 200) 
-                                    throw `fetch fail status: ${response.status}`
-                                let result = await response.json()
-                                console.log(`RESULT:fetch for ${url}`, result)
-                                return result
-                            } catch (err) {
-                                console.error(`ERROR:fetch for ${url}`, err)
-                                return false
-                            }
-                        }
-                        formDataObject.append('eventId', eventId)
-
-                        let data = await customFetch('/.netlify/functions/submit-event-image', {
-                            method: 'POST',
-                            body: formDataObject
-                        })
-                        return data
-                    },
-                    eventLengthOptions() {
-                        const format = this
-                            .$validate
-                            .value('format')
-                        const gameSignUp = this
-                            .$validate
-                            .value('gameSignUp')
-                        let options = [
-                            {
-                                name: '1 hour',
-                                value: '1'
-                            }
-                        ]
-                        console.log('eventLengthOptions', format, format === 'Workshop')
-                        if (format === 'Panel') {
-                            // returns 1 hour
-                        } else if (format === 'Workshop' || format === 'Social Event') {
-                            options.push({name: '2 hours', value: '2'})
-                        } else if (format === 'Podcast/Stream') {
-                            options = [
-                                {
-                                    name: '2 hours',
-                                    value: '2'
-                                }
-                            ]
-                        } else if (format === 'RPG' && gameSignUp === 'Games on Demand') {
-                            options = [
-                                {
-                                    name: '2 hours',
-                                    value: '2'
-                                }, {
-                                    name: '4 hours',
-                                    value: '4'
-                                }
-                            ]
-                        } else {
-                            options = [
-                                ...options, {
-                                    name: '2 hours',
-                                    value: '2'
-                                }, {
-                                    name: '4 hours',
-                                    value: '4'
-                                }, {
-                                    name: '6 hours',
-                                    value: '6'
-                                }, {
-                                    name: '8 hours',
-                                    value: '8'
-                                }
-                            ]
-                        }
-                        return options
-
-                    },
-                    scheduleTimes(format, eventLength) {
-                        if (format === 'Panel' || format === 'Workshop' || format === 'Podcast/Stream') {
-                            return this.panelScheduleTimes[eventLength]
-                        } else if (format === 'Social Event') {
-                            return this.socialScheduleTimes[eventLength]
-                        } else {
-                            return this.gameScheduleTimes[eventLength]
-                        }
-                    },
-                    socialScheduleTimes: {
-                        "0": [],
-                        "1": [
-                            "Thursday night (between 6PM-12AM)", "Friday night (between 8PM-12AM)", "Saturday night (between 8PM-12AM)"
-                        ],
-                        "2": ["Thursday night (between 6PM-12AM)", "Friday night (between 8PM-12AM)", "Saturday night (between 8PM-12AM)"]
-                    },
-                    panelScheduleTimes: {
-                        "0": [],
-                        "1": [
-                            "Friday morning (between 9AM-1PM)",
-                            "Friday afternoon (between 2PM-6PM)",
-                            "Saturday morning (between 9AM-1PM)",
-                            "Saturday afternoon (between 2PM-6PM)",
-                            "Sunday morning (between 9AM-1PM)",
-                            "Sunday afternoon (between 2PM-6PM)"
-                        ],
-                        "2": [
-                            "Friday 9AM-11AM",
-                            "Friday 11AM-1PM",
-                            "Friday 2PM-4PM",
-                            "Friday 4PM-6PM",
-                            "Saturday 9AM-11AM",
-                            "Saturday 11AM-1PM",
-                            "Saturday 2PM-4PM",
-                            "Saturday 4PM-6PM",
-                            "Sunday 9AM-11AM",
-                            "Sunday 11AM-1PM",
-                            "Sunday 2PM-4PM",
-                            "Sunday 4PM-6PM"
-                        ]
-                    },
-                    gameScheduleTimes: {
-                        "0": [],
-                        "1": [
-                            "Friday morning (between 9AM-1PM)",
-                            "Friday afternoon (between 2PM-6PM)",
-                            "Friday night (between 8PM-Midnight)",
-                            "Saturday morning (between 9AM-1PM)",
-                            "Saturday afternoon (between 2PM-6PM)",
-                            "Saturday night (between 8PM-Midnight)",
-                            "Sunday morning (between 9AM-1PM)",
-                            "Sunday afternoon (between 2PM-6PM)"
-                        ],
-                        "2": [
-                            "Friday 9AM-11AM",
-                            "Friday 11AM-1PM",
-                            "Friday 2PM-4PM",
-                            "Friday 4PM-6PM",
-                            "Friday 8PM-10PM",
-                            "Friday 10PM-Midnight",
-                            "Saturday 9AM-11AM",
-                            "Saturday 11AM-1PM",
-                            "Saturday 2PM-4PM",
-                            "Saturday 4PM-6PM",
-                            "Saturday 8PM-10PM",
-                            "Saturday 8PM-Midnight",
-                            "Sunday 9AM-11AM",
-                            "Sunday 11AM-1PM",
-                            "Sunday 2PM-4PM",
-                            "Sunday 4PM-6PM"
-                        ],
-                        "4": [
-                            "Friday 9AM-1PM",
-                            "Friday 2PM-6PM",
-                            "Friday 8PM-Midnight",
-                            "Saturday 9AM-1PM",
-                            "Saturday 2PM-6PM",
-                            "Saturday 8PM-Midnight",
-                            "Sunday 9AM-1PM",
-                            "Sunday 2PM-6PM"
-                        ],
-                        "6": [
-                            "Friday 10AM-4PM",
-                            "Friday 6PM-Midnight",
-                            "Saturday 10AM-4PM",
-                            "Saturday 6PM-Midnight",
-                            "Sunday 9AM-3PM",
-                            "Sunday 2PM-8PM"
-                        ],
-                        "8": ["Friday 10AM-6PM", "Friday 2PM-10PM", "Saturday 10AM-6PM", "Saturday 2PM-10PM", "Sunday 10AM-6PM"]
-                    },
-                    formatId(name) {
-                        if (name) {
-                            const formatType = this
-                                .format
-                                .find(e => e.name === name)
-                            return formatType && formatType.id && formatType
-                                .id
-                                .toString()
-                        }
-                    },
-                    get isRPG() {
-                        return ["RPG"].includes(this.$validate.data('format').value)
-                    },
-                    get isGame() {
-                        return ["RPG", "LARP", "Board/Card Game"].includes(this.$validate.data('format').value)
-                    },
-                    get isRPGorLARP() {
-                        return ["RPG", "LARP"].includes(this.$validate.data('format').value)
-                    },
-                    get isTableTop() {
-                        return ["RPG", "Board/Card Game"].includes(this.$validate.data('format').value)
-                    },
-                    get isBoardgame() {
-                        return this
-                            .$validate
-                            .data('format')
-                            .value === "Board/Card Game"
-                    },
-                    get isPodcast() {
-                        return this
-                            .$validate
-                            .data('format')
-                            .value === "Podcast/Stream"
-                    },
-                    get isSocialEvent() {
-                        return this
-                            .$validate
-                            .data('format')
-                            .value === "Social Event"
-                    },
-                    get isAllAges() {
-                        return this
-                            .$validate
-                            .data('playerAge')
-                            .value === '13+'
-                    },
-                    get isAdultOnly() {
-                        return this
-                            .$validate
-                            .data('playerAge')
-                            .value === '18+'
-                    },
-                    format: metadata.format,
-                    panelTopic: metadata.panelTopic,
-                    gameFocus: metadata.gameFocus,
-                    playerContributions: metadata.playerContributions,
-                    gameGenre: metadata.gameGenre,
-                    gameMood: metadata.gameMood,
-                    contentAdvisoryOptions: metadata.contentAdvisoryOptions,
-                    safetyTools: [
-                        'X-card',
-                        'Lines/Veils',
-                        'Cut/Brake',
-                        'Open Door Policy',
-                        'Script Change',
-                        'Other'
-                    ]
-                }
-            })
-        })
-    </script>
-
 {% endblock %}

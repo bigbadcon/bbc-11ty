@@ -8,3 +8,5 @@ Uses Eleventy, Alpine JS, and Tailwind.
 
 TODO: update README
 TODO: move past events to year folder and add redirect
+
+Stuff and things

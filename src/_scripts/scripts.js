@@ -12,7 +12,6 @@ import Alpine from "alpinejs";
 import persist from "@alpinejs/persist";
 import validate from "@colinaut/alpinejs-plugin-simple-validate";
 import "@colinaut/theme-multi-switch";
-import "@colinaut/action-table";
 Alpine.plugin(persist);
 Alpine.plugin(validate);
 window.Alpine = Alpine;
@@ -76,42 +75,42 @@ const getDurationInHours = (dateStart, dateEnd) => {
 
 // TODO: refactor all this to simpler global functions
 
-const apiBaseUrl = "https://admin.bigbadcon.com:8091/api";
+// const apiBaseUrl = "https://admin.bigbadcon.com:8091/api";
 // Dev API using Caddy server reverse proxy
 // const apiBaseUrl = '/apidev'
 
 // Global Fetch Function for API
-async function fetchData(url, options, authToken) {
-	authToken = authToken || JSON.parse(localStorage.getItem("_x_authToken"));
-	options = {
-		method: "GET",
-		headers: {
-			"Content-Type": "application/json;charset=utf-8",
-		},
-		...options,
-	};
+// async function fetchData(url, options, authToken) {
+// 	authToken = authToken || JSON.parse(localStorage.getItem("_x_authToken"));
+// 	options = {
+// 		method: "GET",
+// 		headers: {
+// 			"Content-Type": "application/json;charset=utf-8",
+// 		},
+// 		...options,
+// 	};
 
-	if (authToken) options.headers.Authorization = authToken;
+// 	if (authToken) options.headers.Authorization = authToken;
 
-	if (options.body) options.body = JSON.stringify(options.body);
+// 	if (options.body) options.body = JSON.stringify(options.body);
 
-	console.log("fetchData", url, options);
+// 	console.log("fetchData", url, options);
 
-	try {
-		let response = await fetch(apiBaseUrl + url, options);
-		// eslint-disable-next-line no-console
-		console.log(`RESPONSE:fetch for ${url}`, response);
-		if (response.status !== 200) throw `fetch fail status: ${response.status}`;
-		let result = await response.json();
-		// eslint-disable-next-line no-console
-		console.log(`RESULT:fetch for ${url}`, result);
-		return result;
-	} catch (err) {
-		// eslint-disable-next-line no-console
-		console.error(`ERROR:fetch for ${url}`, err);
-		return false;
-	}
-}
+// 	try {
+// 		let response = await fetch(apiBaseUrl + url, options);
+// 		// eslint-disable-next-line no-console
+// 		console.log(`RESPONSE:fetch for ${url}`, response);
+// 		if (response.status !== 200) throw `fetch fail status: ${response.status}`;
+// 		let result = await response.json();
+// 		// eslint-disable-next-line no-console
+// 		console.log(`RESULT:fetch for ${url}`, result);
+// 		return result;
+// 	} catch (err) {
+// 		// eslint-disable-next-line no-console
+// 		console.error(`ERROR:fetch for ${url}`, err);
+// 		return false;
+// 	}
+// }
 
 /* -------------------------------------------------------------------------- */
 /*                                Alpine Stuff                                */
@@ -140,6 +139,12 @@ document.addEventListener("alpine:init", () => {
 				// logout if it's been more than 10 days
 				if (!dayjs(this.lastLogin).isValid() || dayjs(this.lastLogin).diff(dayjs(), "hour") < -240) {
 					this.logout("It has been more than 10 days since your last login so you are being logged out");
+				}
+				// check for error in url search params and dispatch toast if exists
+				const url = new URL(window.location.href);
+				const error = url.searchParams.get("error");
+				if (error) {
+					this.$dispatch("toast", `ERROR: ${error}`);
 				}
 			},
 			modal: null, // this is a state machine basically with named string values for each panel and null for none
@@ -171,6 +176,12 @@ document.addEventListener("alpine:init", () => {
 					await this.getBookedEvents();
 					this.modal = "My Account";
 					await this.getFavEvents();
+					// trigger storage event for Run an Event Form
+					window.dispatchEvent(
+						new StorageEvent("storage", {
+							key: "_x_authToken",
+						})
+					);
 				} else {
 					// eslint-disable-next-line no-console
 					console.log("Login no token");
@@ -202,6 +213,11 @@ document.addEventListener("alpine:init", () => {
 					displayName: decodeText(user.displayName) || user.displayName,
 				};
 				this.user = user;
+				window.dispatchEvent(
+					new StorageEvent("storage", {
+						key: "_x_user",
+					})
+				);
 				return user;
 			},
 			get badgeRoles() {
@@ -652,6 +668,10 @@ document.addEventListener("alpine:init", () => {
 	/* ----------- eventInfo Used for Event Table Rows and Event Pages ---------- */
 
 	/**
+	 * Alpine Event Info x-data object
+	 * TODO: need to review this to make sure the JSDoc is correct.
+	 * * The lilRed.s promises are the unknowns. I need to improve the TypeScript in that for all the Promise returns as a bunch are just any.
+	 *
 	 * @typedef {Object} EventInfo
 	 * @property {number} id - the id of the event; filled in via nunjucks
 	 * @property {number | null} maxSpaces - the maximum number of spaces; also filled in via nunjucks; null means "Any"
@@ -662,6 +682,11 @@ document.addEventListener("alpine:init", () => {
 	 * @property {(userId: number) => boolean} isOwner - check if the user is the owner
 	 * @property {string} gmString - getter for combined string of the game masters
 	 * @property {(id: number) => Promise<void>} getEventInfo - get the event info
+	 * @property {(e: Event) => Promise<boolean>} uploadImage - get the spaces
+	 * @property {(e: Event) => void} showPreview - show the preview of the image that has been added
+	 * @property {() => string | false} getEventGUID - check Event GUID on page load; only if guid is in the URLSearchParams
+	 * @property {(eventId: number) => Promise<string>} getAddtlGMCode - get event guid code and return it as a url with guid as a search param
+	 * @property {(eventId: number, gmGuid: string) => Promise<string | null>} addAsGm - get event guid code and return it as a url with guid as a search param
 	 */
 
 	Alpine.data(
@@ -795,7 +820,7 @@ document.addEventListener("alpine:init", () => {
 				},
 				async getAddtlGMCode(eventId) {
 					const result = await lilRed.events.getAddtlGMCode(eventId);
-					return result && `${window.location.href.split("?")[0]}?guid=${result}`;
+					return result && `${window.location.href}?guid=${result}`;
 				},
 				async addAsGm(eventId, gmGuid) {
 					console.log("addAsGm", eventId, gmGuid);
@@ -810,32 +835,38 @@ document.addEventListener("alpine:init", () => {
 		}
 	);
 
-	Alpine.data("createAccount", () => ({
-		agree: false,
-		userNicename: "",
-		userNicenameExists: false,
-		userEmail: "",
-		userPass: "",
-		firstName: "",
-		lastName: "",
-		howToDisplay: "firstlast",
-		nickname: "",
-		displayName: "",
-		twitter: "", // not set up yet in API
-		userLogin: "",
-		// TODO: change to fetch
-		async checkUsername() {
-			try {
-				const res = await axios.get(`/.netlify/functions/check-user/${this.userNicename}`);
-				if (res && res.data === "user exists") {
-					this.userNicenameExists = true;
+	Alpine.data("createAccount", () =>
+		/**
+		 * Returns the create account x-data function for the creating an account form.
+		 * @return {CreateAccount}
+		 */
+		({
+			agree: false,
+			userNicename: "",
+			userNicenameExists: false,
+			userEmail: "",
+			userPass: "",
+			firstName: "",
+			lastName: "",
+			howToDisplay: "firstlast",
+			nickname: "",
+			displayName: "",
+			twitter: "", // not set up yet in API
+			userLogin: "",
+			// TODO: change to fetch
+			async checkUsername() {
+				try {
+					const res = await axios.get(`/.netlify/functions/check-user/${this.userNicename}`);
+					if (res && res.data === "user exists") {
+						this.userNicenameExists = true;
+					}
+				} catch (err) {
+					// eslint-disable-next-line no-console
+					console.log(err);
 				}
-			} catch (err) {
-				// eslint-disable-next-line no-console
-				console.log(err);
-			}
-		},
-	}));
+			},
+		})
+	);
 
 	// Change Password
 	Alpine.data("resetPasswordForm", () => ({

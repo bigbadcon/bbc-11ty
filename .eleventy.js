@@ -1,5 +1,6 @@
 const blogTools = require("eleventy-plugin-blog-tools");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
+const addWebComponentDefinitions = require("eleventy-plugin-add-web-component-definitions");
 const dayjs = require("dayjs");
 const utc = require("dayjs/plugin/utc");
 const timezone = require("dayjs/plugin/timezone"); // dependent on utc plugin
@@ -123,6 +124,12 @@ module.exports = (eleventyConfig) => {
 
 	eleventyConfig.addPlugin(blogTools);
 	eleventyConfig.addPlugin(pluginRss);
+	eleventyConfig.addPlugin(addWebComponentDefinitions, {
+		specifiers: {
+			"action-table": (tag) => `/js/${tag}/index.js`,
+			"action-form": (tag) => `/js/${tag}/index.js`,
+		},
+	});
 
 	// eleventyConfig.addPlugin(EleventyServerlessBundlerPlugin, {
 	// 	name: "serverless",
@@ -406,6 +413,8 @@ module.exports = (eleventyConfig) => {
 	eleventyConfig.addPassthroughCopy({
 		"node_modules/lite-youtube-embed/src/lite-yt-embed.js": "js/lite-youtube-embed.js",
 		"node_modules/lite-youtube-embed/src/lite-yt-embed.css": "css/lite-youtube-embed.css",
+		"node_modules/@colinaut/action-form/dist": "js/action-form",
+		"node_modules/@colinaut/action-table/dist": "js/action-table",
 	});
 
 	// Pass "static" things straight through from "src" to "dist"
