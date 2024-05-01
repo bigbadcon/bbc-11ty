@@ -80,7 +80,7 @@ exports.handler = async function (event) {
 
 	// If some eventName or eventDescription are missing, return error
 	if (
-		typeof params.authToken !== "string" ||
+		!params.authToken ||
 		!params.eventName ||
 		!params.eventDescription ||
 		!params.format ||
@@ -91,12 +91,13 @@ exports.handler = async function (event) {
 		!params.eventLength ||
 		!params.playerAge ||
 		!params.userDisplayName ||
-		!eventCategoryId
+		!eventCategoryId ||
+		params.email // this is a honeypot field and should not be filled
 	) {
 		return {
 			statusCode: 303,
 			headers: {
-				Location: failurePage + "?error=Missing+important+form+data",
+				Location: failurePage,
 			},
 		};
 	}

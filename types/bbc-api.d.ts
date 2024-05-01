@@ -30,6 +30,7 @@ export type RunAnEventForm = {
 	authToken?: string;
 	successPage?: string;
 	failurePage?: string;
+	email?: string; // this is a honeypot field
 };
 
 const eventsCreatePayload = {

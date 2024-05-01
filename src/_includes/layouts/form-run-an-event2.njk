@@ -26,7 +26,7 @@
                                     <button type="reset" class="button-sm button-title">Reset Form</button>
                                 </div>
                                 {# HoneyPot Email. If this is filled then ditch response #}
-                                <label for="email" style="display:none;">Email<input type="email" name="email" id="email"></label>
+                                <label for="email" style="display:none;">Email<input type="email" name="email" id="email" tabindex="-1" value="" autocomplete="off"></label>
 
                                 {# Hidden fields with user data grabbed from localStorage #}
                                 {# Login triggers storageEvent with _x_user key that this listens for #}
@@ -100,7 +100,7 @@
                                                         -- Choose One --
                                                     </option>
                                                 <option>RPG</option>
-                                                <option>Board Game</option>
+                                                <option>Board/Card Game</option>
                                                 <option>LARP</option>
                                                 <option value="GoD">Games on Demand (GoD)</option>
                                                 <option>Workshop</option>
@@ -118,11 +118,12 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div data-if="format" data-if-value="Board Game" class="directions">
-                                            <h4>Board Game FAQ</h4>
+                                        <div data-if="format" data-if-value="Board/Card Game" class="directions">
+                                            <h4>Board/Card Game FAQ</h4>
                                             <ul>
-                                                <li>Hosted in the Board Game Room (Grand Peninsula Ballroom)</li>
-                                                <li>Round and long table available</li>
+                                                <li>Hosted in the Board Game Room (Grand Peninsula Ballroom) or the Atrium</li>
+                                                <li>Round and long tables available</li>
+                                                <li>We encourage playtests, but demo games should be run in the <a href="/small-press-showcase">Small Press Showcase</a>
                                             </ul>
                                         </div>
                                         <div data-if="format" data-if-value="LARP" class="directions">
@@ -179,7 +180,7 @@
                                             </ul>
                                         </div>
                                     </fieldset>
-                                    <fieldset data-if="format" data-if-value="Board Game" class="mb-base">
+                                    <fieldset data-if="format" data-if-value="Board/Card Game" class="mb-base">
                                         <legend>Table Type</legend>
                                         <label for="tableType">Board game table type requested</label>
                                         <select id="tableType" name="tableType" required data-error-msg="Table type is required">
@@ -204,7 +205,7 @@
                                         </select>
                                         <af-error for="requestPrivateRoomRPG">Required</af-error>
                                     </fieldset>
-                                    <fieldset data-if="format" data-if-value="Board Game">
+                                    <fieldset data-if="format" data-if-value="Board/Card Game">
                                         <legend>Location</legend>
                                         <label for="requestPrivateRoomBoardGame">Location Preference</label>
                                         <select id="requestPrivateRoomBoardGame" name="requestPrivateRoom" required>
@@ -262,7 +263,7 @@
                                             <input type="text" id="eventName" name="eventName" required maxlength="75">
                                             <af-error for="eventName">Required</af-error>
                                         </fieldset>
-                                        <fieldset data-if="format" data-if-regex="RPG|LARP|Board Game|GoD" class="form-group-cols-2">
+                                        <fieldset data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD" class="form-group-cols-2">
                                             <div>
                                                 <div class="label-error-wrapper">
                                                     <label for="system" class="required">System</label>
@@ -320,10 +321,10 @@
 
                                 <af-step data-title="Players/Attendees">
                                     <fieldset>
-                                        <legend data-if="format" data-if-regex="RPG|LARP|Board Game|GoD">Player Info</legend>
+                                        <legend data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD">Player Info</legend>
                                         <legend data-if="format" data-if-regex="Panel|Special Event|Workshop|Podcast/Stream">Attendee Info</legend>
                                         <fieldset data-if="gmAge" data-if-value="18+">
-                                            <label for="playerAttendeeAge18" data-if="format" data-if-regex="RPG|LARP|Board Game|GoD">Player Age</label>
+                                            <label for="playerAttendeeAge18" data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD">Player Age</label>
                                             <label for="playerAttendeeAge18" data-if="format" data-if-regex="Panel|Special Event|Workshop|Podcast/Stream">Attendee Age</label>
                                             <select id="playerAttendeeAge18" name="playerAge" required>
                                                 <option disabled selected value=""> -- Choose One -- </option>
@@ -333,22 +334,22 @@
                                             <af-error for="playerAttendeeAge18">Required</af-error>
                                         </fieldset>
                                         <fieldset data-if="gmAge" data-if-value="13+">
-                                            <label for="playerAttendeeAge13" data-if="format" data-if-regex="RPG|LARP|Board Game|GoD">Player Age</label>
+                                            <label for="playerAttendeeAge13" data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD">Player Age</label>
                                             <label for="playerAttendeeAge13" data-if="format" data-if-regex="Panel|Special Event|Workshop|Podcast/Stream">Attendee Age</label>
                                             <input type="text" name="playerAttendeeAge13" readonly value="13+">
                                         </fieldset>
                                         {# Min/Max is not used for panels or podcast/streams #}
                                         {# Podcast / Stream has no attendees #}
                                         {# Panel set to min 1 and max 50 on backend #}
-                                        <fieldset class="form-group-cols-3" data-if="format" data-if-regex="RPG|LARP|Board Game|GoD|Special Event|Workshop">
+                                        <fieldset class="form-group-cols-3" data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD|Special Event|Workshop">
                                             <div>
-                                                <label for="minPlayers" data-if="format" data-if-regex="RPG|LARP|Board Game|GoD">Min Players</label>
+                                                <label for="minPlayers" data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD">Min Players</label>
                                                 <label for="minPlayers" data-if="format" data-if-regex="Special Event|Workshop">Min Attendees</label>
                                                 <input id="minPlayers" name="minPlayers" type="number" size="2" class="w-20" required min="1" value="1"/>
                                                 <af-error for="minPlayers">Required</af-error>
                                             </div>
                                             <div>
-                                                <label for="players" data-if="format" data-if-regex="RPG|LARP|Board Game|GoD">Max Players</label>
+                                                <label for="players" data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD">Max Players</label>
                                                 <label for="players" data-if="format" data-if-regex="Special Event|Workshop">Max Attendees</label>
                                                 <input id="players" name="players" type="number" size="2" class="w-20" required min="1" max="25"/>
                                                 <af-error for="players">Required</af-error>
@@ -390,7 +391,7 @@
                                             </fieldset>
                                         </fieldset>
                                     </fieldset>
-                                    <fieldset data-if="format" data-if-regex="RPG|LARP|Board Game|GoD">
+                                    <fieldset data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD">
                                         <legend>Safety Tools</legend>
                                         <div class="directions">For a description of tools see <a href="/safety-collaboration-tools/">Safety and Collaboration Tools</a>
                                         </div>
@@ -458,7 +459,7 @@
                                             </select>
                                             <af-error for="lengthGoD">Required</af-error>
                                         </fieldset>
-                                        <fieldset data-if="format" data-if-regex="RPG|LARP|Board Game">
+                                        <fieldset data-if="format" data-if-regex="RPG|LARP|Board/Card Game">
                                             <label for="lengthGame">Event Length</label>
                                             <select id="lengthGame" name="eventLength" required>
                                                 <option disabled selected value="">
@@ -474,7 +475,7 @@
                                         </fieldset>
                                         {# End event length options #}
                                     </fieldset>
-                                    <fieldset data-if="format" data-if-regex="RPG|LARP|Board Game|GoD">
+                                    <fieldset data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD">
                                         <legend>Event Repeatability</legend>
                                         <label for="runNumberOfTimes" data-if="format" data-if-not-value="GoD">How many times do you want to run your event?</label>
                                         <label for="runNumberOfTimes" data-if="format" data-if-value="GoD" class="m-0">How many 4 hour Games on Demand slots do you want to run?</label>
@@ -517,7 +518,7 @@
                                             <label><input type="checkbox" name="schedulingPref" value="Sunday 9AM-1PM">Sunday 9AM-1PM</label>
                                             <label><input type="checkbox" name="schedulingPref" value="Sunday 2PM-6PM">Sunday 2PM-6PM</label>
                                         </div>
-                                        <div data-if="format" data-if-regex="Workshop|RPG|LARP|Podcast|Board Game">
+                                        <div data-if="format" data-if-regex="Workshop|RPG|LARP|Podcast|Board/Card Game">
                                             <div data-if="eventLength" data-if-value="1" class="form-group-cols-1">
                                                 <label><input type="checkbox" name="schedulingPref" value="Friday morning (between 9AM-1PM)">Friday morning (between 9AM-1PM)</label>
                                                 <label><input type="checkbox" name="schedulingPref" value="Friday afternoon (between 2PM-6PM)">Friday afternoon (between 2PM-6PM)</label>
@@ -587,7 +588,7 @@
                                                 <label><input type="checkbox" name="eventTags" value="Social Justice">Social Justice</label>
                                             </div>
                                         </fieldset>
-                                        <fieldset data-if="format" data-if-regex="RPG|LARP|Board Game">
+                                        <fieldset data-if="format" data-if-regex="RPG|LARP|Board/Card Game">
                                             <p class="directions">Please select no more than 1-3 per category</p>
                                             <label>Game Focus</label>
                                             <div class="form-group-cols-3">
@@ -604,7 +605,7 @@
                                                 <label><input type="checkbox" name="eventTags" value="Romance">Romance</label>
                                             </div>
                                         </fieldset>
-                                        <fieldset data-if="format" data-if-regex="RPG|LARP|Board Game">
+                                        <fieldset data-if="format" data-if-regex="RPG|LARP|Board/Card Game">
                                             <label>Player Contributions</label>
                                             <div class="form-group-cols-3">
                                                 <label><input type="checkbox" name="eventTags" value="Collaborative">Collaborative</label>
@@ -616,7 +617,7 @@
                                                 <label><input type="checkbox" name="eventTags" value="Strong Storyline">Strong Storyline</label>
                                             </div >
                                         </fieldset>
-                                        <fieldset data-if="format" data-if-regex="RPG|LARP|Board Game">
+                                        <fieldset data-if="format" data-if-regex="RPG|LARP|Board/Card Game">
                                             <label>Game Genre</label>
                                             <div class="form-group-cols-3">
                                                 <label><input type="checkbox" name="eventTags" value="Aliens">Aliens</label>
@@ -634,7 +635,7 @@
                                                 <label><input type="checkbox" name="eventTags" value="Super Powers">Super Powers</label>
                                             </div>
                                         </fieldset>
-                                        <fieldset data-if="format" data-if-regex="RPG|LARP|Board Game">
+                                        <fieldset data-if="format" data-if-regex="RPG|LARP|Board/Card Game">
                                             <label>Game Mood</label>
                                             <div class="form-group-cols-3" >
                                                 <label><input type="checkbox" name="eventTags" value="Comical">Comical</label>
@@ -691,7 +692,7 @@
                                             <div>
                                                 <strong>Event Name:</strong>
                                                 <span data-text="eventName"></span></div>
-                                            <div data-if="format" data-if-regex="RPG|LARP|Board Game|GoD">
+                                            <div data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD">
                                                 <strong>System: </strong>
                                                 <span data-text="system"></span>
                                                 <em data-if="playtest" data-if-value="Yes">Playtest</em>
@@ -706,7 +707,7 @@
                                             </div>
                                         </div>
                                         <div>
-                                            <h4 data-if="format" data-if-regex="RPG|LARP|Board Game|GoD">Player Info</h4>
+                                            <h4 data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD">Player Info</h4>
                                             <h4 data-if="format" data-if-regex="Panel|Special Event|Workshop|Podcast/Stream">Attendee Info</h4>
                                             <p class="italic" data-if="gmAge" data-if-value="13+">
                                                 Event designed for people aged 13+ (no strong content)
@@ -714,7 +715,7 @@
                                             <div>
                                                 <strong>Age:</strong>
                                                 <span data-text="playerAge"></span></div>
-                                            <div data-if="format" data-if-regex="RPG|LARP|Board Game|GoD|Special Event|Workshop">
+                                            <div data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD|Special Event|Workshop">
                                                 <strong>Min:</strong>
                                                 <span data-text="minPlayers"></span>
                                                 <strong>Max:</strong>
@@ -724,7 +725,7 @@
                                                 <strong>Content Advisory:</strong>
                                                 <span data-text="contentAdvisory"></span></div>
                                             <div data-text="triggerWarnings"></div>
-                                            <div data-if="format" data-if-regex="RPG|LARP|Board Game|GoD">
+                                            <div data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD">
                                                 <h4>Safety Tools</h4>
                                                 <span data-text="safetyTools"></span>
                                                 <em data-text="safetyToolsOther"></em>
