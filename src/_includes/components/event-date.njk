@@ -1,12 +1,21 @@
 <div class="flex flex-wrap justify-start gap-xs">
     <strong>Date:</strong>
     {% if (event.eventDuration > 0) %}
-        <span class="whitespace-nowrap" x-text="formatEventDate('{{ event.eventStartDateTime }}', timezone)">{{ event.eventStartDateTime | formatDate }}</span>
-        <div class="whitespace-nowrap">
-            <span class="whitespace-nowrap" x-text="formatEventTime('{{ event.eventStartDateTime }}', timezone)">{{ event.eventStartDateTime | formatTime }}</span>
-            <span class="whitespace-nowrap">(duration {{ event.eventDuration | hoursToHHMM }})</span>
-        </div>
-        <div>{% include "components/timezone-select.njk" %}</div>
+        {% if global.eventType === "in person" %}
+            <span class="whitespace-nowrap">{{ event.eventStartDateTime | formatDate }}</span>
+            <div class="whitespace-nowrap">
+                <span class="whitespace-nowrap">{{ event.eventStartDateTime | formatTime }}</span>
+                <span class="whitespace-nowrap">(duration {{ event.eventDuration | hoursToHHMM }})</span>
+            </div>
+        {% endif %}
+        {% if global.eventType === "online" %}
+            <span class="whitespace-nowrap" x-text="formatEventDate('{{ event.eventStartDateTime }}', timezone)">{{ event.eventStartDateTime | formatDate }}</span>
+            <div class="whitespace-nowrap">
+                <span class="whitespace-nowrap" x-text="formatEventTime('{{ event.eventStartDateTime }}', timezone)">{{ event.eventStartDateTime | formatTime }}</span>
+                <span class="whitespace-nowrap">(duration {{ event.eventDuration | hoursToHHMM }})</span>
+            </div>
+            <div>{% include "components/timezone-select.njk" %}</div>
+        {% endif %}
     {% else %}
         <span class="opacity-50">TBD</span>
     {% endif %}
