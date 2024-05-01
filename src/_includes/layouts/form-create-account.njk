@@ -26,7 +26,7 @@
                 >
                     <div class="prose">
                         <p class="hidden">
-                            <label>Don’t fill this out if you’re human: <input name="bot-field"/></label>
+                            <label>Don't fill this out if you're human: <input name="bot-field"/></label>
                         </p>
                         <p>
                             <em>
@@ -37,51 +37,49 @@
                             <a href="/community-standards" class="icon-scroll">Community Standards</a>
                         </p>
                     </div>
+
                     <fieldset>
                         <legend>Community Standards Agreement</legend>
+                        <p class="text-body mb-base">
+                            <span class="font-bold text-highlight">*</span> Required</p>
                         <div class="flex items-center">
                             <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-model="agree" required>
-                            <label for="agree-to-community-standards" class="text-highlight"3324>
+                            <label for="agree-to-community-standards">
                                 Yes &mdash; I agree to the Big Bad Con Community Standards
                             </label>
                         </div>
                     </fieldset>
                     <fieldset>
                         <legend>Login Info</legend>
+
                         <div class="space-y-sm">
-                            <p class="text-body mb-base">
-                                <span class="font-bold text-highlight">*</span> Required</p>
                             <div>
-                                <label for="userNicename" class="text-xs uppercase">User Name <span class="font-bold text-highlight">*</span></label>
-                                <input class="w-64" id="userNicename" name="userNicename" required type="text" value="" x-model="userNicename" @blur="checkUsername()"/>
-                                <div x-show="userNicenameExists" class="italic font-bold text-highlight">user name already exists</div>
-                            </div>
-                            <div>
-                                <label for="userEmail" class="text-xs uppercase">Email <span class="font-bold text-highlight">*</span></label>
+                                <label for="userEmail" class="text-xs uppercase">Email </label>
                                 <input class="w-64" id="userEmail" name="userEmail" required type="email" value="" x-model="userEmail" autocapitalize="off" autocorrect="off" spellcheck="false"/>
                             </div>
+                            <input type="hidden" :value="userEmail">
                             <div>
-                                <label for="userPass" class="text-xs uppercase">Password <span class="font-bold text-highlight">*</span></label>
+                                <label for="userPass" class="text-xs uppercase">Password </label>
                                 <input class="w-64" id="userPass" name="userPass" required type="password" value="" x-model="userPass"/>
                             </div>
-                            <input type="hidden" value="" name="userLogin" id="userLogin" :value="userNicename"/>
+                            <input type="hidden" value="" name="userNicename" :value="userEmail"/>
+                            <input type="hidden" value="" name="userLogin" :value="userEmail"/>
                         </div>
                     </fieldset>
                     <fieldset>
                         <legend>Your Info</legend>
                         <div class="space-y-sm">
-                            <p class="text-body mb-base">
-                                <span class="font-bold text-highlight">*</span> Required</p>
+
                             <div>
-                                <label for="firstName" class="text-xs uppercase">First Name <span class="font-bold text-highlight">*</span></label>
+                                <label for="firstName" class="text-xs uppercase">First Name </label>
                                 <input class="w-64" id="firstName" name="firstName" required type="text" x-model="firstName" value=""/>
                             </div>
                             <div>
-                                <label for="lastName" class="text-xs uppercase">Last Name <span class="font-bold text-highlight">*</span></label>
+                                <label for="lastName" class="text-xs uppercase">Last Name </label>
                                 <input class="w-64" id="lastName" name="lastName" required type="text" x-model="lastName" value=""/>
                             </div>
                             <div>
-                                <label for="howToDisplay" class="text-xs uppercase">How to Display Your Name <span class="font-bold text-highlight">*</span></label>
+                                <label for="howToDisplay" class="text-xs uppercase">How to Display Your Name </label>
                                 <p class="text-xs text-body mb-sm">This is how your name will be displayed on your badge and online event signups</p>
                                 <select class="w-64" id="howToDisplay" name="howToDisplay" required x-model="howToDisplay" value="">
                                     <option value="firstlast" default>Use my first and last</option>
@@ -89,7 +87,7 @@
                                 </select>
                             </div>
                             <div x-cloak x-show="howToDisplay === 'nickname'">
-                                <label for="nickname" class="text-xs uppercase">Publically Displayed Name <span class="font-bold text-highlight">*</span></label>
+                                <label for="nickname" class="text-xs uppercase">Publically Displayed Name </label>
                                 <input class="w-64" id="nickname" name="nickname" :required="howToDisplay === 'nickname'" type="text" x-model="nickname" value=""/>
                             </div>
                             {# <div>
