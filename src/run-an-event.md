@@ -1,5 +1,5 @@
 ---
-layout: layouts/form-run-an-event2.njk
+layout: layouts/form-run-an-event.njk
 title: Run An Event
 published: true
 description: ''
