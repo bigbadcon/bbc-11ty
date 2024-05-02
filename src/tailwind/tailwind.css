@@ -217,7 +217,7 @@ textarea {
 }
 
 fieldset {
-	@apply transition-opacity my-md;
+	@apply transition-opacity;
 }
 
 fieldset:has(> legend) {
@@ -986,10 +986,6 @@ af-step::part(prev)::before {
 /* -------------------------------------------------------------------------- */
 /*                              Action Form Misc                              */
 /* -------------------------------------------------------------------------- */
-
-fieldset fieldset {
-	margin-block: 0 1em;
-}
 
 fieldset .directions {
 	@apply mt-0 text-sm mb-sm text-body;

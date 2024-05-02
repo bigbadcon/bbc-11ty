@@ -45,15 +45,14 @@
                                 {# Start of form steps #}
                                 <!-- ---------------------------- Personal Info ------------------------------ -->
 
-                                <af-step data-title="Personal">
-                                    <fieldset>
+                                <af-step data-title="Personal" class="grid gap-base">
+                                    <fieldset class="grid gap-base">
                                         <legend>Personal Info</legend>
                                         <fieldset>
                                             <label for="gm">Public Badge Name</label>
                                             <p class="directions">We encourage attendees to use thier first and last names. However, if for privacy reasons you want to use another name, enter it here.</p>
                                             {# Using AlpineJS here as it's already available #}
-                                            <input id="gm" name="gm" type="text" value="" :value="user.displayName"
-                                            required/>
+                                            <input id="gm" name="gm" type="text" value="" :value="user.displayName" required data-persist/>
                                             <af-error for="gm">Required</af-error>
                                         </fieldset>
                                         {# Using AlpineJS here until I replace all the forms with action-form #}
@@ -62,7 +61,7 @@
                                                 Your age at the start of con
                                             </label>
                                             <p class="directions">Big Bad Con is {% include "components/date-range.njk" %}</p>
-                                            <select id="gmAge" name="gmAge" required x-model="yourAge">
+                                            <select id="gmAge" name="gmAge" required x-model="yourAge" data-persist>
                                                 <option disabled selected value="">
                                                     -- Choose One --
                                                 </option>
@@ -219,7 +218,7 @@
                                         </select>
                                         <af-error for="requestPrivateRoomBoardGame">Required</af-error>
                                     </fieldset>
-                                    <fieldset data-if="format" data-if-regex="Podcast/Stream|Panel|Workshop">
+                                    <fieldset data-if="format" data-if-regex="Podcast/Stream|Panel|Workshop" class="grid gap-base">
                                         <legend>Media equipment</legend>
                                         <p class="directions" data-if="format" data-if-value="Panel">Included: Wired speaker system with 6 microphones and clear N95 masks for speakers</p>
                                         <p class="directions" data-if="format" data-if-value="Podcast/Stream">Included: Big Bad Con backdrop and WiFi hotspot</p>
@@ -237,9 +236,12 @@
                                         <fieldset data-if="mediaEquipment" data-if-value="Equipment requested">
                                             <legend>Media equipment requested</legend>
 
-                                            <div class="form-group-cols-2" data-if="format" data-if-regex="Panel|Workshop">
+                                            <div class="form-group-cols-2" data-if="format" data-if-value="Panel">
                                                 <label><input type="checkbox" name="requestMediaEquipment" value="Wireless microphone">Wireless microphone</label>
                                                 <label><input type="checkbox" name="requestMediaEquipment" value="Projector (HDMI) with screen">Projector (HDMI) with screen</label>
+                                            </div>
+                                            <div class="form-group-cols-2" data-if="format" data-if-value="Workshop">
+                                                <label><input type="checkbox" name="requestMediaEquipment" value="HDMI TV (for presentations)">HDMI TV (for presentations)</label>
                                             </div>
                                             <div class="form-group-cols-2" data-if="format" data-if-regex="Podcast/Stream|Wordshop">
                                                 <label><input type="checkbox" name="requestMediaEquipment" value="Yeti mic">Yeti mic</label>
@@ -255,7 +257,7 @@
                                 <!-- ---------------------------- Event Info ------------------------------ -->
 
                                 <af-step data-title="Description">
-                                    <fieldset>
+                                    <fieldset class="grid gap-base">
                                         <legend>Event Info</legend>
                                         <fieldset>
                                             <label for="eventName">Event Name</label>
@@ -313,13 +315,12 @@
                                             <af-error for="characters">Required</af-error>
                                         </fieldset>
                                     </fieldset>
-
                                 </af-step>
 
                                 <!-- ---------------------------- Player Info, Content Advisory, Safety ------------------------------ -->
 
-                                <af-step data-title="Players/Attendees">
-                                    <fieldset>
+                                <af-step data-title="Players/Attendees" class="grid gap-base">
+                                    <fieldset class="grid gap-base">
                                         <legend data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD">Player Info</legend>
                                         <legend data-if="format" data-if-regex="Panel|Special Event|Workshop|Podcast/Stream">Attendee Info</legend>
                                         <fieldset data-if="gmAge" data-if-value="18+">
@@ -341,18 +342,31 @@
                                         {# Podcast / Stream has no attendees #}
                                         {# Panel set to min 1 and max 50 on backend #}
                                         <fieldset class="form-group-cols-3" data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD|Special Event|Workshop">
-                                            <div>
-                                                <label for="minPlayers" data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD">Min Players</label>
-                                                <label for="minPlayers" data-if="format" data-if-regex="Special Event|Workshop">Min Attendees</label>
+                                            <fieldset data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD">
+                                                <label for="minPlayers">Min Players</label>
                                                 <input id="minPlayers" name="minPlayers" type="number" size="2" class="w-20" required min="1" value="1"/>
                                                 <af-error for="minPlayers">Required</af-error>
-                                            </div>
-                                            <div>
-                                                <label for="players" data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD">Max Players</label>
-                                                <label for="players" data-if="format" data-if-regex="Special Event|Workshop">Max Attendees</label>
+                                            </fieldset>
+                                            <fieldset data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD" class="m-0">
+                                                <label for="players">Max Players</label>
                                                 <input id="players" name="players" type="number" size="2" class="w-20" required min="1" max="25"/>
-                                                <af-error for="players">Required</af-error>
-                                            </div>
+                                                <af-error for="players">Required (max: 25)</af-error>
+                                            </fieldset>
+                                            <fieldset data-if="format" data-if-regex="Special Event|Workshop">
+                                                <label for="minPlayers">Min Attendees</label>
+                                                <input id="minPlayers" name="minPlayers" type="number" size="2" class="w-20" required min="1" value="1"/>
+                                                <af-error for="minPlayers">Required</af-error>
+                                            </fieldset>
+                                            <fieldset data-if="format" data-if-value="Workshop" class="m-0">
+                                                <label for="players">Max Attendees</label>
+                                                <input id="players" name="players" type="number" size="2" class="w-20" required min="1" max="25"/>
+                                                <af-error for="players">Required (max: 25)</af-error>
+                                            </fieldset>
+                                            <fieldset data-if="format" data-if-value="Special Event" class="m-0">
+                                                <label for="players">Max Attendees</label>
+                                                <input id="players" name="players" type="number" size="2" class="w-20" required min="1" max="50"/>
+                                                <af-error for="players">Required (max: 50)</af-error>
+                                            </fieldset>
                                         </fieldset>
                                     </fieldset>
                                     <fieldset data-if="format" data-if-not-value="Special Event">
@@ -366,7 +380,7 @@
                                             <div class="italic mb-base" data-if="playerAge" data-if-value="13+">
                                                 Event designed for people aged 13+ (no strong content)
                                             </div>
-                                            <fieldset data-if="playerAge" data-if-value="18+">
+                                            <fieldset data-if="playerAge" data-if-value="18+" class="grid gap-base">
                                                 <fieldset>
                                                     <div class="italic">Event designed for people aged 18+</div>
                                                     <label>Content Advisory</label>
@@ -411,7 +425,7 @@
 
                                 <!-- ---------------------------- Event Scheduling ------------------------------ -->
 
-                                <af-step data-title="Scheduling">
+                                <af-step data-title="Scheduling" class="grid gap-base">
                                     <fieldset>
                                         <legend>Event Duration</legend>
                                         {# Event Length varies by event format; uses data-if to hide display #}
@@ -430,7 +444,6 @@
                                             <p class="directions" >Limited to 2 hours: <em>1 hour recording; 30 min setup and 30 min breakdown</em>
                                             </p>
                                             <select id="lengthPodcast" name="eventLength" required data-error-msg="Length required">
-
                                                 <option value="2" selected>2 hours</option>
                                             </select>
                                             <af-error for="lengthPodcast">Required</af-error>
@@ -489,7 +502,7 @@
                                         </select>
                                         <af-error for="runNumberOfTimes">Required</af-error>
                                     </fieldset>
-                                    <fieldset data-if="eventLength" class="mt-base">
+                                    <fieldset class="mt-base">
                                         <legend>Scheduling Preferences</legend>
                                         <label class="no-preference"><input type="checkbox" name="schedulingPref" value="No Preference"> No Preference</label>
 
@@ -517,7 +530,33 @@
                                             <label><input type="checkbox" name="schedulingPref" value="Sunday 9AM-1PM">Sunday 9AM-1PM</label>
                                             <label><input type="checkbox" name="schedulingPref" value="Sunday 2PM-6PM">Sunday 2PM-6PM</label>
                                         </div>
-                                        <div data-if="format" data-if-regex="Workshop|RPG|LARP|Podcast|Board/Card Game">
+
+                                        <div data-if="format" data-if-value="Panel">
+                                            {# All 1 hour time slots; required to work this way as it can't tell that 1 is auto-selected #}
+                                            <label><input type="checkbox" name="schedulingPref" value="Friday morning (between 9AM-1PM)">Friday morning (between 9AM-1PM)</label>
+                                            <label><input type="checkbox" name="schedulingPref" value="Friday afternoon (between 2PM-6PM)">Friday afternoon (between 2PM-6PM)</label>
+                                            <label><input type="checkbox" name="schedulingPref" value="Saturday morning (between 9AM-1PM)">Saturday morning (between 9AM-1PM)</label>
+                                            <label><input type="checkbox" name="schedulingPref" value="Saturday afternoon (between 2PM-6PM)">Saturday afternoon (between 2PM-6PM)</label>
+                                            <label><input type="checkbox" name="schedulingPref" value="Sunday morning (between 9AM-1PM)">Sunday morning (between 9AM-1PM)</label>
+                                            <label><input type="checkbox" name="schedulingPref" value="Sunday afternoon (between 2PM-6PM)">Sunday afternoon (between 2PM-6PM)</label>
+                                        </div>
+                                        <div data-if="format" data-if-value="Podcast/Stream">
+                                            {# All 2 hour slots; required to work this way as it can't tell that 2 is auto-selected #}
+                                            <label><input type="checkbox" name="schedulingPref" value="Friday 9AM-11AM">Friday 9AM-11AM</label>
+                                            <label><input type="checkbox" name="schedulingPref" value="Friday 11AM-1PM">Friday 11AM-1PM</label>
+                                            <label><input type="checkbox" name="schedulingPref" value="Friday 2PM-4PM">Friday 2PM-4PM</label>
+                                            <label><input type="checkbox" name="schedulingPref" value="Friday 4PM-6PM">Friday 4PM-6PM</label>
+                                            <label><input type="checkbox" name="schedulingPref" value="Saturday 9AM-11AM">Saturday 9AM-11AM</label>
+                                            <label><input type="checkbox" name="schedulingPref" value="Saturday 11AM-1PM">Saturday 11AM-1PM</label>
+                                            <label><input type="checkbox" name="schedulingPref" value="Saturday 2PM-4PM">Saturday 2PM-4PM</label>
+                                            <label><input type="checkbox" name="schedulingPref" value="Saturday 4PM-6PM">Saturday 4PM-6PM</label>
+                                            <label><input type="checkbox" name="schedulingPref" value="Sunday 9AM-11AM">Sunday 9AM-11AM</label>
+                                            <label><input type="checkbox" name="schedulingPref" value="Sunday 11AM-1PM">Sunday 11AM-1PM</label>
+                                            <label><input type="checkbox" name="schedulingPref" value="Sunday 2PM-4PM">Sunday 2PM-4PM</label>
+                                            <label><input type="checkbox" name="schedulingPref" value="Sunday 4PM-6PM">Sunday 4PM-6PM</label>
+                                        </div>
+                                        <div data-if="format" data-if-regex="Workshop|RPG|LARP|Board/Card Game">
+                                            {# Variable time slots #}
                                             <div data-if="eventLength" data-if-value="1" class="form-group-cols-1">
                                                 <label><input type="checkbox" name="schedulingPref" value="Friday morning (between 9AM-1PM)">Friday morning (between 9AM-1PM)</label>
                                                 <label><input type="checkbox" name="schedulingPref" value="Friday afternoon (between 2PM-6PM)">Friday afternoon (between 2PM-6PM)</label>
@@ -526,7 +565,6 @@
                                                 <label><input type="checkbox" name="schedulingPref" value="Sunday morning (between 9AM-1PM)">Sunday morning (between 9AM-1PM)</label>
                                                 <label><input type="checkbox" name="schedulingPref" value="Sunday afternoon (between 2PM-6PM)">Sunday afternoon (between 2PM-6PM)</label>
                                             </div>
-
                                             <div data-if="eventLength" data-if-value="2" class="form-group-cols-2">
                                                 <label><input type="checkbox" name="schedulingPref" value="Friday 9AM-11AM">Friday 9AM-11AM</label>
                                                 <label><input type="checkbox" name="schedulingPref" value="Friday 11AM-1PM">Friday 11AM-1PM</label>
@@ -541,7 +579,6 @@
                                                 <label><input type="checkbox" name="schedulingPref" value="Sunday 2PM-4PM">Sunday 2PM-4PM</label>
                                                 <label><input type="checkbox" name="schedulingPref" value="Sunday 4PM-6PM">Sunday 4PM-6PM</label>
                                             </div>
-
                                             <div data-if="eventLength" data-if-value="4" class="form-group-cols-2">
                                                 <label><input type="checkbox" name="schedulingPref" value="Friday 9AM-1PM">Friday 9AM-1PM</label>
                                                 <label><input type="checkbox" name="schedulingPref" value="Friday 2PM-6PM">Friday 2PM-6PM</label>
@@ -573,7 +610,7 @@
 
                                 <!-- ---------------------------- Additional Info ------------------------------ -->
                                 <af-step data-title="Extra Info">
-                                    <fieldset>
+                                    <fieldset class="grid gap-base">
                                         <legend>Additional Info</legend>
                                         <fieldset data-if="format" data-if-value="Panel">
                                             <p class="directions">Please select no more than 1-3 per category</p>
