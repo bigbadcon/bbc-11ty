@@ -1,7 +1,7 @@
 ---
 layout: layouts/page.njk
 title: Games on Demand FAQ
-published: false
+published: true
 description: ''
 ogImage: ''
 navGroup: Events
