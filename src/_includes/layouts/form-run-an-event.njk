@@ -51,17 +51,17 @@
                                         <fieldset>
                                             <label for="gm">Public Badge Name</label>
                                             <p class="directions">We encourage attendees to use thier first and last names. However, if for privacy reasons you want to use another name, enter it here.</p>
-                                            {# Using AlpineJS here as it's already available #}
-                                            <input id="gm" name="gm" type="text" value="" :value="user.displayName" required data-persist/>
+                                            {# Using AlpineJS storage #}
+                                            <input id="gm" name="gm" type="text" value="" data-store-get="_x_user.displayName" data-listener data-persist required/>
                                             <af-error for="gm">Required</af-error>
                                         </fieldset>
                                         {# Using AlpineJS here until I replace all the forms with action-form #}
-                                        <fieldset x-data="{yourAge:$persist('')}">
+                                        <fieldset>
                                             <label for="gmAge">
                                                 Your age at the start of con
                                             </label>
                                             <p class="directions">Big Bad Con is {% include "components/date-range.njk" %}</p>
-                                            <select id="gmAge" name="gmAge" required x-model="yourAge" data-persist>
+                                            <select id="gmAge" name="gmAge" required data-store-get="yourAge" data-store-set="yourAge" data-listener data-persist>
                                                 <option disabled selected value="">
                                                     -- Choose One --
                                                 </option>
@@ -343,29 +343,29 @@
                                         {# Panel set to min 1 and max 50 on backend #}
                                         <fieldset class="form-group-cols-3" data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD|Special Event|Workshop">
                                             <fieldset data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD">
-                                                <label for="minPlayers">Min Players</label>
-                                                <input id="minPlayers" name="minPlayers" type="number" size="2" class="w-20" required min="1" value="1"/>
-                                                <af-error for="minPlayers">Required</af-error>
+                                                <label for="minPlayersGame">Min Players</label>
+                                                <input id="minPlayersGame" name="minPlayers" type="number" size="2" class="w-20" required min="1" value="1"/>
+                                                <af-error for="minPlayersGame">Required</af-error>
                                             </fieldset>
                                             <fieldset data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD" class="m-0">
-                                                <label for="players">Max Players</label>
-                                                <input id="players" name="players" type="number" size="2" class="w-20" required min="1" max="25"/>
-                                                <af-error for="players">Required (max: 25)</af-error>
+                                                <label for="playersGame">Max Players</label>
+                                                <input id="playersGame" name="players" type="number" size="2" class="w-20" required min="1" max="25"/>
+                                                <af-error for="playersGame">Required (max: 25)</af-error>
                                             </fieldset>
                                             <fieldset data-if="format" data-if-regex="Special Event|Workshop">
-                                                <label for="minPlayers">Min Attendees</label>
-                                                <input id="minPlayers" name="minPlayers" type="number" size="2" class="w-20" required min="1" value="1"/>
-                                                <af-error for="minPlayers">Required</af-error>
+                                                <label for="minPlayersOther">Min Attendees</label>
+                                                <input id="minPlayersOther" name="minPlayers" type="number" size="2" class="w-20" required min="1" value="1"/>
+                                                <af-error for="minPlayersOther">Required</af-error>
                                             </fieldset>
                                             <fieldset data-if="format" data-if-value="Workshop" class="m-0">
-                                                <label for="players">Max Attendees</label>
-                                                <input id="players" name="players" type="number" size="2" class="w-20" required min="1" max="25"/>
-                                                <af-error for="players">Required (max: 25)</af-error>
+                                                <label for="playersWorkshop">Max Attendees</label>
+                                                <input id="playersWorkshop" name="players" type="number" size="2" class="w-20" required min="1" max="25"/>
+                                                <af-error for="playersWorkshop">Required (max: 25)</af-error>
                                             </fieldset>
                                             <fieldset data-if="format" data-if-value="Special Event" class="m-0">
-                                                <label for="players">Max Attendees</label>
-                                                <input id="players" name="players" type="number" size="2" class="w-20" required min="1" max="50"/>
-                                                <af-error for="players">Required (max: 50)</af-error>
+                                                <label for="playersSpecial">Max Attendees</label>
+                                                <input id="playersSpecial" name="players" type="number" size="2" class="w-20" required min="1" max="50"/>
+                                                <af-error for="playersSpecial">Required (max: 50)</af-error>
                                             </fieldset>
                                         </fieldset>
                                     </fieldset>
