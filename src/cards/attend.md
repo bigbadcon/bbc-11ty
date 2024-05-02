@@ -6,7 +6,7 @@ image: ''
 alt: ''
 ---
 
-Badges for Big Bad Con will be available via out fundraiser which we will be announcing soon!
+Badges for Big Bad Con will be available via our [BackerKit Campaign](https://www.backerkit.com/call_to_action/b00667bb-67cd-45b2-8ff3-35a2cf9b285e/landing):
 
 [Hotel Info](https://www.bigbadcon.com/hotel/){.icon-hotel}
 
