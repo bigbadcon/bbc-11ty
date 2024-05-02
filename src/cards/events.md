@@ -5,7 +5,7 @@ order: 2
 published: true
 ---
 
-We will be opening for event submissions soon!
+Have a game or event you'd like to run? Submissions are open now!
 
 [Run an Event](https://www.bigbadcon.com/run-an-event/){.icon-dice}
 
