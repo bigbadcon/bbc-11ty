@@ -94,6 +94,7 @@ exports.handler = async function (event) {
 		!eventCategoryId ||
 		params.email // this is a honeypot field and should not be filled
 	) {
+		console.log("😢 ~ Error Missing params");
 		return {
 			statusCode: 303,
 			headers: {
@@ -193,7 +194,7 @@ exports.handler = async function (event) {
 		eventId = await response.text();
 		console.log("🚀 ~ event submitted, eventID:", eventId);
 	} catch (error) {
-		console.log("Post to BBC API error", error);
+		console.log("😢 ~ BBC API error", error);
 		// TODO: handle error message as adding query doesn't work
 		return {
 			statusCode: 303,
@@ -215,7 +216,7 @@ exports.handler = async function (event) {
 
 	// build payload object; transform all properties to strings
 	let googleSheetPayload = transformObjectPropertiesToString(createEventPayload);
-	console.log("🚀 ~ googleSheetPayload:", googleSheetPayload);
+
 	// Add date and eventId
 	googleSheetPayload = {
 		dateAdded: new Date().toLocaleDateString(),
@@ -230,7 +231,7 @@ exports.handler = async function (event) {
 	delete googleSheetPayload.accessabilityOptions;
 	delete googleSheetPayload.eventCategoryId;
 	delete googleSheetPayload.requestMediaRoom;
-	console.log("🚀 ~ googleSheetPayload:", googleSheetPayload);
+
 	try {
 		const GOOGLE_SHEET_ID = event.headers.referer.includes("submit-a-panel")
 			? process.env.GOOGLE_SHEET_BBO_PANEL
@@ -266,10 +267,11 @@ exports.handler = async function (event) {
 
 		/* ---------------------- Take submit event and add row --------------------- */
 
-		const addedRow = await sheet.addRow(googleSheetPayload);
-		console.log("addedRow", addedRow);
+		await sheet.addRow(googleSheetPayload);
+
+		console.log("🚀 ~ Added to google sheet", eventId);
 	} catch (e) {
-		console.log("Google Sheet failed", e);
+		console.log("😢  ~ Google Sheet failed", eventId);
 	}
 
 	const location = successPage + `#${eventId}`;
