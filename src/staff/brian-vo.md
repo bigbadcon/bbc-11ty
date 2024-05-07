@@ -2,7 +2,7 @@
 title: Brian Vo
 position: Little Red Baskets Coordinator
 tags:
-  - staff
+  - staff-emeritus
 published: true
 gender: (he/him)
 order: 0
