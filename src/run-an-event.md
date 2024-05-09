@@ -1,15 +1,15 @@
 ---
+tags: pages
 layout: layouts/form-run-an-event.njk
 title: Run An Event
 published: true
+eventType: in person
 description: ''
-tags: pages
 ogImage: ''
-navGroup: ''
+navGroup: Events
 navTitle: Run an Event
 order: 2
 icon: dice
-eventType: 'in person'
 _template: page
 ---
 
