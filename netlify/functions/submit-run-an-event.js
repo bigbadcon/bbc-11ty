@@ -171,7 +171,7 @@ exports.handler = async function (event) {
 		userDisplayName: params.userDisplayName,
 	};
 
-	console.log("createEventPayload:", createEventPayload, JSON.stringify(createEventPayload));
+	console.log("createEventPayload:", createEventPayload);
 
 	/* -------------------------------------------------------------------------- */
 	/*                          1. Post to BBC API                                */
@@ -250,7 +250,7 @@ exports.handler = async function (event) {
 			scopes: ["https://www.googleapis.com/auth/spreadsheets"],
 		});
 
-		console.log(GOOGLE_SHEET_ID, serviceAccountAuth);
+		// console.log(GOOGLE_SHEET_ID, serviceAccountAuth);
 
 		const doc = new GoogleSpreadsheet(GOOGLE_SHEET_ID, serviceAccountAuth);
 
