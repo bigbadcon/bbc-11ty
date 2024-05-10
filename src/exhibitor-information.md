@@ -2,13 +2,13 @@
 layout: layouts/exhibitors.njk
 title: Exhibitor Information
 published: true
+eventType: in person
 description: ''
 ogImage: ''
 navGroup: Attend
 navTitle: Exhibitors
 order: 3
 icon: booth
-eventType: 'in person'
 _template: page
 ---
 
@@ -19,17 +19,16 @@ Big Bad Con is a charity event, and that commitment to giving extends to our exh
 **Setup:**
 
 * Thursday 9AM to 6PM
-* Friday 9AM-12PM
 
 **Exhibitor Hall Hours:**
 
-* Friday 12PM-6PM
+* Friday 10AM-6PM
 * Saturday 10AM-6PM
-* Sunday 10AM-4PM
+* Sunday 10AM-2PM
 
 **Teardown**
 
-* Sunday 4PM-8PM
+* Sunday 2PM-6PM
 
 **Hotel Information**
 
@@ -41,17 +40,19 @@ Burlingame, CA 94010
 * Direct loading/unloading access available.
 * See [here](/hotel) for more hotel information.
 
-### Booth Information
+### Cost
 
-* \~300 square feet.
+$600 ($200 of which goes to the scholarship fund), which includes:
+
+* 300 square feet Booth
 * Power outlets available.
 * Two 6' long banquet tables available.
 * Four banquet chairs available.
+* 4 Vendor Badges for your staff ($300 value)
+* 1 Parking spot for load-in/load-out
+* Dedicated vendor WiFi
 * A locked space that only the hotel and the convention steward has access to, to keep your products secure when the dealers room is closed.
-
-### Cost
-
-$300 plus a donation of 10% of your proceeds to the Big Bad Con Scholarship Fund or another charity of your choice. Our scholarship fund helps folks at the intersection of marginalized identities attend the con.
+* Tax deductible receipt for scholarship donation portion of payment. 
 
 ### Application
 
