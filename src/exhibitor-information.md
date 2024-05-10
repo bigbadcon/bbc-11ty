@@ -1,5 +1,5 @@
 ---
-layout: layouts/exhibitors.njk
+layout: layouts/form-exhibitor.njk
 title: Exhibitor Information
 published: true
 eventType: in person
@@ -52,7 +52,7 @@ $600 ($200 of which goes to the scholarship fund), which includes:
 * 1 Parking spot for load-in/load-out
 * Dedicated vendor WiFi
 * A locked space that only the hotel and the convention steward has access to, to keep your products secure when the dealers room is closed.
-* Tax deductible receipt for scholarship donation portion of payment. 
+* Tax deductible receipt for scholarship donation portion of payment.
 
 ### Application
 
