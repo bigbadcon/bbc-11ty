@@ -49,16 +49,6 @@
                                     <label for="product">Product or service your company provides</label>
                                     <textarea cols="30" id="product" name="product" rows="3" x-model="formInfo.product" required ></textarea>
                                 </div>
-                                <div class="required">
-                                    <label for="charitysupported">Charity Supported</label>
-                                    <select id="charitysupported" name="charitysupported" x-model="formInfo.charitySupported" required >
-                                        <option disabled selected value="">
-                                            -- Choose One --
-                                        </option>
-                                        <option>Big Bad Con Scholarship</option>
-                                        <option value="other">Other (fill in below)</option>
-                                    </select>
-                                </div>
                                 <div x-show="formInfo.charitySupported === 'other'" class="required">
                                     <label for="charity-other">Other Charity</label>
                                     <input id="charity-other" name="charity-other" type="text" value="" x-model="formInfo.charityOther" x-required:charitysupported="'other'"/>
