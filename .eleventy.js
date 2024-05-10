@@ -128,6 +128,7 @@ module.exports = (eleventyConfig) => {
 		specifiers: {
 			"action-table": (tag) => `/js/${tag}/index.js`,
 			"action-form": (tag) => `/js/${tag}/index.js`,
+			"action-store": (tag) => `/js/${tag}/action-store.js`,
 		},
 	});
 
@@ -415,6 +416,7 @@ module.exports = (eleventyConfig) => {
 		"node_modules/lite-youtube-embed/src/lite-yt-embed.css": "css/lite-youtube-embed.css",
 		"node_modules/@colinaut/action-form/dist": "js/action-form",
 		"node_modules/@colinaut/action-table/dist": "js/action-table",
+		"node_modules/@colinaut/action-store/dist": "js/action-store",
 	});
 
 	// Pass "static" things straight through from "src" to "dist"

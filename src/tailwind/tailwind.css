@@ -922,15 +922,15 @@ af-progress {
 	--valid-text: var(--header-bg-3);
 }
 
-.js af-step {
+af-step {
 	display: none;
 }
-.js af-step.active {
+af-step.active {
 	display: grid;
+	gap: 1em;
 }
 
 af-step {
-	display: block;
 	padding: 1em;
 	border-radius: 1em;
 	border: 0.22em solid var(--header-bg-3);

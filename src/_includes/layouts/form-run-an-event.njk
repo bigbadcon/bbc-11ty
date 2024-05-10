@@ -30,7 +30,6 @@
 
                                 {# Hidden fields with user data grabbed from localStorage #}
                                 {# Using AlpineJS here as it's already stored via Alpine #}
-                                {# Replace this later with data-store-get and data-store-listen #}
                                 <input type="hidden" name="userId" :value="user.id">
                                 <input type="hidden" name="userEmail" :value="user.userEmail">
                                 <input type="hidden" name="userDisplayName" :value="user.displayName">
@@ -45,14 +44,14 @@
                                 {# Start of form steps #}
                                 <!-- ---------------------------- Personal Info ------------------------------ -->
 
-                                <af-step data-title="Personal" class="grid gap-base">
+                                <af-step data-title="Personal">
                                     <fieldset class="grid gap-base">
                                         <legend>Personal Info</legend>
                                         <fieldset>
                                             <label for="gm">Public Badge Name</label>
                                             <p class="directions">We encourage attendees to use thier first and last names. However, if for privacy reasons you want to use another name, enter it here.</p>
                                             {# Using AlpineJS storage #}
-                                            <input id="gm" name="gm" type="text" value="" data-store-get="_x_user.displayName" data-store-listen data-persist required/>
+                                            <input id="gm" name="gm" type="text" value="" :value="user.displayName" data-persist required/>
                                             <af-error for="gm">Required</af-error>
                                         </fieldset>
                                         {# Using AlpineJS here until I replace all the forms with action-form #}
@@ -61,13 +60,15 @@
                                                 Your age at the start of con
                                             </label>
                                             <p class="directions">Big Bad Con is {% include "components/date-range.njk" %}</p>
-                                            <select id="gmAge" name="gmAge" required data-store-get="yourAge" data-store-set="yourAge" data-store-listen data-persist>
-                                                <option disabled selected value="">
+                                            <action-store store="yourAge" store-listen debug>
+                                                <select id="gmAge" name="gmAge" required data-get-store data-set-store data-persist>
+                                                    <option disabled selected value="">
                                                     -- Choose One --
                                                 </option>
-                                                <option>13+</option>
-                                                <option>18+</option>
-                                            </select>
+                                                    <option>13+</option>
+                                                    <option>18+</option>
+                                                </select>
+                                            </action-store>
                                             <af-error for="gmAge">Required</af-error>
                                         </fieldset>
                                     </fieldset>
@@ -319,7 +320,7 @@
 
                                 <!-- ---------------------------- Player Info, Content Advisory, Safety ------------------------------ -->
 
-                                <af-step data-title="Players/Attendees" class="grid gap-base">
+                                <af-step data-title="Players/Attendees">
                                     <fieldset class="grid gap-base">
                                         <legend data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD">Player Info</legend>
                                         <legend data-if="format" data-if-regex="Panel|Special Event|Workshop|Podcast/Stream">Attendee Info</legend>
@@ -425,7 +426,7 @@
 
                                 <!-- ---------------------------- Event Scheduling ------------------------------ -->
 
-                                <af-step data-title="Scheduling" class="grid gap-base">
+                                <af-step data-title="Scheduling">
                                     <fieldset>
                                         <legend>Event Duration</legend>
                                         {# Event Length varies by event format; uses data-if to hide display #}
