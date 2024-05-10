@@ -1,5 +1,5 @@
 ---
-layout: layouts/form-exhibitor.njk
+layout: layouts/exhibitors.njk
 title: Exhibitor Information
 published: true
 eventType: in person
