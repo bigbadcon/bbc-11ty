@@ -1,13 +1,10 @@
 ---
-layout: layouts/exhibitors.njk
-title: Exhibitor Information
+layout: layouts/form-exhibitor.njk
+title: Become an Exhibitor
 published: true
 eventType: in person
 description: ''
 ogImage: ''
-navGroup: Attend
-navTitle: Exhibitors
-order: 3
 icon: booth
 _template: page
 ---
@@ -55,5 +52,3 @@ $600 ($200 of which goes to the scholarship fund), which includes:
 * Tax deductible receipt for scholarship donation portion of payment.
 
 ### Application
-
-[Signup to be an Exhibitor](/exhibitor-signup)

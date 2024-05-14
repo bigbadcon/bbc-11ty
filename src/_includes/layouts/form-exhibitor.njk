@@ -4,7 +4,7 @@
     <main id="content">
         <div class="mx-auto max-w-content p-base" x-data="formData">
             <h1 class="font-serif text-4xl font-bold leading-none md:text-5xl text-header mb-base">{{title}}</h1>
-            <div class="prose" x-show="formSubmitted" id="form-submitted" >
+            <div class="prose mb-base" x-show="formSubmitted" id="form-submitted" >
                 <h2>Thanks for submitting to be a dealer!</h2>
                 <p>Our staff will review your submission, and let you know about your application soon.</p>
             </div>
@@ -25,13 +25,13 @@
                                 <em>required field</em>
                             </p>
                         </header>
-                        <form class="mt-base" id="form-exhibitor" x-ref="formexhibitor" x-validate @submit.prevent="submitForm" x-data>
+                        <form class="mt-base" id="form-exhibitor" x-ref="formexhibitor" x-validate @submit.prevent="submitForm" x-data class="grid">
                             {# TODO: add honeypot #}
                             <input name="user-display-name" type="hidden" x-model="formInfo.userDisplayName" x-init="formInfo.userDisplayName = user && user.displayName; $watch('user', value => formInfo.userDisplayName = value && value.displayName)">
                             <input name="user-id" type="hidden" x-model="formInfo.userId" x-init="formInfo.userId = user && user.id; $watch('user', value => formInfo.userId = value && value.id)">
                             <input name="user-email" type="hidden" x-model="formInfo.userEmail" x-init="formInfo.userEmail = user && user.userEmail; $watch('user', value => formInfo.userEmail = value && value.userEmail)">
                             {# Personal Info #}
-                            <fieldset>
+                            <fieldset class="grid gap-sm mb-base">
                                 <legend>Company Info</legend>
                                 <div class="required">
                                     <label for="company-name">Company Name</label>
@@ -41,20 +41,41 @@
                                     <label for="website">Website</label>
                                     <input id="website" name="website" type="text" value="" x-model="formInfo.website" x-validate.website required/>
                                 </div>
-                                <div >
-                                    <label for="twitter">Twitter</label>
-                                    <input id="twitter" name="twitter" type="text" value="" x-model="formInfo.twitter"/>
-                                </div>
                                 <div class="required">
                                     <label for="product">Product or service your company provides</label>
                                     <textarea cols="30" id="product" name="product" rows="3" x-model="formInfo.product" required ></textarea>
                                 </div>
-                                <div x-show="formInfo.charitySupported === 'other'" class="required">
-                                    <label for="charity-other">Other Charity</label>
-                                    <input id="charity-other" name="charity-other" type="text" value="" x-model="formInfo.charityOther" x-required:charitysupported="'other'"/>
-                                </div>
+                                <fieldset class="grid md:grid-cols-2 gap-sm mb-base">
+                                    <legend>Social Media</legend>
+                                    <div class="prose col-span-full mb-sm">
+                                        <p class="directions">
+                                        Where can we connect with you on social media, etc. (all optional but we like to connect with people and promote them if possible/desired)
+                                    </p>
+                                    </div>
+                                    <div>
+                                        <label for="mastodon">Mastodon</label>
+                                        <input id="mastodon" name="mastodon" type="text" value="" x-model="formInfo.mastodon"/>
+                                    </div>
+                                    <div>
+                                        <label for="bluesky">Bluesky</label>
+                                        <input id="bluesky" name="bluesky" type="text" value="" x-model="formInfo.bluesky"/>
+                                    </div>
+                                    <div>
+                                        <label for="instagram">Instagram</label>
+                                        <input id="instagram" name="instagram" type="text" value="" x-model="formInfo.instagram"/>
+                                    </div>
+                                    <div>
+                                        <label for="facebook">Facebook</label>
+                                        <input id="facebook" name="facebook" type="text" value="" x-model="formInfo.facebook"/>
+                                    </div>
+                                    <div>
+                                        <label for="xSocial">X (formerly Twitter)</label>
+                                        <input id="xSocial" name="xSocial" type="text" value="" x-model="formInfo.xSocial"/>
+                                    </div>
+                                </fieldset>
+
                             </fieldset>
-                            <fieldset>
+                            <fieldset class="grid gap-sm mb-base">
                                 <legend>Contact Person</legend>
                                 <div class="required">
                                     <label for="contact-name">Name</label>
@@ -69,7 +90,7 @@
                                     <input id="contact-phone" name="contact-phone" type="tel" value="" x-model="formInfo.contactPhone" required/>
                                 </div>
                             </fieldset>
-                            <fieldset>
+                            <fieldset class="grid gap-sm mb-base">
                                 <legend>Community Standards Agreement</legend>
                                 <div class="prose mb-sm">
                                     <p>Big Bad Con is committed to cultivating a culture of respect, support, and kindness at both our in-person and online events. We ask that all of our attendees agree to abide by our Community Standards, please take a moment to read them before answering yes below.</p>
