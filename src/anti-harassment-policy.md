@@ -1,16 +1,16 @@
 ---
+tags: pages
 layout: layouts/page.njk
 title: Anti-Harassment Policy
 published: true
+eventType: both
 description: ''
-tags: pages
+ogImage: ''
 navGroup: Community
+navTitle: ''
 order: 1
 icon: shield
-ogImage: ''
-navTitle: ''
 _template: page
-eventType: 'both'
 ---
 
 We want you to have the best time you possibly can at Big Bad Con. However, if having that fun comes at the cost of someone else’s safety, happiness, or comfort, you must stop. Period.
@@ -28,6 +28,7 @@ Big Bad Con has zero tolerance for harassment of any kind. If you witness or are
 * bathroom policing
 * inappropriate physical contact
 * unwelcome physical attention
+* hate speech
 
 ### In relation to, but not limited to:
 
