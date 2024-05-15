@@ -51,8 +51,8 @@ exports.handler = async function (event) {
 				to: eventBody.userEmail,
 				from: "info@bigbadcon.com",
 				subject: "Thanks for applying to be BBC Exhibitor",
-				text: `Thank you ${eventBody.publicName} for applying to be BBC Exhibitor! Our staff will review your submission and let you know about your application`,
-				html: `Thank you ${eventBody.publicName} for applying to be BBC Exhibitor! Our staff will review your submission and let you know about your application`,
+				text: `Thank you ${eventBody.userDisplayName} for applying to be BBC Exhibitor! Our staff will review your submission and let you know about your application`,
+				html: `Thank you ${eventBody.userDisplayName} for applying to be BBC Exhibitor! Our staff will review your submission and let you know about your application`,
 			};
 
 			await sgMail.send(newUserMsg);
