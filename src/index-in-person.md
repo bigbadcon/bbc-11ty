@@ -21,9 +21,7 @@ _template: page
 
 We are excited to announce Big Bad Con will be October 24th — October 27th.
 
-Badges will be available through our crowdfunding campaign starting May 14. Follow the campaign [here](https://www.backerkit.com/call_to_action/b00667bb-67cd-45b2-8ff3-35a2cf9b285e/landing).
-
-Stay tuned for when event submissions, Games on Demand, and volunteer signs ups will begin!
+We're Crowdfunding now. Get your badge [today](https://www.backerkit.com/c/projects/big-bad-con-inc/big-bad-con-2024/?ref=website)!
 
 **Hyatt Regency San Francisco Airport**\
 1333 Old Bayshore Hwy\
