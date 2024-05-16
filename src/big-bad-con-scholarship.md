@@ -16,15 +16,18 @@ Big Bad Con is committed to cultivating and supporting a spectacular and diverse
 
 Our scholarship funds go towards helping women and people from marginalized genders, people of color, disabled, and lgbtqia+ individuals attend the con. We use it to cover hotel rooms ($149+/night), convention badges ($75), and help with other fees. Depending on the number of applicants, we may be able cover full or partial costs.
 
+As of 2024 the POC Programming Track and Big Bad Con scholarship applications have merged. Scholarship recipients of color will be offered the opportunity to attend the POC Meet & Greet.
+
 ### Timeline
 
 * Scholarship applications are now open! Application window will close on Saturday, June 15th. [Apply here!](/apply-for-scholarship "Apply for scholarship")
+* Scholarship awards offers will be sent out on July 10th.
 
 ### Contributions
 
 If you would like to contribute to the Scholarship Fund, there are a few ways to do it.
 
-* During crowdfunding (starting soon!) you can back at the scholarship level, or add a scholarship contribution as an add-on to another pledge.
+* During crowdfunding (May 14 - June 13, 2024) you can back at the scholarship level, or add a scholarship contribution as an add-on to another pledge. [Pledge here!](https://www.backerkit.com/c/projects/big-bad-con-inc/big-bad-con-2024)
 * You can also donate directly via our [PayPal giving fund](https://www.paypal.com/us/fundraiser/charity/1653860).
 
 Any contributions made after September will be set aside for next year’s fund. Thank you very much for your support!
