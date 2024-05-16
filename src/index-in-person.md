@@ -27,7 +27,7 @@ We're Crowdfunding now. Get your badge [today](https://www.backerkit.com/c/proje
 1333 Old Bayshore Hwy\
 Burlingame, CA 94010
 
-* Thursday 6PM-Midnight (Social Events)
+* Thursday 6PM-Midnight
 * Friday 9AM-Midnight
 * Saturday 9AM-Midnight
 * Sunday 9AM-8PM
