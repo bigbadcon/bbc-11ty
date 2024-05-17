@@ -2,7 +2,7 @@
 layout: layouts/page.njk
 title: Panel and Workshop FAQ
 published: true
-eventType: 'in person'
+eventType: in person
 _template: page
 ---
 
@@ -22,7 +22,7 @@ Our panel track is designed to share insight, knowledge, and experience with par
 ### Seating and Capacity
 
 * Room for up to six (6) presenters (including a moderator, if any) and 50 attendees.
-* Our panels are held in the Cyprus rooms (Salon A and C) and the Harbour Room. ([map](https://www.bigbadcon.com/images/Hotel_Map%202023.pdf))
+* Our panels are held in the Cyprus rooms (Salon A, B, and C). ([map](https://www.bigbadcon.com/images/Hotel_Map%202023.pdf))
 * Chairs are set up in classroom style arrangement but they can be adjusted as needed if requested in advance.
 * Accessible seats and spaces at the front and on a number of aisles are reserved for those who need them.
 
