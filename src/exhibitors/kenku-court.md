@@ -1,6 +1,6 @@
 ---
 title: Kenku Court
-published: false
+published: true
 logo: /images/Kenku Court.png
 twitter: KenkuCourt
 website_name: Kenku Court
