@@ -1,7 +1,7 @@
 ---
 title: Basil Wright
 tags:
-  - poc-scholar
+  - poc-emeritus
 published: true
 gender: he/they/xe
 image: /images/Basil Wright.png
