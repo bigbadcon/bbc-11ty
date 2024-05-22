@@ -1,7 +1,7 @@
 ---
 title: Mars Dave
 tags:
-  - poc-scholar
+  - poc-emeritus
 published: true
 gender: she/they
 image: /images/Mars Dave.jpg
