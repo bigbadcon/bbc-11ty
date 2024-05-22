@@ -1,7 +1,7 @@
 ---
 title: Armaan Babu
 tags:
-  - poc-scholar
+  - poc-emeritus
 published: true
 gender: he/him
 image: /images/Armaan Babu.jpg
