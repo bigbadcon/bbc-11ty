@@ -1,11 +1,11 @@
 ---
-tags:
-  - poc-scholar
-order: null
 title: Cris Viana
 position: ''
+tags:
+  - poc-emeritus
 published: true
 gender: she/her
+order: null
 image: /images/Cris Viana.png
 twitter: crislv
 website_name: Cris Viana Studio
