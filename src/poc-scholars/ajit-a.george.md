@@ -3,7 +3,7 @@ title: Ajit A. George
 position: ''
 tags:
   - poc-team-member
-published: false
+published: true
 gender: he/him
 order: 0
 image: /images/ajit-george.JPG
