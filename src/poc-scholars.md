@@ -1,16 +1,16 @@
 ---
+tags: pages
 layout: layouts/poc-scholars.njk
 title: PoC Scholars
+published: true
+eventType: both
 description: PoC Scholars
-tags: pages
+ogImage: ''
 navGroup: ''
+navTitle: ''
 order: 5
 icon: scholar
-published: true
-ogImage: ''
-navTitle: ''
-eventType: 'both'
 _template: page
 ---
 
-With support form our incredible sponsors (see below), we're able to help these amazing gamers of color attend Big Bad Con:
+With support form our incredible sponsors in 2022 and 2023 (see below), we are proud to have supported these recipients of the POC Scholarship:
