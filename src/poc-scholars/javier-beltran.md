@@ -2,7 +2,7 @@
 title: Javier P. Beltrán
 position: ''
 tags:
-  - poc-scholar
+  - poc-emeritus
 published: true
 gender: he/him
 image: /images/Javier P. Beltrán.png
