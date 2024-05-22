@@ -13,4 +13,6 @@ icon: scholar
 _template: page
 ---
 
-With support form our incredible sponsors in 2022 and 2023 (see below), we are proud to have supported these recipients of the POC Scholarship:
+With support from our incredible sponsors in 2022 and 2023 (see below), we are proud to have supported these recipients of the POC Scholarship!
+
+Our former POC Programming track is now part of our Big Bad Con Scholarship program! Read all about it [here on our blog.](https://www.bigbadcon.com/blog/poc-programming-2024/)
