@@ -1,4 +1,6 @@
 ---
+title: Lucia Versprille
+position: ''
 tags:
   - p
   - o
@@ -11,12 +13,10 @@ tags:
   - l
   - a
   - r
-  - poc-scholar
-order: 0
-title: Lucia Versprille
-position: ''
+  - poc-emeritus
 published: true
 gender: she/her
+order: 0
 image: /images/lucia-versprille.png
 twitter: seersword
 website_name: Seersword
