@@ -18,7 +18,7 @@ tags:
   - e
   - r
   - poc-team-member
-published: false
+published: true
 gender: he/him
 order: 0
 image: /images/anthony-joyce-rivera.jpeg
