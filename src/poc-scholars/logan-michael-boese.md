@@ -1,7 +1,7 @@
 ---
 title: Logan Michael Boese
 tags:
-  - poc-scholar
+  - poc-emeritus
 published: true
 gender: he/him
 image: /images/Logan Michael Boese.jpg
