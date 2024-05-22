@@ -1,7 +1,7 @@
 ---
 title: Brandon O'Brien
 tags:
-  - poc-scholar
+  - poc-emeritus
 published: true
 gender: he/they
 image: /images/Brandon O'Brien.jpg
