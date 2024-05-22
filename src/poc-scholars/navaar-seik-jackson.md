@@ -1,7 +1,7 @@
 ---
 title: Navaar Seik-Jackson
 tags:
-  - poc-scholar
+  - poc-emeritus
 published: true
 gender: he/him
 image: /images/Navaar Seik-Jackson.jpg
