@@ -1,7 +1,7 @@
 ---
 title: Gani Riel Cabezas
 tags:
-  - poc-scholar
+  - poc-emeritus
 published: true
 gender: he/they
 image: /images/Gani Riel Cabezas.jpg
