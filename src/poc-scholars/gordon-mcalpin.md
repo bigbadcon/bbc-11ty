@@ -1,4 +1,6 @@
 ---
+title: Gordon McAlpin
+position: ''
 tags:
   - p
   - o
@@ -12,12 +14,9 @@ tags:
   - a
   - r
   - poc-emeritus
-  - poc-scholar
-order: 0
-title: Gordon McAlpin
-position: ''
 published: true
 gender: he/him
+order: 0
 image: /images/gordon-mcalpin.png
 twitter: gmcalpin
 website_name: Gordon McAlpin
