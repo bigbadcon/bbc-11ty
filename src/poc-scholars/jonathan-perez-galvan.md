@@ -1,7 +1,7 @@
 ---
 title: Jonathan Perez Galvan
 tags:
-  - poc-scholar
+  - poc-emeritus
 published: true
 gender: he/him
 image: /images/Jonathan Perez Galvan.jpeg
