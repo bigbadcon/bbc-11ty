@@ -1,7 +1,7 @@
 ---
 title: Jeramiah Winston
 tags:
-  - poc-scholar
+  - poc-emeritus
 published: true
 gender: he/they
 image: /images/Jeramiah Winston.jpg
