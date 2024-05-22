@@ -3,7 +3,7 @@ title: Carlos Luna
 position: ''
 tags:
   - poc-team-member
-published: false
+published: true
 gender: he/him
 order: null
 image: /images/carlos-luna.jpg
