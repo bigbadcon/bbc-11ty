@@ -3,6 +3,7 @@ title: Indrani Ganguly
 position: ''
 tags:
   - poc-emeritus
+  - poc-team-member
 published: true
 gender: she/they
 order: 0
