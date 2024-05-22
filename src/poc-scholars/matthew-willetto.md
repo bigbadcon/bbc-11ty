@@ -1,7 +1,7 @@
 ---
 title: Matthew Willetto
 tags:
-  - poc-scholar
+  - poc-emeritus
 published: true
 gender: he/him
 image: /images/Matthew Willetto.jpg
