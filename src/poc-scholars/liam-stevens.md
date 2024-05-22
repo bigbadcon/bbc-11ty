@@ -1,7 +1,7 @@
 ---
 title: Liam Stevens
 tags:
-  - poc-scholar
+  - poc-emeritus
 published: true
 gender: he/him/Ia
 image: /images/Liam Stevens.jpg
