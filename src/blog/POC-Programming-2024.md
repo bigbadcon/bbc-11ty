@@ -32,9 +32,7 @@ This year we're adding a new POC Lounge, as a space available to all POC attende
 
 ## Sponsors
 
-Thank you to all of our sponsors! Their support of transformative change in games is so important, and we are grateful for their generous contributions. Our crowdfunding and fundraising efforts are starting in May 2024, and we look forward to listing them here as they are added to our list for this year. 
-
-<!-- 
+Thank you to all of our sponsors! Their support of transformative change in games is so important, and we are grateful for their generous contributions.
 
 Several generous sponsors have already made individual and corporate contributions to make our POC Programming possible.
 
@@ -46,9 +44,17 @@ Critical Role
 
 Darrington Press
 
-And more to come! 
+Dropout TV
 
--->
+### $5,000+
+
+MCDM Productions
+
+Foundry VTT
+
+The Adventure Zone
+
+...And more to come! 
 
 ## Questions and Further Information
 
