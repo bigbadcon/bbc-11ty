@@ -6,13 +6,15 @@ eventType: in person
 _template: page
 ---
 
-Big Bad Con is a tabletop gaming convention focused on supporting gamers from marginalized backgrounds and nurturing a space to grow the gaming community. We welcome panels and workshops that help further these goals 
+Big Bad Con is a tabletop gaming convention focused on supporting gamers from marginalized backgrounds and nurturing a space to grow the gaming community. We welcome panels and workshops that help further these goals.
 
 ![Panels at Big Bad Con](/images/EventFAQ-Panels.png)
 
 ## Panels
 
-Our panel track is designed to share insight, knowledge, and experience with participants attending Big Bad Con. We're looking for panels that share industry insights, offer practical advice, and discuss current topics in game design and the gaming community.
+Our panel track is designed to share insight, knowledge, and experience with participants attending Big Bad Con. We're looking for panels that share industry insights, offer practical advice, and discuss current topics in game design and the gaming community.
+
+Due to space limitations, we are only able to consider a maximum of two event submissions per organizer and only one instance of each event.
 
 ### Time slots
 
