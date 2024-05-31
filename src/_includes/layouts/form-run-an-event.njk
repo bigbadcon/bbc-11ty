@@ -16,7 +16,7 @@
                         <header class="prose">
                             <h2>Submit Your Event</h2>
                         </header>
-                        <action-form novalidate auto-error>
+                        <action-form novalidate auto-error debug>
                             <form method="POST" action="/.netlify/functions/submit-run-an-event" class="prose mt-base" id="form" x-ref="form">
                                 <div class="flex justify-between">
                                     <div>
@@ -45,23 +45,23 @@
                                 {# Start of form steps #}
                                 <!-- ---------------------------- Personal Info ------------------------------ -->
 
-                                <af-step data-title="Personal" class="grid gap-base">
+                                <af-step data-title="Personal">
                                     <fieldset class="grid gap-base">
                                         <legend>Personal Info</legend>
                                         <fieldset>
                                             <label for="gm">Public Badge Name</label>
                                             <p class="directions">We encourage attendees to use thier first and last names. However, if for privacy reasons you want to use another name, enter it here.</p>
                                             {# Using AlpineJS storage #}
-                                            <input id="gm" name="gm" type="text" value="" data-store-get="_x_user.displayName" data-store-listen data-persist required/>
+                                            <input id="gm" name="gm" type="text" value="" :value="user.displayName" data-persist required/>
                                             <af-error for="gm">Required</af-error>
                                         </fieldset>
                                         {# Using AlpineJS here until I replace all the forms with action-form #}
-                                        <fieldset>
+                                        <fieldset x-data="{yourAge: $persist('')}">
                                             <label for="gmAge">
                                                 Your age at the start of con
                                             </label>
                                             <p class="directions">Big Bad Con is {% include "components/date-range.njk" %}</p>
-                                            <select id="gmAge" name="gmAge" required data-store-get="yourAge" data-store-set="yourAge" data-store-listen data-persist>
+                                            <select id="gmAge" name="gmAge" required x-model="yourAge" data-persist>
                                                 <option disabled selected value="">
                                                     -- Choose One --
                                                 </option>
@@ -319,7 +319,7 @@
 
                                 <!-- ---------------------------- Player Info, Content Advisory, Safety ------------------------------ -->
 
-                                <af-step data-title="Players/Attendees" class="grid gap-base">
+                                <af-step data-title="Players/Attendees">
                                     <fieldset class="grid gap-base">
                                         <legend data-if="format" data-if-regex="RPG|LARP|Board/Card Game|GoD">Player Info</legend>
                                         <legend data-if="format" data-if-regex="Panel|Special Event|Workshop|Podcast/Stream">Attendee Info</legend>
@@ -425,7 +425,7 @@
 
                                 <!-- ---------------------------- Event Scheduling ------------------------------ -->
 
-                                <af-step data-title="Scheduling" class="grid gap-base">
+                                <af-step data-title="Scheduling">
                                     <fieldset>
                                         <legend>Event Duration</legend>
                                         {# Event Length varies by event format; uses data-if to hide display #}

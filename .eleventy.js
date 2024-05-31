@@ -409,11 +409,13 @@ module.exports = (eleventyConfig) => {
 	/*                                 Build Stuff                                */
 	/* -------------------------------------------------------------------------- */
 
+	// TODO: replace with new version of NPM action-form when it is working
 	// Pass through 3rd party libraries
 	eleventyConfig.addPassthroughCopy({
 		"node_modules/lite-youtube-embed/src/lite-yt-embed.js": "js/lite-youtube-embed.js",
 		"node_modules/lite-youtube-embed/src/lite-yt-embed.css": "css/lite-youtube-embed.css",
-		"node_modules/@colinaut/action-form/dist": "js/action-form",
+		// "node_modules/@colinaut/action-form/dist": "js/action-form",
+		"src/_scripts/action-form": "js/action-form",
 		"node_modules/@colinaut/action-table/dist": "js/action-table",
 	});
 
