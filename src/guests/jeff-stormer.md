@@ -1,6 +1,6 @@
 ---
 title: Jeff Stormer
-published: true
+published: false
 gender: he/him
 image: /images/Jeff Stormer.jpg
 twitter: PartyOfOnePod
@@ -17,4 +17,3 @@ Jeff will be running these events:
 * The Shared Language of TTRPGs & Pro Wrestling (Panel)
 * [Mission: ACCOMPLISHED!](https://www.bigbadcon.com/events/mission-accomplished)
 * [Anyone Can Wear the Mask](https://www.bigbadcon.com/events/anyone-can-wear-the-mask) (x2)
-
