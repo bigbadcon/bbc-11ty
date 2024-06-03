@@ -1,6 +1,6 @@
 ---
 title: Elliot Baker
-published: true
+published: false
 gender: any pronouns
 image: /images/Elliot Baker.jpg
 website_name: 'Meguey & Vincent Baker, et al'
