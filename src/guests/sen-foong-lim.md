@@ -1,6 +1,6 @@
 ---
 title: Sen-Foong Lim
-published: true
+published: false
 gender: he/him
 image: /images/Sen-Foong Lim.jpeg
 twitter: senfoonglim
