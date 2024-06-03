@@ -1,6 +1,6 @@
 ---
 title: Dominique Dickey
-published: true
+published: false
 gender: they/them
 image: /images/Dominique Dickey.jpg
 twitter: domsdickey
