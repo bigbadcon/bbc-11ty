@@ -2,6 +2,7 @@
 title: Jonathan Connor Self
 published: true
 gender: he/him
+image: /images/connor.jpg
 website_name: thehealerdm.carrd.com
 website_url: 'http://thehealerdm.carrd.com'
 ---
