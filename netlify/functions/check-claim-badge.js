@@ -46,12 +46,6 @@ exports.handler = async function (event) {
 		// Initialize the sheet - doc ID is the long id in the sheets URL
 		const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_BADGE_CLAIM, serviceAccountAuth);
 
-		// Initialize Auth - see more available options at https://theoephraim.github.io/node-google-spreadsheet/#/getting-started/authentication
-		await doc.useServiceAccountAuth({
-			client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-			private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"),
-		});
-
 		await doc.loadInfo(); // loads document properties and worksheets
 
 		// Get main sheet and rows
@@ -63,10 +57,12 @@ exports.handler = async function (event) {
 
 		const badgeClaimCode = params.badgeClaimCode.trim();
 
-		console.log("code", badgeClaimCode, rows.length);
-		const isBadgeCodeReal = rows.some((row) => {
-			return row.badgeClaimCode === badgeClaimCode;
+		let badgeClaimCodeRowIndex = null;
+		const isBadgeCodeReal = rows.some((row, i) => {
+			badgeClaimCodeRowIndex = i;
+			return row.get("badgeClaimCode") === badgeClaimCode;
 		});
+		console.log("Badge Claim code check", badgeClaimCode, rows.length, isBadgeCodeReal, badgeClaimCodeRowIndex);
 
 		// return to error page if code does not exist
 		if (!isBadgeCodeReal) {
@@ -78,12 +74,11 @@ exports.handler = async function (event) {
 			};
 		}
 
-		// grab row with matching badge code
-		const badgeRow = rows.findIndex((row) => row.badgeClaimCode === badgeClaimCode);
+		const isBadgeCodeUsed = rows[badgeClaimCodeRowIndex].get("dateClaimed");
 
-		const isBadgeCodeUsed = rows[badgeRow].dateClaimed;
+		console.log("isBadgeCodeUsed", isBadgeCodeUsed);
 
-		// return to error page if code is used
+		// return to error page if code does not exist or if code is used
 		if (isBadgeCodeUsed) {
 			return {
 				statusCode: 303,
@@ -106,13 +101,17 @@ exports.handler = async function (event) {
 		);
 
 		// set row with user data
-		rows[badgeRow].userNicename = params.userNicename;
-		rows[badgeRow].userEmail = params.userEmail;
-		rows[badgeRow].userId = params.userId;
-		rows[badgeRow].dateClaimed = new Date().toLocaleDateString();
+		const badgeRow = rows[badgeClaimCodeRowIndex];
+		badgeRow.set("userNicename", params.userNicename);
+		badgeRow.set("userEmail", params.userEmail);
+		badgeRow.set("userId", params.userId);
+		const today = new Date().toLocaleDateString();
+		badgeRow.set("dateClaimed", today);
 
 		//save row
-		await rows[badgeRow].save();
+		await badgeRow.save();
+
+		console.log("Badge Claim code used", badgeClaimCode, params.userNicename, params.userId, today);
 
 		// return to success page
 		return {

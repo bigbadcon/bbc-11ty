@@ -24,7 +24,7 @@
                 x-data="{agree:false}"
                 method="POST" name="claim-badge" 
                 data-netlify="true" netlify-honeypot="bot-field" 
-                action="/.netlify/functions/check-claim-badge" class="prose">
+                action="/.netlify/functions/check-claim-badge" class="grid prose gap-base">
                     <p class="hidden">
                         <label>Don’t fill this out if you’re human: <input name="bot-field"/></label>
                     </p>
@@ -33,12 +33,15 @@
                     <input type="hidden" id="userNicename" name="userNicename" value="" :value="user && user.userNicename">
                     <input type="hidden" id="userId" name="userId" value="" :value="user && user.id">
                     <input type="hidden" id="formName" name="formName" value="claim-badge">
-                    <p>Big Bad Con is committed to cultivating a culture of respect, support, and kindness at both our in-person and online events. We ask that all of our attendees agree to abide by our Community Standards, please take a moment to read them before answering yes below.</p>
-                    <p>
-                        <a href="/community-standards" class="icon-scroll">Community Standards</a>
-                    </p>
+
                     <fieldset>
                         <legend>Community Standards Agreement</legend>
+                        <div>
+                            <p>Big Bad Con is committed to cultivating a culture of respect, support, and kindness at both our in-person and online events. We ask that all of our attendees agree to abide by our Community Standards, please take a moment to read them before answering yes below.</p>
+                            <p>
+                                <a href="/community-standards" class="icon-scroll">Community Standards</a>
+                            </p>
+                        </div>
                         <div class="flex items-center">
                             <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-model="agree" required>
                             <label for="agree-to-community-standards" >
