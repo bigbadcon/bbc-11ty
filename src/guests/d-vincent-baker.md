@@ -3,9 +3,9 @@ title: D. Vincent Baker
 published: true
 gender: he/him
 image: /images/D. Vincent Baker.png
-twitter: lumpleygames
-mastodon: '@lumpley@dice.camp'
-website_name: 'Meguey & Vincent Baker, et al'
+twitter: ''
+mastodon: ''
+website_name: lumpley.itch.io
 website_url: 'https://lumpley.itch.io/'
 ---
 
