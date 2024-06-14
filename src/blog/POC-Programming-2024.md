@@ -40,19 +40,15 @@ We would like to add a special thanks to our major donors:
 
 ### $10,000+
 
-Critical Role
-
-Darrington Press
-
-Dropout TV
+* Critical Role
+* Darrington Press
+* Dropout TV
 
 ### $5,000+
 
-MCDM Productions
-
-Foundry VTT
-
-The Adventure Zone
+* MCDM Productions
+* Foundry VTT
+* The Adventure Zone
 
 ...And more to come! 
 
