@@ -6,11 +6,11 @@ image: ''
 alt: ''
 ---
 
-Badges for Big Bad Con will be available via our [BackerKit Campaign](https://www.backerkit.com/call_to_action/b00667bb-67cd-45b2-8ff3-35a2cf9b285e/landing):
+Our crowdfunding campaign is complete. A limited number of badges will be available soon via pre-order.
 
 [Hotel Info](https://www.bigbadcon.com/hotel/){.icon-hotel}
 
-[Crowdfunding Now!](https://www.backerkit.com/c/projects/big-bad-con-inc/big-bad-con-2024/?ref=website){.icon-backerkit}
+Pre-order (coming soon){.icon-backerkit}
 
 <!--Welcome to Big Bad Con:
 
