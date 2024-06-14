@@ -9,7 +9,6 @@ alt: ''
 Our crowdfunding campaign is complete. A limited number of badges will be available soon via pre-order.
 
 [Hotel Info](https://www.bigbadcon.com/hotel/){.icon-hotel}
-Pre-order (coming soon){.icon-backerkit}
 
 <!--Welcome to Big Bad Con:
 
