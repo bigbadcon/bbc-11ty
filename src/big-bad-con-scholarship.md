@@ -20,7 +20,7 @@ As of 2024 the POC Programming Track and Big Bad Con scholarship applications ha
 
 ### Timeline
 
-* Scholarship applications are now open! Application window will close on Saturday, June 15th. [Apply here!](/apply-for-scholarship "Apply for scholarship")
+* Scholarship applications for 2024 are now closed.
 * Scholarship awards offers will be sent out on July 10th.
 
 ### Contributions
