@@ -2,7 +2,7 @@
 tags: pages
 layout: layouts/form-apply-for-scholarship.njk
 title: Apply For Scholarship
-published: true
+published: false
 eventType: in person
 description: ''
 ogImage: ''
