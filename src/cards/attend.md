@@ -6,9 +6,11 @@ image: ''
 alt: ''
 ---
 
-Our crowdfunding campaign is complete. A limited number of badges will be available soon via pre-order.
+Our crowdfunding campaign is complete. A limited number of badges are available on BackerKit:
 
 [Hotel Info](https://www.bigbadcon.com/hotel/){.icon-hotel}
+
+[Limited Badges Available Here](https://big-bad-con-2024.backerkit.com/hosted_preorders/){.icon-backerkit}
 
 <!--Welcome to Big Bad Con:
 
