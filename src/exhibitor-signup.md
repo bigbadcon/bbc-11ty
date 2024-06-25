@@ -1,7 +1,7 @@
 ---
 layout: layouts/form-exhibitor.njk
 title: Become an Exhibitor
-published: true
+published: false
 eventType: in person
 description: ''
 ogImage: ''
