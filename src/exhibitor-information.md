@@ -56,4 +56,4 @@ $600 ($200 of which goes to the scholarship fund), which includes:
 
 ### Application
 
-[Signup to be an Exhibitor](/exhibitor-signup)
+Exhibitor applications are closed for Big Bad Con 2024. If you are interested in being an exhibitor in the future (2025 and beyond) please contact us at exhibitors\@bigbadcon.com.
