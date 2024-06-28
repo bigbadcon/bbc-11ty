@@ -131,7 +131,7 @@ eleventyComputed:
     </div>
 {% endif %}
 {# Add another GM (only shown for logged in users who is a gm for this event) #}
-{% if event.metadata.System !== "Vending" %}
+{% if not 'Vending' in event.categories %}
     {% set facilitatorTitle = "GM" %}
     {% if event.metadata.System === "Panel" %}
         {% set facilitatorTitle = "Panelist" %}
