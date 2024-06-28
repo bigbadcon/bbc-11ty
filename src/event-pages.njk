@@ -131,46 +131,47 @@ eleventyComputed:
     </div>
 {% endif %}
 {# Add another GM (only shown for logged in users who is a gm for this event) #}
-{% set facilitatorTitle = "GM" %}
-{% if event.metadata.System === "Panel" %}
-    {% set facilitatorTitle = "Panelist" %}
-{% endif %}
-{# this should only show for event owner and admin; if GM list has 6 then this does not show. #}
-<div x-cloak x-show="(isOwner(user?.id) || isAdmin) && gm.length < 6" class="prose rounded-md my-base bg-card p-base" 
+{% if event.metadata.System !== "Vending" %}
+    {% set facilitatorTitle = "GM" %}
+    {% if event.metadata.System === "Panel" %}
+        {% set facilitatorTitle = "Panelist" %}
+    {% endif %}
+    {# this should only show for event owner and admin; if GM list has 6 then this does not show. #}
+    <div x-cloak x-show="(isOwner(user?.id) || isAdmin) && gm.length < 6" class="prose rounded-md my-base bg-card p-base" 
     x-data="{gmGuidLink: '' }"
     x-init="if (isOwner(user?.id) || isAdmin) gmGuidLink = await getAddtlGMCode({{event.eventId}}); $watch('user', async value => {if (isOwner(value?.id) || isAdmin) gmGuidLink = await getAddtlGMCode({{event.eventId}});})">
-    <div x-show="gmGuidLink">
-        <h3>Add Another {{facilitatorTitle}}</h3>
-        <p>
-            <strong x-show="isOwner(user?.id)">You are the owner of this event.</strong> If you need to add another {{facilitatorTitle}}, send them the following link which they can use to add themselves to the event.
+        <div x-show="gmGuidLink">
+            <h3>Add Another {{facilitatorTitle}}</h3>
+            <p>
+                <strong x-show="isOwner(user?.id)">You are the owner of this event.</strong> If you need to add another {{facilitatorTitle}}, send them the following link which they can use to add themselves to the event.
         </p>
-        <p>
-            <a :href="gmGuidLink" x-text="gmGuidLink"></a>
-        </p>
-        <p x-data="{clicked: false}">
-            <button  class="button" :class="clicked && 'clicked'" type="button" @click="navigator.clipboard.writeText(gmGuidLink); clicked = true;" @mouseenter="clicked = false">Copy Link</button>
-            <span x-show="clicked" class="italic ml-base" x-transition>Link copied!</span>
-        </p>
+            <p>
+                <a :href="gmGuidLink" x-text="gmGuidLink"></a>
+            </p>
+            <p x-data="{clicked: false}">
+                <button  class="button" :class="clicked && 'clicked'" type="button" @click="navigator.clipboard.writeText(gmGuidLink); clicked = true;" @mouseenter="clicked = false">Copy Link</button>
+                <span x-show="clicked" class="italic ml-base" x-transition>Link copied!</span>
+            </p>
+        </div>
     </div>
-</div>
-{# Add Yourself as a GM: only shown if the guid is on the link #}
-<div x-cloak x-show="user && !isGm(user.id) && getEventGUID() && gm.length < 6" class="prose rounded-md my-base bg-card p-base" >
-    <h3>Add Yourself as a {{facilitatorTitle}}</h3>
-    <div x-show="gm.length < 6">
-        <p>You have been given a link code to add yourself as a {{facilitatorTitle}} to this event. To add yourself click "Add Me To Event" below.</p>
-        <p>
-            <button class="button" type="button" @click="addAsGm({{event.eventId}}, getEventGUID())">Add Me To Event</button>
-        </p>
+    {# Add Yourself as a GM: only shown if the guid is on the link #}
+    <div x-cloak x-show="user && !isGm(user.id) && getEventGUID() && gm.length < 6" class="prose rounded-md my-base bg-card p-base" >
+        <h3>Add Yourself as a {{facilitatorTitle}}</h3>
+        <div x-show="gm.length < 6">
+            <p>You have been given a link code to add yourself as a {{facilitatorTitle}} to this event. To add yourself click "Add Me To Event" below.</p>
+            <p>
+                <button class="button" type="button" @click="addAsGm({{event.eventId}}, getEventGUID())">Add Me To Event</button>
+            </p>
+        </div>
+        <div x-show="gm.length >= 6">
+            <h3>Max {{facilitatorTitle}}s</h3>
+            <p>The link code you have been given cannot be used we limit events to a maximum of 6 {{facilitatorTitle}}s</p>
+        </div>
     </div>
-    <div x-show="gm.length >= 6">
-        <h3>Max {{facilitatorTitle}}s</h3>
-        <p>The link code you have been given cannot be used we limit events to a maximum of 6 {{facilitatorTitle}}s</p>
-    </div>
-</div>
+{% endif %}
 {# Event Signup / Booking #}
 {# TODO: make this visible for all when events open. Figure out a way to set this automatically. #}
 {# TODO: when do we want event signups to start? 9/25 12pm PT #}
-{# TODO: If this is a Small Press event then make sure they sign up on the form #}
 
 {# Ad hoc form for PoC Dinner #}
 {# TODO: make this dynamic so the event id can change each year #}
@@ -180,6 +181,7 @@ eleventyComputed:
 {% elif('Early Signup' in event.categories) %}
     {% include 'components/event-booking-panel.njk' %}
 {% elif('Vending' in event.categories) %}
+    {# This is the small press showcase #}
     {% include 'components/vending-booking-panel.njk' %}
 {% elif('GoD' in event.categories) %}
     <div class="prose rounded-md bg-card p-base mt-base">
