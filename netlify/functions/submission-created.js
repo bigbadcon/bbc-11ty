@@ -6,9 +6,9 @@ const { GoogleSpreadsheet } = require("google-spreadsheet");
 const environment = process.env.CONTEXT;
 
 const apiBaseUrl = "https://admin.bigbadcon.com:8091/api/";
-const apiKey = `ApiKey ${process.env.BBC_API_KEY}`;
+const bbcApiKey = `ApiKey ${process.env.BBC_API_KEY}`;
 
-exports.handler = async function (event, context) {
+exports.handler = async function (event) {
 	// your server-side functionality
 	const payload = JSON.parse(event.body).payload;
 	const data = payload.data;
@@ -18,9 +18,9 @@ exports.handler = async function (event, context) {
 	/*                       Script for Create Account form                       */
 	/* -------------------------------------------------------------------------- */
 	if (data.formName === "create-account") {
-		console.log("create account function start");
 		const { displayName, firstName, lastName, nickname, userEmail, userPass } = data;
 
+		// login and nicename are the same as email going forward
 		const userNicename = userEmail;
 		const userLogin = userEmail;
 		const properNickname = !nickname || nickname === "" ? displayName : nickname;
@@ -38,90 +38,83 @@ exports.handler = async function (event, context) {
 			// twitter: twitter
 		};
 
+		if (data.phone !== "" || !displayName) {
+			console.log("Check for displayName and phone honeypot trap for", data.phone, userEmail, displayName);
+			return {
+				statusCode: 500,
+				body: "Not allowed",
+			};
+		}
+
+		console.log("create account function start for", userEmail);
+
 		/* -------------------------------------------------------------------------- */
 		/*                                Login as Admin                              */
 		/* -------------------------------------------------------------------------- */
 
-		// TODO: fix this so it uses the API Key
-		const username = process.env.ADMIN_LOGIN;
-		const password = process.env.ADMIN_PASSWORD;
+		let isUser = undefined;
+		const config = { headers: { "x-api-key": bbcApiKey } };
 
-		let token = null;
-		let isUser = false;
-
+		console.log("1. try check userEmail");
 		try {
-			console.log("1. try login");
-			const res = await axios.post(apiBaseUrl + "login", {
-				username: username,
-				password: password,
-			});
-			if (res.status === 200 && res.headers.authorization) {
-				token = res.headers.authorization;
-			}
-		} catch (err) {
-			console.log(err);
-		}
-
-		try {
-			console.log("2. try check username");
-			const config = { headers: { Authorization: token } };
-			const res = await axios.get(apiBaseUrl + `users/username/${userNicename}`, config);
-
+			const res = await axios.get(apiBaseUrl + `users/email/${userEmail}`, config);
+			console.log("res.status", res.status);
 			if (res.status === 200) {
 				isUser = true;
-			} else {
-				console.log("Error with 2. try check password");
 			}
 		} catch (err) {
-			console.log("User does not exist", err.response.config.url, err.response.status);
+			console.log(err.response);
+			console.log("Error with 1", userEmail, err.response.data.message, err.response.status);
+			if (err.response.data.message == "No user found!") {
+				isUser = false;
+			} else {
+				return {
+					statusCode: 500,
+					body: "User email check failed for " + userEmail,
+				};
+			}
 		}
 
 		// If there isn't a user with that name then create it. If not send an email indicating that the user exists
-		if (!isUser) {
+		if (isUser === false) {
 			/* -------------------------------------------------------------------------- */
 			/*                          Attempt to create account                         */
 			/* -------------------------------------------------------------------------- */
+			console.log("2. try create user");
 			try {
-				console.log("3a. try create user");
-				await axios.put(apiBaseUrl + "users/create", params);
+				await axios.put(apiBaseUrl + "users/create", params, config);
 				// console.log("put response", res);
-				console.log("New user successfully created for", userNicename, userEmail, displayName);
+				console.log("New user successfully created for", userEmail, displayName);
 
 				/* -------------------------------------------------------------------------- */
 				/*                     If successful try above send emails                    */
 				/* -------------------------------------------------------------------------- */
-				try {
-					/* --------------------------- New user message ---------------------------- */
-					const newUserMsg = {
-						to: userEmail,
-						from: "info@bigbadcon.com",
-						subject: "Big Bad Con New User Account",
-						text: `Welcome ${displayName}! Your new user account has been created. You can now return to bigbadcon.com to log in!`,
-						html: `Welcome ${displayName}! Your new user account has been created. You can now return to <a href="http://www.bigbadcon.com">bigbadcon.com</a> to log in!`,
-					};
 
-					await sgMail.send(newUserMsg);
-					/* --------------------------- Admin user message --------------------------- */
-					const newUserAdminMsg = {
-						to: "info@bigbadcon.com",
-						from: "info@bigbadcon.com",
-						subject: "New User added",
-						text: `New user ${displayName} added! Email: ${userEmail}; Full name: ${firstName} ${lastName}; userNicename: ${userNicename}`,
-						html: `New user ${displayName} added! Email: ${userEmail}; Full name: ${firstName} ${lastName}; userNicename: ${userNicename}`,
-					};
-					await sgMail.send(newUserAdminMsg);
+				/* --------------------------- New user message ---------------------------- */
+				const newUserMsg = {
+					to: userEmail,
+					from: "info@bigbadcon.com",
+					subject: "Big Bad Con New User Account",
+					text: `Welcome ${displayName}! Your new user account has been created. You can now return to bigbadcon.com to log in!`,
+					html: `Welcome ${displayName}! Your new user account has been created. You can now return to <a href="http://www.bigbadcon.com">bigbadcon.com</a> to log in!`,
+				};
 
-					// finalize function
-					return {
-						statusCode: 200,
-						body: "account submitted and emails sent",
-					};
-				} catch (e) {
-					return {
-						statusCode: e.response.status,
-						body: "Account error with sending emails",
-					};
-				}
+				await sgMail.send(newUserMsg);
+				/* --------------------------- Admin user message --------------------------- */
+				const newUserAdminMsg = {
+					to: "info@bigbadcon.com",
+					from: "info@bigbadcon.com",
+					subject: "New User added",
+					text: `New user ${displayName} added! Email: ${userEmail}; Full name: ${firstName} ${lastName}`,
+					html: `New user ${displayName} added! Email: ${userEmail}; Full name: ${firstName} ${lastName}`,
+				};
+				await sgMail.send(newUserAdminMsg);
+
+				// finalize function
+				return {
+					statusCode: 200,
+					body: "account submitted and emails sent",
+				};
 			} catch (e) {
 				/* -------------------------------------------------------------------------- */
 				/*                      Catch for failed Account creation                     */
@@ -131,75 +124,68 @@ exports.handler = async function (event, context) {
 				/* -------------------------------------------------------------------------- */
 				/*                    Send emails for failed account creation                */
 				/* -------------------------------------------------------------------------- */
-				try {
-					/* --------------------------- New user message ---------------------------- */
-					const newUserMsg = {
-						to: userEmail,
-						from: "info@bigbadcon.com",
-						subject: "Big Bad Con New User Account",
-						text: `Hello ${displayName}, Unfortunately there was a problem adding your account. It's possible that you already have an account with us if you had an account on our old site. As our reset password is broken right now you can go to our old site at https://admin.bigbadcon.com and reset it there. Once reset it will work on our new site. If you have any questions you can reply to this message.`,
-						html: `Hello ${displayName}, Unfortunately there was a problem adding your account. It's possible that you already have an account with us if you had an account on our old site. As our reset password is broken right now you can go to our old site at https://admin.bigbadcon.com and reset it there. Once reset it will work on our new site. An email has been sent to our admin staff to see what is wrong. If you have any questions you can reply to this message.`,
-					};
 
-					await sgMail.send(newUserMsg);
-					/* --------------------------- Admin user message --------------------------- */
-					const newUserAdminMsg = {
-						to: "info@bigbadcon.com",
-						from: "info@bigbadcon.com",
-						subject: "New User Account Creation Failed",
-						text: `The user ${displayName} attempted but failed to create an account. Not sure why it failed. Email: ${userEmail}; Full name: ${firstName} ${lastName}; userNicename: ${userNicename}`,
-						html: `The user ${displayName} attempted but failed to create an account. Not sure why it failed. Email: ${userEmail}; Full name: ${firstName} ${lastName}; userNicename: ${userNicename}`,
-					};
-					await sgMail.send(newUserAdminMsg);
-
-					// finalize function
-					return {
-						statusCode: 500,
-						body: "account creation failed and emails sent",
-					};
-				} catch (e) {
-					return {
-						statusCode: e.response.status,
-						body: "account creation failed. now emails sent",
-					};
-				}
-			}
-		} else {
-			/* ------------- Send email that user exists with that username ------------- */
-			try {
-				console.log("3b. user exists send email");
 				/* --------------------------- New user message ---------------------------- */
 				const newUserMsg = {
 					to: userEmail,
 					from: "info@bigbadcon.com",
 					subject: "Big Bad Con New User Account",
-					text: `Hello ${displayName}, there is already an account set up with the username ${userNicename}. If you had an account on the old Big Bad Con site with this username you can login with the same login/password on the new account! If you did not have an account then please choose a different password.`,
-					html: `Hello ${displayName}, there is already an account set up with the username ${userNicename}. If you had an account on the old Big Bad Con site with this username you can login with the same login/password on the new account! If you did not have an account then please choose a different password.`,
+					text: `Hello ${displayName}, Unfortunately there was a problem adding your account. It's possible that you already have an account with us if you had an account on our old site. As our reset password is broken right now you can go to our old site at https://admin.bigbadcon.com and reset it there. Once reset it will work on our new site. If you have any questions you can reply to this message.`,
+					html: `Hello ${displayName}, Unfortunately there was a problem adding your account. It's possible that you already have an account with us if you had an account on our old site. As our reset password is broken right now you can go to our old site at https://admin.bigbadcon.com and reset it there. Once reset it will work on our new site. An email has been sent to our admin staff to see what is wrong. If you have any questions you can reply to this message.`,
 				};
 
 				await sgMail.send(newUserMsg);
-
 				/* --------------------------- Admin user message --------------------------- */
 				const newUserAdminMsg = {
 					to: "info@bigbadcon.com",
 					from: "info@bigbadcon.com",
 					subject: "New User Account Creation Failed",
-					text: `The user ${displayName} attempted but failed to create an account due to the same username ${userNicename} already being in the system. They have been emailed explaining this. Email: ${userEmail}; Full name: ${firstName} ${lastName}; userNicename: ${userNicename}`,
-					html: `The user ${displayName} attempted but failed to create an account due to the same username ${userNicename} already being in the system. They have been emailed explaining this. Email: ${userEmail}; Full name: ${firstName} ${lastName}; userNicename: ${userNicename}`,
+					text: `The user ${displayName} attempted but failed to create an account. Not sure why it failed. Email: ${userEmail}; Full name: ${firstName} ${lastName}`,
+					html: `The user ${displayName} attempted but failed to create an account. Not sure why it failed. Email: ${userEmail}; Full name: ${firstName} ${lastName}`,
 				};
-				if (environment === "production") await sgMail.send(newUserAdminMsg);
+				await sgMail.send(newUserAdminMsg);
 
 				// finalize function
 				return {
 					statusCode: 500,
-					body: "account creation failed due to same username and emails sent",
-				};
-			} catch (e) {
-				return {
-					statusCode: e.response.status,
-					body: "account creation failed due to same username and emails failed to send",
+					body: "account creation failed and emails sent",
 				};
 			}
+		} else if (isUser === true) {
+			/* ------------- Send email that user exists with that username ------------- */
+
+			console.log("2b. user exists send email");
+			/* --------------------------- New user message ---------------------------- */
+			const newUserMsg = {
+				to: userEmail,
+				from: "info@bigbadcon.com",
+				subject: "Big Bad Con New User Account",
+				text: `Hello ${displayName}, there is already an account set up with the email ${userEmail}. If you need to reset your password, click reset password in the login panel. If you continue to have issues please contact us at info@bigbadcon.com`,
+				html: `Hello ${displayName}, there is already an account set up with the email ${userEmail}. If you need to reset your password, click reset password in the login panel. If you continue to have issues please contact us at info@bigbadcon.com`,
+			};
+
+			await sgMail.send(newUserMsg);
+
+			/* --------------------------- Admin user message --------------------------- */
+			const newUserAdminMsg = {
+				to: "info@bigbadcon.com",
+				from: "info@bigbadcon.com",
+				subject: "New User Account Creation Failed",
+				text: `The user ${displayName} attempted but failed to create an account due to the same email ${userEmail} already being in the system. They have been emailed explaining this. Email: ${userEmail}; Full name: ${firstName} ${lastName}`,
+				html: `The user ${displayName} attempted but failed to create an account due to the same email ${userEmail} already being in the system. They have been emailed explaining this. Email: ${userEmail}; Full name: ${firstName} ${lastName}`,
+			};
+			if (environment === "production") await sgMail.send(newUserAdminMsg);
+
+			// finalize function
+			return {
+				statusCode: 500,
+				body: "account creation failed due to same username and emails sent",
+			};
+		} else {
+			return {
+				statusCode: 500,
+				body: "account creation failed due to user check error",
+			};
 		}
 	}
 
@@ -243,7 +229,7 @@ exports.handler = async function (event, context) {
 				userId: data.userId,
 			};
 
-			const headers = { headers: { "x-api-key": apiKey } };
+			const headers = { headers: { "x-api-key": bbcApiKey } };
 			console.log("addRoleToUser API POST", headers, body);
 			try {
 				const res = await axios.post(apiBaseUrl + `users/addRoleToUser`, body, headers);
@@ -251,7 +237,7 @@ exports.handler = async function (event, context) {
 				if (res.status === 200) {
 					return {
 						statusCode: 200,
-						body: "user added volunter role",
+						body: "user added volunteer role",
 					};
 				} else {
 					return {
@@ -260,10 +246,10 @@ exports.handler = async function (event, context) {
 					};
 				}
 			} catch (err) {
-				console.log("add user role for voluteer failed", err.toString());
+				console.log("add user role for volunteer failed", err.toString());
 				return {
 					statusCode: 200,
-					body: "add user role for voluteer failed",
+					body: "add user role for volunteer failed",
 				};
 			}
 		} catch (e) {

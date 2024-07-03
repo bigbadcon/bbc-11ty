@@ -23,10 +23,13 @@
                 method="POST" 
                 name="create-account"  
                 action="/create-account-thank-you"
+                class="grid gap-base"
                 >
                     <div class="prose">
                         <p class="hidden">
                             <label>Don't fill this out if you're human: <input name="bot-field"/></label>
+                            {# Another honeypot #}
+                            <label>Phone <input name="phone" type="tel" autocomplete="off" value=""></label>
                         </p>
                         <p>
                             <em>
@@ -55,7 +58,8 @@
                         <div class="space-y-sm">
                             <div>
                                 <label for="userEmail" class="text-xs uppercase">Email </label>
-                                <input class="w-64" id="userEmail" name="userEmail" required type="email" value="" x-model="userEmail" autocapitalize="off" autocorrect="off" spellcheck="false"/>
+                                <input class="w-64" id="userEmail" name="userEmail" required type="email" value="" x-model="userEmail" autocapitalize="off" autocorrect="off" spellcheck="false" @blur="checkUsername($el.value)"/>
+                                <div x-cloak x-show="userNicenameExists" class="rounded-md bg-card my-sm p-sm">This login already exists. If you need to reset your password, click reset password in the login panel. If you continue to have issues please contact us at info@bigbadcon.com </div>
                             </div>
                             <input type="hidden" :value="userEmail">
                             <div>
@@ -100,9 +104,9 @@
                     </fieldset>
                     {# TODO: add opt in for mailing list? #}
                     <div data-netlify-recaptcha="true"></div>
-                    <p class="mt-base">
+                    <div class="mt-base">
                         <button type="submit" :disabled="!agree" disabled>Submit</button>
-                    </p>
+                    </div>
                 </form>
             </section>
         </div>

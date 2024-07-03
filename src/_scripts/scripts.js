@@ -843,7 +843,7 @@ document.addEventListener("alpine:init", () => {
 		({
 			agree: false,
 			userNicename: "",
-			userNicenameExists: false,
+			userNicenameExists: undefined,
 			userEmail: "",
 			userPass: "",
 			firstName: "",
@@ -854,11 +854,12 @@ document.addEventListener("alpine:init", () => {
 			twitter: "", // not set up yet in API
 			userLogin: "",
 			// TODO: change to fetch
-			async checkUsername() {
+			async checkUsername(userName) {
 				try {
-					const res = await axios.get(`/.netlify/functions/check-user/${this.userNicename}`);
-					if (res && res.data === "user exists") {
-						this.userNicenameExists = true;
+					const res = await axios.get(`/.netlify/functions/check-user/${userName}`);
+					console.log(res);
+					if (res) {
+						this.userNicenameExists = res.data.isUser;
 					}
 				} catch (err) {
 					// eslint-disable-next-line no-console
