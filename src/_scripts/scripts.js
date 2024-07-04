@@ -1,5 +1,5 @@
 /* global */
-import * as lilRed from "./lil-red.esm.js";
+import * as lilRed from "./lil-red.js";
 import axios from "axios";
 import utf8 from "utf8";
 import dayjs from "dayjs";
@@ -769,6 +769,14 @@ document.addEventListener("alpine:init", () => {
 						// eslint-disable-next-line no-console
 						console.log(e);
 					}
+				},
+				async getImage() {
+					console.log("getImage", this.id);
+					const result = await lilRed.events.public.image(this.id);
+					if (result) {
+						this.event_image = result;
+					}
+					return result;
 				},
 				async uploadImage(e) {
 					// Check network and data service before submitting event

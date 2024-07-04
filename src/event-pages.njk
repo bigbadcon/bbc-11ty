@@ -20,7 +20,7 @@ eleventyComputed:
     <div class="w-full rounded-xl bg-card mb-base" style="aspect-ratio: 16/9;"
     x-data="{src: '{{src}}', defaultImg: '{{event.metadata.event_image}}'}">
         <img src="{{src}}" class="object-cover w-full border-4 border-white rounded-xl event-image drop-shadow-bbc" style="aspect-ratio: 16/9;"
-        x-init="if (event_image && event_image !== defaultImg) $el.setAttribute('src', 'https://admin.bigbadcon.com:8091/images/' + event_image)"
+        x-effect="if (event_image && event_image !== defaultImg) $el.setAttribute('src', 'https://admin.bigbadcon.com:8091/images/' + event_image)"
 />
     </div>
 {% else %}
@@ -28,7 +28,7 @@ eleventyComputed:
     <div class="w-full rounded-xl bg-card mb-base" style="aspect-ratio: 16/9;"
     x-cloak x-show="event_image" x-transitition.opacity>
         <img class="object-cover w-full border-4 border-white rounded-xl event-image drop-shadow-bbc" style="aspect-ratio: 16/9;"
-        x-init="if (event_image) $el.setAttribute('src', 'https://admin.bigbadcon.com:8091/images/' + event_image)"
+        x-effect="if (event_image) $el.setAttribute('src', 'https://admin.bigbadcon.com:8091/images/' + event_image)"
 />
     </div>
 {% endif %}
