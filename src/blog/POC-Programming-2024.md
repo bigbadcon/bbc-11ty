@@ -49,6 +49,7 @@ We would like to add a special thanks to our major donors:
 * MCDM Productions
 * Foundry VTT
 * The Adventure Zone
+* Steve Jackson Games
 
 ...And more to come! 
 
