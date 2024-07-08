@@ -41,7 +41,7 @@ If you aren't able to book your stay at the Hyatt or Crown Plaza, here are some 
 
 The Hyatt offers a free shuttle that runs every 10-15 minutes. At SFO, go to the area marked “**Hotel Shuttle**.” The bus is marked “**Hyatt Regency and Marriott**.”
 
-**Accessible Shuttles**: The hotel provides shuttles with lift gates upon request. Before you fly out, call the hotel (650) 347-1234 and let them know your arrival time to have an accessible shuttle pick you up. Let the know in advance of your departure as well so they can take you back to the airport.
+Accessibility: The shuttle has steps and does not include a lift gate. All guests with mobility assistance needs not met by the shuttle will be reimbursed for rideshare (Lyft, Uber) services they use both to and from the airport. Please submit your charges to the hotel when you check in. We're gathering information now about how you'll be able to submit your bill for the return trip and will update this page once we have it.
 
 ### Parking
 
