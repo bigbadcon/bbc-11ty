@@ -6,11 +6,9 @@ image: ''
 alt: ''
 ---
 
-Our crowdfunding campaign is complete. A limited number of badges are available on BackerKit:
+Our crowdfunding campaign is complete and all remaining badges are sold for 2024! You can still get a badge by [volunteering](https://www.bigbadcon.com/rangers/) or 
 
 [Hotel Info](https://www.bigbadcon.com/hotel/){.icon-hotel}
-
-[Limited Badges Available Here](https://big-bad-con-2024.backerkit.com/hosted_preorders/){.icon-backerkit}
 
 <!--Welcome to Big Bad Con:
 
