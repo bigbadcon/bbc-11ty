@@ -6,7 +6,7 @@ image: ''
 alt: ''
 ---
 
-Our crowdfunding campaign is complete and all remaining badges are sold for 2024! You can still get a badge by [volunteering](https://www.bigbadcon.com/rangers/) or 
+Our crowdfunding campaign is complete and all remaining badges are sold for 2024! You can still get a badge by [volunteering](https://www.bigbadcon.com/rangers/) or [running an event](https://www.bigbadcon.com/run-an-event/).
 
 [Hotel Info](https://www.bigbadcon.com/hotel/){.icon-hotel}
 
