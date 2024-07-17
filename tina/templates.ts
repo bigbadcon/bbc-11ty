@@ -493,6 +493,44 @@ export function poc_scholarsFields() {
 		...socials,
 	] as TinaField[];
 }
+
+export function bbc_scholarsFields() {
+	return [
+		{
+			type: "string",
+			name: "title",
+			label: "Name",
+			required: true,
+		},
+		{
+			type: "string",
+			name: "position",
+			label: "Position Title",
+		},
+		{
+			type: "boolean",
+			name: "published",
+			label: "published",
+		},
+		{
+			type: "string",
+			name: "gender",
+			label: "gender",
+			required: true,
+		},
+		{
+			type: "number",
+			name: "order",
+			label: "order",
+		},
+		{
+			type: "image",
+			name: "image",
+			label: "image",
+		},
+		...socials,
+	] as TinaField[];
+}
 export function staffFields() {
 	return [
 		{

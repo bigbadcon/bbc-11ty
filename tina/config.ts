@@ -188,6 +188,25 @@ export default defineConfig({
 			},
 			{
 				format: "md",
+				label: "BBC Scholars",
+				name: "bbc_scholars",
+				path: "src/bbc-scholars",
+				match: {
+					include: "**/*",
+				},
+				fields: [
+					{
+						type: "rich-text",
+						name: "body",
+						label: "Body of Document",
+						description: "This is the markdown body",
+						isBody: true,
+					},
+					...poc_scholarsFields(),
+				],
+			},
+			{
+				format: "md",
 				label: "Home Page Cards",
 				name: "home_page_cards",
 				path: "src/cards",
