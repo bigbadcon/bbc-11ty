@@ -18,7 +18,7 @@ eleventyComputed:
     {# {% set src = "/event-images-cache/" + event.eventSlug + ".png" %} #}
     {% set src = "https://admin.bigbadcon.com:8091/images/" + event.metadata.event_image %}
     <div class="w-full rounded-xl bg-card mb-base" style="aspect-ratio: 16/9;"
-    x-data="{src: '{{src}}', defaultImg: '{{event.metadata.event_image}}'}">
+    x-data="{src: '{{src}}', defaultImg: '{{event.metadata.event_image}}'}" x-init="getImage()">
         <img src="{{src}}" class="object-cover w-full border-4 border-white rounded-xl event-image drop-shadow-bbc" style="aspect-ratio: 16/9;"
         x-effect="if (event_image && event_image !== defaultImg) $el.setAttribute('src', 'https://admin.bigbadcon.com:8091/images/' + event_image)"
 />
@@ -26,7 +26,7 @@ eleventyComputed:
 {% else %}
     {# If there is no image than make it hidden unless there is an image available #}
     <div class="w-full rounded-xl bg-card mb-base" style="aspect-ratio: 16/9;"
-    x-cloak x-show="event_image" x-transitition.opacity>
+    x-cloak x-show="event_image" x-transitition.opacity x-init="getImage()">
         <img class="object-cover w-full border-4 border-white rounded-xl event-image drop-shadow-bbc" style="aspect-ratio: 16/9;"
         x-effect="if (event_image) $el.setAttribute('src', 'https://admin.bigbadcon.com:8091/images/' + event_image)"
 />

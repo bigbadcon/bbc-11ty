@@ -16,7 +16,7 @@
         <form x-cloak x-show="isAuth && submittingState !== 'complete'"
             method="POST" 
             name="volunteer-signup" 
-            class="prose"
+            class="grid prose gap-base"
             id="volunteer-signup" 
             @submit.prevent="submit($validate.value($el))" x-validate
             x-init="$watch('submittingState', val => {if (val === 'complete') getUserData()})"
@@ -35,7 +35,7 @@
                 <span class="font-bold text-highlight">*</span>
                 <em>required field</em>
             </p>
-            <fieldset>
+            <fieldset class="grid gap-base">
                 <legend>Personal Info</legend>
                 <div class="prose">
                     <strong>Name:</strong>
@@ -66,12 +66,12 @@
                     <textarea cols="30" id="otherInfo" name="otherInfo" rows="3" ></textarea>
                 </div>
             </fieldset>
-            <p>Big Bad Con is committed to cultivating a culture of respect, support, and kindness at both our in-person and online events. We ask that all of our attendees agree to abide by our Community Standards, please take a moment to read them before answering yes below.</p>
-            <p>
-                <a href="/community-standards" class="icon-scroll">Community Standards</a>
-            </p>
             <fieldset>
                 <legend>Community Standards Agreement</legend>
+                <p>Big Bad Con is committed to cultivating a culture of respect, support, and kindness at both our in-person and online events. We ask that all of our attendees agree to abide by our Community Standards, please take a moment to read them before answering yes below.</p>
+                <p>
+                    <a href="/community-standards" class="icon-scroll">Community Standards</a>
+                </p>
                 <div class="flex flex-wrap items-center required">
                     <input type="checkbox" id="communityStandards" name="communityStandards" value="Yes" required >
                     <label for="communityStandards">
