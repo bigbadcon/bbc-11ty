@@ -8,6 +8,7 @@ import {
 	home_page_cardsFields,
 	pageFields,
 	poc_scholarsFields,
+	bbc_scholarsFields,
 	staffFields,
 	guestFields,
 	exhibitorFields,
@@ -202,7 +203,7 @@ export default defineConfig({
 						description: "This is the markdown body",
 						isBody: true,
 					},
-					...poc_scholarsFields(),
+					...bbc_scholarsFields(),
 				],
 			},
 			{
