@@ -504,6 +504,15 @@ export function bbc_scholarsFields() {
 		},
 		{
 			type: "string",
+			name: "year",
+			label: "Year",
+			description:
+				"If the person was selected as a scholar more than once then add each year as a separate item in the list.",
+			list: true,
+			required: true,
+		},
+		{
+			type: "string",
 			name: "position",
 			label: "Position Title",
 		},

@@ -205,6 +205,13 @@ export default defineConfig({
 					},
 					...bbc_scholarsFields(),
 				],
+				defaultItem: () => {
+					// get current year
+					const year = new Date().getFullYear();
+					return {
+						year: [year],
+					};
+				},
 			},
 			{
 				format: "md",
