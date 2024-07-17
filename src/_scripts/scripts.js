@@ -1,5 +1,5 @@
 /* global */
-import * as lilRed from "./lil-red.js";
+import * as lilRed from "./lil-red.esm.js";
 import axios from "axios";
 import utf8 from "utf8";
 import dayjs from "dayjs";
