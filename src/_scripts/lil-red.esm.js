@@ -602,7 +602,11 @@ async function fetcher(url, options) {
 		if (lilRedSettings.verbose) console.log(`RESULT: lilFetch for ${apiPath}`, result);
 		return result;
 	} catch (err) {
-		if (apiPath !== "/" || err.status !== 406) {
+		// check fo
+		// console.log("TEST", err.message, err.message !== "fetch fail status: 406");
+		if (apiPath === "/" || err.message === "fetch fail status: 406") {
+			console.log("lilFetch log error without dispatch", err);
+		} else {
 			dispatch("lil-red-error", `(FETCH) lilFetch failed for ${apiPath}`, err);
 		}
 		return null;
