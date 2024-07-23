@@ -209,7 +209,7 @@ export default defineConfig({
 					// get current year
 					const year = new Date().getFullYear();
 					return {
-						year: [year],
+						year: [year.toString()],
 					};
 				},
 			},
