@@ -3,6 +3,7 @@ title: Kodi Gonzaga
 year:
   - '2024'
 position: BBC Scholar
+published: true
 gender: they/them
 image: /images/Kodi Gonzaga undercut time smaller - Kodi Gonzaga.jpg
 instagram: '@jaztice917'
