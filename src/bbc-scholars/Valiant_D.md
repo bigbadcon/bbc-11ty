@@ -7,7 +7,7 @@ published: true
 gender: he/him
 image: /images/4C3A8764-min - Valiant Dorian.jpg
 twitter: ValiantDorian
-bluesky: valiantdorian@bsky.social
+bluesky: '@valiantdorian@bsky.social'
 twitch: otsospiritbear
 instagram: '@ValiantDorian'
 website_name: Valiant's Carrd
