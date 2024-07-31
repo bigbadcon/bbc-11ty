@@ -3,6 +3,7 @@ title: Meghan Cross
 year:
   - '2024'
 position: BBC Scholar
+published: true
 gender: she/her
 image: /images/Headshot - Meghan Cross.JPG
 twitter: meghanlynnFTW
