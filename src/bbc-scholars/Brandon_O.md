@@ -3,7 +3,9 @@ title: Brandon O'Brien
 year:
   - '2024'
 position: BBC Scholar
+published: true
 gender: he/they
+image: /images/Brandon_n_a - Brandon O_Brien.jpg
 twitter: therisingtithes
 mastodon: '@therisingtithes@wandering.shop'
 bluesky: therisingtithes@bsky.social
