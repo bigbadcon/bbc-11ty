@@ -3,7 +3,9 @@ title: Serenity Pope
 year:
   - '2024'
 position: BBC Scholar
+published: true
 gender: She/Fae/Any
+image: /images/IMG_9148 - Serenity P..jpeg
 twitter: Clickclacksnac
 twitch: Clickclacksnac
 instagram: '@Clickclacksnac'
