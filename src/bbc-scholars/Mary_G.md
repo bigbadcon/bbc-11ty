@@ -7,7 +7,7 @@ published: true
 gender: she/her
 image: /images/MaryGeorgescu - Mary Georgescu.jpg
 twitter: marymakesgames
-bluesky: marymakesgames
+bluesky: '@marymakesgames@.bsky.social'
 twitch: marymakesgames
 instagram: marymakesgames
 facebook: MaryGeorgescu
