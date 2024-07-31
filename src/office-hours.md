@@ -1,4 +1,5 @@
 ---
+layout: layouts/page.njk
 title: Office Hours
 published: true
 eventType: in person
