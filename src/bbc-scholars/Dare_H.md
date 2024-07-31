@@ -3,7 +3,9 @@ title: Dare Hickman
 year:
   - '2024'
 position: BBC Scholar
+published: true
 gender: She/They/Fae
+image: /images/Dare Headshot - Dare Hickman.jpg
 twitter: Dare2Dreamrpg
 twitch: Dare2Dreamrpg
 website_name: Dare's Linktree
