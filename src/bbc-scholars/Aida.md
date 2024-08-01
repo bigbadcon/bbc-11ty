@@ -7,7 +7,7 @@ published: true
 gender: she/her
 image: /images/Aida_headshot2024 - Aida Ana Brañez.png
 twitter: in_the_pan
-bluesky: in-the-pan@bsky.social
+bluesky: in-the-pan.bsky.social
 twitch: EUphoriaAP
 website_name: Aida's Carrd
 website_url: 'https://aida-inthepan.carrd.co/'
