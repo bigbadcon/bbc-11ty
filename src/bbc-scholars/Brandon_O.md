@@ -8,7 +8,7 @@ gender: he/they
 image: /images/Brandon_n_a - Brandon O_Brien.jpg
 twitter: therisingtithes
 mastodon: '@therisingtithes@wandering.shop'
-bluesky: therisingtithes@bsky.social
+bluesky: therisingtithes.bsky.social
 twitch: therisingtithes
 instagram: '@therisingtithes'
 facebook: therisingtithes
