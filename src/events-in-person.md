@@ -13,9 +13,9 @@ permalink: events/
 _template: page
 ---
 
-Big Bad Con 2024 will be happening October 24–27th. We are now accepting [event submissions](/run-an-event/)!
+<!-- Big Bad Con 2024 will be happening October 24–27th. We are now accepting [event submissions](/run-an-event/)!
 
-<!-- The event schedule is now available [here](https://docs.google.com/spreadsheets/d/1VmxraTllYScL33AH-5EzrqAkwppS5EPHMDq1oz7BobA/edit?mc_cid=eaf52d5fe0\&mc_eid=UNIQID#gid=161509786). Signups are open now! -->
+The event schedule is now available [here](https://docs.google.com/spreadsheets/d/1VmxraTllYScL33AH-5EzrqAkwppS5EPHMDq1oz7BobA/edit?mc_cid=eaf52d5fe0\&mc_eid=UNIQID#gid=161509786). Signups are open now! -->
 
 <!-- Events will be displayed here as soon as we start accepting submissions. We will be opening for event submission soon! Stay tuned!-->
 
