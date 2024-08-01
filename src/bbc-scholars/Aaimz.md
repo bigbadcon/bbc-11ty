@@ -4,7 +4,7 @@ year:
   - '2024'
 position: BBC Scholar
 published: true
-gender: she/her
+gender: She/her/they
 image: /images/Snapchat-2037510271 - Aaimz Tako.jpg
 twitter: Aaimz
 twitch: aaimztako
