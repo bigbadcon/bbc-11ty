@@ -28,7 +28,8 @@
 		"svgs": "npx svg-sprite-generate -d src/assets/svgs -o src/static/images/icons.svg",
 		"gd": "git checkout drafts && git merge main",
 		"gm": "git checkout main && git merge drafts",
-		"tinacms:audit": "tinacms audit"
+		"tinacms:audit": "tinacms audit",
+		"clear": "rm -rf .cache"
 	},
 	"dependencies": {
 		"@11ty/eleventy": "^2.0.1",
@@ -38,7 +39,7 @@
 		"@alpinejs/intersect": "^3.10.3",
 		"@alpinejs/persist": "^3.10.3",
 		"@colinaut/action-form": "~0.6.5",
-		"@colinaut/action-table": "^2.4.13",
+		"@colinaut/action-table": "^2.4.15",
 		"@colinaut/alpinejs-plugin-simple-validate": "^1.7.20",
 		"@colinaut/theme-multi-switch": "^0.8.2",
 		"@netlify/functions": "^2.2.1",
