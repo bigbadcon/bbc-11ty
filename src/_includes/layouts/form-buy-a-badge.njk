@@ -23,18 +23,19 @@
             {% if prices.length %}
                 <section x-cloak x-show="isAuth">
                     <form id="form" action="/.netlify/functions/createCheckoutSession" method="POST"
+                    class="grid gap-base mt-base"
                     x-validate x-ref="form" x-data="{price_id: ''}" >
                         <input type="hidden" name="userId" :value="user && user.id" x-validate/>
                         <input type="hidden" name="userEmail" :value="user && user.userEmail" x-validate/>
                         <input type="hidden" name="userDisplayName" :value="user && user.displayName" x-validate>
                         <input type="hidden" name="productType" value="badge" x-validate>
-                        <fieldset x-ref="badgepurchase">
+                        <fieldset x-ref="badgepurchase" class="grid gap-base">
                             <legend>Badge Purchase</legend>
                             <div class="prose">
                                 <label>Who is the badge for?</label>
-                                <div class="flex flex-col items-start">
+                                <div class="flex flex-row items-start gap-base">
                                     <label x-show="!isPaid" class="inline-flex items-center justify-start gap-xs"><input type="radio" name="recipient" value="for me" required x-validate> Me</label>
-                                    <label class="inline-flex items-center justify-start gap-xs"><input type="radio" name="recipient" value="for someone else" :checked="isPaid" required x-validate> Someone Else</label>
+                                    <label class="inline-flex items-center justify-start mt-0 gap-xs"><input type="radio" name="recipient" value="for someone else" :checked="isPaid" required x-validate> Someone Else</label>
                                 </div>
                             </div>
                             <div class="prose required">
@@ -80,7 +81,7 @@
                                 {% endfor %}
                             </div>
                         </fieldset>
-                        <fieldset class="prose" x-cloak x-show="$validate.isComplete($refs.badgepurchase) && $formData.recipient.value === 'for someone else'" x-transition x-ref="giftbadge">
+                        <fieldset class="grid prose mt-base gap-base" x-cloak x-show="$validate.isComplete($refs.badgepurchase) && $formData.recipient.value === 'for someone else'" x-transition x-ref="giftbadge">
                             <legend>Gift Badge</legend>
                             <div class="required">
                                 <label for="anon">Is this an anonymous gift?</label>
@@ -90,7 +91,7 @@
                                     <option value="anonymous">Keep my purchase anonymous</option>
                                 </select>
                             </div>
-                            <div class="required">
+                            <div>
                                 <label for="recipientEmail">Other Person's Email Address</label>
                                 <input type="email" value="" name="recipientEmail" id="recipientEmail" x-required:recipient="'for someone else'" data-error-msg="recipient email required">
                             </div>
@@ -99,14 +100,14 @@
                             <legend>Community Standards</legend>
                             <div class="flex flex-wrap items-center required">
                                 <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" x-validate.required x-ref="agree">
-                                <label for="agree-to-community-standards" class="text-highlight">
+                                <label for="agree-to-community-standards" >
                                     Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Big Bad Con <a href="/community-standards/">Community Standards</a>.
                                     </label>
                                 <span class="error-msg basis-full pt-sm">Agreeing to our <a href="/community-standards/">Community Standards</a> is required</span>
                             </div>
                         </fieldset>
                         {# build html for all badges but only show the one selected in price_id #}
-                        <div class="grid grid-cols-1 mt-base" x-show="$validate.isComplete('form')">
+                        <div class="grid grid-cols-1" x-show="$validate.isComplete('form')">
                             {% for price in prices %}
                                 {% if "Badge" in price.product.name %}
                                     <div class="prose rounded-md shadow bg-card p-base col-span-full row-span-full" x-show="price_id === '{{ price.id }}'" x-transition>
