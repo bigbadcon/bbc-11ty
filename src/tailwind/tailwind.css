@@ -633,6 +633,9 @@ action-table .star input:checked::before {
 .events-table th {
 	@apply pb-xs text-title sm:pr-sm;
 }
+.events-table th button {
+	@apply flex items-center;
+}
 
 .fav-star {
 	mask-image: url(/static/icons/star.svg);
