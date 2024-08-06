@@ -1,4 +1,3 @@
-/* global require process exports */
 require("dotenv").config();
 const environment = process.env.CONTEXT;
 const apiKey = environment === "dev" ? process.env.STRIPE_TEST_KEY : process.env.STRIPE_SECRET_KEY;

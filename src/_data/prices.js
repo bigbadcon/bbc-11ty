@@ -1,4 +1,4 @@
-const environment = process.env.CONTEXT;
+const environment = "prod" || process.env.CONTEXT;
 
 const api_key = environment === "dev" ? process.env.STRIPE_TEST_KEY : process.env.STRIPE_SECRET_KEY;
 
