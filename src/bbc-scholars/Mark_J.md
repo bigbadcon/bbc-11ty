@@ -7,7 +7,7 @@ published: true
 gender: He/they
 image: /images/BBCScholar24/Mark J.jpg
 twitter: morrthemerri_er
-bluesky: Gmmark@bsky.social
+bluesky: Gmmark.bsky.social
 instagram: '@Mjimmh83'
 website_name: Apochromatic Unlimited
 website_url: 'https://www.apocunlimited.com'

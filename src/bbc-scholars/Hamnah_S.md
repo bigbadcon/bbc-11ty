@@ -3,7 +3,9 @@ title: Hamnah Shahid
 year:
   - '2024'
 position: BBC Scholar
+published: true
 gender: any/all
+image: /images/Hamnah_Headshot - Hamnah Shahid.webp
 twitter: LilithTTRPG
 bluesky: LilithTTRPG@bsky.social
 twitch: LilithTTRPG

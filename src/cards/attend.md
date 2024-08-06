@@ -6,7 +6,7 @@ image: ''
 alt: ''
 ---
 
-Due to unprecedented support Big Bad Con 2024 is sold out! Badges are still available with 8+ hours of [volunteering](https://www.bigbadcon.com/rangers/) or [running an event](https://www.bigbadcon.com/run-an-event/).
+Big Bad Con 2024 is sold out. We hope to see you in 2025!
 
 [Hotel Info](https://www.bigbadcon.com/hotel/){.icon-hotel}
 

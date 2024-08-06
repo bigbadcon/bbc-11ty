@@ -3,7 +3,9 @@ title: Morgan Eilish
 year:
   - '2024'
 position: BBC Scholar
+published: true
 gender: she/her
+image: /images/IMG_0645 - Morgan Brandt.jpg
 twitter: morganeilish
 bluesky: morganeilish.bsky.social
 website_name: Portfolio
