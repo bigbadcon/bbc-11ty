@@ -10,7 +10,7 @@ const environment = process.env.CONTEXT;
 const bbcApiBaseUrl = "https://admin.bigbadcon.com:8091/api/";
 const bbcApiKey = `ApiKey ${process.env.BBC_API_KEY}`;
 
-const googleSheetId = process.env.GOOGLE_SHEET_SMALL_PRESS;
+const googleSheetId = process.env.GOOGLE_SHEET_OFFICE_HOURS;
 
 exports.handler = async function (event) {
 	if (event.httpMethod === "POST") {
