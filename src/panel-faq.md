@@ -12,9 +12,11 @@ Big Bad Con is a tabletop gaming convention focused on supporting gamers from ma
 
 ## Panels
 
-Our panel track is designed to share insight, knowledge, and experience with participants attending Big Bad Con. We're looking for panels that share industry insights, offer practical advice, and discuss current topics in game design and the gaming community.
+Our panel track is designed to share insight, knowledge, and experience with Big Bad Con attendees. We look for panels that share creator, industry, or gaming insights, offer practical advice, or discuss current topics in TTRPGs, game design, or community. 
 
-Due to space limitations, we are only able to consider a maximum of one or two event submissions per organizer and only one instance of each event.
+Due to space limitations, we can only consider a maximum of one or two event submissions per organizer. Additionally, we can only accept one instance of each event. 
+
+We are also unable to consider events that rely heavily on audience participation rather than panelist presentations (e.g., Q\&As, AMAs, APs, game or comedy shows).
 
 ### Time slots
 
