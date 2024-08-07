@@ -40,7 +40,7 @@ eleventyComputed:
         <span @click="toggleFav({{event.eventId}})" class="fav-star fav-star--event-page" :class="isFav({{event.eventId}}) && 'favved'">&starf;</span>
     </div>
     {# List of GMs #}
-    <div class="text-2xl font-semibold leading-snug text-highlight pr-base"  x-text="gmString || $el.textContent" >
+    <div class="grid gap-sm">
         <div class="text-2xl font-semibold leading-snug text-highlight pr-base"  x-text="gmString || $el.textContent" >
             {{ event.metadata.GM }}
         </div>
@@ -161,7 +161,7 @@ eleventyComputed:
             <div x-show="gm.length < 6">
                 <p>You have been given a link code to add yourself as a {{facilitatorTitle}} to this event. To add yourself click "Add Me To Event" below.</p>
                 <p>
-                    <button class="button" type="button" @click="addAsGm({{event.eventId}}, getEventGUID())">Add Me To Event</button>
+                    <button class="button" type="button" @click="addAsGm({{event.eventId}}, getEventGUID(), user?.id)">Add Me To Event</button>
                 </p>
             </div>
             <div x-show="gm.length >= 6">
@@ -197,6 +197,10 @@ eleventyComputed:
         <div class="border-2 border-header p-sm my-base">
             <h2 class="text-4xl font-bold text-center text-header">DEV SITE BOOKING</h2>
             {% include 'components/event-booking-panel.njk' %}
+        </div>
+        <div class="prose">
+            <h2>Test error log</h2>
+            <button type="button" @click="log" class="button">Log</button>
         </div>
     {% endif %}
     {# Event links #}

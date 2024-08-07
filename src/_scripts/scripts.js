@@ -626,14 +626,59 @@ document.addEventListener("alpine:init", () => {
 					const result = await lilRed.events.getAddtlGMCode(eventId);
 					return result && `${window.location.href}?guid=${result}`;
 				},
-				async addAsGm(eventId, gmGuid) {
-					console.log("addAsGm", eventId, gmGuid);
-					if (!gmGuid && this.gm.length >= 6) return;
-					const result = await lilRed.bookings.addAsAddtlGM(eventId, gmGuid);
-					if (result) {
-						location.reload();
+				async addAsGm(eventId, gmGuid, userId) {
+					if (!gmGuid) {
+						this.$dispatch("toast", `ERROR: GM code required.`);
+						await fetch("/.netlify/functions/addGMlog", {
+							method: "POST",
+							headers: {
+								"Content-Type": "application/json",
+							},
+							body: JSON.stringify({ log: "ERROR No GM Code", eventId, gmGuid, userId }),
+						});
+						return;
 					}
-					return result;
+					if (this.gm.length >= 6) {
+						this.$dispatch(
+							"toast",
+							`ERROR: There are already the max ${this.gm.length} GMs on this event.`
+						);
+						await fetch("/.netlify/functions/addGMlog", {
+							method: "POST",
+							headers: {
+								"Content-Type": "application/json",
+							},
+							body: JSON.stringify({ log: "ERROR Max GMs", eventId, gmGuid, userId }),
+						});
+						return;
+					}
+					try {
+						const result = await lilRed.bookings.addAsAddtlGM(eventId, gmGuid);
+						if (result) {
+							await fetch("/.netlify/functions/addGMlog", {
+								method: "POST",
+								headers: {
+									"Content-Type": "application/json",
+								},
+								body: JSON.stringify({ log: "Added as GM", result, eventId, gmGuid, userId }),
+							});
+							location.reload();
+						}
+						return result;
+					} catch (error) {
+						this.$dispatch("toast", `ERROR: add GM failed: ${error.message}`);
+						await fetch("/.netlify/functions/addGMlog", {
+							method: "POST",
+							headers: {
+								"Content-Type": "application/json",
+							},
+							body: JSON.stringify({ log: "ERROR", error, eventId, gmGuid }),
+						});
+						return;
+					}
+				},
+				async log(data) {
+					console.log("log", data);
 				},
 			};
 		}
