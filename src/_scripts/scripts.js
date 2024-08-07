@@ -174,7 +174,7 @@ document.addEventListener("alpine:init", () => {
 					await this.getUserData();
 					await this.getAvailableSlots();
 					await this.getBookedEvents();
-					this.modal = "My Account";
+					this.modal = null;
 					await this.getFavEvents();
 					// trigger storage event for Run an Event Form
 					window.dispatchEvent(
@@ -182,6 +182,7 @@ document.addEventListener("alpine:init", () => {
 							key: "_x_authToken",
 						})
 					);
+					location.reload();
 				} else {
 					// eslint-disable-next-line no-console
 					console.log("Login no token");
