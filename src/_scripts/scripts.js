@@ -627,9 +627,10 @@ document.addEventListener("alpine:init", () => {
 					return result && `${window.location.href}?guid=${result}`;
 				},
 				async addAsGm(eventId, gmGuid, userId) {
+					const url = "/.netlify/functions/addGMLog";
 					if (!gmGuid) {
 						this.$dispatch("toast", `ERROR: GM code required.`);
-						await fetch("/.netlify/functions/addGMlog", {
+						await fetch(url, {
 							method: "POST",
 							headers: {
 								"Content-Type": "application/json",
@@ -643,7 +644,7 @@ document.addEventListener("alpine:init", () => {
 							"toast",
 							`ERROR: There are already the max ${this.gm.length} GMs on this event.`
 						);
-						await fetch("/.netlify/functions/addGMlog", {
+						await fetch(url, {
 							method: "POST",
 							headers: {
 								"Content-Type": "application/json",
@@ -655,7 +656,7 @@ document.addEventListener("alpine:init", () => {
 					try {
 						const result = await lilRed.bookings.addAsAddtlGM(eventId, gmGuid);
 						if (result) {
-							await fetch("/.netlify/functions/addGMlog", {
+							await fetch(url, {
 								method: "POST",
 								headers: {
 									"Content-Type": "application/json",
@@ -679,6 +680,13 @@ document.addEventListener("alpine:init", () => {
 				},
 				async log(data) {
 					console.log("log", data);
+					await fetch("/.netlify/functions/addGMLog", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify({ log: "Testing", data }),
+					});
 				},
 			};
 		}
