@@ -1,7 +1,7 @@
 ---
 title: Sadekaronhes
 tags:
-  - poc-scholar
+  - poc-emeritus
 published: true
 gender: any pronouns
 image: /images/Sadekaronhes.png

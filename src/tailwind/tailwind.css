@@ -139,6 +139,14 @@ theme-switch::part(knob) {
 /*                                   Global                                   */
 /* -------------------------------------------------------------------------- */
 
+.text-wrap {
+	text-wrap: wrap;
+}
+
+.font-inherit {
+	font-family: inherit;
+}
+
 /* -------------------------------------------------------------------------- */
 /*                                 Typography                                 */
 /* -------------------------------------------------------------------------- */
@@ -635,6 +643,9 @@ action-table-filters:has(action-table-filter-switch:not(:empty)) {
 
 .events-table th {
 	@apply pb-xs text-title sm:pr-sm;
+}
+.events-table th button {
+	@apply flex items-center;
 }
 
 .fav-star {

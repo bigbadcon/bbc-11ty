@@ -1,7 +1,7 @@
 ---
 title: Layla Bahmanziari
 tags:
-  - poc-scholar
+  - poc-emeritus
 published: true
 gender: zhe/they
 image: /images/Layla Bahmanziari.jpg

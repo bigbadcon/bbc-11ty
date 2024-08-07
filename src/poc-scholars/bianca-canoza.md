@@ -1,11 +1,11 @@
 ---
-tags:
-  - poc-scholar
-order: 0
 title: momatoes
 position: momatoes
+tags:
+  - poc-emeritus
 published: true
 gender: she/her
+order: 0
 image: /images/bianca-canoza.jpg
 twitter: momatoes
 website_name: momatoes

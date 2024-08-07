@@ -1,7 +1,7 @@
 ---
 title: Adrián Mejía
 tags:
-  - poc-scholar
+  - poc-emeritus
 published: true
 gender: he/him
 image: /images/Adrian Mejia.jpg

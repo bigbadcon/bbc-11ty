@@ -2,7 +2,7 @@
 title: Sandra Aranda
 position: Greeter Captain
 tags:
-  - staff
+  - staff-emeritus
 published: true
 gender: (she/her)
 order: 0

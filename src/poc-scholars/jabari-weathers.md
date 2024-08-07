@@ -1,7 +1,7 @@
 ---
 title: Jabari Weathers
 tags:
-  - poc-scholar
+  - poc-emeritus
 published: true
 gender: they/them
 image: /images/Jabari Weathers.jpg

@@ -1,6 +1,6 @@
 ---
 title: K. Tempest Bradford
-published: true
+published: false
 gender: she/her
 image: /images/K. Tempest Bradford.jpg
 mastodon: '@tempest@wandering.shop'

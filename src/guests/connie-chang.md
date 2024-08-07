@@ -1,6 +1,6 @@
 ---
 title: Connie Chang
-published: true
+published: false
 gender: they/he/she
 image: /images/Connie Chang.jpg
 twitter: ByConnieChang

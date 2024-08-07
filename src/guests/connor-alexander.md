@@ -1,6 +1,6 @@
 ---
 title: Connor Alexander
-published: true
+published: false
 gender: he/him
 image: /images/Connor Alexander.JPG
 twitter: CoyoteNCrowRPG

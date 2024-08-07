@@ -1,6 +1,6 @@
 ---
 title: James Mendez Hodes
-published: true
+published: false
 gender: he/him
 image: /images/James Mendez Hodes.jpg
 twitter: LulaVampiro

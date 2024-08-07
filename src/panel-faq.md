@@ -2,17 +2,19 @@
 layout: layouts/page.njk
 title: Panel and Workshop FAQ
 published: true
-eventType: 'in person'
+eventType: in person
 _template: page
 ---
 
-Big Bad Con is a tabletop gaming convention focused on supporting gamers from marginalized backgrounds and nurturing a space to grow the gaming community. We welcome panels and workshops that help further these goals 
+Big Bad Con is a tabletop gaming convention focused on supporting gamers from marginalized backgrounds and nurturing a space to grow the gaming community. We welcome panels and workshops that help further these goals.
 
 ![Panels at Big Bad Con](/images/EventFAQ-Panels.png)
 
 ## Panels
 
-Our panel track is designed to share insight, knowledge, and experience with participants attending Big Bad Con. We're looking for panels that share industry insights, offer practical advice, and discuss current topics in game design and the gaming community.
+Our panel track is designed to share insight, knowledge, and experience with participants attending Big Bad Con. We're looking for panels that share industry insights, offer practical advice, and discuss current topics in game design and the gaming community.
+
+Due to space limitations, we are only able to consider a maximum of one or two event submissions per organizer and only one instance of each event.
 
 ### Time slots
 
@@ -22,7 +24,7 @@ Our panel track is designed to share insight, knowledge, and experience with par
 ### Seating and Capacity
 
 * Room for up to six (6) presenters (including a moderator, if any) and 50 attendees.
-* Our panels are held in the Cyprus rooms (Salon A and C) and the Harbour Room. ([map](https://www.bigbadcon.com/images/Hotel_Map%202023.pdf))
+* Our panels are held in the Cyprus rooms (Salon A, B, and C). ([map](https://www.bigbadcon.com/images/Hotel_Map%202023.pdf))
 * Chairs are set up in classroom style arrangement but they can be adjusted as needed if requested in advance.
 * Accessible seats and spaces at the front and on a number of aisles are reserved for those who need them.
 

@@ -1,7 +1,7 @@
 ---
 title: Diana
 tags:
-  - poc-scholar
+  - poc-emeritus
 published: true
 gender: she/her
 image: /images/Diana.jpeg

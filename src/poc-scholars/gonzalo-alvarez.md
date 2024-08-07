@@ -1,7 +1,7 @@
 ---
 title: Gonzalo Alvarez
 tags:
-  - poc-scholar
+  - poc-emeritus
 published: false
 gender: he/him
 image: /images/Gonzalo Alvarez.jpg

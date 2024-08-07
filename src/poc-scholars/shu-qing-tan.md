@@ -1,7 +1,7 @@
 ---
 title: Shu Qing Tan
 tags:
-  - poc-scholar
+  - poc-emeritus
 published: true
 gender: she/her
 image: /images/Shu Qing Tan.jpg

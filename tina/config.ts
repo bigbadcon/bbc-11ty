@@ -8,6 +8,7 @@ import {
 	home_page_cardsFields,
 	pageFields,
 	poc_scholarsFields,
+	bbc_scholarsFields,
 	staffFields,
 	guestFields,
 	exhibitorFields,
@@ -185,6 +186,32 @@ export default defineConfig({
 					},
 					...poc_scholarsFields(),
 				],
+			},
+			{
+				format: "md",
+				label: "BBC Scholars",
+				name: "bbc_scholars",
+				path: "src/bbc-scholars",
+				match: {
+					include: "**/*",
+				},
+				fields: [
+					{
+						type: "rich-text",
+						name: "body",
+						label: "Body of Document",
+						description: "This is the markdown body",
+						isBody: true,
+					},
+					...bbc_scholarsFields(),
+				],
+				defaultItem: () => {
+					// get current year
+					const year = new Date().getFullYear();
+					return {
+						year: [year.toString()],
+					};
+				},
 			},
 			{
 				format: "md",

@@ -173,6 +173,15 @@
                                     </template>
                                 </div>
                                 <div class="required">
+                                    <label for="attendedBigBadConBefore">Have you attended Big Bad Con before?</label>
+                                    <select id="attendedBigBadConBefore" name="attendedBigBadConBefore" x-model="formInfo.attendedBigBadConBefore" @blur="validate" >
+                                        <option disabled selected value="">-- Choose One --</option>
+                                        <option>No, I've never attended</option>
+                                        <option>I've only attended Big Bad Online</option>
+                                        <option>Yes I've attended Big Bad Con before</option>
+                                    </select>
+                                </div>
+                                <div class="required">
                                     <label for="gamingXp">Gaming Community Experience</label>
                                     <div class="text-sm italic prose mb-xs">
                                         <p>Please tell us a bit about your experiences in the gaming community and why you would like to attend Big Bad Con.</p>
@@ -231,7 +240,8 @@
                             x.fundsRequired,
                             x.identities,
                             x.interests,
-                            x.gamingXp
+                            x.gamingXp,
+                            x.attendedBigBadConBefore
                         ].every(isFull);
                     },
                     validate(event) {

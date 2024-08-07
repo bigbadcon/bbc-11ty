@@ -68,7 +68,7 @@ x-init="$watch('modal',val => { if (isAuth && val === 'My Account') { getUserDat
                 <p>Submit your email address to reset your password.</p>
             </div>
             <div>
-                <label for="userEmailReset" autocapitalize="off" class="text-xs uppercase">Email <span class="font-bold text-highlight">*</span></label>
+                <label for="userEmailReset" autocapitalize="off" class="text-xs uppercase">Email</label>
                 <input class="w-64" id="userEmailReset" name="userEmailReset" required type="email" autocapitalize="off" autocorrect="off" spellcheck="false" value="" x-model="userEmail"/>
             </div>
             {# TODO: make it gray out disabled when submitting #}

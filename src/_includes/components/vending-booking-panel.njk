@@ -27,7 +27,7 @@
                 </span>
     badge! Before you can book into this event, you must sign up for the Small Press Vendor role.
         </p>
-            <form class="mt-base" id="form-small-press" @submit.prevent="submitForm" x-validate>
+            <form class="grid mt-base gap-base" id="form-small-press" @submit.prevent="submitForm" x-validate>
                 {# TODO: add honeypot #}
                 {# x-init required to add value after the fact for these hidden fields #}
                 <input type="hidden" name="userDisplayName" :value="user && user.displayName" x-validate>
@@ -35,7 +35,7 @@
                 <input type="hidden" name="userEmail" :value="user && user.userEmail" x-validate>
                 <input type="hidden" name="eventId" value="{{event.eventId}}" x-validate>
                 {# Personal Info #}
-                <fieldset>
+                <fieldset class="grid gap-base">
                     <legend>Company Info</legend>
                     <div class="required">
                         <label for="business">Business Name</label>
@@ -46,8 +46,24 @@
                         <input id="website" name="website" type="text" value="" x-validate.required.website/>
                     </div>
                     <div >
-                        <label for="twitter">Twitter</label>
-                        <input id="twitter" name="twitter" type="text" value=""/>
+                        <label for="Mastodon">Mastodon</label>
+                        <input id="mastodon" name="mastodon" type="text" value=""/>
+                    </div>
+                    <div>
+                        <label for="bluesky">Bluesky</label>
+                        <input id="bluesky" name="bluesky" type="text" value="" >
+                    </div>
+                    <div>
+                        <label for="instagram">Instagram</label>
+                        <input id="instagram" name="instagram" type="text" value=""/>
+                    </div>
+                    <div>
+                        <label for="facebook">Facebook</label>
+                        <input id="facebook" name="facebook" type="text" value=""/>
+                    </div>
+                    <div >
+                        <label for="xTwitter">X (formerly Twitter)</label>
+                        <input id="xTwitter" name="twitter" type="text" value=""/>
                     </div>
                     <div class="required">
                         <label for="contact-phone">Phone</label>
@@ -77,7 +93,7 @@
                             <a href="/community-standards" class="icon-scroll">Community Standards</a>
                         </p>
                     </div>
-                    <div class="required">
+                    <div class="flex required gap-base">
                         <input type="checkbox" id="agree-to-community-standards" name="agree-to-community-standards" value="Yes" required>
                         <label for="agree-to-community-standards" >
                                         Yes &mdash; I, <span x-text="user && user.displayName" class="font-bold"></span>, agree to the Big Bad Con Community Standards
@@ -86,7 +102,9 @@
                     </div>
                 </fieldset>
 
-                <button type="submit" :disabled="!$validate.isComplete('form-small-press')" class="btn btn-header-bg" x-show="!submitClicked">Submit</button>
+                <div>
+                    <button type="submit" :disabled="!$validate.isComplete('form-small-press')" class="btn btn-header-bg" x-show="!submitClicked">Submit</button>
+                </div>
                 <div x-show="submitClicked" class="inline-flex items-center italic font-bold gap-sm">
                     <svg class="w-5 h-5 text-body animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>

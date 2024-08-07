@@ -1,4 +1,6 @@
 ---
+title: Mario Ortegón
+position: ''
 tags:
   - p
   - o
@@ -13,12 +15,9 @@ tags:
   - r
   - poc-team-member
   - poc-emeritus
-  - poc-scholar
-order: 0
-title: Mario Ortegón
-position: ''
 published: true
 gender: he/him
+order: 0
 image: /images/mario-ortegon.jpg
 twitter: elwarius
 website_name: Mario Ortegón

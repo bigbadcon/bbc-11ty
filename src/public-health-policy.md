@@ -15,7 +15,7 @@ _template: page
 For the safety of all our attendees, we have the following policies in place for Big Bad Con 2024:
 
 * **Masks that provide KN95 or better protection are required in all convention spaces**. We’ll be giving out free Big Bad Con KN95 masks to all attendees!
-* **All attendees must show proof of COVID vaccination before entering the con.** Make sure to pack that vaccination card, update your app, or take a pic before you head out.
+* **All attendees must confirm their COVID vaccination status before entering the con.** Make sure to pack that vaccination card, update your app, or take a pic before you head out.
 * **We request that all attendees take COVID tests and confirm they are negative before the con**. We’ll have free rapid tests available upon request.
 * As part of our [community standards](https://www.bigbadcon.com/community-standards/) of respect, support, and kindness, **we ask before giving hugs or making other physical contact.**
 

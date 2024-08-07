@@ -1,6 +1,6 @@
 ---
 title: LaTia Jacquise
-published: true
+published: false
 gender: she/her
 image: /images/LaTia Jacquise_2.jpg
 twitter: LaTiaJacquise

@@ -1,4 +1,6 @@
 ---
+title: Ethan Yen
+position: ''
 tags:
   - p
   - o
@@ -12,12 +14,9 @@ tags:
   - a
   - r
   - poc-emeritus
-  - poc-scholar
-order: 0
-title: Ethan Yen
-position: ''
 published: true
 gender: he/him
+order: 0
 image: /images/ethan-yen.png
 twitter: ethnyen
 website_name: ethanyen.com

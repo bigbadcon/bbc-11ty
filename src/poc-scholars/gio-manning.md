@@ -1,7 +1,7 @@
 ---
 title: Gio Manning
 tags:
-  - poc-scholar
+  - poc-emeritus
 published: true
 gender: he/they
 image: /images/Gio Manning.png

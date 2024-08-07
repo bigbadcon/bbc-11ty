@@ -1,4 +1,6 @@
 ---
+title: Taylor Navarro
+position: ''
 tags:
   - p
   - o
@@ -11,13 +13,10 @@ tags:
   - l
   - a
   - r
-  - poc-scholar
   - poc-emeritus
-order: 0
-title: Taylor Navarro
-position: ''
 published: true
 gender: she/her
+order: 0
 image: /images/Taylor Navarro.jpg
 twitter: TaylorAnnNx
 website_name: Taylor Navarro

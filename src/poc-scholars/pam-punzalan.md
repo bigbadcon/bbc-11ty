@@ -1,13 +1,12 @@
 ---
-tags:
-  - poc-scholar
-  - poc-team-member
-  - poc-emeritus
-order: 0
 title: Pam Punzalan
 position: ''
+tags:
+  - poc-team-member
+  - poc-emeritus
 published: true
 gender: she/they
+order: 0
 image: /images/pam-punzalan.jpg
 twitter: TheDovetailor
 website_name: The Dovetailor

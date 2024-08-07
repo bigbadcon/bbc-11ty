@@ -1,6 +1,6 @@
 ---
 title: Tim Hutching
-published: true
+published: false
 gender: he/him
 image: /images/Tim Hutchings.png
 mastodon: '@timh@dice.camp'
@@ -14,4 +14,4 @@ Tim will be running these games:
 
 * Weird Horror
 * So You've Met A Thousand Year Old Vampire
-* A Reason To Be 
+* A Reason To Be

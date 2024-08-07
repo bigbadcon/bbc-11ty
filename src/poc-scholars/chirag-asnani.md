@@ -1,7 +1,7 @@
 ---
 title: Chirag Asnani
 tags:
-  - poc-scholar
+  - poc-emeritus
 published: true
 gender: he/him
 image: /images/Chirag Asnani.jpg

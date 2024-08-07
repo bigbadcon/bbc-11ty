@@ -1,6 +1,6 @@
 ---
 title: Tovey Baker
-published: true
+published: false
 gender: they/them
 image: /images/Tovey Baker.JPG
 website_name: 'Meguey & Vincent Baker, et al'

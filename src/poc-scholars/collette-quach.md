@@ -1,7 +1,7 @@
 ---
 title: Collette Quach
 tags:
-  - poc-scholar
+  - poc-emeritus
 published: true
 gender: they/she
 image: /images/Collette Quach.jpg

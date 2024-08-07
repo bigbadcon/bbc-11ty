@@ -29,18 +29,18 @@
                                 <span class="font-bold text-highlight">*</span> Required</p>
                             {# Name #}
                             <div>
-                                <label for="name" class="text-xs uppercase">Name <span class="font-bold text-highlight">*</span></label>
+                                <label for="name" class="text-xs uppercase">Name</label>
                                 <input class="w-64" id="name" name="name" required type="text" value=""/>
                             </div>
                             {# Email #}
                             <div>
-                                <label for="userEmail" class="text-xs uppercase">Email <span class="font-bold text-highlight">*</span></label>
+                                <label for="userEmail" class="text-xs uppercase">Email</label>
                                 <input class="w-64" id="userEmail" name="userEmail" required type="email" value=""/>
                             </div>
 
                             {# Subject #}
                             <div>
-                                <label for="messageSubject" class="text-xs uppercase">Subject <span class="font-bold text-highlight">*</span></label>
+                                <label for="messageSubject" class="text-xs uppercase">Subject</label>
                                 <select class="w-64" id="subject" name="messageSubject" required value="" x-model="messageSubject">
                                     <option default disabled value="">-- subject of message --</option>
                                     <option>Lost my login or password</option>
@@ -52,7 +52,7 @@
                                 </select>
                             </div>
                             <div>
-                                <label for="message" class="text-xs uppercase">Message <span class="font-bold text-highlight">*</span></label>
+                                <label for="message" class="text-xs uppercase">Message</label>
                                 <textarea class="w-96" id="message" name="message" required value="" rows="4"></textarea>
                             </div>
                             <input type="hidden" value="contact-us" name="formName" id="formName"/>

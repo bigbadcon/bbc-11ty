@@ -1,6 +1,6 @@
 ---
 title: Bee Zelda
-published: true
+published: false
 gender: they/them
 image: /images/Bee Zelda.jpg
 twitter: BeeZelda_

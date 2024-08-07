@@ -2,19 +2,19 @@
 layout: layouts/page.njk
 title: Games on Demand FAQ
 published: true
+eventType: in person
 description: ''
 ogImage: ''
 navGroup: Events
 navTitle: Games on Demand
 order: null
 icon: games-on-demand
-eventType: 'in person'
 _template: page
 ---
 
 Don’t have any games scheduled but want to play something? Stop by the Big Bad Games On Demand! Games start every two hours (with a breaks from 1-2PM and 6-8PM).
 
-[List of all Games on Demand Events](https://www.bigbadcon.com/events/?cat=GoD)
+[List of all Games on Demand Events](https://www.bigbadcon.com/events/?categories=GoD)
 
 ### How It Works
 

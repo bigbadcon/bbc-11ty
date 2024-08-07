@@ -1,7 +1,7 @@
 ---
 title: Puja Vaarta
 tags:
-  - poc-scholar
+  - poc-emeritus
 published: true
 gender: she/her
 image: /images/Puja Vaarta.JPG

@@ -1,7 +1,7 @@
 ---
 title: Lyla McBeath Fujiwara
 tags:
-  - poc-scholar
+  - poc-emeritus
 published: true
 gender: she/her
 image: /images/Lyla McBeath Fujiwara.jpg

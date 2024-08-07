@@ -1,7 +1,7 @@
 ---
 title: Marcello De Velazquez
 tags:
-  - poc-scholar
+  - poc-emeritus
 published: true
 gender: he/him
 image: /images/Marcello De Velazquez.png

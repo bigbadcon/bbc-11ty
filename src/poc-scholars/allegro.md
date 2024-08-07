@@ -1,7 +1,7 @@
 ---
 title: Allegro
 tags:
-  - poc-scholar
+  - poc-emeritus
 published: true
 gender: they/any
 image: /images/Allegro.jpg

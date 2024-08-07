@@ -1,13 +1,12 @@
 ---
-tags:
-  - poc-scholar
-  - poc-team-member
-  - poc-emeritus
-order: 0
 title: Indrani Ganguly
 position: ''
+tags:
+  - poc-emeritus
+  - poc-team-member
 published: true
 gender: she/they
+order: 0
 image: /images/indrani-ganguly.jpeg
 twitter: nonagondice
 website_name: Indrani Ganguly

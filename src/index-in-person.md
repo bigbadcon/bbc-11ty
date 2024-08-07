@@ -21,10 +21,11 @@ _template: page
 
 We are excited to announce Big Bad Con will be October 24th — October 27th.
 
-Badges will be available through our crowdfunding campaign starting May 14. Follow the campaign [here](https://www.backerkit.com/call_to_action/b00667bb-67cd-45b2-8ff3-35a2cf9b285e/landing).
-
-Stay tuned for when event submissions, Games on Demand, and volunteer signs ups will begin!
-
 **Hyatt Regency San Francisco Airport**\
 1333 Old Bayshore Hwy\
 Burlingame, CA 94010
+
+* Thursday 6PM-Midnight
+* Friday 9AM-Midnight
+* Saturday 9AM-Midnight
+* Sunday 9AM-8PM
