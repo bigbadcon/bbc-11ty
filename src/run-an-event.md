@@ -13,6 +13,8 @@ icon: dice
 _template: page
 ---
 
+Event submissions are now closed for 2024.
+
 <!-- Event submissions have re-opened on a limited basis. We're accepting event that fit without our [schedule](https://docs.google.com/spreadsheets/d/1VmxraTllYScL33AH-5EzrqAkwppS5EPHMDq1oz7BobA/edit#gid=161509786), including RPGs, LARPs, Board/Card Games, and Social Events (our Panel, Podcast/Stream, and Workshop rosters are full). We're accepting 1, 2, and 4 hour events in these time slots:
 
 * Friday 9AM-1PM - 4 slots
