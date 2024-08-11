@@ -147,6 +147,10 @@ eleventyComputed:
                     <strong x-show="isOwner(user?.id)">You are the owner of this event.</strong> If you need to add another {{facilitatorTitle}}, send them the following link which they can use to add themselves to the event.
         </p>
                 <p>
+                    <strong>NOTE:</strong>
+                    <em>The person you are sending this to must already have a badge themselves in order for it to work.</em>
+                </p>
+                <p>
                     <a :href="gmGuidLink" x-text="gmGuidLink"></a>
                 </p>
                 <p x-data="{clicked: false}">
@@ -156,12 +160,15 @@ eleventyComputed:
             </div>
         </div>
         {# Add Yourself as a GM: only shown if the guid is on the link #}
-        <div x-cloak x-show="user && !isGm(user.id) && getEventGUID() && gm.length < 6" class="prose rounded-md my-base bg-card p-base" >
+        <div x-cloak x-show="hasBadge">
+            <strong>YOU HAVE A BADGE</strong>
+        </div>
+        <div x-cloak x-show="user && hasBadge && !isGm(user.id) && getEventGUID() && gm.length < 6" class="prose rounded-md my-base bg-card p-base" >
             <h3>Add Yourself as a {{facilitatorTitle}}</h3>
             <div x-show="gm.length < 6">
                 <p>You have been given a link code to add yourself as a {{facilitatorTitle}} to this event. To add yourself click "Add Me To Event" below.</p>
                 <div class="flex flex-col">
-                    <label for="gmcode">GM Code</label><input type="text" name="gmcode" id="gmcode" :value="getEventGUID()">
+                    <label for="gmcode2">GM Code</label><input type="text" name="gmcode" id="gmcode2" :value="getEventGUID()">
                 </div>
                 <p>
                     <button class="button" type="button" @click="addAsGm({{event.eventId}}, getEventGUID(), user?.id)">Add Me To Event</button>
@@ -170,6 +177,13 @@ eleventyComputed:
             <div x-show="gm.length >= 6">
                 <h3>Max {{facilitatorTitle}}s</h3>
                 <p>The link code you have been given cannot be used we limit events to a maximum of 6 {{facilitatorTitle}}s</p>
+            </div>
+        </div>
+        <div x-cloak x-show="user && !hasBadge && !isGm(user.id) && getEventGUID()" class="prose rounded-md my-base bg-card p-base">
+            <h3>Add Yourself as a {{facilitatorTitle}}</h3>
+            <p>You don't currently have a badge. You must have a badge in order to use the link code you have been given.</p>
+            <div class="flex flex-col">
+                <label for="gmcode">GM Code</label><input type="text" name="gmcode" id="gmcode" :value="getEventGUID()">
             </div>
         </div>
     {% endif %}
@@ -200,10 +214,6 @@ eleventyComputed:
         <div class="border-2 border-header p-sm my-base">
             <h2 class="text-4xl font-bold text-center text-header">DEV SITE BOOKING</h2>
             {% include 'components/event-booking-panel.njk' %}
-        </div>
-        <div class="prose">
-            <h2>Test error log</h2>
-            <button type="button" @click="()=>log('test')" class="button">Log</button>
         </div>
     {% endif %}
     {# Event links #}

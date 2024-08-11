@@ -629,6 +629,7 @@ document.addEventListener("alpine:init", () => {
 				},
 				async addAsGm(eventId, gmGuid, userId) {
 					const url = "/.netlify/functions/addGMLog";
+					// TODO: only allow for people with badges
 					if (!gmGuid) {
 						this.$dispatch("toast", `ERROR: GM code required.`);
 						await fetch(url, {
