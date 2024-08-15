@@ -320,6 +320,7 @@ export function pageFields() {
 				"layouts/form-activate-gift-badge.njk",
 				"layouts/form-apply-for-scholarship.njk",
 				"layouts/form-buy-a-badge.njk",
+				"layouts/form-buy-a-badge-late.njk",
 				"layouts/form-change-password.njk",
 				"layouts/form-claim-badge.njk",
 				"layouts/form-contact-us.njk",

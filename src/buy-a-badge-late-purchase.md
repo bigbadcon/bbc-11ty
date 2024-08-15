@@ -1,5 +1,5 @@
 ---
-layout: layouts/form-buy-a-badge.njk
+layout: layouts/form-buy-a-badge-late.njk
 title: Buy a Badge - Late Purchase
 published: true
 eventType: in person
