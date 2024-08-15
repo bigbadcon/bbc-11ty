@@ -50,6 +50,7 @@ We would like to add a special thanks to our major donors:
 * Foundry VTT
 * The Adventure Zone
 * Steve Jackson Games
+* Cephalofair Games
 
 ...And more to come! 
 
