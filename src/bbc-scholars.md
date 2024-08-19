@@ -6,8 +6,8 @@ published: true
 eventType: both
 description: Big Bad Con Scholars
 ogImage: ''
-navGroup: ''
-navTitle: ''
+navGroup: Community
+navTitle: Big Bad Con Scholars
 order: 5
 icon: scholar
 _template: page
