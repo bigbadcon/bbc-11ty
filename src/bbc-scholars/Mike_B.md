@@ -5,6 +5,7 @@ year:
 position: BBC Scholar
 published: true
 gender: He/Him/Él
+image: /images/Mike Balles.png
 twitter: Themikeballes
 bluesky: themikeballes.bsky.social
 instagram: '@themikeballes'
