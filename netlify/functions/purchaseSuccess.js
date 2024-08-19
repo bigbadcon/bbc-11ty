@@ -1,9 +1,9 @@
-/* global process require exports */
 const axios = require("axios");
 require("dotenv").config();
 
 // Google Sheet logger
 const { GoogleSpreadsheet } = require("google-spreadsheet");
+const { JWT } = require("google-auth-library");
 const googleSheetId = process.env.GOOGLE_SHEET_BADGE_PURCHASE;
 
 // Send Grid
@@ -187,16 +187,29 @@ exports.handler = async function (event) {
 			/*                            Send to google sheet                            */
 			/* -------------------------------------------------------------------------- */
 
-			const doc = new GoogleSpreadsheet(googleSheetId);
+			const GOOGLE_PRIVATE_KEY = process.env.GOOGLE_PRIVATE_KEY;
+			const GOOGLE_SERVICE_ACCOUNT_EMAIL = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
+
+			// Initialize the sheet - doc ID is the long id in the sheets URL
+			const serviceAccountAuth = new JWT({
+				email: GOOGLE_SERVICE_ACCOUNT_EMAIL,
+				key: GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"),
+				scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+			});
+
+			const doc = new GoogleSpreadsheet(googleSheetId, serviceAccountAuth);
 
 			await doc.useServiceAccountAuth({
 				client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
 				private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"),
 			});
 			await doc.loadInfo(); // loads document properties and worksheets
-			console.log(doc.title);
-			//TODO: set this up for different years by title
-			const sheet = doc.sheetsByIndex[1];
+
+			const year = new Date().getFullYear().toString();
+			let sheet = doc.sheetsByTitle[year];
+			if (!sheet) {
+				sheet = await doc.addSheet({ title: year, headerValues: Object.keys(purchaseData) });
+			}
 
 			/* ---------------------- Take submit event and add row --------------------- */
 
