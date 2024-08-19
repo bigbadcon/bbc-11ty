@@ -199,10 +199,6 @@ exports.handler = async function (event) {
 
 			const doc = new GoogleSpreadsheet(googleSheetId, serviceAccountAuth);
 
-			await doc.useServiceAccountAuth({
-				client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-				private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"),
-			});
 			await doc.loadInfo(); // loads document properties and worksheets
 
 			const year = new Date().getFullYear().toString();
