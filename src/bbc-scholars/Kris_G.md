@@ -5,7 +5,7 @@ year:
 position: BBC Scholar
 published: true
 gender: she/they
-image: ''
+image: /images/Kris2.png
 twitter: kissofhemlock
 bluesky: tinypoison.bsky.social
 twitch: tinypoison
