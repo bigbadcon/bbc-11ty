@@ -5,6 +5,7 @@ year:
 position: BBC Scholar
 published: true
 gender: she/her
+image: /images/Charu.png
 twitter: cherrydrop
 bluesky: cherrydrop.bsky.social
 website_name: Charu's Carrd
