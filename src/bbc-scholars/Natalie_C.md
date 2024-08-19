@@ -5,6 +5,7 @@ year:
 position: BBC Scholar
 published: true
 gender: She/They
+image: /images/20210601_173822 - Natalie C.png
 twitter: GhostCandle
 twitch: GhostlyCandle
 instagram: '@GhostlyCandle'
