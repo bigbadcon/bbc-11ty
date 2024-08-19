@@ -5,6 +5,7 @@ year:
 position: BBC Scholar
 published: true
 gender: He/They
+image: /images/Hector _ICON - Hector Reyes.jpg
 twitter: KeichiOkami
 bluesky: KeichiOkami.bsky.social
 twitch: Haus_of_dreams
