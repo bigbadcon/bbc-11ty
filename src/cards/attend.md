@@ -10,6 +10,8 @@ Big Bad Con 2024 is sold out. We hope to see you in 2025!
 
 [Hotel Info](https://www.bigbadcon.com/hotel/){.icon-hotel}
 
+[Redeem Badge Claim Code](https://www.bigbadcon.com/badge-claim/){.icon-badge}
+
 <!--Welcome to Big Bad Con:
 
 **Big Bad Con is sold out!** *We hope to see you in 2024!*
