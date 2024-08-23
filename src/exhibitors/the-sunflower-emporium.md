@@ -1,6 +1,6 @@
 ---
 title: The Sunflower Emporium
-published: false
+published: true
 logo: /images/The Sunflower Emporium.png
 twitter: shadowedladysif
 website_name: The Sunflower Emporium
