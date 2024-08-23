@@ -1,6 +1,6 @@
 ---
 title: Bookwyrm Games
-published: false
+published: true
 logo: /images/Bookwyrm Games.jpg
 instagram: bookwyrm.games
 website_name: Bookwyrm Games
