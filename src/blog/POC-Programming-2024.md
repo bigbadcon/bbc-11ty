@@ -40,10 +40,10 @@ We would like to add a special thanks to our major donors:
 
 ### $10,000+
 
+* Auburn University
 * Critical Role
 * Darrington Press
 * Dropout TV
-* Auburn University
 
 ### $5,000+
 
@@ -52,8 +52,6 @@ We would like to add a special thanks to our major donors:
 * The Adventure Zone
 * Steve Jackson Games
 * Cephalofair Games
-
-...And more to come! 
 
 ## Questions and Further Information
 
