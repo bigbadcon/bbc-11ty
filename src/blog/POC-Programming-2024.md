@@ -43,6 +43,7 @@ We would like to add a special thanks to our major donors:
 * Critical Role
 * Darrington Press
 * Dropout TV
+* Auburn University
 
 ### $5,000+
 
