@@ -160,9 +160,6 @@ eleventyComputed:
             </div>
         </div>
         {# Add Yourself as a GM: only shown if the guid is on the link #}
-        <div x-cloak x-show="hasBadge">
-            <strong>YOU HAVE A BADGE</strong>
-        </div>
         <div x-cloak x-show="user && hasBadge && !isGm(user.id) && getEventGUID() && gm.length < 6" class="prose rounded-md my-base bg-card p-base" >
             <h3>Add Yourself as a {{facilitatorTitle}}</h3>
             <div x-show="gm.length < 6">
@@ -170,8 +167,9 @@ eleventyComputed:
                 <div class="flex flex-col">
                     <label for="gmcode2">GM Code</label><input type="text" name="gmcode" id="gmcode2" :value="getEventGUID()">
                 </div>
-                <p>
-                    <button class="button" type="button" @click="addAdditionalGM({{event.eventId}}, getEventGUID())">Add Me To Event</button>
+                <p x-data="{addGmClicked: false}">
+                    <button class="button" :disabled="addGmClicked" type="button" @click="addAdditionalGM({{event.eventId}}, getEventGUID()); addGmClicked = !addGmClicked">Add Me To Event</button>
+                    <em class="ml-sm" x-cloak x-show="addGmClicked">Working...</em>
                 </p>
             </div>
             <div x-show="gm.length >= 6">
