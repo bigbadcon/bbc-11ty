@@ -420,6 +420,27 @@ document.addEventListener("alpine:init", () => {
 			formatEventTime(date, tz = "America/Los_Angeles") {
 				return dayjs(date).tz(tz).format("h:mma");
 			},
+			async addAdditionalGM(eventId, gmGuid) {
+				try {
+					const res = await fetch("/.netlify/functions/addAdditionalGM", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify({ eventId, gmGuid, authToken: this.authToken, userId: this.user.id }),
+					});
+					const data = await res.json();
+					console.log("Add additional GM", data);
+					if (data.success) {
+						// this.$dispatch("toast", "Added additional GM");
+						location.reload();
+					} else {
+						this.$dispatch("toast", "ERROR: failed to add additional GM");
+					}
+				} catch (error) {
+					console.log("Error", error);
+				}
+			},
 		};
 	});
 
@@ -628,7 +649,7 @@ document.addEventListener("alpine:init", () => {
 					return result && `${window.location.href}?guid=${result}`;
 				},
 				async addAsGm(eventId, gmGuid, userId) {
-					const url = "/.netlify/functions/addGMLog";
+					const url = "/.netlify/functions/addAdditionalGM";
 					// TODO: only allow for people with badges
 					if (!gmGuid) {
 						this.$dispatch("toast", `ERROR: GM code required.`);
