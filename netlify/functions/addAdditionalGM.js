@@ -6,6 +6,8 @@ exports.handler = async function (event) {
 	const eventBody = JSON.parse(event.body);
 	const authToken = eventBody.authToken;
 	delete eventBody.authToken;
+	// added just in case the front end sends the wrong thing
+	const gmGuid = eventBody.gmGuid.split("?")[0];
 	const today = new Date();
 	console.log(today, eventBody);
 
@@ -24,7 +26,7 @@ exports.handler = async function (event) {
 		},
 		body: JSON.stringify({
 			eventId: Number(eventBody.eventId),
-			additionalGmGuid: eventBody.gmGuid,
+			additionalGmGuid: gmGuid,
 		}),
 	};
 
@@ -37,7 +39,7 @@ exports.handler = async function (event) {
 		console.log("success:", res);
 		await addToGoogleSheetLog({
 			eventId: eventBody.eventId,
-			gmGuid: eventBody.gmGuid,
+			gmGuid: gmGuid,
 			userId: eventBody.userId,
 			log: "Added as GM",
 		});
@@ -48,7 +50,7 @@ exports.handler = async function (event) {
 		console.log("fail", error);
 		await addToGoogleSheetLog({
 			eventId: eventBody.eventId,
-			gmGuid: eventBody.gmGuid,
+			gmGuid: gmGuid,
 			userId: eventBody.userId,
 			log: `failed to add event: ${error.message}`,
 		});
