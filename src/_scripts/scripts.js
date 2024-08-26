@@ -639,14 +639,15 @@ document.addEventListener("alpine:init", () => {
 						const params = new URLSearchParams(location.search);
 						let gmGuid = params.get("guid");
 						if (gmGuid) {
-							return gmGuid;
+							return gmGuid.split("?")[0];
 						}
 					}
 					return false;
 				},
 				async getAddtlGMCode(eventId) {
 					const result = await lilRed.events.getAddtlGMCode(eventId);
-					return result && `${window.location.href}?guid=${result}`;
+					const path = window.location.href.split("?")[0];
+					return result && `${path}?guid=${result}`;
 				},
 				async addAsGm(eventId, gmGuid, userId) {
 					const url = "/.netlify/functions/addAdditionalGM";
