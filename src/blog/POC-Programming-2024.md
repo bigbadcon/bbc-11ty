@@ -44,7 +44,7 @@ We would like to add a special thanks to our major donors:
 
 ### $10,000+
 
-* [https://www.auburn.edu/](https://www.auburn.edu/)
+* [Auburn University](https://www.auburn.edu/)
 * [Critical Role](https://critrole.com/)
 * [Darrington Press](https://darringtonpress.com/)
 * [Dropout TV](https://signup.dropout.tv/)
