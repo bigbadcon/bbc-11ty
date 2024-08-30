@@ -1,6 +1,6 @@
 ---
 title: Games of Berkeley
-published: false
+published: true
 logo: /images/Games of Berkeley.jpg
 twitter: GamesofBerkeley
 website_name: Games of Berkeley
