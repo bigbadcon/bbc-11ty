@@ -1,11 +1,11 @@
 ---
 title: Dodecadonuts
+published: true
 logo: /images/Dodecadonuts.png
 twitter: DodecaDonuts
 instagram: dodecadonuts
 website_name: Dodecadonuts
 website_url: 'https://www.etsy.com/shop/Dodecadonuts'
-published: false
 ---
 
 Dungeons, Dragons, Donuts & Dice. If you love RPGs and you love pastries, you’ll love Dodecadonuts. We make pastry-themed DnD accessories and other merchandise. Guaranteed Gluten and Sugar-free.
