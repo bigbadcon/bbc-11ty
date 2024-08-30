@@ -1,5 +1,6 @@
 ---
 title: the Pouch of the Platypus
+published: true
 logo: /images/Pouch Logo on White.webp
 website_name: The Pouch of the Platypus
 website_url: 'https://www.pouchoftheplatypus.com/'
