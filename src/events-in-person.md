@@ -1,15 +1,15 @@
 ---
+tags: pages
 layout: layouts/events.njk
 title: Events
-permalink: events/
 published: true
+eventType: in person
 description: ''
-tags: pages
 navGroup: Events
 navTitle: Events
 order: 0
 icon: calendar-clock
-eventType: 'in person'
+permalink: events/
 _template: page
 ---
 
@@ -19,9 +19,7 @@ _template: page
 
  -->
 
-Big Bad Con 2024 will be happening October 24–27th. Events will be displayed here as soon as we start accepting submissions.
-
-We will be opening for event submission soon! Stay tuned!
+Big Bad Con 2024 is happening October 24–27th. Events are displayed below:
 
 [Scheduled Events FAQ](https://www.bigbadcon.com/scheduled-events-faq/){.icon-calendar-clock}
 
