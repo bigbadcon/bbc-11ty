@@ -1,4 +1,4 @@
-<section class="mt-md" x-data="eventsTable" x-init="$store.events.getAllSpaces()">
+<section class="mt-md" x-init="$store.events.getAllSpaces()">
     <h2 class="font-serif text-3xl font-bold leading-none md:text-4xl text-header mb-base">Volunteer Shift List</h2>
     {# date timezone changer #}
     {% if global.eventType === "online" %}
@@ -8,7 +8,7 @@
     {% endif %}
     {# Event Table Filters #}
     <action-table class="block w-full mb-base" id="volunteer-action-table" store>
-        <action-table-filters class="flex flex-wrap items-center rounded gap-x-base gap-y-base bg-card p-sm">
+        <action-table-filters class="flex flex-wrap items-center rounded gap-x-base gap-y-sm bg-card p-sm">
             <div class="flex flex-wrap items-center gap-x-base gap-y-xs">
                 <input type="search" name="event" id="search" placeholder="Search Event">
                 {% if global.showEventTimes %}
@@ -19,10 +19,10 @@
                     {% endif %}
                 {% endif %}
             </div>
-            <div class="flex flex-wrap items-center justify-start gap-sm" x-show="isAuth">
+            <div class="flex flex-wrap items-center justify-start gap-xs" x-show="isAuth">
                 <action-table-filter-switch name="Fav" value="favved" class="flex flex-wrap items-center star" exact></action-table-filter-switch>
-                <action-table-filter-switch name="Space" value="^[1-9][0-9]*$" class="flex flex-wrap items-center switch" regex label="Open"></action-table-filter-switch>
-                <action-table-filter-switch name="Conflict" class="flex flex-wrap items-center switch" label="Hide My Event Conflicts" value="No"></action-table-filter-switch>
+                <action-table-filter-switch name="Space" value="^[1-9][0-9]*$" class="flex flex-wrap items-center switch mr-xs" regex label="Open"></action-table-filter-switch>
+                <action-table-filter-switch name="Conflict" class="flex flex-wrap items-center switch" label="Hide Event Conflicts" value="No"></action-table-filter-switch>
             </div>
             <button type="reset" class="button-sm" disabled>Reset Filters</button>
 
