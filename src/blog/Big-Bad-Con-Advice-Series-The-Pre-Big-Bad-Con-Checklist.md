@@ -1,6 +1,7 @@
 ---
 title: 'Big Bad Con Advice Series: The Pre-Big Bad Con Checklist'
 date: 2024-09-04T18:19:25.101Z
+published: true
 ---
 
 *This article is a part of the Big Bad Con Advice series! These articles aim to give general advice to attendees who are looking to connect with more of their peers in a professional capacity. While the articles tackle general information, our video series will zone in on special topics.*
@@ -47,7 +48,7 @@ Other things to consider bringing, buying upon or before arrival, or preparing:
 
 If you’re coming to the convention with an eye for making meaningful industry connections and looking for opportunities, consider any (or all!) of the items on this list.
 
-* Business cards. A stack of 100 or more pieces should be enough. We have an entry all about Business cards in our article [“Preparing to Make Professional Connections”](https://www.bigbadcon.com/blog/big-bad-con-advice-series-preparing-to-make-professional-connections/)! 
+* Business cards. A stack of 100 or more pieces should be enough. We have an entry all about Business cards in our article [Hypemachining & Self-Care](https://www.bigbadcon.com/blog/big-bad-con-advice-series-preparing-to-make-professional-connections/)! 
 * Updated CV/portfolio. This does NOT have to be a hard copy - in fact, we wouldn’t suggest bringing hard copies of this at all. Just make sure you’ve got an updated digital copy with a good way to share the link. We write about this too in [Hypemachining & Self-Care](https://www.bigbadcon.com/blog/big-bad-con-advice-series-preparing-to-make-professional-connections/).
 * Dice, tokens, and game paraphernalia. While our Games on Demand does have dice on hand, it’d be good to have a general set for your own use. If you have card games and such that you’d want to play with other folks and you’ve got the space in your luggage for it, don’t be shy!
 * Copies of your game to give away or trade for. This is most relevant if you have small games or zines that you’d like to show off. 
