@@ -1,9 +1,10 @@
 ---
 title: 'Big Bad Con Advice Series: Travel Advice for Big Bad Con Attendees'
 date: 2024-09-04T18:24:16.096Z
+published: true
 ---
 
-This article is a part of the Big Bad Con Advice series! These articles aim to give general advice to attendees who are looking to connect with more of their peers in a professional capacity. While the articles tackle general information, our video series will zone in on special topics.
+*This article is a part of the Big Bad Con Advice series! These articles aim to give general advice to attendees who are looking to connect with more of their peers in a professional capacity. While the articles tackle general information, our video series will zone in on special topics.*
 
 Hello again! This article will be a little different from the others, in that we are going to do a step-by-step simulation of what it might be like to travel to San Francisco for Big Bad Con, and how things might play out once you arrive. This is specifically targeted at congoers who will be traveling to Big Bad Con for the first time, and/or congoers who have never traveled or rarely traveled to the United States.
 
@@ -69,6 +70,5 @@ Having an ID other than your passport to show at establishments and for any othe
 If you have any last-minute printing needs for bulk orders, there are printing services very close to the Hyatt. One of the printing services that some of our con-goers have used in previous years was JASK Digital Printing Solutions. The UPS store is also close by. Try to avoid printing at the hotel itself - that’s going to end up being rather costly for you.
 
 There are cheaper food options outside of the hotel! If you’re able to walk around or have an Uber account, there are many excellent places to go before, during, and after the convention. Broadway has a wide variety of restaurants and cafes; there’s also a smattering of restaurants and cafes that are a walkable distance from SFO. Furthermore, you can order food to the hotel at any point through services like UberEats or GrabEats.
-
 
 We hope this advice helps! Check the rest of our articles out for more.
