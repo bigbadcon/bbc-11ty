@@ -1,5 +1,5 @@
 ---
-title: 'Big Bad Con Advice Series: Preparing to Make Professional Connections'
+title: 'Big Bad Con Advice Series: Hypemachining & Self-Care'
 date: 2024-09-04T18:13:59.620Z
 published: true
 ---
