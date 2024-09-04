@@ -1,6 +1,7 @@
 ---
 title: 'Big Bad Con Advice Series: Preparing to Make Professional Connections'
 date: 2024-09-04T18:13:59.620Z
+published: true
 ---
 
 *This article is a part of the Big Bad Con Advice series! These articles aim to give general advice to  attendees who are looking to connect with more of their peers in a professional capacity. While the articles tackle general information, our video series will zone in on special topics.*
@@ -29,18 +30,18 @@ For our POC Big Bad Con scholars, we post about important events through email (
 
 Business cards, especially if they’ve got a clever design, can be great:
 
-* During introductions, 
-* After you have connected well with someone at the convention and want to make sure to stay in touch, or; 
-* After you’ve offered yourself up as a resource or for work. 
+* During introductions
+* After you have connected well with someone at the convention and want to make sure to stay in touch 
+* After you’ve offered yourself up as a resource or for work
 
 Tabletop roleplaying games as an industry still uses business cards. Connecting on LinkedIn may also work, but professionals in tabletop tend to be on social media platforms.
 
 Design your business cards however you like, but make sure it’s got: 
 
-* your name,
-*  pronouns, 
+* your name
+*  pronouns
 * a clear idea of what you do (or want to do!) 
-*  links to relevant socials. 
+*  links to relevant socials
 
 Some of the cooler things I’ve seen on business cards are things like a photograph/art/stylized graphic of the person, a mini-game the person designed themselves, a QR code to a digital showcase of the person’s work, or a space for making personal notes (i.e. “I met you when…” or “We talked about…”).
 
