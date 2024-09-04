@@ -47,8 +47,8 @@ Other things to consider bringing, buying upon or before arrival, or preparing:
 
 If you’re coming to the convention with an eye for making meaningful industry connections and looking for opportunities, consider any (or all!) of the items on this list.
 
-* Business cards. A stack of 100 or more pieces should be enough. We have an entry all about Business cards in our article [“Preparing for Big Bad Con”](https://www.bigbadcon.com/blog/big-bad-con-advice-series-preparing-to-make-professional-connections/)! 
-* Updated CV/portfolio. This does NOT have to be a hard copy - in fact, we wouldn’t suggest bringing hard copies of this at all. Just make sure you’ve got an updated digital copy with a good way to share the link. We write about this too in Hypemachineing & Self-Care.
+* Business cards. A stack of 100 or more pieces should be enough. We have an entry all about Business cards in our article [“Preparing to Make Professional Connections”](https://www.bigbadcon.com/blog/big-bad-con-advice-series-preparing-to-make-professional-connections/)! 
+* Updated CV/portfolio. This does NOT have to be a hard copy - in fact, we wouldn’t suggest bringing hard copies of this at all. Just make sure you’ve got an updated digital copy with a good way to share the link. We write about this too in [Hypemachining & Self-Care](https://www.bigbadcon.com/blog/big-bad-con-advice-series-preparing-to-make-professional-connections/).
 * Dice, tokens, and game paraphernalia. While our Games on Demand does have dice on hand, it’d be good to have a general set for your own use. If you have card games and such that you’d want to play with other folks and you’ve got the space in your luggage for it, don’t be shy!
 * Copies of your game to give away or trade for. This is most relevant if you have small games or zines that you’d like to show off. 
 * Stickers, pins, dice you’ve made, or cool things you’d want to give away or trade for. The bread and butter of geeks. Leaving some room for things you’d want to gift new friends, or things you’d like to trade other artisans for could be fun!
