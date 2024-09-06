@@ -1,7 +1,7 @@
 ---
 website: 'http://www.seannittner.com'
 title: Sean Nittner
-position: Steward
+position: 'Steward Emeritus '
 tags:
   - staff
 published: true
