@@ -8,13 +8,11 @@ _template: page
 
 Big Bad Con is a tabletop gaming convention focused on supporting gamers from marginalized backgrounds and nurturing a space to grow the gaming community. We welcome panels and workshops that help further these goals.
 
-![Panels at Big Bad Con](/images/EventFAQ-Panels.png)
-
 ## Panels
 
-Our panel track is designed to share insight, knowledge, and experience with Big Bad Con attendees. We look for panels that share creator, industry, or gaming insights, offer practical advice, or discuss current topics in TTRPGs, game design, or community. 
+Our panel track is designed to share insight, knowledge, and experience with Big Bad Con attendees. We look for panels that share creator, industry, or gaming insights, offer practical advice, or discuss current topics in TTRPGs, game design, or community.
 
-Due to space limitations, we can only consider a maximum of one or two event submissions per organizer. Additionally, we can only accept one instance of each event. 
+Due to space limitations, we can only consider a maximum of one or two event submissions per organizer. Additionally, we can only accept one instance of each event.
 
 We are also unable to consider events that rely heavily on audience participation rather than panelist presentations (e.g., Q\&As, AMAs, APs, game or comedy shows).
 
@@ -43,8 +41,6 @@ Please let us know when you submit your events if you’d like to request any of
 
 * Wireless microphone (in place of a wired microphone)
 * Projector and Projector Screen (HDMI)
-
-![](/images/EventFAQ-Workshops.png)
 
 ## Workshops
 
