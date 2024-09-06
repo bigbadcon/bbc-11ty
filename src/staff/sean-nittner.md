@@ -3,12 +3,12 @@ website: 'http://www.seannittner.com'
 title: Sean Nittner
 position: Steward
 tags:
-  - staff-emeritus
+  - staff
 published: true
 gender: (he/him)
 order: 0
 image: /images/sean_seattle.jpg
-twitter: seannittner
+twitter: ''
 website_name: seannittner.com
 website_url: 'http://www.seannittner.com/'
 ---
