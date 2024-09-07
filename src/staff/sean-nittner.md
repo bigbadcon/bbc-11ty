@@ -3,7 +3,7 @@ website: 'http://www.seannittner.com'
 title: Sean Nittner
 position: 'Steward Emeritus '
 tags:
-  - staff
+  - staff-emeritus
 published: true
 gender: (he/him)
 order: 0
