@@ -23,12 +23,12 @@ Our scheduled RPGs, LARPs, board games, panels, and workshops are the core of Bi
 
 To sign up for events you'll need an badge for the con. You can get one [here](https://www.bigbadcon.com/attend).
 
-* Signups begin Sept 21st 2024 at 12:00 PM PDT (GMT-7:00).
-* All event signups for Big Bad Con are done from from our event page.<!--(https://www.bigbadcon.com/events/)--> To sign up for an event, go to the event page, and if there are spaces left, click Book Now at the bottom.
+* Signups begin Sept 28th 2024 at 12:00 PM PDT (GMT-7:00).
+* All event signups for Big Bad Con are done from from our [event page](https://www.bigbadcon.com/events/). To sign up for an event, go to the event page, and if there are spaces left, click Book Now at the bottom.
 * Not everyone is available the moment signups open. To give as many people as possible a chance to get into games an events, we have the following singup phases:
-  * Phase I (Saturday 9/21 12PM PDT) — Everyone can sign up for a maximum of 2 events.
-  * Phase II (Sunday 9/29 12PM PDT) — Everyone can sign up for 2 more events, a maximum of 4 total.
-  * Phase III (Sunday 10/6 6PM PDT) — Event signups have no maximum limit.
+  * Phase I (Saturday 9/28 12PM PDT) — Everyone can sign up for a maximum of 2 events.
+  * Phase II (Sunday 10/6 12PM PDT) — Everyone can sign up for 2 more events, a maximum of 4 total.
+  * Phase III (Monday 10/14 6PM PDT) — Event signups have no maximum limit.
 * A few things to note:
   * Events marked All Ages are available to all attendees, including teens.
   * Events not designated all ages are available to adults 18 and up.
