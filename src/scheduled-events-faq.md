@@ -21,8 +21,6 @@ Our scheduled RPGs, LARPs, board games, panels, and workshops are the core of Bi
 
 ### Event Signups
 
-To sign up for events you'll need an badge for the con. You can get one [here](https://www.bigbadcon.com/attend).
-
 * Signups begin Sept 28th 2024 at 12:00 PM PDT (GMT-7:00).
 * All event signups for Big Bad Con are done from from our [event page](https://www.bigbadcon.com/events/). To sign up for an event, go to the event page, and if there are spaces left, click Book Now at the bottom.
 * Not everyone is available the moment signups open. To give as many people as possible a chance to get into games an events, we have the following singup phases:
@@ -35,4 +33,5 @@ To sign up for events you'll need an badge for the con. You can get one [here](h
   * Events you're running don't count against your limit.
   * Volunteer Ranger shifts don't count against your limit.
   * Small Press Showcase bookings don't count against your limit.
+  * Office Hours hosting don't count against your limit.
   * Large events (Thursday night social events, panels, the Wolf Run, etc) don't count against your limit either. Those events will have noted as quota exempt by the booking button.
