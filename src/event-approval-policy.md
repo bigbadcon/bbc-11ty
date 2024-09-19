@@ -1,4 +1,5 @@
 ---
+layout: layouts/page.njk
 title: Event Approval Policy
 published: true
 _template: page
@@ -12,4 +13,4 @@ This policy applies to all events (games, panels, workshops, etc) submitted to B
 4. All events are reviewed by our event coordinators and, if needed, by our community coordinators.
    * We will limit language and images that we conclude can be construed as exclusionary to our global community of attendees, staff, or volunteers on the basis of their membership in a protected status as defined by our anti-harassment policy.
    * We will remove language and images that endanger our staff, volunteers, or attendees.
-   * If an event submission does not meet our policies, an event coordinator will contact the event facilitator to suggest or request changes needed to bring the event into compliance with our policies. If that is not possible, the event will not be accepted. 
+   * If an event submission does not meet our policies, an event coordinator will contact the event facilitator to suggest or request changes needed to bring the event into compliance with our policies. If that is not possible, the event will not be accepted.
