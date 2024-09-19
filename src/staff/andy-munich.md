@@ -6,7 +6,6 @@ title: Andy Munich
 position: Volunteer Coordinator
 gender: (he/him)
 image: /images/f2df3xfr_400x400.jpg
-twitter: germancity
 website_name: GeekGirlScouts.com
 website_url: 'https://geekgirlcon.com/geekgirlscouts/'
 _template: staff
