@@ -49,14 +49,15 @@ Big Bad Con has zero tolerance for harassment of any kind. If you witness or are
 
 Anyone can report harassment. If someone’s behavior has made you uncomfortable, or if you witness the same happening to someone else, you should immediately contact BBC staff or a volunteer. You may also come to BBC’s registration desk.
 
-### Failure to adhere to the community standards may result in:
+### Failure to adhere to the anti-harassment policy may result in:
 
 * Mediation by Big Bad Con staff.
 * Verbal warnings.
-* Turning the individual over to hotel staff.
 * Revocation of badge and ejection from Big Bad Con. No refunds will be offered.
-* Contacting local law enforcement.
+* Ban from future Big Bad Con conventions or events
 
 Our policy applies to **EVERYONE** at the convention. Exhibitors, attendees, GMs, speakers, guests, staff, and volunteers are all subject to our anti-harassment policy and will be held to the same standards and disciplinary action.
 
-If you are the target of harassment, we will work with you to provide necessary support. We will contact local law enforcement, provide escort, offer a safe place or otherwise assist those experiencing harassment to make sure they feel safe for the rest of BBC. If you are in immediate physical danger, get to safety and contact law enforcement FIRST.
+If you are the target of harassment, we will work with you to provide necessary support. We will provide escort, offer a safe place or otherwise assist those experiencing harassment to make sure they feel safer for the rest of Big Bad Con. If you are in immediate physical danger, get to safety FIRST.
+
+Last updated: September 20, 2024
