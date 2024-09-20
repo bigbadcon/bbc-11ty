@@ -14,3 +14,5 @@ This policy applies to all events (games, panels, workshops, etc) submitted to B
    * We will limit language and images that we conclude can be construed as exclusionary to our global community of attendees, staff, or volunteers on the basis of their membership in a protected status as defined by our anti-harassment policy.
    * We will remove language and images that endanger our staff, volunteers, or attendees.
    * If an event submission does not meet our policies, an event coordinator will contact the event facilitator to suggest or request changes needed to bring the event into compliance with our policies. If that is not possible, the event will not be accepted.
+
+Last updated: September 20, 2024
