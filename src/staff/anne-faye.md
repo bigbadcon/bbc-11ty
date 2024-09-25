@@ -12,4 +12,4 @@ website_name: ''
 website_url: ''
 ---
 
-Anne Faye is a pronoun-flexible wheelchair user and poly-nerd from San Francisco. Missions include “helping conventions be more disability-inclusive”, “disaster preparedness”, “gaming”, “science fiction”, and “eating all the cheese”
+Anne Faye is a pronoun-flexible wheelchair user and poly-nerd. Missions include “helping conventions be more disability-inclusive”, “disaster preparedness”, “gaming”, “science fiction”, and “eating all the cheese”
