@@ -3,7 +3,7 @@ title: Taylor Felicity
 year:
   - '2024'
 position: BBC Scholar
-published: true
+published: false
 gender: she/her
 image: /images/Taylor Felicity Headshot - Taylor.jpg
 twitter: RollForFelicity
