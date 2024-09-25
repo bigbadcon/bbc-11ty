@@ -6,7 +6,7 @@ published: true
 eventType: in person
 description: ''
 ogImage: ''
-navGroup: Events
+navGroup: ''
 navTitle: Run an Event
 order: 2
 icon: dice
