@@ -1,6 +1,7 @@
 ---
 title: Our Stance in Support of Palestinians
 date: 2024-09-27T21:07:18.664Z
+published: true
 ---
 
 Big Bad Con denounces genocide, apartheid, and human rights violations. We believe in every person's right to self-determination, autonomy, and liberty.
@@ -40,4 +41,4 @@ We have donated a total of $5,000 to the following relief funds. From now until 
 * [Crips for eSims for Gaza](https://chuffed.org/project/crips-for-esims-for-gaza), a digital lifeline for people in Gaza cut off from the internet.
 * [Palestine Children's Relief Fund](https://www.pcrf.net/), addressing urgent humanitarian needs and supporting long-term recovery efforts in Gaza. 
 
-To have your funds matched use this [fundraiser link](https://pcrf1.app.neoncrm.com/campaign.jsp?campaign=14\&fundraiser=950670&) to donate to PCRF or email donate\@bigbadcon.com with a receipt for your donation to Crips for eSims. 
+To have your funds matched use this [fundraiser link](https://pcrf1.app.neoncrm.com/campaign.jsp?campaign=14\&fundraiser=950670&) to donate to PCRF or email [donate@bigbadcon.com](mailto:donate@bigbadcon.com) with a receipt for your donation to Crips for eSims. 
