@@ -29,7 +29,7 @@
                         <p class="hidden">
                             <label>Don't fill this out if you're human: <input name="bot-field"/></label>
                             {# Another honeypot #}
-                            <label>Phone <input name="phone" type="tel" autocomplete="off" value=""></label>
+                            <label>Fax <input name="fax" type="tel" autocomplete="new-fax" value=""></label>
                         </p>
                         <p>
                             <em>
@@ -64,7 +64,7 @@
                             <input type="hidden" :value="userEmail">
                             <div>
                                 <label for="userPass" class="text-xs uppercase">Password </label>
-                                <input class="w-64" id="userPass" name="userPass" required type="password" value="" x-model="userPass"/>
+                                <input class="w-64" id="userPass" name="userPass" required type="password" value="" x-model="userPass" autocomplete="new-password"/>
                             </div>
                             <input type="hidden" value="" name="userNicename" :value="userEmail"/>
                             <input type="hidden" value="" name="userLogin" :value="userEmail"/>

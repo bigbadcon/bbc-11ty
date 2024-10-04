@@ -38,8 +38,8 @@ exports.handler = async function (event) {
 			// twitter: twitter
 		};
 
-		if (data.phone !== "" || !displayName) {
-			console.log("Check for displayName and phone honeypot trap for", data.phone, userEmail, displayName);
+		if (data.fax !== "" || !displayName) {
+			console.log("Check for displayName and fax honeypot trap for", data.fax, userEmail, displayName);
 			return {
 				statusCode: 500,
 				body: "Not allowed",
