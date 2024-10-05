@@ -5,7 +5,7 @@ order: 2
 published: true
 ---
 
-Event sing ups begin on September 28th at 12PM Pacific:
+Event sing ups begin on October 5th at 12PM Pacific:
 
 <!-- [Run an Event](https://www.bigbadcon.com/run-an-event/){.icon-dice} -->
 
