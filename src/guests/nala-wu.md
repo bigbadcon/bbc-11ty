@@ -1,6 +1,6 @@
 ---
 title: Nala J. Wu
-published: true
+published: false
 gender: (they/them)
 image: /images/Nala J Wu.jpg
 website_name: naladraws.com
