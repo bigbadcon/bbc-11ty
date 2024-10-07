@@ -2,7 +2,7 @@
 title: Val Taylor
 position: Panel Ranger Captain
 tags:
-  - staff
+  - staff-emeritus
 published: true
 gender: (she/they)
 order: 0
