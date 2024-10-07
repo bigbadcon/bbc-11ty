@@ -383,8 +383,8 @@ module.exports = (eleventyConfig) => {
 				description: description,
 				start: dateStart,
 				end: dateEnd,
-				//location: `Hyatt Regency San Francisco Airport, 1333 Old Bayshore Hwy, ${location}, Burlingame, CA 94010`,
-				location: `https://twitch.tv/bigbadcon`,
+				location: `Hyatt Regency San Francisco Airport, 1333 Old Bayshore Hwy, ${location}, Burlingame, CA 94010`,
+				// location: `https://twitch.tv/bigbadcon`,
 			};
 
 			if (type === "google") return google(event);
