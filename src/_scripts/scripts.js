@@ -331,8 +331,12 @@ document.addEventListener("alpine:init", () => {
 				// book event
 				const data = await lilRed.bookings.add(id);
 				if (!data) {
-					this.$dispatch("toast", "ERROR: booking change failed. Data service might be down.");
+					this.$dispatch("toast", "ERROR: booking failed. Data service might be down.");
 					return false;
+				} else if (data.status === "FAILURE") {
+					this.$dispatch("toast", "ERROR: booking failed. " + data.message);
+				} else {
+					this.$dispatch("toast", "You are booked into the event!");
 				}
 				// update availableSlots
 				this.getAvailableSlots();
