@@ -2,7 +2,7 @@
 title: Ezra Denney
 position: Board Games Coordinator & Exhibitor Coordinator
 tags:
-  - staff
+  - staff-emeritus
 published: true
 gender: (he/him)
 order: 0
