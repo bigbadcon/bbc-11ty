@@ -4,7 +4,7 @@ order: 1
 published: true
 ---
 
-Big Bad Con is a purely volunteer run organization. Join us!
+Tickets are sold out, but you can still attend Big Bad Con as one of our rangers!
 
 [Learn about the Rangers](https://www.bigbadcon.com/rangers/){.icon-paw}
 
