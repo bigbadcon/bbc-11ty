@@ -1,10 +1,11 @@
 ---
 title: Metal Weave Games
-logo: /images/MetalWeaveGames_1200x1200.webp
+published: true
+logo: /images/black logo_title.svg
 twitter: metalweavegames
 instagram: MetalWeaveGames
 facebook: 'https://www.facebook.com/MetalWeaveGames/'
 website_url: 'https://metalweavegames.com/'
 ---
 
-Play inspired! Tabletop games and accessories publisher known for their inspiring and evocative products.
+Metal Weave Games is an award-winning tabletop publisher, most known for the beloved Baby Bestiary Owlbear Plush and systemless lore books.
