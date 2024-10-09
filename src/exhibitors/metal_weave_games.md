@@ -5,6 +5,7 @@ logo: /images/MetalWeaveGames_1200x1200.webp
 twitter: metalweavegames
 instagram: MetalWeaveGames
 facebook: 'https://www.facebook.com/MetalWeaveGames/'
+website_name: Metal Weave Games
 website_url: 'https://metalweavegames.com/'
 ---
 
