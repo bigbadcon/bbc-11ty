@@ -1,7 +1,7 @@
 ---
 title: Metal Weave Games
 published: true
-logo: /images/black logo_title.svg
+logo: /images/MetalWeaveGames_1200x1200.webp
 twitter: metalweavegames
 instagram: MetalWeaveGames
 facebook: 'https://www.facebook.com/MetalWeaveGames/'
