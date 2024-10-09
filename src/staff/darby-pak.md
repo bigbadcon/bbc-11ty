@@ -2,7 +2,7 @@
 title: Darby Pak
 position: Board Game Ranger Captain
 tags:
-  - staff
+  - staff-emeritus
 gender: (she/they)
 order: 0
 image: /images/0.png
