@@ -565,12 +565,7 @@ action-table .star input:checked::before {
 
 /* CSS hack to remove filters area if there is no filters */
 
-action-table-filters:has(action-table-filter-menu:empty) {
-	display: none;
-}
-
-action-table-filters:has(action-table-filter-menu:not(:empty)),
-action-table-filters:has(action-table-filter-switch:not(:empty)) {
+action-table-filters {
 	display: flex;
 }
 
