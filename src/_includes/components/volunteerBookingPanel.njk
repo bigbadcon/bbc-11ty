@@ -1,7 +1,7 @@
 {# x-data="eventInfo" on event page #}
 
 {# Only show if event has yet to happen #}
-{% if not event.eventStartDateTime | isAfterDate %}
+{% if event.eventStartDateTime | isBeforeDate and global.conVolunteerShiftsClosed | isBeforeDate %}
     <!-- ----------------------- Volunteer Registration Form ---------------------- -->
     {# Show if they are logged in and do not yet have a user role of volunteer #}
     <section class="text-sm italic rounded-md shadow mt-md text-body p-base bg-card" 
