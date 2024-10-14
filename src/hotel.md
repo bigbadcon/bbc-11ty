@@ -49,7 +49,7 @@ The hotel offers parking for all attendees discounted from their rate of $40/day
 
 ### Hotel Map
 
-![](</images/Hotel_Map 2023.jpg>)
+![](/images/Hotel_Map_2024.png)
 
 **[Hotel Map](</images/Hotel_Map 2023.pdf>)** **(PDF) and** **[Capacity Chart](https://assets.tina.io/ac22da7d-8579-4122-a2c1-78b362f0d955/Hyatt-Regency-San-Francisco-Airport-Capacity-Charts-English-070918.pdf)** **(PDF)**
 
