@@ -34,7 +34,7 @@ While in line please remain cognizant of social distancing even if it means that
 
 ## Health and Safety Acknowledgement
 
-Please be advised that risk of exposure to COVID-19 exists in any event or public space, including Big Bad Con. Prior to registering for and attending the event, please ensure you have read the latest [CDC Guidelines for Prevention](https://www.cdc.gov/media/releases/2024/p0301-respiratory-virus.html) and taken a COVID test within 72 hours of attending.
+Please be advised that risk of exposure to COVID-19 exists in any event or public space, including Big Bad Con. Please ensure you have read the latest [CDC Guidelines](https://discord.com/channels/@me/813134335212650506/1296265249200279563) for respiratory virus and COVID prevention, and take a COVID test within 36 hours of arrival at the event.
 
 By attending the event, you acknowledge this inherent risk on behalf of yourself and/or any minor attending the event for which you serve as guardian (collectively, “You”) and, as a condition of entering the event, You acknowledge, understand, and confirm each of the following in accordance with applicable health guidelines:
 
