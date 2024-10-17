@@ -15,8 +15,17 @@ _template: page
 For the safety of all our attendees, we have the following policies in place for Big Bad Con 2024 (last updated 10/16/2024):
 
 * **Masks that provide KN95 or better protection are required in all convention spaces**. We’ll be giving out free Big Bad Con KN95 masks to all attendees!
-* **All attendees must confirm their COVID vaccination status before entering the con.** Big Bad Con requires COVID vaccination, and prefers a recent booster as well whenever possible. However, we are aware that not everyone has equal access to healthcare or complete medical records. Please be prepared to show proof of COVID vaccination and any boosters, if at all possible. Make sure to pack that vaccination card, update your app, or take a pic/screenshot of your medical records before you head out.
-* **We require confirmation of a negative COVID test taken within 36 hours before your arrival at the con.** You can take a digital photo of your negative test to show as proof. Please be prepared to show us the date and time when the photo was taken. We will have rapid tests available at the vaccination welcome desk if needed, and our volunteers can instruct you on how to safely test on-site when you arrive. ***For hygiene reasons, please do not bring used tests to the con.***
+
+<!---->
+
+* **All attendees must confirm their COVID vaccination status before entering the con.** Big Bad Con requires COVID vaccination, and prefers a recent booster vaccination as well whenever possible. However, we are aware that not everyone has equal access to healthcare or complete medical records. Please be prepared to show proof of COVID vaccination and any boosters, if at all possible. Make sure to pack that vaccination card, update your app, or take a pic/screenshot of your medical records before you head out.
+
+<!---->
+
+* We require confirmation of a negative COVID test taken within 36 hours before your arrival at the con. You can take a digital photo of your negative test to show as proof. Please be prepared to show us the date and time when the photo was taken. We will have rapid tests available at the vaccination welcome desk if needed, and our volunteers can instruct you on how to safely test on-site when you arrive. For hygiene reasons, please do not bring used tests to the con.
+
+<!---->
+
 * As part of our [community standards](https://www.bigbadcon.com/community-standards/) of respect, support, and kindness, **we ask before giving hugs or making other physical contact.**
 
 Keeping ourselves and each other safe is part of our community standards of respect, support, and kindness. We know that risk tolerances are different for everyone, so what might seem like overkill to one person, might still not be enough for others. We’re looking out for our most vulnerable attendees. Together, we believe we can host a wonderful event.
@@ -34,7 +43,7 @@ While in line please remain cognizant of social distancing even if it means that
 
 ## Health and Safety Acknowledgement
 
-Please be advised that risk of exposure to COVID-19 exists in any event or public space, including Big Bad Con. Please ensure you have read the latest [CDC Guidelines](https://www.cdc.gov/respiratory-viruses/guidance/) for respiratory virus and COVID prevention, and take a COVID test within 36 hours of arrival at the event.
+Please be advised that risk of exposure to COVID-19 exists in any event or public space, including Big Bad Con. Prior to registering for and attending the event, please ensure you have read the latest [CDC Guidelines for Prevention](https://www.cdc.gov/media/releases/2024/p0301-respiratory-virus.html) and taken a COVID test within 72 hours of attending.
 
 By attending the event, you acknowledge this inherent risk on behalf of yourself and/or any minor attending the event for which you serve as guardian (collectively, “You”) and, as a condition of entering the event, You acknowledge, understand, and confirm each of the following in accordance with applicable health guidelines:
 
@@ -51,8 +60,6 @@ By attending the event, you acknowledge this inherent risk on behalf of yourself
   * Congestion or runny nose
   * Nausea or vomiting
   * Diarrhea
-* That prior to attending the event You have not been in contact with someone with confirmed or suspected COVID-19 symptoms without completing a[ CDC-recommended quarantine](https://www.cdc.gov/respiratory-viruses/guidance/faq.html#:~:text=Updated%20Guidance%3A%20The%20updated%20Respiratory,using%20fever%2Dreducing%20medication\).);
-* You are not under any self-quarantine or isolation orders or subject to any[ CDC self-quarantine or isolation protocol](https://emergency.cdc.gov/newsletters/epic/012522.htm#:~:text=Quarantine%20when%20you%20might%20have,you%20don't%20have%20symptoms.); and
 * You are fully vaccinated from COVID-19, meaning at the time you are attending it has been at least fourteen (14) days since:
   * Your second dose in a two-dose COVID-19 vaccine series approved or authorized by the FDA or by the WHO, or
   * Your single dose of a single-dose COVID-19 vaccine authorized by the FDA or by the WHO.
