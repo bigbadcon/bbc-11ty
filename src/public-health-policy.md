@@ -48,7 +48,7 @@ Please be advised that risk of exposure to COVID-19 exists in any event or publi
 By attending the event, you acknowledge this inherent risk on behalf of yourself and/or any minor attending the event for which you serve as guardian (collectively, “You”) and, as a condition of entering the event, You acknowledge, understand, and confirm each of the following in accordance with applicable health guidelines:
 
 * You will abide by all terms of admission and participation (as may be updated from time to time) and event health-and-safety requirements at all times;
-* You are not currently experiencing any of the following symptoms of COVID-19 not attributable to preexisting health conditions, as identified at [CDC](https://www.cdc.gov/covid/signs-symptoms/).gov, including, but not limited to:
+* You are not currently experiencing any of the following symptoms of COVID-19 not attributable to preexisting health conditions, as identified at [CDC.gov](https://www.cdc.gov/covid/signs-symptoms/), including, but not limited to:
   * Fever or chills
   * Cough
   * Shortness of breath or difficulty breathing
