@@ -11,16 +11,15 @@
             {# TODO: maybe make this dynamic with a shortcode? Or at least make sure the data exists before displaying #}
             {% if smallpress %}
                 <section class="my-base">
-                    <action-table class="events-table">
+                    <action-table>
                         <action-table-filters class="flex flex-wrap items-center rounded gap-x-base gap-y-base bg-card p-sm">
-                            <action-table-filter-menu name="Date" ></action-table-filter-menu>
+                            <action-table-filter-menu name="Day" ></action-table-filter-menu>
                             <button type="reset" class="button-sm" disabled>Reset Filters</button>
                         </action-table-filters>
-                        <table class="my-base">
+                        <table class="my-base events-table">
                             <thead>
                                 <tr>
-                                    <th>Date</th>
-                                    <th>Time</th>
+                                    <th data-col="day">Day/Time</th>
                                     <th>Business</th>
                                     <th no-sort class="pl-0">Product</th>
                                 </tr>
@@ -28,13 +27,13 @@
                             <tbody>
                                 {% for item in smallpress %}
                                     <tr>
-                                        <td class="leading-tight max-sm:py-1">{{item.date}}</td>
-                                        <td class="leading-tight max-sm:py-1">
+                                        <td class="pr-2 leading-tight max-sm:py-1 whitespace-nowrap" data-sort="{{item.date}}{{item.start}}" data-filter="{{item.date}}">
+                                            <strong>{{item.date}}</strong>
                                             <span class="whitespace-nowrap">{{item.start}}</span>&ndash;<span class="whitespace-nowrap">{{item.end}}</span></td>
-                                        <td class="leading-tight max-sm:w-full max-sm:pl-0 max-sm:py-1">
+                                        <td class="pr-2 leading-tight prose max-sm:w-full max-sm:pl-0 max-sm:py-1">
                                             <a href="{{item.website}}">{{item.business}}</a>
                                         </td>
-                                        <td class="leading-tight max-sm:w-full max-sm:pl-0 max-sm:py-1">{{item.product}}</td>
+                                        <td class="leading-tight max-sm:w-full max-sm:pl-0 max-sm:py-1 max-w-content">{{item.product}}</td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
