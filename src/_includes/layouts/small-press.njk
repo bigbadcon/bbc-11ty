@@ -2,44 +2,46 @@
 
 {% block content %}
     <main id="content">
-        <div class="mx-auto max-w-content p-base">
+        <div class="mx-auto max-w-hero p-base">
             {# Title #}
-            <h1 class="font-serif text-4xl font-bold leading-none md:leading-sub md:text-5xl text-header">{{title}}</h1>
+            <h1 class="font-serif text-4xl font-bold leading-none md:leading-sub md:text-5xl text-header mb-base">{{title}}</h1>
             {# Content #}
-            <div class="prose">{{ content | safe }}</div>
+            <div class="prose max-w-content">{{ content | safe }}</div>
             {# TABLE #}
-            {# TODO: maybe make this dynamic with a shortcode? #}
-            <section class="prose my-base">
-                <action-table class="text-sm events-table">
-                    <action-table-filters class="flex flex-wrap items-center rounded gap-x-base gap-y-base bg-card p-sm">
-                        <action-table-filter-menu name="Date" ></action-table-filter-menu>
-                        <button type="reset" class="button-sm" disabled>Reset Filters</button>
-                    </action-table-filters>
-                    <table class="my-base">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Time</th>
-                                <th>Business</th>
-                                <th>Product</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for item in smallpress %}
+            {# TODO: maybe make this dynamic with a shortcode? Or at least make sure the data exists before displaying #}
+            {% if smallpress %}
+                <section class="my-base">
+                    <action-table class="events-table">
+                        <action-table-filters class="flex flex-wrap items-center rounded gap-x-base gap-y-base bg-card p-sm">
+                            <action-table-filter-menu name="Date" ></action-table-filter-menu>
+                            <button type="reset" class="button-sm" disabled>Reset Filters</button>
+                        </action-table-filters>
+                        <table class="my-base">
+                            <thead>
                                 <tr>
-                                    <td class="leading-tight max-sm:py-1">{{item.date}}</td>
-                                    <td class="leading-tight max-sm:py-1">
-                                        <span class="whitespace-nowrap">{{item.start}}</span>&ndash;<span class="whitespace-nowrap">{{item.end}}</span></td>
-                                    <td class="leading-tight max-sm:w-full max-sm:pl-0 max-sm:py-1">
-                                        <a href="{{item.website}}">{{item.business}}</a>
-                                    </td>
-                                    <td class="leading-tight max-sm:w-full max-sm:pl-0 max-sm:py-1">{{item.product}}</td>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Business</th>
+                                    <th no-sort class="pl-0">Product</th>
                                 </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </action-table>
-            </section>
+                            </thead>
+                            <tbody>
+                                {% for item in smallpress %}
+                                    <tr>
+                                        <td class="leading-tight max-sm:py-1">{{item.date}}</td>
+                                        <td class="leading-tight max-sm:py-1">
+                                            <span class="whitespace-nowrap">{{item.start}}</span>&ndash;<span class="whitespace-nowrap">{{item.end}}</span></td>
+                                        <td class="leading-tight max-sm:w-full max-sm:pl-0 max-sm:py-1">
+                                            <a href="{{item.website}}">{{item.business}}</a>
+                                        </td>
+                                        <td class="leading-tight max-sm:w-full max-sm:pl-0 max-sm:py-1">{{item.product}}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </action-table>
+                </section>
+            {% endif %}
         </div>
     </main>
 {% endblock %}
