@@ -45,7 +45,7 @@ Accessibility: The shuttle has steps and does not include a lift gate. All guest
 
 ### Parking
 
-The hotel offers parking for all attendees discounted from their rate of $40/day to $15/day for Big Bad Con.
+The hotel offers parking for all attendees discounted from their rate of $40/day to $15/day for Big Bad Con (includes in-and-out access).
 
 ### Hotel Map
 
