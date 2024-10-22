@@ -54,7 +54,7 @@
 		"array-flat-polyfill": "^1.0.1",
 		"autoprefixer": "latest",
 		"axios": "^1.5.1",
-		"calendar-link": "^2.6.0",
+		"calendar-link": "^2.7.0",
 		"chrome-aws-lambda": "^10.1.0",
 		"cross-env": "^7.0.3",
 		"dayjs": "^1.10.7",
