@@ -1,9 +1,11 @@
 ---
-title: ''
+title: ""
 order: 2
 published: true
 _template: footer
 ---
+
+[@bigbadcon.bsky.social](https://bsky.app/profile/bigbadcon.bsky.social){.icon-bluesky}
 
 [@bigbadcon@dice.camp](https://dice.camp/@bigbadcon){.icon-mastodon}
 
