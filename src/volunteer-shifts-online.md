@@ -2,16 +2,17 @@
 layout: layouts/volunteer-shifts.njk
 title: Volunteer Shifts
 published: true
+permalink: volunteer-shifts/
 description: >-
-  Our Rangers are the folks that make Big Bad Online possible. To join, sign up
-  for a shift!
+    Our Rangers are the folks that make Big Bad Online possible. To join, sign up
+    for a shift!
 tags: pages
 navGroup: Volunteer
 navTitle: Volunteers Shifts
 order: 1
 icon: calendar-clock
-eventType: 'both'
-ogImage: ''
+eventType: "online"
+ogImage: ""
 _template: page
 ---
 

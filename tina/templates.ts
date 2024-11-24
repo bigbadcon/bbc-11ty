@@ -352,7 +352,7 @@ export function pageFields() {
 		{
 			name: "eventType",
 			label: "Event Type",
-			description: "Site mode: Big Bad Online or the Big Bad Con in person event",
+			description: "Site mode: Big Bad Online, the Big Bad Con in person even, or post-event",
 			type: "string",
 			options: ["both", "in person", "online"],
 		},
@@ -677,9 +677,9 @@ export function globalFields() {
 		{
 			name: "eventType",
 			label: "Event Type",
-			description: "Site mode: Big Bad Online or the Big Bad Con in person event",
+			description: "Site mode: Big Bad Online, the Big Bad Con in person event, or post in person",
 			type: "string",
-			options: ["in person", "online"],
+			options: ["in person", "online", "post in person"],
 		},
 		{
 			name: "showEventTimes",

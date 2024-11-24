@@ -1,9 +1,9 @@
 ---
 title: How to Attend
 order: -1
-published: true
-image: ''
-alt: ''
+published: false
+image: ""
+alt: ""
 ---
 
 Big Bad Con 2024 is sold out. We hope to see you in 2025!

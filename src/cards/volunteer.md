@@ -1,7 +1,7 @@
 ---
 title: Volunteer
 order: 1
-published: true
+published: false
 ---
 
 Tickets are sold out, but you can still attend Big Bad Con as one of our rangers!

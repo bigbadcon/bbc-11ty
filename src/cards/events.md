@@ -2,7 +2,7 @@
 tags: cards
 title: Events
 order: 2
-published: true
+published: false
 ---
 
 Event sign ups begin on October 5th at 12PM Pacific:

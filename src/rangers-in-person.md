@@ -3,15 +3,15 @@ layout: layouts/page.njk
 title: Join The Rangers
 published: true
 permalink: rangers/
-description: ''
+description: ""
 tags: pages
-ogImage: ''
+ogImage: ""
 navGroup: Volunteer
 navTitle: Join The Rangers
 order: null
 icon: paw
-nav title: ''
-eventType: 'in person'
+nav title: ""
+eventType: "in person"
 _template: page
 ---
 
