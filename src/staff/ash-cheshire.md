@@ -4,7 +4,7 @@ position: Steward
 tags:
   - staff
 published: true
-gender: (fae/they)
+gender: (they/them)
 order: 0
 image: ''
 twitter: theashcheshire
