@@ -8,7 +8,7 @@ gender: (they/them)
 order: 0
 image: ''
 twitter: ''
-bluesky: theashcheshire
+bluesky: ''
 website_name: Ash Can Games
 website_url: 'https://ashcangames.itch.io/'
 ---
