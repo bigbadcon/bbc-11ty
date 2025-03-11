@@ -7,7 +7,7 @@ published: true
 gender: (they/them)
 order: 0
 image: ''
-twitter: theashcheshire
+twitter: ''
 bluesky: theashcheshire
 website_name: Ash Can Games
 website_url: 'https://ashcangames.itch.io/'
