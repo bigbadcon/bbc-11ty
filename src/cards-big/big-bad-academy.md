@@ -1,5 +1,6 @@
 ---
 title: Big Bad Academy
+order: 1
 published: true
 image: /images/Artboard 1@2x.png
 ---
