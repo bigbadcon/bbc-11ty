@@ -11,6 +11,5 @@ Our volunteer Staff and Rangers exceeded expectations in organizing last year’
 
 This is all that we are able to share for now, but we will keep you informed as soon as anything further develops.
 
-Sincerely,
-
+Sincerely,  
 the Big Bad Con team

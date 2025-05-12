@@ -2,15 +2,15 @@
 layout: layouts/page.njk
 title: FAQ
 published: true
-description: ''
+description: ""
 tags: pages
-ogImage: ''
+ogImage: ""
 navGroup: Attend
 order: 10
 icon: faq
-navTitle: ''
-permalink: 'faq/'
-eventType: 'in person'
+navTitle: ""
+permalink: "faq/"
+eventType: "in person"
 _template: page
 ---
 
@@ -28,9 +28,9 @@ Burlingame, CA 94010
 
 ### I've submitted a form. When will I hear back?
 
-* New accounts should be created immediately and you should receive an email within a few minutes.
-* Event Submissions and Games on Demand sign ups are usually reviewed within two weeks. Our events team will be in touch!
-* Scholarship applications will be reviewed after the submission deadline and we'll reach out to recipients shortly after.
+-   New accounts should be created immediately and you should receive an email within a few minutes.
+-   Event Submissions and Games on Demand sign ups are usually reviewed within two weeks. Our events team will be in touch!
+-   Scholarship applications will be reviewed after the submission deadline and we'll reach out to recipients shortly after.
 
 If you haven't heard back by any of these dates, email us at info@bigbadcon.com.
 
@@ -56,7 +56,7 @@ Yes! Big Bad Con is an official 501(c)(3) non-profit. Donations are tax deductib
 
 # Event Submission FAQ
 
-### What's the difference between [Run an Event](https://www.bigbadcon.com/run-an-event/) and [Games on Demand?](<> "https://www.bigbadcon.com/games-on-demand/")
+### What's the difference between [Run an Event](https://www.bigbadcon.com/run-an-event/) and [Games on Demand?]( "https://www.bigbadcon.com/games-on-demand/")
 
 Games on Demand is an offshoot of our TTRPG track that allows players to drop into games at the con rather than booking a slot to play in advance. It's a great place to run games if you'd like to try out different game systems and hangout out with the amazing rangers at Big Bad Con.
 
@@ -78,27 +78,9 @@ Our event coordinators should reach out to you within two weeks. If you haven't 
 
 ### I'd like to demo a game I made. What's the best way to do that?
 
-* If you'd like to run short (under two hour) demos in the large ballroom, you can book a time slot in the [Small Press Showcase](https://www.bigbadcon.com/small-press-showcase/) once sign ups open (note: you will need a badge to book in the showcase).
-* If you'd like to run full length games, you can run up to two sessions either [on our schedule](https://www.bigbadcon.com/run-an-event/) or in [Games on Demand](https://www.bigbadcon.com/games-on-demand/).
+-   If you'd like to run short (under two hour) demos in the large ballroom, you can book a time slot in the [Small Press Showcase](https://www.bigbadcon.com/small-press-showcase/) once sign ups open (note: you will need a badge to book in the showcase).
+-   If you'd like to run full length games, you can run up to two sessions either [on our schedule](https://www.bigbadcon.com/run-an-event/) or in [Games on Demand](https://www.bigbadcon.com/games-on-demand/).
 
 ### When are games scheduled?
 
 We schedule all games after event submissions close. You should hear back shortly after with your schedule.
-
-# Website FAQ
-
-### Who built the website?
-
-The front-end of the website is built by hand using the static site generator [11ty](https://www.11ty.dev) and hosted on [Netlify](https://www.netlify.com). The back-end is a combination of markdown files for static content, serverless functions, and a bespoke event manager data service. It is a collaboration of:
-
-* [Colin Fahrion](/staff/#colin-fahrion): Site architecture, UI design, front-end development, and some writing
-* [Jeremy Tidwell](/staff/#jeremy-tidwell): Back-end development and event manager API
-* [Sean Nittner](/staff/#sean-nittner): Writing and the wisdom of years of Big Bad Con experience
-
-### Where did you get all the wonderful graphics?
-
-* The character illustrations of Red and The Wolf are done by [Eden Parkinson](https://eden-parkinson.com)
-* The Logo by [Colin Fahrion](/staff/#colin-fahrion)
-* Graphic design by [Cris Viana](/staff/#cris-viana)
-
-The [SVG icons](/icons) are combination of stock, thanks to [Font Awesome](https://fontawesome.com/license) and [Icomoon](https://icomoon.io), and some additional svg art by Colin Fahrion.
